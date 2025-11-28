@@ -1,0 +1,130 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ai-collab-kb"
+version = "2.0.0"
+description = "AI Collaboration Knowledge Base - Production-grade knowledge management with timeout protection"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.12"
+authors = [
+    { name = "AI Collaboration KB Team" }
+]
+keywords = [
+    "ai",
+    "collaboration",
+    "knowledge-base",
+    "mcp",
+    "timeout",
+    "cli",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Typing :: Typed",
+]
+
+dependencies = [
+    "pyyaml>=6.0",
+    "pydantic>=2.0",
+    "typer>=0.9.0",
+    "rich>=13.0",
+]
+
+[project.optional-dependencies]
+mcp = [
+    "mcp>=1.0",
+    "httpx>=0.25",
+    "uvicorn>=0.22",
+]
+dev = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21",
+    "pytest-cov>=4.0",
+    "black>=23.0",
+    "ruff>=0.1",
+    "mypy>=1.0",
+]
+all = [
+    "ai-collab-kb[mcp,dev]",
+]
+
+[project.urls]
+Homepage = "https://github.com/ai-collab-kb/ai-collab-kb"
+Documentation = "https://github.com/ai-collab-kb/ai-collab-kb#readme"
+Repository = "https://github.com/ai-collab-kb/ai-collab-kb"
+Issues = "https://github.com/ai-collab-kb/ai-collab-kb/issues"
+
+[project.scripts]
+aikb = "ai_collab_kb.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ai_collab_kb"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src",
+    "/content",
+    "/tools",
+    "/index.md",
+    "/aikb.yaml",
+    "/README.md",
+    "/LICENSE",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "-v --cov=ai_collab_kb --cov-report=term-missing"
+
+[tool.black]
+line-length = 88
+target-version = ["py312", "py313", "py314"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+select = [
+    "E", # pycodestyle errors
+    "W", # pycodestyle warnings
+    "F", # pyflakes
+    "I", # isort
+    "B", # flake8-bugbear
+    "C4", # flake8-comprehensions
+    "UP", # pyupgrade
+]
+ignore = [
+    "E501", # line too long (handled by black)
+    "B008", # don't perform function calls in argument defaults
+]
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_ignores = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
+
+[tool.coverage.run]
+source = ["src/ai_collab_kb"]
+branch = true
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise NotImplementedError",
+    "if TYPE_CHECKING:",
+    "if __name__ == .__main__.:",
+]
