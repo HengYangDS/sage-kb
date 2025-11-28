@@ -13,12 +13,11 @@ Author: SAGE AI Collab Team
 Version: 0.1.0
 """
 
-from io import StringIO
 from unittest.mock import MagicMock, patch
 
 from typer.testing import CliRunner
 
-from sage.services.cli import app, display_content, display_result, console
+from sage.services.cli import app, console, display_content, display_result
 
 runner = CliRunner()
 
@@ -231,25 +230,25 @@ class TestDisplayContent:
 
     def test_display_markdown_format(self):
         """Test display_content with markdown format."""
-        with patch.object(console, 'print') as mock_print:
+        with patch.object(console, "print") as mock_print:
             display_content("# Test Header", format="markdown")
             mock_print.assert_called_once()
 
     def test_display_syntax_format(self):
         """Test display_content with syntax format."""
-        with patch.object(console, 'print') as mock_print:
+        with patch.object(console, "print") as mock_print:
             display_content("# Test Header", format="syntax")
             mock_print.assert_called_once()
 
     def test_display_raw_format(self):
         """Test display_content with raw format."""
-        with patch.object(console, 'print') as mock_print:
+        with patch.object(console, "print") as mock_print:
             display_content("Test content", format="raw")
             mock_print.assert_called_once_with("Test content")
 
     def test_display_unknown_format_defaults_to_markdown(self):
         """Test display_content with unknown format defaults to markdown."""
-        with patch.object(console, 'print') as mock_print:
+        with patch.object(console, "print") as mock_print:
             display_content("# Test", format="unknown")
             mock_print.assert_called_once()
 
@@ -267,7 +266,7 @@ class TestDisplayResult:
         mock_result.files_loaded = []
         mock_result.errors = []
 
-        with patch.object(console, 'print'):
+        with patch.object(console, "print"):
             display_result(mock_result)
 
     def test_display_result_verbose_with_files(self):
@@ -280,7 +279,7 @@ class TestDisplayResult:
         mock_result.files_loaded = ["file1.md", "file2.md"]
         mock_result.errors = []
 
-        with patch.object(console, 'print'):
+        with patch.object(console, "print"):
             display_result(mock_result, verbose=True)
 
     def test_display_result_verbose_with_errors(self):
@@ -293,7 +292,7 @@ class TestDisplayResult:
         mock_result.files_loaded = []
         mock_result.errors = ["Error 1", "Error 2"]
 
-        with patch.object(console, 'print'):
+        with patch.object(console, "print"):
             display_result(mock_result, verbose=True)
 
     def test_display_result_partial_status(self):
@@ -306,7 +305,7 @@ class TestDisplayResult:
         mock_result.files_loaded = []
         mock_result.errors = []
 
-        with patch.object(console, 'print'):
+        with patch.object(console, "print"):
             display_result(mock_result)
 
     def test_display_result_fallback_status(self):
@@ -319,7 +318,7 @@ class TestDisplayResult:
         mock_result.files_loaded = []
         mock_result.errors = []
 
-        with patch.object(console, 'print'):
+        with patch.object(console, "print"):
             display_result(mock_result)
 
 
@@ -469,7 +468,11 @@ class TestValidateExtended:
         result = runner.invoke(app, ["validate", str(tmp_path)])
         assert result.exit_code in [0, 1]
         # Should mention index.md in output
-        assert "index" in result.output.lower() or "✓" in result.output or "✗" in result.output
+        assert (
+            "index" in result.output.lower()
+            or "✓" in result.output
+            or "✗" in result.output
+        )
 
     def test_validate_checks_guidelines_files(self, tmp_path):
         """Test validate checks for guideline files."""
@@ -511,7 +514,11 @@ class TestSearchWithActualResults:
         result = runner.invoke(app, ["search", "knowledge"])
         assert result.exit_code == 0
         # Output should contain table elements or "No results"
-        assert "Score" in result.output or "No results" in result.output or "Path" in result.output
+        assert (
+            "Score" in result.output
+            or "No results" in result.output
+            or "Path" in result.output
+        )
 
     def test_search_truncates_preview(self):
         """Test search truncates long preview text."""
@@ -529,7 +536,9 @@ class TestInteractiveExtended:
 
     def test_interactive_guidelines_with_chapter(self):
         """Test interactive mode guidelines with chapter."""
-        result = runner.invoke(app, ["interactive"], input="guidelines quick_start\nexit\n")
+        result = runner.invoke(
+            app, ["interactive"], input="guidelines quick_start\nexit\n"
+        )
         assert result.exit_code == 0
 
     def test_interactive_multiple_commands(self):
@@ -605,56 +614,63 @@ class TestConfigFunctions:
     def test_load_config_returns_dict(self):
         """Test _load_config returns a dictionary."""
         from sage.services.cli import _load_config
+
         config = _load_config()
         assert isinstance(config, dict)
 
     def test_load_config_caching(self):
         """Test _load_config uses caching."""
         from sage.services import cli
-        
+
         # Clear cache
         cli._config_cache = None
-        
+
         # First call loads config
         config1 = cli._load_config()
-        
+
         # Second call should return cached value
         config2 = cli._load_config()
-        
+
         assert config1 is config2
 
     def test_get_guidelines_section_map(self):
         """Test _get_guidelines_section_map returns dict."""
         from sage.services.cli import _get_guidelines_section_map
+
         section_map = _get_guidelines_section_map()
         assert isinstance(section_map, dict)
 
     def test_parse_timeout_str_int(self):
         """Test parsing integer timeout."""
         from sage.services.cli import _parse_timeout_str
+
         assert _parse_timeout_str(1000) == 1000
         assert _parse_timeout_str(500) == 500
 
     def test_parse_timeout_str_milliseconds(self):
         """Test parsing timeout with ms suffix."""
         from sage.services.cli import _parse_timeout_str
+
         assert _parse_timeout_str("500ms") == 500
         assert _parse_timeout_str("1000ms") == 1000
 
     def test_parse_timeout_str_seconds(self):
         """Test parsing timeout with s suffix."""
         from sage.services.cli import _parse_timeout_str
+
         assert _parse_timeout_str("5s") == 5000
         assert _parse_timeout_str("2s") == 2000
 
     def test_parse_timeout_str_no_unit(self):
         """Test parsing timeout without unit."""
         from sage.services.cli import _parse_timeout_str
+
         assert _parse_timeout_str("1000") == 1000
 
     def test_get_timeout_from_config(self):
         """Test getting timeout from config."""
         from sage.services.cli import _get_timeout_from_config
+
         timeout = _get_timeout_from_config("full_load", 5000)
         assert isinstance(timeout, int)
         assert timeout > 0
@@ -662,6 +678,7 @@ class TestConfigFunctions:
     def test_get_timeout_from_config_default(self):
         """Test getting timeout with default fallback."""
         from sage.services.cli import _get_timeout_from_config
+
         # Nonexistent operation should return default
         timeout = _get_timeout_from_config("nonexistent_operation_xyz", 3000)
         assert isinstance(timeout, int)
@@ -712,7 +729,11 @@ class TestSearchResultsDisplay:
         result = runner.invoke(app, ["search", "principles"])
         assert result.exit_code == 0
         # Should show results table or no results message
-        assert "Score" in result.output or "No results" in result.output or "Path" in result.output
+        assert (
+            "Score" in result.output
+            or "No results" in result.output
+            or "Path" in result.output
+        )
 
     def test_search_preview_truncation(self):
         """Test search truncates long preview."""
@@ -725,22 +746,22 @@ class TestGetLoaderFunction:
 
     def test_get_loader_returns_loader(self):
         """Test get_loader returns a KnowledgeLoader."""
-        from sage.services.cli import get_loader
         from sage.core.loader import KnowledgeLoader
-        
+        from sage.services.cli import get_loader
+
         loader = get_loader()
         assert isinstance(loader, KnowledgeLoader)
 
     def test_get_loader_singleton(self):
         """Test get_loader returns same instance."""
         from sage.services import cli
-        
+
         # Clear global loader
         cli._loader = None
-        
+
         loader1 = cli.get_loader()
         loader2 = cli.get_loader()
-        
+
         assert loader1 is loader2
 
 
@@ -750,9 +771,9 @@ class TestRunAsyncFunction:
     def test_run_async_executes_coroutine(self):
         """Test run_async executes async function."""
         from sage.services.cli import run_async
-        
+
         async def sample_coro():
             return 42
-        
+
         result = run_async(sample_coro())
         assert result == 42

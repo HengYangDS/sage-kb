@@ -32,8 +32,7 @@ from sage.core.loader import (
     KnowledgeLoader,
     Layer,
 )
-from sage.core.logging import get_logger, logging_context
-
+from sage.core.logging import get_logger
 
 # Configuration cache
 _config_cache: dict[str, Any] | None = None
@@ -48,7 +47,7 @@ def _load_config() -> dict[str, Any]:
     config_path = Path(__file__).parent.parent.parent.parent / "sage.yaml"
     if config_path.exists():
         try:
-            with open(config_path, "r", encoding="utf-8") as f:
+            with open(config_path, encoding="utf-8") as f:
                 _config_cache = yaml.safe_load(f) or {}
         except Exception:
             _config_cache = {}
@@ -71,10 +70,10 @@ def _get_guidelines_section_map() -> dict[str, str]:
 def _parse_timeout_str(timeout_str: str | int) -> int:
     """
     Parse timeout string (e.g., '5s', '500ms', '2s') to milliseconds.
-    
+
     Args:
         timeout_str: Timeout value as string (e.g., '5s', '500ms') or int (ms).
-        
+
     Returns:
         Timeout in milliseconds.
     """
@@ -95,11 +94,11 @@ def _parse_timeout_str(timeout_str: str | int) -> int:
 def _get_timeout_from_config(operation: str, default_ms: int) -> int:
     """
     Get timeout value for a specific operation from the sage.yaml configuration.
-    
+
     Args:
         operation: Operation name (e.g., 'full_load', 'layer_load', 'file_read', 'search').
         default_ms: Default timeout in milliseconds if not found in config.
-        
+
     Returns:
         Timeout in milliseconds.
     """
@@ -120,14 +119,14 @@ def _get_timeout_from_config(operation: str, default_ms: int) -> int:
 def _get_timeout_config_dict() -> dict[str, int]:
     """
     Get the complete timeout configuration as a dictionary.
-    
+
     Returns:
         Dictionary with timeout values in milliseconds.
     """
     config = _load_config()
     timeout_config = config.get("timeout", {})
     operations = timeout_config.get("operations", {})
-    
+
     return {
         "cache_ms": _parse_timeout_str(operations.get("cache_lookup", 100)),
         "file_ms": _parse_timeout_str(operations.get("file_read", 500)),
@@ -135,6 +134,7 @@ def _get_timeout_config_dict() -> dict[str, int]:
         "full_ms": _parse_timeout_str(operations.get("full_load", 5000)),
         "analysis_ms": _parse_timeout_str(operations.get("analysis", 10000)),
     }
+
 
 logger = get_logger(__name__)
 
@@ -1026,7 +1026,7 @@ def run_server(host: str = "localhost", port: int = 8000) -> None:
 if __name__ == "__main__":
     import argparse
 
-    from sage.core.logging import configure_logging, LogLevel
+    from sage.core.logging import LogLevel, configure_logging
 
     parser = argparse.ArgumentParser(description="AI Collaboration KB MCP Server")
     parser.add_argument("--host", default="localhost", help="Host to bind to")

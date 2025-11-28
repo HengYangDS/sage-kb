@@ -4,7 +4,6 @@ Version: 0.1.0
 """
 
 import pytest
-from pathlib import Path
 
 from sage.capabilities.analyzers.quality import (
     QualityAnalyzer,
@@ -135,10 +134,10 @@ class TestQualityAnalyzer:
 
 def hello(name: str) -> str:
     """Say hello.
-    
+
     Args:
         name: The name to greet.
-        
+
     Returns:
         Greeting string.
     """
@@ -147,7 +146,7 @@ def hello(name: str) -> str:
 
 class MyClass:
     """A sample class."""
-    
+
     def __init__(self):
         """Initialize."""
         self.value = 0

@@ -26,6 +26,14 @@ Score: 100/100 🏆
 Experts: 24 Level 5
 """
 
+from .core.di import (
+    DIContainer,
+    DIScope,
+    Lifetime,
+    TypeRegistry,
+    get_container,
+    get_registry,
+)
 from .core.loader import (
     KnowledgeLoader,
     Layer,
@@ -34,14 +42,6 @@ from .core.loader import (
     load_core,
     load_knowledge,
     search_knowledge,
-)
-from .core.di import (
-    DIContainer,
-    DIScope,
-    Lifetime,
-    get_container,
-    TypeRegistry,
-    get_registry,
 )
 
 __all__ = [

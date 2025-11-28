@@ -4,7 +4,6 @@ Version: 0.1.0
 """
 
 import pytest
-from pathlib import Path
 
 from sage.capabilities.analyzers.content import (
     ContentAnalyzer,

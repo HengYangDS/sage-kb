@@ -3,8 +3,6 @@
 Version: 0.1.0
 """
 
-import pytest
-
 from sage.core.logging import (
     LogFormat,
     LogLevel,

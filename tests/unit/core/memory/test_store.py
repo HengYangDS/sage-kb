@@ -8,9 +8,7 @@ Tests cover:
 - Index management
 """
 
-import json
 import tempfile
-from datetime import datetime, timedelta
 from pathlib import Path
 
 import pytest
@@ -474,10 +472,10 @@ class TestMemoryStoreUpdateExtended:
             content="Tagged entry",
             tags=["original-tag"],
         )
-        
+
         # Update tags
         updated = temp_store.update(entry.id, tags=["new-tag-1", "new-tag-2"])
-        
+
         assert "new-tag-1" in updated.tags
         assert "new-tag-2" in updated.tags
         assert "original-tag" not in updated.tags
@@ -489,7 +487,7 @@ class TestMemoryStoreUpdateExtended:
             content="Priority entry",
             priority=MemoryPriority.LOW,
         )
-        
+
         updated = temp_store.update(entry.id, priority=MemoryPriority.HIGH)
         assert updated.priority == MemoryPriority.HIGH
 
@@ -500,7 +498,7 @@ class TestMemoryStoreUpdateExtended:
             content="Token entry",
             tokens=100,
         )
-        
+
         updated = temp_store.update(entry.id, tokens=200)
         assert updated.tokens == 200
 
@@ -511,7 +509,7 @@ class TestMemoryStoreUpdateExtended:
             content="Metadata entry",
             metadata={"key1": "value1"},
         )
-        
+
         updated = temp_store.update(entry.id, metadata={"key2": "value2"})
         assert "key1" in updated.metadata
         assert "key2" in updated.metadata
@@ -530,10 +528,10 @@ class TestMemoryStoreQueryExtended:
         """Test query ordering by updated_at."""
         entry1 = temp_store.add(type=MemoryType.CONTEXT, content="First")
         entry2 = temp_store.add(type=MemoryType.CONTEXT, content="Second")
-        
+
         # Update first entry to have later updated_at
         temp_store.update(entry1.id, content="Updated first")
-        
+
         results = temp_store.query(order_by="updated_at", descending=True)
         assert len(results) >= 2
 
@@ -549,7 +547,7 @@ class TestMemoryStoreQueryExtended:
             content="High",
             priority=MemoryPriority.HIGH,
         )
-        
+
         results = temp_store.query(order_by="priority", descending=True)
         assert len(results) >= 2
         # Higher priority should come first when descending
@@ -567,7 +565,7 @@ class TestMemoryStoreQueryExtended:
             content="High",
             priority=MemoryPriority.HIGH,
         )
-        
+
         results = temp_store.query(order_by="priority", descending=False)
         assert len(results) >= 2
         # Lower priority should come first when ascending
@@ -592,7 +590,7 @@ class TestMemoryStoreQueryExtended:
             content="Low",
             priority=MemoryPriority.LOW,
         )
-        
+
         results = temp_store.query(max_priority=MemoryPriority.NORMAL)
         # Should only include LOW and NORMAL priority
         for r in results:
@@ -607,13 +605,13 @@ class TestMemoryStoreAutoSave:
         with tempfile.TemporaryDirectory() as tmpdir:
             path = Path(tmpdir)
             store = MemoryStore(base_path=path, auto_save=True)
-            
+
             store.add(
                 type=MemoryType.DECISION,
                 content="Auto-saved entry",
                 session_id="auto-save-session",
             )
-            
+
             # Check that session file was created
             session_file = path / "sessions" / "auto-save-session.json"
             assert session_file.exists()
@@ -623,15 +621,15 @@ class TestMemoryStoreAutoSave:
         with tempfile.TemporaryDirectory() as tmpdir:
             path = Path(tmpdir)
             store = MemoryStore(base_path=path, auto_save=True)
-            
+
             entry = store.add(
                 type=MemoryType.DECISION,
                 content="Original",
                 session_id="update-session",
             )
-            
+
             store.update(entry.id, content="Updated")
-            
+
             # Verify file was updated
             session_file = path / "sessions" / "update-session.json"
             assert session_file.exists()
@@ -641,15 +639,15 @@ class TestMemoryStoreAutoSave:
         with tempfile.TemporaryDirectory() as tmpdir:
             path = Path(tmpdir)
             store = MemoryStore(base_path=path, auto_save=True)
-            
+
             entry = store.add(
                 type=MemoryType.DECISION,
                 content="To delete",
                 session_id="delete-session",
             )
-            
+
             store.delete(entry.id)
-            
+
             # Session file should still exist (may be empty)
             session_file = path / "sessions" / "delete-session.json"
             # File may or may not exist depending on implementation

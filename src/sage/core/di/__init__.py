@@ -6,18 +6,19 @@ auto-wiring, and YAML configuration support.
 
 Example:
     >>> from sage.core.di import get_container, Lifetime
-    >>> 
+    >>>
     >>> container = get_container()
     >>> container.register(MyProtocol, MyImplementation, Lifetime.SINGLETON)
     >>> service = container.resolve(MyProtocol)
 
 Version: 0.1.0
 """
+
 from sage.core.di.container import (
+    CircularDependencyError,
     DIContainer,
     DIContainerError,
     DIScope,
-    CircularDependencyError,
     Lifetime,
     Registration,
     ScopeRequiredError,

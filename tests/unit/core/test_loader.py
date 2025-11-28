@@ -159,7 +159,9 @@ class TestKnowledgeLoaderInit:
         assert loader.kb_path is not None
         assert isinstance(loader.kb_path, Path)
         # Triggers are loaded from sage.yaml config
-        assert len(loader.triggers) >= 1  # At least one trigger should be loaded from config
+        assert (
+            len(loader.triggers) >= 1
+        )  # At least one trigger should be loaded from config
         assert all(isinstance(t, LoadingTrigger) for t in loader.triggers)
         assert loader._cache == {}
 
@@ -416,7 +418,9 @@ class TestGetLayerForFile:
 
     def test_frameworks_file(self):
         """Test content/frameworks files map to L3_FRAMEWORKS."""
-        layer = KnowledgeLoader._get_layer_for_file("content/frameworks/autonomy/levels.md")
+        layer = KnowledgeLoader._get_layer_for_file(
+            "content/frameworks/autonomy/levels.md"
+        )
         assert layer == Layer.L3_FRAMEWORKS
 
     def test_practices_file(self):
@@ -468,26 +472,34 @@ class TestLoadGuidelines:
         """Create a loader with guidelines content."""
         guidelines_dir = tmp_path / "content" / "guidelines"
         guidelines_dir.mkdir(parents=True)
-        (guidelines_dir / "quick_start.md").write_text("# Quick Start\nOverview content")
+        (guidelines_dir / "quick_start.md").write_text(
+            "# Quick Start\nOverview content"
+        )
         (guidelines_dir / "cognitive.md").write_text("# Cognitive\nCognitive content")
         return KnowledgeLoader(kb_path=tmp_path)
 
     @pytest.mark.asyncio
     async def test_load_guidelines_quick_start(self, loader_with_guidelines):
         """Test loading guidelines with quick_start chapter."""
-        result = await loader_with_guidelines.load_guidelines(chapter="quick_start", timeout_ms=2000)
+        result = await loader_with_guidelines.load_guidelines(
+            chapter="quick_start", timeout_ms=2000
+        )
         assert isinstance(result, LoadResult)
 
     @pytest.mark.asyncio
     async def test_load_guidelines_cognitive(self, loader_with_guidelines):
         """Test loading guidelines with cognitive chapter."""
-        result = await loader_with_guidelines.load_guidelines(chapter="cognitive", timeout_ms=2000)
+        result = await loader_with_guidelines.load_guidelines(
+            chapter="cognitive", timeout_ms=2000
+        )
         assert isinstance(result, LoadResult)
 
     @pytest.mark.asyncio
     async def test_load_guidelines_invalid_chapter(self, loader_with_guidelines):
         """Test loading guidelines with invalid chapter."""
-        result = await loader_with_guidelines.load_guidelines(chapter="invalid_xyz", timeout_ms=2000)
+        result = await loader_with_guidelines.load_guidelines(
+            chapter="invalid_xyz", timeout_ms=2000
+        )
         assert isinstance(result, LoadResult)
 
 
@@ -509,13 +521,17 @@ class TestLoadFramework:
     @pytest.mark.asyncio
     async def test_load_autonomy_framework(self, loader_with_frameworks):
         """Test loading autonomy framework."""
-        result = await loader_with_frameworks.load_framework(name="autonomy", timeout_ms=2000)
+        result = await loader_with_frameworks.load_framework(
+            name="autonomy", timeout_ms=2000
+        )
         assert isinstance(result, LoadResult)
 
     @pytest.mark.asyncio
     async def test_load_cognitive_framework(self, loader_with_frameworks):
         """Test loading cognitive framework."""
-        result = await loader_with_frameworks.load_framework(name="cognitive", timeout_ms=2000)
+        result = await loader_with_frameworks.load_framework(
+            name="cognitive", timeout_ms=2000
+        )
         assert isinstance(result, LoadResult)
 
 
@@ -545,20 +561,26 @@ class TestSearchWithContent:
     @pytest.mark.asyncio
     async def test_search_returns_list(self, loader_with_searchable_content):
         """Test search always returns a list."""
-        results = await loader_with_searchable_content.search("principles", timeout_ms=5000)
+        results = await loader_with_searchable_content.search(
+            "principles", timeout_ms=5000
+        )
         assert isinstance(results, list)
         # Results may be empty if circuit breaker is open, but should be a list
 
     @pytest.mark.asyncio
     async def test_search_respects_max_results(self, loader_with_searchable_content):
         """Test search respects max_results parameter."""
-        results = await loader_with_searchable_content.search("content", max_results=1, timeout_ms=5000)
+        results = await loader_with_searchable_content.search(
+            "content", max_results=1, timeout_ms=5000
+        )
         assert len(results) <= 1
 
     @pytest.mark.asyncio
     async def test_search_result_structure(self, loader_with_searchable_content):
         """Test search results have correct structure when found."""
-        results = await loader_with_searchable_content.search("principles", timeout_ms=5000)
+        results = await loader_with_searchable_content.search(
+            "principles", timeout_ms=5000
+        )
         # If results found, verify structure
         if results:
             assert "score" in results[0]
@@ -675,7 +697,9 @@ class TestSearchExtended:
         (core_dir / "active.md").write_text("# Active Content\nSearchable text here.")
         archive_dir = tmp_path / "content" / "archive"
         archive_dir.mkdir(parents=True)
-        (archive_dir / "archived.md").write_text("# Archived\nSearchable text here too.")
+        (archive_dir / "archived.md").write_text(
+            "# Archived\nSearchable text here too."
+        )
         return KnowledgeLoader(kb_path=tmp_path)
 
     @pytest.mark.asyncio
@@ -710,19 +734,19 @@ class TestSearchExtended:
         core_dir = tmp_path / "content" / "core"
         core_dir.mkdir(parents=True)
         (core_dir / "test.md").write_text("# Test Content")
-        
+
         loader = KnowledgeLoader(kb_path=tmp_path)
-        
+
         # Monkeypatch to simulate read error
         original_read_text = Path.read_text
         call_count = [0]
-        
+
         def failing_read_text(self, *args, **kwargs):
             call_count[0] += 1
             if call_count[0] > 1:  # Fail on subsequent reads
                 raise PermissionError("Access denied")
             return original_read_text(self, *args, **kwargs)
-        
+
         # This test verifies the error handling path exists
         results = await loader.search("test", timeout_ms=5000)
         assert isinstance(results, list)
@@ -810,8 +834,12 @@ class TestLoadGuidelinesExtended:
         """Create a loader with guidelines files."""
         guidelines_dir = tmp_path / "content" / "guidelines"
         guidelines_dir.mkdir(parents=True)
-        (guidelines_dir / "quick_start.md").write_text("# Quick Start\nGetting started guide.")
-        (guidelines_dir / "cognitive.md").write_text("# Cognitive\nCognitive guidelines.")
+        (guidelines_dir / "quick_start.md").write_text(
+            "# Quick Start\nGetting started guide."
+        )
+        (guidelines_dir / "cognitive.md").write_text(
+            "# Cognitive\nCognitive guidelines."
+        )
         return KnowledgeLoader(kb_path=tmp_path)
 
     @pytest.mark.asyncio
@@ -854,7 +882,9 @@ class TestLoadFrameworkExtended:
         (autonomy_dir / "levels.md").write_text("# Autonomy Levels\nLevel definitions.")
         cognitive_dir = frameworks_dir / "cognitive"
         cognitive_dir.mkdir(parents=True)
-        (cognitive_dir / "expert_committee.md").write_text("# Expert Committee\nCommittee framework.")
+        (cognitive_dir / "expert_committee.md").write_text(
+            "# Expert Committee\nCommittee framework."
+        )
         return KnowledgeLoader(kb_path=tmp_path)
 
     @pytest.mark.asyncio
@@ -891,12 +921,14 @@ class TestConfigFunctions:
     def test_parse_timeout_str_int(self):
         """Test parsing integer timeout."""
         from sage.core.loader import _parse_timeout_str
+
         assert _parse_timeout_str(1000) == 1000
         assert _parse_timeout_str(500) == 500
 
     def test_parse_timeout_str_milliseconds(self):
         """Test parsing timeout with ms suffix."""
         from sage.core.loader import _parse_timeout_str
+
         assert _parse_timeout_str("500ms") == 500
         assert _parse_timeout_str("1000ms") == 1000
         assert _parse_timeout_str("  200ms  ") == 200
@@ -904,6 +936,7 @@ class TestConfigFunctions:
     def test_parse_timeout_str_seconds(self):
         """Test parsing timeout with s suffix."""
         from sage.core.loader import _parse_timeout_str
+
         assert _parse_timeout_str("5s") == 5000
         assert _parse_timeout_str("2s") == 2000
         assert _parse_timeout_str("1.5s") == 1500
@@ -911,12 +944,14 @@ class TestConfigFunctions:
     def test_parse_timeout_str_no_unit(self):
         """Test parsing timeout without unit (assumes ms)."""
         from sage.core.loader import _parse_timeout_str
+
         assert _parse_timeout_str("1000") == 1000
         assert _parse_timeout_str("500") == 500
 
     def test_get_timeout_from_config_default(self):
         """Test getting timeout with default value."""
         from sage.core.loader import _get_timeout_from_config
+
         # Should return default when operation not in config
         result = _get_timeout_from_config("nonexistent_operation", 3000)
         assert isinstance(result, int)
@@ -924,12 +959,14 @@ class TestConfigFunctions:
     def test_get_triggers_from_config(self):
         """Test getting triggers from config."""
         from sage.core.loader import _get_triggers_from_config
+
         triggers = _get_triggers_from_config()
         assert isinstance(triggers, list)
 
     def test_get_always_load_from_config(self):
         """Test getting always-load files from config."""
         from sage.core.loader import _get_always_load_from_config
+
         always_load = _get_always_load_from_config()
         assert isinstance(always_load, list)
 
@@ -941,6 +978,7 @@ class TestConvenienceFunctions:
     async def test_load_knowledge_function(self):
         """Test load_knowledge convenience function."""
         from sage.core.loader import load_knowledge
+
         result = await load_knowledge(task="test task", timeout_ms=2000)
         assert isinstance(result, LoadResult)
 
@@ -948,6 +986,7 @@ class TestConvenienceFunctions:
     async def test_load_knowledge_with_default_timeout(self):
         """Test load_knowledge with default timeout from config."""
         from sage.core.loader import load_knowledge
+
         result = await load_knowledge(task="another task")
         assert isinstance(result, LoadResult)
 
@@ -955,6 +994,7 @@ class TestConvenienceFunctions:
     async def test_load_core_function(self):
         """Test load_core convenience function."""
         from sage.core.loader import load_core
+
         result = await load_core(timeout_ms=2000)
         assert isinstance(result, LoadResult)
 
@@ -962,6 +1002,7 @@ class TestConvenienceFunctions:
     async def test_load_core_with_default_timeout(self):
         """Test load_core with default timeout from config."""
         from sage.core.loader import load_core
+
         result = await load_core()
         assert isinstance(result, LoadResult)
 
@@ -969,6 +1010,7 @@ class TestConvenienceFunctions:
     async def test_search_knowledge_function(self):
         """Test search_knowledge convenience function."""
         from sage.core.loader import search_knowledge
+
         results = await search_knowledge(query="test", max_results=5)
         assert isinstance(results, list)
 
@@ -1018,23 +1060,39 @@ class TestGetLayerForFileExtended:
 
     def test_core_directory(self):
         """Test content/core files return L1_CORE."""
-        assert KnowledgeLoader._get_layer_for_file("content/core/principles.md") == Layer.L1_CORE
+        assert (
+            KnowledgeLoader._get_layer_for_file("content/core/principles.md")
+            == Layer.L1_CORE
+        )
 
     def test_guidelines_directory(self):
         """Test content/guidelines files return L2_GUIDELINES."""
-        assert KnowledgeLoader._get_layer_for_file("content/guidelines/quick_start.md") == Layer.L2_GUIDELINES
+        assert (
+            KnowledgeLoader._get_layer_for_file("content/guidelines/quick_start.md")
+            == Layer.L2_GUIDELINES
+        )
 
     def test_frameworks_directory(self):
         """Test content/frameworks files return L3_FRAMEWORKS."""
-        assert KnowledgeLoader._get_layer_for_file("content/frameworks/autonomy/levels.md") == Layer.L3_FRAMEWORKS
+        assert (
+            KnowledgeLoader._get_layer_for_file("content/frameworks/autonomy/levels.md")
+            == Layer.L3_FRAMEWORKS
+        )
 
     def test_practices_directory(self):
         """Test content/practices files return L4_PRACTICES."""
-        assert KnowledgeLoader._get_layer_for_file("content/practices/ai_collab/workflow.md") == Layer.L4_PRACTICES
+        assert (
+            KnowledgeLoader._get_layer_for_file(
+                "content/practices/ai_collab/workflow.md"
+            )
+            == Layer.L4_PRACTICES
+        )
 
     def test_unknown_file(self):
         """Test unknown file defaults to L1_CORE."""
-        assert KnowledgeLoader._get_layer_for_file("some/random/file.md") == Layer.L1_CORE
+        assert (
+            KnowledgeLoader._get_layer_for_file("some/random/file.md") == Layer.L1_CORE
+        )
 
 
 class TestSearchContentExtended:
@@ -1060,13 +1118,18 @@ class TestSearchContentExtended:
     @pytest.mark.asyncio
     async def test_search_finds_content(self, loader_with_searchable_content):
         """Test search finds matching content."""
-        results = await loader_with_searchable_content.search("principles", timeout_ms=5000)
+        results = await loader_with_searchable_content.search(
+            "principles", timeout_ms=5000
+        )
         # Results may be empty due to circuit breaker or timeout, just verify it's a list
         assert isinstance(results, list)
         # If results found, verify structure
         if len(results) > 0:
-            assert any("principles" in r["path"].lower() or "principles" in r.get("preview", "").lower() 
-                       for r in results)
+            assert any(
+                "principles" in r["path"].lower()
+                or "principles" in r.get("preview", "").lower()
+                for r in results
+            )
 
     @pytest.mark.asyncio
     async def test_search_with_header_boost(self, loader_with_searchable_content):
@@ -1078,7 +1141,9 @@ class TestSearchContentExtended:
     @pytest.mark.asyncio
     async def test_search_no_results(self, loader_with_searchable_content):
         """Test search returns empty list for no matches."""
-        results = await loader_with_searchable_content.search("xyz123nonexistent", timeout_ms=5000)
+        results = await loader_with_searchable_content.search(
+            "xyz123nonexistent", timeout_ms=5000
+        )
         assert results == []
 
 
@@ -1112,11 +1177,11 @@ class TestCacheOperations:
         """Test that second load uses cache."""
         await loader_with_files.load(timeout_ms=2000)
         stats1 = loader_with_files.get_cache_stats()
-        
+
         # Second load should use cache
         await loader_with_files.load(timeout_ms=2000)
         stats2 = loader_with_files.get_cache_stats()
-        
+
         # Cache should still be populated
         assert stats2["cached_files"] >= stats1["cached_files"]
 
@@ -1160,7 +1225,11 @@ class TestLoadFilesWithTimeout:
     async def test_load_with_very_short_timeout(self, loader_with_multiple_files):
         """Test loading with very short timeout."""
         result = await loader_with_multiple_files._load_files_with_timeout(
-            files=["content/core/file1.md", "content/core/file2.md", "content/core/file3.md"],
+            files=[
+                "content/core/file1.md",
+                "content/core/file2.md",
+                "content/core/file3.md",
+            ],
             total_timeout_ms=1,  # Very short timeout
         )
         assert isinstance(result, LoadResult)
@@ -1195,23 +1264,23 @@ class TestGetFilesForLayerExtended:
     def loader_with_layer_content(self, tmp_path):
         """Create loader with content for each layer."""
         (tmp_path / "index.md").write_text("# Index")
-        
+
         core_dir = tmp_path / "content" / "core"
         core_dir.mkdir(parents=True)
         (core_dir / "principles.md").write_text("# Principles")
-        
+
         guidelines_dir = tmp_path / "content" / "guidelines"
         guidelines_dir.mkdir(parents=True)
         (guidelines_dir / "coding.md").write_text("# Coding")
-        
+
         frameworks_dir = tmp_path / "content" / "frameworks"
         frameworks_dir.mkdir(parents=True)
         (frameworks_dir / "autonomy.md").write_text("# Autonomy")
-        
+
         practices_dir = tmp_path / "content" / "practices"
         practices_dir.mkdir(parents=True)
         (practices_dir / "workflow.md").write_text("# Workflow")
-        
+
         return KnowledgeLoader(kb_path=tmp_path)
 
     def test_get_files_for_index_layer(self, loader_with_layer_content):

@@ -9,10 +9,11 @@ Version: 0.1.0
 from __future__ import annotations
 
 import logging
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum
-from typing import TYPE_CHECKING, Any, Callable, Optional
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from sage.core.memory.store import MemoryStore
@@ -81,7 +82,7 @@ class TokenUsage:
     used_percentage: float
     level: TokenWarningLevel
     remaining_tokens: int
-    session_id: Optional[str] = None
+    session_id: str | None = None
     timestamp: datetime = field(default_factory=datetime.now)
 
     def to_dict(self) -> dict[str, Any]:
@@ -118,10 +119,10 @@ class TokenBudget:
     def __init__(
         self,
         store: MemoryStore,
-        config: Optional[TokenBudgetConfig] = None,
-        on_warning: Optional[Callable[[TokenUsage], None]] = None,
-        on_critical: Optional[Callable[[TokenUsage], None]] = None,
-        on_overflow: Optional[Callable[[TokenUsage], None]] = None,
+        config: TokenBudgetConfig | None = None,
+        on_warning: Callable[[TokenUsage], None] | None = None,
+        on_critical: Callable[[TokenUsage], None] | None = None,
+        on_overflow: Callable[[TokenUsage], None] | None = None,
     ) -> None:
         """Initialize the token budget controller.
 
@@ -157,7 +158,7 @@ class TokenBudget:
         else:
             return TokenWarningLevel.NORMAL
 
-    def get_usage(self, session_id: Optional[str] = None) -> TokenUsage:
+    def get_usage(self, session_id: str | None = None) -> TokenUsage:
         """Get current token usage statistics.
 
         Args:
@@ -262,7 +263,7 @@ class TokenBudget:
     def check_budget(
         self,
         additional_tokens: int,
-        session_id: Optional[str] = None,
+        session_id: str | None = None,
     ) -> tuple[bool, TokenUsage]:
         """Check if adding tokens would exceed budget.
 
@@ -283,7 +284,7 @@ class TokenBudget:
     def reserve_tokens(
         self,
         tokens: int,
-        session_id: Optional[str] = None,
+        session_id: str | None = None,
     ) -> bool:
         """Reserve tokens for upcoming content.
 
@@ -306,7 +307,7 @@ class TokenBudget:
 
     def get_recommendations(
         self,
-        session_id: Optional[str] = None,
+        session_id: str | None = None,
     ) -> list[str]:
         """Get recommendations based on current usage.
 
@@ -339,7 +340,7 @@ class TokenBudget:
 
         return recommendations
 
-    def format_status(self, session_id: Optional[str] = None) -> str:
+    def format_status(self, session_id: str | None = None) -> str:
         """Format a human-readable status report.
 
         Args:

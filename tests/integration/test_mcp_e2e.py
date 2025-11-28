@@ -34,6 +34,7 @@ class TestMCPServerCreation:
         loader = get_loader()
         assert loader is not None
         from sage.core.loader import KnowledgeLoader
+
         assert isinstance(loader, KnowledgeLoader)
 
     def test_get_loader_caching(self):
@@ -51,11 +52,11 @@ class TestMCPToolWorkflows:
         """Test getting loader info through get_loader."""
         loader = get_loader()
         # Verify loader has expected attributes
-        assert hasattr(loader, 'load')
-        assert hasattr(loader, 'search')
-        assert hasattr(loader, 'load_core')
-        assert hasattr(loader, 'load_guidelines')
-        assert hasattr(loader, 'load_framework')
+        assert hasattr(loader, "load")
+        assert hasattr(loader, "search")
+        assert hasattr(loader, "load_core")
+        assert hasattr(loader, "load_guidelines")
+        assert hasattr(loader, "load_framework")
 
     @pytest.mark.asyncio
     async def test_search_workflow(self):
@@ -286,7 +287,7 @@ class TestMCPAppConfiguration:
         app = create_app()
 
         # Check app attributes
-        assert hasattr(app, 'name')
+        assert hasattr(app, "name")
         assert app.name == "sage-kb"
 
     def test_app_tool_registration(self):

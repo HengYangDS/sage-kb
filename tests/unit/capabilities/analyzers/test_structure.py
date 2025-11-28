@@ -8,12 +8,12 @@ Tests cover:
 - check_structure convenience function
 """
 
-import pytest
 from pathlib import Path
+
 from sage.capabilities.analyzers.structure import (
+    StructureChecker,
     StructureIssue,
     StructureReport,
-    StructureChecker,
     check_structure,
 )
 
@@ -405,12 +405,14 @@ class TestStructureChecker:
     def test_fix_issues_dry_run(self, tmp_path):
         """Test fix_issues in dry run mode."""
         report = StructureReport()
-        report.add_issue(StructureIssue(
-            severity="error",
-            category="missing",
-            path="01_core",
-            message="Missing directory",
-        ))
+        report.add_issue(
+            StructureIssue(
+                severity="error",
+                category="missing",
+                path="01_core",
+                message="Missing directory",
+            )
+        )
 
         checker = StructureChecker(tmp_path)
         actions = checker.fix_issues(report, dry_run=True)
@@ -423,12 +425,14 @@ class TestStructureChecker:
     def test_fix_issues_create_directory(self, tmp_path):
         """Test fix_issues creates missing directory."""
         report = StructureReport()
-        report.add_issue(StructureIssue(
-            severity="error",
-            category="missing",
-            path="01_core",
-            message="Missing directory",
-        ))
+        report.add_issue(
+            StructureIssue(
+                severity="error",
+                category="missing",
+                path="01_core",
+                message="Missing directory",
+            )
+        )
 
         checker = StructureChecker(tmp_path)
         actions = checker.fix_issues(report, dry_run=False)
@@ -440,12 +444,14 @@ class TestStructureChecker:
     def test_fix_issues_create_file(self, tmp_path):
         """Test fix_issues creates missing file."""
         report = StructureReport()
-        report.add_issue(StructureIssue(
-            severity="error",
-            category="missing",
-            path="01_core/principles.md",
-            message="Missing file",
-        ))
+        report.add_issue(
+            StructureIssue(
+                severity="error",
+                category="missing",
+                path="01_core/principles.md",
+                message="Missing file",
+            )
+        )
 
         checker = StructureChecker(tmp_path)
         actions = checker.fix_issues(report, dry_run=False)
@@ -456,12 +462,14 @@ class TestStructureChecker:
     def test_fix_issues_skips_warnings(self, tmp_path):
         """Test fix_issues only fixes error-level issues."""
         report = StructureReport()
-        report.add_issue(StructureIssue(
-            severity="warning",
-            category="missing",
-            path="optional.md",
-            message="Missing optional file",
-        ))
+        report.add_issue(
+            StructureIssue(
+                severity="warning",
+                category="missing",
+                path="optional.md",
+                message="Missing optional file",
+            )
+        )
 
         checker = StructureChecker(tmp_path)
         actions = checker.fix_issues(report, dry_run=False)
@@ -471,12 +479,14 @@ class TestStructureChecker:
     def test_fix_issues_skips_non_missing(self, tmp_path):
         """Test fix_issues only fixes missing category."""
         report = StructureReport()
-        report.add_issue(StructureIssue(
-            severity="error",
-            category="naming",
-            path="BadName.md",
-            message="Bad naming",
-        ))
+        report.add_issue(
+            StructureIssue(
+                severity="error",
+                category="naming",
+                path="BadName.md",
+                message="Bad naming",
+            )
+        )
 
         checker = StructureChecker(tmp_path)
         actions = checker.fix_issues(report, dry_run=False)

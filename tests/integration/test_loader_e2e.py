@@ -7,7 +7,6 @@ Version: 0.1.0
 """
 
 import time
-from pathlib import Path
 
 import pytest
 
@@ -39,14 +38,14 @@ class TestLoaderInitialization:
         loader = KnowledgeLoader()
 
         # Check required methods exist
-        assert hasattr(loader, 'load')
-        assert hasattr(loader, 'load_core')
-        assert hasattr(loader, 'load_guidelines')
-        assert hasattr(loader, 'load_framework')
-        assert hasattr(loader, 'load_for_task')
-        assert hasattr(loader, 'search')
-        assert hasattr(loader, 'get_cache_stats')
-        assert hasattr(loader, 'clear_cache')
+        assert hasattr(loader, "load")
+        assert hasattr(loader, "load_core")
+        assert hasattr(loader, "load_guidelines")
+        assert hasattr(loader, "load_framework")
+        assert hasattr(loader, "load_for_task")
+        assert hasattr(loader, "search")
+        assert hasattr(loader, "get_cache_stats")
+        assert hasattr(loader, "clear_cache")
 
         # Methods should be callable
         assert callable(loader.load)
@@ -404,11 +403,11 @@ class TestLayerEnumeration:
         """Test Layer enum has expected values."""
         # Should have standard layers with L prefix
         layer_names = [l.name for l in Layer]
-        assert 'L0_INDEX' in layer_names
-        assert 'L1_CORE' in layer_names
-        assert 'L2_GUIDELINES' in layer_names
-        assert 'L3_FRAMEWORKS' in layer_names
-        assert 'L4_PRACTICES' in layer_names
+        assert "L0_INDEX" in layer_names
+        assert "L1_CORE" in layer_names
+        assert "L2_GUIDELINES" in layer_names
+        assert "L3_FRAMEWORKS" in layer_names
+        assert "L4_PRACTICES" in layer_names
 
 
 class TestLoaderStateManagement:

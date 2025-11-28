@@ -7,19 +7,20 @@ Tests cover:
 - Dynamic import resolution
 - Default type registration
 """
-import pytest
 
 from sage.core.di import TypeRegistry, get_registry, register_default_types
 
 
 class SampleService:
     """Sample service for testing."""
+
     def do_work(self) -> str:
         return "working"
 
 
 class AnotherService:
     """Another sample service."""
+
     pass
 
 
@@ -39,14 +40,14 @@ class TestTypeRegistryBasics:
     def test_register_type(self) -> None:
         """Test registering a type."""
         self.registry.register("SampleService", SampleService)
-        
+
         resolved = self.registry.resolve("SampleService")
         assert resolved is SampleService
 
     def test_register_type_explicit(self) -> None:
         """Test register_type method."""
         self.registry.register_type("Sample", SampleService)
-        
+
         resolved = self.registry.resolve("Sample")
         assert resolved is SampleService
 
@@ -58,26 +59,26 @@ class TestTypeRegistryBasics:
     def test_is_registered(self) -> None:
         """Test is_registered method."""
         assert not self.registry.is_registered("SampleService")
-        
+
         self.registry.register("SampleService", SampleService)
-        
+
         assert self.registry.is_registered("SampleService")
 
     def test_clear_registry(self) -> None:
         """Test clearing all registrations."""
         self.registry.register("SampleService", SampleService)
-        
+
         self.registry.clear()
-        
+
         assert not self.registry.is_registered("SampleService")
 
     def test_get_all_types(self) -> None:
         """Test getting all registered types."""
         self.registry.register("Sample1", SampleService)
         self.registry.register("Sample2", AnotherService)
-        
+
         all_types = self.registry.get_all_types()
-        
+
         assert "Sample1" in all_types
         assert "Sample2" in all_types
         assert all_types["Sample1"] is SampleService
@@ -94,21 +95,23 @@ class TestTypeRegistryFactories:
 
     def test_register_factory(self) -> None:
         """Test registering a factory function."""
+
         def create_service() -> SampleService:
             return SampleService()
-        
+
         self.registry.register_factory("ServiceFactory", create_service)
-        
+
         factory = self.registry.resolve_factory("ServiceFactory")
         assert factory is create_service
 
     def test_register_callable_as_factory(self) -> None:
         """Test that callable non-types are registered as factories."""
+
         def my_factory() -> str:
             return "created"
-        
+
         self.registry.register("MyFactory", my_factory)
-        
+
         # Should be in factories, not types
         assert "MyFactory" in self.registry.get_all_factories()
         assert "MyFactory" not in self.registry.get_all_types()
@@ -120,17 +123,18 @@ class TestTypeRegistryFactories:
 
     def test_get_all_factories(self) -> None:
         """Test getting all registered factories."""
+
         def factory1() -> str:
             return "1"
-        
+
         def factory2() -> str:
             return "2"
-        
+
         self.registry.register_factory("F1", factory1)
         self.registry.register_factory("F2", factory2)
-        
+
         all_factories = self.registry.get_all_factories()
-        
+
         assert "F1" in all_factories
         assert "F2" in all_factories
 
@@ -147,15 +151,17 @@ class TestTypeRegistryDynamicImport:
         """Test resolving type by full module path."""
         # Use a known type from the standard library
         resolved = self.registry.resolve("pathlib.Path")
-        
+
         from pathlib import Path
+
         assert resolved is Path
 
     def test_resolve_sage_type_by_path(self) -> None:
         """Test resolving sage type by full path."""
         resolved = self.registry.resolve("sage.core.loader.KnowledgeLoader")
-        
+
         from sage.core.loader import KnowledgeLoader
+
         assert resolved is KnowledgeLoader
 
     def test_resolve_invalid_path_returns_none(self) -> None:
@@ -180,7 +186,7 @@ class TestGlobalRegistry:
         """Test get_registry returns same instance."""
         registry1 = get_registry()
         registry2 = get_registry()
-        
+
         assert registry1 is registry2
 
     def test_reset_instance(self) -> None:
@@ -188,7 +194,7 @@ class TestGlobalRegistry:
         registry1 = get_registry()
         TypeRegistry.reset_instance()
         registry2 = get_registry()
-        
+
         assert registry1 is not registry2
 
 
@@ -203,17 +209,18 @@ class TestDefaultTypeRegistration:
         """Test registering default SAGE types."""
         registry = TypeRegistry()
         register_default_types(registry)
-        
+
         # Should have KnowledgeLoader registered
         assert registry.is_registered("KnowledgeLoader")
-        
+
         from sage.core.loader import KnowledgeLoader
+
         assert registry.resolve("KnowledgeLoader") is KnowledgeLoader
 
     def test_register_default_types_with_global_registry(self) -> None:
         """Test registering defaults to global registry."""
         register_default_types()
-        
+
         registry = get_registry()
         assert registry.is_registered("KnowledgeLoader")
 
@@ -221,14 +228,14 @@ class TestDefaultTypeRegistration:
         """Test that EventBus is registered."""
         registry = TypeRegistry()
         register_default_types(registry)
-        
+
         assert registry.is_registered("EventBus")
 
     def test_register_default_types_includes_memory(self) -> None:
         """Test that memory types are registered."""
         registry = TypeRegistry()
         register_default_types(registry)
-        
+
         assert registry.is_registered("MemoryStore")
         assert registry.is_registered("TokenBudget")
         assert registry.is_registered("SessionContinuity")
@@ -237,7 +244,7 @@ class TestDefaultTypeRegistration:
         """Test that capability types are registered."""
         registry = TypeRegistry()
         register_default_types(registry)
-        
+
         assert registry.is_registered("ContentAnalyzer")
         assert registry.is_registered("QualityAnalyzer")
         assert registry.is_registered("HealthMonitor")

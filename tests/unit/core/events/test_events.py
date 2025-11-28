@@ -13,9 +13,7 @@ Tests cover:
 from __future__ import annotations
 
 import asyncio
-from datetime import datetime, timezone
-from typing import Any
-from unittest.mock import MagicMock
+from datetime import UTC, datetime
 
 import pytest
 
@@ -110,7 +108,7 @@ class TestEvent:
 
     def test_event_from_dict(self) -> None:
         """Test event deserialization from dict."""
-        now = datetime.now(timezone.utc)
+        now = datetime.now(UTC)
         d = {
             "event_type": "loader.start",
             "timestamp": now.isoformat(),
@@ -320,9 +318,7 @@ class TestEventBus:
         """Test handler timeout protection."""
         errors: list[Exception] = []
 
-        def error_handler(
-            error: Exception, event: Event, sub: Subscription
-        ) -> None:
+        def error_handler(error: Exception, event: Event, sub: Subscription) -> None:
             errors.append(error)
 
         bus = EventBus(default_timeout_ms=100, error_handler=error_handler)

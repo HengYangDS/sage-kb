@@ -7,9 +7,10 @@ to actual Python types, enabling YAML-driven dependency injection.
 Version: 0.1.0
 """
 
-from typing import Any, Callable, Dict, Optional, Type, TypeVar
-import logging
 import importlib
+import logging
+from collections.abc import Callable
+from typing import Any, Optional, TypeVar
 
 logger = logging.getLogger(__name__)
 
@@ -31,8 +32,8 @@ class TypeRegistry:
     _instance: Optional["TypeRegistry"] = None
 
     def __init__(self) -> None:
-        self._types: Dict[str, Type] = {}
-        self._factories: Dict[str, Callable[..., Any]] = {}
+        self._types: dict[str, type] = {}
+        self._factories: dict[str, Callable[..., Any]] = {}
 
     @classmethod
     def get_instance(cls) -> "TypeRegistry":
@@ -46,7 +47,7 @@ class TypeRegistry:
         """Reset the singleton instance (for testing)."""
         cls._instance = None
 
-    def register(self, name: str, type_or_factory: Type | Callable[..., Any]) -> None:
+    def register(self, name: str, type_or_factory: type | Callable[..., Any]) -> None:
         """
         Register a type or factory by name.
 
@@ -61,7 +62,7 @@ class TypeRegistry:
             self._types[name] = type_or_factory
             logger.debug(f"Registered type: {name} -> {type_or_factory}")
 
-    def register_type(self, name: str, type_cls: Type[T]) -> None:
+    def register_type(self, name: str, type_cls: type[T]) -> None:
         """Register a type by name."""
         self._types[name] = type_cls
         logger.debug(f"Registered type: {name} -> {type_cls}")
@@ -71,7 +72,7 @@ class TypeRegistry:
         self._factories[name] = factory
         logger.debug(f"Registered factory: {name}")
 
-    def resolve(self, name: str) -> Optional[Type]:
+    def resolve(self, name: str) -> type | None:
         """
         Resolve a type by name.
 
@@ -97,11 +98,11 @@ class TypeRegistry:
 
         return None
 
-    def resolve_factory(self, name: str) -> Optional[Callable[..., Any]]:
+    def resolve_factory(self, name: str) -> Callable[..., Any] | None:
         """Resolve a factory by name."""
         return self._factories.get(name)
 
-    def _import_type(self, full_path: str) -> Type:
+    def _import_type(self, full_path: str) -> type:
         """
         Import a type from a fully qualified path.
 
@@ -128,11 +129,11 @@ class TypeRegistry:
         self._types.clear()
         self._factories.clear()
 
-    def get_all_types(self) -> Dict[str, Type]:
+    def get_all_types(self) -> dict[str, type]:
         """Get all registered types."""
         return self._types.copy()
 
-    def get_all_factories(self) -> Dict[str, Callable[..., Any]]:
+    def get_all_factories(self) -> dict[str, Callable[..., Any]]:
         """Get all registered factories."""
         return self._factories.copy()
 
@@ -142,7 +143,7 @@ def get_registry() -> TypeRegistry:
     return TypeRegistry.get_instance()
 
 
-def register_default_types(registry: Optional[TypeRegistry] = None) -> None:
+def register_default_types(registry: TypeRegistry | None = None) -> None:
     """
     Register default SAGE types in the registry.
 
@@ -174,7 +175,7 @@ def register_default_types(registry: Optional[TypeRegistry] = None) -> None:
 
     # Memory types
     try:
-        from sage.core.memory import MemoryStore, TokenBudget, SessionContinuity
+        from sage.core.memory import MemoryStore, SessionContinuity, TokenBudget
 
         registry.register("MemoryStore", MemoryStore)
         registry.register("TokenBudget", TokenBudget)
@@ -186,10 +187,10 @@ def register_default_types(registry: Optional[TypeRegistry] = None) -> None:
     try:
         from sage.capabilities import (
             ContentAnalyzer,
+            HealthMonitor,
+            LinkChecker,
             QualityAnalyzer,
             StructureChecker,
-            LinkChecker,
-            HealthMonitor,
         )
 
         registry.register("ContentAnalyzer", ContentAnalyzer)

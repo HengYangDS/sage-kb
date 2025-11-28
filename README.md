@@ -4,6 +4,8 @@
 
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![CI](https://github.com/HengYangDS/sage-kb/actions/workflows/ci.yml/badge.svg)](https://github.com/HengYangDS/sage-kb/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/HengYangDS/sage-kb/branch/main/graph/badge.svg)](https://codecov.io/gh/HengYangDS/sage-kb)
 
 ## Overview
 
@@ -77,6 +79,59 @@ SAGE uses a 3-layer architecture:
 │   Loader | Timeout | Config | EventBus         │
 └────────────────────────────────────────────────┘
 ```
+
+## Development
+
+### Setup
+
+```bash
+# Install with development dependencies
+pip install -e ".[dev]"
+
+# Install pre-commit hooks
+pip install pre-commit
+pre-commit install
+```
+
+### Code Quality
+
+```bash
+# Run linting
+ruff check src/ tests/
+
+# Run formatting
+ruff format src/ tests/
+
+# Run type checking
+mypy src/sage
+
+# Run tests with coverage
+pytest tests/ --cov=sage
+```
+
+### Pre-commit Hooks
+
+The project uses pre-commit hooks for code quality:
+
+- **Ruff**: Linting and formatting
+- **MyPy**: Type checking
+- **Bandit**: Security checks
+- **Commitizen**: Conventional commits
+
+### CI/CD
+
+GitHub Actions workflows:
+
+- **CI** (`ci.yml`): Runs on push/PR to main/develop
+  - Lint & format check (Ruff)
+  - Type check (MyPy)
+  - Tests (Python 3.11-3.13, Linux/Windows/macOS)
+  - Build package verification
+
+- **Release** (`release.yml`): Runs on version tags
+  - Pre-release tests
+  - Build & publish to PyPI
+  - Create GitHub release
 
 ## Documentation
 

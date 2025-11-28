@@ -10,11 +10,12 @@ Features:
 Version: 0.1.0
 """
 
-from dataclasses import dataclass, field
-from enum import Enum
-from typing import Any, Callable, Dict, Optional, Type, TypeVar, get_type_hints
-import threading
 import logging
+import threading
+from collections.abc import Callable
+from dataclasses import dataclass
+from enum import Enum
+from typing import Any, Optional, TypeVar, get_type_hints
 
 logger = logging.getLogger(__name__)
 
@@ -33,21 +34,21 @@ class Lifetime(Enum):
 class Registration:
     """Service registration info."""
 
-    interface: Type
-    implementation: Type
+    interface: type
+    implementation: type
     lifetime: Lifetime
-    config_key: Optional[str] = None
-    factory: Optional[Callable[..., Any]] = None
+    config_key: str | None = None
+    factory: Callable[..., Any] | None = None
 
 
 @dataclass
 class ServiceDescriptor:
     """Describes a service for registration."""
 
-    implementation: Type
+    implementation: type
     lifetime: Lifetime = Lifetime.SINGLETON
-    config_key: Optional[str] = None
-    factory: Optional[Callable[..., Any]] = None
+    config_key: str | None = None
+    factory: Callable[..., Any] | None = None
 
 
 class DIContainerError(Exception):
@@ -94,11 +95,11 @@ class DIContainer:
     _lock = threading.Lock()
 
     def __init__(self) -> None:
-        self._registrations: Dict[Type, Registration] = {}
-        self._singletons: Dict[Type, Any] = {}
-        self._scoped: Dict[str, Dict[Type, Any]] = {}
-        self._config: Dict[str, Any] = {}
-        self._resolving: set[Type] = set()  # Track resolution stack for circular deps
+        self._registrations: dict[type, Registration] = {}
+        self._singletons: dict[type, Any] = {}
+        self._scoped: dict[str, dict[type, Any]] = {}
+        self._config: dict[str, Any] = {}
+        self._resolving: set[type] = set()  # Track resolution stack for circular deps
 
     @classmethod
     def get_instance(cls) -> "DIContainer":
@@ -115,7 +116,7 @@ class DIContainer:
         with cls._lock:
             cls._instance = None
 
-    def configure(self, config: Dict[str, Any]) -> None:
+    def configure(self, config: dict[str, Any]) -> None:
         """
         Load configuration from dict (typically from YAML).
 
@@ -134,11 +135,11 @@ class DIContainer:
 
     def register(
         self,
-        interface: Type[T],
-        implementation: Optional[Type[T]] = None,
+        interface: type[T],
+        implementation: type[T] | None = None,
         lifetime: Lifetime = Lifetime.SINGLETON,
-        config_key: Optional[str] = None,
-        factory: Optional[Callable[..., T]] = None,
+        config_key: str | None = None,
+        factory: Callable[..., T] | None = None,
     ) -> None:
         """
         Register a service implementation.
@@ -164,7 +165,7 @@ class DIContainer:
             f"Registered {interface.__name__} -> {(implementation or interface).__name__} ({lifetime.value})"
         )
 
-    def register_instance(self, interface: Type[T], instance: T) -> None:
+    def register_instance(self, interface: type[T], instance: T) -> None:
         """
         Register an existing instance as a singleton.
 
@@ -182,7 +183,7 @@ class DIContainer:
 
     def register_factory(
         self,
-        interface: Type[T],
+        interface: type[T],
         factory: Callable[..., T],
         lifetime: Lifetime = Lifetime.SINGLETON,
     ) -> None:
@@ -196,11 +197,11 @@ class DIContainer:
         """
         self.register(interface, factory=factory, lifetime=lifetime)
 
-    def is_registered(self, interface: Type) -> bool:
+    def is_registered(self, interface: type) -> bool:
         """Check if a service is registered."""
         return interface in self._registrations
 
-    def resolve(self, interface: Type[T], scope_id: Optional[str] = None) -> T:
+    def resolve(self, interface: type[T], scope_id: str | None = None) -> T:
         """
         Resolve a service instance.
 
@@ -250,9 +251,7 @@ class DIContainer:
         # Transient: always create new
         return self._create_instance(registration)
 
-    def try_resolve(
-        self, interface: Type[T], scope_id: Optional[str] = None
-    ) -> Optional[T]:
+    def try_resolve(self, interface: type[T], scope_id: str | None = None) -> T | None:
         """
         Try to resolve a service, returning None if not found.
 
@@ -285,7 +284,7 @@ class DIContainer:
                 hints = {}
 
             # Auto-resolve dependencies
-            kwargs: Dict[str, Any] = {}
+            kwargs: dict[str, Any] = {}
             for param_name, param_type in hints.items():
                 if param_name == "return":
                     continue
@@ -350,7 +349,7 @@ class DIContainer:
             del self._scoped[scope_id]
             logger.debug(f"Disposed scope: {scope_id}")
 
-    def _register_from_config(self, service_name: str, config: Dict[str, Any]) -> None:
+    def _register_from_config(self, service_name: str, config: dict[str, Any]) -> None:
         """
         Register service from YAML config.
 
@@ -370,7 +369,7 @@ class DIContainer:
         self._config.clear()
         logger.debug("DI Container cleared")
 
-    def get_registrations(self) -> Dict[Type, Registration]:
+    def get_registrations(self) -> dict[type, Registration]:
         """Get all current registrations (for debugging)."""
         return self._registrations.copy()
 
@@ -394,7 +393,7 @@ class DIScope:
     def __exit__(self, exc_type: Any, exc_val: Any, exc_tb: Any) -> None:
         self._container.dispose_scope(self._scope_id)
 
-    def resolve(self, interface: Type[T]) -> T:
+    def resolve(self, interface: type[T]) -> T:
         """Resolve a service within this scope."""
         return self._container.resolve(interface, self._scope_id)
 

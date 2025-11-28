@@ -4,14 +4,13 @@ Version: 0.1.0
 """
 
 import pytest
-from pathlib import Path
 
 from sage.capabilities.checkers.links import (
     LinkChecker,
-    LinkType,
-    LinkStatus,
-    LinkResult,
     LinkReport,
+    LinkResult,
+    LinkStatus,
+    LinkType,
     check_links,
 )
 

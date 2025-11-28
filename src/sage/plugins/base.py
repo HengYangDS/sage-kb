@@ -481,9 +481,7 @@ class ErrorPlugin(PluginBase):
                 return None  # Or return recovery value
     """
 
-    def on_error(
-        self, error: Exception, context: dict[str, Any]
-    ) -> Any | None:
+    def on_error(self, error: Exception, context: dict[str, Any]) -> Any | None:
         """
         Called when an error occurs.
 
@@ -523,9 +521,7 @@ class CachePlugin(PluginBase):
                 self._misses += 1
     """
 
-    def on_cache_hit(
-        self, key: str, value: Any, context: dict[str, Any]
-    ) -> Any:
+    def on_cache_hit(self, key: str, value: Any, context: dict[str, Any]) -> Any:
         """
         Called when a cache hit occurs.
 

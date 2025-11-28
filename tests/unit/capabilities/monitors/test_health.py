@@ -3,16 +3,17 @@
 Version: 0.1.0
 """
 
-import pytest
+import asyncio
 from pathlib import Path
 from unittest.mock import Mock
-import asyncio
+
+import pytest
 
 from sage.capabilities.monitors.health import (
-    HealthMonitor,
-    HealthStatus,
     HealthCheck,
+    HealthMonitor,
     HealthReport,
+    HealthStatus,
     get_health_monitor,
 )
 
@@ -201,7 +202,6 @@ class TestHealthMonitor:
         # Should handle missing config gracefully
         assert isinstance(check, HealthCheck)
 
-
     @pytest.mark.asyncio
     async def test_check_filesystem_no_index(self, tmp_path):
         """Test filesystem check when index.md is missing."""
@@ -231,9 +231,11 @@ class TestHealthMonitor:
     async def test_check_filesystem_exception(self, tmp_path, monkeypatch):
         """Test filesystem check handles exceptions."""
         monitor = HealthMonitor(kb_path=tmp_path)
+
         # Monkeypatch to raise exception
         def raise_error(*args, **kwargs):
             raise PermissionError("Access denied")
+
         monkeypatch.setattr(Path, "exists", raise_error)
         check = await monitor.check_filesystem()
         assert check.status == HealthStatus.UNHEALTHY
@@ -277,7 +279,7 @@ loading:
     async def test_check_loader_fallback(self, tmp_path, monkeypatch):
         """Test loader check with fallback status."""
         from sage.core.loader import LoadResult
-        
+
         async def mock_load_core(*args, **kwargs):
             return LoadResult(
                 content="fallback content",
@@ -286,11 +288,10 @@ loading:
                 files_loaded=[],
                 errors=[],
             )
-        
+
         monitor = HealthMonitor(kb_path=tmp_path)
         monkeypatch.setattr(
-            "sage.core.loader.KnowledgeLoader.load_core",
-            mock_load_core
+            "sage.core.loader.KnowledgeLoader.load_core", mock_load_core
         )
         check = await monitor.check_loader()
         assert check.status == HealthStatus.DEGRADED
@@ -300,7 +301,7 @@ loading:
     async def test_check_loader_other_status(self, tmp_path, monkeypatch):
         """Test loader check with other status."""
         from sage.core.loader import LoadResult
-        
+
         async def mock_load_core(*args, **kwargs):
             return LoadResult(
                 content="",
@@ -309,11 +310,10 @@ loading:
                 files_loaded=[],
                 errors=["Some error"],
             )
-        
+
         monitor = HealthMonitor(kb_path=tmp_path)
         monkeypatch.setattr(
-            "sage.core.loader.KnowledgeLoader.load_core",
-            mock_load_core
+            "sage.core.loader.KnowledgeLoader.load_core", mock_load_core
         )
         check = await monitor.check_loader()
         assert check.status == HealthStatus.DEGRADED
@@ -322,13 +322,13 @@ loading:
     @pytest.mark.asyncio
     async def test_check_loader_exception(self, tmp_path, monkeypatch):
         """Test loader check handles exceptions."""
+
         async def mock_load_core(*args, **kwargs):
             raise RuntimeError("Loader failed")
-        
+
         monitor = HealthMonitor(kb_path=tmp_path)
         monkeypatch.setattr(
-            "sage.core.loader.KnowledgeLoader.load_core",
-            mock_load_core
+            "sage.core.loader.KnowledgeLoader.load_core", mock_load_core
         )
         check = await monitor.check_loader()
         assert check.status == HealthStatus.UNHEALTHY
@@ -338,10 +338,10 @@ loading:
     async def test_check_all_with_exception(self, tmp_path, monkeypatch):
         """Test check_all handles exceptions from individual checks."""
         monitor = HealthMonitor(kb_path=tmp_path)
-        
+
         async def raise_exception():
             raise ValueError("Test exception")
-        
+
         monkeypatch.setattr(monitor, "check_filesystem", raise_exception)
         report = await monitor.check_all()
         assert report.overall_status == HealthStatus.UNHEALTHY
@@ -353,10 +353,10 @@ loading:
         monitor = HealthMonitor(kb_path=tmp_path)
         callback = Mock()
         monitor.register_alert_callback(callback)
-        
+
         # Run check (will be degraded/unhealthy due to missing files)
         await monitor.check_all()
-        
+
         # Callback should be called
         assert callback.called
 
@@ -364,10 +364,10 @@ loading:
     async def test_check_all_alert_callback_exception(self, tmp_path):
         """Test check_all handles alert callback exceptions."""
         monitor = HealthMonitor(kb_path=tmp_path)
-        
+
         def bad_callback(report):
             raise RuntimeError("Callback error")
-        
+
         monitor.register_alert_callback(bad_callback)
         # Should not raise exception
         report = await monitor.check_all()
@@ -377,24 +377,24 @@ loading:
     async def test_history_overflow(self, tmp_path):
         """Test history respects size limit."""
         monitor = HealthMonitor(kb_path=tmp_path, history_size=3)
-        
+
         # Run more checks than history size
         for _ in range(5):
             await monitor.check_all()
-        
+
         assert len(monitor._history) == 3
 
     @pytest.mark.asyncio
     async def test_start_stop_monitoring(self, tmp_path):
         """Test start and stop monitoring."""
         monitor = HealthMonitor(kb_path=tmp_path, check_interval_s=0.1)
-        
+
         await monitor.start_monitoring()
         assert monitor._running is True
-        
+
         # Wait a bit for at least one check
         await asyncio.sleep(0.15)
-        
+
         await monitor.stop_monitoring()
         assert monitor._running is False
         assert monitor._task is None
@@ -403,17 +403,17 @@ loading:
     async def test_start_monitoring_already_running(self, tmp_path):
         """Test start_monitoring when already running."""
         monitor = HealthMonitor(kb_path=tmp_path, check_interval_s=0.1)
-        
+
         await monitor.start_monitoring()
         task1 = monitor._task
-        
+
         # Try to start again
         await monitor.start_monitoring()
         task2 = monitor._task
-        
+
         # Should be the same task
         assert task1 is task2
-        
+
         await monitor.stop_monitoring()
 
     def test_get_status_summary_no_history(self, tmp_path):

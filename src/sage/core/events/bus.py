@@ -15,8 +15,9 @@ import asyncio
 import fnmatch
 import logging
 from collections import defaultdict
+from collections.abc import Callable, Coroutine
 from dataclasses import dataclass, field
-from typing import Any, Callable, Coroutine
+from typing import Any
 
 from sage.core.events.events import Event, EventType
 
@@ -255,14 +256,14 @@ class EventBus:
                 try:
                     await self._call_handler_with_timeout(subscription, event)
                     handlers_called += 1
-                except asyncio.TimeoutError:
+                except TimeoutError:
                     logger.warning(
                         f"Handler timeout for {event_type}: "
                         f"{subscription.subscription_id} "
                         f"(limit: {subscription.timeout_ms}ms)"
                     )
                     self._error_handler(
-                        asyncio.TimeoutError(
+                        TimeoutError(
                             f"Handler exceeded {subscription.timeout_ms}ms timeout"
                         ),
                         event,

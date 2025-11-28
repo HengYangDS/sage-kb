@@ -176,6 +176,7 @@ class TestHandoffPackage:
 
     def test_to_prompt_with_decisions(self, sample_state):
         """Test prompt includes decisions."""
+
         # Create mock decision entry
         class MockEntry:
             content = "Use Protocol-based interfaces"

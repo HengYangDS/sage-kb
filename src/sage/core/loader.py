@@ -26,7 +26,9 @@ from typing import Any
 
 import yaml
 
-_project_root = Path(__file__).parent.parent.parent.parent  # core -> sage -> src -> project_root
+_project_root = Path(
+    __file__
+).parent.parent.parent.parent  # core -> sage -> src -> project_root
 _tools_path = _project_root / "tools"
 
 # Add paths if not present
@@ -94,7 +96,7 @@ def _load_config() -> dict[str, Any]:
 def _get_triggers_from_config() -> list["LoadingTrigger"]:
     """
     Load triggers from the sage.yaml configuration.
-    
+
     Returns:
         List of LoadingTrigger objects parsed from config, or empty list if not found.
     """
@@ -114,12 +116,14 @@ def _get_triggers_from_config() -> list["LoadingTrigger"]:
         timeout_ms = trigger_data.get("timeout_ms", 2000)
 
         if keywords and files:
-            triggers.append(LoadingTrigger(
-                name=name,
-                keywords=keywords,
-                files=files,
-                timeout_ms=timeout_ms,
-            ))
+            triggers.append(
+                LoadingTrigger(
+                    name=name,
+                    keywords=keywords,
+                    files=files,
+                    timeout_ms=timeout_ms,
+                )
+            )
 
     # Sort by priority if available (lower = higher priority)
     triggers.sort(key=lambda t: triggers_config.get(t.name, {}).get("priority", 999))
@@ -130,7 +134,7 @@ def _get_triggers_from_config() -> list["LoadingTrigger"]:
 def _get_always_load_from_config() -> list[str]:
     """
     Load always-load files from sage.yaml configuration.
-    
+
     Returns:
         List of file paths that should always be loaded, or empty list if not found.
     """
@@ -142,10 +146,10 @@ def _get_always_load_from_config() -> list[str]:
 def _parse_timeout_str(timeout_str: str | int) -> int:
     """
     Parse timeout string (e.g., '5s', '500ms', '2s') to milliseconds.
-    
+
     Args:
         timeout_str: Timeout value as string (e.g., '5s', '500ms') or int (ms).
-        
+
     Returns:
         Timeout in milliseconds.
     """
@@ -166,11 +170,11 @@ def _parse_timeout_str(timeout_str: str | int) -> int:
 def _get_timeout_from_config(operation: str, default_ms: int) -> int:
     """
     Get timeout value for a specific operation from the sage.yaml configuration.
-    
+
     Args:
         operation: Operation name (e.g., 'full_load', 'layer_load', 'file_read').
         default_ms: Default timeout in milliseconds if not found in config.
-        
+
     Returns:
         Timeout in milliseconds.
     """
@@ -296,7 +300,9 @@ class KnowledgeLoader:
         try:
             await self._event_bus.publish(event)
         except Exception as e:
-            logger.warning("event_publish_failed", error=str(e), event_type=str(event.event_type))
+            logger.warning(
+                "event_publish_failed", error=str(e), event_type=str(event.event_type)
+            )
 
     async def load(
         self,
@@ -329,12 +335,14 @@ class KnowledgeLoader:
         )
 
         # Publish LOADER_START event
-        await self._publish_event(LoadEvent(
-            event_type=EventType.LOADER_START,
-            source="KnowledgeLoader",
-            layer=layer.name if layer else "auto",
-            file_count=len(files) if files else 0,
-        ))
+        await self._publish_event(
+            LoadEvent(
+                event_type=EventType.LOADER_START,
+                source="KnowledgeLoader",
+                layer=layer.name if layer else "auto",
+                file_count=len(files) if files else 0,
+            )
+        )
 
         # Determine files to load
         if files:
@@ -365,13 +373,15 @@ class KnowledgeLoader:
         )
 
         # Publish LOADER_COMPLETE event
-        await self._publish_event(LoadEvent(
-            event_type=EventType.LOADER_COMPLETE,
-            source="KnowledgeLoader",
-            layer=layer.name if layer else "auto",
-            file_count=len(result.files_loaded),
-            duration_ms=float(result.duration_ms),
-        ))
+        await self._publish_event(
+            LoadEvent(
+                event_type=EventType.LOADER_COMPLETE,
+                source="KnowledgeLoader",
+                layer=layer.name if layer else "auto",
+                file_count=len(result.files_loaded),
+                duration_ms=float(result.duration_ms),
+            )
+        )
 
         return result
 
@@ -472,11 +482,13 @@ class KnowledgeLoader:
         )
 
         # Publish SEARCH_START event
-        await self._publish_event(SearchEvent(
-            event_type=EventType.SEARCH_START,
-            source="KnowledgeLoader",
-            query=query,
-        ))
+        await self._publish_event(
+            SearchEvent(
+                event_type=EventType.SEARCH_START,
+                source="KnowledgeLoader",
+                query=query,
+            )
+        )
 
         try:
 
@@ -512,7 +524,9 @@ class KnowledgeLoader:
                                 }
                             )
                     except Exception as _:
-                        logger.warning("file_read_error", file=str(md_file), error=str(_))
+                        logger.warning(
+                            "file_read_error", file=str(md_file), error=str(_)
+                        )
 
                 # Sort by score descending
                 results.sort(key=lambda x: x["score"], reverse=True)
@@ -535,13 +549,15 @@ class KnowledgeLoader:
                     duration_ms=duration_ms,
                 )
                 # Publish SEARCH_COMPLETE event
-                await self._publish_event(SearchEvent(
-                    event_type=EventType.SEARCH_COMPLETE,
-                    source="KnowledgeLoader",
-                    query=query,
-                    results_count=len(final_results),
-                    duration_ms=float(duration_ms),
-                ))
+                await self._publish_event(
+                    SearchEvent(
+                        event_type=EventType.SEARCH_COMPLETE,
+                        source="KnowledgeLoader",
+                        query=query,
+                        results_count=len(final_results),
+                        duration_ms=float(duration_ms),
+                    )
+                )
                 return final_results
             else:
                 logger.warning(

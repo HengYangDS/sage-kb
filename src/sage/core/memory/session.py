@@ -14,11 +14,10 @@ import uuid
 from dataclasses import asdict, dataclass, field
 from datetime import datetime
 from enum import Enum
-from pathlib import Path
-from typing import TYPE_CHECKING, Any, Optional
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from sage.core.memory.store import MemoryEntry, MemoryStore
+    from sage.core.memory.store import MemoryStore
     from sage.core.memory.token_budget import TokenBudget
 
 logger = logging.getLogger(__name__)
@@ -43,7 +42,7 @@ class SessionState:
     """
 
     session_id: str
-    task_id: Optional[str] = None
+    task_id: str | None = None
     status: SessionStatus = SessionStatus.ACTIVE
     created_at: datetime = field(default_factory=datetime.now)
     updated_at: datetime = field(default_factory=datetime.now)
@@ -113,27 +112,39 @@ class HandoffPackage:
             Formatted markdown prompt for continuing the work.
         """
         # Build list sections
-        completed = "\n".join(
-            f"- ✓ {step}" for step in self.session_state.completed_steps
-        ) or "- (none yet)"
+        completed = (
+            "\n".join(f"- ✓ {step}" for step in self.session_state.completed_steps)
+            or "- (none yet)"
+        )
 
-        pending = "\n".join(
-            f"- {step}" for step in self.session_state.pending_steps
-        ) or "- (none remaining)"
+        pending = (
+            "\n".join(f"- {step}" for step in self.session_state.pending_steps)
+            or "- (none remaining)"
+        )
 
-        decisions_text = "\n".join(
-            f"- {d.content[:200]}..." if hasattr(d, 'content') and len(d.content) > 200
-            else f"- {d.content}" if hasattr(d, 'content')
-            else f"- {str(d)[:200]}"
-            for d in self.decisions
-        ) or "- (no key decisions recorded)"
+        decisions_text = (
+            "\n".join(
+                f"- {d.content[:200]}..."
+                if hasattr(d, "content") and len(d.content) > 200
+                else f"- {d.content}"
+                if hasattr(d, "content")
+                else f"- {str(d)[:200]}"
+                for d in self.decisions
+            )
+            or "- (no key decisions recorded)"
+        )
 
-        context_text = "\n".join(
-            f"- {c.content[:200]}..." if hasattr(c, 'content') and len(c.content) > 200
-            else f"- {c.content}" if hasattr(c, 'content')
-            else f"- {str(c)[:200]}"
-            for c in self.key_context
-        ) or "- (no additional context)"
+        context_text = (
+            "\n".join(
+                f"- {c.content[:200]}..."
+                if hasattr(c, "content") and len(c.content) > 200
+                else f"- {c.content}"
+                if hasattr(c, "content")
+                else f"- {str(c)[:200]}"
+                for c in self.key_context
+            )
+            or "- (no additional context)"
+        )
 
         return f"""## Session Continuation
 
@@ -173,12 +184,11 @@ class HandoffPackage:
             "session_state": self.session_state.to_dict(),
             "summary": self.summary,
             "key_context": [
-                c.to_dict() if hasattr(c, 'to_dict') else str(c)
+                c.to_dict() if hasattr(c, "to_dict") else str(c)
                 for c in self.key_context
             ],
             "decisions": [
-                d.to_dict() if hasattr(d, 'to_dict') else str(d)
-                for d in self.decisions
+                d.to_dict() if hasattr(d, "to_dict") else str(d) for d in self.decisions
             ],
             "continuation_prompt": self.continuation_prompt,
             "token_count": self.token_count,
@@ -216,7 +226,7 @@ class SessionContinuity:
     def __init__(
         self,
         store: MemoryStore,
-        budget: Optional[TokenBudget] = None,
+        budget: TokenBudget | None = None,
     ) -> None:
         """Initialize the session continuity service.
 
@@ -226,20 +236,20 @@ class SessionContinuity:
         """
         self._store = store
         self._budget = budget
-        self._current_session: Optional[SessionState] = None
+        self._current_session: SessionState | None = None
 
     @property
-    def current_session(self) -> Optional[SessionState]:
+    def current_session(self) -> SessionState | None:
         """Get the current session state."""
         return self._current_session
 
     def start_session(
         self,
         objective: str,
-        steps: Optional[list[str]] = None,
-        task_id: Optional[str] = None,
-        resume_from: Optional[str] = None,
-        metadata: Optional[dict[str, Any]] = None,
+        steps: list[str] | None = None,
+        task_id: str | None = None,
+        resume_from: str | None = None,
+        metadata: dict[str, Any] | None = None,
     ) -> SessionState:
         """Start a new session or resume from checkpoint.
 
@@ -283,12 +293,11 @@ class SessionContinuity:
         logger.info(f"Started new session: {session.session_id}")
         return session
 
-    def _restore_session(self, checkpoint_id: str) -> Optional[SessionState]:
+    def _restore_session(self, checkpoint_id: str) -> SessionState | None:
         """Restore session state from checkpoint."""
         checkpoints = self._store.list_checkpoints()
         checkpoint = next(
-            (c for c in checkpoints if c["checkpoint_id"] == checkpoint_id),
-            None
+            (c for c in checkpoints if c["checkpoint_id"] == checkpoint_id), None
         )
 
         if not checkpoint:
@@ -301,7 +310,7 @@ class SessionContinuity:
         )
 
         try:
-            with open(checkpoint_path, "r", encoding="utf-8") as f:
+            with open(checkpoint_path, encoding="utf-8") as f:
                 data = json.load(f)
 
             if "session_state" in data:
@@ -320,7 +329,7 @@ class SessionContinuity:
         if not self._current_session:
             return
 
-        from sage.core.memory.store import MemoryType, MemoryPriority
+        from sage.core.memory.store import MemoryPriority, MemoryType
 
         # Store session state as a memory entry
         self._store.add(
@@ -335,12 +344,12 @@ class SessionContinuity:
     def update_progress(
         self,
         *,
-        completed_step: Optional[str] = None,
-        last_action: Optional[str] = None,
-        last_result: Optional[str] = None,
-        decision: Optional[str] = None,
-        context: Optional[str] = None,
-    ) -> Optional[SessionState]:
+        completed_step: str | None = None,
+        last_action: str | None = None,
+        last_result: str | None = None,
+        decision: str | None = None,
+        context: str | None = None,
+    ) -> SessionState | None:
         """Update session progress.
 
         Args:
@@ -375,7 +384,7 @@ class SessionContinuity:
 
         # Record decision as memory entry
         if decision:
-            from sage.core.memory.store import MemoryType, MemoryPriority
+            from sage.core.memory.store import MemoryPriority, MemoryType
 
             entry = self._store.add(
                 type=MemoryType.DECISION,
@@ -388,7 +397,7 @@ class SessionContinuity:
 
         # Record context as memory entry
         if context:
-            from sage.core.memory.store import MemoryType, MemoryPriority
+            from sage.core.memory.store import MemoryPriority, MemoryType
 
             entry = self._store.add(
                 type=MemoryType.CONTEXT,
@@ -414,7 +423,7 @@ class SessionContinuity:
 
         return session
 
-    def add_step(self, step: str) -> Optional[SessionState]:
+    def add_step(self, step: str) -> SessionState | None:
         """Add a new step to the pending list.
 
         Args:
@@ -434,7 +443,7 @@ class SessionContinuity:
 
     def create_checkpoint(
         self,
-        checkpoint_id: Optional[str] = None,
+        checkpoint_id: str | None = None,
     ) -> str:
         """Create a checkpoint of the current session.
 
@@ -459,7 +468,7 @@ class SessionContinuity:
         checkpoint_path = self._store._base_path / "checkpoints" / f"{cp_id}.json"
 
         try:
-            with open(checkpoint_path, "r", encoding="utf-8") as f:
+            with open(checkpoint_path, encoding="utf-8") as f:
                 data = json.load(f)
 
             data["session_state"] = session.to_dict()
@@ -476,7 +485,7 @@ class SessionContinuity:
     def prepare_handoff(
         self,
         max_tokens: int = 4000,
-        summary: Optional[str] = None,
+        summary: str | None = None,
     ) -> HandoffPackage:
         """Prepare a handoff package for task continuation.
 
@@ -491,7 +500,7 @@ class SessionContinuity:
             raise RuntimeError("No active session for handoff")
 
         session = self._current_session
-        from sage.core.memory.store import MemoryType, MemoryPriority
+        from sage.core.memory.store import MemoryPriority
 
         # Get key decisions
         decisions = []
@@ -591,8 +600,8 @@ class SessionContinuity:
     def end_session(
         self,
         status: SessionStatus = SessionStatus.COMPLETED,
-        final_result: Optional[str] = None,
-    ) -> Optional[SessionState]:
+        final_result: str | None = None,
+    ) -> SessionState | None:
         """End the current session.
 
         Args:
@@ -620,7 +629,7 @@ class SessionContinuity:
         self._current_session = None
         return session
 
-    def get_session_summary(self) -> Optional[str]:
+    def get_session_summary(self) -> str | None:
         """Get a summary of the current session.
 
         Returns:

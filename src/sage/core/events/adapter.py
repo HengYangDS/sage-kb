@@ -11,7 +11,8 @@ from __future__ import annotations
 import asyncio
 import inspect
 import logging
-from typing import TYPE_CHECKING, Any, Callable
+from collections.abc import Callable
+from typing import TYPE_CHECKING, Any
 
 from sage.core.events.bus import EventBus, get_event_bus
 from sage.core.events.events import (
@@ -137,13 +138,12 @@ class PluginAdapter:
                     self._subscription_ids.append(sub_id)
                     handlers_registered += 1
                     logger.debug(
-                        f"Registered {self.plugin_name}.{method_name} "
-                        f"for {event_type}"
+                        f"Registered {self.plugin_name}.{method_name} for {event_type}"
                     )
 
         # Also check for generic "on_event" handler
         if hasattr(self._plugin, "on_event"):
-            method = getattr(self._plugin, "on_event")
+            method = self._plugin.on_event
             if callable(method):
                 handler = self._create_handler(method)
                 sub_id = self._event_bus.subscribe(
@@ -157,8 +157,7 @@ class PluginAdapter:
 
         self._registered = True
         logger.info(
-            f"Plugin {self.plugin_name} registered with "
-            f"{handlers_registered} handlers"
+            f"Plugin {self.plugin_name} registered with {handlers_registered} handlers"
         )
 
         return handlers_registered
@@ -183,9 +182,7 @@ class PluginAdapter:
         logger.info(f"Plugin {self.plugin_name} unregistered ({count} handlers)")
         return count
 
-    def _create_handler(
-        self, method: Callable[..., Any]
-    ) -> Callable[[Event], Any]:
+    def _create_handler(self, method: Callable[..., Any]) -> Callable[[Event], Any]:
         """Create an async handler wrapper for a legacy method.
 
         Args:

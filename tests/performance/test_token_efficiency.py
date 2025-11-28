@@ -74,12 +74,14 @@ def create_conversation_entries() -> list[dict]:
             f"queue_position=3, estimated_completion=250ms. "
             f"No errors detected in this iteration. Status: OK."
         )
-        entries.append({
-            "type": MemoryType.CONVERSATION,
-            "content": content,
-            "priority": MemoryPriority.EPHEMERAL,
-            "tokens": estimate_tokens(content),
-        })
+        entries.append(
+            {
+                "type": MemoryType.CONVERSATION,
+                "content": content,
+                "priority": MemoryPriority.EPHEMERAL,
+                "tokens": estimate_tokens(content),
+            }
+        )
 
     # Low priority entries (routine messages, ~80 tokens each)
     for i in range(15):
@@ -91,12 +93,14 @@ def create_conversation_entries() -> list[dict]:
             f"User confirmed understanding. No follow-up questions. "
             f"Session duration: 3m 24s. Satisfaction: not rated."
         )
-        entries.append({
-            "type": MemoryType.CONVERSATION,
-            "content": content,
-            "priority": MemoryPriority.LOW,
-            "tokens": estimate_tokens(content),
-        })
+        entries.append(
+            {
+                "type": MemoryType.CONVERSATION,
+                "content": content,
+                "priority": MemoryPriority.LOW,
+                "tokens": estimate_tokens(content),
+            }
+        )
 
     # Normal priority entries (concise context, ~50 tokens each)
     for i in range(25):
@@ -104,12 +108,14 @@ def create_conversation_entries() -> list[dict]:
             f"Context {i}: Module handles edge case with error retry. "
             f"Uses exponential backoff. Max 3 attempts. Logs failures."
         )
-        entries.append({
-            "type": MemoryType.CONTEXT,
-            "content": content,
-            "priority": MemoryPriority.NORMAL,
-            "tokens": estimate_tokens(content),
-        })
+        entries.append(
+            {
+                "type": MemoryType.CONTEXT,
+                "content": content,
+                "priority": MemoryPriority.NORMAL,
+                "tokens": estimate_tokens(content),
+            }
+        )
 
     # High priority entries (key decisions, ~30 tokens each)
     for i in range(10):
@@ -117,22 +123,26 @@ def create_conversation_entries() -> list[dict]:
             f"Decision {i}: Use async processing for better scalability. "
             f"Approved by architecture review."
         )
-        entries.append({
-            "type": MemoryType.DECISION,
-            "content": content,
-            "priority": MemoryPriority.HIGH,
-            "tokens": estimate_tokens(content),
-        })
+        entries.append(
+            {
+                "type": MemoryType.DECISION,
+                "content": content,
+                "priority": MemoryPriority.HIGH,
+                "tokens": estimate_tokens(content),
+            }
+        )
 
     # Critical entries (essential facts, ~20 tokens each)
     for i in range(5):
         content = f"CRITICAL {i}: API key rotation required every 90 days."
-        entries.append({
-            "type": MemoryType.CONTEXT,
-            "content": content,
-            "priority": MemoryPriority.CRITICAL,
-            "tokens": estimate_tokens(content),
-        })
+        entries.append(
+            {
+                "type": MemoryType.CONTEXT,
+                "content": content,
+                "priority": MemoryPriority.CRITICAL,
+                "tokens": estimate_tokens(content),
+            }
+        )
 
     return entries
 
@@ -310,16 +320,18 @@ def run_efficiency_measurements() -> list[EfficiencyResult]:
     saved = baseline_tokens - optimized_tokens
     percentage = (saved / baseline_tokens * 100) if baseline_tokens > 0 else 0
 
-    results.append(EfficiencyResult(
-        scenario="Baseline comparison (no optimization vs pruning)",
-        original_tokens=baseline_tokens,
-        optimized_tokens=optimized_tokens,
-        saved_tokens=saved,
-        saving_percentage=percentage,
-        entries_before=baseline_count,
-        entries_after=result1.entries_after,
-        pruned_entries=baseline_count - result1.entries_after,
-    ))
+    results.append(
+        EfficiencyResult(
+            scenario="Baseline comparison (no optimization vs pruning)",
+            original_tokens=baseline_tokens,
+            optimized_tokens=optimized_tokens,
+            saved_tokens=saved,
+            saving_percentage=percentage,
+            entries_before=baseline_count,
+            entries_after=result1.entries_after,
+            pruned_entries=baseline_count - result1.entries_after,
+        )
+    )
 
     return results
 

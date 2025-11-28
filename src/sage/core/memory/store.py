@@ -15,7 +15,7 @@ from dataclasses import asdict, dataclass, field
 from datetime import datetime
 from enum import Enum
 from pathlib import Path
-from typing import Any, Callable, Optional
+from typing import Any
 
 try:
     from platformdirs import user_data_dir
@@ -24,12 +24,14 @@ except ImportError:
     def user_data_dir(appname: str, appauthor: str | None = None) -> str:
         """Fallback user data directory."""
         import os
+
         if os.name == "nt":
             return str(Path.home() / "AppData" / "Local" / appname)
         elif os.name == "darwin":
             return str(Path.home() / "Library" / "Application Support" / appname)
         else:
             return str(Path.home() / ".local" / "share" / appname)
+
 
 logger = logging.getLogger(__name__)
 
@@ -80,8 +82,8 @@ class MemoryEntry:
     tokens: int = 0
     created_at: datetime = field(default_factory=datetime.now)
     updated_at: datetime = field(default_factory=datetime.now)
-    session_id: Optional[str] = None
-    task_id: Optional[str] = None
+    session_id: str | None = None
+    task_id: str | None = None
     tags: list[str] = field(default_factory=list)
     metadata: dict[str, Any] = field(default_factory=dict)
 
@@ -128,7 +130,7 @@ class MemoryStore:
 
     def __init__(
         self,
-        base_path: Optional[Path] = None,
+        base_path: Path | None = None,
         auto_save: bool = True,
     ) -> None:
         """Initialize the memory store.
@@ -171,7 +173,7 @@ class MemoryStore:
         index_path = self._base_path / "index.json"
         if index_path.exists():
             try:
-                with open(index_path, "r", encoding="utf-8") as f:
+                with open(index_path, encoding="utf-8") as f:
                     self._index = json.load(f)
             except (json.JSONDecodeError, OSError) as e:
                 logger.warning(f"Failed to load memory index: {e}")
@@ -195,7 +197,7 @@ class MemoryStore:
         session_path = self._get_session_path(session_id)
         if session_path.exists():
             try:
-                with open(session_path, "r", encoding="utf-8") as f:
+                with open(session_path, encoding="utf-8") as f:
                     data = json.load(f)
                     for entry_data in data.get("entries", []):
                         entry = MemoryEntry.from_dict(entry_data)
@@ -207,9 +209,7 @@ class MemoryStore:
         """Save entries for a session to disk."""
         session_path = self._get_session_path(session_id)
         entries = [
-            e.to_dict()
-            for e in self._entries.values()
-            if e.session_id == session_id
+            e.to_dict() for e in self._entries.values() if e.session_id == session_id
         ]
         try:
             with open(session_path, "w", encoding="utf-8") as f:
@@ -261,10 +261,10 @@ class MemoryStore:
         *,
         priority: MemoryPriority = MemoryPriority.NORMAL,
         tokens: int = 0,
-        session_id: Optional[str] = None,
-        task_id: Optional[str] = None,
-        tags: Optional[list[str]] = None,
-        metadata: Optional[dict[str, Any]] = None,
+        session_id: str | None = None,
+        task_id: str | None = None,
+        tags: list[str] | None = None,
+        metadata: dict[str, Any] | None = None,
     ) -> MemoryEntry:
         """Add a new memory entry.
 
@@ -304,7 +304,7 @@ class MemoryStore:
         logger.debug(f"Added memory entry: {entry.id} ({entry.type.value})")
         return entry
 
-    def get(self, entry_id: str) -> Optional[MemoryEntry]:
+    def get(self, entry_id: str) -> MemoryEntry | None:
         """Get a memory entry by ID.
 
         Args:
@@ -319,12 +319,12 @@ class MemoryStore:
         self,
         entry_id: str,
         *,
-        content: Optional[str] = None,
-        priority: Optional[MemoryPriority] = None,
-        tokens: Optional[int] = None,
-        tags: Optional[list[str]] = None,
-        metadata: Optional[dict[str, Any]] = None,
-    ) -> Optional[MemoryEntry]:
+        content: str | None = None,
+        priority: MemoryPriority | None = None,
+        tokens: int | None = None,
+        tags: list[str] | None = None,
+        metadata: dict[str, Any] | None = None,
+    ) -> MemoryEntry | None:
         """Update a memory entry.
 
         Args:
@@ -408,12 +408,12 @@ class MemoryStore:
     def query(
         self,
         *,
-        session_id: Optional[str] = None,
-        type: Optional[MemoryType] = None,
-        tags: Optional[list[str]] = None,
-        min_priority: Optional[MemoryPriority] = None,
-        max_priority: Optional[MemoryPriority] = None,
-        limit: Optional[int] = None,
+        session_id: str | None = None,
+        type: MemoryType | None = None,
+        tags: list[str] | None = None,
+        min_priority: MemoryPriority | None = None,
+        max_priority: MemoryPriority | None = None,
+        limit: int | None = None,
         order_by: str = "created_at",
         descending: bool = True,
     ) -> list[MemoryEntry]:
@@ -506,7 +506,7 @@ class MemoryStore:
     def create_checkpoint(
         self,
         session_id: str,
-        checkpoint_id: Optional[str] = None,
+        checkpoint_id: str | None = None,
     ) -> str:
         """Create a checkpoint of session memory.
 
@@ -518,7 +518,9 @@ class MemoryStore:
             The checkpoint ID.
         """
         if checkpoint_id is None:
-            checkpoint_id = f"cp_{datetime.now().strftime('%Y%m%d_%H%M%S')}_{session_id[:8]}"
+            checkpoint_id = (
+                f"cp_{datetime.now().strftime('%Y%m%d_%H%M%S')}_{session_id[:8]}"
+            )
 
         entries = self.get_by_session(session_id)
         checkpoint_data = {
@@ -553,7 +555,7 @@ class MemoryStore:
             raise FileNotFoundError(f"Checkpoint not found: {checkpoint_id}")
 
         try:
-            with open(checkpoint_path, "r", encoding="utf-8") as f:
+            with open(checkpoint_path, encoding="utf-8") as f:
                 checkpoint_data = json.load(f)
         except (json.JSONDecodeError, OSError) as e:
             logger.error(f"Failed to load checkpoint: {e}")
@@ -583,14 +585,16 @@ class MemoryStore:
 
         for checkpoint_file in checkpoint_dir.glob("*.json"):
             try:
-                with open(checkpoint_file, "r", encoding="utf-8") as f:
+                with open(checkpoint_file, encoding="utf-8") as f:
                     data = json.load(f)
-                    checkpoints.append({
-                        "checkpoint_id": data.get("checkpoint_id"),
-                        "session_id": data.get("session_id"),
-                        "created_at": data.get("created_at"),
-                        "entry_count": len(data.get("entries", [])),
-                    })
+                    checkpoints.append(
+                        {
+                            "checkpoint_id": data.get("checkpoint_id"),
+                            "session_id": data.get("session_id"),
+                            "created_at": data.get("created_at"),
+                            "entry_count": len(data.get("entries", [])),
+                        }
+                    )
             except (json.JSONDecodeError, OSError):
                 continue
 
@@ -602,8 +606,8 @@ class MemoryStore:
         self,
         *,
         max_priority: MemoryPriority = MemoryPriority.LOW,
-        older_than: Optional[datetime] = None,
-        session_id: Optional[str] = None,
+        older_than: datetime | None = None,
+        session_id: str | None = None,
     ) -> int:
         """Prune low-priority entries.
 
@@ -621,7 +625,9 @@ class MemoryStore:
         )
 
         if older_than:
-            entries_to_prune = [e for e in entries_to_prune if e.created_at < older_than]
+            entries_to_prune = [
+                e for e in entries_to_prune if e.created_at < older_than
+            ]
 
         pruned_count = 0
         for entry in entries_to_prune:
@@ -631,7 +637,7 @@ class MemoryStore:
         logger.info(f"Pruned {pruned_count} memory entries")
         return pruned_count
 
-    def get_total_tokens(self, session_id: Optional[str] = None) -> int:
+    def get_total_tokens(self, session_id: str | None = None) -> int:
         """Get total token count.
 
         Args:
@@ -640,10 +646,14 @@ class MemoryStore:
         Returns:
             Total token count.
         """
-        entries = self.query(session_id=session_id) if session_id else list(self._entries.values())
+        entries = (
+            self.query(session_id=session_id)
+            if session_id
+            else list(self._entries.values())
+        )
         return sum(e.tokens for e in entries)
 
-    def clear(self, session_id: Optional[str] = None) -> int:
+    def clear(self, session_id: str | None = None) -> int:
         """Clear all entries or entries for a specific session.
 
         Args:

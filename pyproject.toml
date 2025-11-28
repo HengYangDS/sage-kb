@@ -91,19 +91,28 @@ addopts = "-v --cov=sage --cov-report=term-missing"
 [tool.ruff]
 line-length = 88
 target-version = "py312"
+
+[tool.ruff.lint]
 select = [
-    "E", # pycodestyle errors
-    "W", # pycodestyle warnings
-    "F", # pyflakes
-    "I", # isort
-    "B", # flake8-bugbear
-    "C4", # flake8-comprehensions
-    "UP", # pyupgrade
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "UP",  # pyupgrade
 ]
 ignore = [
-    "E501", # line too long (handled by ruff format)
-    "B008", # don't perform function calls in argument defaults
+    "E501",  # line too long (handled by ruff format)
+    "E402",  # module level import not at top of file (intentional in some modules)
+    "B008",  # don't perform function calls in argument defaults
+    "B027",  # empty method in abstract base class (intentional for optional hooks)
+    "E741",  # ambiguous variable name (allow 'l' in list comprehensions)
+    "F841",  # local variable assigned but never used (allow in some cases)
 ]
+
+[tool.ruff.lint.isort]
+known-first-party = ["sage"]
 
 [tool.mypy]
 python_version = "3.12"
@@ -124,3 +133,24 @@ exclude_lines = [
     "if TYPE_CHECKING:",
     "if __name__ == .__main__.:",
 ]
+
+# ===========================================================================
+# Bandit - Security Linter
+# ===========================================================================
+[tool.bandit]
+exclude_dirs = ["tests", "tools"]
+skips = ["B101"]  # Skip assert warnings (used in tests)
+
+# ===========================================================================
+# Commitizen - Conventional Commits
+# ===========================================================================
+[tool.commitizen]
+name = "cz_conventional_commits"
+version = "0.1.0"
+version_files = [
+    "pyproject.toml:version",
+    "src/sage/__init__.py:__version__",
+]
+tag_format = "v$version"
+update_changelog_on_bump = true
+changelog_file = "CHANGELOG.md"

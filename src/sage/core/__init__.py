@@ -7,15 +7,15 @@ Core infrastructure components:
 - DI: Dependency Injection container with lifetime management
 """
 
-from .loader import KnowledgeLoader, Layer
 from .di import (
     DIContainer,
     DIScope,
     Lifetime,
-    get_container,
     TypeRegistry,
+    get_container,
     get_registry,
 )
+from .loader import KnowledgeLoader, Layer
 
 __all__ = [
     # Loader
