@@ -892,3 +892,310 @@ class TestRunServerExtended:
         """Test run_server function exists."""
         from sage.services.mcp_server import run_server
         assert callable(run_server)
+
+
+class TestConfigFunctions:
+    """Tests for configuration loading functions."""
+
+    def test_load_config_returns_dict(self):
+        """Test _load_config returns a dictionary."""
+        from sage.services.mcp_server import _load_config
+        config = _load_config()
+        assert isinstance(config, dict)
+
+    def test_load_config_caching(self):
+        """Test _load_config uses caching."""
+        from sage.services import mcp_server
+        
+        # Clear cache
+        mcp_server._config_cache = None
+        
+        # First call loads config
+        config1 = mcp_server._load_config()
+        
+        # Second call should return cached value
+        config2 = mcp_server._load_config()
+        
+        assert config1 is config2
+
+    def test_get_guidelines_section_map(self):
+        """Test _get_guidelines_section_map returns dict."""
+        from sage.services.mcp_server import _get_guidelines_section_map
+        section_map = _get_guidelines_section_map()
+        assert isinstance(section_map, dict)
+
+    def test_parse_timeout_str_int(self):
+        """Test parsing integer timeout."""
+        from sage.services.mcp_server import _parse_timeout_str
+        assert _parse_timeout_str(1000) == 1000
+        assert _parse_timeout_str(500) == 500
+
+    def test_parse_timeout_str_milliseconds(self):
+        """Test parsing timeout with ms suffix."""
+        from sage.services.mcp_server import _parse_timeout_str
+        assert _parse_timeout_str("500ms") == 500
+        assert _parse_timeout_str("1000ms") == 1000
+
+    def test_parse_timeout_str_seconds(self):
+        """Test parsing timeout with s suffix."""
+        from sage.services.mcp_server import _parse_timeout_str
+        assert _parse_timeout_str("5s") == 5000
+        assert _parse_timeout_str("2s") == 2000
+
+    def test_parse_timeout_str_no_unit(self):
+        """Test parsing timeout without unit."""
+        from sage.services.mcp_server import _parse_timeout_str
+        assert _parse_timeout_str("1000") == 1000
+
+    def test_get_timeout_from_config(self):
+        """Test getting timeout from config."""
+        from sage.services.mcp_server import _get_timeout_from_config
+        timeout = _get_timeout_from_config("full_load", 5000)
+        assert isinstance(timeout, int)
+        assert timeout > 0
+
+
+class TestAnalyzeQualityTool:
+    """Tests for analyze_quality tool."""
+
+    @pytest.mark.asyncio
+    async def test_analyze_quality_file(self, tmp_path):
+        """Test analyze_quality on a single file."""
+        from sage.services.mcp_server import MCP_AVAILABLE
+        
+        if not MCP_AVAILABLE:
+            pytest.skip("MCP not available")
+        
+        from sage.services.mcp_server import analyze_quality
+        
+        # Create a test file
+        test_file = tmp_path / "test.py"
+        test_file.write_text("# Test file\ndef hello():\n    pass\n")
+        
+        result = await analyze_quality(path=str(test_file))
+        assert isinstance(result, dict)
+        assert "success" in result
+
+    @pytest.mark.asyncio
+    async def test_analyze_quality_directory(self, tmp_path):
+        """Test analyze_quality on a directory."""
+        from sage.services.mcp_server import MCP_AVAILABLE
+        
+        if not MCP_AVAILABLE:
+            pytest.skip("MCP not available")
+        
+        from sage.services.mcp_server import analyze_quality
+        
+        # Create test files
+        (tmp_path / "test1.py").write_text("# Test 1\n")
+        (tmp_path / "test2.py").write_text("# Test 2\n")
+        
+        result = await analyze_quality(path=str(tmp_path), extensions=".py")
+        assert isinstance(result, dict)
+        assert "success" in result
+
+    @pytest.mark.asyncio
+    async def test_analyze_quality_exception(self, monkeypatch):
+        """Test analyze_quality handles exceptions."""
+        from sage.services.mcp_server import MCP_AVAILABLE
+        
+        if not MCP_AVAILABLE:
+            pytest.skip("MCP not available")
+        
+        from sage.services.mcp_server import analyze_quality
+        
+        # Mock to raise exception
+        def mock_analyzer():
+            raise RuntimeError("Test error")
+        
+        monkeypatch.setattr(
+            "sage.services.mcp_server.QualityAnalyzer",
+            mock_analyzer
+        )
+        
+        result = await analyze_quality(path="/nonexistent/path")
+        assert result["success"] is False
+        assert "error" in result
+
+
+class TestAnalyzeContentTool:
+    """Tests for analyze_content tool."""
+
+    @pytest.mark.asyncio
+    async def test_analyze_content_file(self, tmp_path):
+        """Test analyze_content on a single file."""
+        from sage.services.mcp_server import MCP_AVAILABLE
+        
+        if not MCP_AVAILABLE:
+            pytest.skip("MCP not available")
+        
+        from sage.services.mcp_server import analyze_content
+        
+        # Create a test markdown file
+        test_file = tmp_path / "test.md"
+        test_file.write_text("# Test\n\nThis is content.\n")
+        
+        result = await analyze_content(path=str(test_file))
+        assert isinstance(result, dict)
+        assert "success" in result
+
+    @pytest.mark.asyncio
+    async def test_analyze_content_directory(self, tmp_path):
+        """Test analyze_content on a directory."""
+        from sage.services.mcp_server import MCP_AVAILABLE
+        
+        if not MCP_AVAILABLE:
+            pytest.skip("MCP not available")
+        
+        from sage.services.mcp_server import analyze_content
+        
+        # Create test files
+        (tmp_path / "test1.md").write_text("# Test 1\n")
+        (tmp_path / "test2.md").write_text("# Test 2\n")
+        
+        result = await analyze_content(path=str(tmp_path))
+        assert isinstance(result, dict)
+        assert "success" in result
+
+    @pytest.mark.asyncio
+    async def test_analyze_content_exception(self, monkeypatch):
+        """Test analyze_content handles exceptions."""
+        from sage.services.mcp_server import MCP_AVAILABLE
+        
+        if not MCP_AVAILABLE:
+            pytest.skip("MCP not available")
+        
+        from sage.services.mcp_server import analyze_content
+        
+        # Mock to raise exception
+        def mock_analyzer():
+            raise RuntimeError("Test error")
+        
+        monkeypatch.setattr(
+            "sage.services.mcp_server.ContentAnalyzer",
+            mock_analyzer
+        )
+        
+        result = await analyze_content(path="/nonexistent/path")
+        assert result["success"] is False
+        assert "error" in result
+
+
+class TestCheckStructureToolExtended:
+    """Extended tests for check_structure tool."""
+
+    @pytest.mark.asyncio
+    async def test_check_structure_default(self):
+        """Test check_structure with default path."""
+        from sage.services.mcp_server import MCP_AVAILABLE
+        
+        if not MCP_AVAILABLE:
+            pytest.skip("MCP not available")
+        
+        from sage.services.mcp_server import check_structure
+        
+        result = await check_structure()
+        assert isinstance(result, dict)
+        assert "success" in result
+
+    @pytest.mark.asyncio
+    async def test_check_structure_exception(self, monkeypatch):
+        """Test check_structure handles exceptions."""
+        from sage.services.mcp_server import MCP_AVAILABLE
+        
+        if not MCP_AVAILABLE:
+            pytest.skip("MCP not available")
+        
+        from sage.services.mcp_server import check_structure
+        
+        def mock_checker():
+            raise RuntimeError("Test error")
+        
+        monkeypatch.setattr(
+            "sage.services.mcp_server.StructureChecker",
+            mock_checker
+        )
+        
+        result = await check_structure()
+        assert result["success"] is False
+        assert "error" in result
+
+
+class TestCheckLinksToolExtended:
+    """Extended tests for check_links tool."""
+
+    @pytest.mark.asyncio
+    async def test_check_links_default(self):
+        """Test check_links with default parameters."""
+        from sage.services.mcp_server import MCP_AVAILABLE
+        
+        if not MCP_AVAILABLE:
+            pytest.skip("MCP not available")
+        
+        from sage.services.mcp_server import check_links
+        
+        result = await check_links()
+        assert isinstance(result, dict)
+        assert "success" in result
+
+    @pytest.mark.asyncio
+    async def test_check_links_exception(self, monkeypatch):
+        """Test check_links handles exceptions."""
+        from sage.services.mcp_server import MCP_AVAILABLE
+        
+        if not MCP_AVAILABLE:
+            pytest.skip("MCP not available")
+        
+        from sage.services.mcp_server import check_links
+        
+        def mock_checker():
+            raise RuntimeError("Test error")
+        
+        monkeypatch.setattr(
+            "sage.services.mcp_server.LinkChecker",
+            mock_checker
+        )
+        
+        result = await check_links()
+        assert result["success"] is False
+        assert "error" in result
+
+
+class TestGetGuidelinesTool:
+    """Tests for get_guidelines tool."""
+
+    @pytest.mark.asyncio
+    async def test_get_guidelines_with_section(self):
+        """Test get_guidelines with section parameter."""
+        from sage.services.mcp_server import MCP_AVAILABLE
+        
+        if not MCP_AVAILABLE:
+            pytest.skip("MCP not available")
+        
+        from sage.services.mcp_server import get_guidelines
+        
+        result = await get_guidelines(section="quick_start")
+        assert isinstance(result, dict)
+
+    @pytest.mark.asyncio
+    async def test_get_guidelines_exception(self, monkeypatch):
+        """Test get_guidelines handles exceptions."""
+        from sage.services.mcp_server import MCP_AVAILABLE
+        
+        if not MCP_AVAILABLE:
+            pytest.skip("MCP not available")
+        
+        from sage.services.mcp_server import get_guidelines
+        
+        def mock_loader():
+            class FailingLoader:
+                async def load_guidelines(self, *args, **kwargs):
+                    raise RuntimeError("Test error")
+            return FailingLoader()
+        
+        monkeypatch.setattr("sage.services.mcp_server.get_loader", mock_loader)
+        
+        result = await get_guidelines(section="test")
+        assert result["status"] == "error"
+
+

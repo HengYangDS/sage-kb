@@ -40,11 +40,9 @@ def install_dependencies(dev: bool = True) -> bool:
     print("\n📦 Installing dependencies...")
     try:
         if dev:
-            result = run_command(
-                [sys.executable, "-m", "pip", "install", "-e", ".[dev]"]
-            )
+            _ = run_command([sys.executable, "-m", "pip", "install", "-e", ".[dev]"])
         else:
-            result = run_command([sys.executable, "-m", "pip", "install", "-e", "."])
+            _ = run_command([sys.executable, "-m", "pip", "install", "-e", "."])
         print("  ✅ Dependencies installed successfully")
         return True
     except subprocess.CalledProcessError as e:

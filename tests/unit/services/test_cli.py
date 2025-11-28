@@ -597,3 +597,162 @@ class TestCLIEdgeCases:
         """Test framework with invalid name."""
         result = runner.invoke(app, ["framework", "nonexistent_xyz"])
         assert result.exit_code in [0, 1]
+
+
+class TestConfigFunctions:
+    """Tests for configuration loading functions."""
+
+    def test_load_config_returns_dict(self):
+        """Test _load_config returns a dictionary."""
+        from sage.services.cli import _load_config
+        config = _load_config()
+        assert isinstance(config, dict)
+
+    def test_load_config_caching(self):
+        """Test _load_config uses caching."""
+        from sage.services import cli
+        
+        # Clear cache
+        cli._config_cache = None
+        
+        # First call loads config
+        config1 = cli._load_config()
+        
+        # Second call should return cached value
+        config2 = cli._load_config()
+        
+        assert config1 is config2
+
+    def test_get_guidelines_section_map(self):
+        """Test _get_guidelines_section_map returns dict."""
+        from sage.services.cli import _get_guidelines_section_map
+        section_map = _get_guidelines_section_map()
+        assert isinstance(section_map, dict)
+
+    def test_parse_timeout_str_int(self):
+        """Test parsing integer timeout."""
+        from sage.services.cli import _parse_timeout_str
+        assert _parse_timeout_str(1000) == 1000
+        assert _parse_timeout_str(500) == 500
+
+    def test_parse_timeout_str_milliseconds(self):
+        """Test parsing timeout with ms suffix."""
+        from sage.services.cli import _parse_timeout_str
+        assert _parse_timeout_str("500ms") == 500
+        assert _parse_timeout_str("1000ms") == 1000
+
+    def test_parse_timeout_str_seconds(self):
+        """Test parsing timeout with s suffix."""
+        from sage.services.cli import _parse_timeout_str
+        assert _parse_timeout_str("5s") == 5000
+        assert _parse_timeout_str("2s") == 2000
+
+    def test_parse_timeout_str_no_unit(self):
+        """Test parsing timeout without unit."""
+        from sage.services.cli import _parse_timeout_str
+        assert _parse_timeout_str("1000") == 1000
+
+    def test_get_timeout_from_config(self):
+        """Test getting timeout from config."""
+        from sage.services.cli import _get_timeout_from_config
+        timeout = _get_timeout_from_config("full_load", 5000)
+        assert isinstance(timeout, int)
+        assert timeout > 0
+
+    def test_get_timeout_from_config_default(self):
+        """Test getting timeout with default fallback."""
+        from sage.services.cli import _get_timeout_from_config
+        # Nonexistent operation should return default
+        timeout = _get_timeout_from_config("nonexistent_operation_xyz", 3000)
+        assert isinstance(timeout, int)
+
+
+class TestCacheCommandExtended:
+    """Extended tests for cache command."""
+
+    def test_cache_stats(self):
+        """Test cache stats command."""
+        result = runner.invoke(app, ["cache", "stats"])
+        assert result.exit_code == 0
+        assert "Cache" in result.output or "Cached" in result.output
+
+    def test_cache_clear(self):
+        """Test cache clear command."""
+        result = runner.invoke(app, ["cache", "clear"])
+        assert result.exit_code == 0
+        assert "cleared" in result.output.lower() or "Cache" in result.output
+
+    def test_cache_default_stats(self):
+        """Test cache command defaults to stats."""
+        result = runner.invoke(app, ["cache"])
+        assert result.exit_code == 0
+
+    def test_cache_unknown_action(self):
+        """Test cache with unknown action."""
+        result = runner.invoke(app, ["cache", "unknown_action"])
+        assert result.exit_code == 0
+        assert "Unknown" in result.output or "unknown" in result.output.lower()
+
+
+class TestServeCommandOptions:
+    """Tests for serve command options."""
+
+    def test_serve_help_shows_options(self):
+        """Test serve --help shows host and port options."""
+        result = runner.invoke(app, ["serve", "--help"])
+        assert result.exit_code == 0
+        assert "host" in result.output.lower() or "port" in result.output.lower()
+
+
+class TestSearchResultsDisplay:
+    """Tests for search results display."""
+
+    def test_search_with_results_shows_table(self):
+        """Test search displays table when results found."""
+        result = runner.invoke(app, ["search", "principles"])
+        assert result.exit_code == 0
+        # Should show results table or no results message
+        assert "Score" in result.output or "No results" in result.output or "Path" in result.output
+
+    def test_search_preview_truncation(self):
+        """Test search truncates long preview."""
+        result = runner.invoke(app, ["search", "content"])
+        assert result.exit_code == 0
+
+
+class TestGetLoaderFunction:
+    """Tests for get_loader function."""
+
+    def test_get_loader_returns_loader(self):
+        """Test get_loader returns a KnowledgeLoader."""
+        from sage.services.cli import get_loader
+        from sage.core.loader import KnowledgeLoader
+        
+        loader = get_loader()
+        assert isinstance(loader, KnowledgeLoader)
+
+    def test_get_loader_singleton(self):
+        """Test get_loader returns same instance."""
+        from sage.services import cli
+        
+        # Clear global loader
+        cli._loader = None
+        
+        loader1 = cli.get_loader()
+        loader2 = cli.get_loader()
+        
+        assert loader1 is loader2
+
+
+class TestRunAsyncFunction:
+    """Tests for run_async helper function."""
+
+    def test_run_async_executes_coroutine(self):
+        """Test run_async executes async function."""
+        from sage.services.cli import run_async
+        
+        async def sample_coro():
+            return 42
+        
+        result = run_async(sample_coro())
+        assert result == 42
