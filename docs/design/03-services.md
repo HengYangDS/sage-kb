@@ -27,7 +27,7 @@ SAGE provides three service channels for knowledge access:
 │   (Typer)     │  (FastMCP)    │  (FastAPI)    │  Components │
 ├───────────────┼───────────────┼───────────────┼─────────────┤
 │ • sage get    │ • get_knowledge│ GET /knowledge│ • Loader   │
-│ • sage search │ • search_kb   │ GET /search   │ • Search    │
+│ • sage search │ • search_knowledge│ GET /search│ • Search    │
 │ • sage info   │ • get_framework│ GET /layers   │ • Timeout   │
 │ • sage serve  │ • kb_info     │ GET /health   │ • Config    │
 └───────────────┴───────────────┴───────────────┴─────────────┘

@@ -70,7 +70,7 @@ status: production-ready
 │      (Typer)        │      │     (FastMCP)       │      │     (FastAPI)       │
 ├─────────────────────┤      ├─────────────────────┤      ├─────────────────────┤
 │ • get               │      │ • get_knowledge     │      │ GET /knowledge      │
-│ • search            │      │ • search_kb         │      │ GET /search         │
+│ • search            │      │ • search_knowledge  │      │ GET /search         │
 │ • info              │      │ • kb_info           │      │ GET /info           │
 │ • serve             │      │ • get_framework     │      │ GET /frameworks     │
 │ • analyze           │      │ • analyze_*         │      │ GET /analyze/*      │
