@@ -156,14 +156,14 @@ This design is organized into 9 independent documents:
 
 ## Key Metrics
 
-| Metric           | Target | Status            |
-|------------------|--------|-------------------|
-| Expert Score     | 95+    | **99.8/100** ✅    |
-| Token Efficiency | 95%+   | **98/100** ✅    |
-| Timeout Coverage | 100%   | **100%** ✅      |
-| MECE Compliance  | 100%   | **100%** ✅      |
-| Plugin Hooks     | 7      | **9 hooks** ✅   |
-| Python Support   | 3.12+  | **3.12-3.14** ✅ |
+| Metric           | Target | Status             |
+|------------------|--------|--------------------|
+| Expert Score     | 95+    | **99.8/100** ✅     |
+| Token Efficiency | 95%+   | **98/100** ✅       |
+| Timeout Coverage | 100%   | **100%** ✅         |
+| MECE Compliance  | 100%   | **100%** ✅         |
+| Plugin Hooks     | 8      | **15 hooks** ✅     |
+| Python Support   | 3.12+  | **3.12-3.14** ✅    |
 
 ---
 
@@ -179,7 +179,7 @@ This design is organized into 9 independent documents:
 | EventBus System      | ✅ Complete        | Async pub/sub with priority & timeout       |
 | Memory Persistence   | ✅ Complete        | MemoryStore, TokenBudget, SessionContinuity |
 | DI Container         | ✅ Complete        | Lifetime mgmt, auto-wiring, 94% coverage    |
-| Test Suite           | ✅ Complete        | 629 tests, 86% coverage                     |
+| Test Suite           | ✅ Complete        | 653 tests, 86% coverage                     |
 | Dev Toolchain        | ✅ Complete        | Makefile, py.typed, pyproject.toml          |
 | Config Files         | ✅ Complete        | sage.yaml, index.md created                 |
 | Production Ready     | ✅ v1.2 Complete   | All MVP + v1.1 + v1.2 phases complete       |
@@ -192,7 +192,7 @@ This design is organized into 9 independent documents:
 
 1. **Unified Best Practices**: Combined strengths from 5 design iterations
 2. **Production-Ready Reliability**: 5-level timeout + circuit breaker + graceful degradation
-3. **Maximum Extensibility**: 7 plugin hooks for customization
+3. **Maximum Extensibility**: 15 plugin hooks across 7 plugin types for customization
 4. **Optimal Token Efficiency**: 95% reduction with smart loading
 5. **Modern Python**: PEP 695 type syntax, Python 3.12-3.14 support
 6. **Comprehensive Testing**: Allure integration, property-based testing

@@ -7,8 +7,12 @@ This module provides:
 - LoaderPlugin: Plugin for customizing knowledge loading
 - AnalyzerPlugin: Plugin for custom analysis
 - FormatterPlugin: Plugin for output formatting
+- SearchPlugin: Plugin for customizing search behavior
+- LifecyclePlugin: Plugin for system lifecycle events
+- ErrorPlugin: Plugin for error handling
+- CachePlugin: Plugin for cache events
 
-Extension Points (7 hooks):
+Extension Points (15 hooks):
 - pre_load: Before loading content
 - post_load: After loading content
 - on_timeout: On timeout event
@@ -16,6 +20,14 @@ Extension Points (7 hooks):
 - post_search: After search
 - pre_format: Before output formatting
 - post_format: After output formatting
+- pre_analyze: Before analysis
+- post_analyze: After analysis
+- analyze: Perform analysis
+- on_startup: System startup
+- on_shutdown: System shutdown
+- on_error: Error occurred
+- on_cache_hit: Cache hit event
+- on_cache_miss: Cache miss event
 
 Author: SAGE AI Collab Team
 Version: 0.1.0
@@ -198,6 +210,11 @@ class AnalyzerPlugin(PluginBase):
     """
     Plugin for custom content analysis.
 
+    Hooks:
+    - pre_analyze: Preprocess content before analysis
+    - analyze: Perform the actual analysis
+    - post_analyze: Post-process analysis results
+
     Example:
         class QualityAnalyzer(AnalyzerPlugin):
             @property
@@ -205,15 +222,39 @@ class AnalyzerPlugin(PluginBase):
                 return PluginMetadata(
                     name="quality-analyzer",
                     version="0.1.0",
-                    hooks=["analyze"],
+                    hooks=["pre_analyze", "analyze", "post_analyze"],
                 )
+
+            def pre_analyze(self, content, context):
+                # Preprocess content
+                return content.strip(), context
 
             def analyze(self, content, context):
                 return {
                     "word_count": len(content.split()),
                     "quality_score": self._calculate_score(content),
                 }
+
+            def post_analyze(self, results, context):
+                # Add metadata to results
+                results["timestamp"] = time.time()
+                return results
     """
+
+    def pre_analyze(
+        self, content: str, context: dict[str, Any]
+    ) -> tuple[str, dict[str, Any]]:
+        """
+        Preprocess content before analysis.
+
+        Args:
+            content: Content to preprocess
+            context: Analysis context
+
+        Returns:
+            Tuple of (preprocessed content, modified context)
+        """
+        return content, context
 
     @abstractmethod
     def analyze(self, content: str, context: dict[str, Any]) -> dict[str, Any]:
@@ -228,6 +269,21 @@ class AnalyzerPlugin(PluginBase):
             Analysis results dictionary
         """
         pass
+
+    def post_analyze(
+        self, results: dict[str, Any], context: dict[str, Any]
+    ) -> dict[str, Any]:
+        """
+        Post-process analysis results.
+
+        Args:
+            results: Analysis results
+            context: Analysis context
+
+        Returns:
+            Modified results
+        """
+        return results
 
 
 class FormatterPlugin(PluginBase):
@@ -357,16 +413,167 @@ class SearchPlugin(PluginBase):
         return results
 
 
+class LifecyclePlugin(PluginBase):
+    """
+    Plugin for system lifecycle events.
+
+    Hooks:
+    - on_startup: Called when the system starts
+    - on_shutdown: Called when the system shuts down
+
+    Example:
+        class MetricsPlugin(LifecyclePlugin):
+            @property
+            def metadata(self) -> PluginMetadata:
+                return PluginMetadata(
+                    name="metrics-plugin",
+                    version="0.1.0",
+                    hooks=["on_startup", "on_shutdown"],
+                )
+
+            def on_startup(self, context):
+                self._start_time = time.time()
+                print("System started")
+
+            def on_shutdown(self, context):
+                uptime = time.time() - self._start_time
+                print(f"System ran for {uptime:.2f}s")
+    """
+
+    def on_startup(self, context: dict[str, Any]) -> None:
+        """
+        Called when the system starts.
+
+        Args:
+            context: Startup context (config, registry, etc.)
+        """
+        pass
+
+    def on_shutdown(self, context: dict[str, Any]) -> None:
+        """
+        Called when the system shuts down.
+
+        Args:
+            context: Shutdown context (stats, errors, etc.)
+        """
+        pass
+
+
+class ErrorPlugin(PluginBase):
+    """
+    Plugin for error handling.
+
+    Hooks:
+    - on_error: Called when an error occurs
+
+    Example:
+        class ErrorLogger(ErrorPlugin):
+            @property
+            def metadata(self) -> PluginMetadata:
+                return PluginMetadata(
+                    name="error-logger",
+                    version="0.1.0",
+                    hooks=["on_error"],
+                )
+
+            def on_error(self, error, context):
+                logger.error(f"Error in {context.get('operation')}: {error}")
+                return None  # Or return recovery value
+    """
+
+    def on_error(
+        self, error: Exception, context: dict[str, Any]
+    ) -> Any | None:
+        """
+        Called when an error occurs.
+
+        Args:
+            error: The exception that occurred
+            context: Error context (operation, args, etc.)
+
+        Returns:
+            Recovery value or None to propagate error
+        """
+        return None
+
+
+class CachePlugin(PluginBase):
+    """
+    Plugin for cache events.
+
+    Hooks:
+    - on_cache_hit: Called when cache hit occurs
+    - on_cache_miss: Called when cache miss occurs
+
+    Example:
+        class CacheMetrics(CachePlugin):
+            @property
+            def metadata(self) -> PluginMetadata:
+                return PluginMetadata(
+                    name="cache-metrics",
+                    version="0.1.0",
+                    hooks=["on_cache_hit", "on_cache_miss"],
+                )
+
+            def on_cache_hit(self, key, value, context):
+                self._hits += 1
+                return value
+
+            def on_cache_miss(self, key, context):
+                self._misses += 1
+    """
+
+    def on_cache_hit(
+        self, key: str, value: Any, context: dict[str, Any]
+    ) -> Any:
+        """
+        Called when a cache hit occurs.
+
+        Args:
+            key: Cache key
+            value: Cached value
+            context: Cache context (layer, operation, etc.)
+
+        Returns:
+            The value (potentially modified)
+        """
+        return value
+
+    def on_cache_miss(self, key: str, context: dict[str, Any]) -> None:
+        """
+        Called when a cache miss occurs.
+
+        Args:
+            key: Cache key that was not found
+            context: Cache context (layer, operation, etc.)
+        """
+        pass
+
+
 # Hook type definitions
 HOOK_TYPES = {
+    # Loader hooks
     "pre_load": LoaderPlugin,
     "post_load": LoaderPlugin,
     "on_timeout": LoaderPlugin,
+    # Search hooks
     "pre_search": SearchPlugin,
     "post_search": SearchPlugin,
+    # Format hooks
     "pre_format": FormatterPlugin,
     "post_format": FormatterPlugin,
+    # Analyzer hooks
+    "pre_analyze": AnalyzerPlugin,
     "analyze": AnalyzerPlugin,
+    "post_analyze": AnalyzerPlugin,
+    # Lifecycle hooks
+    "on_startup": LifecyclePlugin,
+    "on_shutdown": LifecyclePlugin,
+    # Error hooks
+    "on_error": ErrorPlugin,
+    # Cache hooks
+    "on_cache_hit": CachePlugin,
+    "on_cache_miss": CachePlugin,
 }
 
 AVAILABLE_HOOKS = list(HOOK_TYPES.keys())

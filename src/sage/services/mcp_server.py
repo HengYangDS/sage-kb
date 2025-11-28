@@ -67,6 +67,75 @@ def _get_guidelines_section_map() -> dict[str, str]:
     # Convert all keys to lowercase strings for case-insensitive lookup
     return {str(k).lower(): str(v) for k, v in sections.items()}
 
+
+def _parse_timeout_str(timeout_str: str | int) -> int:
+    """
+    Parse timeout string (e.g., '5s', '500ms', '2s') to milliseconds.
+    
+    Args:
+        timeout_str: Timeout value as string (e.g., '5s', '500ms') or int (ms).
+        
+    Returns:
+        Timeout in milliseconds.
+    """
+    if isinstance(timeout_str, int):
+        return timeout_str
+
+    timeout_str = str(timeout_str).strip().lower()
+
+    if timeout_str.endswith("ms"):
+        return int(timeout_str[:-2])
+    elif timeout_str.endswith("s"):
+        return int(float(timeout_str[:-1]) * 1000)
+    else:
+        # Assume milliseconds if no unit
+        return int(timeout_str)
+
+
+def _get_timeout_from_config(operation: str, default_ms: int) -> int:
+    """
+    Get timeout value for a specific operation from the sage.yaml configuration.
+    
+    Args:
+        operation: Operation name (e.g., 'full_load', 'layer_load', 'file_read', 'search').
+        default_ms: Default timeout in milliseconds if not found in config.
+        
+    Returns:
+        Timeout in milliseconds.
+    """
+    config = _load_config()
+    timeout_config = config.get("timeout", {})
+    operations = timeout_config.get("operations", {})
+
+    if operation in operations:
+        return _parse_timeout_str(operations[operation])
+
+    # Fallback to default timeout from config
+    if "default" in timeout_config:
+        return _parse_timeout_str(timeout_config["default"])
+
+    return default_ms
+
+
+def _get_timeout_config_dict() -> dict[str, int]:
+    """
+    Get the complete timeout configuration as a dictionary.
+    
+    Returns:
+        Dictionary with timeout values in milliseconds.
+    """
+    config = _load_config()
+    timeout_config = config.get("timeout", {})
+    operations = timeout_config.get("operations", {})
+    
+    return {
+        "cache_ms": _parse_timeout_str(operations.get("cache_lookup", 100)),
+        "file_ms": _parse_timeout_str(operations.get("file_read", 500)),
+        "layer_ms": _parse_timeout_str(operations.get("layer_load", 2000)),
+        "full_ms": _parse_timeout_str(operations.get("full_load", 5000)),
+        "analysis_ms": _parse_timeout_str(operations.get("analysis", 10000)),
+    }
+
 logger = get_logger(__name__)
 
 # Initialize MCP app
@@ -431,13 +500,7 @@ if MCP_AVAILABLE and app is not None:
                 ),
                 "templates": count_md_files(kb_path / "content" / "templates"),
             },
-            "timeout_config": {
-                "cache_ms": 100,
-                "file_ms": 500,
-                "layer_ms": 2000,
-                "full_ms": 5000,
-                "analysis_ms": 10000,
-            },
+            "timeout_config": _get_timeout_config_dict(),
             "cache_stats": loader.get_cache_stats(),
             "features": [
                 "5-level timeout hierarchy",

@@ -704,3 +704,406 @@ class TestPluginBaseExtended:
         results = [{"id": 1}, {"id": 2}]
         result = plugin.post_search(results, "query")
         assert isinstance(result, list)
+
+
+# ============================================================================
+# New Plugin Types Tests (v0.1.0 Enhancement)
+# ============================================================================
+
+from sage.plugins import (
+    LifecyclePlugin,
+    ErrorPlugin,
+    CachePlugin,
+)
+
+
+class SampleLifecyclePlugin(LifecyclePlugin):
+    """Sample lifecycle plugin for testing."""
+    
+    def __init__(self):
+        self.startup_called = False
+        self.shutdown_called = False
+        self.startup_context = None
+        self.shutdown_context = None
+    
+    @property
+    def metadata(self) -> PluginMetadata:
+        return PluginMetadata(
+            name="sample-lifecycle",
+            version="1.0.0",
+            hooks=["on_startup", "on_shutdown"],
+        )
+    
+    def on_startup(self, context: dict[str, Any]) -> None:
+        self.startup_called = True
+        self.startup_context = context
+    
+    def on_shutdown(self, context: dict[str, Any]) -> None:
+        self.shutdown_called = True
+        self.shutdown_context = context
+
+
+class SampleErrorPlugin(ErrorPlugin):
+    """Sample error plugin for testing."""
+    
+    def __init__(self):
+        self.errors_handled = []
+    
+    @property
+    def metadata(self) -> PluginMetadata:
+        return PluginMetadata(
+            name="sample-error",
+            version="1.0.0",
+            hooks=["on_error"],
+        )
+    
+    def on_error(self, error: Exception, context: dict[str, Any]) -> Any | None:
+        self.errors_handled.append((error, context))
+        # Return recovery value for specific errors
+        if isinstance(error, ValueError):
+            return "recovered"
+        return None
+
+
+class SampleCachePlugin(CachePlugin):
+    """Sample cache plugin for testing."""
+    
+    def __init__(self):
+        self.hits = []
+        self.misses = []
+    
+    @property
+    def metadata(self) -> PluginMetadata:
+        return PluginMetadata(
+            name="sample-cache",
+            version="1.0.0",
+            hooks=["on_cache_hit", "on_cache_miss"],
+        )
+    
+    def on_cache_hit(self, key: str, value: Any, context: dict[str, Any]) -> Any:
+        self.hits.append((key, value, context))
+        return value
+    
+    def on_cache_miss(self, key: str, context: dict[str, Any]) -> None:
+        self.misses.append((key, context))
+
+
+class SampleAnalyzerPluginExtended(AnalyzerPlugin):
+    """Sample analyzer plugin with pre/post analyze hooks."""
+    
+    def __init__(self):
+        self.pre_analyze_called = False
+        self.post_analyze_called = False
+    
+    @property
+    def metadata(self) -> PluginMetadata:
+        return PluginMetadata(
+            name="sample-analyzer-extended",
+            version="1.0.0",
+            hooks=["pre_analyze", "analyze", "post_analyze"],
+        )
+    
+    def pre_analyze(
+        self, content: str, context: dict[str, Any]
+    ) -> tuple[str, dict[str, Any]]:
+        self.pre_analyze_called = True
+        # Preprocess: strip whitespace
+        return content.strip(), {**context, "preprocessed": True}
+    
+    def analyze(self, content: str, context: dict[str, Any]) -> dict[str, Any]:
+        return {
+            "word_count": len(content.split()),
+            "char_count": len(content),
+        }
+    
+    def post_analyze(
+        self, results: dict[str, Any], context: dict[str, Any]
+    ) -> dict[str, Any]:
+        self.post_analyze_called = True
+        results["postprocessed"] = True
+        return results
+
+
+class TestLifecyclePlugin:
+    """Tests for LifecyclePlugin."""
+    
+    def test_lifecycle_plugin_creation(self):
+        """Test creating a lifecycle plugin."""
+        plugin = SampleLifecyclePlugin()
+        assert plugin.metadata.name == "sample-lifecycle"
+        assert "on_startup" in plugin.metadata.hooks
+        assert "on_shutdown" in plugin.metadata.hooks
+    
+    def test_on_startup(self):
+        """Test on_startup hook."""
+        plugin = SampleLifecyclePlugin()
+        context = {"config": {"debug": True}}
+        plugin.on_startup(context)
+        assert plugin.startup_called is True
+        assert plugin.startup_context == context
+    
+    def test_on_shutdown(self):
+        """Test on_shutdown hook."""
+        plugin = SampleLifecyclePlugin()
+        context = {"stats": {"requests": 100}}
+        plugin.on_shutdown(context)
+        assert plugin.shutdown_called is True
+        assert plugin.shutdown_context == context
+    
+    def test_lifecycle_default_implementation(self):
+        """Test default LifecyclePlugin methods don't raise."""
+        class MinimalLifecyclePlugin(LifecyclePlugin):
+            @property
+            def metadata(self) -> PluginMetadata:
+                return PluginMetadata(
+                    name="minimal-lifecycle",
+                    version="1.0.0",
+                    hooks=["on_startup", "on_shutdown"],
+                )
+        
+        plugin = MinimalLifecyclePlugin()
+        # Default implementations should not raise
+        plugin.on_startup({})
+        plugin.on_shutdown({})
+
+
+class TestErrorPlugin:
+    """Tests for ErrorPlugin."""
+    
+    def test_error_plugin_creation(self):
+        """Test creating an error plugin."""
+        plugin = SampleErrorPlugin()
+        assert plugin.metadata.name == "sample-error"
+        assert "on_error" in plugin.metadata.hooks
+    
+    def test_on_error_with_recovery(self):
+        """Test on_error hook with recovery value."""
+        plugin = SampleErrorPlugin()
+        error = ValueError("test error")
+        context = {"operation": "load"}
+        result = plugin.on_error(error, context)
+        assert result == "recovered"
+        assert len(plugin.errors_handled) == 1
+        assert plugin.errors_handled[0][0] == error
+    
+    def test_on_error_without_recovery(self):
+        """Test on_error hook without recovery."""
+        plugin = SampleErrorPlugin()
+        error = RuntimeError("test error")
+        context = {"operation": "search"}
+        result = plugin.on_error(error, context)
+        assert result is None
+        assert len(plugin.errors_handled) == 1
+    
+    def test_error_default_implementation(self):
+        """Test default ErrorPlugin methods."""
+        class MinimalErrorPlugin(ErrorPlugin):
+            @property
+            def metadata(self) -> PluginMetadata:
+                return PluginMetadata(
+                    name="minimal-error",
+                    version="1.0.0",
+                    hooks=["on_error"],
+                )
+        
+        plugin = MinimalErrorPlugin()
+        result = plugin.on_error(Exception("test"), {})
+        assert result is None
+
+
+class TestCachePlugin:
+    """Tests for CachePlugin."""
+    
+    def test_cache_plugin_creation(self):
+        """Test creating a cache plugin."""
+        plugin = SampleCachePlugin()
+        assert plugin.metadata.name == "sample-cache"
+        assert "on_cache_hit" in plugin.metadata.hooks
+        assert "on_cache_miss" in plugin.metadata.hooks
+    
+    def test_on_cache_hit(self):
+        """Test on_cache_hit hook."""
+        plugin = SampleCachePlugin()
+        value = {"data": "test"}
+        context = {"layer": "core"}
+        result = plugin.on_cache_hit("key1", value, context)
+        assert result == value
+        assert len(plugin.hits) == 1
+        assert plugin.hits[0] == ("key1", value, context)
+    
+    def test_on_cache_miss(self):
+        """Test on_cache_miss hook."""
+        plugin = SampleCachePlugin()
+        context = {"layer": "guidelines"}
+        plugin.on_cache_miss("missing_key", context)
+        assert len(plugin.misses) == 1
+        assert plugin.misses[0] == ("missing_key", context)
+    
+    def test_cache_default_implementation(self):
+        """Test default CachePlugin methods."""
+        class MinimalCachePlugin(CachePlugin):
+            @property
+            def metadata(self) -> PluginMetadata:
+                return PluginMetadata(
+                    name="minimal-cache",
+                    version="1.0.0",
+                    hooks=["on_cache_hit", "on_cache_miss"],
+                )
+        
+        plugin = MinimalCachePlugin()
+        # Default on_cache_hit returns the value
+        result = plugin.on_cache_hit("key", "value", {})
+        assert result == "value"
+        # Default on_cache_miss does nothing
+        plugin.on_cache_miss("key", {})
+
+
+class TestAnalyzerPluginExtended:
+    """Tests for AnalyzerPlugin pre_analyze/post_analyze hooks."""
+    
+    def test_analyzer_extended_creation(self):
+        """Test creating extended analyzer plugin."""
+        plugin = SampleAnalyzerPluginExtended()
+        assert plugin.metadata.name == "sample-analyzer-extended"
+        assert "pre_analyze" in plugin.metadata.hooks
+        assert "analyze" in plugin.metadata.hooks
+        assert "post_analyze" in plugin.metadata.hooks
+    
+    def test_pre_analyze(self):
+        """Test pre_analyze hook."""
+        plugin = SampleAnalyzerPluginExtended()
+        content = "  test content  "
+        context = {"file": "test.md"}
+        new_content, new_context = plugin.pre_analyze(content, context)
+        assert new_content == "test content"
+        assert new_context["preprocessed"] is True
+        assert plugin.pre_analyze_called is True
+    
+    def test_post_analyze(self):
+        """Test post_analyze hook."""
+        plugin = SampleAnalyzerPluginExtended()
+        results = {"word_count": 5}
+        context = {"file": "test.md"}
+        new_results = plugin.post_analyze(results, context)
+        assert new_results["postprocessed"] is True
+        assert plugin.post_analyze_called is True
+    
+    def test_full_analyze_pipeline(self):
+        """Test full analyze pipeline with pre/post hooks."""
+        plugin = SampleAnalyzerPluginExtended()
+        content = "  hello world  "
+        context = {"file": "test.md"}
+        
+        # Pre-analyze
+        processed_content, processed_context = plugin.pre_analyze(content, context)
+        assert processed_content == "hello world"
+        
+        # Analyze
+        results = plugin.analyze(processed_content, processed_context)
+        assert results["word_count"] == 2
+        
+        # Post-analyze
+        final_results = plugin.post_analyze(results, processed_context)
+        assert final_results["postprocessed"] is True
+        assert final_results["word_count"] == 2
+    
+    def test_analyzer_default_pre_post(self):
+        """Test default pre_analyze/post_analyze implementations."""
+        # Use SampleAnalyzerPlugin which has default implementations
+        plugin = SampleAnalyzerPlugin()
+        
+        # Default pre_analyze returns unchanged
+        content, context = plugin.pre_analyze("test", {"key": "value"})
+        assert content == "test"
+        assert context == {"key": "value"}
+        
+        # Default post_analyze returns unchanged
+        results = plugin.post_analyze({"count": 1}, {})
+        assert results == {"count": 1}
+
+
+class TestNewPluginsWithRegistry:
+    """Tests for new plugins with PluginRegistry."""
+    
+    @pytest.fixture
+    def registry(self):
+        """Create a fresh registry for each test."""
+        reg = PluginRegistry()
+        reg.clear()
+        return reg
+    
+    def test_register_lifecycle_plugin(self, registry):
+        """Test registering a lifecycle plugin."""
+        plugin = SampleLifecyclePlugin()
+        assert registry.register(plugin) is True
+        assert registry.get_plugin("sample-lifecycle") is not None
+        
+        hooks = registry.get_hooks("on_startup")
+        assert len(hooks) == 1
+        assert hooks[0] == plugin
+    
+    def test_register_error_plugin(self, registry):
+        """Test registering an error plugin."""
+        plugin = SampleErrorPlugin()
+        assert registry.register(plugin) is True
+        
+        hooks = registry.get_hooks("on_error")
+        assert len(hooks) == 1
+    
+    def test_register_cache_plugin(self, registry):
+        """Test registering a cache plugin."""
+        plugin = SampleCachePlugin()
+        assert registry.register(plugin) is True
+        
+        hit_hooks = registry.get_hooks("on_cache_hit")
+        miss_hooks = registry.get_hooks("on_cache_miss")
+        assert len(hit_hooks) == 1
+        assert len(miss_hooks) == 1
+    
+    def test_execute_lifecycle_hooks(self, registry):
+        """Test executing lifecycle hooks through registry."""
+        plugin = SampleLifecyclePlugin()
+        registry.register(plugin)
+        
+        # Execute on_startup
+        registry.execute_hook("on_startup", {"config": "test"})
+        assert plugin.startup_called is True
+        
+        # Execute on_shutdown
+        registry.execute_hook("on_shutdown", {"stats": "test"})
+        assert plugin.shutdown_called is True
+    
+    def test_execute_error_hook(self, registry):
+        """Test executing error hook through registry."""
+        plugin = SampleErrorPlugin()
+        registry.register(plugin)
+        
+        error = ValueError("test")
+        results = registry.execute_hook("on_error", error, {"op": "load"})
+        assert len(results) == 1
+        assert results[0] == "recovered"
+    
+    def test_execute_cache_hooks(self, registry):
+        """Test executing cache hooks through registry."""
+        plugin = SampleCachePlugin()
+        registry.register(plugin)
+        
+        # Execute on_cache_hit
+        results = registry.execute_hook("on_cache_hit", "key", "value", {})
+        assert len(results) == 1
+        assert results[0] == "value"
+        
+        # Execute on_cache_miss
+        registry.execute_hook("on_cache_miss", "missing", {})
+        assert len(plugin.misses) == 1
+    
+    def test_stats_include_new_hooks(self, registry):
+        """Test that stats include new hook types."""
+        stats = registry.get_stats()
+        assert "on_startup" in stats["hooks"]
+        assert "on_shutdown" in stats["hooks"]
+        assert "on_error" in stats["hooks"]
+        assert "on_cache_hit" in stats["hooks"]
+        assert "on_cache_miss" in stats["hooks"]
+        assert "pre_analyze" in stats["hooks"]
+        assert "post_analyze" in stats["hooks"]

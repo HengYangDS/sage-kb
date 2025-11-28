@@ -20,7 +20,10 @@ from typing import Any, Optional
 from .base import (
     AVAILABLE_HOOKS,
     AnalyzerPlugin,
+    CachePlugin,
+    ErrorPlugin,
     FormatterPlugin,
+    LifecyclePlugin,
     LoaderPlugin,
     PluginBase,
     PluginMetadata,
@@ -263,6 +266,9 @@ class PluginRegistry:
                     AnalyzerPlugin,
                     FormatterPlugin,
                     SearchPlugin,
+                    LifecyclePlugin,
+                    ErrorPlugin,
+                    CachePlugin,
                 )
             ):
                 try:
@@ -329,6 +335,9 @@ class PluginRegistry:
                     AnalyzerPlugin,
                     FormatterPlugin,
                     SearchPlugin,
+                    LifecyclePlugin,
+                    ErrorPlugin,
+                    CachePlugin,
                 )
             ):
                 try:

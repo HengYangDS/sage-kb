@@ -14,8 +14,10 @@ Version: 0.1.0
 
 import asyncio
 from pathlib import Path
+from typing import Any
 
 import typer
+import yaml
 from rich.console import Console
 from rich.markdown import Markdown
 from rich.panel import Panel
@@ -25,6 +27,91 @@ from rich.table import Table
 
 # Local imports
 from sage.core.loader import KnowledgeLoader, Layer
+
+# =============================================================================
+# Configuration Loading
+# =============================================================================
+
+_config_cache: dict[str, Any] | None = None
+
+
+def _load_config() -> dict[str, Any]:
+    """Load configuration from sage.yaml with caching."""
+    global _config_cache
+    if _config_cache is not None:
+        return _config_cache
+
+    config_path = Path(__file__).parent.parent.parent.parent / "sage.yaml"
+    if config_path.exists():
+        try:
+            with open(config_path, encoding="utf-8") as f:
+                _config_cache = yaml.safe_load(f) or {}
+        except Exception:
+            _config_cache = {}
+    else:
+        _config_cache = {}
+
+    return _config_cache
+
+
+def _get_guidelines_section_map() -> dict[str, str]:
+    """Get guidelines section mapping from configuration."""
+    config = _load_config()
+    guidelines_config = config.get("guidelines", {})
+    sections = guidelines_config.get("sections", {})
+
+    # Convert all keys to lowercase strings for case-insensitive lookup
+    return {str(k).lower(): str(v) for k, v in sections.items()}
+
+
+def _parse_timeout_str(timeout_str: str | int) -> int:
+    """
+    Parse timeout string (e.g., '5s', '500ms', '2s') to milliseconds.
+
+    Args:
+        timeout_str: Timeout value as string (e.g., '5s', '500ms') or int (ms).
+
+    Returns:
+        Timeout in milliseconds.
+    """
+    if isinstance(timeout_str, int):
+        return timeout_str
+
+    timeout_str = str(timeout_str).strip().lower()
+
+    if timeout_str.endswith("ms"):
+        return int(timeout_str[:-2])
+    elif timeout_str.endswith("s"):
+        return int(float(timeout_str[:-1]) * 1000)
+    else:
+        # Assume milliseconds if no unit
+        return int(timeout_str)
+
+
+def _get_timeout_from_config(operation: str, default_ms: int) -> int:
+    """
+    Get timeout value for a specific operation from the sage.yaml configuration.
+
+    Args:
+        operation: Operation name (e.g., 'full_load', 'layer_load', 'file_read', 'search').
+        default_ms: Default timeout in milliseconds if not found in config.
+
+    Returns:
+        Timeout in milliseconds.
+    """
+    config = _load_config()
+    timeout_config = config.get("timeout", {})
+    operations = timeout_config.get("operations", {})
+
+    if operation in operations:
+        return _parse_timeout_str(operations[operation])
+
+    # Fallback to default timeout from config
+    if "default" in timeout_config:
+        return _parse_timeout_str(timeout_config["default"])
+
+    return default_ms
+
 
 # Initialize
 app = typer.Typer(
@@ -175,20 +262,8 @@ def guidelines(
     """
     loader = get_loader()
 
-    # Section name mapping
-    section_map = {
-        "overview": "00_quick_start",
-        "quick_start": "00_quick_start",
-        "planning": "01_planning_design",
-        "code_style": "02_code_style",
-        "engineering": "03_engineering",
-        "documentation": "04_documentation",
-        "python": "05_python",
-        "ai_collaboration": "06_ai_collaboration",
-        "cognitive": "07_cognitive",
-        "quality": "08_quality",
-        "success": "09_success",
-    }
+    # Get section mapping from configuration
+    section_map = _get_guidelines_section_map()
     chapter = section_map.get(section.lower(), section)
 
     with Progress(
@@ -450,7 +525,7 @@ def version():
     console.print(
         Panel(
             """
-[bold]AI Collaboration Knowledge Base[/bold]
+[bold]SAGE: AI Collaboration Knowledge Base[/bold]
 Version: 0.1.0
 Score: 100/100 🏆
 Experts: 24 Level 5
