@@ -234,7 +234,7 @@ class DIContainer:
         if registration.lifetime == Lifetime.SINGLETON:
             if interface not in self._singletons:
                 self._singletons[interface] = self._create_instance(registration)
-            return self._singletons[interface]
+            return self._singletons[interface]  # type: ignore[return-value]
 
         # Scoped: return cached for scope or create
         if registration.lifetime == Lifetime.SCOPED:
@@ -246,10 +246,10 @@ class DIContainer:
                 self._scoped[scope_id] = {}
             if interface not in self._scoped[scope_id]:
                 self._scoped[scope_id][interface] = self._create_instance(registration)
-            return self._scoped[scope_id][interface]
+            return self._scoped[scope_id][interface]  # type: ignore[return-value]
 
         # Transient: always create new
-        return self._create_instance(registration)
+        return self._create_instance(registration)  # type: ignore[return-value]
 
     def try_resolve(self, interface: type[T], scope_id: str | None = None) -> T | None:
         """
@@ -279,7 +279,7 @@ class DIContainer:
 
             # Get constructor type hints for auto-wiring
             try:
-                hints = get_type_hints(impl.__init__)
+                hints = get_type_hints(impl.__init__)  # type: ignore[misc]
             except Exception:
                 hints = {}
 

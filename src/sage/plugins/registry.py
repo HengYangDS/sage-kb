@@ -56,6 +56,7 @@ class PluginRegistry:
 
     _instance: Optional["PluginRegistry"] = None
     _lock = Lock()
+    _initialized: bool
 
     def __new__(cls) -> "PluginRegistry":
         """Singleton pattern implementation."""
@@ -66,7 +67,7 @@ class PluginRegistry:
                     cls._instance._initialized = False
         return cls._instance
 
-    def __init__(self):
+    def __init__(self) -> None:
         """Initialize the registry (only once due to singleton)."""
         if self._initialized:
             return
@@ -351,7 +352,7 @@ class PluginRegistry:
 
         return False
 
-    def execute_hook(self, hook_name: str, *args, **kwargs) -> list[Any]:
+    def execute_hook(self, hook_name: str, *args: Any, **kwargs: Any) -> list[Any]:
         """
         Execute all plugins for a hook.
 
@@ -379,7 +380,7 @@ class PluginRegistry:
         return results
 
     def execute_hook_chain(
-        self, hook_name: str, initial_value: Any, *args, **kwargs
+        self, hook_name: str, initial_value: Any, *args: Any, **kwargs: Any
     ) -> Any:
         """
         Execute hooks in a chain, passing result from one to the next.
