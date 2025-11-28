@@ -139,12 +139,12 @@ def get_loader() -> KnowledgeLoader:
 # ============================================================================
 
 
-def run_async(coro):
+def run_async(coro: Any) -> Any:
     """Run an async coroutine."""
     return asyncio.run(coro)
 
 
-def display_content(content: str, format: str = "markdown"):
+def display_content(content: str, format: str = "markdown") -> None:
     """Display content with appropriate formatting."""
     if format == "markdown":
         console.print(Markdown(content))
@@ -156,7 +156,7 @@ def display_content(content: str, format: str = "markdown"):
         console.print(Markdown(content))
 
 
-def display_result(result, verbose: bool = False):
+def display_result(result: Any, verbose: bool = False) -> None:
     """Display a load result with status."""
     status_colors = {
         "success": "green",
@@ -201,7 +201,7 @@ def get(
     verbose: bool = typer.Option(
         False, "--verbose", "-v", help="Show detailed information"
     ),
-):
+) -> None:
     """
     Get knowledge from the knowledge base.
 
@@ -250,7 +250,7 @@ def guidelines(
     verbose: bool = typer.Option(
         False, "--verbose", "-v", help="Show detailed information"
     ),
-):
+) -> None:
     """
     Get engineering guidelines by section.
 
@@ -287,7 +287,7 @@ def framework(
     verbose: bool = typer.Option(
         False, "--verbose", "-v", help="Show detailed information"
     ),
-):
+) -> None:
     """
     Get framework documentation.
 
@@ -315,7 +315,7 @@ def search(
     query: str = typer.Argument(..., help="Search query"),
     limit: int = typer.Option(10, "--limit", "-n", help="Maximum results"),
     timeout: int = typer.Option(3000, "--timeout", help="Timeout in milliseconds"),
-):
+) -> None:
     """
     Search the knowledge base.
 
@@ -347,7 +347,7 @@ def search(
 
 
 @app.command()
-def info():
+def info() -> None:
     """Show knowledge base information."""
     loader = get_loader()
     kb_path = loader.kb_path
@@ -409,7 +409,7 @@ def info():
 def validate(
     path: str = typer.Argument(".", help="Path to validate"),
     fix: bool = typer.Option(False, "--fix", help="Auto-fix issues"),
-):
+) -> None:
     """Validate knowledge base structure."""
     loader = get_loader()
     kb_path = Path(path) if path != "." else loader.kb_path
@@ -475,7 +475,7 @@ def validate(
 def serve(
     host: str = typer.Option("localhost", "--host", "-h", help="Host to bind to"),
     port: int = typer.Option(8000, "--port", "-p", help="Port to bind to"),
-):
+) -> None:
     """Start MCP server."""
     console.print(
         Panel(
@@ -497,7 +497,7 @@ def serve(
 @app.command()
 def cache(
     action: str = typer.Argument("stats", help="Action: stats, clear"),
-):
+) -> None:
     """Manage the knowledge cache."""
     loader = get_loader()
 
@@ -520,7 +520,7 @@ def cache(
 
 
 @app.command()
-def version():
+def version() -> None:
     """Show version information."""
     console.print(
         Panel(
@@ -544,7 +544,7 @@ Experts: 24 Level 5
 
 
 @app.command()
-def interactive():
+def interactive() -> None:
     """Start interactive REPL mode."""
     console.print(
         Panel(
@@ -649,7 +649,7 @@ Available commands:
 # ============================================================================
 
 
-def main():
+def main() -> None:
     """Main entry point."""
     app()
 

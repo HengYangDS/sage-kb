@@ -25,7 +25,7 @@ try:
     MCP_AVAILABLE = True
 except ImportError:
     MCP_AVAILABLE = False
-    FastMCP = None
+    FastMCP = None  # type: ignore[misc, assignment]
 
 # Local imports
 from sage.core.loader import (
@@ -141,7 +141,7 @@ logger = get_logger(__name__)
 # Initialize MCP app
 if MCP_AVAILABLE:
     try:
-        app = FastMCP(
+        app = FastMCP(  # type: ignore[call-arg]
             "sage-kb",
             description="SAGE Knowledge Base - Production-grade knowledge management with timeout protection",
         )
@@ -153,10 +153,10 @@ if MCP_AVAILABLE:
             logger.debug("mcp_app_initialized", app_name="sage-kb", fallback=True)
         except Exception as e:
             logger.warning("mcp_init_failed", error=str(e))
-            app = None
+            app = None  # type: ignore[assignment]
             MCP_AVAILABLE = False
 else:
-    app = None
+    app = None  # type: ignore[assignment]
     logger.warning("mcp_not_available", hint="Install with: pip install mcp")
 
 
