@@ -663,7 +663,7 @@ if MCP_AVAILABLE and app is not None:
             tools_path = Path(__file__).parent.parent.parent.parent / "tools"
             if str(tools_path) not in sys.path:
                 sys.path.insert(0, str(tools_path))
-            from tools.knowledge_graph.knowledge_graph_builder import (  # type: ignore[import-not-found]
+            from tools.knowledge_graph.knowledge_graph_builder import (
                 KnowledgeGraphBuilder,
             )
 
