@@ -779,11 +779,11 @@ clean:
 from pathlib import Path
 
 # ✅ CORRECT: Use pathlib (cross-platform)
-config_file = Path("content") / "core" / "principles.md"
+config_file = Path("../content") / "core" / "principles.md"
 
 # ❌ WRONG: Hardcoded separators
-config_file = "content/core/principles.md"  # Fails on Windows
-config_file = "content\\core\\principles.md"  # Fails on Unix
+config_file = "../content/core/principles.md"  # Fails on Windows
+config_file = "../content/core/principles.md"  # Fails on Unix
 ```
 
 ### 2.7 Configuration Hierarchy (Zero Coupling)
@@ -908,12 +908,12 @@ dependencies = [
 
 The SAGE Protocol defines a four-stage workflow for knowledge management:
 
-| Stage | Name | Purpose                            |
-|-------|------|------------------------------------|
-| **S** | Source | Knowledge sourcing with timeout    |
-| **A** | Analyze | Processing, search, analysis       |
+| Stage | Name     | Purpose                            |
+|-------|----------|------------------------------------|
+| **S** | Source   | Knowledge sourcing with timeout    |
+| **A** | Analyze  | Processing, search, analysis       |
 | **G** | Generate | Multi-channel output (CLI/MCP/API) |
-| **E** | Evolve | Metrics, optimization, memory      |
+| **E** | Evolve   | Metrics, optimization, memory      |
 
 #### 2.8.2 Protocol Interfaces
 
@@ -5421,19 +5421,23 @@ L4: content/frameworks/*.md (Deep Dive, ~300-500/file)
 ## 🔗 Knowledge Base Index
 
 ### Core Knowledge (Always Available)
+
 - @file:content/core/principles.md - Xin-Da-Ya philosophy
 - @file:content/core/quick_reference.md - 5 critical questions
 - @file:content/core/defaults.md - Default behaviors
 
 ### Engineering Guidelines (On-Demand)
+
 - @file:content/guidelines/ - 10 chapters
 
 ### Deep Frameworks (Complex Tasks)
+
 - @file:content/frameworks/autonomy/ - Autonomy spectrum
 - @file:content/frameworks/cognitive/ - Expert committee
 - @file:content/frameworks/decision/ - Quality angles
 
 ### Project Context
+
 - @file:.context/index.md - Project-specific knowledge
 ```
 
@@ -5446,13 +5450,13 @@ L4: content/frameworks/*.md (Deep Dive, ~300-500/file)
 ```yaml
 fallback:
   strategy: "graceful_degradation"
-  
+
   # Layer 1: Technical
   technical:
     timeout: return_partial_with_warning
     file_not_found: use_template_or_create
     service_down: use_alternative_channel
-    
+
   # Layer 2: Knowledge
   knowledge:
     content_not_loaded:
@@ -5460,7 +5464,7 @@ fallback:
       message: "Full content not loaded. Summary: {summary}"
     framework_unavailable:
       action: provide_core_principle
-      
+
   # Layer 3: Capability
   capability:
     plugin_unavailable:
@@ -5469,8 +5473,8 @@ fallback:
         advanced_search: basic_search
         ai_analysis: keyword_matching
     service_unavailable:
-      priority: [api, mcp, cli, file]
-      
+      priority: [ api, mcp, cli, file ]
+
   # Layer 4: Intelligence
   intelligence:
     expert_committee_unavailable:
@@ -5478,7 +5482,7 @@ fallback:
       fallback_framework: "critical_questions"
     analysis_timeout:
       action: provide_heuristics
-        
+
   # Layer 5: Human
   human:
     autonomy_limit_reached:
@@ -5735,27 +5739,32 @@ from typing import TypeVar, Generic, Optional, List
 
 T = TypeVar("T")
 
+
 class Container(Generic[T]):
     def __init__(self, value: Optional[T] = None) -> None:
         self.value = value
-    
+
     def get_items(self) -> List[T]:
         return []
 
+
 # ============ After (Python 3.12+ Style) ============
 from typing import override
+
 
 # PEP 695: Type parameter syntax
 class Container[T]:
     def __init__(self, value: T | None = None) -> None:
         self.value = value
-    
+
     def get_items(self) -> list[T]:
         return []
+
 
 # PEP 695: Type aliases
 type LoadResult = dict[str, str | int | list[str]]
 type EventHandler[T] = Callable[[T], Awaitable[None]]
+
 
 # PEP 698: Override decorator
 class CustomLoader(BaseLoader):
@@ -5774,9 +5783,9 @@ dev = [
     "pytest>=8.3",
     "pytest-asyncio>=0.24",
     "pytest-cov>=5.0",
-    "pytest-xdist>=3.5",       # 🆕 Parallel execution
-    "allure-pytest>=2.13",     # 🆕 Test reporting
-    "hypothesis>=6.108",       # 🆕 Property testing
+    "pytest-xdist>=3.5", # 🆕 Parallel execution
+    "allure-pytest>=2.13", # 🆕 Test reporting
+    "hypothesis>=6.108", # 🆕 Property testing
     "ruff>=0.6",
     "mypy>=1.11",
 ]
@@ -5839,10 +5848,11 @@ Epic: AI Collaboration Knowledge Base
 import allure
 from allure import severity_level
 
+
 @allure.epic("AI Collaboration Knowledge Base")
 @allure.feature("Core Engine")
 class TestTimeoutLoader:
-    
+
     @allure.story("Knowledge Loading")
     @allure.title("Load core layer with default timeout")
     @allure.severity(severity_level.CRITICAL)
@@ -5850,15 +5860,15 @@ class TestTimeoutLoader:
     async def test_load_core_layer(self, loader):
         with allure.step("Initialize loader with default config"):
             assert loader is not None
-        
+
         with allure.step("Load core layer"):
             result = await loader.load(["core"])
-        
+
         with allure.step("Verify successful load"):
             assert result.status == "success"
             assert result.tokens > 0
             allure.attach(
-                result.content[:500], 
+                result.content[:500],
                 "Loaded Content Preview",
                 allure.attachment_type.TEXT
             )
@@ -5869,7 +5879,7 @@ class TestTimeoutLoader:
     async def test_timeout_fallback(self, loader):
         with allure.step("Trigger timeout with 1ms limit"):
             result = await loader.load(["large"], timeout_ms=1)
-        
+
         with allure.step("Verify fallback content returned"):
             assert result.status in ["fallback", "partial"]
             assert "Core Principles" in result.content
@@ -5884,6 +5894,7 @@ import os
 import allure
 import pytest
 
+
 def pytest_configure(config):
     """Configure Allure environment properties."""
     allure_dir = config.getoption("--alluredir", default="allure-results")
@@ -5895,6 +5906,7 @@ def pytest_configure(config):
             f.write(f"Platform={sys.platform}\n")
             f.write(f"sage=3.1.0\n")
             f.write(f"pytest={pytest.__version__}\n")
+
 
 @pytest.hookimpl(tryfirst=True)
 def pytest_runtest_makereport(item, call):
@@ -5976,12 +5988,12 @@ target-version = "py312"
 line-length = 88
 select = [
     "E", "W", "F", "I", "B", "C4", "UP",
-    "ANN",   # 🆕 Annotations
+    "ANN", # 🆕 Annotations
     "ASYNC", # 🆕 Async best practices
-    "RUF",   # 🆕 Ruff-specific rules
-    "PT",    # 🆕 Pytest style
-    "SIM",   # 🆕 Simplify
-    "TCH",   # 🆕 Type checking blocks
+    "RUF", # 🆕 Ruff-specific rules
+    "PT", # 🆕 Pytest style
+    "SIM", # 🆕 Simplify
+    "TCH", # 🆕 Type checking blocks
 ]
 
 [tool.mypy]

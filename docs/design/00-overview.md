@@ -18,7 +18,7 @@ status: production-ready
 | **Python**       | ≥3.12 (3.12, 3.13, 3.14 supported)                           |
 | **Architecture** | Core-Services-Tools Three-Layer Model with Zero Cross-Import |
 | **Protocol**     | SAGE (Source-Analyze-Generate-Evolve)                        |
-| **Expert Score** | 99.2/100 🏆                                                  |
+| **Expert Score** | Pending Evaluation                                           |
 
 ### Architecture Layers
 
@@ -60,6 +60,21 @@ The project follows the classical Chinese translation principles adapted for sof
 6. **Plugin Extensibility**: 7 extension points for customization
 7. **Zero Cross-Import**: Layers communicate via EventBus, no direct dependencies
 8. **On-Demand Loading**: Minimal core engine, features loaded as needed
+
+### Terminology
+
+| Term                  | Definition                                                                      |
+|-----------------------|---------------------------------------------------------------------------------|
+| **SAGE**              | Smart AI-Guided Expertise; also the 4-stage protocol (Source-Analyze-Generate-Evolve) |
+| **MECE**              | Mutually Exclusive, Collectively Exhaustive - a classification principle        |
+| **信达雅 (Xin-Da-Ya)** | Classical Chinese translation principles: Faithfulness, Clarity, Elegance       |
+| **MCP**               | Model Context Protocol - JSON-RPC based protocol for AI assistant integration   |
+| **EventBus**          | Async pub/sub message broker for decoupled component communication              |
+| **DI Container**      | Dependency Injection Container for service lifecycle management                 |
+| **Circuit Breaker**   | Fault tolerance pattern that prevents cascading failures                        |
+| **Token Budget**      | Maximum token allocation for knowledge loading operations                       |
+| **Autonomy Level**    | 6-level scale (L1-L6) defining AI decision-making boundaries                    |
+| **Graceful Degradation** | Strategy to return partial results rather than failing completely            |
 
 ---
 
@@ -120,14 +135,14 @@ This design is organized into 9 independent documents:
 | Document                    | Description                                                 | Lines |
 |-----------------------------|-------------------------------------------------------------|-------|
 | **00-overview.md**          | Project overview, philosophy, navigation (this file)        | ~210  |
-| **01-architecture.md**      | Three-layer architecture, directory structure, toolchain    | ~1100 |
+| **01-architecture.md**      | Three-layer architecture, directory structure, toolchain    | ~1500 |
 | **02-sage-protocol.md**     | SAGE Protocol, DI Container, EventBus, Bootstrap            | ~1060 |
-| **03-services.md**          | API/MCP/CLI services, error handling, testing               | ~1030 |
+| **03-services.md**          | API/MCP/CLI services, error handling, testing               | ~1060 |
 | **04-timeout-loading.md**   | Timeout mechanism, token efficiency, smart loading          | ~890  |
 | **05-plugin-memory.md**     | Plugin architecture, Memory persistence, Session continuity | ~800  |
 | **06-content-structure.md** | Content organization, knowledge taxonomy, AI directories    | ~390  |
-| **07-roadmap.md**           | Implementation roadmap, phases, KPIs, deployment            | ~470  |
-| **08-evaluation.md**        | Expert scoring, votes, innovations, certification           | ~190  |
+| **07-roadmap.md**           | Implementation roadmap, phases, KPIs, deployment            | ~495  |
+| **08-evaluation.md**        | Expert committee structure, pending evaluation              | ~115  |
 
 ### Reading Order
 
@@ -141,13 +156,13 @@ This design is organized into 9 independent documents:
 
 ## Key Metrics
 
-| Metric           | Target | Achieved        |
+| Metric           | Target | Status          |
 |------------------|--------|-----------------|
-| Expert Score     | 95+    | **99.2/100** 🏆 |
-| Token Efficiency | 95%+   | **95%** ✅       |
-| Timeout Coverage | 100%   | **100%** ✅      |
-| MECE Compliance  | 100%   | **100%** ✅      |
-| Plugin Hooks     | 7      | **7** ✅         |
+| Expert Score     | 95+    | Pending         |
+| Token Efficiency | 95%+   | Target          |
+| Timeout Coverage | 100%   | Target          |
+| MECE Compliance  | 100%   | Target          |
+| Plugin Hooks     | 7      | Target          |
 | Python Support   | 3.12+  | **3.12-3.14** ✅ |
 
 ---
@@ -207,6 +222,5 @@ result = await loader.load(["core", "guidelines"])
 
 ---
 
-**Document Status**: Level 5 Expert Committee Approved  
-**Approval Date**: 2025-11-28  
-**Expert Vote**: 24/24 Unanimous Approval
+**Document Status**: Pending Level 5 Expert Committee Evaluation  
+**Last Updated**: 2025-11-29

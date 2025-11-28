@@ -631,6 +631,33 @@ curl -X POST http://localhost:8080/v1/knowledge \
   -d '{"layers": ["core", "guidelines"], "timeout_ms": 5000}'
 ```
 
+### Search Ranking Algorithm
+
+The search service uses a weighted scoring algorithm to rank results:
+
+| Factor           | Weight | Description                              |
+|------------------|--------|------------------------------------------|
+| Keyword Match    | 40%    | Exact and partial keyword matches        |
+| Layer Priority   | 25%    | Core > Guidelines > Frameworks > Others  |
+| Recency          | 20%    | Recently updated content scores higher   |
+| Usage Frequency  | 15%    | Frequently accessed content boosted      |
+
+**Scoring Formula:**
+
+```
+score = (keyword_score * 0.40) + (layer_score * 0.25) + (recency_score * 0.20) + (usage_score * 0.15)
+```
+
+**Layer Priority Values:**
+
+| Layer       | Priority Score |
+|-------------|----------------|
+| core        | 1.0            |
+| guidelines  | 0.8            |
+| frameworks  | 0.6            |
+| practices   | 0.4            |
+| scenarios   | 0.2            |
+
 ---
 
 ## Error Handling

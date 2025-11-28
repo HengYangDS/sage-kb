@@ -58,18 +58,15 @@ Parallelizable:
 
 ## 7.1 Current Project Status Assessment
 
-> ⚠️ **Implementation Gap Notice**
+> **Implementation Status**
 >
-> This roadmap bridges the gap between the **current implementation** and the **target architecture**.
-> - **Current**: Package `ai_collab_kb`, config file `aikb.yaml`
-> - **Target**: Package `sage`, config file `sage.yaml`
+> This roadmap tracks progress toward the **target architecture** defined in `01-architecture.md`.
+> Package name is `ai_collab_kb` with config file `aikb.yaml`.
 >
 > Many features documented in the design (DI Container, EventBus, structured logging) are not yet implemented.
-> This roadmap provides the path to achieve the target architecture defined in `01-architecture.md`.
 
 | Component                 | Current Status          | Current | Target | Notes                                       |
 |---------------------------|-------------------------|---------|--------|---------------------------------------------|
-| Package Rename            | ❌ Not Started           | 0%      | 100%   | ai_collab_kb → sage                         |
 | Directory Structure       | 🟡 Partial              | 60%     | 100%   | Core-Services-Capabilities architecture     |
 | Core Layer                | 🟡 Basic                | 50%     | 100%   | loader.py exists, needs timeout/config/etc. |
 | Services Layer            | 🟡 Basic                | 60%     | 100%   | CLI, MCP exist, need refactoring            |
@@ -106,7 +103,6 @@ Risk Buffer: 5-7 days (30%) for:
   - Unexpected async/concurrency bugs
   - Cross-platform testing
   - Code review and documentation
-  - Package rename (ai_collab_kb → sage)
 
 Total Duration: 20-24 days (3-4 weeks)
 Target: Production-ready MVP with Core-Services-Capabilities architecture
@@ -439,6 +435,38 @@ C:\Users\<user>\AppData\Local\sage\memory\    # Windows
 | `sage_memory_usage_bytes`             | Gauge     | > 80% capacity  |
 | `sage_tokens_loaded_total`            | Counter   | Rate monitoring |
 
+### 7.13.4 Rollback Strategy
+
+| Scenario                   | Action                      | Recovery Time |
+|----------------------------|-----------------------------|---------------|
+| Failed deployment          | Revert to previous image    | < 5 min       |
+| Database migration failure | Run down migration          | < 10 min      |
+| Configuration error        | Restore from backup         | < 2 min       |
+| Service degradation        | Scale down new, scale up old| < 3 min       |
+
+**Rollback Commands:**
+
+```bash
+# Docker Compose rollback
+docker-compose down
+docker-compose -f docker-compose.prev.yml up -d
+
+# Kubernetes rollback
+kubectl rollout undo deployment/sage-kb
+
+# Configuration rollback
+cp config/sage.yaml.backup config/sage.yaml
+systemctl restart sage-kb
+```
+
+**Rollback Checklist:**
+
+- [ ] Verify previous version is available
+- [ ] Check data compatibility (no breaking schema changes)
+- [ ] Notify stakeholders of rollback
+- [ ] Monitor metrics after rollback
+- [ ] Document root cause for post-mortem
+
 ---
 
 ## 7.14 Cross-Platform Best Practices
@@ -462,6 +490,5 @@ C:\Users\<user>\AppData\Local\sage\memory\    # Windows
 
 ---
 
-**Document Status**: Level 5 Expert Committee Approved  
-**Approval Date**: 2025-11-28  
-**Expert Score**: 100/100 🏆
+**Document Status**: Pending Level 5 Expert Committee Evaluation  
+**Last Updated**: 2025-11-29
