@@ -1,263 +1,130 @@
 # AI Collaboration Guidelines
 
-> **Load Time**: On-demand (~300 tokens)  
+> **Load Time**: On-demand  
 > **Purpose**: Human-AI interaction patterns, autonomy levels, execution modes
 
 ---
 
 ## 6.1 Instruction Types
 
-### Classification Matrix
+| Type | Description | Example |
+|------|-------------|---------|
+| **Direct** | Explicit command | "Create user registration endpoint" |
+| **Contextual** | Implied by context | Fixing similar bugs |
+| **Conditional** | With constraints | "Refactor only if tests pass" |
+| **Exploratory** | Open-ended | "Investigate performance bottleneck" |
 
-| Type            | Description         | Example                                     |
-|-----------------|---------------------|---------------------------------------------|
-| **Direct**      | Explicit command    | "Create a user registration endpoint"       |
-| **Contextual**  | Implied by context  | Fixing similar bugs as previously discussed |
-| **Conditional** | With constraints    | "Refactor only if tests pass"               |
-| **Exploratory** | Open-ended research | "Investigate performance bottleneck"        |
-
-### Instruction Quality Checklist
-
-- [ ] Clear objective stated
-- [ ] Scope boundaries defined
-- [ ] Success criteria specified
-- [ ] Constraints identified
-- [ ] Priority indicated
+**Quality Checklist**: Clear objective · Scope boundaries · Success criteria · Constraints · Priority
 
 ---
 
 ## 6.2 Autonomy Levels
 
-> **Reference**: See `content/frameworks/autonomy/levels.md` for full 6-level autonomy framework
+> **Full Reference**: `content/frameworks/autonomy/levels.md`
 
-### Level Definitions
+| Level | Authority | When to Use |
+|-------|-----------|-------------|
+| L1-L2 | 0-40% | Critical/production, new features |
+| L3-L4 ⭐ | 40-80% | Bug fixes, refactoring, routine [DEFAULT] |
+| L5-L6 | 80-100% | Docs, formatting, trusted patterns |
 
-```
-L1: Minimal (0-20%)      ← Execute only explicit tasks, ask before every decision
-L2: Low (20-40%)         ← Execute well-defined tasks, ask on implementation choices
-L3: Medium (40-60%)      ← Complete tasks independently, ask for architectural changes
-L4: Medium-High (60-80%) ← Proactive project partner, multi-task initiatives [DEFAULT]
-L5: High (80-95%)        ← Strategic decisions, refactor architecture proactively
-L6: Full (95-100%)       ← Autonomous agent, rarely recommended
-```
+**Increase**: Well-understood · Low risk · Clear rollback · Past success
 
-### Level Selection Guide
-
-| Scenario                    | Recommended Level |
-|-----------------------------|-------------------|
-| Critical production changes | L1-L2             |
-| New feature development     | L2-L3             |
-| Bug fixes (well-understood) | L3-L4             |
-| Routine refactoring         | L3-L4             |
-| Documentation updates       | L4-L5             |
-| Formatting/style fixes      | L4-L5             |
-
-### Autonomy Adjustment Signals
-
-**Increase autonomy when:**
-
-- Task is well-understood
-- Similar tasks completed successfully
-- Low risk of damage
-- Clear rollback path exists
-
-**Decrease autonomy when:**
-
-- Task is novel or complex
-- High-stakes changes
-- Uncertainty about requirements
-- Previous errors in similar tasks
+**Decrease**: Novel/complex · High-stakes · Uncertain requirements · Previous errors
 
 ---
 
 ## 6.3 Execution Modes
 
-### Mode Descriptions
+| Mode | Behavior | Use Case |
+|------|----------|----------|
+| **Plan** | Create plan, await approval | Complex tasks |
+| **Execute** | Run with progress updates | Standard tasks |
+| **Review** | Analyze without changes | Code review |
+| **Explain** | Teach concepts | Learning |
+| **Debug** | Investigate issues | Troubleshooting |
 
-| Mode        | Behavior                    | Use Case        |
-|-------------|-----------------------------|-----------------|
-| **Plan**    | Create plan, await approval | Complex tasks   |
-| **Execute** | Run with progress updates   | Standard tasks  |
-| **Review**  | Analyze without changes     | Code review     |
-| **Explain** | Teach/explain concepts      | Learning        |
-| **Debug**   | Investigate issues          | Troubleshooting |
-
-### Execution Flow
-
-```
-[Plan Mode]
-1. Analyze requirements
-2. Create step-by-step plan
-3. Identify risks and dependencies
-4. Present plan for approval
-5. Wait for human confirmation
-
-[Execute Mode]
-1. Confirm understanding
-2. Execute step by step
-3. Report progress at checkpoints
-4. Handle errors gracefully
-5. Summarize results
-```
+**Flow**: Plan → Analyze → Create steps → Present → Await | Execute → Confirm → Run → Report → Summarize
 
 ---
 
 ## 6.4 Communication Patterns
 
-### Status Updates
+### Status Update Template
 
-```markdown
-## Progress Update
-
-**Status**: In Progress (3/5 steps complete)
-
-### Completed
-
-- [x] Created database migration
-- [x] Updated model schema
-- [x] Added API endpoint
-
-### In Progress
-
-- [ ] Writing unit tests
-
-### Remaining
-
-- [ ] Update documentation
-
-**Blockers**: None
-**ETA**: 15 minutes
+```
+Status: [In Progress/Blocked/Complete] ([N]/[M] steps)
+Completed: [list] | In Progress: [current] | Remaining: [list]
+Blockers: [None/description] | ETA: [time]
 ```
 
-### Error Reporting
+### Error Report Template
 
-```markdown
-## Error Report
-
-**Type**: Test Failure
-**Location**: tests/test_user.py::test_create_user
-**Severity**: Medium
-
-### Description
-
-User creation test fails due to missing email validation.
-
-### Root Cause
-
-Email validator not imported in user model.
-
-### Proposed Fix
-
-Add `from validators import validate_email` to models/user.py
-
-### Action Required
-
-- [ ] Approve fix
-- [ ] Request alternative approach
-- [ ] Provide additional context
+```
+Type: [class] · Location: [file:line] · Severity: [L/M/H/C]
+Description: [what] · Root Cause: [why] · Proposed Fix: [how]
+Action: [ ] Approve [ ] Alternative [ ] More context
 ```
 
 ---
 
 ## 6.5 Default Behaviors
 
-### Standard Defaults
-
-| Behavior        | Default            | Rationale                      |
-|-----------------|--------------------|--------------------------------|
-| Autonomy Level  | L2 (Guided)        | Balance control and efficiency |
-| Error Handling  | Stop and report    | Prevent cascading errors       |
-| Scope Expansion | Ask first          | Avoid scope creep              |
-| Assumptions     | State explicitly   | Ensure alignment               |
-| Testing         | Run affected tests | Verify changes                 |
+| Behavior | Default | Rationale |
+|----------|---------|-----------|
+| Autonomy | L2-L3 | Balance control/efficiency |
+| Error Handling | Stop and report | Prevent cascading |
+| Scope Expansion | Ask first | Avoid scope creep |
+| Assumptions | State explicitly | Ensure alignment |
+| Testing | Run affected tests | Verify changes |
 
 ### Override Syntax
 
 ```
-# Temporarily increase autonomy
 [L4] Complete all formatting fixes in src/
-
-# Set specific mode
 [MODE:REVIEW] Check this PR for security issues
-
-# Conditional execution
 [IF tests pass] Merge to develop branch
 ```
 
 ---
 
-## 6.6 Collaboration Anti-Patterns
+## 6.6 Anti-Patterns
 
-### Patterns to Avoid
-
-| Anti-Pattern        | Problem                  | Better Approach            |
-|---------------------|--------------------------|----------------------------|
-| Vague instructions  | Misaligned execution     | Be specific about goals    |
-| No success criteria | Unknown completion       | Define "done" clearly      |
-| Implicit scope      | Over/under delivery      | Explicit boundaries        |
-| Ignoring warnings   | Cascading errors         | Address concerns           |
-| Micro-management    | Inefficient, frustrating | Trust appropriate autonomy |
+| ❌ Anti-Pattern | Problem | ✅ Better |
+|----------------|---------|-----------|
+| Vague instructions | Misaligned execution | Specific goals |
+| No success criteria | Unknown completion | Define "done" |
+| Implicit scope | Over/under delivery | Explicit boundaries |
+| Ignoring warnings | Cascading errors | Address concerns |
+| Micro-management | Inefficient | Trust autonomy |
 
 ---
 
 ## 6.7 Calibration Signals
 
-### Positive Signals (Working Well)
+| Positive ✅ | Negative ⚠️ |
+|-------------|-------------|
+| Tasks completed as expected | Frequent misunderstandings |
+| Few clarifications needed | Unexpected changes |
+| Results match intent | Missed requirements |
+| Efficient execution | Excessive back-and-forth |
 
-- Tasks completed as expected
-- Few clarification questions needed
-- Results match intent
-- Efficient execution time
-
-### Negative Signals (Adjustment Needed)
-
-- Frequent misunderstandings
-- Unexpected changes
-- Missed requirements
-- Excessive back-and-forth
-
-### Calibration Actions
-
-```
-Signal: AI making too many assumptions
-Action: Lower autonomy, increase checkpoints
-
-Signal: AI asking too many questions
-Action: Provide more context upfront, raise autonomy
-
-Signal: Results consistently good
-Action: Consider higher autonomy for similar tasks
-
-Signal: Repeated similar errors
-Action: Update guidelines, add specific rules
-```
+**Actions**:
+- Too many assumptions → Lower autonomy, more checkpoints
+- Too many questions → More context, raise autonomy
+- Consistently good → Higher autonomy for similar tasks
+- Repeated errors → Update guidelines, add rules
 
 ---
 
-## 6.8 Quick Reference Card
+## 6.8 Quick Reference
 
-### Starting a Task
-
-1. State objective clearly
-2. Define scope boundaries
-3. Specify autonomy level (or use default L2)
-4. Indicate priority and deadline
-5. Mention any constraints
-
-### During Execution
-
-- Monitor progress updates
-- Respond to questions promptly
-- Approve/reject at checkpoints
-- Provide feedback on approach
-
-### After Completion
-
-- Review results
-- Provide feedback
-- Update autonomy calibration
-- Document learnings
+| Phase | Actions |
+|-------|---------|
+| **Start** | Objective · Scope · Autonomy · Priority · Constraints |
+| **During** | Monitor · Respond · Approve/reject · Feedback |
+| **After** | Review · Feedback · Update calibration · Document |
 
 ---
 
-*Part of AI Collaboration Knowledge Base v2.0.0*
+*Part of AI Collaboration Knowledge Base*
