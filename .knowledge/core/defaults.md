@@ -137,10 +137,10 @@
 
 ## Related
 
-- `core/principles.md` — Core philosophy (Xin-Da-Ya)
-- `core/quick_reference.md` — Quick reference card
-- `frameworks/autonomy/levels.md` — Full autonomy framework
-- `frameworks/resilience/timeout_patterns.md` — Timeout design patterns
+- `.knowledge/core/principles.md` — Core philosophy (Xin-Da-Ya)
+- `.knowledge/core/quick_reference.md` — Quick reference card
+- `.knowledge/frameworks/autonomy/levels.md` — Full autonomy framework
+- `.knowledge/frameworks/resilience/timeout_patterns.md` — Timeout design patterns
 
 ---
 

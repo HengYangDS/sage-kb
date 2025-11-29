@@ -160,9 +160,9 @@ Each expert provides:
 
 ## Related
 
-- `templates/expert_committee.md` — Decision templates
-- `frameworks/patterns/decision.md` — Quality angles
-- `guidelines/cognitive.md` — Cognitive guidelines
+- `.knowledge/templates/expert_committee.md` — Decision templates
+- `.knowledge/frameworks/patterns/decision.md` — Quality angles
+- `.knowledge/guidelines/cognitive.md` — Cognitive guidelines
 
 ---
 

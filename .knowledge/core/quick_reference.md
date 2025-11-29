@@ -108,9 +108,9 @@ Ask before every task:
 
 ## Related
 
-- `core/principles.md` — Full philosophy
-- `core/defaults.md` — Default behaviors
-- `frameworks/autonomy/levels.md` — Autonomy framework
+- `.knowledge/core/principles.md` — Full philosophy
+- `.knowledge/core/defaults.md` — Default behaviors
+- `.knowledge/frameworks/autonomy/levels.md` — Autonomy framework
 
 ---
 

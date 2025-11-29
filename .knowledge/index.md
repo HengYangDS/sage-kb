@@ -140,60 +140,60 @@ Reusable document templates:
 
 ### Core
 
-- `core/index.md` — Core layer navigation
-- `core/principles.md` — 信达雅 philosophy
-- `core/quick_reference.md` — Quick reference guide
-- `core/defaults.md` — Default configurations
+- `.knowledge/core/index.md` — Core layer navigation
+- `.knowledge/core/principles.md` — 信达雅 philosophy
+- `.knowledge/core/quick_reference.md` — Quick reference guide
+- `.knowledge/core/defaults.md` — Default configurations
 
 ### Guidelines
 
-- `guidelines/index.md` — Guidelines navigation
-- `guidelines/quick_start.md` — Quick start guide
-- `guidelines/code_style.md` — Code style standards
-- `guidelines/ai_collaboration.md` — AI collaboration patterns
-- `guidelines/python.md` — Python guidelines
-- `guidelines/typescript.md` — TypeScript guidelines
-- `guidelines/sql.md` — SQL conventions
-- `guidelines/shell.md` — Shell scripting
-- `guidelines/documentation.md` — Documentation standards
-- `guidelines/engineering.md` — Engineering practices
-- `guidelines/security.md` — Security guidelines
-- `guidelines/quality.md` — Quality assurance
-- `guidelines/cognitive.md` — Cognitive patterns
-- `guidelines/planning.md` — Planning guidelines
-- `guidelines/success.md` — Success metrics
+- `.knowledge/guidelines/index.md` — Guidelines navigation
+- `.knowledge/guidelines/quick_start.md` — Quick start guide
+- `.knowledge/guidelines/code_style.md` — Code style standards
+- `.knowledge/guidelines/ai_collaboration.md` — AI collaboration patterns
+- `.knowledge/guidelines/python.md` — Python guidelines
+- `.knowledge/guidelines/typescript.md` — TypeScript guidelines
+- `.knowledge/guidelines/sql.md` — SQL conventions
+- `.knowledge/guidelines/shell.md` — Shell scripting
+- `.knowledge/guidelines/documentation.md` — Documentation standards
+- `.knowledge/guidelines/engineering.md` — Engineering practices
+- `.knowledge/guidelines/security.md` — Security guidelines
+- `.knowledge/guidelines/quality.md` — Quality assurance
+- `.knowledge/guidelines/cognitive.md` — Cognitive patterns
+- `.knowledge/guidelines/planning.md` — Planning guidelines
+- `.knowledge/guidelines/success.md` — Success metrics
 
 ### Frameworks
 
-- `frameworks/index.md` — Frameworks navigation
-- `frameworks/autonomy/index.md` — Autonomy framework
-- `frameworks/autonomy/levels.md` — L1-L6 autonomy levels
-- `frameworks/cognitive/index.md` — Cognitive framework
-- `frameworks/cognitive/expert_committee.md` — Expert committee pattern
-- `frameworks/cognitive/information_density.md` — Information density
-- `frameworks/design/index.md` — Design framework
-- `frameworks/design/axioms.md` — Design axioms
-- `frameworks/patterns/index.md` — Patterns framework
-- `frameworks/patterns/collaboration.md` — Collaboration patterns
-- `frameworks/patterns/decision.md` — Decision patterns
-- `frameworks/patterns/integration.md` — Integration patterns
-- `frameworks/patterns/persistence.md` — Persistence patterns
-- `frameworks/performance/index.md` — Performance framework
-- `frameworks/performance/caching_patterns.md` — Caching strategies
-- `frameworks/performance/optimization_strategies.md` — Optimization
-- `frameworks/performance/profiling_guide.md` — Profiling guide
-- `frameworks/resilience/index.md` — Resilience framework
-- `frameworks/resilience/timeout_patterns.md` — Timeout patterns
-- `frameworks/security/index.md` — Security framework
-- `frameworks/security/authentication.md` — Authentication
-- `frameworks/security/authorization.md` — Authorization
-- `frameworks/security/secrets_management.md` — Secrets management
-- `frameworks/security/security_checklist.md` — Security checklist
+- `.knowledge/frameworks/index.md` — Frameworks navigation
+- `.knowledge/frameworks/autonomy/index.md` — Autonomy framework
+- `.knowledge/frameworks/autonomy/levels.md` — L1-L6 autonomy levels
+- `.knowledge/frameworks/cognitive/index.md` — Cognitive framework
+- `.knowledge/frameworks/cognitive/expert_committee.md` — Expert committee pattern
+- `.knowledge/frameworks/cognitive/information_density.md` — Information density
+- `.knowledge/frameworks/design/index.md` — Design framework
+- `.knowledge/frameworks/design/axioms.md` — Design axioms
+- `.knowledge/frameworks/patterns/index.md` — Patterns framework
+- `.knowledge/frameworks/patterns/collaboration.md` — Collaboration patterns
+- `.knowledge/frameworks/patterns/decision.md` — Decision patterns
+- `.knowledge/frameworks/patterns/integration.md` — Integration patterns
+- `.knowledge/frameworks/patterns/persistence.md` — Persistence patterns
+- `.knowledge/frameworks/performance/index.md` — Performance framework
+- `.knowledge/frameworks/performance/caching_patterns.md` — Caching strategies
+- `.knowledge/frameworks/performance/optimization_strategies.md` — Optimization
+- `.knowledge/frameworks/performance/profiling_guide.md` — Profiling guide
+- `.knowledge/frameworks/resilience/index.md` — Resilience framework
+- `.knowledge/frameworks/resilience/timeout_patterns.md` — Timeout patterns
+- `.knowledge/frameworks/security/index.md` — Security framework
+- `.knowledge/frameworks/security/authentication.md` — Authentication
+- `.knowledge/frameworks/security/authorization.md` — Authorization
+- `.knowledge/frameworks/security/secrets_management.md` — Secrets management
+- `.knowledge/frameworks/security/security_checklist.md` — Security checklist
 
 ### References
 
-- `references/knowledge_quick_ref.md` — Knowledge organization patterns
-- `references/performance_checklist.md` — Performance optimization checks
+- `.knowledge/references/knowledge_quick_ref.md` — Knowledge organization patterns
+- `.knowledge/references/performance_checklist.md` — Performance optimization checks
 
 *Note: Practices, Scenarios, and Templates files are listed in their respective index.md files.*
 
@@ -214,7 +214,7 @@ Each layer has an `index.md` for navigation. Use layer indexes for discovery, sp
 - `config/sage.yaml` — Main configuration
 - `docs/design/00-overview.md` — Design overview
 - `.context/index.md` — Project context
-- `index.md` — Root navigation
+- `./index.md` — Root navigation
 
 ---
 

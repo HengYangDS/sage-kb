@@ -133,9 +133,9 @@ Attempt → Uncertain? → Escalate → Guidance → Continue
 
 ## Related
 
-- `guidelines/ai_collaboration.md` — Collaboration guidelines
-- `practices/ai_collaboration/workflow.md` — Workflow practices
-- `frameworks/autonomy/levels.md` — Autonomy framework
+- `.knowledge/guidelines/ai_collaboration.md` — Collaboration guidelines
+- `.knowledge/practices/ai_collaboration/workflow.md` — Workflow practices
+- `.knowledge/frameworks/autonomy/levels.md` — Autonomy framework
 
 ---
 

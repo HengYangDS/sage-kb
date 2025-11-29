@@ -125,8 +125,8 @@ When creating ASCII art boxes or diagrams:
 
 ## Related
 
-- `documentation_standards.md` — General documentation formatting
-- `../../references/unicode/character_width.md` — Unicode width reference (if exists)
+- `.knowledge/practices/documentation/documentation_standards.md` — General documentation formatting
+- `.knowledge/references/unicode/character_width.md` — Unicode width reference (if exists)
 
 ---
 

@@ -58,8 +58,8 @@
 
 ## Related
 
-- `guidelines/quick_start.md` — 3-minute guide
-- `frameworks/autonomy/levels.md` — Full autonomy framework
+- `.knowledge/guidelines/quick_start.md` — 3-minute guide
+- `.knowledge/frameworks/autonomy/levels.md` — Full autonomy framework
 - `config/knowledge/loading.yaml` — Loading configuration
 
 ---

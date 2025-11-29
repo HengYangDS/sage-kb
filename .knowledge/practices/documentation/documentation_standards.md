@@ -105,12 +105,12 @@
 
 #### Path Format Examples
 
-| ✅ Correct (Project-Root-Relative)          | ❌ Incorrect (Relative/Mixed)           |
-|--------------------------------------------|----------------------------------------|
-| `.context/policies/timeout_hierarchy.md`   | `timeout_hierarchy.md`                 |
-| `.knowledge/frameworks/autonomy/levels.md` | `../frameworks/autonomy/levels.md`     |
-| `.junie/guidelines.md`                     | `guidelines.md`                        |
-| `docs/design/01-architecture.md`           | `../../docs/design/01-architecture.md` |
+| ✅ Correct (Project-Root-Relative)                        | ❌ Incorrect (Relative/Mixed)           |
+|----------------------------------------------------------|----------------------------------------|
+| `.knowledge/contexts/policies/timeout_hierarchy.md`      | `timeout_hierarchy.md`                 |
+| `.knowledge/frameworks/autonomy/levels.md`               | `../frameworks/autonomy/levels.md`     |
+| `.knowledge/practices/ai_collaboration/guidelines.md`    | `guidelines.md`                        |
+| `.knowledge/references/design/01-architecture.md`        | `../../docs/design/01-architecture.md` |
 
 #### Rationale
 
@@ -132,12 +132,12 @@
 
 #### Special Cases
 
-| Case                  | Format              | Example                        |
-|-----------------------|---------------------|--------------------------------|
-| Same directory file   | Full path from root | `.context/policies/timeout.md` |
-| Source code reference | Path from root      | `src/sage/core/config.py`      |
-| Config file reference | Path from root      | `config/sage.yaml`             |
-| External URL          | Full URL            | `https://example.com/docs`     |
+| Case                  | Format              | Example                                  |
+|-----------------------|---------------------|------------------------------------------|
+| Same directory file   | Full path from root | `.knowledge/contexts/policies/timeout.md`|
+| Source code reference | Path from root      | `src/sage/core/config.py`                |
+| Config file reference | Path from root      | `config/sage.yaml`                       |
+| External URL          | Full URL            | `https://example.com/docs`               |
 
 ---
 
