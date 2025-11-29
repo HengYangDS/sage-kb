@@ -34,6 +34,34 @@
 └── guidelines.md         # AI guidelines (next session)
 ```
 
+### Cross-Platform MCP Configuration
+
+The default `mcp.json` uses Windows commands. For other platforms, modify the `command` field:
+
+| Platform        | Command   | Example                |
+|:----------------|:----------|:-----------------------|
+| **Windows**     | `npx.cmd` | `"command": "npx.cmd"` |
+| **macOS/Linux** | `npx`     | `"command": "npx"`     |
+
+**Quick Conversion Script**:
+
+```bash
+# macOS/Linux: Convert Windows config to Unix
+sed -i 's/npx\.cmd/npx/g' .junie/mcp/mcp.json
+
+# Windows PowerShell: Convert Unix config to Windows
+(Get-Content .junie/mcp/mcp.json) -replace 'npx"', 'npx.cmd"' | Set-Content .junie/mcp/mcp.json
+```
+
+**Environment-Specific Configs** (alternative approach):
+
+```
+.junie/mcp/
+├── mcp.json              # Active config (gitignored or symlinked)
+├── mcp.windows.json      # Windows template
+└── mcp.unix.json         # macOS/Linux template
+```
+
 ---
 
 ## 2. Hot Reload Capabilities
@@ -227,6 +255,44 @@ When MCP servers are unavailable, use these alternatives:
 | **Fetch**               | Ask user to provide content   |
 | **Sequential Thinking** | Use Expert Committee pattern  |
 
+### Standard Error Message Templates
+
+Use these templates for consistent error reporting that AI can parse and handle:
+
+**Connection Error**:
+
+```
+[MCP_ERROR] Server: {server_name} | Type: CONNECTION | Code: {error_code}
+Message: {error_message}
+Action: {recommended_action}
+Fallback: {fallback_method}
+```
+
+**Configuration Error**:
+
+```
+[CONFIG_ERROR] File: {file_path} | Line: {line_number}
+Message: {error_message}
+Fix: {suggested_fix}
+```
+
+**Validation Error**:
+
+```
+[VALIDATION_ERROR] Schema: {schema_name} | Field: {field_path}
+Expected: {expected_value}
+Received: {actual_value}
+```
+
+**Example Usage**:
+
+```
+[MCP_ERROR] Server: filesystem | Type: CONNECTION | Code: ECONNREFUSED
+Message: Connection refused on port 3000
+Action: Restart MCP server via Settings | Tools | Junie | MCP Servers
+Fallback: Use IDE built-in file operations
+```
+
 ### Escalation Path
 
 ```
@@ -303,4 +369,4 @@ Get-ChildItem ".junie.backup-*" | Sort-Object LastWriteTime -Descending
 
 ---
 
-*Part of the Junie Configuration Guide*
+*Part of the Junie Documentation*

@@ -27,7 +27,7 @@
 ├── mcp/                    # 🔄 MCP server configuration
 │   └── mcp.json            # MCP servers definition
 │
-├── configuration/          # 🔄 Junie configuration guides
+├── docs/                   # 🔄 Junie documentation
 │   ├── README.md           # Documentation index
 │   ├── 01-introduction.md
 │   ├── 02-action-allowlist.md
@@ -37,7 +37,8 @@
 │   ├── 06-migration-guide.md
 │   ├── 07-memory-best-practices.md
 │   ├── 08-efficiency-metrics.md
-│   └── 09-operations-guide.md
+│   ├── 09-operations-guide.md
+│   └── 10-glossary.md
 │
 └── project/                # 📌 Project-specific files (must customize)
     ├── config.yaml         # Project variables definition
@@ -61,7 +62,7 @@
     - `guidelines.md` (root)
     - `generic/` directory
     - `mcp/` directory
-    - `configuration/` directory
+    - `docs/` directory
 
 3. **Customize project-specific files**:
     - `project/config.yaml` — Define your project variables
@@ -83,8 +84,8 @@
 │  ┌─────────────────────────────────────────────────────┐    │
 │  │         Generic Directories (Reusable)              │    │
 │  │  ┌────────────┐  ┌────────────┐  ┌──────────────┐   │    │
-│  │  │ generic/   │  │ mcp/       │  │configuration/│   │    │
-│  │  │ (Settings) │  │ (MCP)      │  │ (Guides)     │   │    │
+│  │  │ generic/   │  │ mcp/       │  │ docs/        │   │    │
+│  │  │ (Settings) │  │ (MCP)      │  │ (Docs)       │   │    │
 │  │  └────────────┘  └────────────┘  └──────────────┘   │    │
 │  └─────────────────────────────────────────────────────┘    │
 │                                                             │
@@ -108,7 +109,7 @@
 | `guidelines.md` (root) | Only when changing generic AI collaboration patterns |
 | `generic/*`            | Only when adding new generic features                |
 | `mcp/*`                | Only when changing MCP server configuration          |
-| `configuration/*`      | Only when updating configuration guides              |
+| `docs/*`               | Only when updating documentation                     |
 | `project/*`            | Freely customize for your specific project           |
 
 ---

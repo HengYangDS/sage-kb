@@ -173,6 +173,41 @@ class TestYamlConfiguration:
             schema_version
         ), f"Invalid schema_version format: {schema_version}"
 
+    def test_context_loading_paths_format(self) -> None:
+        """Verify context_loading paths are properly formatted (no dangerous patterns)."""
+        config_file = JUNIE_DIR / "generic" / "config.yaml"
+        with open(config_file, encoding="utf-8") as f:
+            data = yaml.safe_load(f)
+
+        context_loading = data.get("context_loading", {})
+
+        def is_valid_path(path: str) -> bool:
+            """Check if path is valid (relative from project root or hidden dir)."""
+            # Valid: starts with . (hidden/relative), /, or alphanumeric (project-relative)
+            # Invalid: contains .., starts with ~, or contains dangerous chars
+            if ".." in path:
+                return False
+            if path.startswith("~"):
+                return False
+            if any(c in path for c in ["<", ">", "|", "*", "?"]):
+                return False
+            return True
+
+        # Check priority paths format
+        priority_paths = context_loading.get("priority", [])
+        for path in priority_paths:
+            assert is_valid_path(path), f"Invalid priority path format: {path}"
+
+        # Check lazy_load paths format
+        lazy_load_paths = context_loading.get("lazy_load", [])
+        for path in lazy_load_paths:
+            assert is_valid_path(path), f"Invalid lazy_load path format: {path}"
+
+        # Check exclude paths format
+        exclude_paths = context_loading.get("exclude", [])
+        for path in exclude_paths:
+            assert is_valid_path(path), f"Invalid exclude path format: {path}"
+
 
 class TestGuidelinesAndDocs:
     """Tests for guidelines and documentation files."""
@@ -200,14 +235,14 @@ class TestDirectoryStructure:
 
     def test_required_directories_exist(self) -> None:
         """Verify required subdirectories exist."""
-        required_dirs = ["generic", "project", "configuration", "mcp"]
+        required_dirs = ["generic", "project", "docs", "mcp"]
         for dir_name in required_dirs:
             dir_path = JUNIE_DIR / dir_name
             assert dir_path.is_dir(), f"Directory '{dir_name}' not found in .junie/"
 
-    def test_configuration_docs_exist(self) -> None:
-        """Verify configuration documentation files exist."""
-        config_dir = JUNIE_DIR / "configuration"
+    def test_docs_exist(self) -> None:
+        """Verify documentation files exist."""
+        docs_dir = JUNIE_DIR / "docs"
         expected_files = [
             "README.md",
             "01-introduction.md",
@@ -219,10 +254,11 @@ class TestDirectoryStructure:
             "07-memory-best-practices.md",
             "08-efficiency-metrics.md",
             "09-operations-guide.md",
+            "10-glossary.md",
         ]
         for filename in expected_files:
-            file_path = config_dir / filename
-            assert file_path.exists(), f"Configuration doc '{filename}' not found"
+            file_path = docs_dir / filename
+            assert file_path.exists(), f"Doc '{filename}' not found"
 
 
 if __name__ == "__main__":

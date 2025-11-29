@@ -1,26 +1,26 @@
-# Junie Configuration Guide
+# Junie Documentation
 
-> Comprehensive guide for Junie AI Assistant configuration (v1.0.0, Production-Ready)
+> Comprehensive documentation for JetBrains Junie AI Assistant
 
 ---
 
 ## Table of Contents
 
-- [1. Documentation Structure](#1-documentation-structure)
+- [1. Documentation Overview](#1-documentation-overview)
 - [2. Quick Navigation](#2-quick-navigation)
 - [3. Key Metrics](#3-key-metrics)
-- [4. Platform Quick Reference](#4-platform-quick-reference)
+- [4. Platform Reference](#4-platform-reference)
 - [5. Version Compatibility](#5-version-compatibility)
 
 ---
 
-## 1. Documentation Structure
+## 1. Documentation Overview
 
-This guide has been split into focused documents for easier navigation and maintenance:
+This documentation is organized into focused guides for easier navigation and maintenance:
 
 | Document                                                | Description                                     | Time      |
 |:--------------------------------------------------------|:------------------------------------------------|:----------|
-| [📋 Introduction](01-introduction.md)                   | Document overview, navigation, key metrics      | 5 min     |
+| [📋 Introduction](01-introduction.md)                   | Documentation overview and navigation           | 5 min     |
 | [📘 Action Allowlist](02-action-allowlist.md)           | 87 Terminal rules for 90%+ auto-approval        | 30 min    |
 | [🚀 MCP Integration](03-mcp-integration.md)             | 60-75% token efficiency improvement             | 1-2 hours |
 | [🔮 Future Vision](04-future-vision.md)                 | A2A multi-agent collaboration (2026+)           | 30-60 min |
@@ -29,6 +29,7 @@ This guide has been split into focused documents for easier navigation and maint
 | [🧠 Memory Best Practices](07-memory-best-practices.md) | Knowledge graph patterns and usage              | 15 min    |
 | [📊 Efficiency Metrics](08-efficiency-metrics.md)       | Collaboration tracking and optimization         | 10 min    |
 | [🔧 Operations Guide](09-operations-guide.md)           | Hot reload, error recovery, maintenance         | 10 min    |
+| [📚 Glossary](10-glossary.md)                           | Unified terminology definitions                 | 5 min     |
 
 ---
 
@@ -36,15 +37,15 @@ This guide has been split into focused documents for easier navigation and maint
 
 **Choose your path based on your goal**:
 
-| Your Goal                            | Go To                                                                                       | Time Required |
-|:-------------------------------------|:--------------------------------------------------------------------------------------------|:--------------|
-| 🚀 **Quick Setup** (first-time user) | [Quick Start](02-action-allowlist.md#quick-start)                                           | 10-30 min     |
-| 🔧 **Add Terminal Rules**            | [Configuration Rules Explained](02-action-allowlist.md#configuration-rules-explained)       | 15 min        |
-| 📋 **Copy All Rules**                | [Appendix B: Complete Rules List](05-appendix.md#appendix-b-complete-rules-list-plain-text) | 5 min         |
-| 🔌 **Setup MCP Integration**         | [MCP Integration Guide](03-mcp-integration.md)                                              | 1-2 hours     |
-| 🐛 **Fix Configuration Issues**      | [Troubleshooting](02-action-allowlist.md#troubleshooting)                                   | 10-20 min     |
-| 🔮 **Learn Future Protocols**        | [Future Protocol Vision](04-future-vision.md)                                               | 30-60 min     |
-| 📖 **Understand the Mechanism**      | [Action Allowlist Mechanism](02-action-allowlist.md#action-allowlist-mechanism)             | 15 min        |
+| Your Goal                            | Go To                                                                                 | Time Required |
+|:-------------------------------------|:--------------------------------------------------------------------------------------|:--------------|
+| 🚀 **Quick Setup** (first-time user) | [Quick Start](02-action-allowlist.md#quick-start)                                     | 10-30 min     |
+| 🔧 **Add Terminal Rules**            | [Configuration Rules Explained](02-action-allowlist.md#configuration-rules-explained) | 15 min        |
+| 📋 **Copy All Rules**                | [Complete Rules List](05-appendix.md#2-complete-rules-list)                           | 5 min         |
+| 🔌 **Setup MCP Integration**         | [MCP Integration Guide](03-mcp-integration.md)                                        | 1-2 hours     |
+| 🐛 **Fix Issues**                    | [Troubleshooting](02-action-allowlist.md#troubleshooting)                             | 10-20 min     |
+| 🔮 **Learn Future Protocols**        | [Future Protocol Vision](04-future-vision.md)                                         | 30-60 min     |
+| 📖 **Understand the Mechanism**      | [Action Allowlist Mechanism](02-action-allowlist.md#action-allowlist-mechanism)       | 15 min        |
 
 ---
 
@@ -58,7 +59,7 @@ This guide has been split into focused documents for easier navigation and maint
 
 ---
 
-## 4. Platform Quick Reference
+## 4. Platform Reference
 
 | Platform           | Terminal Rules | Configuration File                                                             | Key Commands             |
 |:-------------------|:---------------|:-------------------------------------------------------------------------------|:-------------------------|
@@ -87,7 +88,7 @@ This guide has been split into focused documents for easier navigation and maint
 
 ## Related
 
-- `01-introduction.md` — Document overview and navigation
+- `01-introduction.md` — Documentation overview and navigation
 - `02-action-allowlist.md` — Terminal rules configuration
 - `03-mcp-integration.md` — MCP setup and best practices
 - `04-future-vision.md` — Protocol roadmap
@@ -95,4 +96,4 @@ This guide has been split into focused documents for easier navigation and maint
 
 ---
 
-*Part of the Junie Configuration Guide*
+*Part of the Junie Documentation*

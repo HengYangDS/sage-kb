@@ -340,4 +340,4 @@ TEST_DB environment variable."
 
 ---
 
-*Part of the Junie Configuration Guide*
+*Part of the Junie Documentation*

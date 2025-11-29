@@ -30,7 +30,7 @@ Generic configuration files are located in:
 - **Settings**: `generic/config.yaml` — Junie settings
 - **Quick Reference**: `generic/quickref.md` — Quick lookup card
 - **MCP Config**: `mcp/mcp.json` — MCP server configuration
-- **Configuration Docs**: `configuration/` — Junie configuration guides
+- **Documentation**: `docs/` — Junie documentation
 
 ---
 
@@ -45,6 +45,17 @@ Generic configuration files are located in:
 | L5-L6 | High/Full (80-100%)         | High autonomy         | Formatting, comments, docs, trusted patterns         |
 
 **Default**: L4 (Medium-High) for mature collaboration.
+
+**Detailed Examples by Level**:
+
+| Level | Example Commands/Actions                                                       |
+|-------|--------------------------------------------------------------------------------|
+| L1    | `rm -rf`, `DROP TABLE`, adding new external dependencies, API breaking changes |
+| L2    | Database schema changes, modifying CI/CD pipelines, updating auth logic        |
+| L3    | Adding new test files, refactoring single functions, updating error messages   |
+| L4    | Bug fixes, code cleanup, adding logging, implementing documented features      |
+| L5    | Running `git status`, `pytest`, `ruff check`, updating docstrings              |
+| L6    | Formatting code, fixing typos, updating comments, adjusting whitespace         |
 
 ### Key Behaviors
 
@@ -220,7 +231,7 @@ For generic configuration, see:
 - **Quick Reference**: `generic/quickref.md`
 - **Configuration**: `generic/config.yaml`
 - **MCP Settings**: `mcp/mcp.json`
-- **Configuration Guides**: `configuration/`
+- **Documentation**: `docs/`
 
 ---
 
@@ -237,12 +248,12 @@ This `.junie/` configuration follows the **Thin Layer** principle with clear sep
 
 ### Root Directories
 
-| Directory        | Type | Purpose                                     |
-|------------------|------|---------------------------------------------|
-| `generic/`       | 🔄   | Generic settings (config.yaml, quickref.md) |
-| `mcp/`           | 🔄   | MCP server configuration                    |
-| `configuration/` | 🔄   | Junie configuration guides                  |
-| `project/`       | 📌   | Project-specific files                      |
+| Directory  | Type | Purpose                                     |
+|------------|------|---------------------------------------------|
+| `generic/` | 🔄   | Generic settings (config.yaml, quickref.md) |
+| `mcp/`     | 🔄   | MCP server configuration                    |
+| `docs/`    | 🔄   | Junie documentation                         |
+| `project/` | 📌   | Project-specific files                      |
 
 ### Project Directory (`project/`) — 📌 Customize
 

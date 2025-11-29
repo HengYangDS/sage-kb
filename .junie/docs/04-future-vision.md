@@ -432,4 +432,4 @@ ecosystem matures.
 
 ---
 
-*Part of the Junie Configuration Guide*
+*Part of the Junie Documentation*

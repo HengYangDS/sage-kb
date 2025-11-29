@@ -2,6 +2,7 @@
 # Generic settings for AI collaboration - reusable across projects
 #
 # Type: 🔄 Generic (reusable across projects)
+# Schema: config.schema.json (validation schema in same directory)
 # Schema Version: 1.0
 
 # Version information
@@ -31,7 +32,7 @@ collaboration:
 # ============================================================================
 context_loading:
   # Priority order for loading context (first = highest priority)
-  # Customize these paths based on your project structure
+  # Customizes these paths based on the project structure
   priority:
     - ".context/intelligence/"      # AI patterns first
     - ".context/conventions/"       # Then conventions

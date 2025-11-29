@@ -107,6 +107,17 @@ The following diagram illustrates how Junie integrates with MCP servers to acces
 | **GitHub**     | P1 🔥🔥   | Decision background tracing         | ⏸️ Optional           |
 | **SQLite**     | P1 🔥🔥   | Configuration metadata management   | ⏸️ Optional           |
 
+**Priority Selection Criteria**:
+
+| Priority | Criteria                                                         | When to Use                                    |
+|:---------|:-----------------------------------------------------------------|:-----------------------------------------------|
+| **P0**   | Essential for core functionality; project cannot work without it | Always configure; required for basic operation |
+| **P1**   | Significantly improves workflow; high value-to-effort ratio      | Configure when ready to enhance productivity   |
+| **P2**   | Useful for specific scenarios; nice-to-have                      | Configure based on project needs               |
+| **P3**   | Specialized use cases; rarely needed                             | Configure only when explicitly required        |
+
+> **Reference**: See [Glossary](10-glossary.md#priority-levels) for complete priority level definitions.
+
 **Key Values**:
 
 - 🧠 **Intelligence**: Load configuration on-demand, replace full loading
@@ -1115,7 +1126,11 @@ Use relative path `"."` instead of environment variables:
   "mcpServers": {
     "filesystem": {
       "command": "npx.cmd",
-      "args": ["-y", "@modelcontextprotocol/server-filesystem", "."]
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "."
+      ]
     }
   }
 }
@@ -1131,7 +1146,10 @@ them without the `${}` syntax:
   "mcpServers": {
     "github": {
       "command": "npx.cmd",
-      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
       "env": {
         "GITHUB_PERSONAL_ACCESS_TOKEN": "your-actual-token-here"
       }
@@ -1162,7 +1180,10 @@ The path argument is missing from the `args` array in the configuration:
   "mcpServers": {
     "filesystem": {
       "command": "npx.cmd",
-      "args": ["-y", "@modelcontextprotocol/server-filesystem"]
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem"
+      ]
     }
   }
 }
@@ -1177,7 +1198,11 @@ Add the directory path as an argument. Use `"."` for project root:
   "mcpServers": {
     "filesystem": {
       "command": "npx.cmd",
-      "args": ["-y", "@modelcontextprotocol/server-filesystem", "."]
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "."
+      ]
     }
   }
 }
@@ -1236,7 +1261,11 @@ After fixing, restart the IDE and verify:
   "mcpServers": {
     "filesystem": {
       "command": "npx.cmd",
-      "args": ["-y", "@modelcontextprotocol/server-filesystem", "."]
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "."
+      ]
     }
   }
 }
@@ -1350,4 +1379,4 @@ explanation.
 
 ---
 
-*Part of the Junie Configuration Guide*
+*Part of the Junie Documentation*

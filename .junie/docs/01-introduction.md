@@ -1,20 +1,20 @@
 # Introduction
 
-> Document overview and guide purpose (~5 min read)
+> Documentation overview and purpose (~5 min read)
 
 ---
 
 ## Table of Contents
 
-- [1. About This Guide](#1-about-this-guide)
+- [1. About This Documentation](#1-about-this-documentation)
 - [2. Quality Principles](#2-quality-principles)
 - [3. Getting Started](#3-getting-started)
 
 ---
 
-## 1. About This Guide
+## 1. About This Documentation
 
-This is the comprehensive configuration guide for Junie AI Assistant, covering Action Allowlist setup, MCP integration,
+This is the comprehensive documentation for Junie AI Assistant, covering Action Allowlist setup, MCP integration,
 and future protocol preparation.
 
 **What You'll Learn**:
@@ -22,13 +22,13 @@ and future protocol preparation.
 - 📘 **Action Allowlist**: Configure 87 Terminal rules for 90%+ automatic command approval
 - 🚀 **MCP Integration**: Achieve 60-75% token efficiency improvement with intelligent context management
 - 🔮 **Future Protocols**: Prepare for A2A multi-agent collaboration (2026+)
-- 🎯 **Best Practices**: Production-ready configuration patterns and troubleshooting guides
+- 🎯 **Best Practices**: Production-ready patterns and troubleshooting guides
 
 ---
 
 ## 2. Quality Principles
 
-This guide adheres to three core standards aligned with the **信达雅 (Xin-Da-Ya)** philosophy:
+This documentation adheres to three core standards aligned with the **信达雅 (Xin-Da-Ya)** philosophy:
 
 | Principle    | Description           | Application                             |
 |:-------------|:----------------------|:----------------------------------------|
@@ -44,7 +44,7 @@ This guide adheres to three core standards aligned with the **信达雅 (Xin-Da-
 
 For navigation by goal, key metrics, platform references, and version compatibility, see:
 
-📋 **[README.md](README.md)** — Configuration Guide Index
+📋 **[README.md](README.md)** — Documentation Index
 
 ### Recommended Reading Order
 
@@ -73,4 +73,4 @@ Start with the **Quick Start** section in [Action Allowlist](02-action-allowlist
 
 ---
 
-*Part of the Junie Configuration Guide*
+*Part of the Junie Documentation*

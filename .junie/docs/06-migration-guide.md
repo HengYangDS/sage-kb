@@ -211,4 +211,4 @@ Copy-Item ".junie.backup-TIMESTAMP/mcp/mcp.json" ".junie/mcp/mcp.json"
 
 ---
 
-*Part of the Junie Configuration Guide*
+*Part of the Junie Documentation*

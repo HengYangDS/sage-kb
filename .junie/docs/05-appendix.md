@@ -444,4 +444,4 @@ We welcome contributions to improve this guide! Here's how you can help:
 
 ---
 
-*Part of the Junie Configuration Guide*
+*Part of the Junie Documentation*
