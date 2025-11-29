@@ -1,4 +1,4 @@
-# Planning and Design Guidelines
+﻿# Planning and Design Guidelines
 
 > Architecture and design principles for sustainable systems
 
@@ -6,7 +6,11 @@
 
 ## Table of Contents
 
-[1. Execution Principles](#1-execution-principles) · [2. Architecture Principles](#2-architecture-principles) · [3. Decision Framework](#3-decision-framework) · [4. Complexity Management](#4-complexity-management) · [5. Anti-Patterns](#5-anti-patterns)
+- [1. Execution Principles](#1-execution-principles)
+- [2. Architecture Principles](#2-architecture-principles)
+- [3. Decision Framework](#3-decision-framework)
+- [4. Complexity Management](#4-complexity-management)
+- [5. Anti-Patterns](#5-anti-patterns)
 
 ---
 

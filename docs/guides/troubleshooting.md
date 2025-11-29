@@ -1,4 +1,4 @@
-# Troubleshooting Guide
+﻿# Troubleshooting Guide
 
 > Common issues and solutions for SAGE Knowledge Base
 
@@ -6,7 +6,13 @@
 
 ## Table of Contents
 
-[1. Quick Diagnostics](#1-quick-diagnostics) · [2. Installation Issues](#2-installation-issues) · [3. CLI Issues](#3-cli-issues) · [4. MCP Server Issues](#4-mcp-server-issues) · [5. Configuration Issues](#5-configuration-issues) · [6. Performance Issues](#6-performance-issues) · [7. Getting Help](#7-getting-help)
+- [1. Quick Diagnostics](#1-quick-diagnostics)
+- [2. Installation Issues](#2-installation-issues)
+- [3. CLI Issues](#3-cli-issues)
+- [4. MCP Server Issues](#4-mcp-server-issues)
+- [5. Configuration Issues](#5-configuration-issues)
+- [6. Performance Issues](#6-performance-issues)
+- [7. Getting Help](#7-getting-help)
 
 ---
 

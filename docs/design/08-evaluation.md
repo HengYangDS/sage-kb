@@ -1,4 +1,4 @@
-# Expert Committee Evaluation
+﻿# Expert Committee Evaluation
 
 > Level 5 Expert Committee scoring, reviews, and certifications
 
@@ -6,7 +6,15 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Design History](#2-design-history) · [3. Scoring Matrix](#3-scoring-matrix) · [4. Expert Group Scores](#4-expert-group-scores) · [5. Implementation Verification](#5-implementation-verification) · [6. Expert Committee Votes](#6-expert-committee-votes) · [7. Key Innovations](#7-key-innovations) · [8. Recommendations](#8-recommendations) · [9. Final Certification](#9-final-certification)
+- [1. Overview](#1-overview)
+- [2. Design History](#2-design-history)
+- [3. Scoring Matrix](#3-scoring-matrix)
+- [4. Expert Group Scores](#4-expert-group-scores)
+- [5. Implementation Verification](#5-implementation-verification)
+- [6. Expert Committee Votes](#6-expert-committee-votes)
+- [7. Key Innovations](#7-key-innovations)
+- [8. Recommendations](#8-recommendations)
+- [9. Final Certification](#9-final-certification)
 
 ---
 

@@ -1,4 +1,4 @@
-# Patterns Framework
+﻿# Patterns Framework
 
 > Reusable patterns for AI-human collaboration and system design
 
@@ -6,7 +6,9 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Documents](#2-documents) · [3. Pattern Categories](#3-pattern-categories)
+- [1. Overview](#1-overview)
+- [2. Documents](#2-documents)
+- [3. Pattern Categories](#3-pattern-categories)
 
 ---
 

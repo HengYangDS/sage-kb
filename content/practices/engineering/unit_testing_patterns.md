@@ -1,4 +1,4 @@
-# Unit Testing Patterns
+﻿# Unit Testing Patterns
 
 > Best practices and patterns for writing effective unit tests
 
@@ -6,7 +6,14 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Test Structure](#2-test-structure) · [3. Naming Conventions](#3-naming-conventions) · [4. Fixtures](#4-fixtures) · [5. Mocking](#5-mocking) · [6. Assertions](#6-assertions) · [7. Async Testing](#7-async-testing) · [8. Parameterized Tests](#8-parameterized-tests)
+- [1. Overview](#1-overview)
+- [2. Test Structure](#2-test-structure)
+- [3. Naming Conventions](#3-naming-conventions)
+- [4. Fixtures](#4-fixtures)
+- [5. Mocking](#5-mocking)
+- [6. Assertions](#6-assertions)
+- [7. Async Testing](#7-async-testing)
+- [8. Parameterized Tests](#8-parameterized-tests)
 
 ---
 

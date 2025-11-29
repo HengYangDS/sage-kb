@@ -265,7 +265,7 @@ sage/                                  # 📁 Project root directory
 │   │   ├── decisions/                 # 🆕 Dynamic framework cases
 │   │   │   └── autonomy_cases.md      #    Concrete autonomy decision examples
 │   │   ├── documentation/             #    Documentation practices
-│   │   │   └── DOCUMENTATION_STANDARDS.md  #    Documentation standards (SSOT)
+│   │   │   └── documentation_standards.md  #    Documentation standards (SSOT)
 │   │   └── engineering/               #    Engineering practices
 │   │       └── patterns.md            #    Design patterns, best practices
 │   │

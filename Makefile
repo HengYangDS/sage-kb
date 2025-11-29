@@ -1,4 +1,6 @@
-.PHONY: help install dev test test-unit test-integration lint format serve clean
+.PHONY: help install dev test test-unit test-integration lint format serve clean \
+        validate validate-format validate-links validate-arch validate-index \
+        new-adr new-convention new-practice new-guide index check-all
 
 # Default target
 help:  ## Show all commands
@@ -69,3 +71,46 @@ docs:  ## Build documentation (placeholder)
 # Version
 version:  ## Show version
 	python -c "from sage import __version__; print(__version__)"
+
+# ===========================================================================
+# SAGE Validation Commands
+# ===========================================================================
+
+validate: validate-format validate-links validate-arch validate-index  ## Run all SAGE validations
+
+validate-format:  ## Validate document format
+	python -m tools.dev_scripts.validate_format -v
+
+validate-links:  ## Check for broken links
+	python -m tools.dev_scripts.check_links -v
+
+validate-arch:  ## Check architecture rules
+	python -m tools.dev_scripts.check_architecture -v
+
+validate-index:  ## Validate index files
+	python -m tools.dev_scripts.generate_index --check -v
+
+check-all: lint test validate  ## Run all checks (lint, test, validate)
+
+# ===========================================================================
+# SAGE Index Generation
+# ===========================================================================
+
+index:  ## Regenerate all index files
+	python -m tools.dev_scripts.generate_index --all --write -v
+
+# ===========================================================================
+# SAGE File Creation Commands
+# ===========================================================================
+
+new-adr:  ## Create new ADR (usage: make new-adr NAME="use-xyz")
+	python -m tools.dev_scripts.new_file adr "$(NAME)"
+
+new-convention:  ## Create new convention doc (usage: make new-convention NAME="naming")
+	python -m tools.dev_scripts.new_file convention "$(NAME)"
+
+new-practice:  ## Create new practice doc (usage: make new-practice NAME="caching" CAT="engineering")
+	python -m tools.dev_scripts.new_file practice "$(NAME)" --category "$(CAT)"
+
+new-guide:  ## Create new guide (usage: make new-guide NAME="getting-started")
+	python -m tools.dev_scripts.new_file guide "$(NAME)"

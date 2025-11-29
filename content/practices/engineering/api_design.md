@@ -1,4 +1,4 @@
-# API Design Patterns
+﻿# API Design Patterns
 
 > Principles and patterns for designing clean, consistent APIs
 
@@ -6,7 +6,13 @@
 
 ## Table of Contents
 
-[1. Design Principles](#1-design-principles) · [2. Naming Conventions](#2-naming-conventions) · [3. HTTP Methods](#3-http-methods) · [4. Response Patterns](#4-response-patterns) · [5. Pagination](#5-pagination) · [6. Versioning](#6-versioning) · [7. Best Practices](#7-best-practices)
+- [1. Design Principles](#1-design-principles)
+- [2. Naming Conventions](#2-naming-conventions)
+- [3. HTTP Methods](#3-http-methods)
+- [4. Response Patterns](#4-response-patterns)
+- [5. Pagination](#5-pagination)
+- [6. Versioning](#6-versioning)
+- [7. Best Practices](#7-best-practices)
 
 ---
 

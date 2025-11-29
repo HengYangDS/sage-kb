@@ -1,4 +1,4 @@
-# Lessons Learned
+﻿# Lessons Learned
 
 > Key insights and learnings from SAGE Knowledge Base development
 
@@ -6,7 +6,11 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Architecture Lessons](#2-architecture-lessons) · [3. Implementation Lessons](#3-implementation-lessons) · [4. Process Lessons](#4-process-lessons) · [5. AI Collaboration Lessons](#5-ai-collaboration-lessons)
+- [1. Overview](#1-overview)
+- [2. Architecture Lessons](#2-architecture-lessons)
+- [3. Implementation Lessons](#3-implementation-lessons)
+- [4. Process Lessons](#4-process-lessons)
+- [5. AI Collaboration Lessons](#5-ai-collaboration-lessons)
 
 ---
 

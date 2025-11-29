@@ -1,4 +1,4 @@
-# Session Checklist
+﻿# Session Checklist
 
 > Quick reference checklist for AI collaboration session management
 
@@ -6,7 +6,11 @@
 
 ## Table of Contents
 
-[1. Session Start](#1-session-start) · [2. During Session](#2-during-session) · [3. Pre-Completion](#3-pre-completion) · [4. Session End](#4-session-end) · [5. Decision Guide](#5-decision-guide)
+- [1. Session Start](#1-session-start)
+- [2. During Session](#2-during-session)
+- [3. Pre-Completion](#3-pre-completion)
+- [4. Session End](#4-session-end)
+- [5. Decision Guide](#5-decision-guide)
 
 ---
 

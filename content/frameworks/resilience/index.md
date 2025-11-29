@@ -1,4 +1,4 @@
-# Resilience Framework
+﻿# Resilience Framework
 
 > Fault tolerance and graceful degradation patterns
 
@@ -6,7 +6,9 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Documents](#2-documents) · [3. Key Concepts](#3-key-concepts)
+- [1. Overview](#1-overview)
+- [2. Documents](#2-documents)
+- [3. Key Concepts](#3-key-concepts)
 
 ---
 

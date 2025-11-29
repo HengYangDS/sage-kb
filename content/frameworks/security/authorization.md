@@ -1,4 +1,4 @@
-# Authorization Patterns
+﻿# Authorization Patterns
 
 > Access control strategies and permission management
 
@@ -6,7 +6,12 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Authorization Models](#2-authorization-models) · [3. RBAC](#3-rbac) · [4. ABAC](#4-abac) · [5. Implementation Patterns](#5-implementation-patterns) · [6. API Authorization](#6-api-authorization)
+- [1. Overview](#1-overview)
+- [2. Authorization Models](#2-authorization-models)
+- [3. RBAC](#3-rbac)
+- [4. ABAC](#4-abac)
+- [5. Implementation Patterns](#5-implementation-patterns)
+- [6. API Authorization](#6-api-authorization)
 
 ---
 

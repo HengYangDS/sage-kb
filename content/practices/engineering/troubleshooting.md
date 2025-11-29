@@ -1,4 +1,4 @@
-# Troubleshooting Guide
+﻿# Troubleshooting Guide
 
 > Common issues, debugging techniques, and solutions for SAGE Knowledge Base
 
@@ -6,7 +6,14 @@
 
 ## Table of Contents
 
-[1. Quick Diagnostics](#1-quick-diagnostics) · [2. Common Errors](#2-common-errors) · [3. Debugging Techniques](#3-debugging-techniques) · [4. Log Analysis](#4-log-analysis) · [5. Performance Issues](#5-performance-issues) · [6. Configuration Problems](#6-configuration-problems) · [7. MCP Server Issues](#7-mcp-server-issues) · [8. Recovery Procedures](#8-recovery-procedures)
+- [1. Quick Diagnostics](#1-quick-diagnostics)
+- [2. Common Errors](#2-common-errors)
+- [3. Debugging Techniques](#3-debugging-techniques)
+- [4. Log Analysis](#4-log-analysis)
+- [5. Performance Issues](#5-performance-issues)
+- [6. Configuration Problems](#6-configuration-problems)
+- [7. MCP Server Issues](#7-mcp-server-issues)
+- [8. Recovery Procedures](#8-recovery-procedures)
 
 ---
 

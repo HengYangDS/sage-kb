@@ -306,7 +306,7 @@ Use status indicators:
 
 - `templates/conversation_record.md` — AI collaboration records
 - `templates/task_handoff.md` — Task handoff documentation
-- `practices/documentation/DOCUMENTATION_STANDARDS.md` — Documentation standards (SSOT)
+- `practices/documentation/documentation_standards.md` — Documentation standards (SSOT)
 
 ---
 

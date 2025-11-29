@@ -1,4 +1,4 @@
-# Autonomy Framework
+﻿# Autonomy Framework
 
 > AI autonomy levels and decision-making guidelines
 
@@ -6,7 +6,9 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Documents](#2-documents) · [3. Quick Reference](#3-quick-reference)
+- [1. Overview](#1-overview)
+- [2. Documents](#2-documents)
+- [3. Quick Reference](#3-quick-reference)
 
 ---
 

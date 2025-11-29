@@ -1,4 +1,4 @@
-# Documentation Navigation
+﻿# Documentation Navigation
 
 > User-facing documentation for SAGE Knowledge Base
 
@@ -6,7 +6,11 @@
 
 ## Table of Contents
 
-[1. Directory Structure](#1-directory-structure) · [2. Design Documents](#2-design-documents) · [3. API Reference](#3-api-reference) · [4. User Guides](#4-user-guides) · [5. Quick Access](#5-quick-access)
+- [1. Directory Structure](#1-directory-structure)
+- [2. Design Documents](#2-design-documents)
+- [3. API Reference](#3-api-reference)
+- [4. User Guides](#4-user-guides)
+- [5. Quick Access](#5-quick-access)
 
 ---
 

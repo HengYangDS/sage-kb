@@ -1,4 +1,4 @@
-# Security Practices
+﻿# Security Practices
 
 > Security best practices for Python applications and knowledge systems
 
@@ -6,7 +6,12 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Code Security](#2-code-security) · [3. Dependency Security](#3-dependency-security) · [4. Secrets Management](#4-secrets-management) · [5. Input Validation](#5-input-validation) · [6. Authentication & Authorization](#6-authentication--authorization)
+- [1. Overview](#1-overview)
+- [2. Code Security](#2-code-security)
+- [3. Dependency Security](#3-dependency-security)
+- [4. Secrets Management](#4-secrets-management)
+- [5. Input Validation](#5-input-validation)
+- [6. Authentication & Authorization](#6-authentication--authorization)
 
 ---
 

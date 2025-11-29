@@ -1,4 +1,4 @@
-# Expert Committee Framework
+﻿# Expert Committee Framework
 
 > Multi-perspective analysis using 35+ expert roles
 
@@ -6,7 +6,12 @@
 
 ## Table of Contents
 
-[1. Expert Role Pool](#1-expert-role-pool) · [2. Committee Patterns](#2-committee-patterns) · [3. Selection Process](#3-selection-process) · [4. Analysis Process](#4-analysis-process) · [5. Output Format](#5-output-format) · [6. Quick Reference](#6-quick-reference)
+- [1. Expert Role Pool](#1-expert-role-pool)
+- [2. Committee Patterns](#2-committee-patterns)
+- [3. Selection Process](#3-selection-process)
+- [4. Analysis Process](#4-analysis-process)
+- [5. Output Format](#5-output-format)
+- [6. Quick Reference](#6-quick-reference)
 
 ---
 

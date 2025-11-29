@@ -1,4 +1,4 @@
-# Quick Reference Card
+﻿# Quick Reference Card
 
 > Critical questions and autonomy levels at a glance
 
@@ -6,7 +6,11 @@
 
 ## Table of Contents
 
-[1. Five Critical Questions](#1-five-critical-questions) · [2. Autonomy Levels](#2-autonomy-levels) · [3. Response Structure](#3-response-structure) · [4. Timeout Tiers](#4-timeout-tiers) · [5. Philosophy Quick Check](#5-philosophy-quick-check)
+- [1. Five Critical Questions](#1-five-critical-questions)
+- [2. Autonomy Levels](#2-autonomy-levels)
+- [3. Response Structure](#3-response-structure)
+- [4. Timeout Tiers](#4-timeout-tiers)
+- [5. Philosophy Quick Check](#5-philosophy-quick-check)
 
 ---
 

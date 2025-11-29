@@ -1,4 +1,4 @@
-# SAGE Test Suite
+﻿# SAGE Test Suite
 
 > Comprehensive testing guide for SAGE Knowledge Base
 
@@ -6,7 +6,13 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Running Tests](#2-running-tests) · [3. Test Structure](#3-test-structure) · [4. Writing Tests](#4-writing-tests) · [5. Fixtures](#5-fixtures) · [6. Performance Tests](#6-performance-tests) · [7. CI Integration](#7-ci-integration)
+- [1. Overview](#1-overview)
+- [2. Running Tests](#2-running-tests)
+- [3. Test Structure](#3-test-structure)
+- [4. Writing Tests](#4-writing-tests)
+- [5. Fixtures](#5-fixtures)
+- [6. Performance Tests](#6-performance-tests)
+- [7. CI Integration](#7-ci-integration)
 
 ---
 

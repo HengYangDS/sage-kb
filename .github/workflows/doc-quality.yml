@@ -1,0 +1,232 @@
+# SAGE Knowledge Base - Documentation Quality Workflow
+# 
+# This workflow validates documentation quality on every push/PR
+# that modifies content, docs, or context files.
+#
+# Checks performed:
+# 1. Structure validation (required dirs/files)
+# 2. Link validation (internal links)
+# 3. Quality analysis (documentation_standards compliance)
+# 4. Documentation standards check
+
+name: Documentation Quality
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'content/**'
+      - 'docs/**'
+      - '.context/**'
+      - '.history/**'
+      - 'index.md'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'content/**'
+      - 'docs/**'
+      - '.context/**'
+      - '.history/**'
+      - 'index.md'
+  # Allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  # ===========================================================================
+  # Documentation Validation
+  # ===========================================================================
+  validate:
+    name: Validate Documentation
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Run structure validation
+        run: |
+          echo "📁 Checking knowledge base structure..."
+          sage validate --no-links --no-quality
+
+      - name: Run link checker
+        run: |
+          echo "🔗 Checking internal links..."
+          python tools/check_links.py
+
+      - name: Run quality analysis
+        run: |
+          echo "📊 Analyzing documentation quality..."
+          python -c "
+          from sage.capabilities.analyzers.quality import QualityAnalyzer
+          from pathlib import Path
+          
+          analyzer = QualityAnalyzer()
+          results = analyzer.analyze_directory(Path('content'))
+          
+          if results:
+              scores = [r.overall for r in results]
+              avg_score = sum(scores) / len(scores)
+              low_quality = [r for r in results if r.overall < 70]
+          
+              print(f'Files analyzed: {len(results)}')
+              print(f'Average score: {avg_score:.1f}/100')
+          
+              if low_quality:
+                  print(f'\\nFiles below threshold (70):')
+                  for r in sorted(low_quality, key=lambda x: x.overall)[:10]:
+                      print(f'  {r.overall:.0f} - {r.file_path}')
+                  if len(low_quality) > 10:
+                      print(f'  ... and {len(low_quality) - 10} more')
+              else:
+                  print('✅ All files meet quality threshold')
+          "
+
+      - name: Run documentation standards check
+        run: |
+          echo "📋 Checking documentation standards..."
+          python -m sage.capabilities.checkers.documentation
+
+  # ===========================================================================
+  # Quality Report (on PR only)
+  # ===========================================================================
+  report:
+    name: Generate Quality Report
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    needs: validate
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Generate quality report
+        id: report
+        run: |
+          python -c "
+          import json
+          from sage.capabilities.analyzers.quality import QualityAnalyzer
+          from sage.capabilities.checkers.links import check_links
+          from sage.capabilities.checkers.documentation import check_documentation
+          from pathlib import Path
+          
+          # Quality analysis
+          analyzer = QualityAnalyzer()
+          quality_results = analyzer.analyze_directory(Path('content'))
+          avg_score = sum(r.overall for r in quality_results) / len(quality_results) if quality_results else 0
+          
+          # Link check
+          link_report = check_links(Path('.'))
+          
+          # Documentation standards
+          doc_report = check_documentation(Path('.'))
+          
+          # Output summary
+          summary = []
+          summary.append('## 📊 Documentation Quality Report')
+          summary.append('')
+          summary.append('| Metric | Value |')
+          summary.append('|--------|-------|')
+          summary.append(f'| Files Analyzed | {len(quality_results)} |')
+          summary.append(f'| Average Quality Score | {avg_score:.1f}/100 |')
+          summary.append(f'| Total Links | {link_report.total_links} |')
+          summary.append(f'| Broken Links | {link_report.broken_count} |')
+          summary.append(f'| Doc Standards Errors | {doc_report.error_count} |')
+          summary.append(f'| Doc Standards Warnings | {doc_report.warning_count} |')
+          summary.append('')
+          
+          # Status
+          if link_report.broken_count == 0 and doc_report.error_count == 0 and avg_score >= 70:
+              summary.append('✅ **All checks passed**')
+          else:
+              summary.append('⚠️ **Issues found - please review**')
+          
+          print('\\n'.join(summary))
+          " >> $GITHUB_STEP_SUMMARY
+
+  # ===========================================================================
+  # Metrics Collection (main branch only)
+  # ===========================================================================
+  metrics:
+    name: Collect Metrics
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs: validate
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Collect and log metrics
+        run: |
+          python -c "
+          import json
+          from datetime import datetime
+          from sage.capabilities.analyzers.quality import QualityAnalyzer
+          from sage.capabilities.checkers.links import check_links
+          from sage.capabilities.checkers.documentation import check_documentation
+          from pathlib import Path
+          
+          # Collect metrics
+          analyzer = QualityAnalyzer()
+          quality_results = analyzer.analyze_directory(Path('content'))
+          link_report = check_links(Path('.'))
+          doc_report = check_documentation(Path('.'))
+          
+          metrics = {
+              'timestamp': datetime.now().isoformat(),
+              'commit': '${{ github.sha }}',
+              'quality': {
+                  'files': len(quality_results),
+                  'average_score': sum(r.overall for r in quality_results) / len(quality_results) if quality_results else 0,
+                  'below_threshold': len([r for r in quality_results if r.overall < 70]),
+              },
+              'links': {
+                  'total': link_report.total_links,
+                  'valid': link_report.valid_count,
+                  'broken': link_report.broken_count,
+                  'warnings': link_report.warning_count,
+              },
+              'standards': {
+                  'files': doc_report.total_files,
+                  'errors': doc_report.error_count,
+                  'warnings': doc_report.warning_count,
+                  'pass_rate': doc_report.pass_rate,
+              },
+          }
+          
+          print('Documentation Quality Metrics:')
+          print(json.dumps(metrics, indent=2))
+          "

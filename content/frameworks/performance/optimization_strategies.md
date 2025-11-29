@@ -1,4 +1,4 @@
-# Optimization Strategies
+﻿# Optimization Strategies
 
 > Systematic approaches to improving system performance
 
@@ -6,7 +6,12 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Code Optimization](#2-code-optimization) · [3. Database Optimization](#3-database-optimization) · [4. Network Optimization](#4-network-optimization) · [5. System Optimization](#5-system-optimization) · [6. Scaling Strategies](#6-scaling-strategies)
+- [1. Overview](#1-overview)
+- [2. Code Optimization](#2-code-optimization)
+- [3. Database Optimization](#3-database-optimization)
+- [4. Network Optimization](#4-network-optimization)
+- [5. System Optimization](#5-system-optimization)
+- [6. Scaling Strategies](#6-scaling-strategies)
 
 ---
 

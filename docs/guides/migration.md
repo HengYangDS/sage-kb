@@ -1,4 +1,4 @@
-# Migration Guide
+﻿# Migration Guide
 
 > Version upgrade procedures, configuration migration, and compatibility notes
 
@@ -6,7 +6,14 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Pre-Migration Checklist](#2-pre-migration-checklist) · [3. Version Upgrade](#3-version-upgrade) · [4. Configuration Migration](#4-configuration-migration) · [5. Content Migration](#5-content-migration) · [6. Breaking Changes](#6-breaking-changes) · [7. Rollback Procedures](#7-rollback-procedures) · [8. Troubleshooting](#8-troubleshooting)
+- [1. Overview](#1-overview)
+- [2. Pre-Migration Checklist](#2-pre-migration-checklist)
+- [3. Version Upgrade](#3-version-upgrade)
+- [4. Configuration Migration](#4-configuration-migration)
+- [5. Content Migration](#5-content-migration)
+- [6. Breaking Changes](#6-breaking-changes)
+- [7. Rollback Procedures](#7-rollback-procedures)
+- [8. Troubleshooting](#8-troubleshooting)
 
 ---
 

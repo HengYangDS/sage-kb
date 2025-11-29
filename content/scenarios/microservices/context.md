@@ -1,4 +1,4 @@
-# Microservices Scenario Context
+﻿# Microservices Scenario Context
 
 > Pre-configured context for microservices architecture development
 
@@ -6,7 +6,14 @@
 
 ## Table of Contents
 
-[1. Scenario Profile](#1-scenario-profile) · [2. Relevant Knowledge](#2-relevant-knowledge) · [3. Architecture Patterns](#3-architecture-patterns) · [4. Service Design](#4-service-design) · [5. Communication Patterns](#5-communication-patterns) · [6. Data Management](#6-data-management) · [7. Common Tasks](#7-common-tasks) · [8. Autonomy Calibration](#8-autonomy-calibration)
+- [1. Scenario Profile](#1-scenario-profile)
+- [2. Relevant Knowledge](#2-relevant-knowledge)
+- [3. Architecture Patterns](#3-architecture-patterns)
+- [4. Service Design](#4-service-design)
+- [5. Communication Patterns](#5-communication-patterns)
+- [6. Data Management](#6-data-management)
+- [7. Common Tasks](#7-common-tasks)
+- [8. Autonomy Calibration](#8-autonomy-calibration)
 
 ---
 

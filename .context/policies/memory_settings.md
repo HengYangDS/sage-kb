@@ -1,4 +1,4 @@
-# Memory and Persistence Configuration
+﻿# Memory and Persistence Configuration
 
 > Configuration reference for caching, memory management, and data persistence
 
@@ -6,7 +6,12 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Cache Configuration](#2-cache-configuration) · [3. Memory Management](#3-memory-management) · [4. Persistence](#4-persistence) · [5. Session State](#5-session-state) · [6. Performance Tuning](#6-performance-tuning)
+- [1. Overview](#1-overview)
+- [2. Cache Configuration](#2-cache-configuration)
+- [3. Memory Management](#3-memory-management)
+- [4. Persistence](#4-persistence)
+- [5. Session State](#5-session-state)
+- [6. Performance Tuning](#6-performance-tuning)
 
 ---
 

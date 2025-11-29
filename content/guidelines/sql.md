@@ -1,4 +1,4 @@
-# SQL Guidelines
+﻿# SQL Guidelines
 
 > SQL and database best practices
 
@@ -6,7 +6,13 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Query Style](#2-query-style) · [3. Schema Design](#3-schema-design) · [4. Performance](#4-performance) · [5. Security](#5-security) · [6. Migrations](#6-migrations) · [7. ORM Patterns](#7-orm-patterns)
+- [1. Overview](#1-overview)
+- [2. Query Style](#2-query-style)
+- [3. Schema Design](#3-schema-design)
+- [4. Performance](#4-performance)
+- [5. Security](#5-security)
+- [6. Migrations](#6-migrations)
+- [7. ORM Patterns](#7-orm-patterns)
 
 ---
 

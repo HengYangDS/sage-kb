@@ -2,11 +2,21 @@
 
 > Instant lookup for AI collaboration essentials
 
-**Type**: 🔄 Generic (reusable across projects)
+---
+
+## Table of Contents
+
+- [1. Autonomy Levels](#1-autonomy-levels)
+- [2. Timeout Tiers](#2-timeout-tiers)
+- [3. Session End Checklist](#3-session-end-checklist)
+- [4. Standard Paths](#4-standard-paths)
+- [5. Quick Links](#5-quick-links)
+- [6. Naming Conventions](#6-naming-conventions)
+- [7. Project Commands](#7-project-commands)
 
 ---
 
-## 🎯 Autonomy Levels
+## 1. Autonomy Levels
 
 | Level | Action | Examples |
 |-------|--------|----------|
@@ -18,7 +28,7 @@
 
 ---
 
-## ⏱️ Timeout Tiers
+## 2. Timeout Tiers
 
 | Tier | Duration | Use Case |
 |------|----------|----------|
@@ -30,7 +40,7 @@
 
 ---
 
-## 📝 Session End Checklist
+## 3. Session End Checklist
 
 1. ☐ Create records in `.history/` if significant work done
 2. ☐ Update relevant `index.md` file counts
@@ -40,7 +50,7 @@
 
 ---
 
-## 📁 Standard Paths
+## 4. Standard Paths
 
 | Category | Typical Path | Purpose |
 |----------|--------------|---------|
@@ -54,19 +64,19 @@
 
 ---
 
-## 🔗 Quick Links
+## 5. Quick Links
 
 | Document | Purpose |
 |----------|---------|
-| `guidelines.md` | Full AI collaboration rules |
+| `../guidelines.md` | Full AI collaboration rules |
 | `config.yaml` | Junie settings |
-| `project.yaml` | Project variables |
-| `project-guidelines.md` | Project-specific info |
-| `mcp/mcp.json` | MCP server config |
+| `../project/config.yaml` | Project variables |
+| `../project/quickref.md` | Project-specific info |
+| `../mcp/mcp.json` | MCP server config |
 
 ---
 
-## 📋 Naming Conventions
+## 6. Naming Conventions
 
 ### Session History Files
 
@@ -78,15 +88,15 @@
 
 ---
 
-## 🚀 Project-Specific Commands
+## 7. Project Commands
 
-See `project-guidelines.md` for:
+See `../project/quickref.md` for:
 - Build commands
 - Test commands
 - Service commands
 - Development scripts
 
-See `project.yaml` for:
+See `../project/config.yaml` for:
 - Project identity
 - Tech stack
 - Directory structure

@@ -1,4 +1,4 @@
-# MCP Tools Guide
+﻿# MCP Tools Guide
 
 > Complete reference for SAGE Knowledge Base MCP tools
 
@@ -6,7 +6,12 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Knowledge Tools](#2-knowledge-tools) · [3. Capability Tools](#3-capability-tools) · [4. Development Tools](#4-development-tools) · [5. Tool Combinations](#5-tool-combinations) · [6. Best Practices](#6-best-practices)
+- [1. Overview](#1-overview)
+- [2. Knowledge Tools](#2-knowledge-tools)
+- [3. Capability Tools](#3-capability-tools)
+- [4. Development Tools](#4-development-tools)
+- [5. Tool Combinations](#5-tool-combinations)
+- [6. Best Practices](#6-best-practices)
 
 ---
 

@@ -1,4 +1,4 @@
-# Git Workflow
+﻿# Git Workflow
 
 > Git branching strategy, commit conventions, and collaboration practices
 
@@ -6,7 +6,11 @@
 
 ## Table of Contents
 
-[1. Branching Strategy](#1-branching-strategy) · [2. Commit Conventions](#2-commit-conventions) · [3. Pull Request Process](#3-pull-request-process) · [4. Release Management](#4-release-management) · [5. Best Practices](#5-best-practices)
+- [1. Branching Strategy](#1-branching-strategy)
+- [2. Commit Conventions](#2-commit-conventions)
+- [3. Pull Request Process](#3-pull-request-process)
+- [4. Release Management](#4-release-management)
+- [5. Best Practices](#5-best-practices)
 
 ---
 

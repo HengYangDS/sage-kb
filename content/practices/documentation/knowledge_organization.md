@@ -1,4 +1,4 @@
-# Knowledge Organization Patterns
+﻿# Knowledge Organization Patterns
 
 > Hierarchical patterns for organizing AI-collaborative knowledge bases
 
@@ -6,7 +6,11 @@
 
 ## Table of Contents
 
-[1. Layer Architecture](#1-layer-architecture) · [2. Layer Principles](#2-layer-principles) · [3. Navigation Patterns](#3-navigation-patterns) · [4. Content Distribution](#4-content-distribution) · [5. Loading Strategy](#5-loading-strategy)
+- [1. Layer Architecture](#1-layer-architecture)
+- [2. Layer Principles](#2-layer-principles)
+- [3. Navigation Patterns](#3-navigation-patterns)
+- [4. Content Distribution](#4-content-distribution)
+- [5. Loading Strategy](#5-loading-strategy)
 
 ---
 

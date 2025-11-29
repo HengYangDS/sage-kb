@@ -1,4 +1,4 @@
-# Performance Optimization
+﻿# Performance Optimization
 
 > Performance best practices and optimization strategies for Python applications
 
@@ -6,7 +6,12 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Profiling](#2-profiling) · [3. Python Optimization](#3-python-optimization) · [4. I/O Optimization](#4-io-optimization) · [5. Memory Management](#5-memory-management) · [6. Caching Strategies](#6-caching-strategies)
+- [1. Overview](#1-overview)
+- [2. Profiling](#2-profiling)
+- [3. Python Optimization](#3-python-optimization)
+- [4. I/O Optimization](#4-io-optimization)
+- [5. Memory Management](#5-memory-management)
+- [6. Caching Strategies](#6-caching-strategies)
 
 ---
 

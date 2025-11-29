@@ -1,4 +1,4 @@
-# Configuration Guide
+﻿# Configuration Guide
 
 > Complete reference for SAGE Knowledge Base configuration options
 
@@ -6,7 +6,14 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Configuration Files](#2-configuration-files) · [3. Core Settings](#3-core-settings) · [4. Knowledge Settings](#4-knowledge-settings) · [5. Service Settings](#5-service-settings) · [6. Environment Variables](#6-environment-variables) · [7. Advanced Configuration](#7-advanced-configuration) · [8. Configuration Recipes](#8-configuration-recipes)
+- [1. Overview](#1-overview)
+- [2. Configuration Files](#2-configuration-files)
+- [3. Core Settings](#3-core-settings)
+- [4. Knowledge Settings](#4-knowledge-settings)
+- [5. Service Settings](#5-service-settings)
+- [6. Environment Variables](#6-environment-variables)
+- [7. Advanced Configuration](#7-advanced-configuration)
+- [8. Configuration Recipes](#8-configuration-recipes)
 
 ---
 

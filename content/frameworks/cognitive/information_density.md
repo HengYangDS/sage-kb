@@ -1,4 +1,4 @@
-# Information Density Framework
+﻿# Information Density Framework
 
 > Balance between compression and clarity in communication
 
@@ -6,7 +6,12 @@
 
 ## Table of Contents
 
-[1. Density Spectrum](#1-density-spectrum) · [2. Density Techniques](#2-density-techniques) · [3. Context-Based Selection](#3-context-based-selection) · [4. Compression Strategies](#4-compression-strategies) · [5. Quality Balance](#5-quality-balance) · [6. Application Matrix](#6-application-matrix)
+- [1. Density Spectrum](#1-density-spectrum)
+- [2. Density Techniques](#2-density-techniques)
+- [3. Context-Based Selection](#3-context-based-selection)
+- [4. Compression Strategies](#4-compression-strategies)
+- [5. Quality Balance](#5-quality-balance)
+- [6. Application Matrix](#6-application-matrix)
 
 ---
 
@@ -114,7 +119,7 @@
 ## Related
 
 - `practices/ai_collaboration/token_optimization.md` — Token efficiency
-- `practices/documentation/DOCUMENTATION_STANDARDS.md` — Documentation standards (SSOT)
+- `practices/documentation/documentation_standards.md` — Documentation standards (SSOT)
 
 ---
 

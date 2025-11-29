@@ -1,4 +1,4 @@
-# Plugin System Configuration
+﻿# Plugin System Configuration
 
 > Configuration reference for the SAGE plugin system
 
@@ -6,7 +6,12 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Plugin Discovery](#2-plugin-discovery) · [3. Plugin Configuration](#3-plugin-configuration) · [4. Bundled Plugins](#4-bundled-plugins) · [5. Custom Plugins](#5-custom-plugins) · [6. Security](#6-security)
+- [1. Overview](#1-overview)
+- [2. Plugin Discovery](#2-plugin-discovery)
+- [3. Plugin Configuration](#3-plugin-configuration)
+- [4. Bundled Plugins](#4-bundled-plugins)
+- [5. Custom Plugins](#5-custom-plugins)
+- [6. Security](#6-security)
 
 ---
 

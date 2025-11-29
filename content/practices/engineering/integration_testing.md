@@ -1,4 +1,4 @@
-# Integration Testing
+﻿# Integration Testing
 
 > Best practices for testing component interactions and system integration
 
@@ -6,7 +6,13 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Test Categories](#2-test-categories) · [3. Database Testing](#3-database-testing) · [4. API Testing](#4-api-testing) · [5. Service Integration](#5-service-integration) · [6. Test Isolation](#6-test-isolation) · [7. CI/CD Integration](#7-cicd-integration)
+- [1. Overview](#1-overview)
+- [2. Test Categories](#2-test-categories)
+- [3. Database Testing](#3-database-testing)
+- [4. API Testing](#4-api-testing)
+- [5. Service Integration](#5-service-integration)
+- [6. Test Isolation](#6-test-isolation)
+- [7. CI/CD Integration](#7-cicd-integration)
 
 ---
 

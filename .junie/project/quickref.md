@@ -1,13 +1,16 @@
 # SAGE Knowledge Base - Project Guidelines
 
-> **Type**: 📌 Project-specific (customized for this project)
-> **Last Updated**: 2025-11-30
-> **Version**: 0.1.0
-> **Status**: Alpha - Under active development and testing
+> Project-specific quick reference for SAGE Knowledge Base
 
 ---
 
-## 📋 Project Overview
+## Table of Contents
+
+[1. Project Overview](#1-project-overview) · [2. Tech Stack](#2-tech-stack) · [3. Project Structure](#3-project-structure) · [4. Coding Standards](#4-coding-standards) · [5. Important Files](#5-important-files) · [6. Quick Commands](#6-quick-commands) · [7. Key Paths](#7-key-paths) · [8. Timeout Hierarchy](#8-timeout-hierarchy) · [9. References](#9-references) · [10. AI Collaboration](#10-ai-collaboration)
+
+---
+
+## 1. Project Overview
 
 **SAGE Knowledge Base (sage-kb)** is a production-grade knowledge management system designed for
 AI-human collaboration. It provides structured knowledge via CLI, MCP, and API services with built-in timeout protection
@@ -23,7 +26,7 @@ and smart loading.
 
 ---
 
-## 🛠️ Tech Stack
+## 2. Tech Stack
 
 | Category     | Technology                 |
 |--------------|----------------------------|
@@ -38,7 +41,7 @@ and smart loading.
 
 ---
 
-## 📁 Project Structure
+## 3. Project Structure
 
 ```
 sage-kb/
@@ -68,11 +71,12 @@ sage-kb/
 
 ---
 
-## 📐 Coding Standards
+## 4. Coding Standards
 
 > **Reference**: See `content/guidelines/python.md` and `.context/conventions/naming.md` for full details
 
 **Quick Summary:**
+
 - **Formatter**: Ruff (line-length: 88)
 - **Type Hints**: Required
 - **Docstrings**: Google style
@@ -81,7 +85,7 @@ sage-kb/
 
 ---
 
-## 📄 Important Files
+## 5. Important Files
 
 | File                 | Purpose                                          |
 |----------------------|--------------------------------------------------|
@@ -94,7 +98,7 @@ sage-kb/
 
 ---
 
-## 🚀 Quick Commands
+## 6. Quick Commands
 
 ```bash
 # Testing
@@ -116,41 +120,41 @@ mypy src/                           # Type check
 
 ---
 
-## 📁 Key Paths
+## 7. Key Paths
 
-| Category | Path | Purpose |
-|----------|------|---------|
-| **Conventions** | `.context/conventions/` | Naming, patterns, structure |
-| **Policies** | `.context/policies/` | Timeouts, loading, runtime |
-| **ADRs** | `.context/decisions/` | Architecture decisions |
-| **AI Patterns** | `.context/intelligence/` | Interaction patterns |
-| **Config** | `config/sage.yaml` | Main configuration |
-| **Core Code** | `src/sage/core/` | Core layer |
-| **Services** | `src/sage/services/` | CLI, MCP, API |
+| Category        | Path                     | Purpose                     |
+|-----------------|--------------------------|-----------------------------|
+| **Conventions** | `.context/conventions/`  | Naming, patterns, structure |
+| **Policies**    | `.context/policies/`     | Timeouts, loading, runtime  |
+| **ADRs**        | `.context/decisions/`    | Architecture decisions      |
+| **AI Patterns** | `.context/intelligence/` | Interaction patterns        |
+| **Config**      | `config/sage.yaml`       | Main configuration          |
+| **Core Code**   | `src/sage/core/`         | Core layer                  |
+| **Services**    | `src/sage/services/`     | CLI, MCP, API               |
 
 ---
 
-## ⏱️ Timeout Hierarchy
+## 8. Timeout Hierarchy
 
 > **Reference**: See `.context/policies/timeout_hierarchy.md` for full details
 
 **SAGE-specific timeout configuration**:
 
-| Tier | Duration | SAGE Use Case |
-|------|----------|---------------|
-| T1 | 100ms | Cache lookup |
-| T2 | 500ms | Single file read |
-| T3 | 2s | Layer load |
-| T4 | 5s | Full KB load |
-| T5 | 10s | Complex analysis |
+| Tier | Duration | SAGE Use Case    |
+|------|----------|------------------|
+| T1   | 100ms    | Cache lookup     |
+| T2   | 500ms    | Single file read |
+| T3   | 2s       | Layer load       |
+| T4   | 5s       | Full KB load     |
+| T5   | 10s      | Complex analysis |
 
 ---
 
-## 🔗 References
+## 9. References
 
-- **Project Variables**: `project.yaml`
+- **Project Variables**: `config.yaml`
 - **Design Documents**: `docs/design/00-overview.md`
-- **Documentation Standards**: `content/practices/documentation/DOCUMENTATION_STANDARDS.md`
+- **Documentation Standards**: `content/practices/documentation/documentation_standards.md`
 - **Documentation Index**: `docs/index.md`
 - **Configuration**: `config/sage.yaml`
 - **Project Context**: `.context/index.md`
@@ -161,7 +165,7 @@ mypy src/                           # Type check
 
 ---
 
-## 🤖 SAGE-Specific AI Collaboration
+## 10. AI Collaboration
 
 ### Session History
 

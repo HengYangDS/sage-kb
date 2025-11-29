@@ -1,4 +1,4 @@
-# SAGE Performance Tuning
+﻿# SAGE Performance Tuning
 
 > SAGE-specific performance goals, benchmarks, and monitoring
 
@@ -18,7 +18,10 @@ For comprehensive performance optimization guides, see:
 
 ## Table of Contents
 
-[1. Performance Goals](#1-performance-goals) · [2. Benchmarks](#2-benchmarks) · [3. Monitoring](#3-monitoring) · [4. Tuning Checklist](#4-tuning-checklist)
+- [1. Performance Goals](#1-performance-goals)
+- [2. Benchmarks](#2-benchmarks)
+- [3. Monitoring](#3-monitoring)
+- [4. Tuning Checklist](#4-tuning-checklist)
 
 ---
 

@@ -6,7 +6,12 @@
 
 ## Table of Contents
 
-[1. Format](#1-format) · [2. Structure](#2-structure) · [3. Token Efficiency](#3-token-efficiency) · [4. Writing](#4-writing) · [5. Organization](#5-organization) · [6. Quality](#6-quality)
+- [1. Format](#1-format)
+- [2. Structure](#2-structure)
+- [3. Token Efficiency](#3-token-efficiency)
+- [4. Writing](#4-writing)
+- [5. Organization](#5-organization)
+- [6. Quality](#6-quality)
 
 ---
 
@@ -23,7 +28,8 @@
 
 ## Table of Contents (if >60 lines or >3 H2)
 
-[1. Section](#1-section) · [2. Section](#2-section)
+- [1. Section](#1-section)
+- [2. Section](#2-section)
 
 ---
 
@@ -56,7 +62,7 @@
 | Condition                   | Action                                 |
 |-----------------------------|----------------------------------------|
 | >60 lines OR >3 H2 headings | Add TOC                                |
-| Format                      | Inline with `·` separator              |
+| Format                      | Vertical list with `- [Section](#anchor)` |
 | Content                     | H2 sections only                       |
 | Anchor                      | `#N-section-name` (lowercase, hyphens) |
 
@@ -104,7 +110,7 @@
 |----------------------|---------|------------------------|
 | Tables vs paragraphs | ~40%    | Structured comparisons |
 | Lists vs paragraphs  | ~30%    | Enumerations, steps    |
-| Inline TOC           | ~50%    | Document navigation    |
+| Vertical TOC         | ~50%    | Document navigation    |
 | Cross-references     | ~70%    | Repeated content       |
 
 ### 3.2 Anti-Patterns
@@ -225,7 +231,7 @@ print(greet("World"))  # Output: Hello, World
 **Structure**:
 
 - [ ] TOC if >60 lines or >3 H2
-- [ ] TOC uses inline `·` format
+- [ ] TOC uses vertical list format
 - [ ] H2 sections numbered
 - [ ] H3 uses decimal notation
 

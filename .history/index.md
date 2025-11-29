@@ -1,4 +1,4 @@
-# Session History Navigation
+﻿# Session History Navigation
 
 > AI session history and task handoffs for SAGE Knowledge Base
 
@@ -6,7 +6,9 @@
 
 ## Table of Contents
 
-[1. Directory Structure](#1-directory-structure) · [2. Usage Guidelines](#2-usage-guidelines) · [3. Naming Conventions](#3-naming-conventions)
+- [1. Directory Structure](#1-directory-structure)
+- [2. Usage Guidelines](#2-usage-guidelines)
+- [3. Naming Conventions](#3-naming-conventions)
 
 ---
 

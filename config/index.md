@@ -1,4 +1,4 @@
-# Configuration Directory
+﻿# Configuration Directory
 
 > SAGE Knowledge Base runtime configuration files
 
@@ -6,7 +6,10 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Directory Structure](#2-directory-structure) · [3. Configuration Files](#3-configuration-files) · [4. Configuration Hierarchy](#4-configuration-hierarchy)
+- [1. Overview](#1-overview)
+- [2. Directory Structure](#2-directory-structure)
+- [3. Configuration Files](#3-configuration-files)
+- [4. Configuration Hierarchy](#4-configuration-hierarchy)
 
 ---
 

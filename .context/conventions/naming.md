@@ -6,7 +6,13 @@
 
 ## Table of Contents
 
-[1. Generic Python Conventions](#1-generic-python-conventions) · [2. SAGE-Specific Patterns](#2-sage-specific-patterns) · [3. Configuration Keys](#3-configuration-keys) · [4. Events](#4-events) · [5. Files & Directories](#5-files--directories) · [6. Versioning & Milestones](#6-versioning--milestones) · [7. Anti-Patterns](#7-anti-patterns-to-avoid)
+- [1. Generic Python Conventions](#1-generic-python-conventions)
+- [2. SAGE-Specific Patterns](#2-sage-specific-patterns)
+- [3. Configuration Keys](#3-configuration-keys)
+- [4. Events](#4-events)
+- [5. Files & Directories](#5-files--directories)
+- [6. Versioning & Milestones](#6-versioning--milestones)
+- [7. Anti-Patterns](#7-anti-patterns-to-avoid)
 
 ---
 

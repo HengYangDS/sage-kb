@@ -1,4 +1,4 @@
-# DevOps Scenario Context
+﻿# DevOps Scenario Context
 
 > Pre-configured context for CI/CD, infrastructure, and operations
 
@@ -6,7 +6,15 @@
 
 ## Table of Contents
 
-[1. Scenario Profile](#1-scenario-profile) · [2. Relevant Knowledge](#2-relevant-knowledge) · [3. Project Structure](#3-project-structure) · [4. CI/CD Patterns](#4-cicd-patterns) · [5. Infrastructure as Code](#5-infrastructure-as-code) · [6. Monitoring & Alerting](#6-monitoring--alerting) · [7. Common Tasks](#7-common-tasks) · [8. Autonomy Calibration](#8-autonomy-calibration) · [9. Quick Commands](#9-quick-commands)
+- [1. Scenario Profile](#1-scenario-profile)
+- [2. Relevant Knowledge](#2-relevant-knowledge)
+- [3. Project Structure](#3-project-structure)
+- [4. CI/CD Patterns](#4-cicd-patterns)
+- [5. Infrastructure as Code](#5-infrastructure-as-code)
+- [6. Monitoring & Alerting](#6-monitoring--alerting)
+- [7. Common Tasks](#7-common-tasks)
+- [8. Autonomy Calibration](#8-autonomy-calibration)
+- [9. Quick Commands](#9-quick-commands)
 
 ---
 

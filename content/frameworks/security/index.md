@@ -1,4 +1,4 @@
-# Security Framework
+﻿# Security Framework
 
 > Comprehensive security patterns and best practices for software development
 
@@ -6,7 +6,10 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Contents](#2-contents) · [3. Security Principles](#3-security-principles) · [4. Quick Reference](#4-quick-reference)
+- [1. Overview](#1-overview)
+- [2. Contents](#2-contents)
+- [3. Security Principles](#3-security-principles)
+- [4. Quick Reference](#4-quick-reference)
 
 ---
 

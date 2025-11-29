@@ -1,4 +1,4 @@
-# Engineering Practices Guidelines
+﻿# Engineering Practices Guidelines
 
 > Configuration, testing, performance, change control, maintainability
 
@@ -6,7 +6,12 @@
 
 ## Table of Contents
 
-[1. Configuration Management](#1-configuration-management) · [2. Testing Strategy](#2-testing-strategy) · [3. Performance](#3-performance) · [4. Change Control](#4-change-control) · [5. Maintainability](#5-maintainability) · [6. Workflow Checklist](#6-workflow-checklist)
+- [1. Configuration Management](#1-configuration-management)
+- [2. Testing Strategy](#2-testing-strategy)
+- [3. Performance](#3-performance)
+- [4. Change Control](#4-change-control)
+- [5. Maintainability](#5-maintainability)
+- [6. Workflow Checklist](#6-workflow-checklist)
 
 ---
 

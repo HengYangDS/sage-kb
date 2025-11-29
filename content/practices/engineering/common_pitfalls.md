@@ -1,4 +1,4 @@
-# Common Pitfalls
+﻿# Common Pitfalls
 
 > Known pitfalls and how to avoid them in software development
 
@@ -6,7 +6,12 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Architecture Pitfalls](#2-architecture-pitfalls) · [3. Implementation Pitfalls](#3-implementation-pitfalls) · [4. Configuration Pitfalls](#4-configuration-pitfalls) · [5. Testing Pitfalls](#5-testing-pitfalls) · [6. AI Collaboration Pitfalls](#6-ai-collaboration-pitfalls)
+- [1. Overview](#1-overview)
+- [2. Architecture Pitfalls](#2-architecture-pitfalls)
+- [3. Implementation Pitfalls](#3-implementation-pitfalls)
+- [4. Configuration Pitfalls](#4-configuration-pitfalls)
+- [5. Testing Pitfalls](#5-testing-pitfalls)
+- [6. AI Collaboration Pitfalls](#6-ai-collaboration-pitfalls)
 
 ---
 

@@ -1,4 +1,4 @@
-# Success Principles Guidelines
+﻿# Success Principles Guidelines
 
 > Philosophy mapping, success criteria, holistic excellence
 
@@ -6,7 +6,12 @@
 
 ## Table of Contents
 
-[1. Xin-Da-Ya Success Mapping](#1-xin-da-ya-success-mapping) · [2. Success Criteria Framework](#2-success-criteria-framework) · [3. Excellence Dimensions](#3-excellence-dimensions) · [4. Anti-Patterns](#4-anti-patterns) · [5. Continuous Improvement](#5-continuous-improvement) · [6. Success Checklist](#6-success-checklist)
+- [1. Xin-Da-Ya Success Mapping](#1-xin-da-ya-success-mapping)
+- [2. Success Criteria Framework](#2-success-criteria-framework)
+- [3. Excellence Dimensions](#3-excellence-dimensions)
+- [4. Anti-Patterns](#4-anti-patterns)
+- [5. Continuous Improvement](#5-continuous-improvement)
+- [6. Success Checklist](#6-success-checklist)
 
 ---
 

@@ -1,4 +1,4 @@
-# Caching Patterns
+﻿# Caching Patterns
 
 > Data caching strategies for performance optimization
 
@@ -6,7 +6,11 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Caching Strategies](#2-caching-strategies) · [3. Cache Invalidation](#3-cache-invalidation) · [4. Implementation Patterns](#4-implementation-patterns) · [5. Distributed Caching](#5-distributed-caching)
+- [1. Overview](#1-overview)
+- [2. Caching Strategies](#2-caching-strategies)
+- [3. Cache Invalidation](#3-cache-invalidation)
+- [4. Implementation Patterns](#4-implementation-patterns)
+- [5. Distributed Caching](#5-distributed-caching)
 
 ---
 

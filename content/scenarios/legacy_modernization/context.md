@@ -1,4 +1,4 @@
-# Legacy Modernization Scenario Context
+﻿# Legacy Modernization Scenario Context
 
 > Pre-configured context for modernizing legacy systems
 
@@ -6,7 +6,14 @@
 
 ## Table of Contents
 
-[1. Scenario Profile](#1-scenario-profile) · [2. Relevant Knowledge](#2-relevant-knowledge) · [3. Modernization Strategies](#3-modernization-strategies) · [4. Assessment](#4-assessment) · [5. Migration Patterns](#5-migration-patterns) · [6. Risk Management](#6-risk-management) · [7. Common Tasks](#7-common-tasks) · [8. Autonomy Calibration](#8-autonomy-calibration)
+- [1. Scenario Profile](#1-scenario-profile)
+- [2. Relevant Knowledge](#2-relevant-knowledge)
+- [3. Modernization Strategies](#3-modernization-strategies)
+- [4. Assessment](#4-assessment)
+- [5. Migration Patterns](#5-migration-patterns)
+- [6. Risk Management](#6-risk-management)
+- [7. Common Tasks](#7-common-tasks)
+- [8. Autonomy Calibration](#8-autonomy-calibration)
 
 ---
 

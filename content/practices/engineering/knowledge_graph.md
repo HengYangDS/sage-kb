@@ -1,4 +1,4 @@
-# Knowledge Graph Guide
+﻿# Knowledge Graph Guide
 
 > Building and using knowledge graphs for content analysis and visualization
 
@@ -6,7 +6,14 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Getting Started](#2-getting-started) · [3. Graph Structure](#3-graph-structure) · [4. Building Graphs](#4-building-graphs) · [5. Analysis & Queries](#5-analysis--queries) · [6. Visualization](#6-visualization) · [7. Best Practices](#7-best-practices) · [8. Use Cases](#8-use-cases)
+- [1. Overview](#1-overview)
+- [2. Getting Started](#2-getting-started)
+- [3. Graph Structure](#3-graph-structure)
+- [4. Building Graphs](#4-building-graphs)
+- [5. Analysis & Queries](#5-analysis--queries)
+- [6. Visualization](#6-visualization)
+- [7. Best Practices](#7-best-practices)
+- [8. Use Cases](#8-use-cases)
 
 ---
 

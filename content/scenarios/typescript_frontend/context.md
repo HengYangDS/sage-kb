@@ -1,4 +1,4 @@
-# TypeScript Frontend Scenario Context
+﻿# TypeScript Frontend Scenario Context
 
 > Pre-configured context for TypeScript frontend development (React/Vue)
 
@@ -6,7 +6,15 @@
 
 ## Table of Contents
 
-[1. Scenario Profile](#1-scenario-profile) · [2. Relevant Knowledge](#2-relevant-knowledge) · [3. Project Structure](#3-project-structure-react) · [4. Common Patterns](#4-common-patterns) · [5. Testing Patterns](#5-testing-patterns) · [6. State Management](#6-state-management) · [7. Common Tasks](#7-common-tasks) · [8. Autonomy Calibration](#8-autonomy-calibration) · [9. Quick Commands](#9-quick-commands)
+- [1. Scenario Profile](#1-scenario-profile)
+- [2. Relevant Knowledge](#2-relevant-knowledge)
+- [3. Project Structure](#3-project-structure-react)
+- [4. Common Patterns](#4-common-patterns)
+- [5. Testing Patterns](#5-testing-patterns)
+- [6. State Management](#6-state-management)
+- [7. Common Tasks](#7-common-tasks)
+- [8. Autonomy Calibration](#8-autonomy-calibration)
+- [9. Quick Commands](#9-quick-commands)
 
 ---
 

@@ -1,4 +1,4 @@
-# Plugin Development Guide
+﻿# Plugin Development Guide
 
 > How to create and publish plugins for SAGE Knowledge Base
 
@@ -6,7 +6,11 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Getting Started](#2-getting-started) · [3. Plugin Structure](#3-plugin-structure) · [4. Hook System](#4-hook-system) · [5. Publishing](#5-publishing)
+- [1. Overview](#1-overview)
+- [2. Getting Started](#2-getting-started)
+- [3. Plugin Structure](#3-plugin-structure)
+- [4. Hook System](#4-hook-system)
+- [5. Publishing](#5-publishing)
 
 ---
 

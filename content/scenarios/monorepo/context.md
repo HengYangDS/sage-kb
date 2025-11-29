@@ -1,4 +1,4 @@
-# Monorepo Scenario Context
+﻿# Monorepo Scenario Context
 
 > Pre-configured context for monorepo project management
 
@@ -6,7 +6,14 @@
 
 ## Table of Contents
 
-[1. Scenario Profile](#1-scenario-profile) · [2. Relevant Knowledge](#2-relevant-knowledge) · [3. Structure Patterns](#3-structure-patterns) · [4. Tooling](#4-tooling) · [5. Dependency Management](#5-dependency-management) · [6. CI/CD Patterns](#6-cicd-patterns) · [7. Common Tasks](#7-common-tasks) · [8. Autonomy Calibration](#8-autonomy-calibration)
+- [1. Scenario Profile](#1-scenario-profile)
+- [2. Relevant Knowledge](#2-relevant-knowledge)
+- [3. Structure Patterns](#3-structure-patterns)
+- [4. Tooling](#4-tooling)
+- [5. Dependency Management](#5-dependency-management)
+- [6. CI/CD Patterns](#6-cicd-patterns)
+- [7. Common Tasks](#7-common-tasks)
+- [8. Autonomy Calibration](#8-autonomy-calibration)
 
 ---
 

@@ -1,4 +1,4 @@
-# Quality Angles Framework
+﻿# Quality Angles Framework
 
 > Multi-perspective quality evaluation using 35+ quality angles
 
@@ -6,7 +6,12 @@
 
 ## Table of Contents
 
-[1. Core Quality Angles](#1-core-quality-angles-10) · [2. Extended Angles](#2-extended-angles-15) · [3. Domain-Specific Angles](#3-domain-specific-angles-10) · [4. Application Process](#4-application-process) · [5. Evaluation Template](#5-evaluation-template) · [6. Coverage Matrix](#6-coverage-matrix)
+- [1. Core Quality Angles](#1-core-quality-angles-10)
+- [2. Extended Angles](#2-extended-angles-15)
+- [3. Domain-Specific Angles](#3-domain-specific-angles-10)
+- [4. Application Process](#4-application-process)
+- [5. Evaluation Template](#5-evaluation-template)
+- [6. Coverage Matrix](#6-coverage-matrix)
 
 ---
 

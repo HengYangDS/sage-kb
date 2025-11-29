@@ -1,4 +1,4 @@
-# SAGE Knowledge Base
+﻿# SAGE Knowledge Base
 
 > **Smart AI-Guided Expertise** — Navigation Entry
 
@@ -6,7 +6,10 @@
 
 ## Table of Contents
 
-[1. Project Structure](#1-project-structure) · [2. Directory Definitions](#2-directory-definitions) · [3. Quick Access](#3-quick-access) · [4. CLI Commands](#4-cli-commands)
+- [1. Project Structure](#1-project-structure)
+- [2. Directory Definitions](#2-directory-definitions)
+- [3. Quick Access](#3-quick-access)
+- [4. CLI Commands](#4-cli-commands)
 
 ---
 

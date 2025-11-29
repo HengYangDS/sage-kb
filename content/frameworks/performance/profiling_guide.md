@@ -1,4 +1,4 @@
-# Profiling Guide
+﻿# Profiling Guide
 
 > Performance measurement and bottleneck identification
 
@@ -6,7 +6,12 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Python Profiling](#2-python-profiling) · [3. Database Profiling](#3-database-profiling) · [4. System Profiling](#4-system-profiling) · [5. Application Monitoring](#5-application-monitoring) · [6. Load Testing](#6-load-testing)
+- [1. Overview](#1-overview)
+- [2. Python Profiling](#2-python-profiling)
+- [3. Database Profiling](#3-database-profiling)
+- [4. System Profiling](#4-system-profiling)
+- [5. Application Monitoring](#5-application-monitoring)
+- [6. Load Testing](#6-load-testing)
 
 ---
 

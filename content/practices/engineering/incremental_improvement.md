@@ -1,4 +1,4 @@
-# Incremental Improvement Practices
+﻿# Incremental Improvement Practices
 
 > Systematic approach to continuous, low-risk enhancement
 
@@ -6,7 +6,12 @@
 
 ## Table of Contents
 
-[1. Principles](#1-principles) · [2. Improvement Cycle](#2-improvement-cycle) · [3. Risk Management](#3-risk-management) · [4. Validation](#4-validation) · [5. Patterns](#5-patterns) · [6. Anti-Patterns](#6-anti-patterns)
+- [1. Principles](#1-principles)
+- [2. Improvement Cycle](#2-improvement-cycle)
+- [3. Risk Management](#3-risk-management)
+- [4. Validation](#4-validation)
+- [5. Patterns](#5-patterns)
+- [6. Anti-Patterns](#6-anti-patterns)
 
 ---
 

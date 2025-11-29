@@ -1,4 +1,4 @@
-# Authentication Patterns
+﻿# Authentication Patterns
 
 > Identity verification mechanisms and best practices
 
@@ -6,7 +6,12 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Authentication Methods](#2-authentication-methods) · [3. Token-Based Auth](#3-token-based-auth) · [4. Session Management](#4-session-management) · [5. Multi-Factor Auth](#5-multi-factor-auth) · [6. Implementation Patterns](#6-implementation-patterns)
+- [1. Overview](#1-overview)
+- [2. Authentication Methods](#2-authentication-methods)
+- [3. Token-Based Auth](#3-token-based-auth)
+- [4. Session Management](#4-session-management)
+- [5. Multi-Factor Auth](#5-multi-factor-auth)
+- [6. Implementation Patterns](#6-implementation-patterns)
 
 ---
 

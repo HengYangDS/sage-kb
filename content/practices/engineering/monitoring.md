@@ -1,4 +1,4 @@
-# Monitoring & Observability
+﻿# Monitoring & Observability
 
 > Best practices for system monitoring and observability
 
@@ -6,7 +6,11 @@
 
 ## Table of Contents
 
-[1. Three Pillars](#1-three-pillars) · [2. Metrics](#2-metrics) · [3. Logging](#3-logging) · [4. Tracing](#4-tracing) · [5. Alerting](#5-alerting)
+- [1. Three Pillars](#1-three-pillars)
+- [2. Metrics](#2-metrics)
+- [3. Logging](#3-logging)
+- [4. Tracing](#4-tracing)
+- [5. Alerting](#5-alerting)
 
 ---
 

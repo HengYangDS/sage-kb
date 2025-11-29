@@ -1,4 +1,4 @@
-# Scenario Presets
+﻿# Scenario Presets
 
 > Context-specific knowledge presets for common development scenarios
 
@@ -6,7 +6,10 @@
 
 ## Table of Contents
 
-[1. Available Scenarios](#1-available-scenarios) · [2. Python Backend Scenario](#2-python-backend-scenario) · [3. Scenario Structure](#3-scenario-structure) · [4. Creating New Scenarios](#4-creating-new-scenarios)
+- [1. Available Scenarios](#1-available-scenarios)
+- [2. Python Backend Scenario](#2-python-backend-scenario)
+- [3. Scenario Structure](#3-scenario-structure)
+- [4. Creating New Scenarios](#4-creating-new-scenarios)
 
 ---
 

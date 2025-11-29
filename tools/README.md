@@ -1,4 +1,4 @@
-# SAGE Development Tools
+﻿# SAGE Development Tools
 
 > Utilities and scripts for SAGE Knowledge Base development
 
@@ -6,7 +6,12 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Development Scripts](#2-development-scripts) · [3. Knowledge Graph](#3-knowledge-graph) · [4. Monitors](#4-monitors) · [5. Migration Toolkit](#5-migration-toolkit) · [6. Timeout Manager](#6-timeout-manager)
+- [1. Overview](#1-overview)
+- [2. Development Scripts](#2-development-scripts)
+- [3. Knowledge Graph](#3-knowledge-graph)
+- [4. Monitors](#4-monitors)
+- [5. Migration Toolkit](#5-migration-toolkit)
+- [6. Timeout Manager](#6-timeout-manager)
 
 ---
 

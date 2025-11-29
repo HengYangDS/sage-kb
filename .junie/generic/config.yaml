@@ -79,7 +79,7 @@ timeouts:
 # MCP CONFIGURATION
 # ============================================================================
 mcp:
-  config_file: "mcp/mcp.json"
+  config_file: "../mcp/mcp.json"
   default_profile: "standard"
   profiles:
     minimal:
@@ -96,8 +96,8 @@ mcp:
 # ============================================================================
 # PROJECT REFERENCES
 # ============================================================================
-# Project-specific values are defined in project.yaml
+# Project-specific values are defined in ../project/config.yaml
 # This file contains only generic, reusable settings
 project:
-  variables_file: "project.yaml"
-  guidelines_file: "project-guidelines.md"
+  config_file: "../project/config.yaml"
+  quickref_file: "../project/quickref.md"

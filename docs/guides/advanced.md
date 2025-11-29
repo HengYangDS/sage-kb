@@ -1,4 +1,4 @@
-# Advanced Usage Guide
+﻿# Advanced Usage Guide
 
 > Deep dive into SAGE Knowledge Base advanced features and customization
 
@@ -6,7 +6,12 @@
 
 ## Table of Contents
 
-[1. Configuration](#1-configuration) · [2. CLI Advanced](#2-cli-advanced) · [3. MCP Integration](#3-mcp-integration) · [4. Python API](#4-python-api) · [5. Plugin Development](#5-plugin-development) · [6. Performance Tuning](#6-performance-tuning)
+- [1. Configuration](#1-configuration)
+- [2. CLI Advanced](#2-cli-advanced)
+- [3. MCP Integration](#3-mcp-integration)
+- [4. Python API](#4-python-api)
+- [5. Plugin Development](#5-plugin-development)
+- [6. Performance Tuning](#6-performance-tuning)
 
 ---
 

@@ -1,4 +1,4 @@
-# SAGE Loading Configurations
+﻿# SAGE Loading Configurations
 
 > Knowledge Base loading strategies and layer configuration
 
@@ -6,7 +6,11 @@
 
 ## Table of Contents
 
-[1. Loading Strategies](#1-loading-strategies) · [2. Layer Configuration](#2-layer-configuration) · [3. Trigger Conditions](#3-trigger-conditions) · [4. Smart Loading](#4-smart-loading) · [5. Configuration Reference](#5-configuration-reference)
+- [1. Loading Strategies](#1-loading-strategies)
+- [2. Layer Configuration](#2-layer-configuration)
+- [3. Trigger Conditions](#3-trigger-conditions)
+- [4. Smart Loading](#4-smart-loading)
+- [5. Configuration Reference](#5-configuration-reference)
 
 ---
 

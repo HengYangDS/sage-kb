@@ -1,4 +1,4 @@
-# AI Collaboration Guidelines
+﻿# AI Collaboration Guidelines
 
 > Human-AI interaction patterns, autonomy levels, execution modes
 
@@ -6,7 +6,12 @@
 
 ## Table of Contents
 
-[1. Instruction Types](#1-instruction-types) · [2. Execution Modes](#2-execution-modes) · [3. Autonomy Levels](#3-autonomy-levels) · [4. Communication Patterns](#4-communication-patterns) · [5. Context Management](#5-context-management) · [6. Collaboration Workflow](#6-collaboration-workflow)
+- [1. Instruction Types](#1-instruction-types)
+- [2. Execution Modes](#2-execution-modes)
+- [3. Autonomy Levels](#3-autonomy-levels)
+- [4. Communication Patterns](#4-communication-patterns)
+- [5. Context Management](#5-context-management)
+- [6. Collaboration Workflow](#6-collaboration-workflow)
 
 ---
 

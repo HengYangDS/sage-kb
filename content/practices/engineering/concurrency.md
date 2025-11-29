@@ -1,4 +1,4 @@
-# Concurrency Practices
+﻿# Concurrency Practices
 
 > Best practices for concurrent and parallel programming
 
@@ -6,7 +6,10 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Python Concurrency](#2-python-concurrency) · [3. Common Patterns](#3-common-patterns) · [4. Best Practices](#4-best-practices)
+- [1. Overview](#1-overview)
+- [2. Python Concurrency](#2-python-concurrency)
+- [3. Common Patterns](#3-common-patterns)
+- [4. Best Practices](#4-best-practices)
 
 ---
 

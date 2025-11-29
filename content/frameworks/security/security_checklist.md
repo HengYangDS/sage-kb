@@ -1,4 +1,4 @@
-# Security Checklist
+﻿# Security Checklist
 
 > Comprehensive security review guide for development, deployment, and audit
 
@@ -6,7 +6,12 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Development](#2-development) · [3. Code Review](#3-code-review) · [4. Deployment](#4-deployment) · [5. Operations](#5-operations) · [6. Incident Response](#6-incident-response)
+- [1. Overview](#1-overview)
+- [2. Development](#2-development)
+- [3. Code Review](#3-code-review)
+- [4. Deployment](#4-deployment)
+- [5. Operations](#5-operations)
+- [6. Incident Response](#6-incident-response)
 
 ---
 

@@ -1,4 +1,4 @@
-# SAGE Project Optimizations
+﻿# SAGE Project Optimizations
 
 > SAGE-specific optimizations, shortcuts, and code patterns
 
@@ -20,7 +20,10 @@ For comprehensive guides on general development practices, see:
 
 ## Table of Contents
 
-[1. SAGE Code Preferences](#1-sage-code-preferences) · [2. Performance Optimizations](#2-performance-optimizations) · [3. Common Patterns](#3-common-patterns) · [4. Project Shortcuts](#4-project-shortcuts)
+- [1. SAGE Code Preferences](#1-sage-code-preferences)
+- [2. Performance Optimizations](#2-performance-optimizations)
+- [3. Common Patterns](#3-common-patterns)
+- [4. Project Shortcuts](#4-project-shortcuts)
 
 ---
 

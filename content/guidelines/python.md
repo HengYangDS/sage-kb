@@ -1,4 +1,4 @@
-# Python-Specific Guidelines
+﻿# Python-Specific Guidelines
 
 > Python best practices, type hints, decorators, patterns
 
@@ -6,7 +6,12 @@
 
 ## Table of Contents
 
-[1. Type Hints](#1-type-hints) · [2. Decorators](#2-decorators) · [3. Context Managers](#3-context-managers) · [4. Async Patterns](#4-async-patterns) · [5. Data Classes](#5-data-classes) · [6. Common Patterns](#6-common-patterns)
+- [1. Type Hints](#1-type-hints)
+- [2. Decorators](#2-decorators)
+- [3. Context Managers](#3-context-managers)
+- [4. Async Patterns](#4-async-patterns)
+- [5. Data Classes](#5-data-classes)
+- [6. Common Patterns](#6-common-patterns)
 
 ---
 

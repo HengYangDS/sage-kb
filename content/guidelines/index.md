@@ -1,4 +1,4 @@
-# Engineering Guidelines
+﻿# Engineering Guidelines
 
 > Standards for code, documentation, and AI collaboration
 
@@ -6,7 +6,9 @@
 
 ## Table of Contents
 
-[1. Contents](#1-contents) · [2. Quick Start Path](#2-quick-start-path) · [3. By Role](#3-by-role)
+- [1. Contents](#1-contents)
+- [2. Quick Start Path](#2-quick-start-path)
+- [3. By Role](#3-by-role)
 
 ---
 

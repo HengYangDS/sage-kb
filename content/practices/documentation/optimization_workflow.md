@@ -1,4 +1,4 @@
-# Document Optimization Workflow
+﻿# Document Optimization Workflow
 
 > Systematic workflow for batch document optimization and quality assurance
 
@@ -6,7 +6,11 @@
 
 ## Table of Contents
 
-[1. Optimization Process](#1-optimization-process) · [2. Quality Checklist](#2-quality-checklist) · [3. Token Efficiency Patterns](#3-token-efficiency-patterns) · [4. Quality Metrics](#4-quality-metrics) · [5. Common Issues](#5-common-issues)
+- [1. Optimization Process](#1-optimization-process)
+- [2. Quality Checklist](#2-quality-checklist)
+- [3. Token Efficiency Patterns](#3-token-efficiency-patterns)
+- [4. Quality Metrics](#4-quality-metrics)
+- [5. Common Issues](#5-common-issues)
 
 ---
 
@@ -15,7 +19,7 @@
 ### 1.1 Workflow Steps
 
 ```
-1. Establish Standards (DOCUMENTATION_STANDARDS.md)
+1. Establish Standards (documentation_standards.md)
        ↓
 2. Systematic File Review
        ↓
@@ -28,12 +32,12 @@
 
 ### 1.2 Review Order
 
-| Phase | Focus              | Files                       |
-|-------|--------------------|-----------------------------| 
-| 1     | Standards document | `DOCUMENTATION_STANDARDS.md`|
-| 2     | Index files        | `*/index.md`                |
-| 3     | Core content       | High-traffic files |
-| 4     | Supporting content | Remaining files    |
+| Phase | Focus              | Files                        |
+|-------|--------------------|------------------------------| 
+| 1     | Standards document | `documentation_standards.md` |
+| 2     | Index files        | `*/index.md`                 |
+| 3     | Core content       | High-traffic files           |
+| 4     | Supporting content | Remaining files              |
 
 ### 1.3 Batch Processing Tips
 

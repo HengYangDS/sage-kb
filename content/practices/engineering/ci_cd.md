@@ -1,4 +1,4 @@
-# CI/CD Practices
+﻿# CI/CD Practices
 
 > Continuous Integration and Continuous Deployment best practices for SAGE projects
 
@@ -6,7 +6,12 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. GitHub Actions](#2-github-actions) · [3. Testing Pipeline](#3-testing-pipeline) · [4. Quality Gates](#4-quality-gates) · [5. Deployment Strategies](#5-deployment-strategies) · [6. Secrets Management](#6-secrets-management)
+- [1. Overview](#1-overview)
+- [2. GitHub Actions](#2-github-actions)
+- [3. Testing Pipeline](#3-testing-pipeline)
+- [4. Quality Gates](#4-quality-gates)
+- [5. Deployment Strategies](#5-deployment-strategies)
+- [6. Secrets Management](#6-secrets-management)
 
 ---
 

@@ -1,4 +1,4 @@
-# SAGE Runtime Settings
+﻿# SAGE Runtime Settings
 
 > Runtime configuration, logging, and environment settings
 
@@ -6,7 +6,11 @@
 
 ## Table of Contents
 
-[1. Environment Variables](#1-environment-variables) · [2. Logging Configuration](#2-logging-configuration) · [3. Service Settings](#3-service-settings) · [4. Feature Flags](#4-feature-flags) · [5. Debug Settings](#5-debug-settings)
+- [1. Environment Variables](#1-environment-variables)
+- [2. Logging Configuration](#2-logging-configuration)
+- [3. Service Settings](#3-service-settings)
+- [4. Feature Flags](#4-feature-flags)
+- [5. Debug Settings](#5-debug-settings)
 
 ---
 

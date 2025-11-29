@@ -1,4 +1,4 @@
-# Logging Standards
+﻿# Logging Standards
 
 > Universal logging standards and best practices
 
@@ -6,7 +6,15 @@
 
 ## Table of Contents
 
-[1. Log Levels](#1-log-levels) · [2. Structured Logging](#2-structured-logging) · [3. Required Fields](#3-required-fields) · [4. Message Content Standards](#4-message-content-standards) · [5. Performance Logging](#5-performance-logging) · [6. Error Logging](#6-error-logging) · [7. Log Configuration](#7-log-configuration) · [8. Quick Checklist](#8-quick-checklist) · [9. Log Analysis Tips](#9-log-analysis-tips)
+- [1. Log Levels](#1-log-levels)
+- [2. Structured Logging](#2-structured-logging)
+- [3. Required Fields](#3-required-fields)
+- [4. Message Content Standards](#4-message-content-standards)
+- [5. Performance Logging](#5-performance-logging)
+- [6. Error Logging](#6-error-logging)
+- [7. Log Configuration](#7-log-configuration)
+- [8. Quick Checklist](#8-quick-checklist)
+- [9. Log Analysis Tips](#9-log-analysis-tips)
 
 ---
 

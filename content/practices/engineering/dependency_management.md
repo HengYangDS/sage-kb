@@ -1,4 +1,4 @@
-# Dependency Management
+﻿# Dependency Management
 
 > Best practices for managing project dependencies in Python projects
 
@@ -6,7 +6,12 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Dependency Specification](#2-dependency-specification) · [3. Version Pinning](#3-version-pinning) · [4. Security](#4-security) · [5. Update Strategy](#5-update-strategy) · [6. Environment Management](#6-environment-management)
+- [1. Overview](#1-overview)
+- [2. Dependency Specification](#2-dependency-specification)
+- [3. Version Pinning](#3-version-pinning)
+- [4. Security](#4-security)
+- [5. Update Strategy](#5-update-strategy)
+- [6. Environment Management](#6-environment-management)
 
 ---
 

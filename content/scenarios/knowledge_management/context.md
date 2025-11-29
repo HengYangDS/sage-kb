@@ -1,4 +1,4 @@
-# Knowledge Management Scenario Context
+﻿# Knowledge Management Scenario Context
 
 > Pre-configured context for knowledge management system development
 
@@ -6,7 +6,14 @@
 
 ## Table of Contents
 
-[1. Scenario Profile](#1-scenario-profile) · [2. Relevant Knowledge](#2-relevant-knowledge) · [3. Project Structure](#3-project-structure) · [4. Knowledge Architecture](#4-knowledge-architecture) · [5. Content Patterns](#5-content-patterns) · [6. Common Tasks](#6-common-tasks) · [7. Autonomy Calibration](#7-autonomy-calibration) · [8. Quick Commands](#8-quick-commands)
+- [1. Scenario Profile](#1-scenario-profile)
+- [2. Relevant Knowledge](#2-relevant-knowledge)
+- [3. Project Structure](#3-project-structure)
+- [4. Knowledge Architecture](#4-knowledge-architecture)
+- [5. Content Patterns](#5-content-patterns)
+- [6. Common Tasks](#6-common-tasks)
+- [7. Autonomy Calibration](#7-autonomy-calibration)
+- [8. Quick Commands](#8-quick-commands)
 
 ---
 
@@ -24,10 +31,10 @@ autonomy_default: L3
 
 ## 2. Relevant Knowledge
 
-| Priority      | Files                                                                                                                                                                      |
-|---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Auto-Load** | `core/principles.md` · `content/references/knowledge_quick_ref.md`                                                                                                         |
-| **On-Demand** | `practices/documentation/knowledge_organization.md` · `frameworks/design/` · `practices/documentation/DOCUMENTATION_STANDARDS.md` · `practices/ai_collaboration/knowledge_extraction.md` |
+| Priority      | Files                                                                                                                                                                                    |
+|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Auto-Load** | `core/principles.md` · `content/references/knowledge_quick_ref.md`                                                                                                                       |
+| **On-Demand** | `practices/documentation/knowledge_organization.md` · `frameworks/design/` · `practices/documentation/documentation_standards.md` · `practices/ai_collaboration/knowledge_extraction.md` |
 
 ---
 
@@ -108,7 +115,8 @@ author: Name or AI
 
 ## Table of Contents
 
-[Section 1](#section-1) · [Section 2](#section-2)
+- [Section 1](#section-1)
+- [Section 2](#section-2)
 
 ---
 
@@ -301,7 +309,7 @@ sage search "new topic"
 ## Related
 
 - `practices/documentation/knowledge_organization.md` — Organization patterns
-- `practices/documentation/DOCUMENTATION_STANDARDS.md` — Documentation standards (SSOT)
+- `practices/documentation/documentation_standards.md` — Documentation standards (SSOT)
 - `practices/ai_collaboration/knowledge_extraction.md` — Extraction techniques
 - `frameworks/design/` — Design patterns
 

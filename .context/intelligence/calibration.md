@@ -1,4 +1,4 @@
-# Autonomy Calibration Records
+﻿# Autonomy Calibration Records
 
 > Historical calibration data and effectiveness evaluation for AI collaboration
 
@@ -6,7 +6,11 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Calibration History](#2-calibration-history) · [3. Task Type Analysis](#3-task-type-analysis) · [4. Effectiveness Metrics](#4-effectiveness-metrics) · [5. Adjustment Guidelines](#5-adjustment-guidelines)
+- [1. Overview](#1-overview)
+- [2. Calibration History](#2-calibration-history)
+- [3. Task Type Analysis](#3-task-type-analysis)
+- [4. Effectiveness Metrics](#4-effectiveness-metrics)
+- [5. Adjustment Guidelines](#5-adjustment-guidelines)
 
 ---
 

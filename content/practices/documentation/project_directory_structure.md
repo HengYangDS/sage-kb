@@ -1,4 +1,4 @@
-# Project Directory Structure Patterns
+﻿# Project Directory Structure Patterns
 
 > Universal directory organization patterns for AI-collaborative projects
 
@@ -6,7 +6,12 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Directory Categories](#2-directory-categories) · [3. Hidden Directory Conventions](#3-hidden-directory-conventions) · [4. Visible Directory Conventions](#4-visible-directory-conventions) · [5. Placement Decision Tree](#5-placement-decision-tree) · [6. File Naming Conventions](#6-file-naming-conventions)
+- [1. Overview](#1-overview)
+- [2. Directory Categories](#2-directory-categories)
+- [3. Hidden Directory Conventions](#3-hidden-directory-conventions)
+- [4. Visible Directory Conventions](#4-visible-directory-conventions)
+- [5. Placement Decision Tree](#5-placement-decision-tree)
+- [6. File Naming Conventions](#6-file-naming-conventions)
 
 ---
 

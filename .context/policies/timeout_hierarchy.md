@@ -1,4 +1,4 @@
-# SAGE Timeout Hierarchy
+﻿# SAGE Timeout Hierarchy
 
 > SAGE Knowledge Base specific timeout configuration (T1-T5 levels)
 >
@@ -8,7 +8,12 @@
 
 ## Table of Contents
 
-[1. Five-Level Hierarchy](#1-five-level-hierarchy) · [2. Timeout Flow](#2-timeout-flow) · [3. Fallback Strategies](#3-fallback-strategies) · [4. Configuration](#4-configuration) · [5. Implementation Guidelines](#5-implementation-guidelines) · [6. Related Patterns](#6-related-patterns)
+- [1. Five-Level Hierarchy](#1-five-level-hierarchy)
+- [2. Timeout Flow](#2-timeout-flow)
+- [3. Fallback Strategies](#3-fallback-strategies)
+- [4. Configuration](#4-configuration)
+- [5. Implementation Guidelines](#5-implementation-guidelines)
+- [6. Related Patterns](#6-related-patterns)
 
 ---
 

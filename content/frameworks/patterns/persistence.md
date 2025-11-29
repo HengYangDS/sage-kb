@@ -1,4 +1,4 @@
-# Data Persistence Patterns
+﻿# Data Persistence Patterns
 
 > Universal patterns for data lifecycle, retention, and cleanup
 
@@ -6,7 +6,12 @@
 
 ## Table of Contents
 
-[1. Data Lifecycle](#1-data-lifecycle) · [2. Retention Strategies](#2-retention-strategies) · [3. Priority Levels](#3-priority-levels) · [4. Cleanup Patterns](#4-cleanup-patterns) · [5. Implementation](#5-implementation) · [6. Best Practices](#6-best-practices)
+- [1. Data Lifecycle](#1-data-lifecycle)
+- [2. Retention Strategies](#2-retention-strategies)
+- [3. Priority Levels](#3-priority-levels)
+- [4. Cleanup Patterns](#4-cleanup-patterns)
+- [5. Implementation](#5-implementation)
+- [6. Best Practices](#6-best-practices)
 
 ---
 

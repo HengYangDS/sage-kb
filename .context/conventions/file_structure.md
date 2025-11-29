@@ -1,4 +1,4 @@
-# SAGE File Structure Conventions
+﻿# SAGE File Structure Conventions
 
 > Project-specific file organization standards for SAGE Knowledge Base
 
@@ -6,7 +6,15 @@
 
 ## Table of Contents
 
-[1. Directory Layout](#1-directory-layout) · [2. Knowledge Organization](#2-knowledge-organization) · [3. Source Code Organization](#3-source-code-organization) · [4. Test Organization](#4-test-organization) · [5. Configuration Files](#5-configuration-files) · [6. Documentation](#6-documentation) · [7. Source Code Packages](#7-source-code-packages) · [8. Module Structure](#8-module-structure) · [9. Special Files](#9-special-files)
+- [1. Directory Layout](#1-directory-layout)
+- [2. Knowledge Organization](#2-knowledge-organization)
+- [3. Source Code Organization](#3-source-code-organization)
+- [4. Test Organization](#4-test-organization)
+- [5. Configuration Files](#5-configuration-files)
+- [6. Documentation](#6-documentation)
+- [7. Source Code Packages](#7-source-code-packages)
+- [8. Module Structure](#8-module-structure)
+- [9. Special Files](#9-special-files)
 
 ---
 

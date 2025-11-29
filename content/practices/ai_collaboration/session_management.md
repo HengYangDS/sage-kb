@@ -1,4 +1,4 @@
-# Session Management
+﻿# Session Management
 
 > Best practices for managing AI collaboration sessions effectively
 
@@ -6,7 +6,12 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Session Lifecycle](#2-session-lifecycle) · [3. Context Preservation](#3-context-preservation) · [4. State Tracking](#4-state-tracking) · [5. Handoff Strategies](#5-handoff-strategies) · [6. Recovery Patterns](#6-recovery-patterns)
+- [1. Overview](#1-overview)
+- [2. Session Lifecycle](#2-session-lifecycle)
+- [3. Context Preservation](#3-context-preservation)
+- [4. State Tracking](#4-state-tracking)
+- [5. Handoff Strategies](#5-handoff-strategies)
+- [6. Recovery Patterns](#6-recovery-patterns)
 
 ---
 

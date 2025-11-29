@@ -1,4 +1,4 @@
-# Design Documents Navigation
+﻿# Design Documents Navigation
 
 > Architecture and design decisions for SAGE Knowledge Base
 
@@ -6,7 +6,9 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Core Architecture](#2-core-architecture) · [3. Detailed Design](#3-detailed-design)
+- [1. Overview](#1-overview)
+- [2. Core Architecture](#2-core-architecture)
+- [3. Detailed Design](#3-detailed-design)
 
 ---
 

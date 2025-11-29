@@ -1,4 +1,4 @@
-# Knowledge Capture
+﻿# Knowledge Capture
 
 > When and how to document knowledge during AI collaboration
 
@@ -6,7 +6,12 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Capture Triggers](#2-capture-triggers) · [3. Knowledge Types](#3-knowledge-types) · [4. Capture Process](#4-capture-process) · [5. Storage Locations](#5-storage-locations) · [6. Quality Standards](#6-quality-standards)
+- [1. Overview](#1-overview)
+- [2. Capture Triggers](#2-capture-triggers)
+- [3. Knowledge Types](#3-knowledge-types)
+- [4. Capture Process](#4-capture-process)
+- [5. Storage Locations](#5-storage-locations)
+- [6. Quality Standards](#6-quality-standards)
 
 ---
 
@@ -336,7 +341,7 @@ touch .history/conversations/$(date +%Y-%m-%d)-topic.md
 ## Related
 
 - `practices/ai_collaboration/session_management.md` — Session handling
-- `practices/documentation/DOCUMENTATION_STANDARDS.md` — Documentation standards (SSOT)
+- `practices/documentation/documentation_standards.md` — Documentation standards (SSOT)
 - `templates/adr.md` — ADR template
 - `.context/intelligence/patterns.md` — AI patterns
 

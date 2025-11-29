@@ -1,4 +1,4 @@
-# Quality Assurance Guidelines
+﻿# Quality Assurance Guidelines
 
 > Quality metrics, review processes, continuous improvement
 
@@ -6,7 +6,12 @@
 
 ## Table of Contents
 
-[1. Quality Dimensions](#1-quality-dimensions) · [2. Code Quality Metrics](#2-code-quality-metrics) · [3. Review Process](#3-review-process) · [4. Testing Strategy](#4-testing-strategy) · [5. Continuous Improvement](#5-continuous-improvement) · [6. Quality Checklist](#6-quality-checklist)
+- [1. Quality Dimensions](#1-quality-dimensions)
+- [2. Code Quality Metrics](#2-code-quality-metrics)
+- [3. Review Process](#3-review-process)
+- [4. Testing Strategy](#4-testing-strategy)
+- [5. Continuous Improvement](#5-continuous-improvement)
+- [6. Quality Checklist](#6-quality-checklist)
 
 ---
 

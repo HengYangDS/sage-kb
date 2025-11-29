@@ -1,4 +1,4 @@
-# Knowledge Base Navigation
+﻿# Knowledge Base Navigation
 
 > Entry point for SAGE knowledge content
 
@@ -6,7 +6,10 @@
 
 ## Table of Contents
 
-[1. Directory Structure](#1-directory-structure) · [2. Layer Overview](#2-layer-overview) · [3. Complete File List](#3-complete-file-list) · [4. Navigation Pattern](#4-navigation-pattern)
+- [1. Directory Structure](#1-directory-structure)
+- [2. Layer Overview](#2-layer-overview)
+- [3. Complete File List](#3-complete-file-list)
+- [4. Navigation Pattern](#4-navigation-pattern)
 
 ---
 

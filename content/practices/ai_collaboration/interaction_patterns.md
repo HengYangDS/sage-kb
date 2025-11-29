@@ -1,4 +1,4 @@
-# AI Collaboration Patterns
+﻿# AI Collaboration Patterns
 
 > Successful interaction patterns for human-AI collaboration
 
@@ -6,7 +6,11 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Interaction Patterns](#2-interaction-patterns) · [3. Knowledge Capture Patterns](#3-knowledge-capture-patterns) · [4. Optimization Strategies](#4-optimization-strategies) · [5. Anti-Patterns](#5-anti-patterns)
+- [1. Overview](#1-overview)
+- [2. Interaction Patterns](#2-interaction-patterns)
+- [3. Knowledge Capture Patterns](#3-knowledge-capture-patterns)
+- [4. Optimization Strategies](#4-optimization-strategies)
+- [5. Anti-Patterns](#5-anti-patterns)
 
 ---
 

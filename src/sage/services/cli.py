@@ -415,8 +415,13 @@ def info() -> None:
 def validate(
     path: str = typer.Argument(".", help="Path to validate"),
     fix: bool = typer.Option(False, "--fix", help="Auto-fix issues"),
+    check_links: bool = typer.Option(True, "--links/--no-links", help="Check links"),
+    check_quality: bool = typer.Option(
+        True, "--quality/--no-quality", help="Check quality"
+    ),
+    min_score: int = typer.Option(70, "--min-score", help="Minimum quality score"),
 ) -> None:
-    """Validate knowledge base structure."""
+    """Validate knowledge base structure, links, and quality."""
     loader = get_loader()
     kb_path = Path(path) if path != "." else loader.kb_path
 
@@ -426,6 +431,11 @@ def validate(
 
     issues = []
     checks_passed = 0
+
+    # ==========================================================================
+    # Phase 1: Structure Validation
+    # ==========================================================================
+    console.print("\n[bold]📁 Structure Check[/bold]")
 
     # Check required directories
     required_dirs = [
@@ -465,11 +475,131 @@ def validate(
             console.print(f"[red]✗[/red] {file_name} [dim](missing)[/dim]")
             issues.append(f"Missing file: {file_name}")
 
+    # ==========================================================================
+    # Phase 2: Link Validation
+    # ==========================================================================
+    if check_links:
+        console.print("\n[bold]🔗 Link Check[/bold]")
+        try:
+            from sage.capabilities.checkers.links import LinkChecker
+
+            with Progress(
+                SpinnerColumn(),
+                TextColumn("[progress.description]{task.description}"),
+                console=console,
+            ) as progress:
+                progress.add_task("Checking links...", total=None)
+                checker = LinkChecker(kb_path=kb_path)
+                report = checker.check_all()
+
+            console.print(
+                f"  Total links: {report.total_links}, "
+                f"Valid: [green]{report.valid_count}[/green], "
+                f"Broken: [red]{report.broken_count}[/red], "
+                f"Warnings: [yellow]{report.warning_count}[/yellow]"
+            )
+
+            if report.broken_count > 0:
+                console.print(f"\n[red]  Broken links ({report.broken_count}):[/red]")
+                for r in report.results:
+                    if r.status.value == "broken":
+                        console.print(
+                            f"    [dim]{r.source_file}:{r.line_number}[/dim] → "
+                            f"[red]{r.link_target}[/red]"
+                        )
+                        issues.append(
+                            f"Broken link in {r.source_file}:{r.line_number}"
+                        )
+
+            if report.warning_count > 0:
+                console.print(
+                    f"\n[yellow]  Warnings ({report.warning_count}):[/yellow]"
+                )
+                for r in report.results:
+                    if r.status.value == "warning":
+                        console.print(
+                            f"    [dim]{r.source_file}:{r.line_number}[/dim] → "
+                            f"[yellow]{r.message}[/yellow]"
+                        )
+
+            if report.broken_count == 0:
+                console.print("[green]  ✓ All links valid[/green]")
+                checks_passed += 1
+
+        except ImportError as e:
+            console.print(f"[yellow]  ⚠ Link checker unavailable: {e}[/yellow]")
+
+    # ==========================================================================
+    # Phase 3: Quality Analysis
+    # ==========================================================================
+    if check_quality:
+        console.print("\n[bold]📊 Quality Analysis[/bold]")
+        try:
+            from sage.capabilities.analyzers.quality import QualityAnalyzer
+
+            with Progress(
+                SpinnerColumn(),
+                TextColumn("[progress.description]{task.description}"),
+                console=console,
+            ) as progress:
+                progress.add_task("Analyzing quality...", total=None)
+                analyzer = QualityAnalyzer()
+                results = analyzer.analyze_directory(kb_path / "content")
+
+            if results:
+                scores = [r.overall for r in results]
+                avg_score = sum(scores) / len(scores)
+                low_quality = [r for r in results if r.overall < min_score]
+
+                console.print(
+                    f"  Files analyzed: {len(results)}, "
+                    f"Average score: [cyan]{avg_score:.1f}[/cyan]/100"
+                )
+
+                if low_quality:
+                    console.print(
+                        f"\n[yellow]  Files below threshold "
+                        f"({min_score}) ({len(low_quality)}):[/yellow]"
+                    )
+                    # Sort by score ascending
+                    for r in sorted(low_quality, key=lambda x: x.overall)[:10]:
+                        grade_color = (
+                            "red" if r.overall < 50 else
+                            "yellow" if r.overall < 70 else "green"
+                        )
+                        console.print(
+                            f"    [{grade_color}]{r.overall:.0f}[/{grade_color}] "
+                            f"[dim]{r.file_path}[/dim]"
+                        )
+                        for issue in r.issues[:3]:
+                            console.print(f"      [dim]• {issue}[/dim]")
+                        issues.append(
+                            f"Low quality ({r.overall:.0f}): {r.file_path}"
+                        )
+                    if len(low_quality) > 10:
+                        console.print(
+                            f"    [dim]... and {len(low_quality) - 10} more[/dim]"
+                        )
+                else:
+                    console.print(
+                        f"[green]  ✓ All files meet quality threshold "
+                        f"({min_score})[/green]"
+                    )
+                    checks_passed += 1
+            else:
+                console.print("[yellow]  No files to analyze[/yellow]")
+
+        except ImportError as e:
+            console.print(f"[yellow]  ⚠ Quality analyzer unavailable: {e}[/yellow]")
+
+    # ==========================================================================
     # Summary
-    console.print()
+    # ==========================================================================
+    console.print("\n" + "=" * 50)
     if issues:
         console.print(
-            f"[yellow]⚠ {len(issues)} issues found, {checks_passed} checks passed[/yellow]"
+            f"[yellow]⚠ {len(issues)} issues found, "
+            f"{checks_passed} checks passed[/yellow]"
         )
         if fix:
             console.print("[green]Auto-fix applied where possible[/green]")

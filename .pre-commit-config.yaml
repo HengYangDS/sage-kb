@@ -71,7 +71,7 @@ repos:
         files: ^src/
 
   # ===========================================================================
-  # Documentation
+  # Documentation - External Tools
   # ===========================================================================
   - repo: https://github.com/pycqa/doc8
     rev: v1.1.2
@@ -79,6 +79,66 @@ repos:
       - id: doc8
         args: [ --max-line-length=120 ]
         files: ^docs/
+
+  # ===========================================================================
+  # SAGE Standards - Documentation & Architecture
+  # ===========================================================================
+  - repo: local
+    hooks:
+      # SAGE Document Format Validation
+      - id: sage-doc-format
+        name: SAGE Document Format
+        entry: python -m tools.dev_scripts.validate_format
+        language: python
+        types: [ markdown ]
+        files: ^(content|docs|\.context)/
+        pass_filenames: false
+
+      # SAGE Link Checker
+      - id: sage-link-check
+        name: SAGE Link Checker
+        entry: python -m tools.dev_scripts.check_links
+        language: python
+        types: [ markdown ]
+        pass_filenames: false
+
+      # SAGE Architecture Checker
+      - id: sage-architecture
+        name: SAGE Architecture Check
+        entry: python -m tools.dev_scripts.check_architecture
+        language: python
+        types: [ python ]
+        files: ^src/sage/
+        pass_filenames: false
+
+      # SAGE Index Checker
+      - id: sage-index-check
+        name: SAGE Index Check
+        entry: python -m tools.dev_scripts.generate_index --check
+        language: python
+        types: [ markdown ]
+        pass_filenames: false
+
+  # ===========================================================================
+  # SAGE Session Tracking (Git Hooks)
+  # ===========================================================================
+  - repo: local
+    hooks:
+      # Post-commit session tracking
+      - id: sage-session-track
+        name: SAGE Session Tracking
+        entry: python -m tools.hooks.post_commit
+        language: python
+        stages: [ post-commit ]
+        always_run: true
+
+      # Pre-push session summary
+      - id: sage-session-summary
+        name: SAGE Session Summary
+        entry: python -m tools.hooks.pre_push
+        language: python
+        stages: [ pre-push ]
+        always_run: true
 
   # ===========================================================================
   # Commit Message

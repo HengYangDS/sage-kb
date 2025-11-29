@@ -1,4 +1,4 @@
-# Secrets Management
+﻿# Secrets Management
 
 > Secure handling of sensitive data, credentials, and encryption keys
 
@@ -6,7 +6,12 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Types of Secrets](#2-types-of-secrets) · [3. Storage Solutions](#3-storage-solutions) · [4. Best Practices](#4-best-practices) · [5. Implementation Patterns](#5-implementation-patterns) · [6. Rotation Strategies](#6-rotation-strategies)
+- [1. Overview](#1-overview)
+- [2. Types of Secrets](#2-types-of-secrets)
+- [3. Storage Solutions](#3-storage-solutions)
+- [4. Best Practices](#4-best-practices)
+- [5. Implementation Patterns](#5-implementation-patterns)
+- [6. Rotation Strategies](#6-rotation-strategies)
 
 ---
 

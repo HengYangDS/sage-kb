@@ -1,4 +1,4 @@
-# Knowledge Extraction Patterns
+﻿# Knowledge Extraction Patterns
 
 > Methods for extracting reusable knowledge from experience
 
@@ -6,7 +6,12 @@
 
 ## Table of Contents
 
-[1. Extraction Types](#1-extraction-types) · [2. Extraction Process](#2-extraction-process) · [3. Pattern Extraction](#3-pattern-extraction) · [4. Decision Extraction](#4-decision-extraction) · [5. Learning Extraction](#5-learning-extraction) · [6. Best Practices](#6-best-practices)
+- [1. Extraction Types](#1-extraction-types)
+- [2. Extraction Process](#2-extraction-process)
+- [3. Pattern Extraction](#3-pattern-extraction)
+- [4. Decision Extraction](#4-decision-extraction)
+- [5. Learning Extraction](#5-learning-extraction)
+- [6. Best Practices](#6-best-practices)
 
 ---
 
@@ -151,7 +156,7 @@
 ## Related
 
 - `content/practices/ai_collaboration/context_management.md` — Managing context
-- `content/practices/documentation/DOCUMENTATION_STANDARDS.md` — Documentation standards (SSOT)
+- `content/practices/documentation/documentation_standards.md` — Documentation standards (SSOT)
 
 ---
 

@@ -1,4 +1,4 @@
-# Shell Script Guidelines
+﻿# Shell Script Guidelines
 
 > Best practices for Bash and shell scripting
 
@@ -6,7 +6,14 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Script Structure](#2-script-structure) · [3. Variables](#3-variables) · [4. Control Flow](#4-control-flow) · [5. Functions](#5-functions) · [6. Error Handling](#6-error-handling) · [7. Best Practices](#7-best-practices) · [8. Common Patterns](#8-common-patterns)
+- [1. Overview](#1-overview)
+- [2. Script Structure](#2-script-structure)
+- [3. Variables](#3-variables)
+- [4. Control Flow](#4-control-flow)
+- [5. Functions](#5-functions)
+- [6. Error Handling](#6-error-handling)
+- [7. Best Practices](#7-best-practices)
+- [8. Common Patterns](#8-common-patterns)
 
 ---
 

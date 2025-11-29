@@ -1,4 +1,4 @@
-# MCP Integration Scenario Context
+﻿# MCP Integration Scenario Context
 
 > Pre-configured context for Model Context Protocol integration development
 
@@ -6,7 +6,14 @@
 
 ## Table of Contents
 
-[1. Scenario Profile](#1-scenario-profile) · [2. Relevant Knowledge](#2-relevant-knowledge) · [3. Project Structure](#3-project-structure) · [4. MCP Architecture](#4-mcp-architecture) · [5. Implementation Patterns](#5-implementation-patterns) · [6. Common Tasks](#6-common-tasks) · [7. Autonomy Calibration](#7-autonomy-calibration) · [8. Quick Commands](#8-quick-commands)
+- [1. Scenario Profile](#1-scenario-profile)
+- [2. Relevant Knowledge](#2-relevant-knowledge)
+- [3. Project Structure](#3-project-structure)
+- [4. MCP Architecture](#4-mcp-architecture)
+- [5. Implementation Patterns](#5-implementation-patterns)
+- [6. Common Tasks](#6-common-tasks)
+- [7. Autonomy Calibration](#7-autonomy-calibration)
+- [8. Quick Commands](#8-quick-commands)
 
 ---
 

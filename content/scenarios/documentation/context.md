@@ -1,4 +1,4 @@
-# Documentation Scenario Context
+﻿# Documentation Scenario Context
 
 > Pre-configured context for technical writing and documentation projects
 
@@ -6,7 +6,15 @@
 
 ## Table of Contents
 
-[1. Scenario Profile](#1-scenario-profile) · [2. Relevant Knowledge](#2-relevant-knowledge) · [3. Project Structure](#3-project-structure) · [4. Document Types](#4-document-types) · [5. Writing Patterns](#5-writing-patterns) · [6. Quality Standards](#6-quality-standards) · [7. Common Tasks](#7-common-tasks) · [8. Autonomy Calibration](#8-autonomy-calibration) · [9. Quick Commands](#9-quick-commands)
+- [1. Scenario Profile](#1-scenario-profile)
+- [2. Relevant Knowledge](#2-relevant-knowledge)
+- [3. Project Structure](#3-project-structure)
+- [4. Document Types](#4-document-types)
+- [5. Writing Patterns](#5-writing-patterns)
+- [6. Quality Standards](#6-quality-standards)
+- [7. Common Tasks](#7-common-tasks)
+- [8. Autonomy Calibration](#8-autonomy-calibration)
+- [9. Quick Commands](#9-quick-commands)
 
 ---
 
@@ -24,10 +32,10 @@ autonomy_default: L4
 
 ## 2. Relevant Knowledge
 
-| Priority      | Files                                                                                         |
-|---------------|-----------------------------------------------------------------------------------------------|
-| **Auto-Load** | `core/principles.md` · `guidelines/documentation.md` · `practices/documentation/DOCUMENTATION_STANDARDS.md` |
-| **On-Demand** | `practices/documentation/knowledge_organization.md` · `templates/index.md`                    |
+| Priority      | Files                                                                                                       |
+|---------------|-------------------------------------------------------------------------------------------------------------|
+| **Auto-Load** | `core/principles.md` · `guidelines/documentation.md` · `practices/documentation/documentation_standards.md` |
+| **On-Demand** | `practices/documentation/knowledge_organization.md` · `templates/index.md`                                  |
 
 ---
 
@@ -292,7 +300,7 @@ def process_data(
 ## Related
 
 - `guidelines/documentation.md` — Documentation guidelines
-- `practices/documentation/DOCUMENTATION_STANDARDS.md` — Documentation standards (SSOT)
+- `practices/documentation/documentation_standards.md` — Documentation standards (SSOT)
 - `practices/documentation/knowledge_organization.md` — Knowledge organization
 - `frameworks/cognitive/information_density.md` — Information density
 

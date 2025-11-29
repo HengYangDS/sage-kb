@@ -1,4 +1,4 @@
-# Performance Framework
+﻿# Performance Framework
 
 > Optimization patterns and best practices for high-performance systems
 
@@ -6,7 +6,10 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Contents](#2-contents) · [3. Performance Principles](#3-performance-principles) · [4. Quick Reference](#4-quick-reference)
+- [1. Overview](#1-overview)
+- [2. Contents](#2-contents)
+- [3. Performance Principles](#3-performance-principles)
+- [4. Quick Reference](#4-quick-reference)
 
 ---
 

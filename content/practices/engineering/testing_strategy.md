@@ -1,4 +1,4 @@
-# Testing Strategy
+﻿# Testing Strategy
 
 > Universal testing layers, organization, and best practices
 
@@ -6,7 +6,13 @@
 
 ## Table of Contents
 
-[1. Test Pyramid](#1-test-pyramid) · [2. Test Types](#2-test-types) · [3. Test Naming](#3-test-naming) · [4. Test Structure](#4-test-structure) · [5. Fixtures](#5-fixtures) · [6. Mocking](#6-mocking) · [7. Coverage](#7-coverage)
+- [1. Test Pyramid](#1-test-pyramid)
+- [2. Test Types](#2-test-types)
+- [3. Test Naming](#3-test-naming)
+- [4. Test Structure](#4-test-structure)
+- [5. Fixtures](#5-fixtures)
+- [6. Mocking](#6-mocking)
+- [7. Coverage](#7-coverage)
 
 ---
 

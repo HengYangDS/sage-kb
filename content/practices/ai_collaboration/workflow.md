@@ -1,4 +1,4 @@
-# AI Collaboration Workflow Practices
+﻿# AI Collaboration Workflow Practices
 
 > Practical workflows for effective human-AI collaboration
 
@@ -6,7 +6,12 @@
 
 ## Table of Contents
 
-[1. Daily Workflow](#1-daily-workflow) · [2. Task Workflow](#2-task-workflow) · [3. Session Management](#3-session-management) · [4. Communication Patterns](#4-communication-patterns) · [5. Error Recovery](#5-error-recovery) · [6. Best Practices](#6-best-practices)
+- [1. Daily Workflow](#1-daily-workflow)
+- [2. Task Workflow](#2-task-workflow)
+- [3. Session Management](#3-session-management)
+- [4. Communication Patterns](#4-communication-patterns)
+- [5. Error Recovery](#5-error-recovery)
+- [6. Best Practices](#6-best-practices)
 
 ---
 

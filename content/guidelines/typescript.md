@@ -1,4 +1,4 @@
-# TypeScript Guidelines
+﻿# TypeScript Guidelines
 
 > TypeScript and JavaScript development standards
 
@@ -6,7 +6,13 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Type System](#2-type-system) · [3. Code Style](#3-code-style) · [4. Patterns](#4-patterns) · [5. React Patterns](#5-react-patterns) · [6. Testing](#6-testing) · [7. Tooling](#7-tooling)
+- [1. Overview](#1-overview)
+- [2. Type System](#2-type-system)
+- [3. Code Style](#3-code-style)
+- [4. Patterns](#4-patterns)
+- [5. React Patterns](#5-react-patterns)
+- [6. Testing](#6-testing)
+- [7. Tooling](#7-tooling)
 
 ---
 

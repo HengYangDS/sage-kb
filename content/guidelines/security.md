@@ -1,4 +1,4 @@
-# Security Guidelines
+﻿# Security Guidelines
 
 > Security best practices for SAGE Knowledge Base development
 
@@ -6,7 +6,15 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Secret Management](#2-secret-management) · [3. Input Validation](#3-input-validation) · [4. Output Sanitization](#4-output-sanitization) · [5. Dependency Security](#5-dependency-security) · [6. Logging Security](#6-logging-security) · [7. API Security](#7-api-security) · [8. File System Security](#8-file-system-security) · [9. Security Checklist](#9-security-checklist)
+- [1. Overview](#1-overview)
+- [2. Secret Management](#2-secret-management)
+- [3. Input Validation](#3-input-validation)
+- [4. Output Sanitization](#4-output-sanitization)
+- [5. Dependency Security](#5-dependency-security)
+- [6. Logging Security](#6-logging-security)
+- [7. API Security](#7-api-security)
+- [8. File System Security](#8-file-system-security)
+- [9. Security Checklist](#9-security-checklist)
 
 ---
 

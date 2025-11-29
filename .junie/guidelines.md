@@ -1,22 +1,40 @@
-# Project Guidelines
+﻿# Project Guidelines
 
-> **Purpose**: Primary entry point for JetBrains Junie AI collaboration.
-> **Compatibility**: Junie v2024.3+, MCP v1.0+
-> **Schema Version**: 1.0
+> Primary entry point for JetBrains Junie AI collaboration
 
 ---
 
-## 🔄 About This File
+## Table of Contents
+
+- [1. About This File](#1-about-this-file)
+- [2. AI Collaboration Rules](#2-ai-collaboration-rules)
+- [3. Timeout Hierarchy](#3-timeout-hierarchy)
+- [4. Coding Standards](#4-coding-standards)
+- [5. Documentation Standards](#5-documentation-standards)
+- [6. Directory Structure](#6-directory-structure)
+- [7. References](#7-references)
+- [8. Template Information](#8-template-information)
+
+---
+
+## 1. About This File
 
 This file contains **generic AI collaboration rules** that apply to any project.
 Project-specific information is defined in separate files:
 
-- **Project Variables**: `project.yaml` — Project identity, tech stack, commands
-- **Project Guidelines**: `project-guidelines.md` — Project-specific documentation
+- **Project Config**: `project/config.yaml` — Project identity, tech stack, commands
+- **Project Quick Reference**: `project/quickref.md` — Project-specific documentation
+
+Generic configuration files are located in:
+
+- **Settings**: `generic/config.yaml` — Junie settings
+- **Quick Reference**: `generic/quickref.md` — Quick lookup card
+- **MCP Config**: `mcp/mcp.json` — MCP server configuration
+- **Configuration Docs**: `configuration/` — Junie configuration guides
 
 ---
 
-## 🤖 AI Collaboration Rules
+## 2. AI Collaboration Rules
 
 ### Autonomy Levels
 
@@ -100,7 +118,7 @@ For complex decisions, simulate a **Level 5 Expert Committee** review with multi
 
 ---
 
-## ⏱️ Timeout Hierarchy
+## 3. Timeout Hierarchy
 
 When implementing time-sensitive operations, consider a tiered timeout approach:
 
@@ -116,7 +134,7 @@ When implementing time-sensitive operations, consider a tiered timeout approach:
 
 ---
 
-## 📐 Coding Standards
+## 4. Coding Standards
 
 ### General Principles
 
@@ -134,7 +152,7 @@ When implementing time-sensitive operations, consider a tiered timeout approach:
 
 ---
 
-## 📝 Documentation Standards
+## 5. Documentation Standards
 
 ### Key Principles
 
@@ -155,7 +173,7 @@ When implementing time-sensitive operations, consider a tiered timeout approach:
 
 ---
 
-## 📁 Standard Directory Structure
+## 6. Directory Structure
 
 A well-organized project typically includes:
 
@@ -183,34 +201,52 @@ project-root/
 
 ---
 
-## 🔗 References
+## 7. References
 
 For project-specific information, see:
 
-- **Project Variables**: `project.yaml`
-- **Project Guidelines**: `project-guidelines.md`
-- **Quick Reference**: `quickref.md`
-- **Configuration**: `config.yaml`
+- **Project Config**: `project/config.yaml`
+- **Project Quick Reference**: `project/quickref.md`
+
+For generic configuration, see:
+
+- **Quick Reference**: `generic/quickref.md`
+- **Configuration**: `generic/config.yaml`
 - **MCP Settings**: `mcp/mcp.json`
+- **Configuration Guides**: `configuration/`
 
 ---
 
-## 📋 Template Information
+## 8. Template Information
 
-This `.junie/` configuration follows the **Thin Layer** principle:
+This `.junie/` configuration follows the **Thin Layer** principle with clear separation:
+
+### Root Files (🔄 Generic)
 
 | File | Purpose |
 |------|---------|
 | `README.md` | Directory documentation |
 | `guidelines.md` | Generic AI collaboration rules (this file) |
-| `config.yaml` | Junie-specific settings |
-| `quickref.md` | Quick reference card |
-| `project.yaml` | Project variables definition |
-| `project-guidelines.md` | Project-specific guidelines |
-| `mcp/mcp.json` | MCP server configuration |
 
-**Reusability**: Files marked as 🔄 Generic can be copied to new projects without modification.
-Files marked as 📌 Project must be customized for each project.
+### Root Directories
+
+| Directory | Type | Purpose |
+|-----------|------|---------|
+| `generic/` | 🔄 | Generic settings (config.yaml, quickref.md) |
+| `mcp/` | 🔄 | MCP server configuration |
+| `configuration/` | 🔄 | Junie configuration guides |
+| `project/` | 📌 | Project-specific files |
+
+### Project Directory (`project/`) — 📌 Customize
+
+| File | Purpose |
+|------|---------|
+| `config.yaml` | Project variables definition |
+| `quickref.md` | Project-specific quick reference |
+
+**Reusability**: 
+- 🔄 Generic files can be copied to new projects without modification
+- 📌 Project files must be customized for each project
 
 ---
 

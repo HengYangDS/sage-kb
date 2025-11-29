@@ -1,4 +1,4 @@
-# Integration Patterns
+﻿# Integration Patterns
 
 > Patterns for integrating SAGE with AI tools, IDEs, and CI/CD systems
 
@@ -6,7 +6,14 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. AI Tool Integration](#2-ai-tool-integration) · [3. IDE Integration](#3-ide-integration) · [4. CI/CD Integration](#4-cicd-integration) · [5. API Integration](#5-api-integration) · [6. Plugin Integration](#6-plugin-integration) · [7. Data Integration](#7-data-integration) · [8. Best Practices](#8-best-practices)
+- [1. Overview](#1-overview)
+- [2. AI Tool Integration](#2-ai-tool-integration)
+- [3. IDE Integration](#3-ide-integration)
+- [4. CI/CD Integration](#4-cicd-integration)
+- [5. API Integration](#5-api-integration)
+- [6. Plugin Integration](#6-plugin-integration)
+- [7. Data Integration](#7-data-integration)
+- [8. Best Practices](#8-best-practices)
 
 ---
 

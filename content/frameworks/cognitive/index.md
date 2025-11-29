@@ -1,4 +1,4 @@
-# Cognitive Framework
+﻿# Cognitive Framework
 
 > Cognitive patterns for AI reasoning and decision-making
 
@@ -6,7 +6,9 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Documents](#2-documents) · [3. Key Concepts](#3-key-concepts)
+- [1. Overview](#1-overview)
+- [2. Documents](#2-documents)
+- [3. Key Concepts](#3-key-concepts)
 
 ---
 

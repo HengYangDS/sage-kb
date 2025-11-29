@@ -1,4 +1,4 @@
-# Project Setup Templates
+﻿# Project Setup Templates
 
 > Ready-to-use templates for project initialization
 
@@ -6,7 +6,14 @@
 
 ## Table of Contents
 
-[1. Template Overview](#1-template-overview) · [2. Thin Layer](#2-thin-layer-junieguidelines-md) · [3. Python Project](#3-python-project) · [4. README Template](#4-readme-template) · [5. .gitignore Template](#5-gitignore-template) · [6. Docker Template](#6-docker-template) · [7. CI/CD Template](#7-cicd-template) · [8. Quick Setup Script](#8-quick-setup-script)
+- [1. Template Overview](#1-template-overview)
+- [2. Thin Layer](#2-thin-layer-junieguidelines-md)
+- [3. Python Project](#3-python-project)
+- [4. README Template](#4-readme-template)
+- [5. .gitignore Template](#5-gitignore-template)
+- [6. Docker Template](#6-docker-template)
+- [7. CI/CD Template](#7-cicd-template)
+- [8. Quick Setup Script](#8-quick-setup-script)
 
 ---
 

@@ -1,4 +1,4 @@
-# Default Behaviors and Calibration
+﻿# Default Behaviors and Calibration
 
 > Universal baseline behaviors and calibration parameters for AI collaboration
 
@@ -6,7 +6,12 @@
 
 ## Table of Contents
 
-[1. Loading Defaults](#1-loading-defaults) · [2. Timeout Defaults](#2-timeout-defaults) · [3. Autonomy Defaults](#3-autonomy-defaults) · [4. Override Conditions](#4-override-conditions) · [5. Response Structure](#5-response-structure) · [6. Fallback Behavior](#6-fallback-behavior)
+- [1. Loading Defaults](#1-loading-defaults)
+- [2. Timeout Defaults](#2-timeout-defaults)
+- [3. Autonomy Defaults](#3-autonomy-defaults)
+- [4. Override Conditions](#4-override-conditions)
+- [5. Response Structure](#5-response-structure)
+- [6. Fallback Behavior](#6-fallback-behavior)
 
 ---
 

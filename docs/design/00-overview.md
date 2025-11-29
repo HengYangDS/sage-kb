@@ -1,4 +1,4 @@
-# SAGE Knowledge Base - Design Overview
+﻿# SAGE Knowledge Base - Design Overview
 
 > Production-grade knowledge management system for AI-human collaboration
 
@@ -6,7 +6,14 @@
 
 ## Table of Contents
 
-[1. Project Summary](#1-project-summary) · [2. Design Philosophy](#2-design-philosophy) · [3. Expert Committee](#3-expert-committee) · [4. Document Navigation](#4-document-navigation) · [5. Key Metrics](#5-key-metrics) · [6. Implementation Progress](#6-implementation-progress) · [7. Technology Stack](#7-technology-stack) · [8. Quick Start](#8-quick-start)
+- [1. Project Summary](#1-project-summary)
+- [2. Design Philosophy](#2-design-philosophy)
+- [3. Expert Committee](#3-expert-committee)
+- [4. Document Navigation](#4-document-navigation)
+- [5. Key Metrics](#5-key-metrics)
+- [6. Implementation Progress](#6-implementation-progress)
+- [7. Technology Stack](#7-technology-stack)
+- [8. Quick Start](#8-quick-start)
 
 ---
 

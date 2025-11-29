@@ -1,4 +1,4 @@
-# Expert Committee Decision Templates
+﻿# Expert Committee Decision Templates
 
 > Ready-to-use decision prompts for multi-perspective analysis
 
@@ -6,7 +6,13 @@
 
 ## Table of Contents
 
-[1. Decision Level Selection](#1-decision-level-selection) · [2. L1 Quick Check](#2-l1-quick-check-2-3-experts) · [3. L2 Standard Review](#3-l2-standard-review-4-5-experts) · [4. L3 Deep Analysis](#4-l3-deep-analysis-6-8-experts) · [5. L4 Comprehensive Review](#5-l4-comprehensive-review-10-12-experts) · [6. L5 Full Committee](#6-l5-full-committee-24-experts) · [7. Usage Tips](#7-usage-tips)
+- [1. Decision Level Selection](#1-decision-level-selection)
+- [2. L1 Quick Check](#2-l1-quick-check-2-3-experts)
+- [3. L2 Standard Review](#3-l2-standard-review-4-5-experts)
+- [4. L3 Deep Analysis](#4-l3-deep-analysis-6-8-experts)
+- [5. L4 Comprehensive Review](#5-l4-comprehensive-review-10-12-experts)
+- [6. L5 Full Committee](#6-l5-full-committee-24-experts)
+- [7. Usage Tips](#7-usage-tips)
 
 ---
 

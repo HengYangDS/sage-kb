@@ -1,4 +1,4 @@
-# Quick Start Guide
+﻿# Quick Start Guide
 
 > Get up and running with SAGE Knowledge Base in 5 minutes
 
@@ -6,7 +6,11 @@
 
 ## Table of Contents
 
-[1. Installation](#1-installation) · [2. CLI Basics](#2-cli-basics) · [3. MCP Setup](#3-mcp-setup) · [4. Python Basics](#4-python-basics) · [5. Next Steps](#5-next-steps)
+- [1. Installation](#1-installation)
+- [2. CLI Basics](#2-cli-basics)
+- [3. MCP Setup](#3-mcp-setup)
+- [4. Python Basics](#4-python-basics)
+- [5. Next Steps](#5-next-steps)
 
 ---
 

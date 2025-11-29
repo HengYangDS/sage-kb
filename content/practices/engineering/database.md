@@ -1,4 +1,4 @@
-# Database Best Practices
+﻿# Database Best Practices
 
 > Guidelines for effective database design and usage
 
@@ -6,7 +6,10 @@
 
 ## Table of Contents
 
-[1. Design Principles](#1-design-principles) · [2. Query Optimization](#2-query-optimization) · [3. Connection Management](#3-connection-management) · [4. Data Integrity](#4-data-integrity)
+- [1. Design Principles](#1-design-principles)
+- [2. Query Optimization](#2-query-optimization)
+- [3. Connection Management](#3-connection-management)
+- [4. Data Integrity](#4-data-integrity)
 
 ---
 

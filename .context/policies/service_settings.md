@@ -1,4 +1,4 @@
-# Service Layer Configuration
+﻿# Service Layer Configuration
 
 > Configuration reference for CLI, MCP, and API services
 
@@ -6,7 +6,11 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. CLI Service](#2-cli-service) · [3. MCP Service](#3-mcp-service) · [4. API Service](#4-api-service) · [5. Common Settings](#5-common-settings)
+- [1. Overview](#1-overview)
+- [2. CLI Service](#2-cli-service)
+- [3. MCP Service](#3-mcp-service)
+- [4. API Service](#4-api-service)
+- [5. Common Settings](#5-common-settings)
 
 ---
 

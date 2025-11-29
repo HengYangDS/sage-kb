@@ -1,4 +1,4 @@
-# SAGE Code Patterns
+﻿# SAGE Code Patterns
 
 > Project-specific code patterns and idioms for SAGE Knowledge Base
 
@@ -6,7 +6,13 @@
 
 ## Table of Contents
 
-[1. Dependency Injection](#1-dependency-injection) · [2. Event Bus](#2-event-bus) · [3. Timeout Handling](#3-timeout-handling) · [4. Error Handling](#4-error-handling) · [5. Protocol Implementation](#5-protocol-implementation) · [6. Configuration](#6-configuration) · [7. Async Patterns](#7-async-patterns)
+- [1. Dependency Injection](#1-dependency-injection)
+- [2. Event Bus](#2-event-bus)
+- [3. Timeout Handling](#3-timeout-handling)
+- [4. Error Handling](#4-error-handling)
+- [5. Protocol Implementation](#5-protocol-implementation)
+- [6. Configuration](#6-configuration)
+- [7. Async Patterns](#7-async-patterns)
 
 ---
 

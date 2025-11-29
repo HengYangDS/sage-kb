@@ -1,4 +1,4 @@
-# Configuration Design
+﻿# Configuration Design
 
 > Modular configuration system with smart loading and graceful degradation
 
@@ -6,7 +6,13 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Configuration Priority](#2-configuration-priority) · [3. Configuration Files](#3-configuration-files) · [4. Configuration Sections](#4-configuration-sections) · [5. Fallback Content](#5-fallback-content) · [6. Configuration Loading](#6-configuration-loading) · [7. Best Practices](#7-best-practices)
+- [1. Overview](#1-overview)
+- [2. Configuration Priority](#2-configuration-priority)
+- [3. Configuration Files](#3-configuration-files)
+- [4. Configuration Sections](#4-configuration-sections)
+- [5. Fallback Content](#5-fallback-content)
+- [6. Configuration Loading](#6-configuration-loading)
+- [7. Best Practices](#7-best-practices)
 
 ---
 

@@ -1,4 +1,4 @@
-# Frequently Asked Questions
+﻿# Frequently Asked Questions
 
 > Common questions and answers about SAGE Knowledge Base
 
@@ -6,7 +6,13 @@
 
 ## Table of Contents
 
-[General](#general) · [Installation](#installation) · [CLI Usage](#cli-usage) · [MCP Integration](#mcp-integration) · [Configuration](#configuration) · [Performance](#performance) · [Development](#development)
+- [General](#general)
+- [Installation](#installation)
+- [CLI Usage](#cli-usage)
+- [MCP Integration](#mcp-integration)
+- [Configuration](#configuration)
+- [Performance](#performance)
+- [Development](#development)
 
 ---
 

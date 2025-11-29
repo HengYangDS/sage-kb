@@ -1,4 +1,4 @@
-# Design Framework
+﻿# Design Framework
 
 > Core design principles and axioms for SAGE
 
@@ -6,7 +6,9 @@
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Documents](#2-documents) · [3. Design Philosophy](#3-design-philosophy)
+- [1. Overview](#1-overview)
+- [2. Documents](#2-documents)
+- [3. Design Philosophy](#3-design-philosophy)
 
 ---
 

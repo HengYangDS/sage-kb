@@ -1,4 +1,4 @@
-# Batch Optimization Patterns
+﻿# Batch Optimization Patterns
 
 > Efficient processing of large-scale operations
 
@@ -6,7 +6,13 @@
 
 ## Table of Contents
 
-[1. Core Principles](#1-core-principles) · [2. Batch Size Guidelines](#2-batch-size-guidelines) · [3. Implementation Patterns](#3-implementation-patterns) · [4. Checkpoint Strategy](#4-checkpoint-strategy) · [5. Error Handling](#5-error-handling) · [6. Performance Optimization](#6-performance-optimization) · [7. Monitoring](#7-monitoring)
+- [1. Core Principles](#1-core-principles)
+- [2. Batch Size Guidelines](#2-batch-size-guidelines)
+- [3. Implementation Patterns](#3-implementation-patterns)
+- [4. Checkpoint Strategy](#4-checkpoint-strategy)
+- [5. Error Handling](#5-error-handling)
+- [6. Performance Optimization](#6-performance-optimization)
+- [7. Monitoring](#7-monitoring)
 
 ---
 
