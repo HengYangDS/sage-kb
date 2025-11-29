@@ -1,6 +1,6 @@
 # Default Behaviors and Calibration
 
-> **Load Priority**: Always Load (~150 tokens)  
+> **Load Priority**: Always Load  
 > **Purpose**: Establish baseline behaviors and calibration parameters  
 > **Configuration**: See `sage.yaml` for actual values (Single Source of Truth)
 
@@ -48,12 +48,15 @@
 
 ## ⚙️ Configuration Reference
 
-> **Single Source of Truth**: All actual configuration values are defined in `sage.yaml`.
+> **Single Source of Truth**: Configuration is modularized into separate files.
+> - Main entry: `sage.yaml`
+> - Modular configs: `config/*.yaml`
+>
 > This section describes the configuration structure and purpose only.
 
 ### Timeout Configuration
 
-> **Location**: `sage.yaml` → `timeout`
+> **Location**: `config/timeout.yaml` → `timeout`
 
 | Level | Key                       | Purpose                  |
 |-------|---------------------------|--------------------------|
@@ -67,14 +70,14 @@
 | -     | `global_max`              | Absolute maximum timeout |
 | -     | `default`                 | Default if not specified |
 
-**Additional Features** (see `sage.yaml`):
+**Additional Features** (see `config/timeout.yaml`):
 
 - `strategies.on_timeout` - Timeout handling strategies
 - `circuit_breaker` - Circuit breaker pattern configuration
 
 ### Loading Configuration
 
-> **Location**: `sage.yaml` → `loading`
+> **Location**: `config/loading.yaml` → `loading`
 
 | Key              | Purpose                            |
 |------------------|------------------------------------|
@@ -84,7 +87,7 @@
 
 ### Quality Thresholds
 
-> **Location**: `sage.yaml` → `quality`
+> **Location**: `config/quality.yaml` → `quality`
 
 | Category      | Keys                                                                          | Purpose              |
 |---------------|-------------------------------------------------------------------------------|----------------------|
@@ -92,17 +95,59 @@
 | Code Style    | `max_line_length`, `min_type_hint_coverage`                                   | Style enforcement    |
 | Documentation | `max_doc_line_length`                                                         | Markdown formatting  |
 
+### Token Budget Configuration
+
+> **Location**: `config/token_budget.yaml` → `token_budget`
+
+| Key               | Purpose                                     |
+|-------------------|---------------------------------------------|
+| `max_tokens`      | Model context window size                   |
+| `reserved_tokens` | Reserved for response generation            |
+| `thresholds.*`    | Warning level thresholds (CAUTION→OVERFLOW) |
+| `auto_actions.*`  | Automatic summarization and pruning         |
+
+**Warning Levels** (see `config/token_budget.yaml` for thresholds):
+
+- NORMAL: No action needed
+- CAUTION: Suggest summarization
+- WARNING: Recommend summarization
+- CRITICAL: Auto-summarize if enabled
+- OVERFLOW: Force pruning if enabled
+
+### Memory Configuration
+
+> **Location**: `config/memory.yaml` → `memory`
+
+| Key                           | Purpose                             |
+|-------------------------------|-------------------------------------|
+| `store.backend`               | Storage backend (file/redis/sqlite) |
+| `store.path`                  | Storage location for file backend   |
+| `session.auto_checkpoint`     | Auto-checkpoint on critical events  |
+| `session.checkpoint_interval` | Checkpoint interval in seconds      |
+| `session.max_history`         | Maximum conversation entries        |
+
+### Plugin Configuration
+
+> **Location**: `config/plugins.yaml` → `plugins`
+
+| Key                         | Purpose                         |
+|-----------------------------|---------------------------------|
+| `loader.cache_enabled`      | Enable content caching          |
+| `loader.cache_ttl`          | Cache time-to-live (seconds)    |
+| `bundled.content_cache.*`   | Content cache plugin settings   |
+| `bundled.semantic_search.*` | Semantic search plugin settings |
+
 ### Other Configuration Sections
 
-> **Location**: `sage.yaml`
+> **Location**: `config/` directory (modular configuration)
 
-| Section               | Purpose                            |
-|-----------------------|------------------------------------|
-| `guidelines.sections` | Alias mapping for guidelines       |
-| `triggers`            | Keyword-based context loading      |
-| `plugins`             | Plugin configuration (cache, etc.) |
-| `logging`             | Logging level, format, timestamps  |
-| `di`                  | Dependency injection container     |
+| Config File              | Section               | Purpose                                 |
+|--------------------------|-----------------------|-----------------------------------------|
+| `config/guidelines.yaml` | `guidelines.sections` | Alias mapping for guidelines            |
+| `config/triggers.yaml`   | `triggers`            | Keyword-based context loading           |
+| `config/logging.yaml`    | `logging`             | Logging level, format, timestamps       |
+| `config/di.yaml`         | `di`                  | Dependency injection container          |
+| `config/features.yaml`   | `features`            | Feature flags for optional capabilities |
 
 ---
 
@@ -178,20 +223,37 @@ Success Rate    Adjustment
 
 ## ⏱️ Fallback Behavior
 
-> **Location**: `sage.yaml` → `timeout.fallback`
+> **Location**: `config/timeout.yaml` → `timeout.fallback`
 
-When a timeout or error occurs, the system applies configured fallback actions:
+When a timeout or error occurs, the system applies configured fallback actions.
 
-| Situation      | Config Key       | Action                 |
-|----------------|------------------|------------------------|
-| Timeout (< 5s) | `timeout_short`  | Return partial results |
-| Timeout (> 5s) | `timeout_long`   | Return core principles |
-| File not found | `file_not_found` | Return helpful error   |
-| Parse error    | `parse_error`    | Return raw content     |
-| Network error  | `network_error`  | Use cached content     |
+**Fallback Situations** (see `config/timeout.yaml` for configured actions):
+
+| Situation       | Config Key       |
+|-----------------|------------------|
+| Timeout (short) | `timeout_short`  |
+| Timeout (long)  | `timeout_long`   |
+| File not found  | `file_not_found` |
+| Parse error     | `parse_error`    |
+| Network error   | `network_error`  |
 
 **Golden Rule**: Always return something useful, never hang or crash.
 
 ---
 
-*All configuration values are defined in `sage.yaml` (Single Source of Truth).*
+## 📚 Related Documentation
+
+| Document                                         | Purpose                         |
+|--------------------------------------------------|---------------------------------|
+| `sage.yaml`                                      | Main configuration entry point  |
+| `config/`                                        | Modular configuration directory |
+| `content/frameworks/design/design_axioms.md`     | Design axioms including SSOT    |
+| `content/frameworks/autonomy/levels.md`          | 6-level autonomy framework      |
+| `content/frameworks/timeout/hierarchy.md`        | Timeout strategies and recovery |
+| `content/frameworks/cognitive/expert_committee.md` | Decision-making framework       |
+| `docs/design/04-timeout-loading.md`              | Technical timeout design        |
+| `docs/design/05-plugin-memory.md`                | Plugin and memory architecture  |
+
+---
+
+*Configuration is modularized: `sage.yaml` (entry point) + `config/*.yaml` (modules).*
