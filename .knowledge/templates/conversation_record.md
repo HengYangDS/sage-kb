@@ -1,4 +1,4 @@
----
+﻿---
 version: "1.0"
 last_updated: "2025-11-30"
 status: published
@@ -203,3 +203,6 @@ Explored graceful degradation patterns when timeouts occur. Decided on partial c
 ---
 
 *Template from SAGE Knowledge Base*
+---
+
+*Part of SAGE Knowledge Base*

@@ -1,4 +1,4 @@
----
+﻿---
 version: "1.0"
 last_updated: "2025-11-30"
 status: published
@@ -85,4 +85,15 @@ tokens: ~450
 
 ---
 
+## Related
+
+- `.knowledge/scenarios/knowledge_management/context.md` — Knowledge management context
+- `.knowledge/practices/documentation/knowledge_organization.md` — Knowledge organization
+- `.knowledge/practices/documentation/documentation_standards.md` — Documentation standards
+
+---
+
 *SAGE Knowledge Base - Knowledge Management Checklist*
+---
+
+*Part of SAGE Knowledge Base*

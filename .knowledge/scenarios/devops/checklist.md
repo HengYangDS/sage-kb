@@ -1,4 +1,4 @@
----
+﻿---
 version: "1.0"
 last_updated: "2025-11-30"
 status: published
@@ -112,3 +112,6 @@ tokens: ~500
 ---
 
 *SAGE Knowledge Base - DevOps Checklist*
+---
+
+*Part of SAGE Knowledge Base*

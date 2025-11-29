@@ -1,4 +1,4 @@
----
+﻿---
 version: "1.0"
 last_updated: "2025-11-30"
 status: published
@@ -94,3 +94,12 @@ tokens: ~450
 ---
 
 *SAGE Knowledge Base - Legacy Modernization Checklist*
+---
+
+## Related
+
+- `.knowledge/scenarios/legacy_modernization/context.md` — Scenario context and guidance
+
+---
+
+*Part of SAGE Knowledge Base*

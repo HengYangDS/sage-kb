@@ -1,4 +1,4 @@
----
+﻿---
 version: "1.0"
 last_updated: "2025-11-30"
 status: published
@@ -101,4 +101,15 @@ tokens: ~450
 
 ---
 
+## Related
+
+- `.knowledge/scenarios/documentation/context.md` — Documentation context
+- `.knowledge/practices/documentation/documentation_standards.md` — Documentation standards
+- `.knowledge/guidelines/documentation.md` — Documentation guidelines
+
+---
+
 *SAGE Knowledge Base - Documentation Checklist*
+---
+
+*Part of SAGE Knowledge Base*

@@ -1,4 +1,4 @@
----
+﻿---
 version: "1.0"
 last_updated: "2025-11-30"
 status: published
@@ -267,3 +267,6 @@ Implement the TimeoutLoader base class with 5-tier timeout hierarchy.
 ---
 
 *Template from SAGE Knowledge Base*
+---
+
+*Part of SAGE Knowledge Base*

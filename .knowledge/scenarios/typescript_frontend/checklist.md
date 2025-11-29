@@ -1,4 +1,4 @@
----
+﻿---
 version: "1.0"
 last_updated: "2025-11-30"
 status: published
@@ -90,3 +90,6 @@ tokens: ~400
 ---
 
 *SAGE Knowledge Base - TypeScript Frontend Checklist*
+---
+
+*Part of SAGE Knowledge Base*

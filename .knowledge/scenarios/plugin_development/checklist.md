@@ -1,4 +1,4 @@
----
+﻿---
 version: "1.0"
 last_updated: "2025-11-30"
 status: published
@@ -102,3 +102,12 @@ tokens: ~500
 ---
 
 *SAGE Knowledge Base - Plugin Development Checklist*
+---
+
+## Related
+
+- `.knowledge/scenarios/plugin_development/context.md` — Scenario context and guidance
+
+---
+
+*Part of SAGE Knowledge Base*

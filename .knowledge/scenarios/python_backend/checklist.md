@@ -1,4 +1,4 @@
----
+﻿---
 version: "1.0"
 last_updated: "2025-11-30"
 status: published
@@ -80,3 +80,6 @@ tokens: ~300
 ---
 
 *SAGE Knowledge Base - Python Backend Checklist*
+---
+
+*Part of SAGE Knowledge Base*
