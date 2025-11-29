@@ -73,21 +73,28 @@ _config_cache: dict[str, Any] | None = None
 
 
 def _load_config() -> dict[str, Any]:
-    """Load configuration from sage.yaml with caching."""
+    """Load configuration using the unified config system.
+
+    This function uses the config module's load_config() which supports:
+    - Modular config files in config/ directory
+    - Main sage.yaml configuration
+    - Includes from sage.yaml
+    - Environment variable overrides
+
+    Returns:
+        Merged configuration dictionary from all sources.
+    """
     global _config_cache
     if _config_cache is not None:
         return _config_cache
 
-    config_path = _project_root / "sage.yaml"
-    if config_path.exists():
-        try:
-            with open(config_path, encoding="utf-8") as f:
-                _config_cache = yaml.safe_load(f) or {}
-        except Exception as e:
-            logger.warning("config_load_failed", error=str(e), path=str(config_path))
-            _config_cache = {}
-    else:
-        logger.debug("config_not_found", path=str(config_path))
+    try:
+        # Import here to avoid circular imports
+        from sage.core.config import load_config as load_unified_config
+
+        _config_cache = load_unified_config()
+    except Exception as e:
+        logger.warning("config_load_failed", error=str(e))
         _config_cache = {}
 
     return _config_cache

@@ -230,6 +230,71 @@ def load_yaml_config(path: Path) -> dict[str, Any]:
         raise ConfigParseError(str(path), parse_error=str(e)) from e
 
 
+def load_config_includes(base_path: Path, includes: list[str]) -> dict[str, Any]:
+    """
+    Load and merge configuration files from includes list.
+
+    Args:
+        base_path: Base directory for resolving relative paths
+        includes: List of configuration file paths to include
+
+    Returns:
+        Merged configuration dictionary from all included files
+    """
+    merged_config: dict[str, Any] = {}
+
+    for include_path in includes:
+        full_path = base_path / include_path
+        if full_path.exists():
+            try:
+                include_config = load_yaml_config(full_path)
+                merged_config = merge_configs(merged_config, include_config)
+            except (ConfigNotFoundError, ConfigParseError) as e:
+                # Log warning but continue loading other files
+                import logging
+                logging.getLogger(__name__).warning(
+                    f"Failed to load included config {include_path}: {e}"
+                )
+        else:
+            import logging
+            logging.getLogger(__name__).debug(
+                f"Included config file not found: {include_path}"
+            )
+
+    return merged_config
+
+
+def load_config_directory(config_dir: Path) -> dict[str, Any]:
+    """
+    Load and merge all YAML configuration files from a directory.
+
+    Args:
+        config_dir: Path to configuration directory
+
+    Returns:
+        Merged configuration dictionary from all files in directory
+    """
+    merged_config: dict[str, Any] = {}
+
+    if not config_dir.exists() or not config_dir.is_dir():
+        return merged_config
+
+    # Sort files for deterministic loading order
+    yaml_files = sorted(config_dir.glob("*.yaml"))
+
+    for yaml_file in yaml_files:
+        try:
+            file_config = load_yaml_config(yaml_file)
+            merged_config = merge_configs(merged_config, file_config)
+        except (ConfigNotFoundError, ConfigParseError) as e:
+            import logging
+            logging.getLogger(__name__).warning(
+                f"Failed to load config file {yaml_file}: {e}"
+            )
+
+    return merged_config
+
+
 def get_env_overrides() -> dict[str, Any]:
     """
     Get configuration overrides from environment variables.
@@ -328,8 +393,10 @@ def load_config(config_path: Path | None = None) -> dict[str, Any]:
 
     Priority (highest to lowest):
     1. Environment variables
-    2. YAML config file
-    3. Default values
+    2. Main YAML config file (sage.yaml)
+    3. Included config files (from 'includes' in sage.yaml)
+    4. Config directory files (config/*.yaml)
+    5. Default values
 
     Args:
         config_path: Optional explicit path to config file
@@ -339,16 +406,35 @@ def load_config(config_path: Path | None = None) -> dict[str, Any]:
     """
     configs = [DEFAULT_CONFIG.copy()]
 
-    # Load YAML config if available
+    # Find the main config file
     yaml_path = config_path or find_config_file()
+    base_path = yaml_path.parent if yaml_path else Path.cwd()
+
+    # Load config directory files first (lowest priority among file configs)
+    config_dir = base_path / "config"
+    if config_dir.exists():
+        dir_config = load_config_directory(config_dir)
+        if dir_config:
+            configs.append(dir_config)
+
+    # Load main YAML config if available
     if yaml_path:
         try:
             yaml_config = load_yaml_config(yaml_path)
+
+            # Process includes if present
+            includes = yaml_config.pop("includes", [])
+            if includes:
+                includes_config = load_config_includes(base_path, includes)
+                if includes_config:
+                    configs.append(includes_config)
+
+            # Add main config (highest priority among file configs)
             configs.append(yaml_config)
         except (ConfigNotFoundError, ConfigParseError):
             pass  # Use defaults if config file has issues
 
-    # Apply environment overrides
+    # Apply environment overrides (highest priority)
     env_overrides = get_env_overrides()
     if env_overrides:
         configs.append(env_overrides)

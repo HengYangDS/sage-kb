@@ -39,19 +39,26 @@ _config_cache: dict[str, Any] | None = None
 
 
 def _load_config() -> dict[str, Any]:
-    """Load configuration from sage.yaml with caching."""
+    """Load configuration using the unified config system.
+
+    This function uses the config module's load_config() which supports:
+    - Modular config files in config/ directory
+    - Main sage.yaml configuration
+    - Includes from sage.yaml
+    - Environment variable overrides
+
+    Returns:
+        Merged configuration dictionary from all sources.
+    """
     global _config_cache
     if _config_cache is not None:
         return _config_cache
 
-    config_path = Path(__file__).parent.parent.parent.parent / "sage.yaml"
-    if config_path.exists():
-        try:
-            with open(config_path, encoding="utf-8") as f:
-                _config_cache = yaml.safe_load(f) or {}
-        except Exception:
-            _config_cache = {}
-    else:
+    try:
+        from sage.core.config import load_config as load_unified_config
+
+        _config_cache = load_unified_config()
+    except Exception:
         _config_cache = {}
 
     return _config_cache
@@ -138,19 +145,38 @@ def _get_timeout_config_dict() -> dict[str, int]:
 
 logger = get_logger(__name__)
 
+
+def _get_mcp_metadata() -> tuple[str, str]:
+    """Get MCP server name and description from configuration.
+
+    Uses top-level Metadata from sage.yaml as Single Source of Truth.
+
+    Returns:
+        Tuple of (name, description).
+    """
+    config = _load_config()
+    name = config.get("name", "sage-kb")
+    description = config.get(
+        "description",
+        "SAGE Knowledge Base - Production-grade knowledge management"
+    )
+    return name, description
+
+
 # Initialize MCP app
 if MCP_AVAILABLE:
+    _mcp_name, _mcp_description = _get_mcp_metadata()
     try:
         app = FastMCP(  # type: ignore[call-arg]
-            "sage-kb",
-            description="SAGE Knowledge Base - Production-grade knowledge management with timeout protection",
+            _mcp_name,
+            description=_mcp_description,
         )
-        logger.debug("mcp_app_initialized", app_name="sage-kb")
+        logger.debug("mcp_app_initialized", app_name=_mcp_name)
     except TypeError:
         # Fallback for older MCP versions without description parameter
         try:
-            app = FastMCP("sage-kb")
-            logger.debug("mcp_app_initialized", app_name="sage-kb", fallback=True)
+            app = FastMCP(_mcp_name)
+            logger.debug("mcp_app_initialized", app_name=_mcp_name, fallback=True)
         except Exception as e:
             logger.warning("mcp_init_failed", error=str(e))
             app = None  # type: ignore[assignment]

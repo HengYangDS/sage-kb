@@ -227,6 +227,13 @@ Success Rate    Adjustment
 
 When a timeout or error occurs, the system applies configured fallback actions.
 
+**Fallback Strategy** (see `config/timeout.yaml` for configured values):
+
+| Key              | Purpose                                       |
+|------------------|-----------------------------------------------|
+| `strategy`       | Fallback mode: `graceful` / `strict` / `none` |
+| `cache_stale_ms` | Max age (ms) for stale cache usage            |
+
 **Fallback Situations** (see `config/timeout.yaml` for configured actions):
 
 | Situation       | Config Key       |

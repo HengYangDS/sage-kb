@@ -10,6 +10,15 @@
       "metadata": {}
     },
     {
+      "id": "dir_config",
+      "name": "config",
+      "type": "directory",
+      "path": "config",
+      "level": 0,
+      "tokens": 0,
+      "metadata": {}
+    },
+    {
       "id": "dir_content",
       "name": "content",
       "type": "directory",
@@ -131,6 +140,24 @@
       "name": "quality_angles",
       "type": "file",
       "path": "content\\frameworks\\decision\\quality_angles.md",
+      "level": 0,
+      "tokens": 0,
+      "metadata": {}
+    },
+    {
+      "id": "dir_content_frameworks_design",
+      "name": "design",
+      "type": "directory",
+      "path": "content\\frameworks\\design",
+      "level": 0,
+      "tokens": 0,
+      "metadata": {}
+    },
+    {
+      "id": "file_content_frameworks_design_design_axioms_md",
+      "name": "design_axioms",
+      "type": "file",
+      "path": "content\\frameworks\\design\\design_axioms.md",
       "level": 0,
       "tokens": 0,
       "metadata": {}
@@ -904,6 +931,13 @@
   "edges": [
     {
       "source": "root",
+      "target": "dir_config",
+      "type": "contains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "root",
       "target": "dir_content",
       "type": "contains",
       "weight": 1.0,
@@ -996,6 +1030,20 @@
     {
       "source": "dir_content_frameworks_decision",
       "target": "file_content_frameworks_decision_quality_angles_md",
+      "type": "contains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "dir_content_frameworks",
+      "target": "dir_content_frameworks_design",
+      "type": "contains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "dir_content_frameworks_design",
+      "target": "file_content_frameworks_design_design_axioms_md",
       "type": "contains",
       "weight": 1.0,
       "metadata": {}
@@ -1597,16 +1645,16 @@
     }
   ],
   "metadata": {
-    "built_at": "2025-11-29T16:46:53.435863",
+    "built_at": "2025-11-29T17:36:07.377448",
     "kb_path": ".",
     "include_content": false
   },
   "stats": {
-    "node_count": 100,
-    "edge_count": 99,
+    "node_count": 103,
+    "edge_count": 102,
     "node_types": {
-      "directory": 62,
-      "file": 38
+      "directory": 64,
+      "file": 39
     }
   }
 }

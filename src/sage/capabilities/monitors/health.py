@@ -188,9 +188,16 @@ class HealthMonitor:
             )
 
     async def check_config(self) -> HealthCheck:
-        """Check configuration health."""
+        """Check configuration health.
+
+        Validates:
+        1. sage.yaml exists (entry point)
+        2. sage.yaml is valid YAML
+        3. Merged config (sage.yaml + config/*.yaml) has required keys
+        """
         start = time.monotonic()
         try:
+            # Check that sage.yaml exists (entry point)
             config_path = self.kb_path / "sage.yaml"
 
             if not config_path.exists():
@@ -201,13 +208,26 @@ class HealthMonitor:
                     duration_ms=(time.monotonic() - start) * 1000,
                 )
 
-            # Try to parse YAML
+            # First, validate sage.yaml is parseable YAML
             import yaml
 
-            with open(config_path, encoding="utf-8") as f:
-                config = yaml.safe_load(f)
+            try:
+                with open(config_path, encoding="utf-8") as f:
+                    yaml.safe_load(f)
+            except yaml.YAMLError as e:
+                return HealthCheck(
+                    name="config",
+                    status=HealthStatus.UNHEALTHY,
+                    message=f"Error parsing sage.yaml: {e}",
+                    duration_ms=(time.monotonic() - start) * 1000,
+                )
 
-            # Check required keys
+            # Use unified config system to load merged configuration
+            from sage.core.config import load_config
+
+            config = load_config(config_path)
+
+            # Check required keys in merged config (from sage.yaml + config/*.yaml)
             required_keys = ["version", "timeout", "loading"]
             missing_keys = [k for k in required_keys if k not in config]
 

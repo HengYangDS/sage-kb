@@ -90,6 +90,12 @@ class PluginRegistry:
 
         Returns:
             True if registered successfully, False if already exists
+
+        Note:
+            For bundled plugins, configuration is automatically loaded from
+            sage.yaml at path `plugins.bundled.<plugin_name>`.
+            The `plugins.loader.cache_enabled` setting acts as a master toggle
+            for the content_cache plugin.
         """
         meta = plugin.metadata
 
@@ -99,6 +105,9 @@ class PluginRegistry:
 
         # Store plugin
         self._plugins[meta.name] = plugin
+
+        # Auto-configure bundled plugins from sage.yaml
+        self._auto_configure_plugin(plugin)
 
         # Register hooks
         for hook in meta.hooks:
@@ -114,6 +123,50 @@ class PluginRegistry:
 
         logger.info(f"Registered plugin: {meta.name} v{meta.version}")
         return True
+
+    def _auto_configure_plugin(self, plugin: PluginBase) -> None:
+        """
+        Auto-configure a plugin from sage.yaml configuration.
+
+        Loads configuration from `plugins.bundled.<plugin_name>` and applies it.
+        For content_cache plugin, also respects `plugins.loader.cache_enabled`
+        as a master toggle.
+
+        Args:
+            plugin: Plugin instance to configure
+        """
+        try:
+            from sage.core.config import load_config
+
+            config = load_config()
+            plugins_config = config.get("plugins", {})
+
+            # Get bundled plugin config
+            bundled_config = plugins_config.get("bundled", {})
+            plugin_config = bundled_config.get(plugin.metadata.name, {})
+
+            # For content_cache, check master toggle from plugins.loader.cache_enabled
+            if plugin.metadata.name == "content_cache":
+                loader_config = plugins_config.get("loader", {})
+                master_enabled = loader_config.get("cache_enabled", True)
+                # Master toggle overrides individual plugin enabled setting
+                if not master_enabled:
+                    plugin_config["enabled"] = False
+                # Also use cache_ttl from loader config if ttl_seconds not set
+                if "ttl_seconds" not in plugin_config and "cache_ttl" in loader_config:
+                    plugin_config["ttl_seconds"] = loader_config["cache_ttl"]
+
+            # Apply configuration if any
+            if plugin_config:
+                plugin.configure(plugin_config)
+                logger.debug(
+                    f"Auto-configured plugin '{plugin.metadata.name}' from config"
+                )
+
+        except Exception as e:
+            logger.warning(
+                f"Failed to auto-configure plugin '{plugin.metadata.name}': {e}"
+            )
 
     def unregister(self, name: str) -> bool:
         """

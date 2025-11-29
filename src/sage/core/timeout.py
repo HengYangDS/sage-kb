@@ -37,7 +37,7 @@ class TimeoutLevel(Enum):
     """
     5-level timeout hierarchy.
 
-    Each level represents a different operation type with appropriate timeout.
+    Each level represents a different operation type with the appropriate timeout.
     """
 
     T1_CACHE = 1  # 100 ms - Cache lookup
@@ -93,6 +93,22 @@ class CircuitBreakerConfig:
     failure_threshold: int = 3
     reset_timeout_s: float = 30.0
     half_open_max_calls: int = 1
+    enabled: bool = True
+
+
+@dataclass
+class FallbackConfig:
+    """Fallback strategy configuration."""
+
+    strategy: str = "graceful"  # graceful | strict | none
+    cache_stale_ms: int = 60000  # Use stale cache up to 60 seconds
+
+    # Action mappings for different scenarios
+    timeout_short_action: str = "return_partial"
+    timeout_long_action: str = "return_core"
+    file_not_found_action: str = "return_error"
+    parse_error_action: str = "return_raw"
+    network_error_action: str = "use_cache"
 
 
 @dataclass
@@ -141,12 +157,13 @@ class CircuitBreaker:
     - HALF_OPEN: Testing if service recovered
 
     Example:
+        # suppress
         >>> breaker = CircuitBreaker()
         >>> if breaker.allow_request():
         ...     try:
         ...         result = await do_operation()
         ...         breaker.record_success()
-        ...     except Exception:
+        ...     except Exception as _:
         ...         breaker.record_failure()
     """
 
@@ -241,9 +258,11 @@ class TimeoutManager:
         self,
         timeout_config: TimeoutConfig | None = None,
         circuit_config: CircuitBreakerConfig | None = None,
+        fallback_config: FallbackConfig | None = None,
     ) -> None:
         self.timeout_config = timeout_config or TimeoutConfig()
         self.circuit_breaker = CircuitBreaker(circuit_config)
+        self.fallback_config = fallback_config or FallbackConfig()
         self._fallbacks: dict[str, Callable[[], Any]] = {}
 
     def register_fallback(self, key: str, fallback: Callable[[], Any]) -> None:
@@ -255,6 +274,34 @@ class TimeoutManager:
         if key in self._fallbacks:
             return self._fallbacks[key]()
         return None
+
+    def get_fallback_action(self, error_type: str) -> str:
+        """
+        Get the configured fallback action for a specific error type.
+
+        Args:
+            error_type: Type of error (timeout_short, timeout_long, file_not_found,
+                       parse_error, network_error)
+
+        Returns:
+            Action string (return_partial, return_core, return_error, return_raw, use_cache)
+        """
+        action_map = {
+            "timeout_short": self.fallback_config.timeout_short_action,
+            "timeout_long": self.fallback_config.timeout_long_action,
+            "file_not_found": self.fallback_config.file_not_found_action,
+            "parse_error": self.fallback_config.parse_error_action,
+            "network_error": self.fallback_config.network_error_action,
+        }
+        return action_map.get(error_type, "return_error")
+
+    def get_fallback_strategy(self) -> str:
+        """Get the configured fallback strategy (graceful, strict, none)."""
+        return self.fallback_config.strategy
+
+    def get_cache_stale_ms(self) -> int:
+        """Get the maximum age of stale cache to use as fallback."""
+        return self.fallback_config.cache_stale_ms
 
     async def execute_with_timeout(
         self,
@@ -371,6 +418,105 @@ class TimeoutManager:
 
 
 # =============================================================================
+# Configuration Loading Helpers
+# =============================================================================
+
+
+def _parse_timeout_to_seconds(timeout_str: str | int | float) -> float:
+    """
+    Parse timeout string to seconds.
+
+    Args:
+        timeout_str: Timeout value as string (e.g., '5s', '500ms') or number.
+
+    Returns:
+        Timeout in seconds.
+    """
+    if isinstance(timeout_str, (int, float)):
+        return float(timeout_str)
+    timeout_str = str(timeout_str).strip().lower()
+    if timeout_str.endswith("ms"):
+        return float(timeout_str[:-2]) / 1000
+    elif timeout_str.endswith("s"):
+        return float(timeout_str[:-1])
+    return float(timeout_str)
+
+
+def _load_timeout_config_from_yaml() -> tuple[
+    TimeoutConfig | None,
+    CircuitBreakerConfig | None,
+    FallbackConfig | None,
+]:
+    """
+    Load timeout, circuit breaker, and fallback config from sage.yaml.
+
+    Returns:
+        Tuple of (TimeoutConfig, CircuitBreakerConfig, FallbackConfig) or None values.
+    """
+    try:
+        from sage.core.config import load_config
+
+        config = load_config()
+        timeout_cfg = config.get("timeout", {})
+
+        # Parse TimeoutConfig from operations
+        ops = timeout_cfg.get("operations", {})
+        timeout_config = TimeoutConfig(
+            cache_ms=int(
+                _parse_timeout_to_seconds(ops.get("cache_lookup", "100ms")) * 1000
+            ),
+            file_ms=int(
+                _parse_timeout_to_seconds(ops.get("file_read", "500ms")) * 1000
+            ),
+            layer_ms=int(_parse_timeout_to_seconds(ops.get("layer_load", "2s")) * 1000),
+            full_ms=int(_parse_timeout_to_seconds(ops.get("full_load", "5s")) * 1000),
+            analysis_ms=int(
+                _parse_timeout_to_seconds(ops.get("analysis", "10s")) * 1000
+            ),
+            mcp_ms=int(_parse_timeout_to_seconds(ops.get("mcp_call", "10s")) * 1000),
+        )
+
+        # Parse CircuitBreakerConfig
+        cb_cfg = timeout_cfg.get("circuit_breaker", {})
+        circuit_config = CircuitBreakerConfig(
+            enabled=cb_cfg.get("enabled", True),
+            failure_threshold=cb_cfg.get("failure_threshold", 3),
+            reset_timeout_s=_parse_timeout_to_seconds(
+                cb_cfg.get("reset_timeout", "30s")
+            ),
+            half_open_max_calls=cb_cfg.get("half_open_requests", 1),
+        )
+
+        # Parse FallbackConfig
+        fb_cfg = timeout_cfg.get("fallback", {})
+        fallback_config = FallbackConfig(
+            strategy=fb_cfg.get("strategy", "graceful"),
+            cache_stale_ms=fb_cfg.get("cache_stale_ms", 60000),
+            timeout_short_action=fb_cfg.get("timeout_short", {}).get(
+                "action", "return_partial"
+            ),
+            timeout_long_action=fb_cfg.get("timeout_long", {}).get(
+                "action", "return_core"
+            ),
+            file_not_found_action=fb_cfg.get("file_not_found", {}).get(
+                "action", "return_error"
+            ),
+            parse_error_action=fb_cfg.get("parse_error", {}).get(
+                "action", "return_raw"
+            ),
+            network_error_action=fb_cfg.get("network_error", {}).get(
+                "action", "use_cache"
+            ),
+        )
+
+        return timeout_config, circuit_config, fallback_config
+
+    except Exception as e:
+        logger.warning(f"Failed to load timeout config from yaml: {e}")
+        return None, None, None
+
+
+# =============================================================================
 # Global Instance
 # =============================================================================
 
@@ -378,10 +524,22 @@ _default_manager: TimeoutManager | None = None
 
 
 def get_timeout_manager() -> TimeoutManager:
-    """Get the default timeout manager instance."""
+    """
+    Get the default timeout manager instance.
+
+    Loads configuration from sage.yaml (config/timeout.yaml) including
+    - Timeout levels (T1-T5)
+    - Circuit breaker settings
+    - Fallback strategies
+    """
     global _default_manager
     if _default_manager is None:
-        _default_manager = TimeoutManager()
+        timeout_config, circuit_config, fallback_config = _load_timeout_config_from_yaml()
+        _default_manager = TimeoutManager(
+            timeout_config=timeout_config,
+            circuit_config=circuit_config,
+            fallback_config=fallback_config,
+        )
     return _default_manager
 
 

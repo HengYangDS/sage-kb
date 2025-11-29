@@ -52,12 +52,14 @@ The project follows the classical Chinese translation principles adapted for sof
 
 ### Design Axioms
 
+> **Reference**: See `content/frameworks/design/design_axioms.md` for detailed documentation.
+
 1. **MECE Principle**: Mutually Exclusive, Collectively Exhaustive
-2. **Single Source of Truth**: Each knowledge exists in one place only
+2. **Single Source of Truth (SSOT)**: Each knowledge exists in one place only
 3. **Progressive Disclosure**: From overview to detail
 4. **Separation of Concerns**: Content, code, config separated
 5. **Fail-Fast with Timeout**: No operation hangs indefinitely
-6. **Plugin Extensibility**: 7 extension points for customization
+6. **Plugin Extensibility**: 15 extension points for customization
 7. **Zero Cross-Import**: Layers communicate via EventBus, no direct dependencies
 8. **On-Demand Loading**: Minimal core engine, features loaded as needed
 
