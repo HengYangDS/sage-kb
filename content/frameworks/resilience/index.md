@@ -41,7 +41,7 @@ The Resilience Framework provides patterns for building fault-tolerant systems t
 
 ## Related
 
-- `.context/configurations/timeout_hierarchy.md` — Timeout configuration
+- `.context/policies/timeout_hierarchy.md` — Timeout configuration
 - `.context/decisions/ADR-0003-timeout-hierarchy.md` — Timeout ADR
 - `config/core/timeout.yaml` — Timeout settings
 

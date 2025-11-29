@@ -270,7 +270,7 @@ level = TimeoutLevel(config.timeout.cache_lookup)
 ## Related
 
 - `ADR-0003-timeout-hierarchy.md` — Timeout configuration
-- `.context/configurations/` — Configuration documentation
+- `.context/policies/` — Configuration documentation
 - `docs/design/09-configuration.md` — Full configuration design
 - `config/` — Configuration files
 

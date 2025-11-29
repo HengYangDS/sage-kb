@@ -75,10 +75,10 @@ maintain consistency and efficiency in human-AI interactions.
 **Example**:
 
 ```
-我理解您希望更新配置文件。有几点需要确认：
-1. 是否包括所有子目录的配置？（默认：是）
-2. 是否需要备份原文件？（默认：否）
-请确认或调整。
+I understand you wish to update the configuration files. A few points to confirm:
+1. Does this include configuration in all subdirectories? (Default: Yes)
+2. Should the original files be backed up? (Default: No)
+Please confirm or adjust.
 ```
 
 ### 2.4 Batch Operation Pattern

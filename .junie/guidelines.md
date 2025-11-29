@@ -92,7 +92,7 @@ sage-kb/
 
 ### Architecture Rules
 
-- **Three-Layer Model**: Core → Services → Tools
+- **Three-Layer Model**: Core → Services → Capabilities
 - **Dependency Direction**: Services depend on Core, never reverse
 - **Protocol-First**: Use `typing.Protocol` for interfaces
 - **Zero Cross-Import**: Layers communicate via EventBus
@@ -165,7 +165,7 @@ For complex decisions, simulate a **Level 5 Expert Committee** review with:
 - **Project Context**: @file:.context/index.md
 - **Knowledge Content**: @file:content/index.md
 - **Directory Conventions**: @file:content/practices/documentation/project_directory_structure.md
-- **Timeout Hierarchy**: @file:.context/configurations/timeout_hierarchy.md
+- **Timeout Hierarchy**: @file:.context/policies/timeout_hierarchy.md
 - **Core Principles**: @file:content/core/principles.md
 
 ---

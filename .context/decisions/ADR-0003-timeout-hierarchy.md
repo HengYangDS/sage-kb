@@ -184,7 +184,7 @@ timeout:
 
 ## Related
 
-- `.context/configurations/timeout_hierarchy.md` — Detailed configuration
+- `.context/policies/timeout_hierarchy.md` — Detailed configuration
 - `ADR-0001-architecture.md` — Architecture context
 - `content/frameworks/resilience/timeout_patterns.md` — Universal patterns
 - `docs/design/04-timeout-loading.md` — Full design documentation

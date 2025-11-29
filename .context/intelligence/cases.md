@@ -107,7 +107,7 @@ if output_file:
 
 User requested analysis of knowledge gaps in the SAGE Knowledge Base and implementation of recommended improvements.
 
-**Request**: "有哪些知识可以沉淀或补充" (What knowledge can be consolidated or supplemented)
+**Request**: "What knowledge can be consolidated or supplemented"
 
 ### Analysis Results
 

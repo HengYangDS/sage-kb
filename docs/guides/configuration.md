@@ -745,7 +745,7 @@ export SAGE_CONTENT_PATH=/path/to/content
 
 ## Related
 
-- `.context/configurations/` — Project-specific config docs
+- `.context/policies/` — Project-specific config docs
 - `.context/decisions/ADR-0007-configuration.md` — Config architecture
 - `docs/guides/faq.md` — Configuration FAQ
 - `content/practices/engineering/yaml_conventions.md` — YAML best practices

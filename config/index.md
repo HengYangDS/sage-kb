@@ -139,7 +139,7 @@ Configuration values are resolved in this order (later overrides earlier):
 
 ## Related
 
-- `.context/configurations/` — Project-specific configuration documentation
+- `.context/policies/` — Project-specific policy documentation
 - `docs/design/09-configuration.md` — Configuration design details
 
 ---

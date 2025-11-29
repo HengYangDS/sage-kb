@@ -475,7 +475,7 @@ py-spy record -o profile.svg -- python script.py
 - `practices/engineering/testing_strategy.md` — Performance testing
 - `frameworks/resilience/timeout_patterns.md` — Timeout handling
 - `.context/intelligence/optimizations.md` — Project optimizations
-- `.context/configurations/timeout_hierarchy.md` — Timeout config
+- `.context/policies/timeout_hierarchy.md` — Timeout config
 
 ---
 

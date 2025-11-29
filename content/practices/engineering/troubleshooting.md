@@ -458,7 +458,7 @@ export SAGE_PROFILE=1
 
 - `practices/engineering/logging.md` — Logging best practices
 - `practices/engineering/error_handling.md` — Error handling patterns
-- `.context/configurations/timeout_hierarchy.md` — Timeout configuration
+- `.context/policies/timeout_hierarchy.md` — Timeout configuration
 - `docs/guides/configuration.md` — Configuration guide
 
 ---

@@ -13,11 +13,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Comprehensive API documentation (`docs/api/`)
 - User guides (`docs/guides/`)
 - Extended scenario documentation for knowledge management, MCP integration, and plugin development
+- Design documentation index (`docs/design/index.md`)
+- Framework index files for all `content/frameworks/` subdirectories
+- Archive index (`.archive/index.md`)
 
 ### Changed
 
 - Updated configuration structure to modular YAML format
 - Improved documentation cross-references
+- Standardized layer terminology: "Tools" → "Capabilities" in guidelines
+- Renamed `.context/configurations/` to `.context/policies/` for semantic clarity
+- Updated all cross-references to reflect policies directory rename (16 files)
+
+### Fixed
+
+- README.md Python API example now uses proper async/await syntax
+- Root `index.md` project structure now includes `.backups/` and `config/environments/`
+- `.junie/guidelines.md` project structure now complete with all directories
 
 ## [0.1.0] - 2025-11-29
 

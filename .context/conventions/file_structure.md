@@ -326,7 +326,7 @@ content/
 ```
 .context/
 ├── index.md             # Navigation index
-├── configurations/      # Project-specific configs
+├── policies/            # Project-specific policies
 │   ├── timeout_hierarchy.md
 │   ├── loading_configurations.md
 │   └── runtime_settings.md

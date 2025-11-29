@@ -10,7 +10,7 @@ Version: 0.1.0
 Protocol Philosophy (信达雅):
 - 信 (Faithfulness): Protocol interfaces accurately describe knowledge workflows
 - 达 (Clarity): Clear separation of concerns across 4 stages
-- 雅 (Elegance): "SAGE" forms a meaningful word (智者/wise person)
+- 雅 (Elegance): "SAGE" forms a meaningful word (wise person)
 """
 
 from typing import Any, Protocol, runtime_checkable

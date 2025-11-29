@@ -220,7 +220,7 @@ Example:
 
 See Also:
     - ADR-0003: Timeout hierarchy design decision
-    - .context/configurations/timeout_hierarchy.md: Configuration details
+    - .context/policies/timeout_hierarchy.md: Configuration details
 """
 ```
 

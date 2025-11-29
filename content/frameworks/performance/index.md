@@ -130,7 +130,7 @@ This framework provides performance optimization guidelines for:
 ## Related
 
 - `content/frameworks/resilience/timeout_patterns.md` — Timeout strategies
-- `.context/configurations/timeout_hierarchy.md` — SAGE timeout config
+- `.context/policies/timeout_hierarchy.md` — SAGE timeout config
 - `content/practices/engineering/batch_optimization.md` — Batch processing
 - `tools/timeout_manager.py` — Performance testing tool
 

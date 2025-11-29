@@ -1,0 +1,1596 @@
+C:\Users\Administrator\projects\junie_mcp\content\scenarios\microservices\context.md: text/plain (text)
+C:\Users\Administrator\projects\junie_mcp\content\scenarios\monorepo\context.md: text/plain (text)
+C:\Users\Administrator\projects\junie_mcp\content\scenarios\plugin_development\context.md: text/plain (text)
+C:\Users\Administrator\projects\junie_mcp\content\scenarios\python_backend\context.md: text/plain (text)
+C:\Users\Administrator\projects\junie_mcp\content\scenarios\typescript_frontend\context.md: text/plain (text)
+
+--- C:\Users\Administrator\projects\junie_mcp\content\scenarios\microservices\context.md contents: ---
+[Reading 299 lines from start (total: 300 lines, 1 remaining)]
+
+# Microservices Scenario Context
+
+> Pre-configured context for microservices architecture development
+
+---
+
+## Table of Contents
+
+[1. Scenario Profile](#1-scenario-profile) · [2. Relevant Knowledge](#2-relevant-knowledge) · [3. Architecture Patterns](#3-architecture-patterns) · [4. Service Design](#4-service-design) · [5. Communication Patterns](#5-communication-patterns) · [6. Data Management](#6-data-management) · [7. Common Tasks](#7-common-tasks) · [8. Autonomy Calibration](#8-autonomy-calibration)
+
+---
+
+## 1. Scenario Profile
+
+```yaml
+scenario: microservices
+languages: [ python, typescript, go, java ]
+frameworks: [ fastapi, express, gin, spring ]
+focus: [ service_design, api, messaging, deployment ]
+autonomy_default: L3
+```
+
+---
+
+## 2. Relevant Knowledge
+
+| Priority      | Files                                                                                        |
+|---------------|----------------------------------------------------------------------------------------------|
+| **Auto-Load** | `core/principles.md` · `guidelines/engineering.md` · `practices/engineering/api_design.md`   |
+| **On-Demand** | `guidelines/security.md` · `practices/engineering/error_handling.md`                         |
+
+---
+
+## 3. Architecture Patterns
+
+### 3.1 Service Decomposition
+
+| Pattern | Description | When to Use |
+|---------|-------------|-------------|
+| **Domain-Driven** | Services aligned with business domains | Complex business logic |
+| **Functional** | Services by technical function | Cross-cutting concerns |
+| **Strangler Fig** | Gradual migration from monolith | Legacy modernization |
+
+### 3.2 Service Boundaries
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                         API Gateway                          │
+├─────────┬─────────┬─────────┬─────────┬─────────────────────┤
+│  User   │  Order  │ Product │ Payment │    Notification     │
+│ Service │ Service │ Service │ Service │      Service        │
+├─────────┴─────────┴─────────┴─────────┴─────────────────────┤
+│                    Message Bus / Events                      │
+├─────────────────────────────────────────────────────────────┤
+│             Databases (per-service ownership)                │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### 3.3 Key Principles
+
+| Principle | Description |
+|-----------|-------------|
+| **Single Responsibility** | One service, one business capability |
+| **Loose Coupling** | Services independent, communicate via APIs |
+| **High Cohesion** | Related functionality grouped together |
+| **Data Ownership** | Each service owns its data |
+| **Resilience** | Design for failure |
+
+---
+
+## 4. Service Design
+
+### 4.1 Service Template Structure
+
+```
+service-name/
+├── src/
+│   ├── api/           # API endpoints
+│   ├── domain/        # Business logic
+│   ├── infrastructure/  # External integrations
+│   └── config/        # Configuration
+├── tests/
+├── Dockerfile
+├── docker-compose.yml
+└── README.md
+```
+
+### 4.2 API Design
+
+```python
+# FastAPI service example
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+
+app = FastAPI(
+    title="Order Service",
+    version="1.0.0",
+    description="Handles order management"
+)
+
+class Order(BaseModel):
+    id: str
+    user_id: str
+    items: list[dict]
+    status: str
+
+@app.get("/orders/{order_id}", response_model=Order)
+async def get_order(order_id: str):
+    order = await order_repository.get(order_id)
+    if not order:
+        raise HTTPException(status_code=404, detail="Order not found")
+    return order
+
+@app.post("/orders", response_model=Order, status_code=201)
+async def create_order(order: Order):
+    created = await order_repository.create(order)
+    await event_bus.publish("order.created", created)
+    return created
+```
+
+### 4.3 Health Checks
+
+```python
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy"}
+
+@app.get("/health/ready")
+async def readiness_check():
+    db_ok = await check_database()
+    cache_ok = await check_cache()
+    
+    if not (db_ok and cache_ok):
+        raise HTTPException(status_code=503, detail="Not ready")
+    
+    return {"status": "ready", "checks": {"db": db_ok, "cache": cache_ok}}
+```
+
+---
+
+## 5. Communication Patterns
+
+### 5.1 Synchronous (HTTP/gRPC)
+
+| Pattern | Use Case | Consideration |
+|---------|----------|---------------|
+| **REST API** | CRUD operations | Simple, widely supported |
+| **gRPC** | High performance | Binary protocol, code gen |
+| **GraphQL** | Flexible queries | Client-driven |
+
+### 5.2 Asynchronous (Events/Messages)
+
+| Pattern | Use Case | Example |
+|---------|----------|---------|
+| **Event Notification** | State change broadcast | OrderCreated event |
+| **Event-Carried State** | Data transfer via events | Full order data in event |
+| **Command** | Request action | ProcessPaymentCommand |
+| **Saga** | Distributed transactions | Order fulfillment flow |
+
+### 5.3 Event Example
+
+```python
+# Publishing events
+class OrderCreatedEvent(BaseModel):
+    event_type: str = "order.created"
+    timestamp: datetime
+    data: dict
+
+async def create_order(order: Order):
+    saved = await repository.save(order)
+    
+    event = OrderCreatedEvent(
+        timestamp=datetime.utcnow(),
+        data={"order_id": saved.id, "user_id": saved.user_id}
+    )
+    await message_bus.publish("orders", event)
+    
+    return saved
+
+# Consuming events
+async def handle_order_created(event: OrderCreatedEvent):
+    # Send notification
+    await notification_service.send(
+        user_id=event.data["user_id"],
+        message=f"Order {event.data['order_id']} confirmed"
+    )
+```
+
+### 5.4 Circuit Breaker
+
+```python
+from circuitbreaker import circuit
+
+@circuit(failure_threshold=5, recovery_timeout=30)
+async def call_payment_service(order_id: str):
+    response = await http_client.post(
+        f"{PAYMENT_SERVICE_URL}/payments",
+        json={"order_id": order_id}
+    )
+    return response.json()
+```
+
+---
+
+## 6. Data Management
+
+### 6.1 Database per Service
+
+| Approach | Pros | Cons |
+|----------|------|------|
+| **Separate databases** | Full isolation | Cross-service queries hard |
+| **Shared database, separate schemas** | Easier ops | Coupling risk |
+| **Polyglot persistence** | Best fit per service | Operational complexity |
+
+### 6.2 Data Consistency Patterns
+
+| Pattern | Use Case | Implementation |
+|---------|----------|----------------|
+| **Saga** | Distributed transactions | Choreography or orchestration |
+| **Event Sourcing** | Audit, temporal queries | Event store |
+| **CQRS** | Read/write optimization | Separate models |
+
+### 6.3 Saga Example (Choreography)
+
+```
+Order Service          Payment Service       Inventory Service
+      │                       │                      │
+      │ OrderCreated          │                      │
+      │──────────────────────>│                      │
+      │                       │ PaymentProcessed     │
+      │                       │─────────────────────>│
+      │                       │                      │ InventoryReserved
+      │<─────────────────────────────────────────────│
+      │ OrderCompleted        │                      │
+```
+
+---
+
+## 7. Common Tasks
+
+| Task | Steps |
+|------|-------|
+| **Create new service** | Template → Domain model → API → Tests → Docker → Deploy |
+| **Add endpoint** | Define contract → Implement handler → Add tests → Document |
+| **Service communication** | Define interface → Implement client → Add circuit breaker → Test |
+| **Add event** | Define schema → Publish → Subscribe → Test end-to-end |
+| **Database migration** | Create migration → Test → Deploy → Verify |
+
+### 7.1 Service Creation Checklist
+
+| Item | Status |
+|------|--------|
+| ☐ Service boundaries defined | |
+| ☐ API contract documented | |
+| ☐ Health endpoints implemented | |
+| ☐ Logging and tracing configured | |
+| ☐ Error handling standardized | |
+| ☐ Tests (unit, integration) | |
+| ☐ Docker configuration | |
+| ☐ CI/CD pipeline | |
+| ☐ Monitoring and alerts | |
+
+---
+
+## 8. Autonomy Calibration
+
+| Task Type | Level | Notes |
+|-----------|-------|-------|
+| Add endpoint to existing service | L3-L4 | Follow existing patterns |
+| Create new service | L2-L3 | Checkpoint at design |
+| Cross-service communication | L2-L3 | Review interface design |
+| Database schema change | L2 | Data migration risk |
+| Event schema change | L2 | Breaking change risk |
+| Infrastructure changes | L1-L2 | Production impact |
+| Security configuration | L1-L2 | Full review required |
+
+---
+
+## Quick Commands
+
+| Category | Commands |
+|----------|----------|
+| **Docker** | `docker-compose up -d` · `docker-compose logs -f service` |
+| **API Test** | `curl localhost:8000/health` · `httpie POST :8000/orders` |
+| **Logs** | `docker-compose logs -f --tail=100` |
+| **Debug** | `docker-compose exec service bash` |
+
+---
+
+## Related
+
+- `guidelines/engineering.md` — Engineering practices
+- `practices/engineering/api_design.md` — API design patterns
+- `guidelines/security.md` — Security guidelines
+- `frameworks/patterns/collaboration.md` — Collaboration patterns
+
+---
+
+*Part of SAGE Knowledge Base*
+
+--- C:\Users\Administrator\projects\junie_mcp\content\scenarios\monorepo\context.md contents: ---
+[Reading 358 lines from start (total: 359 lines, 1 remaining)]
+
+# Monorepo Scenario Context
+
+> Pre-configured context for monorepo project management
+
+---
+
+## Table of Contents
+
+[1. Scenario Profile](#1-scenario-profile) · [2. Relevant Knowledge](#2-relevant-knowledge) · [3. Structure Patterns](#3-structure-patterns) · [4. Tooling](#4-tooling) · [5. Dependency Management](#5-dependency-management) · [6. CI/CD Patterns](#6-cicd-patterns) · [7. Common Tasks](#7-common-tasks) · [8. Autonomy Calibration](#8-autonomy-calibration)
+
+---
+
+## 1. Scenario Profile
+
+```yaml
+scenario: monorepo
+languages: [ typescript, python, go ]
+tools: [ nx, turborepo, pnpm, lerna, bazel ]
+focus: [ structure, dependencies, ci_cd, code_sharing ]
+autonomy_default: L3
+```
+
+---
+
+## 2. Relevant Knowledge
+
+| Priority      | Files                                                                                          |
+|---------------|------------------------------------------------------------------------------------------------|
+| **Auto-Load** | `core/principles.md` · `guidelines/engineering.md` · `practices/engineering/patterns.md`       |
+| **On-Demand** | `practices/documentation/project_directory_structure.md` · `guidelines/code_style.md`          |
+
+---
+
+## 3. Structure Patterns
+
+### 3.1 Common Monorepo Layout
+
+```
+monorepo/
+├── apps/                    # Deployable applications
+│   ├── web/                 # Frontend application
+│   ├── api/                 # Backend API
+│   └── mobile/              # Mobile application
+├── packages/                # Shared packages/libraries
+│   ├── ui/                  # UI component library
+│   ├── utils/               # Shared utilities
+│   ├── config/              # Shared configuration
+│   └── types/               # Shared type definitions
+├── tools/                   # Build tools and scripts
+├── docs/                    # Documentation
+├── .github/                 # CI/CD workflows
+├── package.json             # Root package.json
+├── pnpm-workspace.yaml      # Workspace configuration
+├── turbo.json               # Turborepo config
+└── nx.json                  # Nx config (if using Nx)
+```
+
+### 3.2 Package Naming Convention
+
+| Type | Pattern | Example |
+|------|---------|---------|
+| Applications | `@org/app-name` | `@acme/web`, `@acme/api` |
+| Libraries | `@org/lib-name` | `@acme/ui`, `@acme/utils` |
+| Config | `@org/config-*` | `@acme/config-eslint` |
+| Types | `@org/types-*` | `@acme/types-shared` |
+
+### 3.3 Architecture Principles
+
+| Principle | Description |
+|-----------|-------------|
+| **Single Version** | One version of each dependency across repo |
+| **Shared Tooling** | Common lint, test, build configuration |
+| **Clear Boundaries** | Well-defined package interfaces |
+| **Dependency Graph** | Explicit internal dependencies |
+| **Incremental Builds** | Only rebuild what changed |
+
+---
+
+## 4. Tooling
+
+### 4.1 Tool Comparison
+
+| Tool | Language | Best For | Key Feature |
+|------|----------|----------|-------------|
+| **Nx** | TypeScript | Full-featured | Computation caching |
+| **Turborepo** | Any | Fast builds | Remote caching |
+| **pnpm** | Node.js | Package management | Disk efficient |
+| **Lerna** | Node.js | Publishing | Version management |
+| **Bazel** | Any | Large scale | Hermetic builds |
+
+### 4.2 Turborepo Configuration
+
+```json
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": ["**/.env.*local"],
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", ".next/**"]
+    },
+    "test": {
+      "dependsOn": ["build"],
+      "inputs": ["src/**/*.tsx", "src/**/*.ts", "test/**/*.ts"]
+    },
+    "lint": {
+      "outputs": []
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    }
+  }
+}
+```
+
+### 4.3 pnpm Workspace
+
+```yaml
+# pnpm-workspace.yaml
+packages:
+  - 'apps/*'
+  - 'packages/*'
+  - 'tools/*'
+```
+
+### 4.4 Nx Configuration
+
+```json
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "targetDefaults": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
+    },
+    "test": {
+      "inputs": ["default", "^production"]
+    }
+  },
+  "namedInputs": {
+    "default": ["{projectRoot}/**/*"],
+    "production": ["default", "!{projectRoot}/**/*.spec.ts"]
+  }
+}
+```
+
+---
+
+## 5. Dependency Management
+
+### 5.1 Internal Dependencies
+
+```json
+{
+  "name": "@acme/web",
+  "dependencies": {
+    "@acme/ui": "workspace:*",
+    "@acme/utils": "workspace:*",
+    "@acme/types-shared": "workspace:*"
+  }
+}
+```
+
+### 5.2 Shared Configuration
+
+```typescript
+// packages/config-eslint/index.js
+module.exports = {
+  extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  parser: "@typescript-eslint/parser",
+  plugins: ["@typescript-eslint"],
+  rules: {
+    "@typescript-eslint/no-unused-vars": "error",
+  },
+};
+
+// apps/web/.eslintrc.js
+module.exports = {
+  root: true,
+  extends: ["@acme/config-eslint"],
+};
+```
+
+### 5.3 TypeScript Project References
+
+```json
+{
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true
+  },
+  "references": [
+    { "path": "../packages/ui" },
+    { "path": "../packages/utils" }
+  ]
+}
+```
+
+---
+
+## 6. CI/CD Patterns
+
+### 6.1 Affected-Only Builds
+
+```yaml
+# GitHub Actions with Nx
+name: CI
+on: [push, pull_request]
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+      
+      - run: pnpm install
+      
+      - uses: nrwl/nx-set-shas@v4
+      
+      - run: pnpm nx affected -t lint test build
+```
+
+### 6.2 Turborepo with Remote Cache
+
+```yaml
+name: CI
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+      
+      - run: pnpm install
+      
+      - run: pnpm turbo run build test lint
+        env:
+          TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+          TURBO_TEAM: ${{ vars.TURBO_TEAM }}
+```
+
+### 6.3 Selective Deployment
+
+```yaml
+deploy-web:
+  needs: build
+  if: contains(github.event.head_commit.modified, 'apps/web/') || 
+      contains(github.event.head_commit.modified, 'packages/')
+  runs-on: ubuntu-latest
+  steps:
+    - run: pnpm --filter @acme/web deploy
+```
+
+---
+
+## 7. Common Tasks
+
+| Task | Command |
+|------|---------|
+| **Install all** | `pnpm install` |
+| **Build all** | `pnpm turbo build` |
+| **Build affected** | `pnpm nx affected -t build` |
+| **Test single** | `pnpm --filter @acme/web test` |
+| **Add dependency** | `pnpm --filter @acme/web add lodash` |
+| **Add workspace dep** | `pnpm --filter @acme/web add @acme/ui@workspace:*` |
+| **Run dev** | `pnpm turbo dev --filter @acme/web` |
+| **Lint all** | `pnpm turbo lint` |
+| **Graph** | `pnpm nx graph` |
+
+### 7.1 Creating New Package
+
+```bash
+# Create package directory
+mkdir -p packages/new-lib/src
+
+# Initialize package.json
+cd packages/new-lib
+pnpm init
+
+# Update package.json
+{
+  "name": "@acme/new-lib",
+  "version": "0.0.0",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch"
+  }
+}
+```
+
+### 7.2 Package Checklist
+
+| Item | Status |
+|------|--------|
+| ☐ Package.json with correct name | |
+| ☐ TypeScript configuration | |
+| ☐ Build script | |
+| ☐ ESLint configuration | |
+| ☐ Test setup | |
+| ☐ README.md | |
+| ☐ Export in index.ts | |
+
+---
+
+## 8. Autonomy Calibration
+
+| Task Type | Level | Notes |
+|-----------|-------|-------|
+| Add code to existing package | L4 | Follow existing patterns |
+| Create new package | L3 | Review structure |
+| Modify shared config | L2-L3 | Affects all packages |
+| Update root dependencies | L2 | Version compatibility |
+| Change build pipeline | L2 | CI/CD impact |
+| Restructure packages | L1-L2 | Breaking changes |
+| Update tooling (Nx/Turbo) | L2 | Compatibility check |
+
+---
+
+## Pitfalls to Avoid
+
+| Pitfall | Solution |
+|---------|----------|
+| **Circular dependencies** | Use dependency graph tools |
+| **Version drift** | Single version policy |
+| **Slow CI** | Use affected commands, remote cache |
+| **Large node_modules** | Use pnpm, shared hoisting |
+| **Unclear ownership** | CODEOWNERS file |
+
+---
+
+## Related
+
+- `guidelines/engineering.md` — Engineering practices
+- `practices/documentation/project_directory_structure.md` — Directory patterns
+- `guidelines/typescript.md` — TypeScript guidelines
+
+---
+
+*Part of SAGE Knowledge Base*
+
+--- C:\Users\Administrator\projects\junie_mcp\content\scenarios\plugin_development\context.md contents: ---
+[Reading 438 lines from start (total: 439 lines, 1 remaining)]
+
+# Plugin Development Scenario Context
+
+> Pre-configured context for SAGE plugin development
+
+---
+
+## Table of Contents
+
+[1. Scenario Profile](#1-scenario-profile) · [2. Relevant Knowledge](#2-relevant-knowledge) · [3. Project Structure](#3-project-structure) · [4. Plugin Architecture](#4-plugin-architecture) · [5. Implementation Patterns](#5-implementation-patterns) · [6. Common Tasks](#6-common-tasks) · [7. Autonomy Calibration](#7-autonomy-calibration) · [8. Quick Commands](#8-quick-commands)
+
+---
+
+## 1. Scenario Profile
+
+```yaml
+scenario: plugin_development
+languages: [ python ]
+tools: [ pytest, mypy, ruff ]
+focus: [ extensibility, hooks, lifecycle, configuration ]
+autonomy_default: L3
+```
+
+---
+
+## 2. Relevant Knowledge
+
+| Priority      | Files                                                                                          |
+|---------------|------------------------------------------------------------------------------------------------|
+| **Auto-Load** | `core/principles.md` · `content/references/plugin_api.md` · `practices/engineering/patterns.md` |
+| **On-Demand** | `practices/engineering/testing_strategy.md` · `.context/decisions/ADR-0008-plugin-system.md` · `docs/design/05-plugin-memory.md` |
+
+---
+
+## 3. Project Structure
+
+| Directory                   | Purpose                  |
+|-----------------------------|--------------------------|
+| `src/sage/plugins/`         | Plugin framework core    |
+| `src/sage/plugins/bundled/` | Built-in plugins         |
+| `config/capabilities/`      | Plugin configuration     |
+| `tests/unit/plugins/`       | Plugin unit tests        |
+| `docs/guides/advanced.md`   | Plugin development guide |
+
+---
+
+## 4. Plugin Architecture
+
+### 4.1 Plugin System Overview
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    SAGE Core                                │
+├─────────────────────────────────────────────────────────────┤
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐         │
+│  │ Plugin      │  │ Hook        │  │ Plugin      │         │
+│  │ Manager     │  │ Registry    │  │ Config      │         │
+│  └─────────────┘  └─────────────┘  └─────────────┘         │
+├─────────────────────────────────────────────────────────────┤
+│                    Plugin Interface                         │
+├──────────┬──────────┬──────────┬──────────┬────────────────┤
+│ Plugin A │ Plugin B │ Plugin C │ Plugin D │ ... (Bundled)  │
+├──────────┴──────────┴──────────┴──────────┴────────────────┤
+│                    External Plugins                         │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### 4.2 Core Components
+
+| Component         | Purpose                     | Location                           |
+|-------------------|-----------------------------|------------------------------------|
+| **PluginBase**    | Base class for all plugins  | `src/sage/plugins/base.py`         |
+| **PluginManager** | Plugin lifecycle management | `src/sage/plugins/manager.py`      |
+| **HookRegistry**  | Hook point registration     | `src/sage/plugins/hooks.py`        |
+| **PluginConfig**  | Plugin configuration        | `config/capabilities/plugins.yaml` |
+
+### 4.3 Plugin Lifecycle
+
+```
+┌──────────┐    ┌──────────┐    ┌──────────┐    ┌──────────┐
+│ Discover │ → │ Validate │ → │ Register │ → │  Enable  │
+└──────────┘    └──────────┘    └──────────┘    └──────────┘
+                                                     │
+┌──────────┐    ┌──────────┐    ┌──────────┐         │
+│  Unload  │ ← │ Disable  │ ← │  Active  │ ← ───────┘
+└──────────┘    └──────────┘    └──────────┘
+```
+
+| Phase        | Description            | Hook          |
+|--------------|------------------------|---------------|
+| **Discover** | Find available plugins | -             |
+| **Validate** | Check compatibility    | `on_validate` |
+| **Register** | Add to plugin registry | `on_register` |
+| **Enable**   | Activate plugin        | `on_enable`   |
+| **Active**   | Plugin running         | Various hooks |
+| **Disable**  | Deactivate plugin      | `on_disable`  |
+| **Unload**   | Remove from memory     | `on_unload`   |
+
+---
+
+## 5. Implementation Patterns
+
+### 5.1 Basic Plugin Structure
+
+```python
+from sage.plugins import PluginBase, hook
+
+
+class MyPlugin(PluginBase):
+    """My custom SAGE plugin.
+    
+    This plugin demonstrates the basic structure and
+    available hook points.
+    """
+
+    # Plugin metadata
+    name = "my-plugin"
+    version = "1.0.0"
+    description = "A sample SAGE plugin"
+    author = "Your Name"
+
+    # Dependencies (optional)
+    dependencies = ["other-plugin>=1.0"]
+
+    def __init__(self, config: dict | None = None):
+        """Initialize plugin with optional config."""
+        super().__init__(config)
+        self._initialized = False
+
+    # Lifecycle hooks
+    async def on_enable(self) -> None:
+        """Called when plugin is enabled."""
+        self._initialized = True
+        self.logger.info(f"{self.name} enabled")
+
+    async def on_disable(self) -> None:
+        """Called when plugin is disabled."""
+        self._initialized = False
+        self.logger.info(f"{self.name} disabled")
+```
+
+### 5.2 Hook Implementation
+
+```python
+from sage.plugins import PluginBase, hook
+
+
+class ContentPlugin(PluginBase):
+    """Plugin that processes content."""
+
+    name = "content-processor"
+    version = "1.0.0"
+
+    @hook("before_load")
+    async def before_load(self, path: str) -> str:
+        """Modify path before content loading.
+        
+        Args:
+            path: Original content path
+            
+        Returns:
+            Modified path (or original if unchanged)
+        """
+        # Example: Redirect old paths
+        if path.startswith("legacy/"):
+            return path.replace("legacy/", "content/")
+        return path
+
+    @hook("after_load")
+    async def after_load(self, content: str, path: str) -> str:
+        """Process content after loading.
+        
+        Args:
+            content: Loaded content
+            path: Content path
+            
+        Returns:
+            Processed content
+        """
+        # Example: Add metadata header
+        header = f"<!-- Source: {path} -->\n"
+        return header + content
+
+    @hook("on_search")
+    async def on_search(self, query: str, results: list) -> list:
+        """Filter or reorder search results.
+        
+        Args:
+            query: Search query
+            results: Current results
+            
+        Returns:
+            Modified results
+        """
+        # Example: Boost certain results
+        return sorted(results, key=lambda r: r.relevance, reverse=True)
+```
+
+### 5.3 Available Hook Points
+
+| Hook               | Trigger             | Parameters                        | Returns |
+|--------------------|---------------------|-----------------------------------|---------|
+| `before_load`      | Before content load | `path: str`                       | `str`   |
+| `after_load`       | After content load  | `content: str, path: str`         | `str`   |
+| `on_search`        | During search       | `query: str, results: list`       | `list`  |
+| `on_error`         | On error occurrence | `error: Exception, context: dict` | `None`  |
+| `on_config_change` | Config updated      | `key: str, value: Any`            | `None`  |
+| `before_serve`     | Before MCP serve    | `server: FastMCP`                 | `None`  |
+| `after_serve`      | After MCP stop      | `server: FastMCP`                 | `None`  |
+
+### 5.4 Plugin Configuration
+
+```yaml
+# config/capabilities/plugins.yaml
+plugins:
+  # Built-in plugins
+  bundled:
+    - name: cache-plugin
+      enabled: true
+      config:
+        ttl: 3600
+        max_size: 100MB
+
+    - name: metrics-plugin
+      enabled: true
+      config:
+        export_prometheus: true
+
+  # External plugins
+  external:
+    - name: my-plugin
+      path: ~/.sage/plugins/my_plugin.py
+      enabled: true
+      config:
+        custom_option: value
+
+  # Discovery paths
+  discovery:
+    - ~/.sage/plugins/
+    - ./plugins/
+```
+
+### 5.5 Plugin with Configuration
+
+```python
+from sage.plugins import PluginBase, hook
+from pydantic import BaseModel
+
+
+class MyPluginConfig(BaseModel):
+    """Configuration schema for MyPlugin."""
+    option_a: str = "default"
+    option_b: int = 10
+    enabled_features: list[str] = []
+
+
+class MyPlugin(PluginBase):
+    """Plugin with typed configuration."""
+
+    name = "configurable-plugin"
+    version = "1.0.0"
+    config_schema = MyPluginConfig
+
+    def __init__(self, config: dict | None = None):
+        super().__init__(config)
+        # Config is validated and typed
+        self.settings = MyPluginConfig(**(config or {}))
+
+    @hook("after_load")
+    async def after_load(self, content: str, path: str) -> str:
+        if "feature_x" in self.settings.enabled_features:
+            return self._process_feature_x(content)
+        return content
+```
+
+### 5.6 Testing Plugins
+
+```python
+import pytest
+from sage.plugins import PluginManager
+from my_plugin import MyPlugin
+
+
+@pytest.fixture
+def plugin_manager():
+    """Create plugin manager for testing."""
+    return PluginManager()
+
+
+@pytest.fixture
+def my_plugin():
+    """Create plugin instance."""
+    return MyPlugin(config={"option_a": "test"})
+
+
+class TestMyPlugin:
+    """Tests for MyPlugin."""
+
+    async def test_plugin_enables(self, my_plugin):
+        """Plugin should enable successfully."""
+        await my_plugin.on_enable()
+        assert my_plugin._initialized
+
+    async def test_before_load_hook(self, my_plugin):
+        """Hook should modify legacy paths."""
+        result = await my_plugin.before_load("legacy/old.md")
+        assert result == "content/old.md"
+
+    async def test_after_load_hook(self, my_plugin):
+        """Hook should add metadata header."""
+        result = await my_plugin.after_load("content", "test.md")
+        assert "<!-- Source: test.md -->" in result
+
+    async def test_plugin_integration(self, plugin_manager, my_plugin):
+        """Plugin should integrate with manager."""
+        await plugin_manager.register(my_plugin)
+        await plugin_manager.enable("my-plugin")
+
+        assert plugin_manager.is_enabled("my-plugin")
+```
+
+---
+
+## 6. Common Tasks
+
+| Task                 | Steps                                                     |
+|----------------------|-----------------------------------------------------------|
+| **Create plugin**    | Extend PluginBase → Add metadata → Implement hooks → Test |
+| **Add hook point**   | Define in registry → Document → Implement in core         |
+| **Configure plugin** | Define schema → Add to config → Validate on load          |
+| **Test plugin**      | Unit tests → Integration tests → Manual testing           |
+| **Package plugin**   | Add setup.py → Document → Publish to PyPI                 |
+| **Debug plugin**     | Enable debug logging → Use breakpoints → Check hook calls |
+
+### 6.1 Creating a New Plugin
+
+```bash
+# 1. Create plugin file
+mkdir -p src/sage/plugins/bundled/my_plugin
+touch src/sage/plugins/bundled/my_plugin/__init__.py
+
+# 2. Implement plugin (see patterns above)
+
+# 3. Add configuration
+# Edit config/capabilities/plugins.yaml
+
+# 4. Create tests
+touch tests/unit/plugins/test_my_plugin.py
+
+# 5. Run tests
+pytest tests/unit/plugins/test_my_plugin.py -v
+```
+
+### 6.2 Debugging Plugins
+
+```python
+import logging
+
+# Enable debug logging for plugins
+logging.getLogger("sage.plugins").setLevel(logging.DEBUG)
+
+
+# In your plugin
+class MyPlugin(PluginBase):
+    @hook("before_load")
+    async def before_load(self, path: str) -> str:
+        self.logger.debug(f"Processing path: {path}")
+        # ... implementation
+```
+
+---
+
+## 7. Autonomy Calibration
+
+| Task Type                   | Level | Notes               |
+|-----------------------------|-------|---------------------|
+| Fix plugin documentation    | L5    | Low risk            |
+| Add hook to existing plugin | L4    | Follow patterns     |
+| Create new bundled plugin   | L3    | Needs review        |
+| Add new hook point          | L2    | Affects all plugins |
+| Change plugin API           | L1-L2 | Breaking change     |
+| Modify lifecycle            | L1    | Core architecture   |
+
+---
+
+## 8. Quick Commands
+
+| Category   | Commands                                                     |
+|------------|--------------------------------------------------------------|
+| **Test**   | `pytest tests/unit/plugins/ -v`                              |
+| **Lint**   | `ruff check src/sage/plugins/`                               |
+| **Type**   | `mypy src/sage/plugins/`                                     |
+| **List**   | `sage plugins list` · `sage plugins info <name>`             |
+| **Enable** | `sage plugins enable <name>` · `sage plugins disable <name>` |
+
+---
+
+## Best Practices
+
+### Plugin Design
+
+| Practice                     | Description                     |
+|------------------------------|---------------------------------|
+| **Single Purpose**           | Each plugin does one thing well |
+| **Minimal Dependencies**     | Reduce external requirements    |
+| **Graceful Degradation**     | Handle errors without crashing  |
+| **Configuration Validation** | Use Pydantic for config schemas |
+| **Comprehensive Testing**    | Unit + integration tests        |
+
+### Performance
+
+| Aspect               | Guideline                     |
+|----------------------|-------------------------------|
+| **Hook Execution**   | Keep hooks fast (< 100ms)     |
+| **Memory Usage**     | Clean up resources on disable |
+| **Async Operations** | Use async for IO operations   |
+| **Caching**          | Cache expensive computations  |
+
+### Security
+
+| Check                | Description                 |
+|----------------------|-----------------------------|
+| **Input Validation** | Validate all external input |
+| **Path Traversal**   | Prevent path manipulation   |
+| **Code Injection**   | Sanitize dynamic code       |
+| **Permissions**      | Follow least privilege      |
+
+---
+
+## Related
+
+- `docs/design/05-plugin-memory.md` — Plugin system design
+- `.context/decisions/ADR-0008-plugin-system.md` — Architecture decision
+- `practices/engineering/patterns.md` — Design patterns
+- `practices/engineering/testing_strategy.md` — Testing guide
+
+---
+
+*Part of SAGE Knowledge Base*
+
+--- C:\Users\Administrator\projects\junie_mcp\content\scenarios\python_backend\context.md contents: ---
+[Reading 180 lines from start (total: 181 lines, 1 remaining)]
+
+# Python Backend Scenario Context
+
+> Pre-configured context for Python backend development
+
+---
+
+## Table of Contents
+
+[1. Scenario Profile](#1-scenario-profile) · [2. Relevant Knowledge](#2-relevant-knowledge) · [3. Project Structure](#3-project-structure-fastapi) · [4. Common Patterns](#4-common-patterns) · [5. Testing Patterns](#5-testing-patterns) · [6. Configuration](#6-configuration) · [7. Common Tasks](#7-common-tasks) · [8. Autonomy Calibration](#8-autonomy-calibration) · [9. Quick Commands](#9-quick-commands)
+
+---
+
+## 1. Scenario Profile
+
+```yaml
+scenario: python_backend
+languages: [ python ]
+frameworks: [ fastapi, flask, django ]
+focus: [ api, database, testing, deployment ]
+autonomy_default: L2
+```
+
+---
+
+## 2. Relevant Knowledge
+
+| Priority      | Files                                                                                          |
+|---------------|------------------------------------------------------------------------------------------------|
+| **Auto-Load** | `core/principles.md` · `guidelines/python.md` · `practices/engineering/patterns.md`            |
+| **On-Demand** | `guidelines/engineering.md` · `frameworks/timeout/hierarchy.md` · `templates/project_setup.md` |
+
+---
+
+## 3. Project Structure (FastAPI)
+
+| Directory               | Purpose                  |
+|-------------------------|--------------------------|
+| `src/app/main.py`       | FastAPI app entry        |
+| `src/app/config.py`     | Settings                 |
+| `src/app/models/`       | Pydantic models          |
+| `src/app/schemas/`      | Request/Response schemas |
+| `src/app/services/`     | Business logic           |
+| `src/app/repositories/` | Data access              |
+| `src/app/api/routes/`   | Endpoints                |
+| `src/app/core/`         | Security, exceptions     |
+| `tests/`                | Test suite               |
+| `alembic/`              | Migrations               |
+
+---
+
+## 4. Common Patterns
+
+### 4.1 Endpoint Pattern
+
+```python
+@router.get("/{id}", response_model=UserResponse)
+async def get_user(id: str, service: UserService = Depends(get_service)) -> UserResponse:
+    user = await service.get(id)
+    if not user:
+        raise HTTPException(status_code=404, detail=f"User {id} not found")
+    return user
+```
+
+### 4.2 Service Layer
+
+```python
+class UserService:
+    def __init__(self, repository: UserRepository):
+        self._repo = repository
+
+    async def create(self, data: UserCreate) -> User:
+        if await self._repo.exists_by_email(data.email):
+            raise EmailExistsError(data.email)
+        return await self._repo.save(User(email=data.email, password_hash=hash(data.password)))
+```
+
+### 4.3 Repository
+
+```python
+class UserRepository:
+    def __init__(self, session: AsyncSession):
+        self._session = session
+
+    async def get(self, id: str) -> Optional[User]:
+        result = await self._session.execute(select(User).where(User.id == id))
+        return result.scalar_one_or_none()
+```
+
+---
+
+## 5. Testing Patterns
+
+### 5.1 Fixtures
+
+```python
+@pytest.fixture
+async def client(app) -> AsyncClient:
+    async with AsyncClient(app=app, base_url="http://test") as ac:
+        yield ac
+
+
+@pytest.fixture
+def user_factory():
+    return lambda **kw: User(**{"email": "test@example.com", "name": "Test", **kw})
+```
+
+### 5.2 API Test
+
+```python
+@pytest.mark.asyncio
+async def test_create_user(client: AsyncClient):
+    response = await client.post("/api/users/", json={"email": "new@test.com", "password": "Pass123!"})
+    assert response.status_code == 201
+    assert "id" in response.json()
+```
+
+---
+
+## 6. Configuration
+
+```python
+class Settings(BaseSettings):
+    app_name: str = "My API"
+    database_url: str
+    secret_key: str
+
+    class Config:
+        env_file = ".env"
+
+
+@lru_cache
+def get_settings() -> Settings:
+    return Settings()
+```
+
+---
+
+## 7. Common Tasks
+
+| Task                | Steps                                                                         |
+|---------------------|-------------------------------------------------------------------------------|
+| **Add Endpoint**    | Schema → Service method → Repository (if needed) → Route → Tests              |
+| **DB Migration**    | `alembic revision --autogenerate -m "desc"` → Review → `alembic upgrade head` |
+| **Background Task** | `background_tasks.add_task(func, *args)` in endpoint                          |
+
+---
+
+## 8. Autonomy Calibration
+
+| Task Type               | Level | Notes                |
+|-------------------------|-------|----------------------|
+| New endpoint (standard) | L3    | Checkpoint at design |
+| Database migration      | L1-L2 | Review before apply  |
+| Bug fix (clear scope)   | L4    | Execute and report   |
+| Refactoring             | L3    | Checkpoint at plan   |
+| Test writing            | L4    | Execute and report   |
+| Security changes        | L1-L2 | Full review required |
+
+---
+
+## 9. Quick Commands
+
+| Category | Commands                                                |
+|----------|---------------------------------------------------------|
+| **Dev**  | `uvicorn app.main:app --reload`                         |
+| **Test** | `pytest` · `pytest tests/unit/ -v` · `pytest --cov=app` |
+| **Lint** | `ruff check .` · `mypy src/`                            |
+| **DB**   | `alembic upgrade head` · `alembic downgrade -1`         |
+
+---
+
+## Related
+
+- `content/guidelines/python.md` — Python guidelines
+- `content/practices/engineering/patterns.md` — Design patterns
+- `content/frameworks/autonomy/levels.md` — Autonomy framework
+
+---
+
+*Part of SAGE Knowledge Base*
+
+--- C:\Users\Administrator\projects\junie_mcp\content\scenarios\typescript_frontend\context.md contents: ---
+[Reading 296 lines from start (total: 297 lines, 1 remaining)]
+
+# TypeScript Frontend Scenario Context
+
+> Pre-configured context for TypeScript frontend development (React/Vue)
+
+---
+
+## Table of Contents
+
+[1. Scenario Profile](#1-scenario-profile) · [2. Relevant Knowledge](#2-relevant-knowledge) · [3. Project Structure](#3-project-structure-react) · [4. Common Patterns](#4-common-patterns) · [5. Testing Patterns](#5-testing-patterns) · [6. State Management](#6-state-management) · [7. Common Tasks](#7-common-tasks) · [8. Autonomy Calibration](#8-autonomy-calibration) · [9. Quick Commands](#9-quick-commands)
+
+---
+
+## 1. Scenario Profile
+
+```yaml
+scenario: typescript_frontend
+languages: [ typescript, javascript ]
+frameworks: [ react, vue, next.js, nuxt ]
+focus: [ components, state, testing, styling ]
+autonomy_default: L3
+```
+
+---
+
+## 2. Relevant Knowledge
+
+| Priority      | Files                                                                                   |
+|---------------|-----------------------------------------------------------------------------------------|
+| **Auto-Load** | `core/principles.md` · `guidelines/code_style.md` · `practices/engineering/patterns.md` |
+| **On-Demand** | `guidelines/engineering.md` · `practices/engineering/testing_strategy.md`               |
+
+---
+
+## 3. Project Structure (React)
+
+| Directory         | Purpose                     |
+|-------------------|-----------------------------|
+| `src/components/` | Reusable UI components      |
+| `src/pages/`      | Page components (routing)   |
+| `src/hooks/`      | Custom React hooks          |
+| `src/contexts/`   | React Context providers     |
+| `src/services/`   | API client services         |
+| `src/utils/`      | Utility functions           |
+| `src/types/`      | TypeScript type definitions |
+| `src/styles/`     | Global styles, themes       |
+| `src/__tests__/`  | Test files                  |
+| `public/`         | Static assets               |
+
+---
+
+## 4. Common Patterns
+
+### 4.1 Component Pattern
+
+```typescript
+import {FC, useState, useCallback} from 'react';
+
+interface UserCardProps {
+    user: User;
+    onSelect?: (id: string) => void;
+}
+
+export const UserCard: FC<UserCardProps> = ({user, onSelect}) => {
+    const [isExpanded, setIsExpanded] = useState(false);
+
+    const handleClick = useCallback(() => {
+        setIsExpanded((prev) => !prev);
+        onSelect?.(user.id);
+    }, [user.id, onSelect]);
+
+    return (
+        <div className = "user-card"
+    onClick = {handleClick} >
+        <h3>{user.name} < /h3>
+    {
+        isExpanded && <p>{user.bio} < /p>}
+        < /div>
+    )
+        ;
+    }
+    ;
+```
+
+### 4.2 Custom Hook Pattern
+
+```typescript
+import {useState, useEffect} from 'react';
+
+interface UseFetchResult<T> {
+    data: T | null;
+    loading: boolean;
+    error: Error | null;
+}
+
+export function useFetch<T>(url: string): UseFetchResult<T> {
+    const [data, setData] = useState<T | null>(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<Error | null>(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                setLoading(true);
+                const response = await fetch(url);
+                if (!response.ok) throw new Error('Fetch failed');
+                setData(await response.json());
+            } catch (err) {
+                setError(err instanceof Error ? err : new Error('Unknown error'));
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchData();
+    }, [url]);
+
+    return {data, loading, error};
+}
+```
+
+### 4.3 Context Pattern
+
+```typescript
+import {createContext, useContext, ReactNode, useState} from 'react';
+
+interface AuthContextType {
+    user: User | null;
+    login: (credentials: Credentials) => Promise<void>;
+    logout: () => void;
+}
+
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+export const AuthProvider = ({children}: { children: ReactNode }) => {
+    const [user, setUser] = useState<User | null>(null);
+
+    const login = async (credentials: Credentials) => {
+        const user = await authService.login(credentials);
+        setUser(user);
+    };
+
+    const logout = () => setUser(null);
+
+    return (
+        <AuthContext.Provider value = {
+    {
+        user, login, logout
+    }
+}>
+    {
+        children
+    }
+    </AuthContext.Provider>
+)
+    ;
+};
+
+export const useAuth = () => {
+    const context = useContext(AuthContext);
+    if (!context) throw new Error('useAuth must be within AuthProvider');
+    return context;
+};
+```
+
+---
+
+## 5. Testing Patterns
+
+### 5.1 Component Testing
+
+```typescript
+import {render, screen, fireEvent} from '@testing-library/react';
+import {UserCard} from './UserCard';
+
+describe('UserCard', () => {
+    const mockUser = {id: '1', name: 'John', bio: 'Developer'};
+
+    it('renders user name', () => {
+        render(<UserCard user = {mockUser}
+        />);
+        expect(screen.getByText('John')).toBeInTheDocument();
+    });
+
+    it('expands on click', () => {
+        render(<UserCard user = {mockUser}
+        />);
+        fireEvent.click(screen.getByText('John'));
+        expect(screen.getByText('Developer')).toBeInTheDocument();
+    });
+
+    it('calls onSelect with user id', () => {
+        const onSelect = jest.fn();
+        render(<UserCard user = {mockUser}
+        onSelect = {onSelect}
+        />);
+        fireEvent.click(screen.getByText('John'));
+        expect(onSelect).toHaveBeenCalledWith('1');
+    });
+});
+```
+
+### 5.2 Hook Testing
+
+```typescript
+import {renderHook, waitFor} from '@testing-library/react';
+import {useFetch} from './useFetch';
+
+describe('useFetch', () => {
+    it('fetches data successfully', async () => {
+        global.fetch = jest.fn().mockResolvedValue({
+            ok: true,
+            json: () => Promise.resolve({name: 'Test'}),
+        });
+
+        const {result} = renderHook(() => useFetch('/api/data'));
+
+        await waitFor(() => {
+            expect(result.current.loading).toBe(false);
+        });
+
+        expect(result.current.data).toEqual({name: 'Test'});
+        expect(result.current.error).toBeNull();
+    });
+});
+```
+
+---
+
+## 6. State Management
+
+### 6.1 Local State
+
+| Pattern      | Use Case                 |
+|--------------|--------------------------|
+| `useState`   | Simple component state   |
+| `useReducer` | Complex state logic      |
+| `useRef`     | Mutable values, DOM refs |
+
+### 6.2 Global State Options
+
+| Library           | Best For                  |
+|-------------------|---------------------------|
+| Context + Reducer | Small-medium apps         |
+| Zustand           | Simple global state       |
+| Redux Toolkit     | Large apps, complex state |
+| Jotai/Recoil      | Atomic state management   |
+| TanStack Query    | Server state              |
+
+---
+
+## 7. Common Tasks
+
+| Task                 | Steps                                                       |
+|----------------------|-------------------------------------------------------------|
+| **Add Component**    | Create file → Define types → Implement → Add tests → Export |
+| **Add Route**        | Create page → Update router → Add navigation                |
+| **Add API Call**     | Define types → Create service → Use in hook/component       |
+| **Add Global State** | Create context/store → Add provider → Use hook              |
+
+---
+
+## 8. Autonomy Calibration
+
+| Task Type                | Level | Notes                      |
+|--------------------------|-------|----------------------------|
+| New component (standard) | L3-L4 | Follow existing patterns   |
+| Styling changes          | L4    | Low risk                   |
+| State management changes | L2-L3 | Review architecture impact |
+| Add new dependency       | L2    | Discuss bundle size        |
+| Refactoring              | L3    | Checkpoint at plan         |
+| Test writing             | L4    | Execute and report         |
+| Breaking API changes     | L1-L2 | Full review required       |
+
+---
+
+## 9. Quick Commands
+
+| Category  | Commands                                                    |
+|-----------|-------------------------------------------------------------|
+| **Dev**   | `npm run dev` · `npm start`                                 |
+| **Build** | `npm run build` · `npm run preview`                         |
+| **Test**  | `npm test` · `npm run test:coverage` · `npm run test:watch` |
+| **Lint**  | `npm run lint` · `npm run lint:fix` · `npm run typecheck`   |
+| **Deps**  | `npm install` · `npm update` · `npm audit`                  |
+
+---
+
+## Related
+
+- `guidelines/code_style.md` — Code style guidelines
+- `practices/engineering/patterns.md` — Design patterns
+- `practices/engineering/testing_strategy.md` — Testing strategies
+- `frameworks/autonomy/levels.md` — Autonomy framework
+
+---
+
+*Part of SAGE Knowledge Base*

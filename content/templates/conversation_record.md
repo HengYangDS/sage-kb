@@ -160,7 +160,7 @@ Explored graceful degradation patterns when timeouts occur. Decided on partial c
 
 ## Action Items
 
-- [x] Document timeout hierarchy in `.context/configurations/`
+- [x] Document timeout hierarchy in `.context/policies/`
 - [x] Implement TimeoutLoader base class
 - [ ] Add timeout metrics to monitoring
 

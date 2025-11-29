@@ -221,7 +221,7 @@ How to fix or avoid it?
 | Architecture decisions | `.context/decisions/` | ADR template |
 | Coding conventions | `.context/conventions/` | Standard doc |
 | AI collaboration insights | `.context/intelligence/` | Patterns/calibration |
-| Configuration docs | `.context/configurations/` | Config reference |
+| Configuration docs | `.context/policies/`       | Config reference |
 | General practices | `content/practices/` | Practice guide |
 | Reusable frameworks | `content/frameworks/` | Framework doc |
 | Scenario contexts | `content/scenarios/` | Context file |

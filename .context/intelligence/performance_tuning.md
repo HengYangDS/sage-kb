@@ -376,7 +376,7 @@ class PerformanceMetrics:
 
 ## Related
 
-- `.context/configurations/timeout_hierarchy.md` — Timeout settings
+- `.context/policies/timeout_hierarchy.md` — Timeout settings
 - `tests/performance/` — Performance test suite
 - `config/core/memory.yaml` — Memory configuration
 

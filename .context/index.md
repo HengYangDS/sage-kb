@@ -14,7 +14,7 @@
 
 | Directory         | Purpose                              | Files |
 |-------------------|--------------------------------------|-------|
-| `configurations/` | Project-specific configurations      | 6     |
+| `policies/`       | Project-specific policies            | 6     |
 | `conventions/`    | Project-specific coding conventions  | 3     |
 | `decisions/`      | Architecture Decision Records (ADRs) | 8     |
 | `intelligence/`   | AI intelligence patterns             | 7     |
@@ -23,9 +23,9 @@
 
 ## 2. Content Categories
 
-### 2.1 Configurations
+### 2.1 Policies
 
-Project-specific configuration documentation:
+Project-specific policy documentation:
 
 | Document                    | Description                                   |
 |-----------------------------|-----------------------------------------------|
@@ -85,21 +85,21 @@ AI collaboration patterns and learned behaviors:
 |----------------------|----------------------------------------------------------------------------------|
 | **Getting Started**  | `conventions/naming.md`, `conventions/file_structure.md`                         |
 | **Architecture**     | `decisions/ADR-0001-architecture.md`, `decisions/ADR-0002-sage-protocol.md`      |
-| **Configuration**    | `configurations/runtime_settings.md`, `configurations/loading_configurations.md` |
-| **Timeouts**         | `configurations/timeout_hierarchy.md`, `decisions/ADR-0003-timeout-hierarchy.md` |
+| **Configuration**    | `policies/runtime_settings.md`, `policies/loading_configurations.md` |
+| **Timeouts**         | `policies/timeout_hierarchy.md`, `decisions/ADR-0003-timeout-hierarchy.md` |
 | **DI & Events**      | `decisions/ADR-0004-dependency-injection.md`, `decisions/ADR-0005-event-bus.md`  |
 | **AI Collaboration** | `intelligence/patterns.md`, `intelligence/calibration.md`                        |
 
 ### 3.2 All Documents
 
-#### Configurations
+#### Policies
 
-- `configurations/timeout_hierarchy.md` — SAGE T1-T5 timeout levels
-- `configurations/loading_configurations.md` — Loading strategies and layers
-- `configurations/runtime_settings.md` — Environment and runtime config
-- `configurations/memory_settings.md` — Memory persistence and caching
-- `configurations/plugin_settings.md` — Plugin system settings
-- `configurations/service_settings.md` — Service layer configuration
+- `policies/timeout_hierarchy.md` — SAGE T1-T5 timeout levels
+- `policies/loading_configurations.md` — Loading strategies and layers
+- `policies/runtime_settings.md` — Environment and runtime config
+- `policies/memory_settings.md` — Memory persistence and caching
+- `policies/plugin_settings.md` — Plugin system settings
+- `policies/service_settings.md` — Service layer configuration
 
 #### Conventions
 
@@ -145,11 +145,11 @@ AI collaboration patterns and learned behaviors:
 3. Use optimizations from `intelligence/optimizations.md`
 4. Reference conventions when generating code
 
-### 4.3 For Configuration
+### 4.3 For Policies
 
-1. Timeout settings: `configurations/timeout_hierarchy.md`
-2. Loading behavior: `configurations/loading_configurations.md`
-3. Runtime/environment: `configurations/runtime_settings.md`
+1. Timeout settings: `policies/timeout_hierarchy.md`
+2. Loading behavior: `policies/loading_configurations.md`
+3. Runtime/environment: `policies/runtime_settings.md`
 
 ---
 
