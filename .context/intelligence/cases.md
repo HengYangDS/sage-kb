@@ -16,6 +16,9 @@ This document records technical cases encountered during project development. Ea
 |----|-------|----------|------|--------|
 | CASE-2025-11-29-001 | Output files in wrong directory | Bug Fix | 2025-11-29 | Resolved |
 | CASE-2025-11-29-002 | Knowledge consolidation initiative | Documentation | 2025-11-29 | Resolved |
+| CASE-2025-11-29-003 | Layer terminology standardization | Architecture | 2025-11-29 | Resolved |
+| CASE-2025-11-29-004 | Configuration context refactoring | Architecture | 2025-11-29 | Resolved |
+| CASE-2025-11-29-005 | Test coverage gap analysis | Engineering | 2025-11-29 | Identified |
 
 ---
 
@@ -170,6 +173,167 @@ Created 10 new documentation files:
 | Configuration | Config-related issues |
 | Security | Security vulnerabilities |
 | Documentation | Doc-related improvements |
+
+---
+
+## CASE-2025-11-29-003
+
+### Summary
+
+| Field | Value |
+|-------|-------|
+| **Case ID** | CASE-2025-11-29-003 |
+| **Title** | Layer terminology standardization |
+| **Date** | 2025-11-29 |
+| **Category** | Architecture |
+| **Difficulty** | Simple |
+| **Time Spent** | 20 minutes |
+| **Status** | Resolved |
+
+### Problem Description
+
+Inconsistent terminology between documentation and codebase regarding the third architectural layer.
+
+**Documentation**: `.junie/guidelines.md` referred to "Core → Services → Tools"
+**Codebase**: `src/sage/capabilities/` and README referred to "Capabilities Layer"
+
+### Root Cause
+
+Historical evolution of terminology without synchronization across all documentation files.
+
+### Solution
+
+Updated `.junie/guidelines.md` Architecture Rules section:
+- Changed "Tools" to "Capabilities" in the Three-Layer Model description
+- Aligned with codebase directory structure and README
+
+### Verification
+
+- Grep search confirmed no remaining "Tools Layer" references in architecture documentation
+- Cross-referenced with `src/sage/` directory structure
+
+### Lessons Learned
+
+| Takeaway | Action |
+|----------|--------|
+| Terminology drift occurs naturally | Periodic terminology audits needed |
+| Single source of truth | Code structure should drive doc terminology |
+| Expert committee reviews catch drift | Use Level 5 reviews for consistency |
+
+### Tags
+
+`architecture` `documentation` `terminology` `consistency`
+
+---
+
+## CASE-2025-11-29-004
+
+### Summary
+
+| Field | Value |
+|-------|-------|
+| **Case ID** | CASE-2025-11-29-004 |
+| **Title** | Configuration context refactoring |
+| **Date** | 2025-11-29 |
+| **Category** | Architecture |
+| **Difficulty** | Medium |
+| **Time Spent** | 45 minutes |
+| **Status** | Resolved |
+
+### Problem Description
+
+Semantic confusion between `.context/configurations/` (governance policies) and `config/` (runtime configuration).
+
+**Issue**: Both directories dealt with "configuration" but served different purposes:
+- `.context/configurations/`: Policy documents about how things should be configured
+- `config/`: Actual runtime YAML configuration files
+
+### Root Cause
+
+Original naming didn't distinguish between "policy/governance" and "runtime settings".
+
+### Solution
+
+1. Renamed `.context/configurations/` to `.context/policies/`
+2. Updated 16 files with cross-references:
+   - `.context/index.md` (comprehensive update)
+   - `.junie/guidelines.md`
+   - `config/index.md`
+   - ADRs (ADR-0003, ADR-0007)
+   - Content files in frameworks and practices
+   - Intelligence documents
+
+### Verification
+
+- Verified all links work after rename
+- Confirmed no broken references via grep search
+- Directory structure reflects semantic intent
+
+### Lessons Learned
+
+| Takeaway | Action |
+|----------|--------|
+| Names should reflect purpose | Use "policies" for governance, "config" for runtime |
+| Refactoring requires thorough search | Use grep to find all references before renaming |
+| Document the distinction | Add clear descriptions in index files |
+
+### Tags
+
+`architecture` `refactoring` `naming` `semantic-clarity`
+
+---
+
+## CASE-2025-11-29-005
+
+### Summary
+
+| Field | Value |
+|-------|-------|
+| **Case ID** | CASE-2025-11-29-005 |
+| **Title** | Test coverage gap analysis |
+| **Date** | 2025-11-29 |
+| **Category** | Engineering |
+| **Difficulty** | Large |
+| **Time Spent** | Ongoing |
+| **Status** | Identified |
+
+### Problem Description
+
+Level 5 Expert Committee identified significant asymmetry between source code implementation and test coverage.
+
+### Analysis
+
+| Source Module | Implementation Files | Test Files | Gap |
+|---------------|---------------------|------------|-----|
+| `capabilities/analyzers/` | 3 | 0 | 3 |
+| `capabilities/checkers/` | 1 | 0 | 1 |
+| `capabilities/monitors/` | 1 | 0 | 1 |
+| `core/di/` | 2 | 0 | 2 |
+| `core/events/` | 4 | 0 | 4 |
+| `core/logging/` | 3 | 0 | 3 |
+| `core/memory/` | 3 | 0 | 3 |
+| **Total** | **17** | **0** | **17** |
+
+### Root Cause
+
+- Rapid initial development prioritized functionality over test coverage
+- Test directory structure created but not populated
+- No CI enforcement of coverage thresholds
+
+### Proposed Solution
+
+1. Create skeleton test files for all modules
+2. Start with `core/` modules (foundational)
+3. Add basic smoke tests for each class
+4. Implement CI coverage gate (e.g., 60% minimum)
+
+### Current Status
+
+Identified and documented. Implementation planned as Phase 4 of optimization initiative.
+
+### Tags
+
+`testing` `coverage` `technical-debt` `engineering-practice`
 
 ---
 

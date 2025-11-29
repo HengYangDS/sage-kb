@@ -26,8 +26,8 @@ autonomy_default: L3
 
 | Priority      | Files                                                                                             |
 |---------------|---------------------------------------------------------------------------------------------------|
-| **Auto-Load** | `core/principles.md` · `practices/documentation/knowledge_organization.md` · `frameworks/design/` |
-| **On-Demand** | `practices/documentation/standards.md` · `practices/ai_collaboration/knowledge_extraction.md`     |
+| **Auto-Load** | `core/principles.md` · `content/references/knowledge_quick_ref.md`                                |
+| **On-Demand** | `practices/documentation/knowledge_organization.md` · `frameworks/design/` · `practices/documentation/standards.md` · `practices/ai_collaboration/knowledge_extraction.md` |
 
 ---
 

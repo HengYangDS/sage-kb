@@ -344,9 +344,67 @@ content/
 
 ---
 
-## 6. Module Structure
+## 6. Source Code Packages
 
-### 6.1 `__init__.py` Pattern
+### 6.1 Package Responsibilities
+
+The `src/sage/` directory contains several packages with distinct responsibilities:
+
+| Package | Purpose | Contains |
+|---------|---------|----------|
+| `domain/` | Business domain models | Pure data structures, enums, no logic |
+| `core/` | Infrastructure & logic | Loaders, timeout, config, DI, events |
+| `interfaces/` | Protocol re-exports | Convenience imports from core |
+| `services/` | External interfaces | CLI, MCP, HTTP API |
+| `capabilities/` | Runtime features | Analyzers, checkers, monitors |
+| `plugins/` | Extension system | Plugin base, registry, bundled plugins |
+
+### 6.2 Domain vs Core Distinction
+
+**Domain Package** (`domain/`):
+- Pure data structures with no business logic
+- Dataclasses and enums representing business concepts
+- No dependencies on infrastructure (no I/O, no external services)
+- Examples: `KnowledgeAsset`, `CollaborationSession`, `AutonomyLevel`
+
+**Core Package** (`core/`):
+- Infrastructure components with actual logic
+- Handles I/O, configuration, timing, events
+- Implements the SAGE protocol behaviors
+- Examples: `KnowledgeLoader`, `TimeoutManager`, `EventBus`, `DIContainer`
+
+```
+domain/                     core/
+├── knowledge.py            ├── loader.py      (uses domain models)
+│   └── KnowledgeAsset      │   └── KnowledgeLoader
+│   └── KnowledgeLayer      ├── timeout.py     (infrastructure)
+│   └── KnowledgeCycle      ├── config.py      (infrastructure)
+└── session.py              ├── di/            (infrastructure)
+    └── CollaborationSession├── events/        (infrastructure)
+    └── SessionContext      ├── logging/       (infrastructure)
+    └── HandoffPackage      └── memory/        (infrastructure)
+```
+
+### 6.3 Interfaces Package
+
+The `interfaces/` package provides a convenience layer for importing protocols and models:
+
+```python
+# Instead of multiple imports:
+from sage.core.protocols import SourceProtocol, AnalyzeProtocol
+from sage.core.models import LoadResult, SearchResult
+
+# Use single import:
+from sage.interfaces import SourceProtocol, AnalyzeProtocol, LoadResult, SearchResult
+```
+
+This supports the **Protocol-First** design principle (ADR-0006).
+
+---
+
+## 7. Module Structure
+
+### 7.1 `__init__.py` Pattern
 
 ```python
 # src/sage/core/__init__.py
