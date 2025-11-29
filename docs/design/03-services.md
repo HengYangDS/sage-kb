@@ -1051,6 +1051,402 @@ Use Real (Isolated):
 """
 ```
 
+### Mock Alternatives (上位替代方案)
+
+Traditional mocking (`unittest.mock`) has limitations. SAGE recommends these superior alternatives:
+
+#### 1. Property-Based Testing with Hypothesis
+
+**Why Hypothesis over Mocks?**
+- Mocks test specific cases you think of; Hypothesis finds cases you didn't
+- Automatically generates edge cases and boundary conditions
+- Reduces test maintenance when APIs change
+
+```python
+# tests/unit/core/test_loader_properties.py
+"""
+Property-based tests using Hypothesis.
+Tests properties that should hold for ANY valid input.
+"""
+from hypothesis import given, strategies as st, settings
+import pytest
+
+
+# Strategy: Generate valid layer names
+valid_layers = st.sampled_from(["core", "guidelines", "scenarios", "practices"])
+layer_lists = st.lists(valid_layers, min_size=1, max_size=4, unique=True)
+
+
+@given(layers=layer_lists)
+@settings(max_examples=100)
+def test_loader_always_returns_content(layers: list[str]):
+    """Property: Loader ALWAYS returns non-empty content for valid layers."""
+    from sage.core.loader import TimeoutLoader
+    
+    loader = TimeoutLoader()
+    result = loader.load_sync(layers=layers)
+    
+    # Properties that must ALWAYS hold:
+    assert result.content, "Content should never be empty"
+    assert result.status in ("success", "partial", "fallback")
+    assert result.duration_ms >= 0
+
+
+@given(timeout=st.integers(min_value=1, max_value=10000))
+def test_loader_respects_timeout(timeout: int):
+    """Property: Loader never exceeds timeout (with margin)."""
+    from sage.core.loader import TimeoutLoader
+    
+    loader = TimeoutLoader(timeout_ms=timeout)
+    result = loader.load_sync(layers=["core"])
+    
+    # Allow 10% margin for system overhead
+    assert result.duration_ms <= timeout * 1.1
+
+
+# Complex strategy: Generate SourceRequest objects
+@st.composite
+def source_requests(draw):
+    """Generate valid SourceRequest objects."""
+    from sage.core.models import SourceRequest
+    
+    return SourceRequest(
+        layers=draw(layer_lists),
+        timeout_ms=draw(st.integers(100, 5000)),
+        include_metadata=draw(st.booleans())
+    )
+
+
+@given(request=source_requests())
+def test_source_request_roundtrip(request):
+    """Property: Request serialization is lossless."""
+    serialized = request.to_dict()
+    restored = request.__class__.from_dict(serialized)
+    assert request == restored
+```
+
+**Configuration** (pyproject.toml):
+
+```toml
+[tool.hypothesis]
+# Hypothesis settings
+deadline = 1000              # 1 second max per example
+max_examples = 100           # Examples per test (CI: 1000)
+verbosity = "normal"
+database = ".hypothesis"     # Cache for reproducibility
+
+[tool.pytest.ini_options]
+# Hypothesis profile for CI
+addopts = "--hypothesis-profile=ci"
+```
+
+**When to Use Hypothesis**:
+
+| Scenario | Use Hypothesis | Use Traditional Mock |
+|----------|----------------|---------------------|
+| Data transformation | ✅ Yes | ❌ No |
+| Invariant properties | ✅ Yes | ❌ No |
+| Edge case discovery | ✅ Yes | ❌ No |
+| External API calls | ❌ No | ✅ Yes |
+| Specific error paths | ❌ No | ✅ Yes |
+| Time-dependent code | ❌ No | ✅ Yes (freezegun) |
+
+---
+
+#### 2. Test Data Factories with Factory Boy
+
+**Why Factory Boy over Manual Fixtures?**
+- DRY: Define model structure once, reuse everywhere
+- Flexible: Override only what matters for each test
+- Realistic: Generates connected, valid object graphs
+
+```python
+# tests/factories.py
+"""
+Test data factories using factory_boy.
+Generates realistic test data with minimal boilerplate.
+"""
+import factory
+from factory import Faker, LazyAttribute, SubFactory
+from sage.core.models import SourceRequest, SourceResult, KnowledgeItem
+
+
+class SourceRequestFactory(factory.Factory):
+    """Factory for SourceRequest objects."""
+    
+    class Meta:
+        model = SourceRequest
+    
+    layers = ["core"]
+    timeout_ms = 5000
+    include_metadata = True
+    context = factory.LazyFunction(dict)
+    
+    class Params:
+        # Traits for common scenarios
+        quick = factory.Trait(timeout_ms=100, layers=["core"])
+        full = factory.Trait(layers=["core", "guidelines", "practices", "scenarios"])
+
+
+class SourceResultFactory(factory.Factory):
+    """Factory for SourceResult objects."""
+    
+    class Meta:
+        model = SourceResult
+    
+    content = Faker("paragraph", nb_sentences=5)
+    tokens = Faker("random_int", min=10, max=1000)
+    status = "success"
+    duration_ms = Faker("random_int", min=10, max=500)
+    layers_loaded = ["core"]
+    
+    class Params:
+        failed = factory.Trait(status="error", content="", tokens=0)
+        partial = factory.Trait(status="partial", layers_loaded=["core"])
+
+
+class KnowledgeItemFactory(factory.Factory):
+    """Factory for KnowledgeItem objects."""
+    
+    class Meta:
+        model = KnowledgeItem
+    
+    id = Faker("uuid4")
+    title = Faker("sentence", nb_words=4)
+    content = Faker("paragraph", nb_sentences=3)
+    layer = Faker("random_element", elements=["core", "guidelines", "practices"])
+    tags = Faker("words", nb=3)
+    created_at = Faker("date_time_this_year")
+
+
+# Usage in tests:
+# request = SourceRequestFactory()                    # Default
+# request = SourceRequestFactory(timeout_ms=100)      # Override
+# request = SourceRequestFactory.build(quick=True)    # Use trait
+# requests = SourceRequestFactory.build_batch(10)     # Multiple
+```
+
+---
+
+#### 3. Fake Data Generation with Faker
+
+**Standalone Faker for simple data needs**:
+
+```python
+# tests/conftest.py
+from faker import Faker
+
+fake = Faker()
+Faker.seed(12345)  # Reproducible in CI
+
+
+@pytest.fixture
+def fake_knowledge_content():
+    """Generate realistic markdown content."""
+    return f"""# {fake.sentence()}
+
+{fake.paragraph(nb_sentences=5)}
+
+## {fake.sentence()}
+
+- {fake.sentence()}
+- {fake.sentence()}
+- {fake.sentence()}
+
+> {fake.paragraph(nb_sentences=2)}
+"""
+
+
+@pytest.fixture
+def fake_config_yaml():
+    """Generate realistic YAML configuration."""
+    return {
+        "name": fake.slug(),
+        "version": fake.numerify("#.#.#"),
+        "timeout_ms": fake.random_int(100, 5000),
+        "layers": fake.random_elements(
+            ["core", "guidelines", "practices"], 
+            length=2, 
+            unique=True
+        ),
+    }
+```
+
+---
+
+#### 4. Comparison: Mock Alternatives
+
+| Technique | Best For | Avoid When |
+|-----------|----------|------------|
+| **Hypothesis** | Input validation, data transforms, invariants | External I/O, specific scenarios |
+| **Factory Boy** | Complex object graphs, ORM models | Simple primitives |
+| **Faker** | Realistic strings, dates, names | Structured domain objects |
+| **unittest.mock** | External boundaries, specific errors | Internal logic, data transforms |
+| **pytest fixtures** | Shared setup, resource management | Per-test variations |
+
+**Decision Tree**:
+
+```
+Need test data?
+├─ Testing a PROPERTY (always true)? → Hypothesis
+├─ Testing SPECIFIC behavior? → Mock/Fixture
+├─ Need REALISTIC objects? → Factory Boy
+├─ Need REALISTIC strings? → Faker
+└─ Need ISOLATION from I/O? → unittest.mock
+```
+
+---
+
+### Allure Test Reporting
+
+SAGE uses Allure for comprehensive test reporting with rich visualizations.
+
+#### Installation
+
+```bash
+# Install pytest-allure
+pip install allure-pytest
+
+# Install Allure CLI (for report generation)
+# macOS
+brew install allure
+
+# Windows (scoop)
+scoop install allure
+
+# Linux
+sudo apt install allure
+```
+
+#### Configuration
+
+```toml
+# pyproject.toml
+[tool.pytest.ini_options]
+addopts = """
+    --alluredir=reports/allure-results
+    --clean-alluredir
+"""
+```
+
+#### Test Annotations
+
+```python
+# tests/unit/core/test_loader_allure.py
+"""
+Allure-annotated tests for rich reporting.
+"""
+import allure
+import pytest
+
+
+@allure.epic("Knowledge Loading")
+@allure.feature("Timeout Protection")
+@allure.story("Graceful Degradation")
+class TestLoaderTimeout:
+    """Loader timeout behavior tests."""
+    
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.title("Loader returns fallback on timeout")
+    @allure.description("""
+        When the loader exceeds its timeout threshold,
+        it should return cached/fallback content instead of failing.
+    """)
+    def test_timeout_returns_fallback(self):
+        with allure.step("Create loader with 1ms timeout"):
+            loader = TimeoutLoader(timeout_ms=1)
+        
+        with allure.step("Request content that will timeout"):
+            result = loader.load_sync(layers=["core", "guidelines"])
+        
+        with allure.step("Verify fallback behavior"):
+            assert result.status in ("fallback", "partial")
+            allure.attach(
+                result.content,
+                name="Fallback Content",
+                attachment_type=allure.attachment_type.TEXT
+            )
+    
+    @allure.severity(allure.severity_level.NORMAL)
+    @allure.title("Loader respects configured timeout")
+    @pytest.mark.parametrize("timeout_ms", [100, 500, 1000, 5000])
+    def test_timeout_respected(self, timeout_ms: int):
+        with allure.step(f"Test with {timeout_ms}ms timeout"):
+            loader = TimeoutLoader(timeout_ms=timeout_ms)
+            result = loader.load_sync(layers=["core"])
+            
+            # Attach timing info
+            allure.attach(
+                str(result.duration_ms),
+                name="Actual Duration (ms)",
+                attachment_type=allure.attachment_type.TEXT
+            )
+            
+            assert result.duration_ms <= timeout_ms * 1.1
+```
+
+#### Allure Decorators Reference
+
+| Decorator | Purpose | Example |
+|-----------|---------|---------|
+| `@allure.epic` | Top-level grouping | "Knowledge Management" |
+| `@allure.feature` | Feature area | "Search", "Loading" |
+| `@allure.story` | User story | "As a user, I can search" |
+| `@allure.severity` | Priority level | BLOCKER, CRITICAL, NORMAL, MINOR, TRIVIAL |
+| `@allure.title` | Test display name | Human-readable title |
+| `@allure.description` | Detailed description | Markdown supported |
+| `@allure.step` | Test step (context manager) | Logical test phases |
+| `@allure.attach` | Attach artifacts | Screenshots, logs, data |
+| `@allure.link` | External links | Issue tracker, docs |
+| `@allure.issue` | Bug/issue link | "SAGE-123" |
+
+#### CI Integration
+
+```yaml
+# .github/workflows/test.yml
+jobs:
+  test:
+    steps:
+      - name: Run Tests with Allure
+        run: pytest tests/ --alluredir=allure-results
+      
+      - name: Generate Allure Report
+        if: always()
+        run: allure generate allure-results -o allure-report --clean
+      
+      - name: Upload Allure Report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: allure-report
+          path: allure-report/
+      
+      - name: Publish to GitHub Pages
+        if: github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./allure-report
+```
+
+#### Report Generation
+
+```bash
+# Run tests and generate results
+pytest tests/ --alluredir=reports/allure-results
+
+# Generate HTML report
+allure generate reports/allure-results -o reports/allure-report --clean
+
+# Open report in browser
+allure open reports/allure-report
+
+# Or serve directly
+allure serve reports/allure-results
+```
+
+---
+
 ### Integration Test Example
 
 ```python

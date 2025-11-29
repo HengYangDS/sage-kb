@@ -214,6 +214,122 @@ services:
       requests_per_minute: 60
 ```
 
+### 6. Plugins Configuration (`config/plugins.yaml`)
+
+```yaml
+plugins:
+  loader:
+    cache_enabled: true                # Master toggle for content caching
+    cache_ttl: 300                     # Default TTL (5 minutes)
+
+  bundled:
+    content_cache:
+      enabled: true
+      max_entries: 1000
+      max_size_bytes: 52428800         # 50MB
+      ttl_seconds: 3600                # 1 hour
+
+    semantic_search:
+      enabled: true
+      min_term_length: 2
+      max_results: 20
+      score_threshold: 0.1
+```
+
+### 7. Memory Configuration (`config/memory.yaml`)
+
+```yaml
+memory:
+  store:
+    backend: file                      # file | redis | sqlite
+    path: .history/memory              # Storage location
+
+  session:
+    auto_checkpoint: true              # Auto-checkpoint on critical events
+    checkpoint_interval: 300           # Every 5 minutes (seconds)
+    max_history: 100                   # Max conversation entries
+```
+
+### 8. Token Budget Configuration (`config/token_budget.yaml`)
+
+```yaml
+token_budget:
+  max_tokens: 128000                   # Model context window
+  reserved_tokens: 4000                # Reserved for response generation
+
+  thresholds:
+    warning: 0.70                      # 70% - CAUTION level
+    caution: 0.80                      # 80% - WARNING level
+    critical: 0.90                     # 90% - CRITICAL level
+    overflow: 0.95                     # 95% - OVERFLOW level
+
+  auto_actions:
+    summarize: true                    # Auto-summarize at CRITICAL
+    prune: true                        # Auto-prune at OVERFLOW
+```
+
+### 9. Loading Configuration (`config/loading.yaml`)
+
+```yaml
+loading:
+  max_tokens: 4000                     # Maximum tokens to load
+  default_layers:
+    - core                             # Always start with core
+
+  always:                              # Always pre-cached
+    - index.md
+    - content/core/principles.md
+    - content/core/quick_reference.md
+```
+
+### 10. Quality Configuration (`config/quality.yaml`)
+
+```yaml
+quality:
+  # Code quality thresholds
+  min_test_coverage: 95
+  max_function_lines: 50
+  max_file_lines: 500
+  max_complexity: 10
+
+  # Code style thresholds
+  max_line_length: 88
+  min_type_hint_coverage: 50
+
+  # Documentation thresholds
+  max_doc_line_length: 120
+```
+
+### 11. Logging Configuration (`config/logging.yaml`)
+
+```yaml
+logging:
+  level: INFO                          # DEBUG | INFO | WARNING | ERROR
+  format: structured                   # structured | plain
+  include_timestamps: true
+```
+
+### 12. Guidelines Configuration (`config/guidelines.yaml`)
+
+```yaml
+guidelines:
+  sections:
+    # Maps aliases to guideline files in content/guidelines/
+    quick_start: quick_start
+    overview: quick_start
+    planning: planning_design
+    code_style: code_style
+    code: code_style
+    engineering: engineering
+    documentation: documentation
+    python: python
+    ai_collaboration: ai_collaboration
+    cognitive: cognitive
+    quality: quality
+    success: success
+    # ... 34 total aliases
+```
+
 ---
 
 ## Fallback Content (`src/sage/data/fallback_core.yaml`)

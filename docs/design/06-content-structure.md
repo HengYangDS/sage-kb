@@ -412,6 +412,98 @@ status: stable  # draft | review | stable | deprecated
 
 ---
 
+## 6.10 Navigation Standards
+
+> **Source**: Level 5 Expert Committee Design Optimization (Issue 4)
+
+### 5-Level Navigation Hierarchy
+
+```
+L0: index.md (Project Overview, ~100 tokens)
+    └── What is this project? Quick links, How to navigate
+
+L1: .junie/guidelines.md (AI Client Entry, ~200 tokens)
+    └── Tech stack, Coding standards summary, @file references
+
+L2: content/core/*.md (Core Principles, ~500 tokens)
+    └── principles.md, quick_reference.md, defaults.md
+
+L3: content/guidelines/*.md (On-Demand, ~100-200/file)
+    └── Triggered by keywords in user query
+
+L4: content/frameworks/*.md (Deep Dive, ~300-500/file)
+    └── Loaded for complex decision tasks
+```
+
+### Navigation Decision Matrix
+
+| Content Type        | Location              | Rationale             |
+|---------------------|-----------------------|-----------------------|
+| Project overview    | `index.md`            | Universal entry       |
+| AI client config    | `.junie/`             | Client-specific       |
+| Core philosophy     | `content/core/`       | Always needed         |
+| How-to guides       | `content/guidelines/` | Task-triggered        |
+| Deep frameworks     | `content/frameworks/` | Complex decisions     |
+| Project decisions   | `.context/decisions/` | Project-specific      |
+| Session history     | `.history/`           | Ephemeral             |
+| Design documents    | `docs/design/`        | Technical reference   |
+
+---
+
+## 6.11 Knowledge Lifecycles
+
+> **Source**: Level 5 Expert Committee Design Optimization (Issues 7-8)
+
+### Project Knowledge Lifecycle
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                 PROJECT KNOWLEDGE LIFECYCLE                      │
+│                                                                 │
+│  ┌─────────┐    ┌─────────┐    ┌─────────┐    ┌─────────┐     │
+│  │ CAPTURE │ -> │ REFINE  │ -> │ PUBLISH │ -> │ ARCHIVE │     │
+│  └─────────┘    └─────────┘    └─────────┘    └─────────┘     │
+│       │              │              │              │           │
+│       v              v              v              v           │
+│  .history/      .context/      content/      .archive/        │
+│  sessions/      decisions/     (generic)    design_history/   │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+| Phase     | Location    | Trigger                 | Action                              |
+|-----------|-------------|-------------------------|-------------------------------------|
+| CAPTURE   | `.history/` | Every session           | Auto-save conversations, handoffs   |
+| REFINE    | `.context/` | Sprint end, milestone   | Extract ADRs, conventions           |
+| PUBLISH   | `content/`  | Quarterly review        | Promote generic knowledge           |
+| ARCHIVE   | `.archive/` | Content superseded      | Preserve historical records         |
+
+### Content Knowledge Lifecycle
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                 CONTENT (DISTRIBUTABLE) LIFECYCLE               │
+│                                                                 │
+│  ┌──────────┐   ┌──────────┐   ┌──────────┐   ┌──────────┐    │
+│  │ PROPOSE  │ → │ REVIEW   │ → │ INTEGRATE│ → │ RELEASE  │    │
+│  └──────────┘   └──────────┘   └──────────┘   └──────────┘    │
+│       │              │              │              │            │
+│       v              v              v              v            │
+│  GitHub Issue   Expert Review   content/*    PyPI Release      │
+│  or PR          (Level 4-5)     directory    (semver)          │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### Update Frequency by Layer
+
+| Layer | Directory             | Frequency          | Governance         |
+|-------|-----------------------|--------------------|--------------------|
+| L1    | `content/core/`       | Rare (1-2x/year)   | Expert Committee   |
+| L2    | `content/guidelines/` | Quarterly          | 2+ reviewers       |
+| L3    | `content/frameworks/` | As needed          | Expert review      |
+| L4    | `content/practices/`  | Monthly            | Standard PR        |
+
+---
+
 ## References
 
 - **Architecture**: See `01-architecture.md`
@@ -421,5 +513,5 @@ status: stable  # draft | review | stable | deprecated
 
 ---
 
-**Document Status**: Pending Level 5 Expert Committee Evaluation  
+**Document Status**: ✅ Level 5 Expert Committee Approved  
 **Last Updated**: 2025-11-29

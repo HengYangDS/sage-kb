@@ -376,6 +376,50 @@ fallback:
     Please retry or check system status.
 ```
 
+### 5-Layer System Fallback Architecture
+
+> **Source**: Level 5 Expert Committee Design Optimization (Issue 6)
+>
+> Beyond technical timeouts, the system implements a comprehensive 5-layer fallback
+> strategy that ensures value delivery even when optimal paths are unavailable.
+
+```
+Layer 1: TECHNICAL ──────────────────────────────────────────────────┐
+         timeout → return_partial_with_warning                       │
+         file_not_found → use_template_or_create                     │
+         service_down → use_alternative_channel                      │
+                                                                     │
+Layer 2: KNOWLEDGE ──────────────────────────────────────────────────┤
+         content_not_loaded → provide_summary                        │
+         framework_unavailable → provide_core_principle              │
+                                                                     │
+Layer 3: CAPABILITY ─────────────────────────────────────────────────┤
+         plugin_unavailable → use_builtin_alternative                │
+         advanced_search → basic_search                              │
+         ai_analysis → keyword_matching                              │
+         service_unavailable → priority: [api, mcp, cli, file]       │
+                                                                     │
+Layer 4: INTELLIGENCE ───────────────────────────────────────────────┤
+         expert_committee_unavailable → use_simplified_decision      │
+         analysis_timeout → provide_heuristics                       │
+         fallback_framework → "critical_questions"                   │
+                                                                     │
+Layer 5: HUMAN ──────────────────────────────────────────────────────┘
+         autonomy_limit_reached → escalate_to_human
+         high_uncertainty (confidence < 70%) → clarify_with_user
+         message: "This decision requires human approval"
+```
+
+| Layer        | Scope                    | Fallback Strategy                   | User Impact    |
+|--------------|--------------------------|-------------------------------------|----------------|
+| Technical    | Timeout, I/O errors      | Cache, partial results, retry       | Transparent    |
+| Knowledge    | Content loading          | Summary, core principles            | Reduced detail |
+| Capability   | Plugin/service failures  | Built-in alternatives               | Reduced features |
+| Intelligence | Analysis/decision limits | Simplified frameworks, heuristics   | Manual effort  |
+| Human        | Autonomy boundaries      | Escalation, clarification           | User decision  |
+
+**Key Insight**: Fallback = "How to maintain value delivery when optimal path is unavailable"
+
 ---
 
 ## Timeout-Aware Loader

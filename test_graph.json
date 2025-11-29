@@ -514,6 +514,15 @@
       "metadata": {}
     },
     {
+      "id": "file_docs_design_09_configuration_md",
+      "name": "09-configuration",
+      "type": "file",
+      "path": "docs\\design\\09-configuration.md",
+      "level": 0,
+      "tokens": 0,
+      "metadata": {}
+    },
+    {
       "id": "file_index_md",
       "name": "index",
       "type": "file",
@@ -626,6 +635,15 @@
       "name": "memory",
       "type": "directory",
       "path": "src\\sage\\core\\memory",
+      "level": 0,
+      "tokens": 0,
+      "metadata": {}
+    },
+    {
+      "id": "dir_src_sage_data",
+      "name": "data",
+      "type": "directory",
+      "path": "src\\sage\\data",
       "level": 0,
       "tokens": 0,
       "metadata": {}
@@ -1322,6 +1340,13 @@
       "metadata": {}
     },
     {
+      "source": "dir_docs_design",
+      "target": "file_docs_design_09_configuration_md",
+      "type": "contains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
       "source": "root",
       "target": "file_index_md",
       "type": "contains",
@@ -1408,6 +1433,13 @@
     {
       "source": "dir_src_sage_core",
       "target": "dir_src_sage_core_memory",
+      "type": "contains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "dir_src_sage",
+      "target": "dir_src_sage_data",
       "type": "contains",
       "weight": 1.0,
       "metadata": {}
@@ -1645,16 +1677,16 @@
     }
   ],
   "metadata": {
-    "built_at": "2025-11-29T17:56:53.839855",
+    "built_at": "2025-11-29T18:30:01.298212",
     "kb_path": ".",
     "include_content": false
   },
   "stats": {
-    "node_count": 103,
-    "edge_count": 102,
+    "node_count": 105,
+    "edge_count": 104,
     "node_types": {
-      "directory": 64,
-      "file": 39
+      "directory": 65,
+      "file": 40
     }
   }
 }

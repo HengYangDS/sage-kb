@@ -132,25 +132,26 @@ The design is validated by a Level 5 Expert Committee comprising 24 experts acro
 
 ## Document Navigation
 
-This design is organized into 9 independent documents:
+This design is organized into 10 independent documents:
 
 | Document                    | Description                                                 | Lines |
 |-----------------------------|-------------------------------------------------------------|-------|
-| **00-overview.md**          | Project overview, philosophy, progress (this file)          | ~190  |
-| **01-architecture.md**      | Three-layer architecture, directory structure, toolchain    | ~1290 |
+| **00-overview.md**          | Project overview, philosophy, progress (this file)          | ~250  |
+| **01-architecture.md**      | Three-layer architecture, directory structure, toolchain    | ~1540 |
 | **02-sage-protocol.md**     | SAGE Protocol, DI Container, EventBus, Bootstrap            | ~830  |
 | **03-services.md**          | API/MCP/CLI services, error handling, testing               | ~930  |
-| **04-timeout-loading.md**   | Timeout mechanism, token efficiency, smart loading          | ~730  |
+| **04-timeout-loading.md**   | Timeout mechanism, token efficiency, smart loading          | ~890  |
 | **05-plugin-memory.md**     | Plugin architecture, Memory persistence, Session continuity | ~630  |
 | **06-content-structure.md** | Content organization, knowledge taxonomy, versioning        | ~345  |
-| **07-roadmap.md**           | Implementation roadmap, phases, MVP/v1.1 split              | ~420  |
+| **07-roadmap.md**           | Implementation roadmap, phases, MVP/v1.1 split              | ~650  |
 | **08-evaluation.md**        | Expert committee evaluation, 99.8/100 score, approved       | ~125  |
+| **09-configuration.md**     | Configuration system, modular config files, settings        | ~420  |
 
 ### Reading Order
 
-**For new readers**: Start with this overview, then read in order (01 → 08).
+**For new readers**: Start with this overview, then read in order (01 → 09).
 
-**For implementers**: Focus on 01-architecture → 07-roadmap → specific topics.
+**For implementers**: Focus on 01-architecture → 07-roadmap → 09-configuration.
 
 **For reviewers**: Read 08-evaluation for scoring details and expert votes.
 
