@@ -1,0 +1,163 @@
+# SAGE Metrics & Monitoring Configuration
+#
+# Configuration for metrics collection, export, and monitoring.
+# This file is part of the modular configuration system.
+# =============================================================================
+# Metrics Configuration
+# =============================================================================
+metrics:
+  enabled: false                       # Master toggle for metrics collection
+
+  # ===========================================================================
+  # Prometheus-style Metrics
+  # ===========================================================================
+  prometheus:
+    enabled: false
+    endpoint: /metrics                 # Metrics endpoint path
+    port: 9090                         # Metrics server port
+    include_process_metrics: true      # Include Python process metrics
+    include_platform_metrics: true     # Include platform/OS metrics
+
+  # ===========================================================================
+  # Performance Metrics
+  # ===========================================================================
+  performance:
+    track_response_time: true          # Track request/operation response times
+    track_timeout_rate: true           # Track timeout occurrence rate
+    track_cache_hit_rate: true         # Track cache hit/miss ratio
+    track_error_rate: true             # Track error occurrence rate
+    track_throughput: true             # Track requests per second
+
+    # Histogram buckets for response time (in seconds)
+    histogram_buckets:
+      - 0.01                           # 10ms
+      - 0.05                           # 50ms
+      - 0.1                            # 100ms
+      - 0.25                           # 250ms
+      - 0.5                            # 500ms
+      - 1.0                            # 1s
+      - 2.0                            # 2s
+      - 5.0                            # 5s
+      - 10.0                           # 10s
+
+  # ===========================================================================
+  # Health Metrics
+  # ===========================================================================
+  health:
+    check_interval_seconds: 30         # Health check interval
+    unhealthy_threshold: 3             # Consecutive failures before unhealthy
+    components:
+      - name: memory_store
+        enabled: true
+        timeout_ms: 1000
+      - name: event_bus
+        enabled: true
+        timeout_ms: 500
+      - name: plugin_registry
+        enabled: true
+        timeout_ms: 500
+      - name: knowledge_loader
+        enabled: true
+        timeout_ms: 2000
+
+  # ===========================================================================
+  # Resource Metrics
+  # ===========================================================================
+  resources:
+    track_memory_usage: true           # Track memory consumption
+    track_cpu_usage: true              # Track CPU utilization
+    track_disk_usage: false            # Track disk space (if applicable)
+    track_open_files: false            # Track open file descriptors
+
+    # Thresholds for alerts
+    thresholds:
+      memory_warning_mb: 512
+      memory_critical_mb: 1024
+      cpu_warning_percent: 70
+      cpu_critical_percent: 90
+
+  # ===========================================================================
+  # Custom Metrics
+  # ===========================================================================
+  custom:
+    # Knowledge base metrics
+    knowledge:
+      track_load_count: true           # Number of knowledge loads
+      track_search_count: true         # Number of search operations
+      track_content_size: true         # Size of loaded content
+
+    # Session metrics
+    session:
+      track_active_sessions: true      # Number of active sessions
+      track_session_duration: true     # Session duration distribution
+      track_checkpoint_count: true     # Number of checkpoints
+
+    # Token budget metrics
+    token_budget:
+      track_usage: true                # Token usage tracking
+      track_warnings: true             # Token warning occurrences
+
+  # ===========================================================================
+  # Export Configuration
+  # ===========================================================================
+  export:
+    format: prometheus                 # prometheus | json | statsd | otlp
+    interval_seconds: 15               # Export interval
+
+    # Prometheus push gateway (optional)
+    push_gateway:
+      enabled: false
+      url: "http://localhost:9091"
+      job_name: "sage-kb"
+      push_interval_seconds: 60
+
+    # StatsD configuration (optional)
+    statsd:
+      enabled: false
+      host: "localhost"
+      port: 8125
+      prefix: "sage"
+
+    # OpenTelemetry Metrics (optional)
+    otlp:
+      enabled: false
+      endpoint: "http://localhost:4317"
+      protocol: grpc                   # grpc | http
+
+  # ===========================================================================
+  # Alerting Configuration
+  # ===========================================================================
+  alerting:
+    enabled: false
+
+    # Alert rules
+    rules:
+      - name: high_error_rate
+        condition: "error_rate > 0.05"  # 5% error rate
+        severity: warning
+        duration_seconds: 60
+
+      - name: high_timeout_rate
+        condition: "timeout_rate > 0.01"  # 1% timeout rate
+        severity: warning
+        duration_seconds: 60
+
+      - name: high_latency
+        condition: "p99_latency > 5000"  # 5s p99 latency
+        severity: critical
+        duration_seconds: 30
+
+      - name: memory_pressure
+        condition: "memory_usage_mb > 1024"
+        severity: critical
+        duration_seconds: 120
+
+    # Notification channels
+    notifications:
+      slack:
+        enabled: false
+        webhook_url_env: "SAGE_SLACK_WEBHOOK"
+      email:
+        enabled: false
+        smtp_host: ""
+        recipients: []

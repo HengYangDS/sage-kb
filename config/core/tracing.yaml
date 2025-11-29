@@ -1,0 +1,175 @@
+# SAGE Distributed Tracing Configuration
+#
+# Configuration for distributed tracing and observability.
+# This file is part of the modular configuration system.
+# =============================================================================
+# Tracing Configuration
+# =============================================================================
+tracing:
+  enabled: false                       # Master toggle for tracing
+
+  # ===========================================================================
+  # OpenTelemetry Configuration
+  # ===========================================================================
+  opentelemetry:
+    enabled: false
+    service_name: sage-kb
+    service_version: "0.1.0"
+    deployment_environment: development  # development | staging | production
+
+    # Resource attributes
+    resource_attributes:
+      service.namespace: sage
+      service.instance.id: ""          # Auto-generated if empty
+
+    # Exporter configuration
+    exporter: otlp                     # otlp | jaeger | zipkin | console
+    endpoint: "http://localhost:4317"  # OTLP endpoint
+    protocol: grpc                     # grpc | http
+
+    # Exporter-specific settings
+    jaeger:
+      agent_host: localhost
+      agent_port: 6831
+      collector_endpoint: "http://localhost:14268/api/traces"
+
+    zipkin:
+      endpoint: "http://localhost:9411/api/v2/spans"
+
+    # Batch processing
+    batch:
+      max_queue_size: 2048
+      max_export_batch_size: 512
+      scheduled_delay_ms: 5000
+      export_timeout_ms: 30000
+
+  # ===========================================================================
+  # Sampling Configuration
+  # ===========================================================================
+  sampling:
+    strategy: probability              # always | never | probability | rate_limiting | parent_based
+    probability: 0.1                   # Sample 10% of traces (when strategy=probability)
+
+    # Rate limiting sampler
+    rate_limiting:
+      traces_per_second: 10
+
+    # Parent-based sampler
+    parent_based:
+      root_strategy: probability       # Strategy for root spans
+      root_probability: 0.1
+
+    # Attribute-based sampling rules
+    rules:
+      - name: always_sample_errors
+        condition: "status.code == ERROR"
+        sample: true
+
+      - name: always_sample_slow
+        condition: "duration_ms > 5000"
+        sample: true
+
+      - name: reduce_health_checks
+        condition: "http.route == '/health'"
+        sample: false
+
+  # ===========================================================================
+  # Context Propagation
+  # ===========================================================================
+  propagation:
+    formats:
+      - w3c_traceparent                # W3C Trace Context
+      - b3                             # Zipkin B3 format
+      - jaeger                         # Jaeger format
+    # Headers to extract/inject
+    headers:
+      traceparent: traceparent
+      tracestate: tracestate
+      b3_single: b3
+      b3_trace_id: X-B3-TraceId
+      b3_span_id: X-B3-SpanId
+      b3_sampled: X-B3-Sampled
+
+  # ===========================================================================
+  # Span Configuration
+  # ===========================================================================
+  spans:
+    # Automatic instrumentation
+    auto_instrument:
+      http_client: true                # Trace outgoing HTTP requests
+      http_server: true                # Trace incoming HTTP requests
+      database: true                   # Trace database queries
+      messaging: true                  # Trace message queue operations
+
+    # Span attributes
+    attributes:
+      # Include in all spans
+      default:
+        - service.name
+        - service.version
+        - deployment.environment
+
+      # HTTP-specific attributes
+      http:
+        - http.method
+        - http.url
+        - http.status_code
+        - http.request_content_length
+        - http.response_content_length
+
+      # Custom application attributes
+      custom:
+        - sage.layer
+        - sage.operation
+        - sage.content_path
+
+    # Span limits
+    limits:
+      max_attributes: 128
+      max_events: 128
+      max_links: 128
+      max_attribute_value_length: 1024
+
+  # ===========================================================================
+  # Span Events Configuration
+  # ===========================================================================
+  events:
+    # Record specific events
+    record:
+      exceptions: true                 # Record exception events
+      logs: false                      # Record log messages as events
+      custom: true                     # Record custom events
+
+    # Exception recording
+    exceptions:
+      record_stacktrace: true
+      escape_stacktrace: false
+
+  # ===========================================================================
+  # Integration Configuration
+  # ===========================================================================
+  integrations:
+    # Logging integration
+    logging:
+      enabled: true
+      inject_trace_id: true            # Inject trace ID into log records
+      inject_span_id: true             # Inject span ID into log records
+
+    # Metrics correlation
+    metrics:
+      enabled: true
+      exemplars: true                  # Add trace exemplars to metrics
+
+    # Baggage propagation
+    baggage:
+      enabled: true
+      max_entries: 64
+      max_entry_value_length: 256
+
+  # ===========================================================================
+  # Debug Configuration
+  # ===========================================================================
+  debug:
+    enabled: false
+    console_exporter: false            # Export to console for debugging
+    verbose: false                     # Verbose logging of trace operations

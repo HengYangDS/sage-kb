@@ -54,6 +54,81 @@ services:
       path: /health
       include_details: true
 
+    # =========================================================================
+    # SSL/TLS Configuration
+    # =========================================================================
+    ssl:
+      enabled: false                     # Enable HTTPS
+      cert_file: ""                      # Path to SSL certificate
+      key_file: ""                       # Path to SSL private key
+      ca_file: ""                        # Path to CA certificate (optional)
+      # TLS settings
+      min_version: "TLS1.2"              # Minimum TLS version
+      ciphers: ""                        # Cipher suites (empty = default)
+      # Client certificate authentication (mTLS)
+      client_auth:
+        enabled: false
+        required: false                  # Require client certificate
+
+    # =========================================================================
+    # Response Compression
+    # =========================================================================
+    compression:
+      enabled: true
+      algorithms:
+        - gzip
+        - br                             # Brotli
+      min_size_bytes: 1024               # Minimum size to compress
+      level: 6                           # Compression level (1-9)
+      exclude_types:                     # MIME types to exclude
+        - "image/*"
+        - "video/*"
+
+    # =========================================================================
+    # API Versioning
+    # =========================================================================
+    versioning:
+      enabled: true
+      default_version: v1
+      supported_versions:
+        - v1
+      strategy: header                   # header | path | query
+      header: "X-API-Version"            # Header name if strategy=header
+      query_param: "version"             # Query param if strategy=query
+
+    # =========================================================================
+    # Request Tracing
+    # =========================================================================
+    request_tracing:
+      enabled: true
+      header: "X-Request-ID"             # Request ID header
+      propagate: true                    # Propagate to downstream services
+      generate_if_missing: true          # Generate ID if not provided
+      include_in_response: true          # Include in response headers
+      log_requests: true                 # Log all requests
+      log_responses: false               # Log all responses (verbose)
+
+    # =========================================================================
+    # Request Validation
+    # =========================================================================
+    validation:
+      strict_mode: false                 # Reject unknown fields
+      coerce_types: true                 # Auto-convert types where possible
+
+    # =========================================================================
+    # Middleware Configuration
+    # =========================================================================
+    middleware:
+      # Request timing
+      timing:
+        enabled: true
+        header: "X-Response-Time"
+      # Request size limiting
+      size_limit:
+        enabled: true
+        max_request_size: 10485760       # 10MB
+        max_upload_size: 52428800        # 50MB
+
 # =============================================================================
 # API Endpoints Reference (for documentation)
 # =============================================================================

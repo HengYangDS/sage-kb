@@ -1,0 +1,145 @@
+# SAGE WebSocket Service Configuration
+#
+# Configuration for WebSocket real-time communication service.
+# This file is part of the modular configuration system.
+# =============================================================================
+# WebSocket Service Configuration
+# =============================================================================
+services:
+  websocket:
+    enabled: false                     # Master toggle for WebSocket service
+
+    # =========================================================================
+    # Server Configuration
+    # =========================================================================
+    server:
+      host: "0.0.0.0"
+      port: 8081
+      path: /ws                        # WebSocket endpoint path
+
+    # =========================================================================
+    # Connection Settings
+    # =========================================================================
+    connection:
+      # Limits
+      max_connections: 100             # Maximum concurrent connections
+      max_connections_per_ip: 10       # Max connections from single IP
+
+      # Timeouts
+      handshake_timeout_ms: 5000       # WebSocket handshake timeout
+      idle_timeout_seconds: 300        # Close idle connections after 5 minutes
+      close_timeout_ms: 3000           # Timeout for close handshake
+
+      # Keep-alive
+      ping_interval_seconds: 30        # Send ping every 30 seconds
+      pong_timeout_seconds: 10         # Wait 10 seconds for pong response
+
+    # =========================================================================
+    # Message Settings
+    # =========================================================================
+    messages:
+      max_size: 65536                  # 64KB maximum message size
+      max_queue_size: 100              # Maximum queued messages per connection
+
+      # Compression
+      compression:
+        enabled: true
+        threshold_bytes: 1024          # Compress messages larger than 1KB
+
+      # Rate limiting
+      rate_limit:
+        enabled: true
+        messages_per_second: 10
+        burst_size: 20
+
+    # =========================================================================
+    # Subscription Configuration
+    # =========================================================================
+    subscriptions:
+      # Allowed subscription patterns
+      allow_patterns:
+        - "knowledge.*"                # Knowledge update events
+        - "events.*"                   # System events
+        - "session.*"                  # Session events
+        - "health.*"                   # Health status updates
+
+      # Limits
+      max_subscriptions_per_client: 20
+      max_pattern_length: 100
+
+      # Default subscriptions (auto-subscribe on connect)
+      defaults: []
+
+    # =========================================================================
+    # Event Types
+    # =========================================================================
+    events:
+      # Knowledge events
+      knowledge:
+        content_updated: true          # Broadcast when content changes
+        search_results: true           # Stream search results
+        layer_loaded: true             # Notify when layer is loaded
+
+      # Session events
+      session:
+        state_changed: true            # Session state changes
+        checkpoint_created: true       # Checkpoint notifications
+        token_warning: true            # Token budget warnings
+
+      # System events
+      system:
+        health_status: true            # Health status updates
+        config_changed: true           # Configuration changes
+
+    # =========================================================================
+    # Authentication
+    # =========================================================================
+    authentication:
+      enabled: false                   # Require authentication for WebSocket
+      method: token                    # token | api_key | jwt
+      token_param: "token"             # Query parameter for token
+      validate_on_connect: true        # Validate token on connection
+
+    # =========================================================================
+    # SSL/TLS (WSS)
+    # =========================================================================
+    ssl:
+      enabled: false                   # Enable secure WebSocket (wss://)
+      # Uses same certificates as API service if not specified
+      cert_file: ""
+      key_file: ""
+
+    # =========================================================================
+    # CORS Configuration
+    # =========================================================================
+    cors:
+      enabled: true
+      allowed_origins:
+        - "*"                          # Restrict in production
+      check_origin: true               # Validate origin header
+
+    # =========================================================================
+    # Heartbeat Configuration
+    # =========================================================================
+    heartbeat:
+      enabled: true
+      interval_seconds: 30             # Send heartbeat every 30 seconds
+      include_stats: false             # Include connection stats in heartbeat
+
+    # =========================================================================
+    # Reconnection Guidance
+    # =========================================================================
+    reconnection:
+      # Guidance sent to clients on disconnect
+      retry_after_seconds: 1           # Initial retry delay
+      max_retry_delay_seconds: 30      # Maximum retry delay
+      backoff_multiplier: 2            # Exponential backoff multiplier
+
+    # =========================================================================
+    # Logging Configuration
+    # =========================================================================
+    logging:
+      log_connections: true            # Log connect/disconnect events
+      log_messages: false              # Log all messages (verbose)
+      log_subscriptions: true          # Log subscription changes
+      log_errors: true                 # Log errors
