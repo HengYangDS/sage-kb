@@ -1,0 +1,46 @@
+# SAGE Autonomy Configuration
+#
+# Configuration for AI autonomy levels and calibration.
+# This file is part of the modular configuration system.
+
+# =============================================================================
+# Autonomy Configuration
+# =============================================================================
+autonomy:
+  # Default autonomy level
+  default_level: 4                     # L4: Medium-High (60-80%)
+
+  # Level definitions
+  levels:
+    L1:
+      name: "Minimal"
+      range: "0-20%"
+      description: "Ask before all changes"
+    L2:
+      name: "Low"
+      range: "20-40%"
+      description: "Ask before significant changes"
+    L3:
+      name: "Medium"
+      range: "40-60%"
+      description: "Proceed with routine, ask for novel"
+    L4:
+      name: "Medium-High"
+      range: "60-80%"
+      description: "Proceed, report after"
+    L5:
+      name: "High"
+      range: "80-95%"
+      description: "High autonomy, minimal checks"
+    L6:
+      name: "Full"
+      range: "95-100%"
+      description: "Full autonomy"
+
+  # Calibration configuration
+  calibration:
+    initial_level: 3                   # Starting level for new collaboration
+    adjustment_thresholds:
+      upgrade: 0.95                    # Success rate > 95% to upgrade
+      maintain_min: 0.85               # Success rate 85-95% to maintain
+      downgrade: 0.70                  # Success rate < 70% to downgrade

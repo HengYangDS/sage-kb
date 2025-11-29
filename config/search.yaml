@@ -1,0 +1,33 @@
+# SAGE Search Configuration
+#
+# Configuration for knowledge base search functionality.
+# This file is part of the modular configuration system.
+
+# =============================================================================
+# Search Configuration
+# =============================================================================
+search:
+  # Default search parameters
+  defaults:
+    max_results: 10                    # Default maximum results
+    timeout_ms: 3000                   # Search timeout
+    min_score: 0.1                     # Minimum relevance score
+
+  # Search scope configuration
+  scope:
+    include_layers:                    # Default layers to search
+      - core
+      - guidelines
+      - frameworks
+      - practices
+    exclude_patterns:                  # File patterns to exclude
+      - "*.bak"
+      - "*.tmp"
+      - "_*"
+
+  # Highlight configuration
+  highlight:
+    enabled: true                      # Enable result highlighting
+    tag_before: "**"                   # Highlight start tag
+    tag_after: "**"                    # Highlight end tag
+    context_lines: 2                   # Context lines around match

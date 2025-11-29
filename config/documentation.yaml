@@ -1,0 +1,19 @@
+# SAGE Documentation Configuration
+#
+# Documentation standards and thresholds for the knowledge base.
+# This file is part of the modular configuration system.
+
+# =============================================================================
+# Documentation Configuration
+# =============================================================================
+documentation:
+  # Table of Contents (TOC) settings
+  toc:
+    line_threshold: 100            # Lines threshold: require TOC when exceeded
+    heading_threshold: 5           # Heading threshold: require TOC when exceeded
+    style: "inline_links"          # TOC style: inline_links | bullet_list
+
+  # Document structure settings
+  structure:
+    max_heading_depth: 4           # Maximum heading depth (h1-h4)
+    require_title: true            # Require h1 title at document start

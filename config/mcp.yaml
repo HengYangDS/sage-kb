@@ -1,0 +1,26 @@
+# SAGE MCP Configuration
+#
+# Configuration for MCP (Model Context Protocol) service.
+# This file is part of the modular configuration system.
+
+# =============================================================================
+# MCP Service Configuration
+# =============================================================================
+mcp:
+  # Server configuration
+  server:
+    host: "localhost"                  # Server host
+    port: 8000                         # Server port
+    name: "sage-kb"                    # Server name
+    version: "0.1.0"                   # Server version
+
+  # Tool configuration
+  tools:
+    timeout_ms: 10000                  # Default tool timeout
+    include_metadata: false            # Include metadata in responses
+
+  # Capabilities configuration
+  capabilities:
+    analyzers: true                    # Enable analyzer tools
+    checkers: true                     # Enable checker tools
+    monitors: true                     # Enable monitor tools

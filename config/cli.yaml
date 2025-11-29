@@ -1,0 +1,26 @@
+# SAGE CLI Configuration
+#
+# Configuration for command-line interface service.
+# This file is part of the modular configuration system.
+
+# =============================================================================
+# CLI Service Configuration
+# =============================================================================
+cli:
+  # Output configuration
+  output:
+    default_format: markdown           # markdown | json | plain
+    color: true                        # Enable colored output
+    pager: false                       # Use pager for long output
+
+  # Default parameters
+  defaults:
+    timeout_ms: 5000                   # Default timeout
+    layer: core                        # Default layer to load
+
+  # REPL mode configuration
+  repl:
+    enabled: true                      # Enable REPL mode
+    history_file: ".history/cli_history"  # Command history file
+    max_history: 1000                  # Maximum history entries
+    prompt: "sage> "                   # REPL prompt string

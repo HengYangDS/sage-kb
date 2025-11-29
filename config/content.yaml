@@ -1,0 +1,32 @@
+# SAGE Content Configuration
+#
+# Configuration for knowledge content management.
+# This file is part of the modular configuration system.
+
+# =============================================================================
+# Content Configuration
+# =============================================================================
+content:
+  # Content directory configuration
+  directories:
+    root: "content"                    # Root content directory
+    core: "content/core"               # Core principles
+    guidelines: "content/guidelines"   # Engineering guidelines
+    frameworks: "content/frameworks"   # Deep frameworks
+    practices: "content/practices"     # Best practices
+    scenarios: "content/scenarios"     # Scenario presets
+    templates: "content/templates"     # Reusable templates
+
+  # File type configuration
+  file_types:
+    supported:                         # Supported file extensions
+      - ".md"
+      - ".yaml"
+      - ".yml"
+    index_file: "index.md"             # Default index file name
+
+  # Content validation
+  validation:
+    require_frontmatter: false         # Require YAML frontmatter
+    max_file_size_kb: 500              # Maximum file size in KB
+    encoding: "utf-8"                  # File encoding
