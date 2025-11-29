@@ -127,4 +127,13 @@ def test_user_creation():
 
 ---
 
+## Related
+
+- `.knowledge/practices/engineering/code_review.md` — Code review practices
+- `.knowledge/practices/engineering/testing_strategy.md` — Testing strategies
+- `.knowledge/guidelines/engineering.md` — Engineering practices
+- `.knowledge/frameworks/patterns/decision.md` — Decision quality framework
+
+---
+
 *Part of SAGE Knowledge Base*

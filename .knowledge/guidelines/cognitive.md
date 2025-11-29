@@ -142,4 +142,13 @@ tokens: ~900
 
 ---
 
+## Related
+
+- `.knowledge/frameworks/cognitive/expert_committee.md` — Expert committee pattern
+- `.knowledge/frameworks/cognitive/information_density.md` — Information density
+- `.knowledge/practices/ai_collaboration/interaction_patterns.md` — Interaction patterns
+- `.knowledge/core/principles.md` — Core philosophy (信达雅 · 术法道)
+
+---
+
 *Part of SAGE Knowledge Base*
