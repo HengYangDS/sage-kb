@@ -4,7 +4,24 @@
 
 ---
 
-## Prerequisites
+## Table of Contents
+
+1. [Prerequisites](#1-prerequisites)
+2. [Configuration Methods](#2-configuration-methods)
+3. [Configuration File Structure](#3-configuration-file-structure)
+4. [Essential Server Configurations](#4-essential-server-configurations)
+5. [Complete Configuration Example](#5-complete-configuration-example)
+6. [Server Profiles](#6-server-profiles)
+7. [Path Configuration](#7-path-configuration)
+8. [Environment Variables](#8-environment-variables)
+9. [Enabling in IDE](#9-enabling-in-ide)
+10. [Cross-Platform Configuration](#10-cross-platform-configuration)
+11. [Validation](#11-validation)
+12. [Related](#12-related)
+
+---
+
+## 1. Prerequisites
 
 Before configuring MCP:
 
@@ -21,7 +38,7 @@ npx --version    # Should show version number
 
 ---
 
-## Configuration Methods
+## 2. Configuration Methods
 
 ### Method 1: Project Configuration (Recommended)
 
@@ -55,7 +72,7 @@ Configure via `Settings | Tools | Junie | MCP Servers`:
 
 ---
 
-## Configuration File Structure
+## 3. Configuration File Structure
 
 ### Basic Structure
 
@@ -91,7 +108,7 @@ Configure via `Settings | Tools | Junie | MCP Servers`:
 
 ---
 
-## Essential Server Configurations
+## 4. Essential Server Configurations
 
 ### Filesystem Server (P0)
 
@@ -180,7 +197,7 @@ Configure via `Settings | Tools | Junie | MCP Servers`:
 
 ---
 
-## Complete Configuration Example
+## 5. Complete Configuration Example
 
 ```json
 {
@@ -246,7 +263,7 @@ Configure via `Settings | Tools | Junie | MCP Servers`:
 
 ---
 
-## Server Profiles
+## 6. Server Profiles
 
 Configure different server sets for different scenarios:
 
@@ -304,7 +321,7 @@ All available servers:
 
 ---
 
-## Path Configuration
+## 7. Path Configuration
 
 ### Relative Paths (Recommended)
 
@@ -331,7 +348,7 @@ Allow access to multiple directories:
 
 ---
 
-## Environment Variables
+## 8. Environment Variables
 
 ### Setting Tokens
 
@@ -359,7 +376,7 @@ export GITHUB_PERSONAL_ACCESS_TOKEN="ghp_xxxxxxxxxxxx"
 
 ---
 
-## Enabling in IDE
+## 9. Enabling in IDE
 
 ### Step 1: Load Configuration
 
@@ -382,7 +399,7 @@ Test with Junie:
 
 ---
 
-## Cross-Platform Configuration
+## 10. Cross-Platform Configuration
 
 ### Windows to Unix Conversion
 
@@ -411,7 +428,7 @@ Alternative approach with separate configs:
 
 ---
 
-## Validation
+## 11. Validation
 
 ### Schema Validation
 
@@ -432,7 +449,7 @@ Use JSON schema for validation:
 
 ---
 
-## Related
+## 12. Related
 
 - [Overview](overview.md) — MCP architecture
 - [Servers Reference](servers.md) — Detailed server documentation

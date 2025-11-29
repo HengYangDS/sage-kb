@@ -4,7 +4,21 @@
 
 ---
 
-## Key Performance Indicators
+## Table of Contents
+
+1. [Key Performance Indicators](#1-key-performance-indicators)
+2. [Auto-Approval Rate Tracking](#2-auto-approval-rate-tracking)
+3. [Token Efficiency Metrics](#3-token-efficiency-metrics)
+4. [Session Productivity](#4-session-productivity)
+5. [Measurement Methods](#5-measurement-methods)
+6. [Optimization Strategies](#6-optimization-strategies)
+7. [Maturity Model](#7-maturity-model)
+8. [Benchmarks](#8-benchmarks)
+9. [Related](#9-related)
+
+---
+
+## 1. Key Performance Indicators
 
 ### Primary Metrics
 
@@ -38,7 +52,7 @@ Efficiency Metrics
 
 ---
 
-## Auto-Approval Rate Tracking
+## 2. Auto-Approval Rate Tracking
 
 ### Calculation Formula
 
@@ -96,7 +110,7 @@ Where:
 
 ---
 
-## Token Efficiency Metrics
+## 3. Token Efficiency Metrics
 
 ### Calculation
 
@@ -143,7 +157,7 @@ Where:
 
 ---
 
-## Session Productivity
+## 4. Session Productivity
 
 ### Session Quality Indicators
 
@@ -185,7 +199,7 @@ Where:
 
 ---
 
-## Measurement Methods
+## 5. Measurement Methods
 
 ### Automated Tracking
 
@@ -228,7 +242,7 @@ Quarterly:
 
 ---
 
-## Optimization Strategies
+## 6. Optimization Strategies
 
 ### Low Auto-Approval Rate (< 70%)
 
@@ -265,7 +279,7 @@ Quarterly:
 
 ---
 
-## Maturity Model
+## 7. Maturity Model
 
 ### Progression Stages
 

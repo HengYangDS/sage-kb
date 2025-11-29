@@ -4,7 +4,23 @@
 
 ---
 
-## Overview
+## Table of Contents
+
+1. [Overview](#1-overview)
+2. [Entity Design Patterns](#2-entity-design-patterns)
+3. [Entity Examples](#3-entity-examples)
+4. [Relationship Modeling](#4-relationship-modeling)
+5. [Query Strategies](#5-query-strategies)
+6. [Session Workflow](#6-session-workflow)
+7. [Best Practices](#7-best-practices)
+8. [Common Patterns](#8-common-patterns)
+9. [Troubleshooting](#9-troubleshooting)
+10. [Fallback Approach](#10-fallback-approach)
+11. [Related](#11-related)
+
+---
+
+## 1. Overview
 
 The **Memory MCP Server** provides cross-session knowledge persistence through a knowledge graph structure. It enables
 Junie to remember decisions, patterns, and context across multiple sessions.
@@ -36,7 +52,7 @@ Junie to remember decisions, patterns, and context across multiple sessions.
 
 ---
 
-## Entity Design Patterns
+## 2. Entity Design Patterns
 
 ### Entity Structure
 
@@ -73,7 +89,7 @@ Examples:
 
 ---
 
-## Entity Examples
+## 3. Entity Examples
 
 ### Decision Entity
 
@@ -125,7 +141,7 @@ memory.create_entities([{
 
 ---
 
-## Relationship Modeling
+## 4. Relationship Modeling
 
 ### Creating Relationships
 
@@ -164,7 +180,7 @@ memory.create_relations([
 
 ---
 
-## Query Strategies
+## 5. Query Strategies
 
 ### Semantic Search
 
@@ -195,7 +211,7 @@ memory.open_nodes(["decision_auth_jwt", "convention_file_naming"])
 
 ---
 
-## Session Workflow
+## 6. Session Workflow
 
 ### Start of Session
 
@@ -239,7 +255,7 @@ memory.create_relations([{
 
 ---
 
-## Best Practices
+## 7. Best Practices
 
 ### Naming
 
@@ -270,7 +286,7 @@ memory.create_relations([{
 
 ---
 
-## Common Patterns
+## 8. Common Patterns
 
 ### Project Onboarding
 
@@ -307,7 +323,7 @@ memory.create_entities([{
 
 ---
 
-## Troubleshooting
+## 9. Troubleshooting
 
 ### Entity Not Found
 
@@ -341,7 +357,7 @@ memory.create_entities([{
 
 ---
 
-## Fallback Approach
+## 10. Fallback Approach
 
 If Memory server is unavailable, use file-based persistence:
 
@@ -357,7 +373,7 @@ If Memory server is unavailable, use file-based persistence:
 
 ---
 
-## Related
+## 11. Related
 
 - [Overview](overview.md) — MCP architecture
 - [Configuration](configuration.md) — Setup guide

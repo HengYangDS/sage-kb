@@ -4,7 +4,20 @@
 
 ---
 
-## Configuration Update Methods
+## Table of Contents
+
+1. [Configuration Update Methods](#1-configuration-update-methods)
+2. [Hot Reload Capabilities](#2-hot-reload-capabilities)
+3. [Daily Maintenance Tasks](#3-daily-maintenance-tasks)
+4. [Configuration Backup](#4-configuration-backup)
+5. [Cross-Platform Configuration](#5-cross-platform-configuration)
+6. [Validation](#6-validation)
+7. [Monitoring](#7-monitoring)
+8. [Related](#8-related)
+
+---
+
+## 1. Configuration Update Methods
 
 ### Update Types Overview
 
@@ -27,7 +40,7 @@
 
 ---
 
-## Hot Reload Capabilities
+## 2. Hot Reload Capabilities
 
 ### What Can Be Hot-Reloaded
 
@@ -86,7 +99,7 @@ For changes to:
 
 ---
 
-## Daily Maintenance Tasks
+## 3. Daily Maintenance Tasks
 
 ### Weekly Checklist
 
@@ -141,7 +154,7 @@ For changes to:
 
 ---
 
-## Configuration Backup
+## 4. Configuration Backup
 
 ### Before Changes
 
@@ -188,7 +201,7 @@ Get-ChildItem ".junie.backup-*" | Sort-Object LastWriteTime -Descending
 
 ---
 
-## Cross-Platform Configuration
+## 5. Cross-Platform Configuration
 
 ### Windows to Unix Conversion
 
@@ -217,7 +230,7 @@ Maintain separate templates for different platforms:
 
 ---
 
-## Validation
+## 6. Validation
 
 ### Configuration Validation
 
@@ -248,7 +261,7 @@ pytest tests/tools/test_junie_config.py -v
 
 ---
 
-## Monitoring
+## 7. Monitoring
 
 ### Auto-Approval Rate
 
@@ -277,7 +290,7 @@ Monthly review:
 
 ---
 
-## Related
+## 8. Related
 
 - [Migration Guide](migration.md) — Version migration
 - [Metrics](metrics.md) — Efficiency tracking

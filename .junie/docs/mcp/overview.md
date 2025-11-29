@@ -4,7 +4,20 @@
 
 ---
 
-## What is MCP?
+## Table of Contents
+
+1. [What is MCP?](#1-what-is-mcp)
+2. [Architecture Overview](#2-architecture-overview)
+3. [Integration Goals](#3-integration-goals)
+4. [MCP Servers](#4-mcp-servers)
+5. [Key Concepts](#5-key-concepts)
+6. [Benefits for Junie](#6-benefits-for-junie)
+7. [Getting Started](#7-getting-started)
+8. [Related](#8-related)
+
+---
+
+## 1. What is MCP?
 
 **Model Context Protocol (MCP)** is an open protocol developed by Anthropic that establishes standardized connections
 between AI applications and external data sources and tools.
@@ -18,7 +31,7 @@ between AI applications and external data sources and tools.
 
 ---
 
-## Architecture Overview
+## 2. Architecture Overview
 
 ```
 +------------------------------------------------------------------+
@@ -79,7 +92,7 @@ between AI applications and external data sources and tools.
 
 ---
 
-## Integration Goals
+## 3. Integration Goals
 
 **🚀 Core Goal**: Achieve intelligent context management with 60-75% token efficiency improvement
 
@@ -92,7 +105,7 @@ between AI applications and external data sources and tools.
 
 ---
 
-## MCP Servers
+## 4. MCP Servers
 
 ### Priority Levels
 
@@ -121,7 +134,7 @@ For detailed server configuration, see [Servers Reference](servers.md).
 
 ---
 
-## Key Concepts
+## 5. Key Concepts
 
 ### Tools
 
@@ -153,9 +166,9 @@ MCP uses **stdio** (standard input/output) with **JSON-RPC** messages:
 
 ---
 
-## Benefits for Junie
+## 6. Benefits for Junie
 
-### 1. Intelligent Context Loading
+### 6.1. Intelligent Context Loading
 
 Instead of loading entire files, Junie can:
 
@@ -163,7 +176,7 @@ Instead of loading entire files, Junie can:
 - Query relevant knowledge via memory server
 - Fetch external documentation on demand
 
-### 2. Persistent Knowledge
+### 6.2. Persistent Knowledge
 
 Memory server enables:
 
@@ -171,7 +184,7 @@ Memory server enables:
 - Learned patterns from codebase analysis
 - User preferences and conventions
 
-### 3. Extended Capabilities
+### 6.3. Extended Capabilities
 
 MCP servers provide:
 
@@ -182,7 +195,7 @@ MCP servers provide:
 
 ---
 
-## Getting Started
+## 7. Getting Started
 
 ### Quick Setup
 
@@ -202,7 +215,7 @@ MCP servers provide:
 
 ---
 
-## Related
+## 8. Related
 
 - [Configuration](configuration.md) — Setup MCP servers
 - [Servers Reference](servers.md) — Detailed server documentation

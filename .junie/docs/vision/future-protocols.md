@@ -207,7 +207,7 @@ For Junie, ACP is **lower priority** because:
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │ MCP: Production Ready                                       │
-│ ├── Junie integration: ✅ Complete                          │
+│ ├── Junie integration: [OK] Complete                        │
 │ ├── Core servers: filesystem, memory, fetch                 │
 │ └── Focus: Maximize MCP capabilities                        │
 └─────────────────────────────────────────────────────────────┘

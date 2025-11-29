@@ -4,7 +4,22 @@
 
 ---
 
-## Overview
+## Table of Contents
+
+1. [Overview](#1-overview)
+2. [Action Allowlist Mechanism](#2-action-allowlist-mechanism)
+3. [Configuration Rules Explained](#3-configuration-rules-explained)
+4. [Rule Categories](#4-rule-categories)
+5. [Platform-Specific Rules](#5-platform-specific-rules)
+6. [Verification](#6-verification)
+7. [Troubleshooting](#7-troubleshooting)
+8. [Best Practices](#8-best-practices)
+9. [Complete Rules Reference](#9-complete-rules-reference)
+10. [Related](#10-related)
+
+---
+
+## 1. Overview
 
 **Action Allowlist** is Junie's permission management mechanism that controls which operations can be executed
 automatically without manual approval.
@@ -25,7 +40,7 @@ automatically without manual approval.
 
 ---
 
-## Action Allowlist Mechanism
+## 2. Action Allowlist Mechanism
 
 ### Security Classification
 
@@ -47,7 +62,7 @@ automatically without manual approval.
 
 ---
 
-## Configuration Rules Explained
+## 3. Configuration Rules Explained
 
 ### Rule Pattern Structure
 
@@ -81,9 +96,9 @@ This pattern **excludes** dangerous characters:
 
 ---
 
-## Rule Categories
+## 4. Rule Categories
 
-### 1. Git Operations (15 rules)
+### 4.1. Git Operations (15 rules)
 
 ```regex
 # Basic commands (exact match)
@@ -108,7 +123,7 @@ This pattern **excludes** dangerous characters:
 ^\Qgit cherry-pick\E [^\s;&|<>@$]*$
 ```
 
-### 2. Python Development (12 rules)
+### 4.2. Python Development (12 rules)
 
 ```regex
 # Execution
@@ -132,7 +147,7 @@ This pattern **excludes** dangerous characters:
 ^\Qconda activate\E [^\s;&|<>@$]*$
 ```
 
-### 3. Node.js/npm (10 rules)
+### 4.3. Node.js/npm (10 rules)
 
 ```regex
 ^\Qnpm install\E.*$
@@ -147,7 +162,7 @@ This pattern **excludes** dangerous characters:
 ^\Qnpm list\E.*$
 ```
 
-### 4. Code Quality Tools (8 rules)
+### 4.4. Code Quality Tools (8 rules)
 
 ```regex
 # Linting
@@ -165,7 +180,7 @@ This pattern **excludes** dangerous characters:
 ^\Qvitest\E.*$
 ```
 
-### 5. Docker Commands (6 rules)
+### 4.5. Docker Commands (6 rules)
 
 ```regex
 ^\Qdocker ps\E.*$
@@ -176,7 +191,7 @@ This pattern **excludes** dangerous characters:
 ^\Qdocker build\E [^\s;&|<>@$]*$
 ```
 
-### 6. File Operations (6 rules)
+### 4.6. File Operations (6 rules)
 
 ```regex
 ^\Qls\E.*$
@@ -189,7 +204,7 @@ This pattern **excludes** dangerous characters:
 
 ---
 
-## Platform-Specific Rules
+## 5. Platform-Specific Rules
 
 ### Windows PowerShell
 
@@ -213,7 +228,7 @@ This pattern **excludes** dangerous characters:
 
 ---
 
-## Verification
+## 6. Verification
 
 ### Check Current Rules
 
@@ -243,7 +258,7 @@ Target: ≥90%
 
 ---
 
-## Troubleshooting
+## 7. Troubleshooting
 
 ### Command Still Requires Approval
 
@@ -269,7 +284,7 @@ Target: ≥90%
 
 ---
 
-## Best Practices
+## 8. Best Practices
 
 ### Do's ✅
 
@@ -287,7 +302,7 @@ Target: ≥90%
 
 ---
 
-## Complete Rules Reference
+## 9. Complete Rules Reference
 
 For copy-paste ready rule lists:
 
@@ -297,7 +312,7 @@ For copy-paste ready rule lists:
 
 ---
 
-## Related
+## 10. Related
 
 - [Quick Start](quick-start.md) — First-time setup
 - [MCP Configuration](../mcp/configuration.md) — MCP server setup

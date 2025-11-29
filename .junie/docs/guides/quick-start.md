@@ -4,7 +4,21 @@
 
 ---
 
-## Prerequisites
+## Table of Contents
+
+1. [Prerequisites](#1-prerequisites)
+2. [Verify Junie Installation](#2-verify-junie-installation)
+3. [Configure Terminal Rules](#3-configure-terminal-rules)
+4. [Enable Allowed Actions](#4-enable-allowed-actions)
+5. [Setup MCP Servers](#5-setup-mcp-servers-optional)
+6. [Verify Setup](#6-verify-setup)
+7. [Troubleshooting](#7-troubleshooting)
+8. [Next Steps](#8-next-steps)
+9. [Related](#9-related)
+
+---
+
+## 1. Prerequisites
 
 Before starting, ensure you have:
 
@@ -14,7 +28,7 @@ Before starting, ensure you have:
 
 ---
 
-## Step 1: Verify Junie Installation
+## 2. Verify Junie Installation
 
 1. Open your JetBrains IDE
 2. Go to `Settings | Plugins`
@@ -23,7 +37,7 @@ Before starting, ensure you have:
 
 ---
 
-## Step 2: Configure Terminal Rules
+## 3. Configure Terminal Rules
 
 Terminal rules allow Junie to execute common commands without manual approval.
 
@@ -79,7 +93,7 @@ For immediate setup, copy the essential rules:
 
 ---
 
-## Step 3: Enable Allowed Actions
+## 4. Enable Allowed Actions
 
 In `Settings | Tools | Junie | Action Allowlist`, enable:
 
@@ -92,7 +106,7 @@ In `Settings | Tools | Junie | Action Allowlist`, enable:
 
 ---
 
-## Step 4: Setup MCP Servers (Optional)
+## 5. Setup MCP Servers (Optional)
 
 MCP servers provide advanced capabilities like persistent memory and external tool access.
 
@@ -115,7 +129,7 @@ For detailed MCP configuration, see [MCP Configuration](../mcp/configuration.md)
 
 ---
 
-## Step 5: Verify Setup
+## 6. Verify Setup
 
 ### Test Terminal Rules
 
@@ -136,7 +150,7 @@ In Junie chat, try:
 
 ---
 
-## Troubleshooting
+## 7. Troubleshooting
 
 ### Commands Still Require Approval
 
@@ -152,7 +166,7 @@ In Junie chat, try:
 
 ---
 
-## Next Steps
+## 8. Next Steps
 
 | Goal                        | Document                                          |
 |:----------------------------|:--------------------------------------------------|
@@ -163,7 +177,7 @@ In Junie chat, try:
 
 ---
 
-## Related
+## 9. Related
 
 - [Action Allowlist](action-allowlist.md) — Complete Terminal rules guide
 - [MCP Configuration](../mcp/configuration.md) — MCP server setup

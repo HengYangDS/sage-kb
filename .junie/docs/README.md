@@ -4,7 +4,19 @@
 
 ---
 
-## Overview
+## Table of Contents
+
+1. [Overview](#1-overview)
+2. [Documentation Structure](#2-documentation-structure)
+3. [Quick Navigation](#3-quick-navigation)
+4. [Key Metrics](#4-key-metrics)
+5. [Platform Reference](#5-platform-reference)
+6. [Version Compatibility](#6-version-compatibility)
+7. [Related](#7-related)
+
+---
+
+## 1. Overview
 
 This documentation covers everything you need to configure and optimize Junie AI Assistant for maximum productivity:
 
@@ -23,7 +35,7 @@ This documentation covers everything you need to configure and optimize Junie AI
 
 ---
 
-## Documentation Structure
+## 2. Documentation Structure
 
 ```
 docs/
@@ -53,7 +65,7 @@ docs/
 
 ---
 
-## Quick Navigation
+## 3. Quick Navigation
 
 ### By Goal
 
@@ -76,7 +88,7 @@ docs/
 
 ---
 
-## Key Metrics
+## 4. Key Metrics
 
 | Metric                 | Target    | Description                           |
 |:-----------------------|:----------|:--------------------------------------|
@@ -87,7 +99,7 @@ docs/
 
 ---
 
-## Platform Reference
+## 5. Platform Reference
 
 | Platform           | Terminal Rules | Key Commands             |
 |:-------------------|:---------------|:-------------------------|
@@ -98,7 +110,7 @@ docs/
 
 ---
 
-## Version Compatibility
+## 6. Version Compatibility
 
 | Component             | Tested Versions                     | Notes                                |
 |:----------------------|:------------------------------------|:-------------------------------------|
@@ -109,7 +121,7 @@ docs/
 
 ---
 
-## Related
+## 7. Related
 
 - `../guidelines.md` — AI collaboration rules (main entry point)
 - `../generic/config.yaml` — Generic Junie settings

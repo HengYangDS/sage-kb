@@ -4,7 +4,18 @@
 
 ---
 
-## Server Priority Overview
+## Table of Contents
+
+1. [Server Priority Overview](#1-server-priority-overview)
+2. [P0: Critical Servers](#2-p0-critical-servers)
+3. [P1: Important Servers](#3-p1-important-servers)
+4. [P2: Useful Servers](#4-p2-useful-servers)
+5. [Server Selection Guide](#5-server-selection-guide)
+6. [Related](#6-related)
+
+---
+
+## 1. Server Priority Overview
 
 | Priority | Servers                                          | Recommendation           |
 |:---------|:-------------------------------------------------|:-------------------------|
@@ -14,7 +25,7 @@
 
 ---
 
-## P0: Critical Servers
+## 2. P0: Critical Servers
 
 ### Filesystem Server
 
@@ -112,7 +123,7 @@
 
 ---
 
-## P1: Important Servers
+## 3. P1: Important Servers
 
 ### Fetch Server
 
@@ -247,7 +258,7 @@
 
 ---
 
-## P2: Useful Servers
+## 4. P2: Useful Servers
 
 ### Puppeteer Server
 
@@ -402,7 +413,7 @@
 
 ---
 
-## Server Selection Guide
+## 5. Server Selection Guide
 
 ### By Project Type
 
@@ -427,7 +438,7 @@
 
 ---
 
-## Related
+## 6. Related
 
 - [Overview](overview.md) — MCP architecture
 - [Configuration](configuration.md) — Setup guide

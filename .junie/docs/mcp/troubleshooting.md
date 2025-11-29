@@ -4,7 +4,21 @@
 
 ---
 
-## Quick Diagnosis
+## Table of Contents
+
+1. [Quick Diagnosis](#1-quick-diagnosis)
+2. [Connection Issues](#2-connection-issues)
+3. [Configuration Issues](#3-configuration-issues)
+4. [Runtime Issues](#4-runtime-issues)
+5. [Platform-Specific Issues](#5-platform-specific-issues)
+6. [Recovery Procedures](#6-recovery-procedures)
+7. [Getting Help](#7-getting-help)
+8. [FAQ](#8-faq)
+9. [Related](#9-related)
+
+---
+
+## 1. Quick Diagnosis
 
 ### Server Status Check
 
@@ -25,7 +39,7 @@
 
 ---
 
-## Connection Issues
+## 2. Connection Issues
 
 ### Server Won't Start
 
@@ -90,7 +104,7 @@ npx -y @modelcontextprotocol/server-filesystem .
 
 ---
 
-## Configuration Issues
+## 3. Configuration Issues
 
 ### Invalid JSON Syntax
 
@@ -184,7 +198,7 @@ source ~/.bashrc
 
 ---
 
-## Runtime Issues
+## 4. Runtime Issues
 
 ### Tool Invocation Fails
 
@@ -228,7 +242,7 @@ source ~/.bashrc
 
 ---
 
-## Platform-Specific Issues
+## 5. Platform-Specific Issues
 
 ### Windows
 
@@ -279,7 +293,7 @@ export PATH="$PATH:$(npm config get prefix)/bin"
 
 ---
 
-## Recovery Procedures
+## 6. Recovery Procedures
 
 ### Full Reset
 
@@ -332,7 +346,7 @@ Test with minimal config to isolate issues:
 
 ---
 
-## Getting Help
+## 7. Getting Help
 
 ### IDE Logs
 
@@ -354,7 +368,7 @@ Test with minimal config to isolate issues:
 
 ---
 
-## FAQ
+## 8. FAQ
 
 ### Q: Why does my server keep disconnecting?
 
@@ -399,7 +413,7 @@ copy mcp.windows.json mcp.json
 
 ---
 
-## Related
+## 9. Related
 
 - [Overview](overview.md) — MCP architecture
 - [Configuration](configuration.md) — Setup guide
