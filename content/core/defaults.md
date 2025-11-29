@@ -6,55 +6,58 @@
 
 ## 📑 Table of Contents
 
-| Section | Description |
-|---------|-------------|
-| [🎯 Default Autonomy](#default-autonomy-settings) | Context-based autonomy levels |
-| [📋 Default Behaviors](#default-behaviors) | Communication, code, decisions |
-| [⚙️ Configuration Reference](#configuration-reference) | All config modules |
-| [🔄 Calibration Workflow](#calibration-workflow) | Autonomy adjustment |
-| [🚨 Override Conditions](#override-conditions) | Force different autonomy |
-| [📊 Response Structure](#default-response-structure) | Standard format |
-| [⏱️ Fallback Behavior](#fallback-behavior) | Timeout/error handling |
+| Section                                                | Description                    |
+|--------------------------------------------------------|--------------------------------|
+| [🎯 Default Autonomy](#default-autonomy-settings)      | Context-based autonomy levels  |
+| [📋 Default Behaviors](#default-behaviors)             | Communication, code, decisions |
+| [⚙️ Configuration Reference](#configuration-reference) | All config modules             |
+| [🔄 Calibration Workflow](#calibration-workflow)       | Autonomy adjustment            |
+| [🚨 Override Conditions](#override-conditions)         | Force different autonomy       |
+| [📊 Response Structure](#default-response-structure)   | Standard format                |
+| [⏱️ Fallback Behavior](#fallback-behavior)             | Timeout/error handling         |
 
 ---
 
 <a id="default-autonomy-settings"></a>
+
 ## 🎯 Default Autonomy Settings
 
 > **Reference**: `content/frameworks/autonomy/levels.md`
 
-| Context | Level | Rationale |
-|---------|-------|-----------|
-| New project | L2 | Build trust gradually |
-| Established project | L4 | Proven patterns |
-| Critical changes | L1-L2 | High stakes |
-| Routine maintenance | L4 | Low risk |
-| Documentation | L4-L5 | Well-defined scope |
-| Refactoring | L3-L4 | Needs verification |
+| Context             | Level | Rationale             |
+|---------------------|-------|-----------------------|
+| New project         | L2    | Build trust gradually |
+| Established project | L4    | Proven patterns       |
+| Critical changes    | L1-L2 | High stakes           |
+| Routine maintenance | L4    | Low risk              |
+| Documentation       | L4-L5 | Well-defined scope    |
+| Refactoring         | L3-L4 | Needs verification    |
 
 ---
 
 <a id="default-behaviors"></a>
+
 ## 📋 Default Behaviors
 
-| Area | Aspect | Default |
-|------|--------|---------|
-| **Communication** | Verbosity | Concise with detail on request |
-| | Format | Markdown with code blocks |
-| | Language | Match user's (default: English) |
-| | Uncertainty | State explicitly when unsure |
-| **Code Changes** | Scope | Minimal necessary changes |
-| | Style | Follow existing conventions |
-| | Comments | Match existing frequency |
-| | Tests | Run affected tests when possible |
-| **Decision-Making** | Ambiguity | Ask for clarification |
-| | Risk | Err on side of caution |
-| | Reversibility | Prefer reversible actions |
-| | Documentation | Document significant decisions |
+| Area                | Aspect        | Default                          |
+|---------------------|---------------|----------------------------------|
+| **Communication**   | Verbosity     | Concise with detail on request   |
+|                     | Format        | Markdown with code blocks        |
+|                     | Language      | Match user's (default: English)  |
+|                     | Uncertainty   | State explicitly when unsure     |
+| **Code Changes**    | Scope         | Minimal necessary changes        |
+|                     | Style         | Follow existing conventions      |
+|                     | Comments      | Match existing frequency         |
+|                     | Tests         | Run affected tests when possible |
+| **Decision-Making** | Ambiguity     | Ask for clarification            |
+|                     | Risk          | Err on side of caution           |
+|                     | Reversibility | Prefer reversible actions        |
+|                     | Documentation | Document significant decisions   |
 
 ---
 
 <a id="configuration-reference"></a>
+
 ## ⚙️ Configuration Reference
 
 > **Single Source of Truth**: `sage.yaml` (entry) + `config/*.yaml` (modules)
@@ -117,70 +120,77 @@ level=INFO | format=structured | timestamps=true
 
 ### Other Configs (on-demand)
 
-| Config | Key Setting | Details |
-|--------|-------------|---------|
-| `config/api.yaml` | enabled=false | API service (disabled by default) |
-| `config/di.yaml` | auto_wire=true | Dependency injection |
-| `config/guidelines.yaml` | sections | Alias mapping |
-| `config/triggers.yaml` | triggers | Keyword-based loading |
+| Config                   | Key Setting    | Details                           |
+|--------------------------|----------------|-----------------------------------|
+| `config/api.yaml`        | enabled=false  | API service (disabled by default) |
+| `config/di.yaml`         | auto_wire=true | Dependency injection              |
+| `config/guidelines.yaml` | sections       | Alias mapping                     |
+| `config/triggers.yaml`   | triggers       | Keyword-based loading             |
 
 ---
 
 <a id="calibration-workflow"></a>
+
 ## 🔄 Calibration Workflow
 
 **Initial**: L2-L3 → small tasks → feedback → adjust
 
-| Success Rate | Adjustment |
-|--------------|------------|
-| > 95% | +1 (max L5) |
-| 85-95% | Maintain |
-| 70-85% | -1 |
-| < 70% | -2, review |
+| Success Rate | Adjustment  |
+|--------------|-------------|
+| > 95%        | +1 (max L5) |
+| 85-95%       | Maintain    |
+| 70-85%       | -1          |
+| < 70%        | -2, review  |
 
 **Reset Triggers**: Major errors · New domain · Team change · Extended absence
 
 ---
 
 <a id="override-conditions"></a>
+
 ## 🚨 Override Conditions
 
-| Force Lower (L1-L2) | Allow Higher (L5-L6) |
-|---------------------|----------------------|
-| Production deployments | Explicitly granted |
-| Database migrations | Routine + tested |
-| Security-sensitive | Sandbox/dev environments |
-| Irreversible actions | Pipelines with rollback |
-| Regulatory compliance | |
+| Force Lower (L1-L2)    | Allow Higher (L5-L6)     |
+|------------------------|--------------------------|
+| Production deployments | Explicitly granted       |
+| Database migrations    | Routine + tested         |
+| Security-sensitive     | Sandbox/dev environments |
+| Irreversible actions   | Pipelines with rollback  |
+| Regulatory compliance  |                          |
 
 ---
 
 <a id="default-response-structure"></a>
+
 ## 📊 Default Response Structure
 
 ```markdown
 ## Summary → [Brief outcome]
+
 ## Changes Made → [List of modifications]
+
 ## Verification → [How to verify]
+
 ## Next Steps → [Follow-up actions] (if applicable)
 ```
 
 ---
 
 <a id="fallback-behavior"></a>
+
 ## ⏱️ Fallback Behavior
 
 > **Location**: `config/timeout.yaml` → `timeout.fallback`
 
 **Strategy**: graceful (options: graceful/strict/none) | cache_stale=60s
 
-| Situation | Action |
-|-----------|--------|
-| Timeout < 5s | return_partial |
-| Timeout > 5s | return_core |
+| Situation      | Action                         |
+|----------------|--------------------------------|
+| Timeout < 5s   | return_partial                 |
+| Timeout > 5s   | return_core                    |
 | File not found | return_error (helpful message) |
-| Parse error | return_raw |
-| Network error | use_cache |
+| Parse error    | return_raw                     |
+| Network error  | use_cache                      |
 
 **Golden Rule**: Always return something useful, never hang or crash.
 

@@ -9,12 +9,12 @@
 
 ### Resource Naming
 
-| ✓ Good | ✗ Bad |
-|--------|-------|
-| `/users` | `/getUsers` |
-| `/users/123` | `/user?id=123` |
+| ✓ Good              | ✗ Bad            |
+|---------------------|------------------|
+| `/users`            | `/getUsers`      |
+| `/users/123`        | `/user?id=123`   |
 | `/users/123/orders` | `/getUserOrders` |
-| `/search?q=keyword` | `/doSearch` |
+| `/search?q=keyword` | `/doSearch`      |
 
 ### Naming Rules
 
@@ -34,23 +34,23 @@
 
 ## 2. HTTP Methods
 
-| Method | Purpose | Idempotent | Safe |
-|--------|---------|------------|------|
-| `GET` | Retrieve resource | ✓ | ✓ |
-| `POST` | Create resource | ✗ | ✗ |
-| `PUT` | Full update | ✓ | ✗ |
-| `PATCH` | Partial update | ✗ | ✗ |
-| `DELETE` | Delete resource | ✓ | ✗ |
+| Method   | Purpose           | Idempotent | Safe |
+|----------|-------------------|------------|------|
+| `GET`    | Retrieve resource | ✓          | ✓    |
+| `POST`   | Create resource   | ✗          | ✗    |
+| `PUT`    | Full update       | ✓          | ✗    |
+| `PATCH`  | Partial update    | ✗          | ✗    |
+| `DELETE` | Delete resource   | ✓          | ✗    |
 
 ### Operation Mapping
 
-| Operation | Method | URL | Example |
-|-----------|--------|-----|---------|
-| List | GET | /resources | GET /users |
-| Detail | GET | /resources/{id} | GET /users/123 |
-| Create | POST | /resources | POST /users |
-| Update | PUT/PATCH | /resources/{id} | PUT /users/123 |
-| Delete | DELETE | /resources/{id} | DELETE /users/123 |
+| Operation | Method    | URL             | Example           |
+|-----------|-----------|-----------------|-------------------|
+| List      | GET       | /resources      | GET /users        |
+| Detail    | GET       | /resources/{id} | GET /users/123    |
+| Create    | POST      | /resources      | POST /users       |
+| Update    | PUT/PATCH | /resources/{id} | PUT /users/123    |
+| Delete    | DELETE    | /resources/{id} | DELETE /users/123 |
 
 ---
 
@@ -58,32 +58,32 @@
 
 ### Success Responses
 
-| Code | Meaning | Use Case |
-|------|---------|----------|
-| `200` | OK | GET/PUT/PATCH success |
-| `201` | Created | POST creation success |
-| `204` | No Content | DELETE success |
+| Code  | Meaning    | Use Case              |
+|-------|------------|-----------------------|
+| `200` | OK         | GET/PUT/PATCH success |
+| `201` | Created    | POST creation success |
+| `204` | No Content | DELETE success        |
 
 ### Client Errors
 
-| Code | Meaning | Use Case |
-|------|---------|----------|
-| `400` | Bad Request | Parameter validation failed |
-| `401` | Unauthorized | Not authenticated |
-| `403` | Forbidden | No permission |
-| `404` | Not Found | Resource doesn't exist |
-| `409` | Conflict | Resource conflict |
-| `422` | Unprocessable | Business rule validation failed |
-| `429` | Too Many Requests | Rate limited |
+| Code  | Meaning           | Use Case                        |
+|-------|-------------------|---------------------------------|
+| `400` | Bad Request       | Parameter validation failed     |
+| `401` | Unauthorized      | Not authenticated               |
+| `403` | Forbidden         | No permission                   |
+| `404` | Not Found         | Resource doesn't exist          |
+| `409` | Conflict          | Resource conflict               |
+| `422` | Unprocessable     | Business rule validation failed |
+| `429` | Too Many Requests | Rate limited                    |
 
 ### Server Errors
 
-| Code | Meaning | Use Case |
-|------|---------|----------|
-| `500` | Internal Error | Server error |
-| `502` | Bad Gateway | Upstream service error |
-| `503` | Service Unavailable | Service unavailable |
-| `504` | Gateway Timeout | Upstream timeout |
+| Code  | Meaning             | Use Case               |
+|-------|---------------------|------------------------|
+| `500` | Internal Error      | Server error           |
+| `502` | Bad Gateway         | Upstream service error |
+| `503` | Service Unavailable | Service unavailable    |
+| `504` | Gateway Timeout     | Upstream timeout       |
 
 ---
 
@@ -101,13 +101,13 @@
 
 ### Query Parameters
 
-| Purpose | Parameter | Example |
-|---------|-----------|---------|
-| Pagination | `page`, `limit` | `?page=2&limit=20` |
-| Sorting | `sort`, `order` | `?sort=created_at&order=desc` |
-| Filtering | field name | `?status=active&role=admin` |
-| Search | `q` | `?q=keyword` |
-| Field selection | `fields` | `?fields=id,name,email` |
+| Purpose         | Parameter       | Example                       |
+|-----------------|-----------------|-------------------------------|
+| Pagination      | `page`, `limit` | `?page=2&limit=20`            |
+| Sorting         | `sort`, `order` | `?sort=created_at&order=desc` |
+| Filtering       | field name      | `?status=active&role=admin`   |
+| Search          | `q`             | `?q=keyword`                  |
+| Field selection | `fields`        | `?fields=id,name,email`       |
 
 ---
 
@@ -133,8 +133,14 @@
 ```json
 {
   "data": [
-    {"id": 1, "name": "User 1"},
-    {"id": 2, "name": "User 2"}
+    {
+      "id": 1,
+      "name": "User 1"
+    },
+    {
+      "id": 2,
+      "name": "User 2"
+    }
   ],
   "meta": {
     "total": 100,
@@ -153,7 +159,10 @@
     "code": "VALIDATION_ERROR",
     "message": "Validation failed",
     "details": [
-      {"field": "email", "message": "Invalid email format"}
+      {
+        "field": "email",
+        "message": "Invalid email format"
+      }
     ]
   },
   "meta": {
@@ -181,11 +190,11 @@ Accept: application/vnd.api+json;version=1
 
 ### Version Strategy
 
-| Strategy | Pros | Cons |
-|----------|------|------|
-| URL path | Clear, easy to test | URL changes |
-| Header | Clean URLs | Hidden, hard to test |
-| Query param | Flexible | Easy to miss |
+| Strategy    | Pros                | Cons                 |
+|-------------|---------------------|----------------------|
+| URL path    | Clear, easy to test | URL changes          |
+| Header      | Clean URLs          | Hidden, hard to test |
+| Query param | Flexible            | Easy to miss         |
 
 ---
 
@@ -198,6 +207,7 @@ GET /users?page=2&limit=20
 ```
 
 Response meta:
+
 ```json
 {
   "meta": {
@@ -216,6 +226,7 @@ GET /users?cursor=abc123&limit=20
 ```
 
 Response meta:
+
 ```json
 {
   "meta": {
@@ -225,10 +236,10 @@ Response meta:
 }
 ```
 
-| Type | Use Case |
-|------|----------|
+| Type   | Use Case                        |
+|--------|---------------------------------|
 | Offset | Small datasets, need page jumps |
-| Cursor | Large datasets, real-time data |
+| Cursor | Large datasets, real-time data  |
 
 ---
 
@@ -250,14 +261,14 @@ X-API-Key: <key>
 
 ## 9. Quick Checklist
 
-| ✓ Do | ✗ Don't |
-|------|---------|
-| Use nouns for resources | Use verbs in URLs |
-| Use plural forms | Mix singular/plural |
-| Return appropriate status codes | Always return 200 |
-| Include request_id in responses | Omit tracking info |
-| Version your API | Break existing clients |
-| Use consistent response format | Mix response structures |
+| ✓ Do                            | ✗ Don't                 |
+|---------------------------------|-------------------------|
+| Use nouns for resources         | Use verbs in URLs       |
+| Use plural forms                | Mix singular/plural     |
+| Return appropriate status codes | Always return 200       |
+| Include request_id in responses | Omit tracking info      |
+| Version your API                | Break existing clients  |
+| Use consistent response format  | Mix response structures |
 
 ---
 

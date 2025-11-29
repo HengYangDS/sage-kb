@@ -7,11 +7,11 @@
 
 ## Overview
 
-| Aspect | Description |
-|--------|-------------|
-| **Goal** | Maximize effective collaboration within context window limits |
-| **Challenge** | Limited window, infinite potential context |
-| **Solution** | Strategic context building, layering, and pruning |
+| Aspect        | Description                                                   |
+|---------------|---------------------------------------------------------------|
+| **Goal**      | Maximize effective collaboration within context window limits |
+| **Challenge** | Limited window, infinite potential context                    |
+| **Solution**  | Strategic context building, layering, and pruning             |
 
 ---
 
@@ -19,12 +19,12 @@
 
 ### Capacity Allocation
 
-| Zone | Allocation | Content |
-|------|------------|---------|
-| **System** | 5-15% | Instructions, persona, constraints |
-| **Reference** | 20-40% | Knowledge, docs, code |
-| **Working** | 30-50% | Current task, conversation |
-| **Reserved** | 10-20% | Response generation buffer |
+| Zone          | Allocation | Content                            |
+|---------------|------------|------------------------------------|
+| **System**    | 5-15%      | Instructions, persona, constraints |
+| **Reference** | 20-40%     | Knowledge, docs, code              |
+| **Working**   | 30-50%     | Current task, conversation         |
+| **Reserved**  | 10-20%     | Response generation buffer         |
 
 ### Budget Formula
 
@@ -39,11 +39,11 @@ Effective Capacity = Available × Utilization Rate (~80%)
 
 ### Layered Loading
 
-| Layer | Priority | Load Trigger | Content Type |
-|-------|----------|--------------|--------------|
-| **Core** | Always | Session start | Principles, key refs |
-| **Task** | On-demand | Task detection | Relevant guides |
-| **Detail** | Lazy | Explicit request | Deep documentation |
+| Layer      | Priority  | Load Trigger     | Content Type         |
+|------------|-----------|------------------|----------------------|
+| **Core**   | Always    | Session start    | Principles, key refs |
+| **Task**   | On-demand | Task detection   | Relevant guides      |
+| **Detail** | Lazy      | Explicit request | Deep documentation   |
 
 ### Progressive Disclosure
 
@@ -51,11 +51,11 @@ Effective Capacity = Available × Utilization Rate (~80%)
 Overview (always) → Framework (on topic) → Detail (on request)
 ```
 
-| Level | When | Content Depth |
-|-------|------|---------------|
-| **L1 Overview** | Always loaded | 1-2 sentences per concept |
-| **L2 Framework** | Topic triggered | Structure + key points |
-| **L3 Detail** | Explicit request | Full documentation |
+| Level            | When             | Content Depth             |
+|------------------|------------------|---------------------------|
+| **L1 Overview**  | Always loaded    | 1-2 sentences per concept |
+| **L2 Framework** | Topic triggered  | Structure + key points    |
+| **L3 Detail**    | Explicit request | Full documentation        |
 
 ---
 
@@ -63,30 +63,30 @@ Overview (always) → Framework (on topic) → Detail (on request)
 
 ### Front-Loading Critical Info
 
-| Position | Content Priority | Retention |
-|----------|-----------------|-----------|
-| **Early context** | Highest priority | Best recall |
-| **Middle context** | Supporting info | Good recall |
-| **Late context** | Recent exchanges | Best recall |
+| Position           | Content Priority | Retention   |
+|--------------------|------------------|-------------|
+| **Early context**  | Highest priority | Best recall |
+| **Middle context** | Supporting info  | Good recall |
+| **Late context**   | Recent exchanges | Best recall |
 
 **Strategy**: Place critical references early, let conversation flow naturally.
 
 ### Selective Inclusion
 
-| Include | Exclude |
-|---------|---------|
-| Directly relevant code | Unrelated modules |
-| Active constraints | Historical decisions |
-| Current task context | Completed task details |
-| Exception cases | Happy path (if known) |
+| Include                | Exclude                |
+|------------------------|------------------------|
+| Directly relevant code | Unrelated modules      |
+| Active constraints     | Historical decisions   |
+| Current task context   | Completed task details |
+| Exception cases        | Happy path (if known)  |
 
 ### Reference vs Inline
 
-| Approach | When to Use | Trade-off |
-|----------|-------------|-----------|
-| **Inline** | Frequently referenced | Uses tokens, fast access |
-| **Reference** | Occasionally needed | Saves tokens, requires lookup |
-| **Summary** | Context needed, not details | Balanced |
+| Approach      | When to Use                 | Trade-off                     |
+|---------------|-----------------------------|-------------------------------|
+| **Inline**    | Frequently referenced       | Uses tokens, fast access      |
+| **Reference** | Occasionally needed         | Saves tokens, requires lookup |
+| **Summary**   | Context needed, not details | Balanced                      |
 
 ---
 
@@ -94,12 +94,12 @@ Overview (always) → Framework (on topic) → Detail (on request)
 
 ### When to Prune
 
-| Trigger | Action |
-|---------|--------|
+| Trigger                      | Action                      |
+|------------------------------|-----------------------------|
 | **Approaching limit** (>70%) | Remove low-priority content |
-| **Task transition** | Clear previous task details |
-| **Redundant info** | Deduplicate similar content |
-| **Stale context** | Remove outdated references |
+| **Task transition**          | Clear previous task details |
+| **Redundant info**           | Deduplicate similar content |
+| **Stale context**            | Remove outdated references  |
 
 ### Pruning Priority (Remove First → Last)
 
@@ -113,12 +113,12 @@ Overview (always) → Framework (on topic) → Detail (on request)
 
 ### Pruning Techniques
 
-| Technique | Compression | Use Case |
-|-----------|-------------|----------|
-| **Summarize** | 60-80% | Long discussions |
-| **Extract key points** | 70-90% | Detailed explanations |
-| **Remove examples** | 40-60% | After understanding confirmed |
-| **Collapse history** | 80-95% | Multi-turn exchanges |
+| Technique              | Compression | Use Case                      |
+|------------------------|-------------|-------------------------------|
+| **Summarize**          | 60-80%      | Long discussions              |
+| **Extract key points** | 70-90%      | Detailed explanations         |
+| **Remove examples**    | 40-60%      | After understanding confirmed |
+| **Collapse history**   | 80-95%      | Multi-turn exchanges          |
 
 ---
 
@@ -126,19 +126,19 @@ Overview (always) → Framework (on topic) → Detail (on request)
 
 ### Vocabulary Establishment
 
-| Phase | Action | Example |
-|-------|--------|---------|
-| **Introduction** | Define term explicitly | "Let's call this pattern X" |
-| **Reinforcement** | Use consistently | Reference X in context |
-| **Compression** | Abbreviate safely | "X" alone sufficient |
+| Phase             | Action                 | Example                     |
+|-------------------|------------------------|-----------------------------|
+| **Introduction**  | Define term explicitly | "Let's call this pattern X" |
+| **Reinforcement** | Use consistently       | Reference X in context      |
+| **Compression**   | Abbreviate safely      | "X" alone sufficient        |
 
 ### Context Anchors
 
-| Anchor Type | Purpose | Example |
-|-------------|---------|---------|
-| **Named concepts** | Quick reference | "the 3-layer pattern" |
-| **Numbered items** | Precise reference | "option 2 from earlier" |
-| **File markers** | Location reference | "in the config section" |
+| Anchor Type        | Purpose            | Example                 |
+|--------------------|--------------------|-------------------------|
+| **Named concepts** | Quick reference    | "the 3-layer pattern"   |
+| **Numbered items** | Precise reference  | "option 2 from earlier" |
+| **File markers**   | Location reference | "in the config section" |
 
 ---
 
@@ -146,12 +146,12 @@ Overview (always) → Framework (on topic) → Detail (on request)
 
 ### After Window Reset
 
-| Priority | Action |
-|----------|--------|
-| **1** | Re-establish critical constraints |
-| **2** | Summarize completed work |
-| **3** | State current task clearly |
-| **4** | Provide minimal necessary references |
+| Priority | Action                               |
+|----------|--------------------------------------|
+| **1**    | Re-establish critical constraints    |
+| **2**    | Summarize completed work             |
+| **3**    | State current task clearly           |
+| **4**    | Provide minimal necessary references |
 
 ### Handoff Template
 
@@ -175,34 +175,34 @@ Overview (always) → Framework (on topic) → Detail (on request)
 
 ## Context Quality Metrics
 
-| Metric | Good | Warning | Action |
-|--------|------|---------|--------|
-| **Utilization** | 60-80% | >85% | Prune |
-| **Relevance** | >90% relevant | <70% | Filter |
-| **Freshness** | Current task | Stale refs | Update |
-| **Redundancy** | <10% overlap | >20% | Dedupe |
+| Metric          | Good          | Warning    | Action |
+|-----------------|---------------|------------|--------|
+| **Utilization** | 60-80%        | >85%       | Prune  |
+| **Relevance**   | >90% relevant | <70%       | Filter |
+| **Freshness**   | Current task  | Stale refs | Update |
+| **Redundancy**  | <10% overlap  | >20%       | Dedupe |
 
 ---
 
 ## Anti-Patterns
 
-| Anti-Pattern | Problem | Fix |
-|--------------|---------|-----|
-| **Context dumping** | Loading everything | Layer selectively |
-| **No pruning** | Window overflow | Prune proactively |
-| **Implicit context** | Assumed knowledge fails | Make explicit |
-| **Stale references** | Outdated info misleads | Refresh on change |
-| **Flat structure** | No priority signal | Layer by importance |
+| Anti-Pattern         | Problem                 | Fix                 |
+|----------------------|-------------------------|---------------------|
+| **Context dumping**  | Loading everything      | Layer selectively   |
+| **No pruning**       | Window overflow         | Prune proactively   |
+| **Implicit context** | Assumed knowledge fails | Make explicit       |
+| **Stale references** | Outdated info misleads  | Refresh on change   |
+| **Flat structure**   | No priority signal      | Layer by importance |
 
 ---
 
 ## Integration with 信达雅
 
-| Principle | Context Application |
-|-----------|---------------------|
+| Principle            | Context Application                         |
+|----------------------|---------------------------------------------|
 | **信 (Faithfulness)** | Context accurately represents current state |
-| **达 (Clarity)** | Context organized for easy navigation |
-| **雅 (Elegance)** | Minimal context for maximum effectiveness |
+| **达 (Clarity)**      | Context organized for easy navigation       |
+| **雅 (Elegance)**     | Minimal context for maximum effectiveness   |
 
 ---
 

@@ -51,12 +51,12 @@ def fetch_user(user_id: str, include_profile: bool = False) -> User:
 
 ### When to Comment
 
-| Scenario | Example |
-|----------|---------|
-| Complex algorithm | `# Using Dijkstra's for shortest path` |
-| Non-obvious decision | `# JSON preferred for browser compat` |
-| Workaround | `# HACK: API bug requires retry` |
-| Public API | Full docstring |
+| Scenario             | Example                                |
+|----------------------|----------------------------------------|
+| Complex algorithm    | `# Using Dijkstra's for shortest path` |
+| Non-obvious decision | `# JSON preferred for browser compat`  |
+| Workaround           | `# HACK: API bug requires retry`       |
+| Public API           | Full docstring                         |
 
 ### When NOT to Comment
 
@@ -74,12 +74,17 @@ user_count = 0
 
 ```markdown
 ## [Unreleased]
+
 ### Added / Changed / Deprecated / Removed / Fixed / Security
 
 ## [2.0.0] - 2024-01-15
+
 ### Added
+
 - Major new feature
+
 ### Changed
+
 - Breaking change (migration guide: ...)
 ```
 
@@ -89,9 +94,13 @@ user_count = 0
 
 ```markdown
 # ADR-001: [Title]
+
 ## Status: Accepted/Rejected/Superseded
+
 ## Context: [Problem/need]
+
 ## Decision: [What we chose]
+
 ## Consequences: [Positive] · [Negative] · [Risks]
 ```
 
@@ -109,13 +118,13 @@ user_count = 0
 
 ### Markdown Best Practices
 
-| Element | Usage |
-|---------|-------|
-| `# H1` | Document title only |
-| `## H2` | Major sections |
-| `### H3` | Subsections |
+| Element      | Usage                  |
+|--------------|------------------------|
+| `# H1`       | Document title only    |
+| `## H2`      | Major sections         |
+| `### H3`     | Subsections            |
 | `` `code` `` | Inline code, filenames |
-| `**bold**` | Important terms |
+| `**bold**`   | Important terms        |
 
 ### Checklist
 

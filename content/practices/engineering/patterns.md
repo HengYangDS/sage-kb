@@ -7,14 +7,14 @@
 
 ## Pattern Quick Reference
 
-| Pattern | Purpose | When to Use |
-|---------|---------|-------------|
-| **Repository** | Abstract data access | Multiple data sources, swappable backends, mock testing |
-| **Service Layer** | Encapsulate business logic | Logic spans entities, side effects, transaction mgmt |
-| **Factory** | Encapsulate object creation | Complex creation, dynamic type selection |
-| **Strategy** | Interchangeable algorithms | Multiple algorithms, runtime selection, avoid conditionals |
-| **Observer** | Decoupled notifications | Event-driven, plugin architecture, async processing |
-| **Circuit Breaker** | Prevent cascade failures | External services, graceful degradation, self-healing |
+| Pattern             | Purpose                     | When to Use                                                |
+|---------------------|-----------------------------|------------------------------------------------------------|
+| **Repository**      | Abstract data access        | Multiple data sources, swappable backends, mock testing    |
+| **Service Layer**   | Encapsulate business logic  | Logic spans entities, side effects, transaction mgmt       |
+| **Factory**         | Encapsulate object creation | Complex creation, dynamic type selection                   |
+| **Strategy**        | Interchangeable algorithms  | Multiple algorithms, runtime selection, avoid conditionals |
+| **Observer**        | Decoupled notifications     | Event-driven, plugin architecture, async processing        |
+| **Circuit Breaker** | Prevent cascade failures    | External services, graceful degradation, self-healing      |
 
 ---
 
@@ -166,12 +166,12 @@ class CircuitBreaker:
 
 ## Anti-Patterns to Avoid
 
-| Anti-Pattern | Problem | Solution |
-|--------------|---------|----------|
-| God Object | Does everything | Split responsibilities |
-| Anemic Domain | Logic outside entities | Rich domain models |
-| Service Locator | Hidden dependencies | Dependency injection |
-| Singleton Overuse | Global state | Scoped instances |
+| Anti-Pattern      | Problem                | Solution               |
+|-------------------|------------------------|------------------------|
+| God Object        | Does everything        | Split responsibilities |
+| Anemic Domain     | Logic outside entities | Rich domain models     |
+| Service Locator   | Hidden dependencies    | Dependency injection   |
+| Singleton Overuse | Global state           | Scoped instances       |
 
 ---
 

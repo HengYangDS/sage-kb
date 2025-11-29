@@ -8,11 +8,11 @@
 
 > **Full Reference**: `content/core/principles.md`
 
-| Principle | Meaning | Application |
-|-----------|---------|-------------|
-| **信 Xin** | Faithfulness | Accurate, reliable, trustworthy |
-| **达 Da** | Clarity | Clear, comprehensible, accessible |
-| **雅 Ya** | Elegance | Refined, balanced, harmonious |
+| Principle | Meaning      | Application                       |
+|-----------|--------------|-----------------------------------|
+| **信 Xin** | Faithfulness | Accurate, reliable, trustworthy   |
+| **达 Da**  | Clarity      | Clear, comprehensible, accessible |
+| **雅 Ya**  | Elegance     | Refined, balanced, harmonious     |
 
 **Hierarchy**: 信 (Foundation) → 达 (Build clarity) → 雅 (Refine elegance)
 
@@ -31,10 +31,13 @@ def divide(a: float, b: float) -> float:
         raise ZeroDivisionError("Cannot divide by zero")
     return a / b
 
+
 # ❌ LOW XIN: Silent failure
 def divide(a, b):
-    try: return a / b
-    except: return 0  # Wrong result silently
+    try:
+        return a / b
+    except:
+        return 0  # Wrong result silently
 ```
 
 ---
@@ -51,9 +54,10 @@ def calculate_order_total(items: List[Item], discount_percent: float) -> Money:
     subtotal = sum(item.price for item in items)
     return subtotal * (1 - discount_percent / 100)
 
+
 # ❌ LOW DA: Cryptic
 def calc(i, d):
-    return sum(x.p for x in i) * (1 - d/100)
+    return sum(x.p for x in i) * (1 - d / 100)
 ```
 
 ---
@@ -70,6 +74,7 @@ def is_palindrome(text: str) -> bool:
     cleaned = ''.join(c.lower() for c in text if c.isalnum())
     return cleaned == cleaned[::-1]
 
+
 # ❌ LOW YA: Over-engineered
 class PalindromeChecker:
     def __init__(self, config, preprocessor, comparator): ...
@@ -80,11 +85,11 @@ class PalindromeChecker:
 
 ## 9.5 Shu-Fa-Dao (术法道) Framework
 
-| Level | Meaning | Focus |
-|-------|---------|-------|
-| **术 Shu** | Technique | Syntax, patterns, tools, best practices |
-| **法 Fa** | Method | Why patterns exist, trade-offs, strategies |
-| **道 Dao** | Way | Simplicity, clarity, sustainability, value |
+| Level     | Meaning   | Focus                                      |
+|-----------|-----------|--------------------------------------------|
+| **术 Shu** | Technique | Syntax, patterns, tools, best practices    |
+| **法 Fa**  | Method    | Why patterns exist, trade-offs, strategies |
+| **道 Dao** | Way       | Simplicity, clarity, sustainability, value |
 
 **Progression**: Learn Shu → Understand Fa → Embody Dao
 
@@ -94,21 +99,21 @@ class PalindromeChecker:
 
 ### Project Success
 
-| Dimension | Criteria | Measure |
-|-----------|----------|---------|
+| Dimension  | Criteria      | Measure                      |
+|------------|---------------|------------------------------|
 | Functional | Does it work? | Tests pass, requirements met |
-| Technical | Well-built? | Code quality metrics |
-| Process | Efficient? | Time, resources used |
-| Learning | Did we grow? | Skills gained, shared |
+| Technical  | Well-built?   | Code quality metrics         |
+| Process    | Efficient?    | Time, resources used         |
+| Learning   | Did we grow?  | Skills gained, shared        |
 
 ### Code Success
 
-| Criterion | Question | Indicator |
-|-----------|----------|-----------|
-| Correct | Right thing? | Tests, validation |
-| Clear | Understandable? | Review feedback |
-| Maintainable | Can evolve? | Change cost |
-| Performant | Fast enough? | Benchmarks |
+| Criterion    | Question        | Indicator         |
+|--------------|-----------------|-------------------|
+| Correct      | Right thing?    | Tests, validation |
+| Clear        | Understandable? | Review feedback   |
+| Maintainable | Can evolve?     | Change cost       |
+| Performant   | Fast enough?    | Benchmarks        |
 
 ---
 
@@ -116,12 +121,12 @@ class PalindromeChecker:
 
 > "The best solution balances competing concerns for the context."
 
-| Trade-off | Lean A When | Lean B When |
-|-----------|-------------|-------------|
-| Speed vs Quality | Prototype | Production |
-| Simple vs Flexible | Clear requirements | Uncertain future |
-| DRY vs Clarity | Pattern stable | Abstraction obscures |
-| Performance vs Readability | Proven bottleneck | General code |
+| Trade-off                  | Lean A When        | Lean B When          |
+|----------------------------|--------------------|----------------------|
+| Speed vs Quality           | Prototype          | Production           |
+| Simple vs Flexible         | Clear requirements | Uncertain future     |
+| DRY vs Clarity             | Pattern stable     | Abstraction obscures |
+| Performance vs Readability | Proven bottleneck  | General code         |
 
 **Framework**: Identify trade-off → Understand context → Choose → Document → Revisit
 
@@ -129,11 +134,11 @@ class PalindromeChecker:
 
 ## 9.8 Quick Reference
 
-| Phase | Checklist |
-|-------|-----------|
+| Phase      | Checklist                                  |
+|------------|--------------------------------------------|
 | **Before** | Success criteria · Trade-offs · Priorities |
-| **During** | 信 Correct? · 达 Clear? · 雅 Elegant? |
-| **After** | Criteria met? · Learnings? · Improvements? |
+| **During** | 信 Correct? · 达 Clear? · 雅 Elegant?         |
+| **After**  | Criteria met? · Learnings? · Improvements? |
 
 ---
 

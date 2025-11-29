@@ -12,10 +12,12 @@
 # ✅ Typed configuration with defaults
 from pydantic_settings import BaseSettings
 
+
 class Settings(BaseSettings):
     database_url: str = "sqlite:///default.db"
     debug: bool = False
     max_connections: int = 10
+
     class Config:
         env_prefix = "APP_"
 ```
@@ -30,12 +32,12 @@ class Settings(BaseSettings):
 
 **Structure**: `tests/unit/` · `tests/integration/` · `tests/e2e/` · `tests/fixtures/` · `conftest.py`
 
-| Criterion | Description |
-|-----------|-------------|
-| **Fast** | Unit < 100ms |
-| **Isolated** | No external deps |
-| **Repeatable** | Same result |
-| **Self-validating** | Pass/fail only |
+| Criterion           | Description      |
+|---------------------|------------------|
+| **Fast**            | Unit < 100ms     |
+| **Isolated**        | No external deps |
+| **Repeatable**      | Same result      |
+| **Self-validating** | Pass/fail only   |
 
 ```python
 # AAA Pattern
@@ -90,12 +92,12 @@ users = [repository.get(id) for id in user_ids]
 
 ### Technical Debt Priority
 
-| Priority | Timeline |
-|----------|----------|
-| Critical | Immediate |
-| High | Next sprint |
-| Medium | Roadmap |
-| Low | As time allows |
+| Priority | Timeline       |
+|----------|----------------|
+| Critical | Immediate      |
+| High     | Next sprint    |
+| Medium   | Roadmap        |
+| Low      | As time allows |
 
 ### Code Health
 
@@ -109,17 +111,18 @@ def process_order(order: Order) -> Result:
     return complete_order(order)
 ```
 
-**Refactoring Triggers**: Duplicate code · Long methods (>50 lines) · Large classes (>300 lines) · Complex conditionals · Feature envy
+**Refactoring Triggers**: Duplicate code · Long methods (>50 lines) · Large classes (>300 lines) · Complex
+conditionals · Feature envy
 
 ---
 
 ## 3.6 Engineering Checklist
 
-| Phase | Checks |
-|-------|--------|
-| **Before** | Requirements · Design reviewed · Dependencies identified |
-| **During** | Tests alongside code · Style guide · Incremental changes |
-| **Merge** | Tests pass · Review approved · Docs updated · Performance OK |
+| Phase      | Checks                                                       |
+|------------|--------------------------------------------------------------|
+| **Before** | Requirements · Design reviewed · Dependencies identified     |
+| **During** | Tests alongside code · Style guide · Incremental changes     |
+| **Merge**  | Tests pass · Review approved · Docs updated · Performance OK |
 
 ---
 

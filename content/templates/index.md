@@ -8,10 +8,10 @@
 
 ## Available Templates
 
-| Template | File | Tokens | Purpose |
-|----------|------|--------|---------|
-| **Expert Committee** | `expert_committee.md` | ~150 | 24-expert review template |
-| **Project Setup** | `project_setup.md` | ~150 | Project initialization checklist |
+| Template             | File                  | Tokens | Purpose                          |
+|----------------------|-----------------------|--------|----------------------------------|
+| **Expert Committee** | `expert_committee.md` | ~150   | 24-expert review template        |
+| **Project Setup**    | `project_setup.md`    | ~150   | Project initialization checklist |
 
 ---
 
@@ -20,12 +20,14 @@
 **File**: `expert_committee.md`
 
 ### When to Use
+
 - Complex architectural decisions
 - Cross-cutting design changes
 - Quality validation for major features
 - Risk assessment for critical systems
 
 ### Structure
+
 - 4 expert groups (6 experts each)
 - Architecture & Systems
 - Knowledge Engineering
@@ -33,13 +35,16 @@
 - Engineering Practice
 
 ### Usage
+
 ```markdown
 ## Expert Committee Review: [Topic]
 
 ### Architecture Group Assessment
+
 [Use template prompts]
 
 ### Knowledge Group Assessment
+
 [Use template prompts]
 ...
 ```
@@ -51,12 +56,14 @@
 **File**: `project_setup.md`
 
 ### When to Use
+
 - Starting new projects
 - Onboarding to existing projects
 - Project health audits
 - Documentation initialization
 
 ### Includes
+
 - Directory structure checklist
 - Configuration file templates
 - Documentation requirements
@@ -77,15 +84,19 @@ All templates follow this structure:
 ---
 
 ## Overview
+
 [What this template helps accomplish]
 
 ## Template
+
 [The actual template content with placeholders]
 
 ## Instructions
+
 [How to fill in the template]
 
 ## Examples
+
 [Completed example if helpful]
 
 ---
@@ -103,6 +114,7 @@ All templates follow this structure:
 5. Add trigger keywords if applicable
 
 ### Recommended Templates (Future)
+
 - `adr.md` — Architecture Decision Record
 - `api_spec.md` — API specification
 - `runbook.md` — Operational runbook

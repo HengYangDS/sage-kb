@@ -29,13 +29,13 @@
 
 ## 2. Content Types
 
-| Type | Key Sections | Use For |
-|------|--------------|---------|
-| **API Reference** | Signature, Parameters, Returns, Raises, Example | Functions/Classes |
-| **Tutorial/Guide** | Prerequisites, Steps, Verification, Troubleshooting | How-to content |
-| **ADR** | Status, Context, Decision, Consequences (+/-/neutral) | Architecture decisions |
-| **README** | Features, Quick Start, Documentation links, License | Project entry |
-| **Changelog** | Added, Changed, Fixed, Removed (per version) | Release history |
+| Type               | Key Sections                                          | Use For                |
+|--------------------|-------------------------------------------------------|------------------------|
+| **API Reference**  | Signature, Parameters, Returns, Raises, Example       | Functions/Classes      |
+| **Tutorial/Guide** | Prerequisites, Steps, Verification, Troubleshooting   | How-to content         |
+| **ADR**            | Status, Context, Decision, Consequences (+/-/neutral) | Architecture decisions |
+| **README**         | Features, Quick Start, Documentation links, License   | Project entry          |
+| **Changelog**      | Added, Changed, Fixed, Removed (per version)          | Release history        |
 
 ### API Reference Format
 
@@ -49,12 +49,12 @@
 
 ## 3. Writing Standards
 
-| Guideline | ❌ Bad | ✓ Good |
-|-----------|--------|--------|
-| Be specific | "Configure the system" | "Set `MAX_CONNECTIONS=100` in config.yaml" |
-| Active voice | "The file is read by the loader" | "The loader reads the file" |
-| Present tense | "This will create a user" | "This creates a user" |
-| Avoid jargon | "Utilize the endpoint" | "Use the endpoint" |
+| Guideline     | ❌ Bad                            | ✓ Good                                     |
+|---------------|----------------------------------|--------------------------------------------|
+| Be specific   | "Configure the system"           | "Set `MAX_CONNECTIONS=100` in config.yaml" |
+| Active voice  | "The file is read by the loader" | "The loader reads the file"                |
+| Present tense | "This will create a user"        | "This creates a user"                      |
+| Avoid jargon  | "Utilize the endpoint"           | "Use the endpoint"                         |
 
 ### Code Examples
 
@@ -62,11 +62,11 @@
 
 ### Tables vs Lists
 
-| Use Tables | Use Lists |
-|------------|-----------|
-| Comparing items | Sequential steps |
+| Use Tables      | Use Lists           |
+|-----------------|---------------------|
+| Comparing items | Sequential steps    |
 | Structured data | Simple enumerations |
-| Reference info | Hierarchical info |
+| Reference info  | Hierarchical info   |
 
 ---
 
@@ -74,12 +74,12 @@
 
 ### Token Efficiency
 
-| High Efficiency | Low Efficiency (Avoid) |
-|-----------------|------------------------|
-| Tables for structured data | Long paragraphs |
-| Concise headers | Repeated information |
-| Code blocks for examples | Excessive formatting |
-| Bullet points for lists | Embedded images |
+| High Efficiency            | Low Efficiency (Avoid) |
+|----------------------------|------------------------|
+| Tables for structured data | Long paragraphs        |
+| Concise headers            | Repeated information   |
+| Code blocks for examples   | Excessive formatting   |
+| Bullet points for lists    | Embedded images        |
 
 ### Scannable Structure
 
@@ -95,17 +95,18 @@
 
 ### Review Checklist
 
-✓ Code examples tested · ✓ Links verified · ✓ Versions current · ✓ No outdated info · ✓ Consistent terms · ✓ Proper formatting
+✓ Code examples tested · ✓ Links verified · ✓ Versions current · ✓ No outdated info · ✓ Consistent terms · ✓ Proper
+formatting
 
 ### Update Triggers
 
-| Trigger | Action |
-|---------|--------|
-| Code change | Update affected docs |
-| API change | Update reference + changelog |
-| New feature | Add guide + reference |
-| Bug found | Add troubleshooting |
-| User question | Improve clarity |
+| Trigger       | Action                       |
+|---------------|------------------------------|
+| Code change   | Update affected docs         |
+| API change    | Update reference + changelog |
+| New feature   | Add guide + reference        |
+| Bug found     | Add troubleshooting          |
+| User question | Improve clarity              |
 
 ### Deprecation Notice
 
@@ -115,37 +116,37 @@
 
 ## 6. Documentation Types Matrix
 
-| Type | Audience | Update Frequency | Token Priority |
-|------|----------|------------------|----------------|
-| README | All | Per release | High |
-| API Reference | Developers | Per API change | Medium |
-| Tutorials | New users | Quarterly | Low |
-| ADRs | Team | Per decision | Low |
-| Changelog | All | Per release | High |
+| Type          | Audience   | Update Frequency | Token Priority |
+|---------------|------------|------------------|----------------|
+| README        | All        | Per release      | High           |
+| API Reference | Developers | Per API change   | Medium         |
+| Tutorials     | New users  | Quarterly        | Low            |
+| ADRs          | Team       | Per decision     | Low            |
+| Changelog     | All        | Per release      | High           |
 
 ---
 
 ## 7. Quality Metrics
 
-| Metric | Target | Measurement |
-|--------|--------|-------------|
-| Completeness | 100% public API | API coverage check |
-| Accuracy | 100% examples work | Automated testing |
-| Freshness | < 1 month since code change | Git diff analysis |
-| Readability | Grade 8 level | Readability score |
-| Token Efficiency | < 500 tokens/section | Token counter |
+| Metric           | Target                      | Measurement        |
+|------------------|-----------------------------|--------------------|
+| Completeness     | 100% public API             | API coverage check |
+| Accuracy         | 100% examples work          | Automated testing  |
+| Freshness        | < 1 month since code change | Git diff analysis  |
+| Readability      | Grade 8 level               | Readability score  |
+| Token Efficiency | < 500 tokens/section        | Token counter      |
 
 ---
 
 ## 8. Quick Reference
 
-| ✓ Do | ❌ Don't |
-|------|---------|
-| Keep documents focused | Duplicate information |
-| Use consistent formatting | Use screenshots for code |
-| Include working examples | Leave TODOs in published docs |
-| Update with code changes | Assume reader knowledge |
-| Link to related documents | Use inconsistent terminology |
+| ✓ Do                      | ❌ Don't                       |
+|---------------------------|-------------------------------|
+| Keep documents focused    | Duplicate information         |
+| Use consistent formatting | Use screenshots for code      |
+| Include working examples  | Leave TODOs in published docs |
+| Update with code changes  | Assume reader knowledge       |
+| Link to related documents | Use inconsistent terminology  |
 
 ---
 

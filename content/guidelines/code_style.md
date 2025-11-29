@@ -25,14 +25,14 @@ def calc(p, r, m):
 
 ## 2.2 Naming Conventions
 
-| Element | Style | Example |
-|---------|-------|---------|
-| Classes | PascalCase | `UserAccount`, `HttpClient` |
-| Functions | snake_case | `get_user()`, `calculate_total()` |
-| Variables | snake_case | `user_count`, `max_retries` |
-| Constants | SCREAMING_SNAKE | `MAX_CONNECTIONS`, `API_URL` |
-| Private | _prefix | `_internal_state`, `_helper()` |
-| Type Params | Single uppercase | `T`, `K`, `V` |
+| Element     | Style            | Example                           |
+|-------------|------------------|-----------------------------------|
+| Classes     | PascalCase       | `UserAccount`, `HttpClient`       |
+| Functions   | snake_case       | `get_user()`, `calculate_total()` |
+| Variables   | snake_case       | `user_count`, `max_retries`       |
+| Constants   | SCREAMING_SNAKE  | `MAX_CONNECTIONS`, `API_URL`      |
+| Private     | _prefix          | `_internal_state`, `_helper()`    |
+| Type Params | Single uppercase | `T`, `K`, `V`                     |
 
 **Quality**: Reveals intent · Avoids abbreviations · Uses domain language · Searchable
 
@@ -40,10 +40,10 @@ def calc(p, r, m):
 
 ## 2.3 Code Formatting
 
-| Aspect | Python | JS/TS | Markdown |
-|--------|--------|-------|----------|
-| Line length | 88 | 100 | 120 |
-| Indent | 4 spaces | 2 spaces | 2 spaces |
+| Aspect      | Python   | JS/TS    | Markdown |
+|-------------|----------|----------|----------|
+| Line length | 88       | 100      | 120      |
+| Indent      | 4 spaces | 2 spaces | 2 spaces |
 
 **Blank Lines**: 2 before top-level definitions · 1 between methods
 
@@ -124,16 +124,16 @@ if __name__ == "__main__":
 
 ## 2.8 Quick Checklist
 
-| ✓ | Item |
-|---|------|
-| [ ] | Names descriptive and consistent |
-| [ ] | Formatting follows standards |
-| [ ] | Imports organized and minimal |
+| ✓   | Item                              |
+|-----|-----------------------------------|
+| [ ] | Names descriptive and consistent  |
+| [ ] | Formatting follows standards      |
+| [ ] | Imports organized and minimal     |
 | [ ] | Comments explain "why" not "what" |
-| [ ] | Error handling explicit |
-| [ ] | No magic numbers/strings |
-| [ ] | Functions focused (<50 lines) |
-| [ ] | Classes single responsibility |
+| [ ] | Error handling explicit           |
+| [ ] | No magic numbers/strings          |
+| [ ] | Functions focused (<50 lines)     |
+| [ ] | Classes single responsibility     |
 
 ---
 

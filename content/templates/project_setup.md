@@ -7,14 +7,14 @@
 
 ## Template Overview
 
-| Template | Purpose | Lines |
-|----------|---------|-------|
-| [Thin Layer](#thin-layer-junieguidelines-md) | Minimal local config | ~20 |
-| [pyproject.toml](#python-project) | Python project config | ~15 |
-| [README](#readme-template) | Project documentation | ~25 |
-| [.gitignore](#gitignore-template) | Git ignore patterns | ~15 |
-| [Docker](#docker-template) | Containerization | ~20 |
-| [CI/CD](#cicd-template) | GitHub Actions | ~20 |
+| Template                                     | Purpose               | Lines |
+|----------------------------------------------|-----------------------|-------|
+| [Thin Layer](#thin-layer-junieguidelines-md) | Minimal local config  | ~20   |
+| [pyproject.toml](#python-project)            | Python project config | ~15   |
+| [README](#readme-template)                   | Project documentation | ~25   |
+| [.gitignore](#gitignore-template)            | Git ignore patterns   | ~15   |
+| [Docker](#docker-template)                   | Containerization      | ~20   |
+| [CI/CD](#cicd-template)                      | GitHub Actions        | ~20   |
 
 ---
 
@@ -26,17 +26,21 @@
 **Name**: [Project Name] | **Type**: [Python Backend/Web/etc.] | **Language**: [Python 3.12/etc.]
 
 ## Knowledge Base
+
 Uses AI Collaboration KB v0.1.0 — Load: `sage get --scenario python_backend`
 
 ## Project-Specific
+
 - Naming: [overrides if any]
 - Structure: [notes if any]
 - Dependencies: [key constraints]
 
 ## Autonomy
+
 Default: L4 | Elevated: [routine tasks → L5] | Lowered: [sensitive areas → L1-L2]
 
 ## Commands
+
 `[dev cmd]` · `[test cmd]` · `[build cmd]`
 ```
 
@@ -70,13 +74,13 @@ addopts = "-v --cov=src"
 
 ### Directory Structure
 
-| Path | Purpose |
-|------|---------|
-| `src/project_name/` | Source code (models/, services/, api/) |
-| `tests/` | Test suite (unit/, integration/, conftest.py) |
-| `docs/` | Documentation |
-| `.junie/guidelines.md` | AI collaboration config |
-| `pyproject.toml` | Project config |
+| Path                   | Purpose                                       |
+|------------------------|-----------------------------------------------|
+| `src/project_name/`    | Source code (models/, services/, api/)        |
+| `tests/`               | Test suite (unit/, integration/, conftest.py) |
+| `docs/`                | Documentation                                 |
+| `.junie/guidelines.md` | AI collaboration config                       |
+| `pyproject.toml`       | Project config                                |
 
 ---
 
@@ -88,6 +92,7 @@ addopts = "-v --cov=src"
 Brief description.
 
 ## Quick Start
+
 `pip install project-name`
 
 ```python
@@ -96,15 +101,19 @@ result = main_function()
 ```
 
 ## Development
+
 `git clone <url> && cd project-name && pip install -e ".[dev]"`
 
 **Test**: `pytest` | **Lint**: `ruff check . && mypy src/`
 
 ## Contributing
+
 Fork → Branch → Changes + Tests → PR
 
 ## License
+
 MIT
+
 ```
 
 ---
@@ -149,13 +158,13 @@ CMD ["python", "-m", "project_name"]
 services:
   app:
     build: .
-    ports: ["8000:8000"]
-    environment: [DATABASE_URL=postgresql://user:pass@db:5432/dbname]
-    depends_on: [db]
+    ports: [ "8000:8000" ]
+    environment: [ DATABASE_URL=postgresql://user:pass@db:5432/dbname ]
+    depends_on: [ db ]
   db:
     image: postgres:15
-    environment: [POSTGRES_USER=user, POSTGRES_PASSWORD=pass, POSTGRES_DB=dbname]
-    volumes: [postgres_data:/var/lib/postgresql/data]
+    environment: [ POSTGRES_USER=user, POSTGRES_PASSWORD=pass, POSTGRES_DB=dbname ]
+    volumes: [ postgres_data:/var/lib/postgresql/data ]
 volumes:
   postgres_data:
 ```
@@ -169,18 +178,18 @@ volumes:
 ```yaml
 name: CI
 on:
-  push: {branches: [main, develop]}
-  pull_request: {branches: [main]}
+  push: { branches: [ main, develop ] }
+  pull_request: { branches: [ main ] }
 
 jobs:
   test:
     runs-on: ubuntu-latest
     strategy:
-      matrix: {python-version: ['3.11', '3.12']}
+      matrix: { python-version: [ '3.11', '3.12' ] }
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with: {python-version: '${{ matrix.python-version }}'}
+        with: { python-version: '${{ matrix.python-version }}' }
       - run: pip install -e ".[dev]"
       - run: ruff check . && mypy src/
       - run: pytest --cov --cov-report=xml

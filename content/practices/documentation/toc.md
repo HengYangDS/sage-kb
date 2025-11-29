@@ -10,20 +10,20 @@
 
 ### Thresholds
 
-| Condition | Threshold | Requirement |
-|-----------|-----------|-------------|
-| **Line Count** | > 100 lines | TOC required |
-| **Heading Count** | > 5 headings | TOC required |
-| **Either condition** | Met | Add TOC |
+| Condition            | Threshold    | Requirement  |
+|----------------------|--------------|--------------|
+| **Line Count**       | > 100 lines  | TOC required |
+| **Heading Count**    | > 5 headings | TOC required |
+| **Either condition** | Met          | Add TOC      |
 
 ### Decision Matrix
 
 | Document Length | Headings | TOC Required |
 |-----------------|----------|--------------|
-| < 100 lines | ≤ 5 | ❌ No |
-| < 100 lines | > 5 | ✓ Yes |
-| > 100 lines | Any | ✓ Yes |
-| Any | > 5 | ✓ Yes |
+| < 100 lines     | ≤ 5      | ❌ No         |
+| < 100 lines     | > 5      | ✓ Yes        |
+| > 100 lines     | Any      | ✓ Yes        |
+| Any             | > 5      | ✓ Yes        |
 
 ### Rationale
 
@@ -85,8 +85,8 @@
 ## Table of Contents
 
 - [Section One](#section-one)
-  - [Subsection A](#subsection-a)
-  - [Subsection B](#subsection-b)
+    - [Subsection A](#subsection-a)
+    - [Subsection B](#subsection-b)
 - [Section Two](#section-two)
 - [Section Three](#section-three)
 ```
@@ -100,13 +100,13 @@
 
 ### Standard Anchor Rules
 
-| Heading | Anchor |
-|---------|--------|
-| `## Section Name` | `#section-name` |
-| `## Multi Word Title` | `#multi-word-title` |
-| `## 1. Numbered Section` | `#1-numbered-section` |
+| Heading                    | Anchor                 |
+|----------------------------|------------------------|
+| `## Section Name`          | `#section-name`        |
+| `## Multi Word Title`      | `#multi-word-title`    |
+| `## 1. Numbered Section`   | `#1-numbered-section`  |
 | `## Section (with parens)` | `#section-with-parens` |
-| `## CamelCase` | `#camelcase` |
+| `## CamelCase`             | `#camelcase`           |
 
 ### Conversion Rules
 
@@ -121,6 +121,7 @@ For precise control, use HTML anchors:
 
 ```markdown
 <a id="custom-anchor"></a>
+
 ## Section Title
 
 [Link to section](#custom-anchor)
@@ -146,6 +147,7 @@ For precise control, use HTML anchors:
 ---
 
 ## Authentication
+
 ...
 ```
 
@@ -162,15 +164,16 @@ For precise control, use HTML anchors:
 
 - [Overview](#overview)
 - [Components](#components)
-  - [Core Layer](#core-layer)
-  - [Service Layer](#service-layer)
-  - [Plugin Layer](#plugin-layer)
+    - [Core Layer](#core-layer)
+    - [Service Layer](#service-layer)
+    - [Plugin Layer](#plugin-layer)
 - [Data Flow](#data-flow)
 - [Deployment](#deployment)
 
 ---
 
 ## Overview
+
 ...
 ```
 
@@ -180,12 +183,12 @@ For precise control, use HTML anchors:
 
 ### Update Triggers
 
-| Change | Action |
-|--------|--------|
-| Add section | Update TOC |
-| Remove section | Update TOC |
-| Rename heading | Update TOC link + anchor |
-| Reorder sections | Update TOC order |
+| Change           | Action                   |
+|------------------|--------------------------|
+| Add section      | Update TOC               |
+| Remove section   | Update TOC               |
+| Rename heading   | Update TOC link + anchor |
+| Reorder sections | Update TOC order         |
 
 ### Verification
 
@@ -218,14 +221,14 @@ SAGE_DOCUMENTATION__TOC__STYLE=bullet_list
 
 ## Quick Reference
 
-| Aspect | Standard |
-|--------|----------|
-| **When** | > 100 lines OR > 5 headings |
-| **Where** | After metadata, before content |
-| **Style** | `inline_links` (default) or `bullet_list` |
-| **Heading** | `## Table of Contents` |
-| **Separator** | `·` for inline, `-` for bullets |
-| **Anchors** | lowercase, hyphen-separated |
+| Aspect        | Standard                                  |
+|---------------|-------------------------------------------|
+| **When**      | > 100 lines OR > 5 headings               |
+| **Where**     | After metadata, before content            |
+| **Style**     | `inline_links` (default) or `bullet_list` |
+| **Heading**   | `## Table of Contents`                    |
+| **Separator** | `·` for inline, `-` for bullets           |
+| **Anchors**   | lowercase, hyphen-separated               |
 
 ---
 

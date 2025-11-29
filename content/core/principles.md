@@ -38,24 +38,24 @@ First principles · Value alignment · Long-term sustainability · Holistic pers
 
 ## 🔗 Framework Integration
 
-| Level       | Xin-Da-Ya     | Shu-Fa-Dao    | Focus |
-|-------------|---------------|---------------|-------|
-| Strategic   | 雅 Elegance   | 道 Tao        | Why   |
-| Tactical    | 达 Clarity    | 法 Method     | How   |
-| Operational | 信 Faithful   | 术 Technique  | What  |
+| Level       | Xin-Da-Ya  | Shu-Fa-Dao  | Focus |
+|-------------|------------|-------------|-------|
+| Strategic   | 雅 Elegance | 道 Tao       | Why   |
+| Tactical    | 达 Clarity  | 法 Method    | How   |
+| Operational | 信 Faithful | 术 Technique | What  |
 
 ---
 
 ## ⚡ Application Guidelines
 
-| Situation             | Principle          | Action                          |
-|-----------------------|--------------------|---------------------------------|
-| Ambiguous requirement | 信 Faithfulness    | Clarify before proceeding       |
-| Complex problem       | 达 Clarity         | Break down, structure, document |
-| Multiple solutions    | 雅 Elegance        | Choose simplest that works      |
-| Learning new domain   | 术 Technique       | Master fundamentals first       |
-| Process improvement   | 法 Method          | Systematize, then optimize      |
-| Strategic decision    | 道 Tao             | Consider long-term impact       |
+| Situation             | Principle      | Action                          |
+|-----------------------|----------------|---------------------------------|
+| Ambiguous requirement | 信 Faithfulness | Clarify before proceeding       |
+| Complex problem       | 达 Clarity      | Break down, structure, document |
+| Multiple solutions    | 雅 Elegance     | Choose simplest that works      |
+| Learning new domain   | 术 Technique    | Master fundamentals first       |
+| Process improvement   | 法 Method       | Systematize, then optimize      |
+| Strategic decision    | 道 Tao          | Consider long-term impact       |
 
 ---
 

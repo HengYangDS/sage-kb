@@ -8,9 +8,9 @@
 
 ## Available Scenarios
 
-| Scenario | Path | Tokens | Context |
-|----------|------|--------|---------|
-| **Python Backend** | `python_backend/` | ~200 | Python web service development |
+| Scenario           | Path              | Tokens | Context                        |
+|--------------------|-------------------|--------|--------------------------------|
+| **Python Backend** | `python_backend/` | ~200   | Python web service development |
 
 ---
 
@@ -19,23 +19,26 @@
 **Path**: `python_backend/context.md`
 
 ### When to Load
+
 - Building Python web services
 - FastAPI/Flask development
 - REST API implementation
 - Python testing with pytest
 
 ### Includes
+
 - Python code style guidelines
 - Testing strategies for Python
 - API design patterns
 - Configuration management
 
 ### Auto-Load Triggers
-| Keywords | Action |
-|----------|--------|
-| fastapi, flask, django | Load scenario |
+
+| Keywords                    | Action        |
+|-----------------------------|---------------|
+| fastapi, flask, django      | Load scenario |
 | python backend, web service | Load scenario |
-| pytest, python test | Load scenario |
+| pytest, python test         | Load scenario |
 
 ---
 
@@ -59,15 +62,19 @@ scenarios/[name]/
 > **Stack**: [technologies]
 
 ## Quick Setup
+
 [Essential setup steps]
 
 ## Key Guidelines
+
 [Scenario-specific guidelines]
 
 ## Common Tasks
+
 [Frequent operations]
 
 ## Pitfalls
+
 [Common mistakes to avoid]
 ```
 
@@ -81,6 +88,7 @@ scenarios/[name]/
 4. Update this index
 
 ### Recommended Scenarios (Future)
+
 - `typescript_frontend/` — React/Vue development
 - `data_pipeline/` — Data processing workflows
 - `devops/` — CI/CD and infrastructure

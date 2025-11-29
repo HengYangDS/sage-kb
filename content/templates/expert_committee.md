@@ -8,13 +8,13 @@
 
 ## Decision Level Selection
 
-| Level | Risk | Reversibility | Impact | Time | Experts |
-|-------|------|---------------|--------|------|---------|
-| **L1** Quick Check | Low | Easy | 1 team | <30min | 2-3 |
-| **L2** Standard | Medium | Moderate | 2-3 teams | 1-2h | 4-5 |
-| **L3** Deep Analysis | High | Hard | Department | 1 day | 6-8 |
-| **L4** Comprehensive | Critical | Very Hard | Cross-dept | 2-3 days | 10-12 |
-| **L5** Full Committee | Strategic | Irreversible | Org-wide | 1 week | 24 |
+| Level                 | Risk      | Reversibility | Impact     | Time     | Experts |
+|-----------------------|-----------|---------------|------------|----------|---------|
+| **L1** Quick Check    | Low       | Easy          | 1 team     | <30min   | 2-3     |
+| **L2** Standard       | Medium    | Moderate      | 2-3 teams  | 1-2h     | 4-5     |
+| **L3** Deep Analysis  | High      | Hard          | Department | 1 day    | 6-8     |
+| **L4** Comprehensive  | Critical  | Very Hard     | Cross-dept | 2-3 days | 10-12   |
+| **L5** Full Committee | Strategic | Irreversible  | Org-wide   | 1 week   | 24      |
 
 ---
 
@@ -25,6 +25,7 @@
 **Panel**: Engineer · QA
 
 **Template**:
+
 ```
 Decision: [what]
 | Aspect | Status | Notes |
@@ -43,6 +44,7 @@ Recommendation: [Go/No-Go + rationale]
 **Panel**: Architect · Engineer · QA · PM
 
 **Template**:
+
 ```
 Decision: [what] | Context: [background]
 | Expert | Assessment | Concerns | Recommendations |
@@ -59,6 +61,7 @@ Recommendation: [Approve/Revise/Reject] | Conditions: [if any] | Next Steps: [ac
 **Panel**: Architect · Engineer · QA · DevOps · Security · PM · TPM · Knowledge Engineer
 
 **Template**:
+
 ```
 Decision: [what] | Context: [background] | Stakeholders: [who]
 
@@ -78,9 +81,11 @@ Conditions: [required] | Action Items: [with owners]
 
 **Use for**: Major architecture changes, critical system decisions
 
-**Groups**: Technical (Architect, Engineer, QA, DevOps, Security) · AI/Data (if applicable) · Business (PM, TPM, UX) · Governance (KE, Compliance)
+**Groups**: Technical (Architect, Engineer, QA, DevOps, Security) · AI/Data (if applicable) · Business (PM, TPM, UX) ·
+Governance (KE, Compliance)
 
 **Template**:
+
 ```
 Decision: [detailed] | Impact Scope: [systems, teams, users] | Timeline: [deadline]
 
@@ -100,12 +105,17 @@ Implementation: Phase 1 [timeline] → Phase 2 [timeline] → Validation checkpo
 **Use for**: Critical decisions, major pivots, organization-wide impact
 
 **Groups** (6 each):
-- **Architecture**: Chief Architect, Info Architect, Systems Engineer, API Designer, Perf Architect, Reliability Engineer
-- **Knowledge**: Knowledge Manager, Doc Engineer, Metadata Specialist, Search Expert, Content Strategist, Ontology Designer
-- **AI Collaboration**: AI Expert, Prompt Engineer, Autonomy Specialist, Cognitive Scientist, Ethics Expert, Safety Expert
+
+- **Architecture**: Chief Architect, Info Architect, Systems Engineer, API Designer, Perf Architect, Reliability
+  Engineer
+- **Knowledge**: Knowledge Manager, Doc Engineer, Metadata Specialist, Search Expert, Content Strategist, Ontology
+  Designer
+- **AI Collaboration**: AI Expert, Prompt Engineer, Autonomy Specialist, Cognitive Scientist, Ethics Expert, Safety
+  Expert
 - **Engineering**: DevOps, Python Engineer, Test Architect, UX Expert, PM, Security Engineer
 
 **Template**:
+
 ```
 Decision: [strategic] | Impact: [org-wide implications] | Urgency: [Critical/High/Medium]
 
@@ -122,7 +132,8 @@ Post-Decision: Document rationale · Communicate · Set checkpoints · Plan roll
 
 ## Usage Tips
 
-**Start Low** (escalate if needed) · **Time-Box** (set limits) · **Document** (capture rationale) · **Revisit** (schedule reviews) · **Adapt** (customize for domain)
+**Start Low** (escalate if needed) · **Time-Box** (set limits) · **Document** (capture rationale) · **Revisit** (
+schedule reviews) · **Adapt** (customize for domain)
 
 ---
 

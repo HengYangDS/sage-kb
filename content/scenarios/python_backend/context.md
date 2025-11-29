@@ -9,9 +9,9 @@
 
 ```yaml
 scenario: python_backend
-languages: [python]
-frameworks: [fastapi, flask, django]
-focus: [api, database, testing, deployment]
+languages: [ python ]
+frameworks: [ fastapi, flask, django ]
+focus: [ api, database, testing, deployment ]
 autonomy_default: L2
 ```
 
@@ -19,27 +19,27 @@ autonomy_default: L2
 
 ## Relevant Knowledge
 
-| Priority | Files |
-|----------|-------|
-| **Auto-Load** | `core/principles.md` · `guidelines/python.md` · `practices/engineering/patterns.md` |
+| Priority      | Files                                                                                          |
+|---------------|------------------------------------------------------------------------------------------------|
+| **Auto-Load** | `core/principles.md` · `guidelines/python.md` · `practices/engineering/patterns.md`            |
 | **On-Demand** | `guidelines/engineering.md` · `frameworks/timeout/hierarchy.md` · `templates/project_setup.md` |
 
 ---
 
 ## Project Structure (FastAPI)
 
-| Directory | Purpose |
-|-----------|---------|
-| `src/app/main.py` | FastAPI app entry |
-| `src/app/config.py` | Settings |
-| `src/app/models/` | Pydantic models |
-| `src/app/schemas/` | Request/Response schemas |
-| `src/app/services/` | Business logic |
-| `src/app/repositories/` | Data access |
-| `src/app/api/routes/` | Endpoints |
-| `src/app/core/` | Security, exceptions |
-| `tests/` | Test suite |
-| `alembic/` | Migrations |
+| Directory               | Purpose                  |
+|-------------------------|--------------------------|
+| `src/app/main.py`       | FastAPI app entry        |
+| `src/app/config.py`     | Settings                 |
+| `src/app/models/`       | Pydantic models          |
+| `src/app/schemas/`      | Request/Response schemas |
+| `src/app/services/`     | Business logic           |
+| `src/app/repositories/` | Data access              |
+| `src/app/api/routes/`   | Endpoints                |
+| `src/app/core/`         | Security, exceptions     |
+| `tests/`                | Test suite               |
+| `alembic/`              | Migrations               |
 
 ---
 
@@ -93,6 +93,7 @@ async def client(app) -> AsyncClient:
     async with AsyncClient(app=app, base_url="http://test") as ac:
         yield ac
 
+
 @pytest.fixture
 def user_factory():
     return lambda **kw: User(**{"email": "test@example.com", "name": "Test", **kw})
@@ -117,8 +118,10 @@ class Settings(BaseSettings):
     app_name: str = "My API"
     database_url: str
     secret_key: str
+
     class Config:
         env_file = ".env"
+
 
 @lru_cache
 def get_settings() -> Settings:
@@ -129,35 +132,35 @@ def get_settings() -> Settings:
 
 ## Common Tasks
 
-| Task | Steps |
-|------|-------|
-| **Add Endpoint** | Schema → Service method → Repository (if needed) → Route → Tests |
-| **DB Migration** | `alembic revision --autogenerate -m "desc"` → Review → `alembic upgrade head` |
-| **Background Task** | `background_tasks.add_task(func, *args)` in endpoint |
+| Task                | Steps                                                                         |
+|---------------------|-------------------------------------------------------------------------------|
+| **Add Endpoint**    | Schema → Service method → Repository (if needed) → Route → Tests              |
+| **DB Migration**    | `alembic revision --autogenerate -m "desc"` → Review → `alembic upgrade head` |
+| **Background Task** | `background_tasks.add_task(func, *args)` in endpoint                          |
 
 ---
 
 ## Autonomy Calibration
 
-| Task Type | Level | Notes |
-|-----------|-------|-------|
-| New endpoint (standard) | L3 | Checkpoint at design |
-| Database migration | L1-L2 | Review before apply |
-| Bug fix (clear scope) | L4 | Execute and report |
-| Refactoring | L3 | Checkpoint at plan |
-| Test writing | L4 | Execute and report |
-| Security changes | L1-L2 | Full review required |
+| Task Type               | Level | Notes                |
+|-------------------------|-------|----------------------|
+| New endpoint (standard) | L3    | Checkpoint at design |
+| Database migration      | L1-L2 | Review before apply  |
+| Bug fix (clear scope)   | L4    | Execute and report   |
+| Refactoring             | L3    | Checkpoint at plan   |
+| Test writing            | L4    | Execute and report   |
+| Security changes        | L1-L2 | Full review required |
 
 ---
 
 ## Quick Commands
 
-| Category | Commands |
-|----------|----------|
-| **Dev** | `uvicorn app.main:app --reload` |
+| Category | Commands                                                |
+|----------|---------------------------------------------------------|
+| **Dev**  | `uvicorn app.main:app --reload`                         |
 | **Test** | `pytest` · `pytest tests/unit/ -v` · `pytest --cov=app` |
-| **Lint** | `ruff check .` · `mypy src/` |
-| **DB** | `alembic upgrade head` · `alembic downgrade -1` |
+| **Lint** | `ruff check .` · `mypy src/`                            |
+| **DB**   | `alembic upgrade head` · `alembic downgrade -1`         |
 
 ---
 

@@ -10,7 +10,8 @@
 
 **Scope**: ✅ "Implement user auth with JWT" · ❌ "Make the app secure"
 
-**Task Decomposition**: Break into 2-4 hour subtasks · Clear acceptance criteria · Identify dependencies · Track progress
+**Task Decomposition**: Break into 2-4 hour subtasks · Clear acceptance criteria · Identify dependencies · Track
+progress
 
 ---
 
@@ -20,13 +21,13 @@
 
 ### SOLID Principles
 
-| Principle | Description | Example |
-|-----------|-------------|---------|
-| **SRP** | Single Responsibility | One class = one purpose |
-| **OCP** | Open/Closed | Extend, don't modify |
-| **LSP** | Liskov Substitution | Subtypes substitutable |
-| **ISP** | Interface Segregation | Small, focused interfaces |
-| **DIP** | Dependency Inversion | Depend on abstractions |
+| Principle | Description           | Example                   |
+|-----------|-----------------------|---------------------------|
+| **SRP**   | Single Responsibility | One class = one purpose   |
+| **OCP**   | Open/Closed           | Extend, don't modify      |
+| **LSP**   | Liskov Substitution   | Subtypes substitutable    |
+| **ISP**   | Interface Segregation | Small, focused interfaces |
+| **DIP**   | Dependency Inversion  | Depend on abstractions    |
 
 ---
 
@@ -37,9 +38,10 @@
 class UserService:
     def __init__(self, repository: UserRepository):
         self._repository = repository
-    
+
     def create_user(self, data: UserCreate) -> User:
         return self._repository.save(data)
+
 
 # ❌ Mixed concerns
 class UserService:
@@ -53,27 +55,27 @@ class UserService:
 
 ## 1.4 Design Checklist
 
-| ✓ | Item |
-|---|------|
-| [ ] | Requirements clear and complete |
-| [ ] | Edge cases identified |
-| [ ] | Error handling strategy defined |
-| [ ] | Performance requirements known |
+| ✓   | Item                              |
+|-----|-----------------------------------|
+| [ ] | Requirements clear and complete   |
+| [ ] | Edge cases identified             |
+| [ ] | Error handling strategy defined   |
+| [ ] | Performance requirements known    |
 | [ ] | Security considerations addressed |
-| [ ] | Testing approach determined |
-| [ ] | Documentation plan in place |
+| [ ] | Testing approach determined       |
+| [ ] | Documentation plan in place       |
 
 ---
 
 ## 1.5 Anti-Patterns
 
-| ❌ Anti-Pattern | Problem | ✅ Solution |
-|----------------|---------|-------------|
-| God Class | Does everything | Split by responsibility |
-| Spaghetti Code | No structure | Apply SOLID |
-| Premature Optimization | Complexity without need | Profile first |
-| Copy-Paste | Duplication | Extract to shared |
-| Magic Numbers | Unclear intent | Named constants |
+| ❌ Anti-Pattern         | Problem                 | ✅ Solution              |
+|------------------------|-------------------------|-------------------------|
+| God Class              | Does everything         | Split by responsibility |
+| Spaghetti Code         | No structure            | Apply SOLID             |
+| Premature Optimization | Complexity without need | Profile first           |
+| Copy-Paste             | Duplication             | Extract to shared       |
+| Magic Numbers          | Unclear intent          | Named constants         |
 
 ---
 
