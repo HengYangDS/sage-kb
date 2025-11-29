@@ -1,7 +1,6 @@
 # Quick Reference Card
 
-> **Load Priority**: Always Load   
-> **Purpose**: Critical questions and autonomy levels at a glance
+> Critical questions and autonomy levels at a glance
 
 ---
 
@@ -110,4 +109,4 @@ Low           High           → L4-L5
 
 ---
 
-*Keep this reference accessible during all collaboration sessions.*
+*Part of SAGE Knowledge Base*

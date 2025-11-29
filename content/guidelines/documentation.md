@@ -1,7 +1,6 @@
 # Documentation Guidelines
 
-> **Load Time**: On-demand  
-> **Purpose**: Clear, maintainable, useful documentation
+> Clear, maintainable, useful documentation
 
 ---
 
@@ -124,4 +123,4 @@ user_count = 0
 
 ---
 
-*Part of AI Collaboration Knowledge Base*
+*Part of SAGE Knowledge Base*

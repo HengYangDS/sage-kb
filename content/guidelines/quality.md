@@ -1,7 +1,6 @@
 # Quality Assurance Guidelines
 
-> **Load Time**: On-demand  
-> **Purpose**: Quality metrics, review processes, continuous improvement
+> Quality metrics, review processes, continuous improvement
 
 ---
 
@@ -117,4 +116,4 @@ def test_user():
 
 ---
 
-*Part of AI Collaboration Knowledge Base*
+*Part of SAGE Knowledge Base*

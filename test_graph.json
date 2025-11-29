@@ -73,6 +73,15 @@
       "metadata": {}
     },
     {
+      "id": "dir_content_frameworks_architecture",
+      "name": "architecture",
+      "type": "directory",
+      "path": "content\\frameworks\\architecture",
+      "level": 0,
+      "tokens": 0,
+      "metadata": {}
+    },
+    {
       "id": "dir_content_frameworks_autonomy",
       "name": "autonomy",
       "type": "directory",
@@ -109,6 +118,15 @@
       "metadata": {}
     },
     {
+      "id": "file_content_frameworks_cognitive_information_density_md",
+      "name": "information_density",
+      "type": "file",
+      "path": "content\\frameworks\\cognitive\\information_density.md",
+      "level": 0,
+      "tokens": 0,
+      "metadata": {}
+    },
+    {
       "id": "dir_content_frameworks_collaboration",
       "name": "collaboration",
       "type": "directory",
@@ -122,6 +140,24 @@
       "name": "patterns",
       "type": "file",
       "path": "content\\frameworks\\collaboration\\patterns.md",
+      "level": 0,
+      "tokens": 0,
+      "metadata": {}
+    },
+    {
+      "id": "dir_content_frameworks_data",
+      "name": "data",
+      "type": "directory",
+      "path": "content\\frameworks\\data",
+      "level": 0,
+      "tokens": 0,
+      "metadata": {}
+    },
+    {
+      "id": "file_content_frameworks_data_persistence_patterns_md",
+      "name": "persistence_patterns",
+      "type": "file",
+      "path": "content\\frameworks\\data\\persistence_patterns.md",
       "level": 0,
       "tokens": 0,
       "metadata": {}
@@ -158,6 +194,24 @@
       "name": "design_axioms",
       "type": "file",
       "path": "content\\frameworks\\design\\design_axioms.md",
+      "level": 0,
+      "tokens": 0,
+      "metadata": {}
+    },
+    {
+      "id": "dir_content_frameworks_resilience",
+      "name": "resilience",
+      "type": "directory",
+      "path": "content\\frameworks\\resilience",
+      "level": 0,
+      "tokens": 0,
+      "metadata": {}
+    },
+    {
+      "id": "file_content_frameworks_resilience_timeout_patterns_md",
+      "name": "timeout_patterns",
+      "type": "file",
+      "path": "content\\frameworks\\resilience\\timeout_patterns.md",
       "level": 0,
       "tokens": 0,
       "metadata": {}
@@ -298,6 +352,24 @@
       "metadata": {}
     },
     {
+      "id": "file_content_practices_ai_collaboration_context_management_md",
+      "name": "context_management",
+      "type": "file",
+      "path": "content\\practices\\ai_collaboration\\context_management.md",
+      "level": 0,
+      "tokens": 0,
+      "metadata": {}
+    },
+    {
+      "id": "file_content_practices_ai_collaboration_knowledge_extraction_md",
+      "name": "knowledge_extraction",
+      "type": "file",
+      "path": "content\\practices\\ai_collaboration\\knowledge_extraction.md",
+      "level": 0,
+      "tokens": 0,
+      "metadata": {}
+    },
+    {
       "id": "file_content_practices_ai_collaboration_token_optimization_md",
       "name": "token_optimization",
       "type": "file",
@@ -352,6 +424,15 @@
       "metadata": {}
     },
     {
+      "id": "file_content_practices_documentation_toc_md",
+      "name": "toc",
+      "type": "file",
+      "path": "content\\practices\\documentation\\toc.md",
+      "level": 0,
+      "tokens": 0,
+      "metadata": {}
+    },
+    {
       "id": "dir_content_practices_engineering",
       "name": "engineering",
       "type": "directory",
@@ -361,10 +442,64 @@
       "metadata": {}
     },
     {
+      "id": "file_content_practices_engineering_batch_optimization_md",
+      "name": "batch_optimization",
+      "type": "file",
+      "path": "content\\practices\\engineering\\batch_optimization.md",
+      "level": 0,
+      "tokens": 0,
+      "metadata": {}
+    },
+    {
+      "id": "file_content_practices_engineering_code_review_md",
+      "name": "code_review",
+      "type": "file",
+      "path": "content\\practices\\engineering\\code_review.md",
+      "level": 0,
+      "tokens": 0,
+      "metadata": {}
+    },
+    {
+      "id": "file_content_practices_engineering_error_handling_md",
+      "name": "error_handling",
+      "type": "file",
+      "path": "content\\practices\\engineering\\error_handling.md",
+      "level": 0,
+      "tokens": 0,
+      "metadata": {}
+    },
+    {
+      "id": "file_content_practices_engineering_incremental_improvement_md",
+      "name": "incremental_improvement",
+      "type": "file",
+      "path": "content\\practices\\engineering\\incremental_improvement.md",
+      "level": 0,
+      "tokens": 0,
+      "metadata": {}
+    },
+    {
+      "id": "file_content_practices_engineering_logging_md",
+      "name": "logging",
+      "type": "file",
+      "path": "content\\practices\\engineering\\logging.md",
+      "level": 0,
+      "tokens": 0,
+      "metadata": {}
+    },
+    {
       "id": "file_content_practices_engineering_patterns_md",
       "name": "patterns",
       "type": "file",
       "path": "content\\practices\\engineering\\patterns.md",
+      "level": 0,
+      "tokens": 0,
+      "metadata": {}
+    },
+    {
+      "id": "file_content_practices_engineering_yaml_conventions_md",
+      "name": "yaml_conventions",
+      "type": "file",
+      "path": "content\\practices\\engineering\\yaml_conventions.md",
       "level": 0,
       "tokens": 0,
       "metadata": {}
@@ -1007,6 +1142,13 @@
     },
     {
       "source": "dir_content_frameworks",
+      "target": "dir_content_frameworks_architecture",
+      "type": "contains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "dir_content_frameworks",
       "target": "dir_content_frameworks_autonomy",
       "type": "contains",
       "weight": 1.0,
@@ -1034,6 +1176,13 @@
       "metadata": {}
     },
     {
+      "source": "dir_content_frameworks_cognitive",
+      "target": "file_content_frameworks_cognitive_information_density_md",
+      "type": "contains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
       "source": "dir_content_frameworks",
       "target": "dir_content_frameworks_collaboration",
       "type": "contains",
@@ -1043,6 +1192,20 @@
     {
       "source": "dir_content_frameworks_collaboration",
       "target": "file_content_frameworks_collaboration_patterns_md",
+      "type": "contains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "dir_content_frameworks",
+      "target": "dir_content_frameworks_data",
+      "type": "contains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "dir_content_frameworks_data",
+      "target": "file_content_frameworks_data_persistence_patterns_md",
       "type": "contains",
       "weight": 1.0,
       "metadata": {}
@@ -1071,6 +1234,20 @@
     {
       "source": "dir_content_frameworks_design",
       "target": "file_content_frameworks_design_design_axioms_md",
+      "type": "contains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "dir_content_frameworks",
+      "target": "dir_content_frameworks_resilience",
+      "type": "contains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "dir_content_frameworks_resilience",
+      "target": "file_content_frameworks_resilience_timeout_patterns_md",
       "type": "contains",
       "weight": 1.0,
       "metadata": {}
@@ -1182,6 +1359,20 @@
     },
     {
       "source": "dir_content_practices_ai_collaboration",
+      "target": "file_content_practices_ai_collaboration_context_management_md",
+      "type": "contains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "dir_content_practices_ai_collaboration",
+      "target": "file_content_practices_ai_collaboration_knowledge_extraction_md",
+      "type": "contains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "dir_content_practices_ai_collaboration",
       "target": "file_content_practices_ai_collaboration_token_optimization_md",
       "type": "contains",
       "weight": 1.0,
@@ -1223,6 +1414,13 @@
       "metadata": {}
     },
     {
+      "source": "dir_content_practices_documentation",
+      "target": "file_content_practices_documentation_toc_md",
+      "type": "contains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
       "source": "dir_content_practices",
       "target": "dir_content_practices_engineering",
       "type": "contains",
@@ -1231,7 +1429,49 @@
     },
     {
       "source": "dir_content_practices_engineering",
+      "target": "file_content_practices_engineering_batch_optimization_md",
+      "type": "contains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "dir_content_practices_engineering",
+      "target": "file_content_practices_engineering_code_review_md",
+      "type": "contains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "dir_content_practices_engineering",
+      "target": "file_content_practices_engineering_error_handling_md",
+      "type": "contains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "dir_content_practices_engineering",
+      "target": "file_content_practices_engineering_incremental_improvement_md",
+      "type": "contains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "dir_content_practices_engineering",
+      "target": "file_content_practices_engineering_logging_md",
+      "type": "contains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "dir_content_practices_engineering",
       "target": "file_content_practices_engineering_patterns_md",
+      "type": "contains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "dir_content_practices_engineering",
+      "target": "file_content_practices_engineering_yaml_conventions_md",
       "type": "contains",
       "weight": 1.0,
       "metadata": {}
@@ -1693,16 +1933,16 @@
     }
   ],
   "metadata": {
-    "built_at": "2025-11-29T19:26:50.602593",
+    "built_at": "2025-11-29T19:52:09.636456",
     "kb_path": ".",
     "include_content": false
   },
   "stats": {
-    "node_count": 106,
-    "edge_count": 105,
+    "node_count": 121,
+    "edge_count": 120,
     "node_types": {
-      "directory": 65,
-      "file": 41
+      "directory": 68,
+      "file": 53
     }
   }
 }

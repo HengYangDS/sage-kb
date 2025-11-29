@@ -1,8 +1,6 @@
 # Cognitive Enhancement Guidelines
 
-> **Load Priority**: On-demand  
-> **Purpose**: Enhanced metacognitive capabilities for AI collaboration  
-> **Principle**: Make AI thinking visible, iterative, and collaborative
+> Enhanced metacognitive capabilities for AI collaboration
 
 ---
 
@@ -145,4 +143,4 @@
 
 ---
 
-*9 Cognitive Dimensions for Enhanced AI Collaboration*
+*Part of SAGE Knowledge Base*

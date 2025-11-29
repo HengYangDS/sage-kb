@@ -1,7 +1,6 @@
 # Python-Specific Guidelines
 
-> **Load Priority**: On-demand  
-> **Purpose**: Python best practices, type hints, decorators, patterns
+> Python best practices, type hints, decorators, patterns
 
 ---
 
@@ -224,4 +223,4 @@ async def fetch_with_timeout(url: str, timeout: float = 30.0) -> dict:
 
 ---
 
-*Python Best Practices for AI Collaboration*
+*Part of SAGE Knowledge Base*

@@ -1,7 +1,6 @@
 # Success Principles Guidelines
 
-> **Load Time**: On-demand  
-> **Purpose**: Philosophy mapping, success criteria, holistic excellence
+> Philosophy mapping, success criteria, holistic excellence
 
 ---
 
@@ -138,4 +137,4 @@ class PalindromeChecker:
 
 ---
 
-*Part of AI Collaboration Knowledge Base*
+*Part of SAGE Knowledge Base*

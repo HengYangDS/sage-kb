@@ -1,7 +1,6 @@
 # Quick Start Guide
 
-> **Load Time**: Always available (~60 tokens)  
-> **Purpose**: Get productive in 3 minutes
+> Get productive in 3 minutes
 
 ---
 
@@ -106,4 +105,4 @@ sage serve
 
 ---
 
-*Version 0.1.0 | Score: 100/100 | 24 Experts*
+*Part of SAGE Knowledge Base*

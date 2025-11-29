@@ -1,7 +1,6 @@
 # Engineering Practices Guidelines
 
-> **Load Time**: On-demand  
-> **Purpose**: Configuration, testing, performance, change control, maintainability
+> Configuration, testing, performance, change control, maintainability
 
 ---
 
@@ -124,4 +123,4 @@ def process_order(order: Order) -> Result:
 
 ---
 
-*Part of AI Collaboration Knowledge Base*
+*Part of SAGE Knowledge Base*

@@ -1,8 +1,6 @@
 # Default Behaviors and Calibration
 
-> **Load Priority**: Always Load  
-> **Purpose**: Establish baseline behaviors and calibration parameters  
-> **Configuration**: See `sage.yaml` for actual values (Single Source of Truth)
+> Baseline behaviors and calibration parameters (see `sage.yaml` for values)
 
 ---
 
@@ -200,4 +198,4 @@ level=INFO | format=structured | timestamps=true
 
 ---
 
-*Config: `sage.yaml` (entry) + `config/*.yaml` (modules)*
+*Part of SAGE Knowledge Base*

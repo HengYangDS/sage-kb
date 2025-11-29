@@ -1,7 +1,6 @@
 # AI Collaboration Guidelines
 
-> **Load Time**: On-demand  
-> **Purpose**: Human-AI interaction patterns, autonomy levels, execution modes
+> Human-AI interaction patterns, autonomy levels, execution modes
 
 ---
 
@@ -127,4 +126,4 @@ Action: [ ] Approve [ ] Alternative [ ] More context
 
 ---
 
-*Part of AI Collaboration Knowledge Base*
+*Part of SAGE Knowledge Base*

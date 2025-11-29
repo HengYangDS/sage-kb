@@ -1,7 +1,6 @@
 # Core Principles - 信达雅 · 术法道
 
-> **Load Priority**: Always Load  
-> **Purpose**: Foundational philosophy for AI collaboration
+> Foundational philosophy for AI collaboration
 
 ---
 
@@ -70,4 +69,4 @@ Before any significant action, ask:
 
 ---
 
-*These principles guide all AI collaboration activities.*
+*Part of SAGE Knowledge Base*

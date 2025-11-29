@@ -151,6 +151,7 @@
 
 ## Related
 
+- `content/practices/documentation/toc.md` — TOC specification
 - `content/practices/ai_collaboration/token_optimization.md` — Token efficiency
 - `content/guidelines/documentation.md` — Documentation guidelines
 - `content/templates/` — Document templates
