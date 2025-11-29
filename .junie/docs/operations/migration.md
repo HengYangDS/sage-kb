@@ -4,7 +4,20 @@
 
 ---
 
-## Version Management
+## Table of Contents
+
+1. [Version Management](#1-version-management)
+2. [Migration Strategies](#2-migration-strategies)
+3. [Breaking Changes Log](#3-breaking-changes-log)
+4. [Migration Procedures](#4-migration-procedures)
+5. [Rollback Procedures](#5-rollback-procedures)
+6. [Version Checking](#6-version-checking)
+7. [Migration Checklist](#7-migration-checklist)
+8. [Related](#8-related)
+
+---
+
+## 1. Version Management
 
 ### Schema Version Format
 
@@ -32,7 +45,7 @@ MAJOR.MINOR.PATCH
 
 ---
 
-## Migration Strategies
+## 2. Migration Strategies
 
 ### Strategy Selection
 
@@ -75,7 +88,7 @@ Phase 4: Completion
 
 ---
 
-## Breaking Changes Log
+## 3. Breaking Changes Log
 
 ### Version 1.0 (Current)
 
