@@ -1,5 +1,5 @@
 ---
-version: "1.0.0"
+version: "1.0.2"
 last_updated: "2025-11-30"
 status: published
 tokens: ~150
