@@ -21,19 +21,19 @@
 │   L1 Cache      │   L2 Cache      │    Persistence          │
 │   (In-Memory)   │   (File/Redis)  │    (Disk/DB)            │
 └────────┬────────┴────────┬────────┴────────────┬────────────┘
-         │                 │                      │
-         ▼                 ▼                      ▼
+         │                 │                     │
+         ▼                 ▼                     ▼
     Hot Data          Warm Data             Cold Data
     (< 100ms)         (< 500ms)             (< 2s)
 ```
 
 ### 1.2 Storage Hierarchy
 
-| Layer | Storage | TTL | Use Case |
-|-------|---------|-----|----------|
-| **L1** | In-memory | Minutes | Frequently accessed |
-| **L2** | File/Redis | Hours | Recently accessed |
-| **Persistence** | Disk/DB | Permanent | Historical data |
+| Layer           | Storage    | TTL       | Use Case            |
+|-----------------|------------|-----------|---------------------|
+| **L1**          | In-memory  | Minutes   | Frequently accessed |
+| **L2**          | File/Redis | Hours     | Recently accessed   |
+| **Persistence** | Disk/DB    | Permanent | Historical data     |
 
 ---
 
@@ -47,17 +47,17 @@ memory:
   cache:
     # Enable/disable caching
     enabled: true
-    
+
     # Default cache backend
     backend: memory         # memory | file | redis
-    
+
     # Global TTL (seconds)
     default_ttl: 3600
-    
+
     # Cache size limits
     max_items: 10000
     max_memory: 100MB
-    
+
     # Eviction policy
     eviction: lru           # lru | lfu | fifo | ttl
 ```
@@ -75,7 +75,7 @@ memory:
         max_items: 1000
         max_memory: 50MB
         ttl: 300              # 5 minutes
-      
+
       # L2: File-based cache
       l2:
         enabled: true
@@ -83,7 +83,7 @@ memory:
         path: .cache/l2/
         max_size: 500MB
         ttl: 3600             # 1 hour
-      
+
       # L3: Redis cache (optional)
       l3:
         enabled: false
@@ -101,11 +101,11 @@ memory:
       # Key generation
       hash_algorithm: xxhash   # xxhash | md5 | sha256
       include_version: true
-      
+
       # Namespacing
       namespace: sage
       separator: ":"
-      
+
       # Key patterns
       patterns:
         content: "{namespace}:content:{layer}:{path}"
@@ -167,14 +167,14 @@ memory:
   limits:
     # Total memory budget
     max_total: 500MB
-    
+
     # Per-component limits
     components:
       cache: 100MB
       content: 200MB
       search_index: 100MB
       session: 50MB
-    
+
     # Warning thresholds
     warning_threshold: 80%    # Warn at 80% usage
     critical_threshold: 95%   # Take action at 95%
@@ -187,14 +187,14 @@ memory:
   monitoring:
     enabled: true
     interval: 60              # Check every 60 seconds
-    
+
     # Metrics to collect
     metrics:
       - total_usage
       - component_usage
       - cache_hit_rate
       - eviction_count
-    
+
     # Alerts
     alerts:
       high_memory:
@@ -213,13 +213,13 @@ memory:
     # Automatic cleanup
     auto_cleanup: true
     cleanup_interval: 300     # Every 5 minutes
-    
+
     # Cleanup strategies
     strategies:
       - expired_entries
       - least_recently_used
       - oversized_entries
-    
+
     # Cleanup thresholds
     trigger_threshold: 70%    # Start cleanup at 70%
     target_threshold: 50%     # Cleanup until 50%
@@ -236,17 +236,17 @@ memory:
   persistence:
     # Enable persistence
     enabled: true
-    
+
     # Storage path
     path: .data/
-    
+
     # What to persist
     targets:
       - cache_state
       - search_index
       - session_state
       - metrics
-    
+
     # Persistence mode
     mode: async              # sync | async | scheduled
 ```
@@ -258,18 +258,18 @@ memory:
   persistence:
     snapshots:
       enabled: true
-      
+
       # Snapshot schedule
       schedule:
         interval: 3600        # Every hour
         on_shutdown: true
         on_change_count: 1000 # After 1000 changes
-      
+
       # Snapshot storage
       path: .data/snapshots/
       format: msgpack
       compression: lz4
-      
+
       # Retention
       max_snapshots: 24       # Keep last 24
       retention_days: 7
@@ -283,13 +283,13 @@ memory:
     recovery:
       # Auto-recovery on startup
       auto_recover: true
-      
+
       # Recovery source priority
       sources:
         - latest_snapshot
         - backup
         - rebuild
-      
+
       # Recovery options
       options:
         validate_integrity: true
@@ -308,19 +308,19 @@ memory:
   session:
     # Session storage
     storage: memory          # memory | file | redis
-    
+
     # Session TTL
     ttl: 3600                # 1 hour
-    
+
     # Maximum sessions
     max_sessions: 100
-    
+
     # Session data
     include:
       - context
       - history
       - preferences
-    
+
     # Auto-save
     auto_save:
       enabled: true
@@ -340,11 +340,11 @@ memory:
         - search_history
         - recent_files
         - user_preferences
-      
+
       # Context limits
       max_history: 100
       max_recent_files: 50
-      
+
       # Expiration
       history_ttl: 86400     # 24 hours
 ```
@@ -358,12 +358,12 @@ memory:
       enabled: true
       path: .history/current/
       format: yaml
-      
+
       # What to persist
       on_exit:
         - active_sessions
         - context_state
-      
+
       # Recovery
       restore_on_start: true
 ```
@@ -384,12 +384,12 @@ memory:
         layers:
           - core
           - guidelines
-      
+
       # Prefetching
       prefetch:
         enabled: true
         depth: 2              # Prefetch related content
-      
+
       # Warming
       warm_cache_on_start: true
       warm_cache_timeout: 5000
@@ -405,11 +405,11 @@ memory:
       lazy_loading: true
       streaming: true
       chunk_size: 10000       # bytes
-      
+
       # Compression
       compress_cached: true
       compression_threshold: 1000  # bytes
-      
+
       # Deduplication
       deduplicate: true
 ```
@@ -418,12 +418,12 @@ memory:
 
 Reference to timeout hierarchy:
 
-| Operation | Timeout | Related Setting |
-|-----------|---------|-----------------|
-| L1 cache lookup | 100ms | `memory.cache.levels.l1.timeout` |
-| L2 cache lookup | 500ms | `memory.cache.levels.l2.timeout` |
-| Persistence read | 2000ms | `memory.persistence.timeout` |
-| Full recovery | 10000ms | `memory.persistence.recovery.timeout` |
+| Operation        | Timeout | Related Setting                       |
+|------------------|---------|---------------------------------------|
+| L1 cache lookup  | 100ms   | `memory.cache.levels.l1.timeout`      |
+| L2 cache lookup  | 500ms   | `memory.cache.levels.l2.timeout`      |
+| Persistence read | 2000ms  | `memory.persistence.timeout`          |
+| Full recovery    | 10000ms | `memory.persistence.recovery.timeout` |
 
 ---
 
