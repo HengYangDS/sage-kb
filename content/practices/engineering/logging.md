@@ -263,7 +263,7 @@ logging:
 ## Related
 
 - `content/practices/engineering/error_handling.md` — Error handling patterns
-- `config/logging.yaml` — Logging configuration
+- `config/core/logging.yaml` — Logging configuration
 - `content/guidelines/engineering.md` — Engineering guidelines
 
 ---

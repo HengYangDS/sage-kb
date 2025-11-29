@@ -268,7 +268,7 @@ alerts:
 
 - `content/practices/engineering/testing_strategy.md` — Testing with flags
 - `content/practices/engineering/error_handling.md` — Degradation patterns
-- `config/features.yaml` — Project feature configuration
+- `config/capabilities/features.yaml` — Project feature configuration
 
 ---
 
