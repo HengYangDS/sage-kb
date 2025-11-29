@@ -114,8 +114,8 @@
 
 ## Related
 
-- `context_management.md` — Context efficiency
-- `../../frameworks/cognitive/information_density.md` — Density framework
+- `content/practices/ai_collaboration/context_management.md` — Context efficiency
+- `content/frameworks/cognitive/information_density.md` — Density framework
 
 ---
 

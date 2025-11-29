@@ -134,8 +134,8 @@ def process_with_errors(items: List):
 
 ## Related
 
-- `../../frameworks/patterns/persistence.md` — Data patterns
-- `error_handling.md` — Error handling
+- `content/frameworks/patterns/persistence.md` — Data patterns
+- `content/practices/engineering/error_handling.md` — Error handling
 
 ---
 

@@ -123,8 +123,8 @@
 
 ## Related
 
-- `../../guidelines/quality.md` — Quality standards
-- `../../guidelines/code_style.md` — Code style
+- `content/guidelines/quality.md` — Quality standards
+- `content/guidelines/code_style.md` — Code style
 
 ---
 

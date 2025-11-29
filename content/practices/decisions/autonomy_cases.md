@@ -106,8 +106,8 @@
 
 ## Related
 
-- `../../frameworks/autonomy/levels.md` — Full autonomy framework
-- `../../guidelines/ai_collaboration.md` — Collaboration patterns
+- `content/frameworks/autonomy/levels.md` — Full autonomy framework
+- `content/guidelines/ai_collaboration.md` — Collaboration patterns
 
 ---
 

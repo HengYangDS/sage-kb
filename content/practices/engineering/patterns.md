@@ -147,8 +147,8 @@ class EventBus:
 
 ## Related
 
-- `../../guidelines/code_style.md` — Code style
-- `../../frameworks/design/axioms.md` — Design principles
+- `content/guidelines/code_style.md` — Code style
+- `content/frameworks/design/axioms.md` — Design principles
 
 ---
 

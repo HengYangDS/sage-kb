@@ -146,8 +146,8 @@ except Exception as e:
 
 ## Related
 
-- `../../frameworks/resilience/timeout_patterns.md` — Resilience patterns
-- `api_design.md` — API error responses
+- `content/frameworks/resilience/timeout_patterns.md` — Resilience patterns
+- `content/practices/engineering/api_design.md` — API error responses
 
 ---
 

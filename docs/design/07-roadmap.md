@@ -417,7 +417,7 @@ C:\Users\<user>\AppData\Local\sage\memory\    # Windows
 | I.1 Create core/di/ module structure        | Chief Architect | P0       | ✅      | di/__init__.py, container.py       |
 | I.2 Implement lifetime management           | Python Engineer | P0       | ✅      | Singleton, Transient, Scoped       |
 | I.3 Implement auto-wiring                   | Python Engineer | P0       | ✅      | Type-based dependency resolution   |
-| I.4 Add config/di.yaml service registration | Python Engineer | P0       | ✅      | Declarative service configuration  |
+| I.4 Add config/core/di.yaml service registration | Python Engineer | P0       | ✅      | Declarative service configuration  |
 | I.5 Add unit tests                          | Test Architect  | P0       | ✅      | 94% test coverage                  |
 
 **Milestone**: ✅ COMPLETE - DI container operational with auto-wiring
@@ -433,13 +433,13 @@ C:\Users\<user>\AppData\Local\sage\memory\    # Windows
 
 | Task                                          | Owner           | Priority | Status | Deliverable                           |
 |-----------------------------------------------|-----------------|----------|--------|---------------------------------------|
-| J.1 Add missing triggers to config/triggers.yaml | Python Engineer | P1       | ✅      | documentation, python triggers        |
+| J.1 Add missing triggers to config/knowledge/triggers.yaml | Python Engineer | P1       | ✅      | documentation, python triggers        |
 | J.2 Add missing keywords to existing triggers | Python Engineer | P1       | ✅      | bug, function, class, method, etc.    |
 | J.3 Add optimization features to features.yaml | Python Engineer | P1       | ✅      | client_cache, lazy_expansion, etc.    |
 | J.4 Create src/sage/data/fallback_core.yaml  | Python Engineer | P1       | ✅      | Fallback content for degradation      |
-| J.5 Create config/api.yaml                   | Python Engineer | P1       | ✅      | HTTP API service configuration        |
-| J.6 Update config/di.yaml with placeholders  | Python Engineer | P2       | ✅      | KnowledgeProtocol, OutputProtocol     |
-| J.7 Add config/api.yaml to sage.yaml includes | Python Engineer | P1       | ✅      | 12 config files in includes           |
+| J.5 Create config/services/api.yaml          | Python Engineer | P1       | ✅      | HTTP API service configuration        |
+| J.6 Update config/core/di.yaml with placeholders | Python Engineer | P2       | ✅      | KnowledgeProtocol, OutputProtocol     |
+| J.7 Add config/services/api.yaml to sage.yaml includes | Python Engineer | P1       | ✅      | 12 config files in includes           |
 | J.8 Create docs/design/09-configuration.md   | Doc Engineer    | P1       | ✅      | Configuration design documentation    |
 
 ### Part 2: DI Services Implementation (Day 19-20) - PLANNED
@@ -449,7 +449,7 @@ C:\Users\<user>\AppData\Local\sage\memory\    # Windows
 | J.9 Implement KnowledgeProtocol/Service      | Python Engineer | P2       | 📋     | Knowledge search and retrieval        |
 | J.10 Implement OutputProtocol/MultiChannel   | Python Engineer | P2       | 📋     | Multi-channel output formatting       |
 | J.11 Implement RefineProtocol/Metrics        | Python Engineer | P2       | 📋     | Metrics collection and refinement     |
-| J.12 Enable DI services in config/di.yaml    | Python Engineer | P2       | 📋     | Uncomment and activate services       |
+| J.12 Enable DI services in config/core/di.yaml | Python Engineer | P2       | 📋     | Uncomment and activate services       |
 | J.13 Add unit tests for new services         | Test Architect  | P2       | 📋     | 90%+ coverage target                  |
 
 ### Part 3: API Service Implementation (Day 21-22) - PLANNED

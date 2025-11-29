@@ -127,9 +127,9 @@
 
 ## Related
 
-- `context_management.md` — Context strategies
-- `token_optimization.md` — Token efficiency
-- `../../core/quick_reference.md` — Quick reference
+- `content/practices/ai_collaboration/context_management.md` — Context strategies
+- `content/practices/ai_collaboration/token_optimization.md` — Token efficiency
+- `content/core/quick_reference.md` — Quick reference
 
 ---
 

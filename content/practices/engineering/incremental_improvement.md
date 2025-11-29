@@ -147,8 +147,8 @@ return old_algorithm(data)
 
 ## Related
 
-- `batch_optimization.md` — Batch processing
-- `../../frameworks/patterns/collaboration.md` — Collaboration patterns
+- `content/practices/engineering/batch_optimization.md` — Batch processing
+- `content/frameworks/patterns/collaboration.md` — Collaboration patterns
 
 ---
 

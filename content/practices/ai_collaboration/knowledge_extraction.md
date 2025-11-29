@@ -150,8 +150,8 @@
 
 ## Related
 
-- `context_management.md` — Managing context
-- `../documentation/standards.md` — Documentation format
+- `content/practices/ai_collaboration/context_management.md` — Managing context
+- `content/practices/documentation/standards.md` — Documentation format
 
 ---
 

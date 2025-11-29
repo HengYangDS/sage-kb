@@ -144,8 +144,8 @@ GET /users?page=2&page_size=20
 
 ## Related
 
-- `../../guidelines/code_style.md` — Code conventions
-- `error_handling.md` — Error handling patterns
+- `content/guidelines/code_style.md` — Code conventions
+- `content/practices/engineering/error_handling.md` — Error handling patterns
 
 ---
 

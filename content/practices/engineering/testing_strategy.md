@@ -200,8 +200,8 @@ def test_with_mock(mocker):
 
 ## Related
 
-- `../../guidelines/quality.md` — Quality standards
-- `code_review.md` — Review practices
+- `content/guidelines/quality.md` — Quality standards
+- `content/practices/engineering/code_review.md` — Review practices
 
 ---
 

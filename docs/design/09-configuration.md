@@ -73,18 +73,18 @@ SAGE_TIMEOUTS__T1_INSTANT=200
 
 | File | Purpose | Key Settings |
 |------|---------|--------------|
-| `config/timeout.yaml` | Timeout hierarchy & circuit breaker | operations, circuit_breaker, fallback |
-| `config/loading.yaml` | Smart loading configuration | always, max_tokens, default_layers |
-| `config/triggers.yaml` | Keyword-triggered content loading | 9 triggers with bilingual keywords |
-| `config/plugins.yaml` | Plugin configuration | bundled plugins, cache settings |
-| `config/features.yaml` | Feature flags | optimization features, service toggles |
-| `config/di.yaml` | Dependency injection | service registration, lifetimes |
-| `config/memory.yaml` | Memory persistence | store backend, session settings |
-| `config/logging.yaml` | Logging configuration | level, format, timestamps |
-| `config/quality.yaml` | Quality thresholds | coverage, complexity, line limits |
-| `config/token_budget.yaml` | Token management | max_tokens, thresholds, auto_actions |
-| `config/guidelines.yaml` | Guideline section mapping | 34 aliases to guideline files |
-| `config/api.yaml` | HTTP API service | cors, rate_limit, docs |
+| `config/core/timeout.yaml` | Timeout hierarchy & circuit breaker | operations, circuit_breaker, fallback |
+| `config/knowledge/loading.yaml` | Smart loading configuration | always, max_tokens, default_layers |
+| `config/knowledge/triggers.yaml` | Keyword-triggered content loading | 9 triggers with bilingual keywords |
+| `config/capabilities/plugins.yaml` | Plugin configuration | bundled plugins, cache settings |
+| `config/capabilities/features.yaml` | Feature flags | optimization features, service toggles |
+| `config/core/di.yaml` | Dependency injection | service registration, lifetimes |
+| `config/core/memory.yaml` | Memory persistence | store backend, session settings |
+| `config/core/logging.yaml` | Logging configuration | level, format, timestamps |
+| `config/capabilities/quality.yaml` | Quality thresholds | coverage, complexity, line limits |
+| `config/knowledge/token_budget.yaml` | Token management | max_tokens, thresholds, auto_actions |
+| `config/knowledge/guidelines.yaml` | Guideline section mapping | 34 aliases to guideline files |
+| `config/services/api.yaml` | HTTP API service | cors, rate_limit, docs |
 
 ### Data Files
 
@@ -96,7 +96,7 @@ SAGE_TIMEOUTS__T1_INSTANT=200
 
 ## Configuration Sections
 
-### 1. Timeout Configuration (`config/timeout.yaml`)
+### 1. Timeout Configuration (`config/core/timeout.yaml`)
 
 ```yaml
 timeout:
@@ -133,7 +133,7 @@ timeout:
       action: use_cache
 ```
 
-### 2. Triggers Configuration (`config/triggers.yaml`)
+### 2. Triggers Configuration (`config/knowledge/triggers.yaml`)
 
 ```yaml
 triggers:
@@ -151,7 +151,7 @@ triggers:
   # timeout, expert, analyze, documentation, python
 ```
 
-### 3. Features Configuration (`config/features.yaml`)
+### 3. Features Configuration (`config/capabilities/features.yaml`)
 
 ```yaml
 features:
@@ -168,7 +168,7 @@ features:
   context_pruning: false               # Auto-remove irrelevant sections (v1.1+)
 ```
 
-### 4. DI Container Configuration (`config/di.yaml`)
+### 4. DI Container Configuration (`config/core/di.yaml`)
 
 ```yaml
 di:
@@ -195,7 +195,7 @@ di:
     # v1.1 Placeholders: KnowledgeProtocol, OutputProtocol, RefineProtocol
 ```
 
-### 5. API Service Configuration (`config/api.yaml`)
+### 5. API Service Configuration (`config/services/api.yaml`)
 
 ```yaml
 services:
@@ -214,7 +214,7 @@ services:
       requests_per_minute: 60
 ```
 
-### 6. Plugins Configuration (`config/plugins.yaml`)
+### 6. Plugins Configuration (`config/capabilities/plugins.yaml`)
 
 ```yaml
 plugins:
@@ -236,7 +236,7 @@ plugins:
       score_threshold: 0.1
 ```
 
-### 7. Memory Configuration (`config/memory.yaml`)
+### 7. Memory Configuration (`config/core/memory.yaml`)
 
 ```yaml
 memory:
@@ -250,7 +250,7 @@ memory:
     max_history: 100                   # Max conversation entries
 ```
 
-### 8. Token Budget Configuration (`config/token_budget.yaml`)
+### 8. Token Budget Configuration (`config/knowledge/token_budget.yaml`)
 
 ```yaml
 token_budget:
@@ -268,7 +268,7 @@ token_budget:
     prune: true                        # Auto-prune at OVERFLOW
 ```
 
-### 9. Loading Configuration (`config/loading.yaml`)
+### 9. Loading Configuration (`config/knowledge/loading.yaml`)
 
 ```yaml
 loading:
@@ -282,7 +282,7 @@ loading:
     - content/core/quick_reference.md
 ```
 
-### 10. Quality Configuration (`config/quality.yaml`)
+### 10. Quality Configuration (`config/capabilities/quality.yaml`)
 
 ```yaml
 quality:
@@ -300,7 +300,7 @@ quality:
   max_doc_line_length: 120
 ```
 
-### 11. Logging Configuration (`config/logging.yaml`)
+### 11. Logging Configuration (`config/core/logging.yaml`)
 
 ```yaml
 logging:
@@ -309,7 +309,7 @@ logging:
   include_timestamps: true
 ```
 
-### 12. Guidelines Configuration (`config/guidelines.yaml`)
+### 12. Guidelines Configuration (`config/knowledge/guidelines.yaml`)
 
 ```yaml
 guidelines:
