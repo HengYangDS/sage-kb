@@ -6,8 +6,7 @@
       "command": "npx.cmd",
       "args": [
         "-y",
-        "@modelcontextprotocol/server-filesystem",
-        "${PROJECT_ROOT}"
+        "@modelcontextprotocol/server-filesystem"
       ],
       "_meta": {
         "description": "File system operations within project scope - read, write, search, and list files",
