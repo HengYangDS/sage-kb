@@ -8,11 +8,11 @@
 
 SAGE provides three interface layers for accessing knowledge:
 
-| Interface | Use Case | Technology |
-|-----------|----------|------------|
-| **CLI** | Interactive terminal usage | Typer + Rich |
-| **MCP** | AI agent integration | FastMCP |
-| **Python** | Programmatic access | Native Python |
+| Interface  | Use Case                   | Technology    |
+|------------|----------------------------|---------------|
+| **CLI**    | Interactive terminal usage | Typer + Rich  |
+| **MCP**    | AI agent integration       | FastMCP       |
+| **Python** | Programmatic access        | Native Python |
 
 ---
 
@@ -26,13 +26,13 @@ SAGE provides three interface layers for accessing knowledge:
 
 ## Interface Comparison
 
-| Feature | CLI | MCP | Python |
-|---------|-----|-----|--------|
-| Interactive | ✓ | - | - |
-| AI Integration | - | ✓ | ✓ |
-| Streaming | - | ✓ | ✓ |
-| Async Support | - | ✓ | ✓ |
-| Rich Output | ✓ | - | - |
+| Feature        | CLI | MCP | Python |
+|----------------|-----|-----|--------|
+| Interactive    | ✓   | -   | -      |
+| AI Integration | -   | ✓   | ✓      |
+| Streaming      | -   | ✓   | ✓      |
+| Async Support  | -   | ✓   | ✓      |
+| Rich Output    | ✓   | -   | -      |
 
 ---
 
@@ -57,13 +57,13 @@ coding, debugging, reviewing, planning
 
 All interfaces respect the 5-level timeout hierarchy:
 
-| Level | Timeout | Scope |
-|-------|---------|-------|
-| T1 | 100ms | Cache lookup |
-| T2 | 500ms | Single file |
-| T3 | 2s | Layer load |
-| T4 | 5s | Full KB |
-| T5 | 10s | Complex analysis |
+| Level | Timeout | Scope            |
+|-------|---------|------------------|
+| T1    | 100ms   | Cache lookup     |
+| T2    | 500ms   | Single file      |
+| T3    | 2s      | Layer load       |
+| T4    | 5s      | Full KB          |
+| T5    | 10s     | Complex analysis |
 
 ---
 

@@ -1,6 +1,8 @@
 # SAGE Knowledge Base
 
 > **Production-grade knowledge management for AI-human collaboration**
+>
+> ⚠️ **Status: Alpha (v0.1.0)** - Under active development and testing
 
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -123,15 +125,15 @@ The project uses pre-commit hooks for code quality:
 GitHub Actions workflows:
 
 - **CI** (`ci.yml`): Runs on push/PR to main/develop
-  - Lint & format check (Ruff)
-  - Type check (MyPy)
-  - Tests (Python 3.12-3.14, Linux/Windows/macOS)
-  - Build package verification
+    - Lint & format check (Ruff)
+    - Type check (MyPy)
+    - Tests (Python 3.12-3.14, Linux/Windows/macOS)
+    - Build package verification
 
 - **Release** (`release.yml`): Runs on version tags
-  - Pre-release tests
-  - Build & publish to PyPI
-  - Create GitHub release
+    - Pre-release tests
+    - Build & publish to PyPI
+    - Create GitHub release
 
 ## Documentation
 

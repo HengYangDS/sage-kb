@@ -23,12 +23,12 @@ This framework provides security guidelines and patterns for:
 
 ## 2. Contents
 
-| Document | Purpose | When to Use |
-|----------|---------|-------------|
-| [Authentication](authentication.md) | Identity verification patterns | Implementing login, tokens, SSO |
-| [Authorization](authorization.md) | Access control strategies | Role-based, attribute-based access |
-| [Secrets Management](secrets_management.md) | Secure data handling | API keys, passwords, certificates |
-| [Security Checklist](security_checklist.md) | Security review guide | Code review, deployment, audit |
+| Document                                    | Purpose                        | When to Use                        |
+|---------------------------------------------|--------------------------------|------------------------------------|
+| [Authentication](authentication.md)         | Identity verification patterns | Implementing login, tokens, SSO    |
+| [Authorization](authorization.md)           | Access control strategies      | Role-based, attribute-based access |
+| [Secrets Management](secrets_management.md) | Secure data handling           | API keys, passwords, certificates  |
+| [Security Checklist](security_checklist.md) | Security review guide          | Code review, deployment, audit     |
 
 ---
 
@@ -53,24 +53,24 @@ This framework provides security guidelines and patterns for:
 
 ### Core Principles
 
-| Principle | Description |
-|-----------|-------------|
-| **Least Privilege** | Grant minimum necessary permissions |
-| **Defense in Depth** | Multiple layers of security |
-| **Fail Secure** | Default to secure state on failure |
-| **Zero Trust** | Verify everything, trust nothing |
-| **Separation of Duties** | Distribute critical functions |
+| Principle                | Description                         |
+|--------------------------|-------------------------------------|
+| **Least Privilege**      | Grant minimum necessary permissions |
+| **Defense in Depth**     | Multiple layers of security         |
+| **Fail Secure**          | Default to secure state on failure  |
+| **Zero Trust**           | Verify everything, trust nothing    |
+| **Separation of Duties** | Distribute critical functions       |
 
 ### STRIDE Threat Model
 
-| Threat | Mitigation |
-|--------|------------|
-| **S**poofing | Strong authentication |
-| **T**ampering | Input validation, integrity checks |
-| **R**epudiation | Audit logging |
-| **I**nformation Disclosure | Encryption, access control |
-| **D**enial of Service | Rate limiting, resource quotas |
-| **E**levation of Privilege | Authorization, least privilege |
+| Threat                     | Mitigation                         |
+|----------------------------|------------------------------------|
+| **S**poofing               | Strong authentication              |
+| **T**ampering              | Input validation, integrity checks |
+| **R**epudiation            | Audit logging                      |
+| **I**nformation Disclosure | Encryption, access control         |
+| **D**enial of Service      | Rate limiting, resource quotas     |
+| **E**levation of Privilege | Authorization, least privilege     |
 
 ---
 

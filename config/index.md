@@ -12,14 +12,15 @@
 
 ## 1. Overview
 
-This directory contains runtime configuration files for SAGE Knowledge Base. Configurations are organized into subdirectories by functional area:
+This directory contains runtime configuration files for SAGE Knowledge Base. Configurations are organized into
+subdirectories by functional area:
 
-| Subdirectory | Purpose |
-|--------------|---------|
-| `services/` | Service layer configurations (API, CLI, MCP) |
-| `core/` | Core infrastructure (DI, logging, memory, timeout) |
-| `knowledge/` | Knowledge base management (content, loading, triggers) |
-| `capabilities/` | System capabilities (features, plugins, autonomy) |
+| Subdirectory    | Purpose                                                |
+|-----------------|--------------------------------------------------------|
+| `services/`     | Service layer configurations (API, CLI, MCP)           |
+| `core/`         | Core infrastructure (DI, logging, memory, timeout)     |
+| `knowledge/`    | Knowledge base management (content, loading, triggers) |
+| `capabilities/` | System capabilities (features, plugins, autonomy)      |
 
 ---
 
@@ -67,59 +68,59 @@ config/
 
 ### 3.1 Main Configuration
 
-| File | Purpose |
-|------|---------|
+| File        | Purpose                                               |
+|-------------|-------------------------------------------------------|
 | `sage.yaml` | Main configuration entry point, imports other configs |
 
 ### 3.2 Services (`services/`)
 
-| File | Purpose |
-|------|---------|
-| `api.yaml` | HTTP REST API service (SSL/TLS, compression, versioning, tracing) |
-| `cli.yaml` | Command-line interface settings |
-| `mcp.yaml` | MCP protocol service (connection, resources, rate limiting) |
-| `websocket.yaml` | WebSocket real-time service **(NEW)** |
+| File             | Purpose                                                           |
+|------------------|-------------------------------------------------------------------|
+| `api.yaml`       | HTTP REST API service (SSL/TLS, compression, versioning, tracing) |
+| `cli.yaml`       | Command-line interface settings                                   |
+| `mcp.yaml`       | MCP protocol service (connection, resources, rate limiting)       |
+| `websocket.yaml` | WebSocket real-time service **(NEW)**                             |
 
 ### 3.3 Core (`core/`)
 
-| File | Purpose |
-|------|---------|
-| `di.yaml` | Dependency injection container settings |
-| `logging.yaml` | Structured logging (sampling, redaction, aggregation) |
-| `memory.yaml` | Memory persistence settings |
-| `metrics.yaml` | Metrics & monitoring (Prometheus, alerting) **(NEW)** |
+| File            | Purpose                                                         |
+|-----------------|-----------------------------------------------------------------|
+| `di.yaml`       | Dependency injection container settings                         |
+| `logging.yaml`  | Structured logging (sampling, redaction, aggregation)           |
+| `memory.yaml`   | Memory persistence settings                                     |
+| `metrics.yaml`  | Metrics & monitoring (Prometheus, alerting) **(NEW)**           |
 | `security.yaml` | Security & authentication (auth, secrets, validation) **(NEW)** |
-| `timeout.yaml` | Timeout hierarchy (retry, graceful degradation) |
-| `tracing.yaml` | Distributed tracing (OpenTelemetry) **(NEW)** |
+| `timeout.yaml`  | Timeout hierarchy (retry, graceful degradation)                 |
+| `tracing.yaml`  | Distributed tracing (OpenTelemetry) **(NEW)**                   |
 
 ### 3.4 Environments (`environments/`) **(NEW)**
 
-| File | Purpose |
-|------|---------|
+| File               | Purpose                                                       |
+|--------------------|---------------------------------------------------------------|
 | `development.yaml` | Development environment overrides (verbose logging, no cache) |
-| `production.yaml` | Production environment (security, metrics, optimization) |
-| `testing.yaml` | Testing environment (minimal, in-memory, fast) |
+| `production.yaml`  | Production environment (security, metrics, optimization)      |
+| `testing.yaml`     | Testing environment (minimal, in-memory, fast)                |
 
 ### 3.5 Knowledge (`knowledge/`)
 
-| File | Purpose |
-|------|---------|
-| `content.yaml` | Content management (versioning, compression, preprocessing) |
-| `guidelines.yaml` | Guidelines section mapping |
-| `loading.yaml` | Smart loading strategies |
-| `search.yaml` | Search functionality settings |
-| `token_budget.yaml` | Token budget per layer |
-| `triggers.yaml` | Keyword triggers for auto-loading |
+| File                | Purpose                                                     |
+|---------------------|-------------------------------------------------------------|
+| `content.yaml`      | Content management (versioning, compression, preprocessing) |
+| `guidelines.yaml`   | Guidelines section mapping                                  |
+| `loading.yaml`      | Smart loading strategies                                    |
+| `search.yaml`       | Search functionality settings                               |
+| `token_budget.yaml` | Token budget per layer                                      |
+| `triggers.yaml`     | Keyword triggers for auto-loading                           |
 
 ### 3.6 Capabilities (`capabilities/`)
 
-| File | Purpose |
-|------|---------|
-| `autonomy.yaml` | Autonomy levels (risk assessment, audit, guardrails) |
-| `documentation.yaml` | Documentation generation settings |
-| `features.yaml` | Feature flags (enable/disable) |
-| `plugins.yaml` | Plugin system (sandbox, health check, lifecycle) |
-| `quality.yaml` | Quality check settings |
+| File                 | Purpose                                              |
+|----------------------|------------------------------------------------------|
+| `autonomy.yaml`      | Autonomy levels (risk assessment, audit, guardrails) |
+| `documentation.yaml` | Documentation generation settings                    |
+| `features.yaml`      | Feature flags (enable/disable)                       |
+| `plugins.yaml`       | Plugin system (sandbox, health check, lifecycle)     |
+| `quality.yaml`       | Quality check settings                               |
 
 ---
 
@@ -127,12 +128,12 @@ config/
 
 Configuration values are resolved in this order (later overrides earlier):
 
-| Priority | Source | Example |
-|----------|--------|---------|
-| 1 (lowest) | Default values | Built-in defaults |
-| 2 | Config files | `config/**/*.yaml` |
-| 3 | Environment variables | `SAGE_TIMEOUT_T1=100` |
-| 4 (highest) | Runtime parameters | CLI arguments |
+| Priority    | Source                | Example               |
+|-------------|-----------------------|-----------------------|
+| 1 (lowest)  | Default values        | Built-in defaults     |
+| 2           | Config files          | `config/**/*.yaml`    |
+| 3           | Environment variables | `SAGE_TIMEOUT_T1=100` |
+| 4 (highest) | Runtime parameters    | CLI arguments         |
 
 ---
 

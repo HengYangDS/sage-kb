@@ -410,13 +410,13 @@ Layer 5: HUMAN ─────────────────────�
          message: "This decision requires human approval"
 ```
 
-| Layer        | Scope                    | Fallback Strategy                   | User Impact    |
-|--------------|--------------------------|-------------------------------------|----------------|
-| Technical    | Timeout, I/O errors      | Cache, partial results, retry       | Transparent    |
-| Knowledge    | Content loading          | Summary, core principles            | Reduced detail |
-| Capability   | Plugin/service failures  | Built-in alternatives               | Reduced features |
-| Intelligence | Analysis/decision limits | Simplified frameworks, heuristics   | Manual effort  |
-| Human        | Autonomy boundaries      | Escalation, clarification           | User decision  |
+| Layer        | Scope                    | Fallback Strategy                 | User Impact      |
+|--------------|--------------------------|-----------------------------------|------------------|
+| Technical    | Timeout, I/O errors      | Cache, partial results, retry     | Transparent      |
+| Knowledge    | Content loading          | Summary, core principles          | Reduced detail   |
+| Capability   | Plugin/service failures  | Built-in alternatives             | Reduced features |
+| Intelligence | Analysis/decision limits | Simplified frameworks, heuristics | Manual effort    |
+| Human        | Autonomy boundaries      | Escalation, clarification         | User decision    |
 
 **Key Insight**: Fallback = "How to maintain value delivery when optimal path is unavailable"
 

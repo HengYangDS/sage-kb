@@ -12,12 +12,12 @@
 
 ## 1. General Rules
 
-| Principle | Description |
-|-----------|-------------|
-| Clarity over brevity | Prefer `knowledge_loader` over `kb_ldr` |
-| Consistency | Follow existing patterns in the codebase |
-| Self-documenting | Names should reveal intent |
-| Domain alignment | Use SAGE terminology (Source, Analyze, Generate, Evolve) |
+| Principle            | Description                                              |
+|----------------------|----------------------------------------------------------|
+| Clarity over brevity | Prefer `knowledge_loader` over `kb_ldr`                  |
+| Consistency          | Follow existing patterns in the codebase                 |
+| Self-documenting     | Names should reveal intent                               |
+| Domain alignment     | Use SAGE terminology (Source, Analyze, Generate, Evolve) |
 
 ---
 
@@ -25,41 +25,41 @@
 
 ### 2.1 Modules & Packages
 
-| Element | Convention | Example |
-|---------|------------|---------|
-| Package | `snake_case` | `sage`, `core`, `services` |
-| Module | `snake_case.py` | `timeout.py`, `config.py` |
-| Sub-package | `snake_case/` | `di/`, `events/`, `memory/` |
+| Element     | Convention      | Example                     |
+|-------------|-----------------|-----------------------------|
+| Package     | `snake_case`    | `sage`, `core`, `services`  |
+| Module      | `snake_case.py` | `timeout.py`, `config.py`   |
+| Sub-package | `snake_case/`   | `di/`, `events/`, `memory/` |
 
 ### 2.2 Classes
 
-| Type | Convention | Example |
-|------|------------|---------|
-| Regular class | `PascalCase` | `TimeoutManager`, `KnowledgeLoader` |
-| Protocol | `PascalCase` + `Protocol` suffix | `SourceProtocol`, `AnalyzeProtocol` |
-| Exception | `PascalCase` + `Error` suffix | `TimeoutError`, `ConfigurationError` |
-| Abstract base | `Base` prefix | `BaseAnalyzer`, `BaseChecker` |
-| Mixin | `Mixin` suffix | `LoggingMixin`, `EventMixin` |
+| Type          | Convention                       | Example                              |
+|---------------|----------------------------------|--------------------------------------|
+| Regular class | `PascalCase`                     | `TimeoutManager`, `KnowledgeLoader`  |
+| Protocol      | `PascalCase` + `Protocol` suffix | `SourceProtocol`, `AnalyzeProtocol`  |
+| Exception     | `PascalCase` + `Error` suffix    | `TimeoutError`, `ConfigurationError` |
+| Abstract base | `Base` prefix                    | `BaseAnalyzer`, `BaseChecker`        |
+| Mixin         | `Mixin` suffix                   | `LoggingMixin`, `EventMixin`         |
 
 ### 2.3 Functions & Methods
 
-| Type | Convention | Example |
-|------|------------|---------|
-| Public function | `snake_case` | `load_knowledge()`, `get_config()` |
-| Private function | `_snake_case` | `_parse_yaml()`, `_validate_input()` |
-| Async function | `snake_case` (no prefix) | `async def load_async()` |
-| Property | `snake_case` | `@property def is_loaded()` |
-| Factory method | `create_*` or `from_*` | `create_loader()`, `from_config()` |
+| Type             | Convention               | Example                              |
+|------------------|--------------------------|--------------------------------------|
+| Public function  | `snake_case`             | `load_knowledge()`, `get_config()`   |
+| Private function | `_snake_case`            | `_parse_yaml()`, `_validate_input()` |
+| Async function   | `snake_case` (no prefix) | `async def load_async()`             |
+| Property         | `snake_case`             | `@property def is_loaded()`          |
+| Factory method   | `create_*` or `from_*`   | `create_loader()`, `from_config()`   |
 
 ### 2.4 Variables & Constants
 
-| Type | Convention | Example |
-|------|------------|---------|
-| Local variable | `snake_case` | `file_path`, `timeout_ms` |
-| Instance attribute | `snake_case` | `self.config`, `self._cache` |
-| Private attribute | `_snake_case` | `self._internal_state` |
-| Constant | `UPPER_SNAKE_CASE` | `DEFAULT_TIMEOUT_MS`, `MAX_RETRIES` |
-| Type variable | `PascalCase` or `T` | `T`, `KnowledgeT`, `ConfigT` |
+| Type               | Convention          | Example                             |
+|--------------------|---------------------|-------------------------------------|
+| Local variable     | `snake_case`        | `file_path`, `timeout_ms`           |
+| Instance attribute | `snake_case`        | `self.config`, `self._cache`        |
+| Private attribute  | `_snake_case`       | `self._internal_state`              |
+| Constant           | `UPPER_SNAKE_CASE`  | `DEFAULT_TIMEOUT_MS`, `MAX_RETRIES` |
+| Type variable      | `PascalCase` or `T` | `T`, `KnowledgeT`, `ConfigT`        |
 
 ---
 
@@ -79,19 +79,19 @@ class EvolveProtocol(Protocol): ...    # E - Metrics & optimization
 
 ### 3.2 Service Names
 
-| Service | Class Name | Module |
-|---------|------------|--------|
-| CLI | `CLIService` | `services/cli.py` |
-| MCP | `MCPService` | `services/mcp.py` |
-| API | `APIService` | `services/api.py` |
+| Service | Class Name   | Module            |
+|---------|--------------|-------------------|
+| CLI     | `CLIService` | `services/cli.py` |
+| MCP     | `MCPService` | `services/mcp.py` |
+| API     | `APIService` | `services/api.py` |
 
 ### 3.3 Capability Names
 
-| Type | Class Pattern | Example |
-|------|---------------|---------|
-| Analyzer | `*Analyzer` | `CodeAnalyzer`, `ContentAnalyzer` |
-| Checker | `*Checker` | `HealthChecker`, `ConfigChecker` |
-| Monitor | `*Monitor` | `PerformanceMonitor`, `UsageMonitor` |
+| Type     | Class Pattern | Example                              |
+|----------|---------------|--------------------------------------|
+| Analyzer | `*Analyzer`   | `CodeAnalyzer`, `ContentAnalyzer`    |
+| Checker  | `*Checker`    | `HealthChecker`, `ConfigChecker`     |
+| Monitor  | `*Monitor`    | `PerformanceMonitor`, `UsageMonitor` |
 
 ### 3.4 Domain Models
 
@@ -135,10 +135,10 @@ features:
 
 ### 4.2 Environment Variables
 
-| Pattern | Example |
-|---------|---------|
-| `SAGE_` prefix | `SAGE_CONFIG_PATH` |
-| `UPPER_SNAKE_CASE` | `SAGE_TIMEOUT_MS` |
+| Pattern                | Example                       |
+|------------------------|-------------------------------|
+| `SAGE_` prefix         | `SAGE_CONFIG_PATH`            |
+| `UPPER_SNAKE_CASE`     | `SAGE_TIMEOUT_MS`             |
 | Hierarchical with `__` | `SAGE__TIMEOUT__CACHE_LOOKUP` |
 
 ---
@@ -179,43 +179,43 @@ class TimeoutOccurredEvent: ...
 
 ### 6.1 Source Files
 
-| Type | Pattern | Example |
-|------|---------|---------|
-| Module | `snake_case.py` | `timeout_manager.py` |
-| Package init | `__init__.py` | Always present |
-| Test file | `test_*.py` | `test_timeout.py` |
-| Config file | `*.yaml` or `*.yml` | `sage.yaml` |
+| Type         | Pattern             | Example              |
+|--------------|---------------------|----------------------|
+| Module       | `snake_case.py`     | `timeout_manager.py` |
+| Package init | `__init__.py`       | Always present       |
+| Test file    | `test_*.py`         | `test_timeout.py`    |
+| Config file  | `*.yaml` or `*.yml` | `sage.yaml`          |
 
 ### 6.2 Documentation Files
 
-| Type | Pattern | Example |
-|------|---------|---------|
-| Markdown | `kebab-case.md` or `snake_case.md` | `timeout-hierarchy.md` |
-| ADR | `ADR-NNNN-title.md` | `ADR-0001-architecture.md` |
-| Design doc | `NN-title.md` | `01-architecture.md` |
+| Type       | Pattern                            | Example                    |
+|------------|------------------------------------|----------------------------|
+| Markdown   | `kebab-case.md` or `snake_case.md` | `timeout-hierarchy.md`     |
+| ADR        | `ADR-NNNN-title.md`                | `ADR-0001-architecture.md` |
+| Design doc | `NN-title.md`                      | `01-architecture.md`       |
 
 ### 6.3 Directory Structure
 
-| Directory | Purpose | Naming |
-|-----------|---------|--------|
-| `src/sage/` | Source code | Package name |
-| `tests/` | Test suite | Mirrors source |
-| `docs/` | Documentation | Categorical |
-| `config/` | Configuration | By function |
-| `.context/` | Project context | By type |
+| Directory   | Purpose         | Naming         |
+|-------------|-----------------|----------------|
+| `src/sage/` | Source code     | Package name   |
+| `tests/`    | Test suite      | Mirrors source |
+| `docs/`     | Documentation   | Categorical    |
+| `config/`   | Configuration   | By function    |
+| `.context/` | Project context | By type        |
 
 ---
 
 ## 7. Anti-Patterns to Avoid
 
-| Avoid | Prefer | Reason |
-|-------|--------|--------|
-| `kb` abbreviation | `knowledge_base` | Clarity |
-| `mgr` suffix | `manager` | Full word |
-| `Impl` suffix | Descriptive name | Implementation detail |
-| Hungarian notation | Type hints | Python convention |
-| `get_*` for properties | `@property` | Pythonic |
-| Generic names (`data`, `info`) | Specific names | Self-documenting |
+| Avoid                          | Prefer           | Reason                |
+|--------------------------------|------------------|-----------------------|
+| `kb` abbreviation              | `knowledge_base` | Clarity               |
+| `mgr` suffix                   | `manager`        | Full word             |
+| `Impl` suffix                  | Descriptive name | Implementation detail |
+| Hungarian notation             | Type hints       | Python convention     |
+| `get_*` for properties         | `@property`      | Pythonic              |
+| Generic names (`data`, `info`) | Specific names   | Self-documenting      |
 
 ---
 

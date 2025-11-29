@@ -1,12 +1,12 @@
 # CI/CD Practices
 
-> Continuous Integration and Continuous Deployment configuration and best practices
+> Continuous Integration and Continuous Deployment best practices for SAGE projects
 
 ---
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. GitHub Actions](#2-github-actions) · [3. Pipeline Stages](#3-pipeline-stages) · [4. Testing Strategy](#4-testing-strategy) · [5. Deployment](#5-deployment) · [6. Best Practices](#6-best-practices)
+[1. Overview](#1-overview) · [2. GitHub Actions](#2-github-actions) · [3. Testing Pipeline](#3-testing-pipeline) · [4. Quality Gates](#4-quality-gates) · [5. Deployment Strategies](#5-deployment-strategies) · [6. Secrets Management](#6-secrets-management)
 
 ---
 
@@ -14,27 +14,22 @@
 
 ### 1.1 CI/CD Philosophy
 
-| Principle | Description |
-|-----------|-------------|
-| **Automate Everything** | Manual steps are error-prone |
-| **Fail Fast** | Catch issues early in pipeline |
-| **Keep It Fast** | Target < 10 min for CI pipeline |
-| **Reproducible** | Same input = same output |
-| **Secure** | Never expose secrets in logs |
+| Principle               | Description                            |
+|-------------------------|----------------------------------------|
+| **Automate Everything** | Manual steps introduce errors          |
+| **Fail Fast**           | Catch issues early in the pipeline     |
+| **Keep It Simple**      | Complex pipelines are hard to maintain |
+| **Version Everything**  | Config as code, reproducible builds    |
 
-### 1.2 Pipeline Overview
+### 1.2 Pipeline Stages
 
 ```
-┌─────────┐    ┌─────────┐    ┌─────────┐    ┌─────────┐    ┌─────────┐
-│  Lint   │ → │  Test   │ → │  Build  │ → │ Deploy  │ → │ Monitor │
-│         │    │         │    │         │    │ Staging │    │         │
-└─────────┘    └─────────┘    └─────────┘    └─────────┘    └─────────┘
-                                                  │
-                                                  ↓
-                                            ┌─────────┐
-                                            │ Deploy  │
-                                            │  Prod   │
-                                            └─────────┘
+┌─────────┐   ┌─────────┐   ┌─────────┐   ┌─────────┐   ┌─────────┐
+│  Lint   │ → │  Test   │ → │  Build  │ → │ Publish │ → │ Deploy  │
+└─────────┘   └─────────┘   └─────────┘   └─────────┘   └─────────┘
+     │             │             │             │             │
+   Ruff        pytest        wheel         PyPI        Staging
+   MyPy       coverage      Docker        GHCR        Production
 ```
 
 ---
@@ -49,88 +44,59 @@ name: CI
 
 on:
   push:
-    branches: [main, develop]
+    branches: [ main, develop ]
   pull_request:
-    branches: [main, develop]
+    branches: [ main ]
 
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
           cache: 'pip'
-      
+
       - name: Install dependencies
         run: pip install ruff mypy
-      
-      - name: Run ruff
+
+      - name: Run Ruff
         run: ruff check src/
-      
-      - name: Run mypy
-        run: mypy src/sage/
+
+      - name: Run MyPy
+        run: mypy src/
 
   test:
     runs-on: ubuntu-latest
-    needs: lint
-    steps:
-      - uses: actions/checkout@v4
-      
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-          cache: 'pip'
-      
-      - name: Install dependencies
-        run: pip install -e ".[dev]"
-      
-      - name: Run tests
-        run: pytest tests/ -v --cov=src/sage --cov-report=xml
-      
-      - name: Upload coverage
-        uses: codecov/codecov-action@v4
-        with:
-          files: coverage.xml
-```
-
-### 2.2 Matrix Testing
-
-```yaml
-# .github/workflows/test-matrix.yml
-name: Test Matrix
-
-on: [push, pull_request]
-
-jobs:
-  test:
-    runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-        python-version: ['3.11', '3.12', '3.13']
-    
+        python-version: [ '3.11', '3.12' ]
+
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-      
+          cache: 'pip'
+
       - name: Install dependencies
         run: pip install -e ".[dev]"
-      
+
       - name: Run tests
-        run: pytest tests/ -v
+        run: pytest --cov=src --cov-report=xml
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v4
+        with:
+          file: coverage.xml
 ```
 
-### 2.3 Release Workflow
+### 2.2 Release Workflow
 
 ```yaml
 # .github/workflows/release.yml
@@ -146,18 +112,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      
+
       - name: Install build tools
         run: pip install build twine
-      
+
       - name: Build package
         run: python -m build
-      
+
       - name: Publish to PyPI
         env:
           TWINE_USERNAME: __token__
@@ -166,307 +132,280 @@ jobs:
 
   docker:
     runs-on: ubuntu-latest
-    needs: build
+    permissions:
+      contents: read
+      packages: write
+
     steps:
       - uses: actions/checkout@v4
-      
-      - name: Login to GHCR
+
+      - name: Log in to GHCR
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      
+
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
+          context: .
           push: true
           tags: |
             ghcr.io/${{ github.repository }}:${{ github.ref_name }}
             ghcr.io/${{ github.repository }}:latest
 ```
 
----
-
-## 3. Pipeline Stages
-
-### 3.1 Lint Stage
-
-| Check | Tool | Purpose |
-|-------|------|---------|
-| Code style | `ruff check` | Enforce style guidelines |
-| Formatting | `ruff format --check` | Verify formatting |
-| Type hints | `mypy` | Static type checking |
-| Security | `bandit` | Security vulnerability scan |
-| Dependencies | `safety` | Check for vulnerable packages |
+### 2.3 Scheduled Jobs
 
 ```yaml
-lint:
-  steps:
-    - run: ruff check src/ tests/
-    - run: ruff format --check src/ tests/
-    - run: mypy src/sage/
-    - run: bandit -r src/
-    - run: safety check
-```
+# .github/workflows/scheduled.yml
+name: Scheduled Tasks
 
-### 3.2 Test Stage
+on:
+  schedule:
+    - cron: '0 0 * * 1'  # Weekly on Monday
 
-| Test Type | Scope | Timeout |
-|-----------|-------|---------|
-| Unit | Individual functions | 5 min |
-| Integration | Component interactions | 10 min |
-| E2E | Full system | 15 min |
-| Performance | Benchmarks | 10 min |
+jobs:
+  dependency-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
 
-```yaml
-test:
-  steps:
-    # Unit tests (fast, run first)
-    - name: Unit tests
-      run: pytest tests/unit/ -v --timeout=300
-    
-    # Integration tests
-    - name: Integration tests
-      run: pytest tests/integration/ -v --timeout=600
-    
-    # Performance tests (optional)
-    - name: Performance tests
-      if: github.ref == 'refs/heads/main'
-      run: pytest tests/performance/ -v --benchmark-only
-```
+      - name: Check for updates
+        run: pip list --outdated
 
-### 3.3 Build Stage
-
-```yaml
-build:
-  steps:
-    - name: Build Python package
-      run: python -m build
-    
-    - name: Build documentation
-      run: mkdocs build
-    
-    - name: Build Docker image
-      run: docker build -t sage-kb .
-    
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: dist
-        path: dist/
-```
-
-### 3.4 Deploy Stage
-
-```yaml
-deploy-staging:
-  environment: staging
-  steps:
-    - name: Deploy to staging
-      run: |
-        # Deploy commands
-        echo "Deploying to staging..."
-
-deploy-production:
-  environment: production
-  needs: deploy-staging
-  if: github.ref == 'refs/heads/main'
-  steps:
-    - name: Deploy to production
-      run: |
-        # Production deploy commands
-        echo "Deploying to production..."
+      - name: Security audit
+        run: pip-audit
 ```
 
 ---
 
-## 4. Testing Strategy
+## 3. Testing Pipeline
 
-### 4.1 Test Configuration
+### 3.1 Test Categories
 
-```toml
+| Category        | Scope                 | Speed  | When to Run    |
+|-----------------|-----------------------|--------|----------------|
+| **Unit**        | Single function/class | Fast   | Every commit   |
+| **Integration** | Multiple components   | Medium | Every PR       |
+| **E2E**         | Full system           | Slow   | Before release |
+| **Performance** | Benchmarks            | Varies | Weekly/Release |
+
+### 3.2 Test Configuration
+
+```yaml
 # pyproject.toml
-[tool.pytest.ini_options]
-testpaths = ["tests"]
-asyncio_mode = "auto"
-addopts = """
-    -v
-    --strict-markers
-    --cov=src/sage
-    --cov-report=term-missing
-    --cov-report=xml
-"""
-markers = [
-    "slow: marks tests as slow",
-    "integration: marks tests as integration tests",
+[ tool.pytest.ini_options ]
+  testpaths = ["tests"]
+  addopts = [
+  "-v",
+  "--strict-markers",
+  "--cov=src",
+  "--cov-report=term-missing",
+]
+  markers = [
+  "unit: Unit tests",
+  "integration: Integration tests",
+  "slow: Slow tests",
+]
+
+  [ tool.coverage.run ]
+  branch = true
+  source = ["src"]
+
+  [ tool.coverage.report ]
+  exclude_lines = [
+  "pragma: no cover",
+  "if TYPE_CHECKING:",
+  "raise NotImplementedError",
 ]
 ```
 
-### 4.2 Coverage Requirements
+### 3.3 Running Tests
 
-| Layer | Minimum | Target |
-|-------|---------|--------|
-| Core | 90% | 95% |
-| Services | 80% | 90% |
-| Capabilities | 80% | 85% |
-| Overall | 85% | 90% |
+```bash
+# All tests
+pytest
 
-```yaml
-- name: Check coverage
-  run: |
-    coverage report --fail-under=85
-```
+# Unit tests only
+pytest -m unit
 
-### 4.3 Test Parallelization
+# With coverage
+pytest --cov=src --cov-report=html
 
-```yaml
-test:
-  strategy:
-    matrix:
-      test-group: [unit, integration, e2e]
-  steps:
-    - name: Run ${{ matrix.test-group }} tests
-      run: pytest tests/${{ matrix.test-group }}/ -v
+# Parallel execution
+pytest -n auto
 ```
 
 ---
 
-## 5. Deployment
+## 4. Quality Gates
 
-### 5.1 Environment Configuration
+### 4.1 Required Checks
 
-| Environment | Branch | Auto-Deploy | Approval |
-|-------------|--------|-------------|----------|
-| Development | Any PR | Yes | No |
-| Staging | `develop` | Yes | No |
-| Production | `main` | No | Required |
+| Check             | Tool       | Threshold          |
+|-------------------|------------|--------------------|
+| **Linting**       | Ruff       | No errors          |
+| **Type Check**    | MyPy       | No errors          |
+| **Test Coverage** | pytest-cov | ≥ 80%              |
+| **Security**      | pip-audit  | No vulnerabilities |
+| **Complexity**    | Ruff       | < 10 per function  |
 
-### 5.2 Secrets Management
+### 4.2 Pre-commit Hooks
 
 ```yaml
-# Use GitHub secrets
+# .pre-commit-config.yaml
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.7.0
+    hooks:
+      - id: ruff
+        args: [ --fix ]
+      - id: ruff-format
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.13.0
+    hooks:
+      - id: mypy
+        additional_dependencies: [ types-PyYAML ]
+
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v3.29.0
+    hooks:
+      - id: commitizen
+```
+
+### 4.3 Branch Protection
+
+```yaml
+# Repository settings
+branch_protection:
+  main:
+    required_status_checks:
+      - lint
+      - test
+      - type-check
+    required_reviews: 1
+    dismiss_stale_reviews: true
+    require_code_owner_reviews: true
+```
+
+---
+
+## 5. Deployment Strategies
+
+### 5.1 Environments
+
+| Environment     | Purpose             | Deployment      |
+|-----------------|---------------------|-----------------|
+| **Development** | Local testing       | Manual          |
+| **Staging**     | Integration testing | Auto on develop |
+| **Production**  | Live system         | Manual approval |
+
+### 5.2 Deployment Methods
+
+#### Blue-Green Deployment
+
+```
+     Active          Standby
+   ┌─────────┐    ┌─────────┐
+   │  Blue   │    │  Green  │
+   │  v1.0   │    │  v1.1   │
+   └────┬────┘    └────┬────┘
+        │              │
+        └──────┬───────┘
+               │
+         Load Balancer
+               │
+            Traffic
+```
+
+#### Rolling Update
+
+```yaml
+# kubernetes deployment
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+```
+
+### 5.3 Rollback Procedure
+
+```bash
+# Quick rollback to previous version
+git revert HEAD
+git push origin main
+
+# Or deploy specific version
+git checkout v1.0.0
+# trigger deployment
+```
+
+---
+
+## 6. Secrets Management
+
+### 6.1 Secret Types
+
+| Type             | Storage           | Example            |
+|------------------|-------------------|--------------------|
+| **API Keys**     | GitHub Secrets    | `PYPI_TOKEN`       |
+| **Credentials**  | Vault/AWS Secrets | Database passwords |
+| **Certificates** | Secure storage    | SSL/TLS certs      |
+
+### 6.2 GitHub Secrets
+
+```yaml
+# Access in workflow
 env:
-  DATABASE_URL: ${{ secrets.DATABASE_URL }}
   API_KEY: ${{ secrets.API_KEY }}
 
-# Use environment-specific secrets
-jobs:
-  deploy:
-    environment: production
-    env:
-      API_KEY: ${{ secrets.PROD_API_KEY }}
+# Environment-specific secrets
+environment: production
+env:
+  DATABASE_URL: ${{ secrets.PROD_DATABASE_URL }}
 ```
 
-### 5.3 Rollback Strategy
+### 6.3 Best Practices
 
-```yaml
-deploy:
-  steps:
-    - name: Deploy with rollback capability
-      run: |
-        # Save current version for rollback
-        CURRENT_VERSION=$(get-current-version)
-        
-        # Deploy new version
-        deploy-new-version || {
-          echo "Deploy failed, rolling back..."
-          rollback-to $CURRENT_VERSION
-          exit 1
-        }
-```
+- Never commit secrets to repository
+- Rotate secrets regularly
+- Use environment-specific secrets
+- Audit secret access
+- Use OIDC for cloud providers when possible
 
 ---
 
-## 6. Best Practices
+## Quick Reference
 
-### 6.1 Pipeline Optimization
+```bash
+# Local CI simulation
+pre-commit run --all-files
+pytest --cov=src
+mypy src/
 
-| Technique | Benefit |
-|-----------|---------|
-| **Caching** | Faster dependency installation |
-| **Parallelization** | Reduced total time |
-| **Fail fast** | Quick feedback on failures |
-| **Incremental builds** | Only rebuild changed parts |
-| **Artifact reuse** | Don't rebuild between stages |
+# Trigger workflow manually
+gh workflow run ci.yml
 
-```yaml
-# Caching example
-- uses: actions/cache@v4
-  with:
-    path: ~/.cache/pip
-    key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements*.txt') }}
-    restore-keys: |
-      ${{ runner.os }}-pip-
-```
+# View workflow runs
+gh run list
 
-### 6.2 Security Practices
-
-| Practice | Implementation |
-|----------|----------------|
-| **Secret scanning** | Enable GitHub secret scanning |
-| **Dependency audit** | Run `pip-audit` in CI |
-| **SAST** | Use `bandit` for Python |
-| **Container scanning** | Scan Docker images |
-| **Least privilege** | Minimal permissions for tokens |
-
-### 6.3 Monitoring and Alerting
-
-```yaml
-# Notify on failure
-- name: Notify Slack on failure
-  if: failure()
-  uses: slackapi/slack-github-action@v1
-  with:
-    channel-id: 'ci-alerts'
-    slack-message: 'CI failed on ${{ github.ref }}'
-  env:
-    SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-```
-
-### 6.4 Documentation
-
-| Document | Content |
-|----------|---------|
-| `CONTRIBUTING.md` | How to contribute |
-| `RELEASING.md` | Release process |
-| `.github/CODEOWNERS` | Review assignments |
-| `.github/pull_request_template.md` | PR checklist |
-
----
-
-## Troubleshooting
-
-### Common Issues
-
-| Issue | Solution |
-|-------|----------|
-| Flaky tests | Add retries, fix race conditions |
-| Slow pipeline | Add caching, parallelize |
-| Secret exposure | Use secret masking, audit logs |
-| Build failures | Check dependencies, pin versions |
-| Deploy failures | Add health checks, rollback |
-
-### Debugging CI
-
-```yaml
-# Enable debug logging
-- name: Debug step
-  run: |
-    echo "Event: ${{ github.event_name }}"
-    echo "Ref: ${{ github.ref }}"
-    echo "SHA: ${{ github.sha }}"
-  env:
-    ACTIONS_STEP_DEBUG: true
+# Download artifacts
+gh run download <run-id>
 ```
 
 ---
 
 ## Related
 
-- `practices/engineering/git_workflow.md` — Git workflow
-- `practices/engineering/testing_strategy.md` — Testing strategy
-- `content/scenarios/devops/context.md` — DevOps scenario
+- `practices/engineering/git_workflow.md` — Git workflow and versioning
+- `practices/engineering/testing_strategy.md` — Testing best practices
+- `scenarios/devops/context.md` — DevOps scenario context
+- `templates/runbook.md` — Operational runbook template
 
 ---
 

@@ -7,7 +7,8 @@
 
 ## Overview
 
-This template facilitates smooth task transitions between AI sessions or human collaborators. It captures everything needed to continue work without context loss, ensuring efficient handoffs and maintaining task momentum.
+This template facilitates smooth task transitions between AI sessions or human collaborators. It captures everything
+needed to continue work without context loss, ensuring efficient handoffs and maintaining task momentum.
 
 ---
 
@@ -90,9 +91,9 @@ This template facilitates smooth task transitions between AI sessions or human c
 
 ### Dependencies
 
-| Dependency | Version | Notes |
-|------------|---------|-------|
-| [Dep 1] | [Version] | [Any issues or considerations] |
+| Dependency | Version   | Notes                          |
+|------------|-----------|--------------------------------|
+| [Dep 1]    | [Version] | [Any issues or considerations] |
 
 ---
 
@@ -100,14 +101,14 @@ This template facilitates smooth task transitions between AI sessions or human c
 
 ### Current Blockers
 
-| Blocker | Impact | Suggested Resolution |
-|---------|--------|---------------------|
+| Blocker     | Impact                   | Suggested Resolution |
+|-------------|--------------------------|----------------------|
 | [Blocker 1] | [How it blocks progress] | [Suggested approach] |
 
 ### Known Risks
 
-| Risk | Likelihood | Mitigation |
-|------|------------|------------|
+| Risk     | Likelihood        | Mitigation      |
+|----------|-------------------|-----------------|
 | [Risk 1] | [High/Medium/Low] | [How to handle] |
 
 ---
@@ -172,6 +173,7 @@ Before handoff, ensure:
 ---
 
 *Task handoff from SAGE Knowledge Base*
+
 ```
 
 ---

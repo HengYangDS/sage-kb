@@ -64,11 +64,11 @@ Adopt a **Core-Services-Capabilities** three-layer architecture with dev tools i
 
 ### Layer Responsibilities
 
-| Layer | Responsibility | Dependencies |
-|-------|----------------|--------------|
-| **Core** | Infrastructure, protocols, DI, events | None (standalone) |
-| **Services** | User interfaces (CLI, MCP, API) | Core |
-| **Capabilities** | Runtime features (analyzers, checkers) | Core |
+| Layer            | Responsibility                         | Dependencies      |
+|------------------|----------------------------------------|-------------------|
+| **Core**         | Infrastructure, protocols, DI, events  | None (standalone) |
+| **Services**     | User interfaces (CLI, MCP, API)        | Core              |
+| **Capabilities** | Runtime features (analyzers, checkers) | Core              |
 
 ### Dependency Rules
 

@@ -14,11 +14,11 @@
 
 ### 1.1 Recommended Parameters
 
-| Parameter | Typical Value | Purpose |
-|-----------|---------------|---------|
-| Max tokens | 4000-8000 | Context window budget |
-| Default layer | core | Always-load foundation |
-| Preload files | index, principles, quick_reference | Essential context |
+| Parameter     | Typical Value                      | Purpose                |
+|---------------|------------------------------------|------------------------|
+| Max tokens    | 4000-8000                          | Context window budget  |
+| Default layer | core                               | Always-load foundation |
+| Preload files | index, principles, quick_reference | Essential context      |
 
 ### 1.2 Layer Budgets
 
@@ -37,22 +37,22 @@
 
 ### 2.1 Tiered Timeout Pattern
 
-| Tier | Typical Range | Operation Type |
-|------|---------------|----------------|
-| Fast | 50-200ms | Cache lookup, memory access |
-| Standard | 200-1000ms | Single file read, local I/O |
-| Extended | 1-5s | Multi-file load, network call |
-| Long | 5-30s | Full load, complex analysis |
+| Tier     | Typical Range | Operation Type                |
+|----------|---------------|-------------------------------|
+| Fast     | 50-200ms      | Cache lookup, memory access   |
+| Standard | 200-1000ms    | Single file read, local I/O   |
+| Extended | 1-5s          | Multi-file load, network call |
+| Long     | 5-30s         | Full load, complex analysis   |
 
 > **Note**: For project-specific timeout configurations, see your project's configuration files.
 
 ### 2.2 Circuit Breaker Defaults
 
-| Parameter          | Typical Value |
-|--------------------|---------------|
+| Parameter          | Typical Value   |
+|--------------------|-----------------|
 | Failure threshold  | 3-5 consecutive |
-| Reset timeout      | 30-60s |
-| Half-open requests | 1-3 |
+| Reset timeout      | 30-60s          |
+| Half-open requests | 1-3             |
 
 ---
 

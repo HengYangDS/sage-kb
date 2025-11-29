@@ -6,7 +6,8 @@
 
 ## Overview
 
-The SAGE Python API provides programmatic access to the knowledge base. It supports both synchronous and asynchronous operations with built-in timeout protection.
+The SAGE Python API provides programmatic access to the knowledge base. It supports both synchronous and asynchronous
+operations with built-in timeout protection.
 
 ---
 
@@ -61,9 +62,9 @@ loader = KnowledgeLoader(config=None)
 
 **Parameters:**
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `config` | `SAGEConfig` | Optional configuration object |
+| Parameter | Type         | Description                   |
+|-----------|--------------|-------------------------------|
+| `config`  | `SAGEConfig` | Optional configuration object |
 
 #### Methods
 
@@ -81,11 +82,11 @@ async def load(
 
 **Parameters:**
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `layer` | `str` | required | Knowledge layer |
-| `topic` | `str` | `None` | Specific topic |
-| `timeout_ms` | `int` | `2000` | Timeout in ms |
+| Parameter    | Type  | Default  | Description     |
+|--------------|-------|----------|-----------------|
+| `layer`      | `str` | required | Knowledge layer |
+| `topic`      | `str` | `None`   | Specific topic  |
+| `timeout_ms` | `int` | `2000`   | Timeout in ms   |
 
 **Returns:** `LoadResult`
 
@@ -123,11 +124,11 @@ async def load_for_task(
 
 **Parameters:**
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `task_type` | `TaskType` | required | Type of task |
-| `token_budget` | `int` | `4000` | Max tokens |
-| `timeout_ms` | `int` | `5000` | Timeout in ms |
+| Parameter      | Type       | Default  | Description   |
+|----------------|------------|----------|---------------|
+| `task_type`    | `TaskType` | required | Type of task  |
+| `token_budget` | `int`      | `4000`   | Max tokens    |
+| `timeout_ms`   | `int`      | `5000`   | Timeout in ms |
 
 ---
 
@@ -146,12 +147,12 @@ class LoadResult:
 
 **Attributes:**
 
-| Attribute | Type | Description |
-|-----------|------|-------------|
-| `content` | `str` | Loaded content |
-| `metadata` | `LoadMetadata` | Load metadata |
-| `complete` | `bool` | Whether load completed |
-| `error` | `str \| None` | Error message if any |
+| Attribute  | Type           | Description            |
+|------------|----------------|------------------------|
+| `content`  | `str`          | Loaded content         |
+| `metadata` | `LoadMetadata` | Load metadata          |
+| `complete` | `bool`         | Whether load completed |
+| `error`    | `str \| None`  | Error message if any   |
 
 ---
 
@@ -191,15 +192,15 @@ config = SAGEConfig(
 
 **Key Attributes:**
 
-| Attribute | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `knowledge_base_path` | `str` | `"."` | KB root path |
-| `timeout_t1` | `int` | `100` | T1 timeout (ms) |
-| `timeout_t2` | `int` | `500` | T2 timeout (ms) |
-| `timeout_t3` | `int` | `2000` | T3 timeout (ms) |
-| `timeout_t4` | `int` | `5000` | T4 timeout (ms) |
-| `timeout_t5` | `int` | `10000` | T5 timeout (ms) |
-| `cache_enabled` | `bool` | `True` | Enable caching |
+| Attribute             | Type   | Default | Description     |
+|-----------------------|--------|---------|-----------------|
+| `knowledge_base_path` | `str`  | `"."`   | KB root path    |
+| `timeout_t1`          | `int`  | `100`   | T1 timeout (ms) |
+| `timeout_t2`          | `int`  | `500`   | T2 timeout (ms) |
+| `timeout_t3`          | `int`  | `2000`  | T3 timeout (ms) |
+| `timeout_t4`          | `int`  | `5000`  | T4 timeout (ms) |
+| `timeout_t5`          | `int`  | `10000` | T5 timeout (ms) |
+| `cache_enabled`       | `bool` | `True`  | Enable caching  |
 
 ---
 
@@ -232,12 +233,12 @@ async def search(
 
 **Parameters:**
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `query` | `str` | required | Search query |
-| `limit` | `int` | `10` | Max results |
-| `layer` | `str` | `None` | Filter by layer |
-| `timeout_ms` | `int` | `2000` | Timeout in ms |
+| Parameter    | Type  | Default  | Description     |
+|--------------|-------|----------|-----------------|
+| `query`      | `str` | required | Search query    |
+| `limit`      | `int` | `10`     | Max results     |
+| `layer`      | `str` | `None`   | Filter by layer |
+| `timeout_ms` | `int` | `2000`   | Timeout in ms   |
 
 **Returns:** `SearchResult`
 

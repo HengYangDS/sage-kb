@@ -54,13 +54,13 @@ class SourceProtocol(Protocol):
 
 ### Key Characteristics
 
-| Feature | Protocol | ABC |
-|---------|----------|-----|
-| Inheritance required | No | Yes |
-| Runtime checkable | Optional | Always |
-| Structural subtyping | Yes | No |
-| Multiple protocols | Clean | Diamond problem |
-| Boilerplate | Minimal | More verbose |
+| Feature              | Protocol | ABC             |
+|----------------------|----------|-----------------|
+| Inheritance required | No       | Yes             |
+| Runtime checkable    | Optional | Always          |
+| Structural subtyping | Yes      | No              |
+| Multiple protocols   | Clean    | Diamond problem |
+| Boilerplate          | Minimal  | More verbose    |
 
 ---
 

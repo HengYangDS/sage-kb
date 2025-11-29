@@ -1,6 +1,6 @@
 # Contributing to SAGE Knowledge Base
 
-Thank you for your interest in contributing to SAGE Knowledge Base! This document provides guidelines and instructions for contributing.
+Thank you for your interest in contributing to SAGE! This document provides guidelines and instructions for contributing.
 
 ---
 
@@ -9,177 +9,330 @@ Thank you for your interest in contributing to SAGE Knowledge Base! This documen
 - [Code of Conduct](#code-of-conduct)
 - [Getting Started](#getting-started)
 - [Development Setup](#development-setup)
-- [Making Changes](#making-changes)
-- [Submitting Changes](#submitting-changes)
-- [Coding Standards](#coding-standards)
-- [Documentation](#documentation)
+- [Making Contributions](#making-contributions)
+- [Code Standards](#code-standards)
 - [Testing](#testing)
-- [Review Process](#review-process)
+- [Documentation](#documentation)
+- [Submitting Changes](#submitting-changes)
 
 ---
 
 ## Code of Conduct
 
-By participating in this project, you agree to maintain a respectful and inclusive environment. We follow the principles of 信达雅 (Xin-Da-Ya):
+We are committed to providing a welcoming and inclusive environment. Please:
 
-- **信 (Faithfulness)**: Be honest, accurate, and reliable in your contributions
-- **达 (Clarity)**: Communicate clearly and make your code accessible
-- **雅 (Elegance)**: Strive for refined, balanced, and sustainable solutions
+- Be respectful and considerate
+- Welcome newcomers and help them learn
+- Focus on constructive feedback
+- Accept responsibility for mistakes
 
 ---
 
 ## Getting Started
 
-### Prerequisites
-
-- Python 3.12 or higher
-- Git
-- A GitHub account
-
-### Finding Issues
-
-- Check [Issues](https://github.com/HengYangDS/sage-kb/issues) for open tasks
-- Look for issues labeled `good first issue` for beginner-friendly tasks
-- Issues labeled `help wanted` are actively seeking contributors
-
 ### Types of Contributions
 
-| Type | Description | Label |
-|------|-------------|-------|
-| Bug Fix | Fix existing issues | `bug` |
-| Feature | Add new functionality | `enhancement` |
-| Documentation | Improve docs | `documentation` |
-| Knowledge Content | Add to knowledge base | `content` |
-| Tests | Add or improve tests | `testing` |
+| Type | Description | Difficulty |
+|------|-------------|------------|
+| 🐛 Bug fixes | Fix reported issues | Beginner |
+| 📚 Documentation | Improve docs, fix typos | Beginner |
+| ✨ Features | Add new functionality | Intermediate |
+| 🏗️ Architecture | Core system changes | Advanced |
+| 🧪 Testing | Add or improve tests | Intermediate |
+
+### First Contribution?
+
+Look for issues labeled:
+- `good first issue` - Simple, well-defined tasks
+- `help wanted` - We'd love assistance
+- `documentation` - Docs improvements
 
 ---
 
 ## Development Setup
 
-### 1. Fork and Clone
+### Prerequisites
+
+- Python 3.12+
+- Git
+- Virtual environment tool (venv, conda)
+
+### Setup Steps
 
 ```bash
-# Fork the repository on GitHub, then clone your fork
+# 1. Fork the repository on GitHub
+
+# 2. Clone your fork
 git clone https://github.com/YOUR_USERNAME/sage-kb.git
 cd sage-kb
 
-# Add upstream remote
-git remote add upstream https://github.com/HengYangDS/sage-kb.git
-```
-
-### 2. Set Up Environment
-
-```bash
-# Create virtual environment
+# 3. Create virtual environment
 python -m venv .venv
+source .venv/bin/activate  # Linux/macOS
+# .venv\Scripts\activate   # Windows
 
-# Activate (Windows)
-.venv\Scripts\activate
+# 4. Install dependencies
+pip install -e ".[all]"
 
-# Activate (Unix/macOS)
-source .venv/bin/activate
+# 5. Install pre-commit hooks
+pip install pre-commit
+pre-commit install
 
-# Install dependencies
-pip install -e ".[dev]"
-
-# Or use the setup script
-python -m tools.dev_scripts.setup_dev
+# 6. Verify setup
+pytest tests/
+sage info
 ```
 
-### 3. Verify Setup
+### Project Structure
+
+```
+sage-kb/
+├── src/sage/          # Source code
+│   ├── core/          # Core functionality
+│   ├── services/      # CLI, MCP, API services
+│   └── capabilities/  # Analyzers, checkers
+├── content/           # Knowledge content
+├── docs/              # Documentation
+├── tests/             # Test suite
+└── config/            # Configuration files
+```
+
+---
+
+## Making Contributions
+
+### Workflow
+
+```
+1. Create Issue (if not exists)
+      ↓
+2. Fork & Clone
+      ↓
+3. Create Branch
+      ↓
+4. Make Changes
+      ↓
+5. Test & Lint
+      ↓
+6. Commit
+      ↓
+7. Push & Create PR
+      ↓
+8. Review & Merge
+```
+
+### Branch Naming
+
+| Type | Format | Example |
+|------|--------|---------|
+| Feature | `feature/description` | `feature/add-mcp-streaming` |
+| Bug fix | `bugfix/description` | `bugfix/fix-timeout-handling` |
+| Docs | `docs/description` | `docs/update-api-guide` |
+| Hotfix | `hotfix/description` | `hotfix/security-patch` |
+
+### Creating a Branch
 
 ```bash
-# Run tests
-pytest tests/ -v
+# Update main branch
+git checkout main
+git pull upstream main
 
-# Run linting
-ruff check .
+# Create feature branch
+git checkout -b feature/your-feature-name
+```
 
-# Run type checking
+---
+
+## Code Standards
+
+### Python Style
+
+We use **Ruff** for linting and formatting:
+
+```bash
+# Check code
+ruff check src/
+
+# Auto-fix issues
+ruff check --fix src/
+
+# Format code
+ruff format src/
+```
+
+### Key Standards
+
+| Standard | Requirement |
+|----------|-------------|
+| Line length | 88 characters |
+| Type hints | Required for public functions |
+| Docstrings | Google style |
+| Imports | Sorted by ruff |
+
+### Example Code
+
+```python
+from typing import Optional
+
+def process_content(
+    content: str,
+    max_length: Optional[int] = None,
+) -> str:
+    """Process content with optional length limit.
+    
+    Args:
+        content: The content to process.
+        max_length: Maximum length of output. If None, no limit.
+    
+    Returns:
+        Processed content string.
+    
+    Raises:
+        ValueError: If content is empty.
+    """
+    if not content:
+        raise ValueError("Content cannot be empty")
+    
+    result = content.strip()
+    if max_length is not None:
+        result = result[:max_length]
+    
+    return result
+```
+
+### Type Checking
+
+```bash
+# Run mypy
 mypy src/
 ```
 
 ---
 
-## Making Changes
+## Testing
 
-### 1. Create a Branch
-
-```bash
-# Update your fork
-git fetch upstream
-git checkout main
-git merge upstream/main
-
-# Create feature branch
-git checkout -b feature/your-feature-name
-# Or for bugs
-git checkout -b fix/issue-description
-```
-
-### 2. Branch Naming Convention
-
-| Type | Format | Example |
-|------|--------|---------|
-| Feature | `feature/description` | `feature/add-search-filter` |
-| Bug Fix | `fix/issue-description` | `fix/timeout-handling` |
-| Documentation | `docs/description` | `docs/update-readme` |
-| Refactor | `refactor/description` | `refactor/loader-module` |
-
-### 3. Commit Messages
-
-Follow conventional commits format:
-
-```
-type(scope): brief description
-
-[optional body]
-
-[optional footer]
-```
-
-**Types**:
-- `feat`: New feature
-- `fix`: Bug fix
-- `docs`: Documentation changes
-- `style`: Code style changes (formatting)
-- `refactor`: Code refactoring
-- `test`: Adding or updating tests
-- `chore`: Maintenance tasks
-
-**Examples**:
+### Running Tests
 
 ```bash
-feat(loader): add timeout configuration option
+# All tests
+pytest
 
-fix(cli): handle empty search results gracefully
+# With coverage
+pytest --cov=src --cov-report=html
 
-docs(readme): update installation instructions
+# Specific tests
+pytest tests/unit/
+pytest tests/integration/
+pytest -k "test_loader"
 
-test(mcp): add integration tests for server
+# Verbose output
+pytest -v
+```
+
+### Writing Tests
+
+```python
+import pytest
+from sage.core.loader import Loader
+
+class TestLoader:
+    """Tests for the Loader class."""
+    
+    def test_load_file_success(self, tmp_path):
+        """Test successful file loading."""
+        # Arrange
+        file = tmp_path / "test.md"
+        file.write_text("# Test Content")
+        loader = Loader()
+        
+        # Act
+        result = loader.load(file)
+        
+        # Assert
+        assert result.content == "# Test Content"
+    
+    def test_load_file_not_found(self):
+        """Test loading non-existent file raises error."""
+        loader = Loader()
+        
+        with pytest.raises(FileNotFoundError):
+            loader.load("nonexistent.md")
+```
+
+### Test Requirements
+
+- All new features need tests
+- Bug fixes should include regression tests
+- Maintain >80% coverage
+- Tests must pass before merge
+
+---
+
+## Documentation
+
+### Types of Documentation
+
+| Type | Location | Purpose |
+|------|----------|---------|
+| API docs | `docs/api/` | API reference |
+| Guides | `docs/guides/` | How-to guides |
+| Design | `docs/design/` | Architecture docs |
+| Content | `content/` | Knowledge content |
+
+### Documentation Style
+
+- Use Markdown format
+- Include code examples
+- Keep language clear and concise
+- Update when changing features
+
+### Adding Knowledge Content
+
+```bash
+# Add to appropriate layer
+content/
+├── core/          # Fundamental principles
+├── guidelines/    # Standards and rules
+├── practices/     # How-to guides
+├── frameworks/    # Methodologies
+└── scenarios/     # Context-specific
 ```
 
 ---
 
 ## Submitting Changes
 
-### 1. Before Submitting
+### Commit Messages
 
-- [ ] Code follows project style guidelines
-- [ ] All tests pass (`pytest tests/ -v`)
-- [ ] Linting passes (`ruff check .`)
-- [ ] Type checking passes (`mypy src/`)
-- [ ] Documentation is updated if needed
-- [ ] Commit messages follow convention
+Follow [Conventional Commits](https://www.conventionalcommits.org/):
 
-### 2. Create Pull Request
+```
+<type>(<scope>): <description>
 
-1. Push your branch to your fork
-2. Open a Pull Request against `main`
-3. Fill out the PR template
-4. Link related issues
+[optional body]
 
-### 3. PR Template
+[optional footer]
+```
+
+**Types**: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`
+
+**Examples**:
+```
+feat(cli): add export command for knowledge layers
+fix(loader): handle empty files gracefully
+docs(api): update MCP protocol documentation
+```
+
+### Pull Request Process
+
+1. **Create PR** with clear title and description
+2. **Fill template** with all required information
+3. **Pass CI checks** (tests, linting, type checks)
+4. **Request review** from maintainers
+5. **Address feedback** promptly
+6. **Squash commits** if requested
+
+### PR Template
 
 ```markdown
 ## Description
@@ -190,219 +343,64 @@ Brief description of changes
 - [ ] New feature
 - [ ] Documentation update
 - [ ] Refactoring
-- [ ] Other (describe)
-
-## Related Issues
-Fixes #123
 
 ## Testing
-Describe testing performed
+- [ ] Tests added/updated
+- [ ] All tests passing
 
 ## Checklist
-- [ ] Tests pass
-- [ ] Linting passes
+- [ ] Code follows style guidelines
+- [ ] Self-reviewed code
 - [ ] Documentation updated
+- [ ] No breaking changes (or documented)
 ```
+
+### Review Process
+
+- At least one approval required
+- All CI checks must pass
+- No unresolved comments
+- Maintainers may request changes
 
 ---
 
-## Coding Standards
+## Quick Reference
 
-### Python Style
-
-- **Formatter**: Ruff (line-length: 88)
-- **Type Hints**: Required for all public functions
-- **Docstrings**: Google style
-
-### Naming Conventions
-
-| Element | Convention | Example |
-|---------|------------|---------|
-| Files | `snake_case.py` | `timeout_manager.py` |
-| Classes | `PascalCase` | `TimeoutLoader` |
-| Functions | `snake_case` | `load_with_timeout` |
-| Constants | `UPPER_SNAKE_CASE` | `DEFAULT_TIMEOUT_MS` |
-| Private | `_prefix` | `_internal_method` |
-
-### Code Example
-
-```python
-"""Module description.
-
-Detailed explanation if needed.
-"""
-
-from typing import Optional
-
-from sage.core.protocols import LoaderProtocol
-
-
-class ContentLoader:
-    """Load content with timeout protection.
-    
-    Attributes:
-        timeout_ms: Maximum time allowed for loading in milliseconds.
-    """
-    
-    def __init__(self, timeout_ms: int = 5000) -> None:
-        """Initialize loader.
-        
-        Args:
-            timeout_ms: Timeout in milliseconds. Defaults to 5000.
-        """
-        self.timeout_ms = timeout_ms
-    
-    def load(self, path: str) -> Optional[str]:
-        """Load content from path.
-        
-        Args:
-            path: Path to content file.
-            
-        Returns:
-            Content string if successful, None otherwise.
-            
-        Raises:
-            TimeoutError: If loading exceeds timeout.
-        """
-        pass
-```
-
----
-
-## Documentation
-
-### When to Update Documentation
-
-- Adding new features
-- Changing existing behavior
-- Adding new configuration options
-- Fixing documentation bugs
-
-### Documentation Locations
-
-| Type | Location |
-|------|----------|
-| API Reference | `docs/api/` |
-| User Guides | `docs/guides/` |
-| Design Docs | `docs/design/` |
-| Knowledge Content | `content/` |
-| Project Context | `.context/` |
-
-### Documentation Style
-
-- Use Markdown format
-- Follow existing structure in target directory
-- Include code examples where helpful
-- Keep explanations concise but complete
-
----
-
-## Testing
-
-### Test Structure
-
-```
-tests/
-├── unit/           # Unit tests
-├── integration/    # Integration tests
-├── performance/    # Performance tests
-└── fixtures/       # Test data
-```
-
-### Running Tests
+### Common Commands
 
 ```bash
-# All tests
-pytest tests/ -v
+# Development
+pip install -e ".[all]"    # Install with all extras
+pytest                      # Run tests
+ruff check --fix src/      # Fix lint issues
+mypy src/                  # Type check
 
-# Unit tests only
-pytest tests/unit/ -v
+# Git workflow
+git checkout -b feature/x  # Create branch
+git commit -m "feat: ..."  # Commit
+git push origin feature/x  # Push
 
-# With coverage
-pytest tests/ --cov=src/sage --cov-report=html
-
-# Specific test file
-pytest tests/unit/core/test_loader.py -v
+# Pre-commit
+pre-commit run --all-files # Run all hooks
 ```
 
-### Writing Tests
+### Getting Help
 
-```python
-"""Tests for content loader."""
-
-import pytest
-
-from sage.core.loader import ContentLoader
-
-
-class TestContentLoader:
-    """Tests for ContentLoader class."""
-    
-    def test_load_valid_path(self, tmp_path):
-        """Test loading content from valid path."""
-        # Arrange
-        content_file = tmp_path / "test.md"
-        content_file.write_text("# Test Content")
-        loader = ContentLoader()
-        
-        # Act
-        result = loader.load(str(content_file))
-        
-        # Assert
-        assert result == "# Test Content"
-    
-    def test_load_timeout(self):
-        """Test timeout behavior."""
-        loader = ContentLoader(timeout_ms=1)
-        
-        with pytest.raises(TimeoutError):
-            loader.load("slow/path")
-```
-
-### Test Requirements
-
-- All new features must have tests
-- Bug fixes should include regression tests
-- Maintain or improve test coverage
-- Tests must pass in CI
+- **Questions**: Open a GitHub Discussion
+- **Bugs**: Create an Issue with reproduction steps
+- **Features**: Propose in Discussion first
 
 ---
 
-## Review Process
+## Recognition
 
-### What Reviewers Look For
+Contributors will be:
+- Listed in CHANGELOG for their contributions
+- Acknowledged in release notes
+- Added to contributors list (for significant contributions)
 
-1. **Correctness**: Does the code work as intended?
-2. **Style**: Does it follow project conventions?
-3. **Testing**: Are there adequate tests?
-4. **Documentation**: Is it properly documented?
-5. **Performance**: Are there performance implications?
-
-### Response Times
-
-- Initial review: Within 3 business days
-- Follow-up reviews: Within 2 business days
-
-### Addressing Feedback
-
-- Respond to all review comments
-- Push fixes as new commits (don't force-push during review)
-- Re-request review when ready
+Thank you for contributing to SAGE Knowledge Base! 🎉
 
 ---
 
-## Questions?
-
-- Open an issue for questions
-- Check existing documentation
-- Review closed issues for similar questions
-
----
-
-## License
-
-By contributing, you agree that your contributions will be licensed under the same license as the project.
-
----
-
-*Thank you for contributing to SAGE Knowledge Base!*
+*Part of SAGE Knowledge Base*

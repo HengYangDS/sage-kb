@@ -39,39 +39,39 @@ sage-kb/
 
 ### 2.1 Knowledge & Context
 
-| Directory | Purpose | Visibility |
-|-----------|---------|------------|
-| `.context/` | Project-specific knowledge (ADRs, conventions, configurations) | Hidden |
-| `content/` | Generic, reusable knowledge (principles, frameworks, practices) | Visible |
-| `docs/` | User-facing documentation (design, API, guides) | Visible |
+| Directory   | Purpose                                                         | Visibility |
+|-------------|-----------------------------------------------------------------|------------|
+| `.context/` | Project-specific knowledge (ADRs, conventions, configurations)  | Hidden     |
+| `content/`  | Generic, reusable knowledge (principles, frameworks, practices) | Visible    |
+| `docs/`     | User-facing documentation (design, API, guides)                 | Visible    |
 
 ### 2.2 Configuration & Runtime
 
-| Directory | Purpose | Visibility |
-|-----------|---------|------------|
-| `config/` | Runtime configuration (modular YAML structure) | Visible |
-| `config/core/` | Core infrastructure (timeout, logging, memory, DI) | Visible |
-| `config/services/` | Service layer (CLI, MCP, API) | Visible |
-| `config/knowledge/` | Knowledge management (content, loading, search) | Visible |
-| `config/capabilities/` | Features and plugins (autonomy, quality) | Visible |
-| `.logs/` | Runtime log files | Hidden (git-ignored) |
-| `.outputs/` | Intermediate process files | Hidden (git-ignored) |
+| Directory              | Purpose                                            | Visibility           |
+|------------------------|----------------------------------------------------|----------------------|
+| `config/`              | Runtime configuration (modular YAML structure)     | Visible              |
+| `config/core/`         | Core infrastructure (timeout, logging, memory, DI) | Visible              |
+| `config/services/`     | Service layer (CLI, MCP, API)                      | Visible              |
+| `config/knowledge/`    | Knowledge management (content, loading, search)    | Visible              |
+| `config/capabilities/` | Features and plugins (autonomy, quality)           | Visible              |
+| `.logs/`               | Runtime log files                                  | Hidden (git-ignored) |
+| `.outputs/`            | Intermediate process files                         | Hidden (git-ignored) |
 
 ### 2.3 History & Archives
 
-| Directory | Purpose | Visibility |
-|-----------|---------|------------|
-| `.history/` | AI session records and task handoffs | Hidden |
-| `.archive/` | Historical/deprecated content | Hidden |
-| `.junie/` | JetBrains Junie AI client configuration | Hidden |
+| Directory   | Purpose                                 | Visibility |
+|-------------|-----------------------------------------|------------|
+| `.history/` | AI session records and task handoffs    | Hidden     |
+| `.archive/` | Historical/deprecated content           | Hidden     |
+| `.junie/`   | JetBrains Junie AI client configuration | Hidden     |
 
 ### 2.4 Development
 
-| Directory | Purpose | Visibility |
-|-----------|---------|------------|
-| `src/sage/` | Source code (3-layer architecture) | Visible |
-| `tests/` | Test suite | Visible |
-| `tools/` | Development tools (not imported at runtime) | Visible |
+| Directory   | Purpose                                     | Visibility |
+|-------------|---------------------------------------------|------------|
+| `src/sage/` | Source code (3-layer architecture)          | Visible    |
+| `tests/`    | Test suite                                  | Visible    |
+| `tools/`    | Development tools (not imported at runtime) | Visible    |
 
 ---
 
@@ -79,22 +79,22 @@ sage-kb/
 
 ### 3.1 Knowledge Content
 
-| Layer | Path | Purpose |
-|-------|------|---------|
-| **Core** | `content/core/` | Principles, defaults, quick reference |
+| Layer          | Path                  | Purpose                                   |
+|----------------|-----------------------|-------------------------------------------|
+| **Core**       | `content/core/`       | Principles, defaults, quick reference     |
 | **Guidelines** | `content/guidelines/` | Code style, engineering, AI collaboration |
-| **Frameworks** | `content/frameworks/` | Autonomy, timeout, cognitive patterns |
-| **Practices** | `content/practices/` | Documentation, engineering patterns |
+| **Frameworks** | `content/frameworks/` | Autonomy, timeout, cognitive patterns     |
+| **Practices**  | `content/practices/`  | Documentation, engineering patterns       |
 
 ### 3.2 Key Files
 
-| File | Purpose |
-|------|---------|
-| `config/sage.yaml` | Main configuration (timeouts, triggers, loading) |
-| `content/core/principles.md` | Core philosophy (信达雅) |
-| `.context/index.md` | Project-specific context navigation |
-| `.junie/guidelines.md` | AI collaboration guidelines |
-| `docs/design/00-overview.md` | Design overview |
+| File                         | Purpose                                          |
+|------------------------------|--------------------------------------------------|
+| `config/sage.yaml`           | Main configuration (timeouts, triggers, loading) |
+| `content/core/principles.md` | Core philosophy (信达雅)                            |
+| `.context/index.md`          | Project-specific context navigation              |
+| `.junie/guidelines.md`       | AI collaboration guidelines                      |
+| `docs/design/00-overview.md` | Design overview                                  |
 
 ---
 

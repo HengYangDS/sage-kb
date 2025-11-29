@@ -14,22 +14,22 @@
 
 ### Checklist Categories
 
-| Category | When to Use | Frequency |
-|----------|-------------|-----------|
-| **Development** | During coding | Continuous |
-| **Code Review** | Before merge | Every PR |
-| **Deployment** | Before release | Every deploy |
-| **Operations** | In production | Weekly/Monthly |
-| **Audit** | Compliance | Quarterly/Annually |
+| Category        | When to Use    | Frequency          |
+|-----------------|----------------|--------------------|
+| **Development** | During coding  | Continuous         |
+| **Code Review** | Before merge   | Every PR           |
+| **Deployment**  | Before release | Every deploy       |
+| **Operations**  | In production  | Weekly/Monthly     |
+| **Audit**       | Compliance     | Quarterly/Annually |
 
 ### Risk Levels
 
-| Level | Icon | Response Time |
-|-------|------|---------------|
-| Critical | 🔴 | Immediate |
-| High | 🟠 | 24 hours |
-| Medium | 🟡 | 1 week |
-| Low | 🟢 | Next sprint |
+| Level    | Icon | Response Time |
+|----------|------|---------------|
+| Critical | 🔴   | Immediate     |
+| High     | 🟠   | 24 hours      |
+| Medium   | 🟡   | 1 week        |
+| Low      | 🟢   | Next sprint   |
 
 ---
 
@@ -333,14 +333,14 @@ def log_security_event(
 
 ### Regular Tasks
 
-| Task | Frequency | Owner |
-|------|-----------|-------|
-| Dependency updates | Weekly | Dev Team |
-| Vulnerability scan | Weekly | Security |
-| Access review | Monthly | Security |
-| Secret rotation | Quarterly | Ops |
-| Penetration test | Annually | External |
-| Security training | Annually | All |
+| Task               | Frequency | Owner    |
+|--------------------|-----------|----------|
+| Dependency updates | Weekly    | Dev Team |
+| Vulnerability scan | Weekly    | Security |
+| Access review      | Monthly   | Security |
+| Secret rotation    | Quarterly | Ops      |
+| Penetration test   | Annually  | External |
+| Security training  | Annually  | All      |
 
 ### Weekly Security Tasks
 
@@ -364,12 +364,12 @@ def log_security_event(
 
 ### Incident Classification
 
-| Severity | Definition | Response Time | Examples |
-|----------|------------|---------------|----------|
-| P1 | Active breach | Immediate | Data exfiltration, system compromise |
-| P2 | High risk | 1 hour | Credential leak, vulnerability exploit |
-| P3 | Medium risk | 4 hours | Failed attacks, suspicious activity |
-| P4 | Low risk | 24 hours | Policy violation, minor misconfiguration |
+| Severity | Definition    | Response Time | Examples                                 |
+|----------|---------------|---------------|------------------------------------------|
+| P1       | Active breach | Immediate     | Data exfiltration, system compromise     |
+| P2       | High risk     | 1 hour        | Credential leak, vulnerability exploit   |
+| P3       | Medium risk   | 4 hours       | Failed attacks, suspicious activity      |
+| P4       | Low risk      | 24 hours      | Policy violation, minor misconfiguration |
 
 ### Response Procedure
 
@@ -418,12 +418,12 @@ def log_security_event(
 
 ### Emergency Contacts
 
-| Role | Responsibility | Contact |
-|------|----------------|---------|
-| Security Lead | Incident coordination | [On-call] |
-| Platform Lead | System access | [On-call] |
-| Legal | Compliance/disclosure | [Contact] |
-| PR | External communication | [Contact] |
+| Role          | Responsibility         | Contact   |
+|---------------|------------------------|-----------|
+| Security Lead | Incident coordination  | [On-call] |
+| Platform Lead | System access          | [On-call] |
+| Legal         | Compliance/disclosure  | [Contact] |
+| PR            | External communication | [Contact] |
 
 ### Immediate Actions
 
@@ -453,31 +453,31 @@ def log_security_event(
 
 ### Critical Controls (Must Have)
 
-| Control | Status |
-|---------|--------|
-| Input validation | ☐ |
-| Output encoding | ☐ |
-| Parameterized queries | ☐ |
-| Password hashing | ☐ |
-| HTTPS everywhere | ☐ |
-| No hardcoded secrets | ☐ |
-| Access control | ☐ |
-| Security logging | ☐ |
+| Control               | Status |
+|-----------------------|--------|
+| Input validation      | ☐      |
+| Output encoding       | ☐      |
+| Parameterized queries | ☐      |
+| Password hashing      | ☐      |
+| HTTPS everywhere      | ☐      |
+| No hardcoded secrets  | ☐      |
+| Access control        | ☐      |
+| Security logging      | ☐      |
 
 ### OWASP Top 10 Mapping
 
-| Risk | Checklist Section |
-|------|-------------------|
-| A01 Broken Access Control | Authorization |
-| A02 Cryptographic Failures | Secrets Management |
-| A03 Injection | Input Validation, SQL |
-| A04 Insecure Design | Code Review |
-| A05 Security Misconfiguration | Deployment |
-| A06 Vulnerable Components | Dependencies |
-| A07 Auth Failures | Authentication |
-| A08 Data Integrity Failures | Deployment |
-| A09 Logging Failures | Operations |
-| A10 SSRF | Input Validation |
+| Risk                          | Checklist Section     |
+|-------------------------------|-----------------------|
+| A01 Broken Access Control     | Authorization         |
+| A02 Cryptographic Failures    | Secrets Management    |
+| A03 Injection                 | Input Validation, SQL |
+| A04 Insecure Design           | Code Review           |
+| A05 Security Misconfiguration | Deployment            |
+| A06 Vulnerable Components     | Dependencies          |
+| A07 Auth Failures             | Authentication        |
+| A08 Data Integrity Failures   | Deployment            |
+| A09 Logging Failures          | Operations            |
+| A10 SSRF                      | Input Validation      |
 
 ---
 

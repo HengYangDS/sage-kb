@@ -32,7 +32,7 @@ logging:
   sampling:
     enabled: false                     # Enable log sampling
     rate: 0.1                          # Sample 10% of logs at sampled levels
-    sampled_levels:                    # Levels to apply sampling to
+    sampled_levels: # Levels to apply sampling to
       - DEBUG
       - TRACE
     # Never sample these levels

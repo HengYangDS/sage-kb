@@ -62,7 +62,7 @@ security:
     max_path_depth: 10                 # Maximum path traversal depth
     sanitize_input: true               # Enable input sanitization
     allowed_characters: "a-zA-Z0-9_\\-./\\s"  # Allowed characters pattern
-    block_patterns:                    # Patterns to block
+    block_patterns: # Patterns to block
       - "../"                          # Path traversal
       - "<script"                      # XSS attempt
       - "javascript:"                  # XSS attempt

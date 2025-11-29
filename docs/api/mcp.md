@@ -6,7 +6,8 @@
 
 ## Overview
 
-SAGE provides an MCP server for AI agent integration. Built with FastMCP, it exposes knowledge base functionality through standardized tools and resources.
+SAGE provides an MCP server for AI agent integration. Built with FastMCP, it exposes knowledge base functionality
+through standardized tools and resources.
 
 ---
 
@@ -233,6 +234,7 @@ Core principles and philosophy.
 **URI Pattern:** `knowledge://core/{topic?}`
 
 **Examples:**
+
 - `knowledge://core` — All core content
 - `knowledge://core/principles` — Principles only
 - `knowledge://core/defaults` — Default values
@@ -246,6 +248,7 @@ Coding and collaboration guidelines.
 **URI Pattern:** `knowledge://guidelines/{category?}`
 
 **Examples:**
+
 - `knowledge://guidelines` — All guidelines
 - `knowledge://guidelines/python` — Python guidelines
 - `knowledge://guidelines/ai_collaboration` — AI collaboration
@@ -259,6 +262,7 @@ Conceptual frameworks and patterns.
 **URI Pattern:** `knowledge://frameworks/{framework?}`
 
 **Examples:**
+
 - `knowledge://frameworks` — All frameworks
 - `knowledge://frameworks/autonomy` — Autonomy levels
 - `knowledge://frameworks/timeout` — Timeout patterns
@@ -272,6 +276,7 @@ Best practices and engineering patterns.
 **URI Pattern:** `knowledge://practices/{category?}`
 
 **Examples:**
+
 - `knowledge://practices` — All practices
 - `knowledge://practices/engineering` — Engineering practices
 - `knowledge://practices/documentation` — Documentation practices
@@ -286,10 +291,10 @@ Generate a task-specific system prompt.
 
 **Arguments:**
 
-| Argument | Type | Description |
-|----------|------|-------------|
-| `task_type` | string | Type of task |
-| `context` | string | Additional context |
+| Argument    | Type   | Description        |
+|-------------|--------|--------------------|
+| `task_type` | string | Type of task       |
+| `context`   | string | Additional context |
 
 **Example Response:**
 
@@ -314,12 +319,12 @@ Available knowledge layers:
 
 ### Error Codes
 
-| Code | Name | Description |
-|------|------|-------------|
-| `TIMEOUT` | Timeout Error | Operation exceeded timeout |
-| `NOT_FOUND` | Not Found | Requested resource not found |
-| `INVALID_INPUT` | Invalid Input | Invalid request parameters |
-| `INTERNAL` | Internal Error | Server-side error |
+| Code            | Name           | Description                  |
+|-----------------|----------------|------------------------------|
+| `TIMEOUT`       | Timeout Error  | Operation exceeded timeout   |
+| `NOT_FOUND`     | Not Found      | Requested resource not found |
+| `INVALID_INPUT` | Invalid Input  | Invalid request parameters   |
+| `INTERNAL`      | Internal Error | Server-side error            |
 
 ### Error Response Format
 
@@ -346,17 +351,18 @@ Available knowledge layers:
 
 The MCP server respects the 5-level timeout hierarchy:
 
-| Level | Timeout | MCP Behavior |
-|-------|---------|--------------|
-| T1 | 100ms | Cache-only responses |
-| T2 | 500ms | Single file operations |
-| T3 | 2s | Standard tool calls |
-| T4 | 5s | Full knowledge load |
-| T5 | 10s | Complex analysis |
+| Level | Timeout | MCP Behavior           |
+|-------|---------|------------------------|
+| T1    | 100ms   | Cache-only responses   |
+| T2    | 500ms   | Single file operations |
+| T3    | 2s      | Standard tool calls    |
+| T4    | 5s      | Full knowledge load    |
+| T5    | 10s     | Complex analysis       |
 
 **Graceful Degradation:**
 
 When a timeout is approaching:
+
 1. Return partial results
 2. Include `complete: false` flag
 3. Provide fallback content

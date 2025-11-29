@@ -37,13 +37,13 @@
 
 ### Key Concepts
 
-| Concept | Description | Example |
-|---------|-------------|---------|
-| **Subject** | Who is requesting | User, Service, Process |
-| **Resource** | What is being accessed | File, API, Database |
-| **Action** | What operation | Read, Write, Delete |
-| **Policy** | Rules for access | "Admins can delete" |
-| **Context** | Environmental factors | Time, Location, Device |
+| Concept      | Description            | Example                |
+|--------------|------------------------|------------------------|
+| **Subject**  | Who is requesting      | User, Service, Process |
+| **Resource** | What is being accessed | File, API, Database    |
+| **Action**   | What operation         | Read, Write, Delete    |
+| **Policy**   | Rules for access       | "Admins can delete"    |
+| **Context**  | Environmental factors  | Time, Location, Device |
 
 ---
 
@@ -51,13 +51,13 @@
 
 ### Model Comparison
 
-| Model | Complexity | Flexibility | Use Case |
-|-------|------------|-------------|----------|
-| **ACL** | Low | Low | Simple file systems |
-| **RBAC** | Medium | Medium | Enterprise apps |
-| **ABAC** | High | High | Complex policies |
-| **ReBAC** | Medium | High | Social networks |
-| **PBAC** | High | Very High | Regulatory compliance |
+| Model     | Complexity | Flexibility | Use Case              |
+|-----------|------------|-------------|-----------------------|
+| **ACL**   | Low        | Low         | Simple file systems   |
+| **RBAC**  | Medium     | Medium      | Enterprise apps       |
+| **ABAC**  | High       | High        | Complex policies      |
+| **ReBAC** | Medium     | High        | Social networks       |
+| **PBAC**  | High       | Very High   | Regulatory compliance |
 
 ### Decision Matrix
 
@@ -531,11 +531,11 @@ async def delete_content(id: str):
 
 ### HTTP Status Codes
 
-| Code | Meaning | When to Use |
-|------|---------|-------------|
-| 401 | Unauthorized | No/invalid authentication |
-| 403 | Forbidden | Authenticated but not authorized |
-| 404 | Not Found | Resource exists but user can't know |
+| Code | Meaning      | When to Use                         |
+|------|--------------|-------------------------------------|
+| 401  | Unauthorized | No/invalid authentication           |
+| 403  | Forbidden    | Authenticated but not authorized    |
+| 404  | Not Found    | Resource exists but user can't know |
 
 ---
 

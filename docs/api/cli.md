@@ -6,7 +6,8 @@
 
 ## Overview
 
-The SAGE CLI provides interactive access to the knowledge base via terminal. Built with Typer and Rich for a modern CLI experience.
+The SAGE CLI provides interactive access to the knowledge base via terminal. Built with Typer and Rich for a modern CLI
+experience.
 
 ```bash
 sage [OPTIONS] COMMAND [ARGS]
@@ -26,17 +27,17 @@ sage get [LAYER] [OPTIONS]
 
 **Arguments:**
 
-| Argument | Description | Default |
-|----------|-------------|---------|
-| `LAYER` | Knowledge layer to load | `core` |
+| Argument | Description             | Default |
+|----------|-------------------------|---------|
+| `LAYER`  | Knowledge layer to load | `core`  |
 
 **Options:**
 
-| Option | Description | Default |
-|--------|-------------|---------|
-| `--timeout`, `-t` | Timeout in milliseconds | `2000` |
-| `--format`, `-f` | Output format (rich/plain/json) | `rich` |
-| `--no-cache` | Bypass cache | `false` |
+| Option            | Description                     | Default |
+|-------------------|---------------------------------|---------|
+| `--timeout`, `-t` | Timeout in milliseconds         | `2000`  |
+| `--format`, `-f`  | Output format (rich/plain/json) | `rich`  |
+| `--no-cache`      | Bypass cache                    | `false` |
 
 **Examples:**
 
@@ -53,13 +54,13 @@ sage get frameworks --format json
 
 **Layers:**
 
-| Layer | Description |
-|-------|-------------|
-| `core` | Core principles and defaults |
+| Layer        | Description                         |
+|--------------|-------------------------------------|
+| `core`       | Core principles and defaults        |
 | `guidelines` | Coding and collaboration guidelines |
-| `frameworks` | Conceptual frameworks |
-| `practices` | Best practices and patterns |
-| `all` | All layers (uses T4 timeout) |
+| `frameworks` | Conceptual frameworks               |
+| `practices`  | Best practices and patterns         |
+| `all`        | All layers (uses T4 timeout)        |
 
 ---
 
@@ -73,17 +74,17 @@ sage search QUERY [OPTIONS]
 
 **Arguments:**
 
-| Argument | Description |
-|----------|-------------|
-| `QUERY` | Search query string |
+| Argument | Description         |
+|----------|---------------------|
+| `QUERY`  | Search query string |
 
 **Options:**
 
-| Option | Description | Default |
-|--------|-------------|---------|
-| `--limit`, `-l` | Maximum results | `10` |
-| `--layer` | Limit to specific layer | `all` |
-| `--timeout`, `-t` | Timeout in milliseconds | `2000` |
+| Option            | Description             | Default |
+|-------------------|-------------------------|---------|
+| `--limit`, `-l`   | Maximum results         | `10`    |
+| `--layer`         | Limit to specific layer | `all`   |
+| `--timeout`, `-t` | Timeout in milliseconds | `2000`  |
 
 **Examples:**
 
@@ -110,11 +111,11 @@ sage serve [OPTIONS]
 
 **Options:**
 
-| Option | Description | Default |
-|--------|-------------|---------|
-| `--host`, `-h` | Server host | `localhost` |
-| `--port`, `-p` | Server port | `8000` |
-| `--reload` | Enable auto-reload | `false` |
+| Option         | Description        | Default     |
+|----------------|--------------------|-------------|
+| `--host`, `-h` | Server host        | `localhost` |
+| `--port`, `-p` | Server port        | `8000`      |
+| `--reload`     | Enable auto-reload | `false`     |
 
 **Examples:**
 
@@ -141,8 +142,8 @@ sage info [OPTIONS]
 
 **Options:**
 
-| Option | Description | Default |
-|--------|-------------|---------|
+| Option   | Description    | Default |
+|----------|----------------|---------|
 | `--json` | Output as JSON | `false` |
 
 **Output includes:**
@@ -175,12 +176,12 @@ sage config [SUBCOMMAND] [OPTIONS]
 
 **Subcommands:**
 
-| Command | Description |
-|---------|-------------|
-| `show` | Display current configuration |
-| `get KEY` | Get specific config value |
-| `set KEY VALUE` | Set config value |
-| `reset` | Reset to defaults |
+| Command         | Description                   |
+|-----------------|-------------------------------|
+| `show`          | Display current configuration |
+| `get KEY`       | Get specific config value     |
+| `set KEY VALUE` | Set config value              |
+| `reset`         | Reset to defaults             |
 
 **Examples:**
 
@@ -201,36 +202,36 @@ sage config set mcp.port 9000
 
 These options are available for all commands:
 
-| Option | Description | Default |
-|--------|-------------|---------|
-| `--help` | Show help message | - |
-| `--version` | Show version | - |
-| `--verbose`, `-v` | Verbose output | `false` |
-| `--quiet`, `-q` | Minimal output | `false` |
-| `--config`, `-c` | Config file path | `config/sage.yaml` |
+| Option            | Description       | Default            |
+|-------------------|-------------------|--------------------|
+| `--help`          | Show help message | -                  |
+| `--version`       | Show version      | -                  |
+| `--verbose`, `-v` | Verbose output    | `false`            |
+| `--quiet`, `-q`   | Minimal output    | `false`            |
+| `--config`, `-c`  | Config file path  | `config/sage.yaml` |
 
 ---
 
 ## Exit Codes
 
-| Code | Meaning |
-|------|---------|
-| `0` | Success |
-| `1` | General error |
-| `2` | Invalid arguments |
-| `3` | Timeout exceeded |
-| `4` | Configuration error |
+| Code | Meaning             |
+|------|---------------------|
+| `0`  | Success             |
+| `1`  | General error       |
+| `2`  | Invalid arguments   |
+| `3`  | Timeout exceeded    |
+| `4`  | Configuration error |
 
 ---
 
 ## Environment Variables
 
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `SAGE_CONFIG` | Config file path | `config/sage.yaml` |
-| `SAGE_LOG_LEVEL` | Logging level | `INFO` |
-| `SAGE_CACHE_DIR` | Cache directory | `.cache/` |
-| `SAGE_NO_COLOR` | Disable colors | `false` |
+| Variable         | Description      | Default            |
+|------------------|------------------|--------------------|
+| `SAGE_CONFIG`    | Config file path | `config/sage.yaml` |
+| `SAGE_LOG_LEVEL` | Logging level    | `INFO`             |
+| `SAGE_CACHE_DIR` | Cache directory  | `.cache/`          |
+| `SAGE_NO_COLOR`  | Disable colors   | `false`            |
 
 ---
 

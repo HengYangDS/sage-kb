@@ -105,7 +105,7 @@ timeout:
       - name: normal
         timeout_multiplier: 1.0
         description: "Full functionality"
-        disable_features: []
+        disable_features: [ ]
 
       - name: degraded
         timeout_multiplier: 0.5        # Reduce timeouts by 50%

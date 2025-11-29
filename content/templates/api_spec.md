@@ -74,11 +74,11 @@
 }
 ```
 
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `field1` | string | Yes | [Description] |
-| `field2` | integer | No | [Description] |
-| `nested.subfield` | string | No | [Description] |
+| Field             | Type    | Required | Description   |
+|-------------------|---------|----------|---------------|
+| `field1`          | string  | Yes      | [Description] |
+| `field2`          | integer | No       | [Description] |
+| `nested.subfield` | string  | No       | [Description] |
 
 ##### Response
 
@@ -92,26 +92,27 @@
 }
 ```
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `id` | string | Unique identifier |
-| `field1` | string | [Description] |
+| Field        | Type     | Description        |
+|--------------|----------|--------------------|
+| `id`         | string   | Unique identifier  |
+| `field1`     | string   | [Description]      |
 | `created_at` | datetime | ISO 8601 timestamp |
 
 ##### Error Responses
 
-| Status | Code | Description |
-|--------|------|-------------|
-| 400 | `INVALID_REQUEST` | Request validation failed |
-| 401 | `UNAUTHORIZED` | Authentication required |
-| 403 | `FORBIDDEN` | Insufficient permissions |
-| 404 | `NOT_FOUND` | Resource not found |
-| 429 | `RATE_LIMITED` | Too many requests |
-| 500 | `INTERNAL_ERROR` | Server error |
+| Status | Code              | Description               |
+|--------|-------------------|---------------------------|
+| 400    | `INVALID_REQUEST` | Request validation failed |
+| 401    | `UNAUTHORIZED`    | Authentication required   |
+| 403    | `FORBIDDEN`       | Insufficient permissions  |
+| 404    | `NOT_FOUND`       | Resource not found        |
+| 429    | `RATE_LIMITED`    | Too many requests         |
+| 500    | `INTERNAL_ERROR`  | Server error              |
 
 ##### Example
 
 **Request**:
+
 ```bash
 curl -X POST https://api.example.com/v1/resource \
   -H "Authorization: Bearer token" \
@@ -120,6 +121,7 @@ curl -X POST https://api.example.com/v1/resource \
 ```
 
 **Response**:
+
 ```json
 {
   "id": "abc123",
@@ -134,12 +136,12 @@ curl -X POST https://api.example.com/v1/resource \
 
 ### [ModelName]
 
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `id` | string | Yes | Unique identifier (UUID) |
-| `name` | string | Yes | Display name |
-| `status` | enum | Yes | `active`, `inactive`, `pending` |
-| `metadata` | object | No | Additional key-value pairs |
+| Field      | Type   | Required | Description                     |
+|------------|--------|----------|---------------------------------|
+| `id`       | string | Yes      | Unique identifier (UUID)        |
+| `name`     | string | Yes      | Display name                    |
+| `status`   | enum   | Yes      | `active`, `inactive`, `pending` |
+| `metadata` | object | No       | Additional key-value pairs      |
 
 ---
 
@@ -179,13 +181,14 @@ List endpoints support cursor-based pagination:
 
 ## Rate Limiting
 
-| Tier | Limit | Window |
-|------|-------|--------|
-| Free | 100 | 1 minute |
-| Pro | 1000 | 1 minute |
-| Enterprise | Unlimited | - |
+| Tier       | Limit     | Window   |
+|------------|-----------|----------|
+| Free       | 100       | 1 minute |
+| Pro        | 1000      | 1 minute |
+| Enterprise | Unlimited | -        |
 
 Rate limit headers:
+
 - `X-RateLimit-Limit`: Maximum requests
 - `X-RateLimit-Remaining`: Remaining requests
 - `X-RateLimit-Reset`: Reset timestamp
@@ -194,13 +197,14 @@ Rate limit headers:
 
 ## Changelog
 
-| Version | Date | Changes |
-|---------|------|---------|
-| 1.0.0 | YYYY-MM-DD | Initial release |
+| Version | Date       | Changes         |
+|---------|------------|-----------------|
+| 1.0.0   | YYYY-MM-DD | Initial release |
 
 ---
 
 *API Specification from SAGE Knowledge Base*
+
 ```
 
 ---

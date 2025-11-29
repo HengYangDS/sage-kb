@@ -437,16 +437,16 @@ L4: content/frameworks/*.md (Deep Dive, ~300-500/file)
 
 ### Navigation Decision Matrix
 
-| Content Type        | Location              | Rationale             |
-|---------------------|-----------------------|-----------------------|
-| Project overview    | `index.md`            | Universal entry       |
-| AI client config    | `.junie/`             | Client-specific       |
-| Core philosophy     | `content/core/`       | Always needed         |
-| How-to guides       | `content/guidelines/` | Task-triggered        |
-| Deep frameworks     | `content/frameworks/` | Complex decisions     |
-| Project decisions   | `.context/decisions/` | Project-specific      |
-| Session history     | `.history/`           | Ephemeral             |
-| Design documents    | `docs/design/`        | Technical reference   |
+| Content Type      | Location              | Rationale           |
+|-------------------|-----------------------|---------------------|
+| Project overview  | `index.md`            | Universal entry     |
+| AI client config  | `.junie/`             | Client-specific     |
+| Core philosophy   | `content/core/`       | Always needed       |
+| How-to guides     | `content/guidelines/` | Task-triggered      |
+| Deep frameworks   | `content/frameworks/` | Complex decisions   |
+| Project decisions | `.context/decisions/` | Project-specific    |
+| Session history   | `.history/`           | Ephemeral           |
+| Design documents  | `docs/design/`        | Technical reference |
 
 ---
 
@@ -470,12 +470,12 @@ L4: content/frameworks/*.md (Deep Dive, ~300-500/file)
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-| Phase     | Location    | Trigger                 | Action                              |
-|-----------|-------------|-------------------------|-------------------------------------|
-| CAPTURE   | `.history/` | Every session           | Auto-save conversations, handoffs   |
-| REFINE    | `.context/` | Sprint end, milestone   | Extract ADRs, conventions           |
-| PUBLISH   | `content/`  | Quarterly review        | Promote generic knowledge           |
-| ARCHIVE   | `.archive/` | Content superseded      | Preserve historical records         |
+| Phase   | Location    | Trigger               | Action                            |
+|---------|-------------|-----------------------|-----------------------------------|
+| CAPTURE | `.history/` | Every session         | Auto-save conversations, handoffs |
+| REFINE  | `.context/` | Sprint end, milestone | Extract ADRs, conventions         |
+| PUBLISH | `content/`  | Quarterly review      | Promote generic knowledge         |
+| ARCHIVE | `.archive/` | Content superseded    | Preserve historical records       |
 
 ### Content Knowledge Lifecycle
 
@@ -495,12 +495,12 @@ L4: content/frameworks/*.md (Deep Dive, ~300-500/file)
 
 ### Update Frequency by Layer
 
-| Layer | Directory             | Frequency          | Governance         |
-|-------|-----------------------|--------------------|--------------------|
-| L1    | `content/core/`       | Rare (1-2x/year)   | Expert Committee   |
-| L2    | `content/guidelines/` | Quarterly          | 2+ reviewers       |
-| L3    | `content/frameworks/` | As needed          | Expert review      |
-| L4    | `content/practices/`  | Monthly            | Standard PR        |
+| Layer | Directory             | Frequency        | Governance       |
+|-------|-----------------------|------------------|------------------|
+| L1    | `content/core/`       | Rare (1-2x/year) | Expert Committee |
+| L2    | `content/guidelines/` | Quarterly        | 2+ reviewers     |
+| L3    | `content/frameworks/` | As needed        | Expert review    |
+| L4    | `content/practices/`  | Monthly          | Standard PR      |
 
 ---
 

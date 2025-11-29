@@ -22,11 +22,11 @@ This framework provides performance optimization guidelines for:
 
 ## 2. Contents
 
-| Document | Purpose | When to Use |
-|----------|---------|-------------|
-| [Caching Patterns](caching_patterns.md) | Data caching strategies | Reducing latency, load |
-| [Optimization Strategies](optimization_strategies.md) | Performance improvement | Scaling, efficiency |
-| [Profiling Guide](profiling_guide.md) | Performance analysis | Bottleneck identification |
+| Document                                              | Purpose                 | When to Use               |
+|-------------------------------------------------------|-------------------------|---------------------------|
+| [Caching Patterns](caching_patterns.md)               | Data caching strategies | Reducing latency, load    |
+| [Optimization Strategies](optimization_strategies.md) | Performance improvement | Scaling, efficiency       |
+| [Profiling Guide](profiling_guide.md)                 | Performance analysis    | Bottleneck identification |
 
 ---
 
@@ -57,24 +57,24 @@ This framework provides performance optimization guidelines for:
 
 ### Core Principles
 
-| Principle | Description |
-|-----------|-------------|
-| **Measure First** | Profile before optimizing |
-| **80/20 Rule** | Focus on the 20% causing 80% of issues |
-| **Avoid Premature Optimization** | Make it work, then make it fast |
-| **Set Targets** | Define acceptable performance metrics |
-| **Test Under Load** | Real-world conditions reveal issues |
+| Principle                        | Description                            |
+|----------------------------------|----------------------------------------|
+| **Measure First**                | Profile before optimizing              |
+| **80/20 Rule**                   | Focus on the 20% causing 80% of issues |
+| **Avoid Premature Optimization** | Make it work, then make it fast        |
+| **Set Targets**                  | Define acceptable performance metrics  |
+| **Test Under Load**              | Real-world conditions reveal issues    |
 
 ### Performance Metrics
 
-| Metric | Description | Target |
-|--------|-------------|--------|
-| **Latency (P50)** | Median response time | < 100ms |
-| **Latency (P99)** | 99th percentile response | < 500ms |
-| **Throughput** | Requests per second | Depends on capacity |
-| **Error Rate** | Failed requests percentage | < 0.1% |
-| **CPU Usage** | Processor utilization | < 70% average |
-| **Memory** | RAM utilization | < 80% peak |
+| Metric            | Description                | Target              |
+|-------------------|----------------------------|---------------------|
+| **Latency (P50)** | Median response time       | < 100ms             |
+| **Latency (P99)** | 99th percentile response   | < 500ms             |
+| **Throughput**    | Requests per second        | Depends on capacity |
+| **Error Rate**    | Failed requests percentage | < 0.1%              |
+| **CPU Usage**     | Processor utilization      | < 70% average       |
+| **Memory**        | RAM utilization            | < 80% peak          |
 
 ---
 
@@ -82,13 +82,13 @@ This framework provides performance optimization guidelines for:
 
 ### Performance Quick Wins
 
-| Area | Quick Win | Impact |
-|------|-----------|--------|
-| **Caching** | Add response caching | High |
-| **Database** | Add missing indexes | High |
-| **Network** | Enable compression | Medium |
-| **Code** | Batch database queries | High |
-| **Frontend** | Lazy load images | Medium |
+| Area         | Quick Win              | Impact |
+|--------------|------------------------|--------|
+| **Caching**  | Add response caching   | High   |
+| **Database** | Add missing indexes    | High   |
+| **Network**  | Enable compression     | Medium |
+| **Code**     | Batch database queries | High   |
+| **Frontend** | Lazy load images       | Medium |
 
 ### Common Bottlenecks
 

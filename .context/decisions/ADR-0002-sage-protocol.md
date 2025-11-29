@@ -41,12 +41,12 @@ Adopt the **SAGE Protocol** — a four-phase processing model:
 
 ### Phase Definitions
 
-| Phase | Purpose | Input | Output |
-|-------|---------|-------|--------|
-| **Source** | Knowledge acquisition | Paths, queries | Raw content |
-| **Analyze** | Processing & enrichment | Raw content | Structured data |
-| **Generate** | Multi-channel output | Structured data | Formatted output |
-| **Evolve** | Metrics & optimization | Usage data | Improvements |
+| Phase        | Purpose                 | Input           | Output           |
+|--------------|-------------------------|-----------------|------------------|
+| **Source**   | Knowledge acquisition   | Paths, queries  | Raw content      |
+| **Analyze**  | Processing & enrichment | Raw content     | Structured data  |
+| **Generate** | Multi-channel output    | Structured data | Formatted output |
+| **Evolve**   | Metrics & optimization  | Usage data      | Improvements     |
 
 ### Protocol Interfaces
 

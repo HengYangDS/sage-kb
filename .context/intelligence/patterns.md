@@ -12,7 +12,8 @@
 
 ## 1. Overview
 
-This document captures successful AI collaboration patterns discovered during SAGE development. These patterns help maintain consistency and efficiency in human-AI interactions.
+This document captures successful AI collaboration patterns discovered during SAGE development. These patterns help
+maintain consistency and efficiency in human-AI interactions.
 
 ### 1.1 Purpose
 
@@ -23,12 +24,12 @@ This document captures successful AI collaboration patterns discovered during SA
 
 ### 1.2 Pattern Categories
 
-| Category | Description |
-|----------|-------------|
-| **Interaction** | Communication and workflow patterns |
-| **Knowledge Capture** | When and how to document knowledge |
-| **Optimization** | Efficiency improvements |
-| **Calibration** | Autonomy level adjustments |
+| Category              | Description                         |
+|-----------------------|-------------------------------------|
+| **Interaction**       | Communication and workflow patterns |
+| **Knowledge Capture** | When and how to document knowledge  |
+| **Optimization**      | Efficiency improvements             |
+| **Calibration**       | Autonomy level adjustments          |
 
 ---
 
@@ -39,6 +40,7 @@ This document captures successful AI collaboration patterns discovered during SA
 **Context**: Beginning a new collaboration session
 
 **Pattern**:
+
 1. Review `.junie/guidelines.md` for project context
 2. Check `.history/current/` for active sessions
 3. Review recent commits for context continuity
@@ -51,6 +53,7 @@ This document captures successful AI collaboration patterns discovered during SA
 **Context**: Handling complex multi-step tasks
 
 **Pattern**:
+
 1. Start with high-level plan
 2. Execute one step at a time
 3. Report progress after each step
@@ -63,12 +66,14 @@ This document captures successful AI collaboration patterns discovered during SA
 **Context**: Ambiguous or incomplete requirements
 
 **Pattern**:
+
 1. State understanding of the requirement
 2. List specific ambiguities
 3. Propose default interpretation
 4. Ask for confirmation or clarification
 
 **Example**:
+
 ```
 我理解您希望更新配置文件。有几点需要确认：
 1. 是否包括所有子目录的配置？（默认：是）
@@ -81,6 +86,7 @@ This document captures successful AI collaboration patterns discovered during SA
 **Context**: Multiple similar changes across files
 
 **Pattern**:
+
 1. Identify all affected files first
 2. Group by change type
 3. Execute in batches with verification
@@ -97,6 +103,7 @@ This document captures successful AI collaboration patterns discovered during SA
 **When to capture**: Significant technical decisions made during development
 
 **What to capture**:
+
 - Context and constraints
 - Options considered
 - Decision rationale
@@ -109,6 +116,7 @@ This document captures successful AI collaboration patterns discovered during SA
 **When to capture**: New coding patterns or standards emerge
 
 **What to capture**:
+
 - Pattern description
 - Usage examples
 - When to apply
@@ -121,6 +129,7 @@ This document captures successful AI collaboration patterns discovered during SA
 **When to capture**: End of significant work session
 
 **What to capture**:
+
 - Completed tasks
 - Pending items
 - Important findings
@@ -133,6 +142,7 @@ This document captures successful AI collaboration patterns discovered during SA
 **When to capture**: Solving non-trivial problems
 
 **What to capture**:
+
 - Problem description
 - Investigation steps
 - Root cause
@@ -149,6 +159,7 @@ This document captures successful AI collaboration patterns discovered during SA
 **Strategy**: Minimize context while maximizing relevance
 
 **Techniques**:
+
 - Use targeted file searches over full directory scans
 - Request specific line ranges when opening files
 - Collapse completed plan items to save space
@@ -159,6 +170,7 @@ This document captures successful AI collaboration patterns discovered during SA
 **Strategy**: Stay within T4 (5s) timeout for most operations
 
 **Techniques**:
+
 - Load core knowledge first (highest priority)
 - Use smart loading based on task type
 - Implement graceful degradation for large requests
@@ -169,6 +181,7 @@ This document captures successful AI collaboration patterns discovered during SA
 **Strategy**: Execute independent tasks concurrently
 
 **Techniques**:
+
 - Identify task dependencies
 - Group independent operations
 - Use batch commands where possible
@@ -179,6 +192,7 @@ This document captures successful AI collaboration patterns discovered during SA
 **Strategy**: Graceful handling of failures
 
 **Techniques**:
+
 - Always have fallback approach
 - Document partial progress
 - Preserve work before risky operations
@@ -192,33 +206,33 @@ This document captures successful AI collaboration patterns discovered during SA
 
 Current calibration for SAGE project:
 
-| Task Type | Recommended Level | Notes |
-|-----------|-------------------|-------|
-| Documentation updates | L5 (High) | Well-established patterns |
-| Code formatting | L5 (High) | Ruff handles automatically |
-| Bug fixes | L4 (Medium-High) | Verify with tests |
-| New features | L3 (Medium) | Discuss design first |
-| Architecture changes | L2 (Low) | Requires approval |
-| Breaking changes | L1 (Minimal) | Full review required |
+| Task Type             | Recommended Level | Notes                      |
+|-----------------------|-------------------|----------------------------|
+| Documentation updates | L5 (High)         | Well-established patterns  |
+| Code formatting       | L5 (High)         | Ruff handles automatically |
+| Bug fixes             | L4 (Medium-High)  | Verify with tests          |
+| New features          | L3 (Medium)       | Discuss design first       |
+| Architecture changes  | L2 (Low)          | Requires approval          |
+| Breaking changes      | L1 (Minimal)      | Full review required       |
 
 ### 5.2 Response Time Expectations
 
-| Operation | Expected Time | Timeout Level |
-|-----------|---------------|---------------|
-| Simple query | < 100ms | T1 |
-| Single file read | < 500ms | T2 |
-| Multi-file analysis | < 2s | T3 |
-| Full KB load | < 5s | T4 |
-| Complex analysis | < 10s | T5 |
+| Operation           | Expected Time | Timeout Level |
+|---------------------|---------------|---------------|
+| Simple query        | < 100ms       | T1            |
+| Single file read    | < 500ms       | T2            |
+| Multi-file analysis | < 2s          | T3            |
+| Full KB load        | < 5s          | T4            |
+| Complex analysis    | < 10s         | T5            |
 
 ### 5.3 Quality Thresholds
 
-| Metric | Target | Action if Below |
-|--------|--------|-----------------|
-| Test coverage | > 80% | Add tests before merge |
-| Type coverage | > 90% | Add type hints |
-| Doc coverage | > 70% | Add docstrings |
-| Complexity | < 10 | Refactor function |
+| Metric        | Target | Action if Below        |
+|---------------|--------|------------------------|
+| Test coverage | > 80%  | Add tests before merge |
+| Type coverage | > 90%  | Add type hints         |
+| Doc coverage  | > 70%  | Add docstrings         |
+| Complexity    | < 10   | Refactor function      |
 
 ---
 

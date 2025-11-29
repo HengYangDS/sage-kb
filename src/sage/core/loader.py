@@ -24,8 +24,6 @@ from pathlib import Path
 from types import ModuleType
 from typing import Any
 
-import yaml
-
 _project_root = Path(
     __file__
 ).parent.parent.parent.parent  # core -> sage -> src -> project_root

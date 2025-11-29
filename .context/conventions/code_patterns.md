@@ -44,11 +44,11 @@ container.register_factory(
 
 ### 1.3 Lifetime Selection
 
-| Lifetime | Use Case | Example |
-|----------|----------|---------|
-| `SINGLETON` | Shared state, expensive creation | `EventBus`, `ConfigManager` |
-| `TRANSIENT` | Stateless, lightweight | `Validator`, `Formatter` |
-| `SCOPED` | Per-request/session | `SessionContext`, `RequestHandler` |
+| Lifetime    | Use Case                         | Example                            |
+|-------------|----------------------------------|------------------------------------|
+| `SINGLETON` | Shared state, expensive creation | `EventBus`, `ConfigManager`        |
+| `TRANSIENT` | Stateless, lightweight           | `Validator`, `Formatter`           |
+| `SCOPED`    | Per-request/session              | `SessionContext`, `RequestHandler` |
 
 ### 1.4 Service Resolution
 
@@ -132,12 +132,12 @@ bus.unsubscribe(subscription.id)
 
 ### 2.5 Event Patterns
 
-| Pattern | Matches |
-|---------|---------|
-| `knowledge.loaded` | Exact match |
-| `knowledge.*` | `knowledge.loaded`, `knowledge.updated` |
-| `*.loaded` | `knowledge.loaded`, `config.loaded` |
-| `*` | All events |
+| Pattern            | Matches                                 |
+|--------------------|-----------------------------------------|
+| `knowledge.loaded` | Exact match                             |
+| `knowledge.*`      | `knowledge.loaded`, `knowledge.updated` |
+| `*.loaded`         | `knowledge.loaded`, `config.loaded`     |
+| `*`                | All events                              |
 
 ---
 

@@ -24,24 +24,24 @@ autonomy_default: L4
 
 ## 2. Relevant Knowledge
 
-| Priority      | Files                                                                                              |
-|---------------|----------------------------------------------------------------------------------------------------|
-| **Auto-Load** | `core/principles.md` · `guidelines/documentation.md` · `practices/documentation/standards.md`      |
-| **On-Demand** | `practices/documentation/knowledge_organization.md` · `templates/index.md`                         |
+| Priority      | Files                                                                                         |
+|---------------|-----------------------------------------------------------------------------------------------|
+| **Auto-Load** | `core/principles.md` · `guidelines/documentation.md` · `practices/documentation/standards.md` |
+| **On-Demand** | `practices/documentation/knowledge_organization.md` · `templates/index.md`                    |
 
 ---
 
 ## 3. Project Structure
 
-| Directory      | Purpose                        |
-|----------------|--------------------------------|
-| `docs/`        | User-facing documentation      |
-| `docs/guides/` | How-to guides and tutorials    |
-| `docs/api/`    | API reference documentation    |
-| `docs/design/` | Design documents and ADRs      |
-| `docs/assets/` | Images, diagrams, media        |
-| `content/`     | Knowledge base content         |
-| `templates/`   | Document templates             |
+| Directory      | Purpose                     |
+|----------------|-----------------------------|
+| `docs/`        | User-facing documentation   |
+| `docs/guides/` | How-to guides and tutorials |
+| `docs/api/`    | API reference documentation |
+| `docs/design/` | Design documents and ADRs   |
+| `docs/assets/` | Images, diagrams, media     |
+| `content/`     | Knowledge base content      |
+| `templates/`   | Document templates          |
 
 ---
 
@@ -49,21 +49,21 @@ autonomy_default: L4
 
 ### 4.1 Documentation Quadrant (Diátaxis)
 
-| Type | Purpose | User Need |
-|------|---------|-----------|
-| **Tutorial** | Learning-oriented | "I want to learn" |
-| **How-to Guide** | Problem-oriented | "I want to accomplish X" |
-| **Reference** | Information-oriented | "I need to look up Y" |
-| **Explanation** | Understanding-oriented | "I want to understand Z" |
+| Type             | Purpose                | User Need                |
+|------------------|------------------------|--------------------------|
+| **Tutorial**     | Learning-oriented      | "I want to learn"        |
+| **How-to Guide** | Problem-oriented       | "I want to accomplish X" |
+| **Reference**    | Information-oriented   | "I need to look up Y"    |
+| **Explanation**  | Understanding-oriented | "I want to understand Z" |
 
 ### 4.2 Document Templates
 
-| Document Type | Template | Use Case |
-|---------------|----------|----------|
-| API Reference | `templates/api_spec.md` | Endpoint documentation |
-| Architecture | `templates/adr.md` | Design decisions |
-| Runbook | `templates/runbook.md` | Operational guides |
-| Postmortem | `templates/postmortem.md` | Incident reports |
+| Document Type | Template                  | Use Case               |
+|---------------|---------------------------|------------------------|
+| API Reference | `templates/api_spec.md`   | Endpoint documentation |
+| Architecture  | `templates/adr.md`        | Design decisions       |
+| Runbook       | `templates/runbook.md`    | Operational guides     |
+| Postmortem    | `templates/postmortem.md` | Incident reports       |
 
 ---
 
@@ -108,24 +108,24 @@ autonomy_default: L4
 
 ### 5.2 Section Formatting
 
-| Element | Format | Example |
-|---------|--------|---------|
-| **Title** | `# Title` | `# User Guide` |
-| **Section** | `## N. Section` | `## 1. Getting Started` |
+| Element        | Format          | Example                 |
+|----------------|-----------------|-------------------------|
+| **Title**      | `# Title`       | `# User Guide`          |
+| **Section**    | `## N. Section` | `## 1. Getting Started` |
 | **Subsection** | `### N.N Title` | `### 1.1 Prerequisites` |
-| **Table** | Markdown table | `| Col | Col |` |
-| **Code** | Fenced blocks | ` ```python ` |
-| **Note** | Blockquote | `> **Note**: ...` |
+| **Table**      | Markdown table  | `                       | Col | Col |` |
+| **Code**       | Fenced blocks   | ` ```python `           |
+| **Note**       | Blockquote      | `> **Note**: ...`       |
 
 ### 5.3 Writing Style
 
-| Principle | Description | Example |
-|-----------|-------------|---------|
-| **Active voice** | Subject performs action | "Click the button" not "The button should be clicked" |
-| **Present tense** | Current state | "The function returns" not "The function will return" |
-| **Second person** | Address reader directly | "You can configure..." |
-| **Concise** | Remove unnecessary words | "To start" not "In order to start" |
-| **Specific** | Avoid vague terms | "3 seconds" not "a short time" |
+| Principle         | Description              | Example                                               |
+|-------------------|--------------------------|-------------------------------------------------------|
+| **Active voice**  | Subject performs action  | "Click the button" not "The button should be clicked" |
+| **Present tense** | Current state            | "The function returns" not "The function will return" |
+| **Second person** | Address reader directly  | "You can configure..."                                |
+| **Concise**       | Remove unnecessary words | "To start" not "In order to start"                    |
+| **Specific**      | Avoid vague terms        | "3 seconds" not "a short time"                        |
 
 ### 5.4 Code Documentation
 
@@ -168,42 +168,42 @@ def process_data(
 
 ### 6.1 Documentation Checklist
 
-| Category | Check |
-|----------|-------|
-| **Accuracy** | Information is correct and up-to-date |
-| **Completeness** | All necessary information included |
-| **Clarity** | Easy to understand, no ambiguity |
-| **Consistency** | Follows style guide, uniform formatting |
-| **Accessibility** | Readable, proper headings, alt text |
+| Category          | Check                                   |
+|-------------------|-----------------------------------------|
+| **Accuracy**      | Information is correct and up-to-date   |
+| **Completeness**  | All necessary information included      |
+| **Clarity**       | Easy to understand, no ambiguity        |
+| **Consistency**   | Follows style guide, uniform formatting |
+| **Accessibility** | Readable, proper headings, alt text     |
 
 ### 6.2 Review Criteria
 
-| Level | Focus |
-|-------|-------|
+| Level         | Focus                                      |
+|---------------|--------------------------------------------|
 | **Technical** | Accuracy, completeness, code examples work |
-| **Editorial** | Grammar, style, clarity, consistency |
-| **User** | Usability, findability, task completion |
+| **Editorial** | Grammar, style, clarity, consistency       |
+| **User**      | Usability, findability, task completion    |
 
 ### 6.3 Information Density
 
-| Content Type | Target Density | Approach |
-|--------------|----------------|----------|
-| Quick reference | High | Tables, bullet points |
-| Tutorial | Medium | Step-by-step with context |
-| Explanation | Low-Medium | Narrative with examples |
-| Reference | High | Structured, searchable |
+| Content Type    | Target Density | Approach                  |
+|-----------------|----------------|---------------------------|
+| Quick reference | High           | Tables, bullet points     |
+| Tutorial        | Medium         | Step-by-step with context |
+| Explanation     | Low-Medium     | Narrative with examples   |
+| Reference       | High           | Structured, searchable    |
 
 ---
 
 ## 7. Common Tasks
 
-| Task | Steps |
-|------|-------|
-| **Create new doc** | Choose type → Use template → Write content → Review → Publish |
-| **Update existing** | Identify changes → Update content → Update metadata → Review |
-| **Add code example** | Write code → Test code → Add to doc → Explain |
-| **Add diagram** | Create diagram → Export → Add to assets → Reference |
-| **Restructure docs** | Analyze current → Plan new structure → Migrate → Redirect |
+| Task                 | Steps                                                         |
+|----------------------|---------------------------------------------------------------|
+| **Create new doc**   | Choose type → Use template → Write content → Review → Publish |
+| **Update existing**  | Identify changes → Update content → Update metadata → Review  |
+| **Add code example** | Write code → Test code → Add to doc → Explain                 |
+| **Add diagram**      | Create diagram → Export → Add to assets → Reference           |
+| **Restructure docs** | Analyze current → Plan new structure → Migrate → Redirect     |
 
 ### 7.1 Documentation Workflow
 
@@ -230,28 +230,28 @@ def process_data(
 
 ## 8. Autonomy Calibration
 
-| Task Type | Level | Notes |
-|-----------|-------|-------|
-| Fix typo/grammar | L5 | Trivial change |
-| Update example | L4 | Test before committing |
-| Add new section | L3-L4 | Follow existing structure |
-| Restructure document | L3 | Plan and review |
-| Change navigation | L2-L3 | User experience impact |
-| Delete content | L2 | Information loss risk |
-| API doc changes | L2-L3 | Must match code |
-| Create new guide | L3 | Review outline first |
+| Task Type            | Level | Notes                     |
+|----------------------|-------|---------------------------|
+| Fix typo/grammar     | L5    | Trivial change            |
+| Update example       | L4    | Test before committing    |
+| Add new section      | L3-L4 | Follow existing structure |
+| Restructure document | L3    | Plan and review           |
+| Change navigation    | L2-L3 | User experience impact    |
+| Delete content       | L2    | Information loss risk     |
+| API doc changes      | L2-L3 | Must match code           |
+| Create new guide     | L3    | Review outline first      |
 
 ---
 
 ## 9. Quick Commands
 
-| Category | Commands |
-|----------|----------|
-| **MkDocs** | `mkdocs serve` · `mkdocs build` · `mkdocs gh-deploy` |
-| **Sphinx** | `make html` · `sphinx-autobuild docs docs/_build` |
-| **Docusaurus** | `npm start` · `npm run build` |
-| **VitePress** | `npm run docs:dev` · `npm run docs:build` |
-| **Lint** | `markdownlint .` · `vale docs/` |
+| Category       | Commands                                             |
+|----------------|------------------------------------------------------|
+| **MkDocs**     | `mkdocs serve` · `mkdocs build` · `mkdocs gh-deploy` |
+| **Sphinx**     | `make html` · `sphinx-autobuild docs docs/_build`    |
+| **Docusaurus** | `npm start` · `npm run build`                        |
+| **VitePress**  | `npm run docs:dev` · `npm run docs:build`            |
+| **Lint**       | `markdownlint .` · `vale docs/`                      |
 
 ---
 

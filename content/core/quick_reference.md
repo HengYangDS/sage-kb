@@ -79,12 +79,12 @@ Ask before every task:
 
 ## 4. Timeout Tiers
 
-| Tier | Typical Range | Use For |
-|------|---------------|---------|
-| Fast | 50-200ms | Cache, memory access |
-| Standard | 200-1000ms | Single file, local I/O |
-| Extended | 1-5s | Multi-file, network |
-| Long | 5-30s | Full load, analysis |
+| Tier     | Typical Range | Use For                |
+|----------|---------------|------------------------|
+| Fast     | 50-200ms      | Cache, memory access   |
+| Standard | 200-1000ms    | Single file, local I/O |
+| Extended | 1-5s          | Multi-file, network    |
+| Long     | 5-30s         | Full load, analysis    |
 
 **Rule**: Always return something, never hang.
 

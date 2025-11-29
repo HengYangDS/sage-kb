@@ -22,6 +22,8 @@ from sage.core.exceptions import (
     ConfigError,
     ContentNotFoundError,
     SAGEError,
+)
+from sage.core.exceptions import (
     TimeoutError as SAGETimeoutError,
 )
 from sage.core.loader import KnowledgeLoader, Layer
@@ -58,6 +60,7 @@ def _check_fastapi_available() -> bool:
     """Check if FastAPI is available."""
     try:
         import fastapi  # noqa: F401
+
         return True
     except ImportError:
         return False
@@ -115,9 +118,7 @@ def create_app(config: HTTPServerConfig | None = None) -> FastAPI:
 
     # Exception handlers
     @app.exception_handler(SAGEError)
-    async def sage_error_handler(
-        request: Request, exc: SAGEError
-    ) -> JSONResponse:
+    async def sage_error_handler(request: Request, exc: SAGEError) -> JSONResponse:
         """Handle SAGE-specific errors."""
         status_code = 500
         if isinstance(exc, ContentNotFoundError):
@@ -193,12 +194,10 @@ def create_app(config: HTTPServerConfig | None = None) -> FastAPI:
             if layer_lower not in layer_mapping:
                 raise HTTPException(
                     status_code=400,
-                    detail=f"Invalid layer: {layer}. Valid layers: {list(layer_mapping.keys())}"
+                    detail=f"Invalid layer: {layer}. Valid layers: {list(layer_mapping.keys())}",
                 )
             layer_enum = layer_mapping[layer_lower]
-            result = await asyncio.to_thread(
-                loader.load, layer=layer_enum
-            )
+            result = await asyncio.to_thread(loader.load, layer=layer_enum)
             return {
                 "layer": layer,
                 "content": result.content if result else "",
@@ -224,13 +223,13 @@ def create_app(config: HTTPServerConfig | None = None) -> FastAPI:
             Search results.
         """
         try:
-            results = await asyncio.to_thread(
-                loader.search, q, max_results=limit
-            )
+            results = await asyncio.to_thread(loader.search, q, max_results=limit)
             return {
                 "query": q,
                 "limit": limit,
-                "results": [r.to_dict() if hasattr(r, 'to_dict') else r for r in results],
+                "results": [
+                    r.to_dict() if hasattr(r, "to_dict") else r for r in results
+                ],
                 "count": len(results) if results else 0,
             }
         except Exception as e:
@@ -286,9 +285,7 @@ def create_app(config: HTTPServerConfig | None = None) -> FastAPI:
             Framework content and metadata.
         """
         try:
-            result = await asyncio.to_thread(
-                loader.load_framework, framework_name
-            )
+            result = await asyncio.to_thread(loader.load_framework, framework_name)
             return {
                 "framework": framework_name,
                 "content": result.content if result else "",
@@ -296,8 +293,7 @@ def create_app(config: HTTPServerConfig | None = None) -> FastAPI:
             }
         except FileNotFoundError as e:
             raise HTTPException(
-                status_code=404,
-                detail=f"Framework not found: {framework_name}"
+                status_code=404, detail=f"Framework not found: {framework_name}"
             ) from e
         except Exception as e:
             raise HTTPException(status_code=500, detail=str(e)) from e
@@ -319,13 +315,13 @@ def create_app(config: HTTPServerConfig | None = None) -> FastAPI:
 
         analyzer = QualityAnalyzer()
         try:
-            results = await asyncio.to_thread(
-                analyzer.analyze_file, Path(path)
-            )
+            results = await asyncio.to_thread(analyzer.analyze_file, Path(path))
             return {
                 "analysis_type": "quality",
                 "path": path,
-                "results": results.to_dict() if hasattr(results, 'to_dict') else results,
+                "results": (
+                    results.to_dict() if hasattr(results, "to_dict") else results
+                ),
             }
         except FileNotFoundError as e:
             raise HTTPException(status_code=404, detail=str(e)) from e
@@ -346,7 +342,9 @@ def create_app(config: HTTPServerConfig | None = None) -> FastAPI:
             results = await asyncio.to_thread(checker.check)
             return {
                 "check_type": "structure",
-                "results": results.to_dict() if hasattr(results, 'to_dict') else results,
+                "results": (
+                    results.to_dict() if hasattr(results, "to_dict") else results
+                ),
             }
         except Exception as e:
             raise HTTPException(status_code=500, detail=str(e)) from e
@@ -365,7 +363,9 @@ def create_app(config: HTTPServerConfig | None = None) -> FastAPI:
             results = await asyncio.to_thread(checker.check_all)
             return {
                 "check_type": "links",
-                "results": results.to_dict() if hasattr(results, 'to_dict') else results,
+                "results": (
+                    results.to_dict() if hasattr(results, "to_dict") else results
+                ),
             }
         except Exception as e:
             raise HTTPException(status_code=500, detail=str(e)) from e
@@ -384,7 +384,9 @@ def create_app(config: HTTPServerConfig | None = None) -> FastAPI:
             results = await asyncio.to_thread(monitor.check_all)
             return {
                 "check_type": "health",
-                "results": results.to_dict() if hasattr(results, 'to_dict') else results,
+                "results": (
+                    results.to_dict() if hasattr(results, "to_dict") else results
+                ),
             }
         except Exception as e:
             raise HTTPException(status_code=500, detail=str(e)) from e

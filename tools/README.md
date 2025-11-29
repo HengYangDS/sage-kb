@@ -55,10 +55,10 @@ python tools/dev_scripts/setup_dev.py --reset       # Reset to clean state
 
 **Environment Variables:**
 
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `SAGE_DEV_VENV` | Virtual environment path | `.venv` |
-| `SAGE_DEV_SKIP_TESTS` | Skip initial tests | `false` |
+| Variable              | Description              | Default |
+|-----------------------|--------------------------|---------|
+| `SAGE_DEV_VENV`       | Virtual environment path | `.venv` |
+| `SAGE_DEV_SKIP_TESTS` | Skip initial tests       | `false` |
 
 ---
 
@@ -95,12 +95,12 @@ python tools/knowledge_graph/knowledge_graph_builder.py \
 
 **Output Formats:**
 
-| Format | File | Use Case |
-|--------|------|----------|
-| JSON | `graph.json` | API consumption |
-| GraphML | `graph.graphml` | Graph analysis tools |
-| DOT | `graph.dot` | Graphviz visualization |
-| HTML | `graph.html` | Interactive web view |
+| Format  | File            | Use Case               |
+|---------|-----------------|------------------------|
+| JSON    | `graph.json`    | API consumption        |
+| GraphML | `graph.graphml` | Graph analysis tools   |
+| DOT     | `graph.dot`     | Graphviz visualization |
+| HTML    | `graph.html`    | Interactive web view   |
 
 **Example Output (JSON):**
 
@@ -204,13 +204,13 @@ python tools/migration_toolkit.py rollback --to-backup backup_20251129
 
 **Migration Commands:**
 
-| Command | Description |
-|---------|-------------|
-| `status` | Show current version and pending migrations |
-| `migrate` | Run migration to target version |
-| `validate` | Validate content after migration |
-| `rollback` | Revert to previous backup |
-| `backup` | Create manual backup before migration |
+| Command    | Description                                 |
+|------------|---------------------------------------------|
+| `status`   | Show current version and pending migrations |
+| `migrate`  | Run migration to target version             |
+| `validate` | Validate content after migration            |
+| `rollback` | Revert to previous backup                   |
+| `backup`   | Create manual backup before migration       |
 
 **Example Migration:**
 

@@ -14,13 +14,13 @@
 
 ### 1.1 Preferred Patterns
 
-| Category | Preference | Example |
-|----------|------------|---------|
-| **Async** | Always use async/await for IO | `async def load()` not `def load()` |
-| **Type hints** | Full annotations on public APIs | `def process(data: str) -> Result:` |
-| **Protocols** | Prefer Protocol over ABC | `class MyProtocol(Protocol):` |
-| **Dataclasses** | Use for simple data containers | `@dataclass class Config:` |
-| **Enums** | Use for fixed choices | `class Level(Enum):` |
+| Category        | Preference                      | Example                             |
+|-----------------|---------------------------------|-------------------------------------|
+| **Async**       | Always use async/await for IO   | `async def load()` not `def load()` |
+| **Type hints**  | Full annotations on public APIs | `def process(data: str) -> Result:` |
+| **Protocols**   | Prefer Protocol over ABC        | `class MyProtocol(Protocol):`       |
+| **Dataclasses** | Use for simple data containers  | `@dataclass class Config:`          |
+| **Enums**       | Use for fixed choices           | `class Level(Enum):`                |
 
 ### 1.2 Import Organization
 
@@ -122,12 +122,12 @@ class TestTimeoutManager:
 
 ### 2.2 Test Naming
 
-| Test Type | Pattern | Example |
-|-----------|---------|---------|
-| Success case | `test_<action>_<condition>` | `test_load_valid_file` |
+| Test Type    | Pattern                                | Example                             |
+|--------------|----------------------------------------|-------------------------------------|
+| Success case | `test_<action>_<condition>`            | `test_load_valid_file`              |
 | Failure case | `test_<action>_fails_when_<condition>` | `test_load_fails_when_file_missing` |
-| Edge case | `test_<action>_with_<edge_case>` | `test_load_with_empty_file` |
-| Async | `test_<action>_async` | `test_publish_async` |
+| Edge case    | `test_<action>_with_<edge_case>`       | `test_load_with_empty_file`         |
+| Async        | `test_<action>_async`                  | `test_publish_async`                |
 
 ### 2.3 Mock Preferences
 
@@ -153,12 +153,12 @@ def mock_loader():
 
 ### 2.4 Test Coverage Goals
 
-| Layer | Target | Focus |
-|-------|--------|-------|
-| Core | 90%+ | All public APIs, error paths |
-| Services | 80%+ | Integration points, CLI commands |
-| Capabilities | 80%+ | Analyzer logic, edge cases |
-| Integration | Key paths | End-to-end workflows |
+| Layer        | Target    | Focus                            |
+|--------------|-----------|----------------------------------|
+| Core         | 90%+      | All public APIs, error paths     |
+| Services     | 80%+      | Integration points, CLI commands |
+| Capabilities | 80%+      | Analyzer logic, edge cases       |
+| Integration  | Key paths | End-to-end workflows             |
 
 ---
 
@@ -279,12 +279,12 @@ Content with **bold** and `code`.
 
 ### 4.1 Loading Optimizations
 
-| Optimization | Implementation | Impact |
-|--------------|----------------|--------|
-| Parallel loading | `asyncio.gather()` for multiple files | 3-5x faster |
-| Lazy initialization | Load on first access | Faster startup |
-| Content caching | LRU cache with TTL | Reduced IO |
-| Index preloading | Load index files first | Faster search |
+| Optimization        | Implementation                        | Impact         |
+|---------------------|---------------------------------------|----------------|
+| Parallel loading    | `asyncio.gather()` for multiple files | 3-5x faster    |
+| Lazy initialization | Load on first access                  | Faster startup |
+| Content caching     | LRU cache with TTL                    | Reduced IO     |
+| Index preloading    | Load index files first                | Faster search  |
 
 ### 4.2 Memory Optimizations
 
@@ -425,15 +425,15 @@ def register_loader(loader: LoaderProtocol) -> None:
 
 ### 6.1 Common File Locations
 
-| Need | Location |
-|------|----------|
-| Add timeout level | `src/sage/core/timeout.py` |
-| Add event type | `src/sage/core/events/events.py` |
-| Add protocol | `src/sage/core/protocols.py` |
-| Add exception | `src/sage/core/exceptions.py` |
-| Add CLI command | `src/sage/services/cli.py` |
-| Add MCP tool | `src/sage/services/mcp.py` |
-| Add analyzer | `src/sage/capabilities/analyzers/` |
+| Need              | Location                           |
+|-------------------|------------------------------------|
+| Add timeout level | `src/sage/core/timeout.py`         |
+| Add event type    | `src/sage/core/events/events.py`   |
+| Add protocol      | `src/sage/core/protocols.py`       |
+| Add exception     | `src/sage/core/exceptions.py`      |
+| Add CLI command   | `src/sage/services/cli.py`         |
+| Add MCP tool      | `src/sage/services/mcp.py`         |
+| Add analyzer      | `src/sage/capabilities/analyzers/` |
 
 ### 6.2 Quick Commands
 

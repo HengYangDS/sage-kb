@@ -24,24 +24,24 @@ autonomy_default: L3
 
 ## 2. Relevant Knowledge
 
-| Priority      | Files                                                                                               |
-|---------------|-----------------------------------------------------------------------------------------------------|
+| Priority      | Files                                                                                             |
+|---------------|---------------------------------------------------------------------------------------------------|
 | **Auto-Load** | `core/principles.md` · `practices/documentation/knowledge_organization.md` · `frameworks/design/` |
-| **On-Demand** | `practices/documentation/standards.md` · `practices/ai_collaboration/knowledge_extraction.md`      |
+| **On-Demand** | `practices/documentation/standards.md` · `practices/ai_collaboration/knowledge_extraction.md`     |
 
 ---
 
 ## 3. Project Structure
 
-| Directory      | Purpose                          |
-|----------------|----------------------------------|
-| `content/`     | Generic, reusable knowledge      |
-| `.context/`    | Project-specific knowledge       |
-| `docs/`        | User-facing documentation        |
-| `config/`      | Configuration files              |
-| `.history/`    | Session history and handoffs     |
-| `templates/`   | Document templates               |
-| `schemas/`     | Content validation schemas       |
+| Directory    | Purpose                      |
+|--------------|------------------------------|
+| `content/`   | Generic, reusable knowledge  |
+| `.context/`  | Project-specific knowledge   |
+| `docs/`      | User-facing documentation    |
+| `config/`    | Configuration files          |
+| `.history/`  | Session history and handoffs |
+| `templates/` | Document templates           |
+| `schemas/`   | Content validation schemas   |
 
 ---
 
@@ -67,14 +67,14 @@ autonomy_default: L3
 
 ### 4.2 Content Types
 
-| Type | Purpose | Format |
-|------|---------|--------|
-| **Principle** | Fundamental truth or belief | Declarative statement |
-| **Concept** | Abstract idea or notion | Definition + examples |
-| **Guideline** | Recommended practice | Rule + rationale |
-| **Pattern** | Reusable solution | Problem → Solution → Consequences |
-| **Practice** | Step-by-step guide | Procedure + tips |
-| **Reference** | Lookup information | Tables, lists |
+| Type          | Purpose                     | Format                            |
+|---------------|-----------------------------|-----------------------------------|
+| **Principle** | Fundamental truth or belief | Declarative statement             |
+| **Concept**   | Abstract idea or notion     | Definition + examples             |
+| **Guideline** | Recommended practice        | Rule + rationale                  |
+| **Pattern**   | Reusable solution           | Problem → Solution → Consequences |
+| **Practice**  | Step-by-step guide          | Procedure + tips                  |
+| **Reference** | Lookup information          | Tables, lists                     |
 
 ### 4.3 Metadata Schema
 
@@ -182,14 +182,14 @@ Content...
 
 ## 6. Common Tasks
 
-| Task                        | Steps                                                           |
-|-----------------------------|-----------------------------------------------------------------|
-| **Add knowledge content**   | Choose layer → Create file → Add metadata → Link in index       |
-| **Reorganize structure**    | Analyze current → Plan changes → Update links → Verify          |
-| **Create taxonomy**         | Identify concepts → Define hierarchy → Apply tags → Document    |
-| **Improve discoverability** | Add metadata → Create indexes → Enhance cross-refs              |
-| **Integrate with AI**       | Define context → Configure loading → Test retrieval             |
-| **Quality audit**           | Check completeness → Verify links → Validate format             |
+| Task                        | Steps                                                        |
+|-----------------------------|--------------------------------------------------------------|
+| **Add knowledge content**   | Choose layer → Create file → Add metadata → Link in index    |
+| **Reorganize structure**    | Analyze current → Plan changes → Update links → Verify       |
+| **Create taxonomy**         | Identify concepts → Define hierarchy → Apply tags → Document |
+| **Improve discoverability** | Add metadata → Create indexes → Enhance cross-refs           |
+| **Integrate with AI**       | Define context → Configure loading → Test retrieval          |
+| **Quality audit**           | Check completeness → Verify links → Validate format          |
 
 ### 6.1 Adding New Knowledge
 
@@ -237,26 +237,26 @@ sage search "new topic"
 
 ## 7. Autonomy Calibration
 
-| Task Type                    | Level | Notes                              |
-|------------------------------|-------|-------------------------------------|
-| Fix typos in content         | L5    | Low risk, routine                   |
-| Add new content file         | L3-L4 | Follow templates                    |
-| Reorganize structure         | L2-L3 | May affect navigation               |
-| Change taxonomy              | L2    | Cross-cutting impact                |
-| Modify metadata schema       | L1-L2 | Affects all content                 |
-| Update core principles       | L1    | Fundamental changes                 |
-| Create new layer             | L1    | Architecture decision               |
+| Task Type              | Level | Notes                 |
+|------------------------|-------|-----------------------|
+| Fix typos in content   | L5    | Low risk, routine     |
+| Add new content file   | L3-L4 | Follow templates      |
+| Reorganize structure   | L2-L3 | May affect navigation |
+| Change taxonomy        | L2    | Cross-cutting impact  |
+| Modify metadata schema | L1-L2 | Affects all content   |
+| Update core principles | L1    | Fundamental changes   |
+| Create new layer       | L1    | Architecture decision |
 
 ---
 
 ## 8. Quick Commands
 
-| Category      | Commands                                                     |
-|---------------|--------------------------------------------------------------|
-| **Search**    | `sage search "query"` · `grep -r "pattern" content/`         |
-| **Validate**  | `sage validate --all` · `markdownlint content/`              |
-| **Index**     | `sage index --rebuild` · `find content -name "*.md"`         |
-| **Statistics**| `sage info --layers` · `wc -l content/**/*.md`               |
+| Category       | Commands                                             |
+|----------------|------------------------------------------------------|
+| **Search**     | `sage search "query"` · `grep -r "pattern" content/` |
+| **Validate**   | `sage validate --all` · `markdownlint content/`      |
+| **Index**      | `sage index --rebuild` · `find content -name "*.md"` |
+| **Statistics** | `sage info --layers` · `wc -l content/**/*.md`       |
 
 ---
 
@@ -264,32 +264,32 @@ sage search "new topic"
 
 ### Content Organization
 
-| Practice | Description |
-|----------|-------------|
-| **Single Responsibility** | Each document covers one topic |
-| **Appropriate Granularity** | Not too broad, not too narrow |
-| **Consistent Naming** | Follow naming conventions |
-| **Rich Metadata** | Enable discovery and filtering |
-| **Cross-References** | Connect related content |
+| Practice                    | Description                    |
+|-----------------------------|--------------------------------|
+| **Single Responsibility**   | Each document covers one topic |
+| **Appropriate Granularity** | Not too broad, not too narrow  |
+| **Consistent Naming**       | Follow naming conventions      |
+| **Rich Metadata**           | Enable discovery and filtering |
+| **Cross-References**        | Connect related content        |
 
 ### Knowledge Quality
 
-| Dimension | Criteria |
-|-----------|----------|
-| **Accuracy** | Factually correct, up-to-date |
-| **Completeness** | Covers topic adequately |
-| **Clarity** | Easy to understand |
-| **Consistency** | Follows standards |
-| **Discoverability** | Easy to find |
+| Dimension           | Criteria                      |
+|---------------------|-------------------------------|
+| **Accuracy**        | Factually correct, up-to-date |
+| **Completeness**    | Covers topic adequately       |
+| **Clarity**         | Easy to understand            |
+| **Consistency**     | Follows standards             |
+| **Discoverability** | Easy to find                  |
 
 ### AI Integration
 
-| Aspect | Consideration |
-|--------|---------------|
-| **Token Budget** | Estimate and document token count |
-| **Loading Priority** | Set appropriate auto_load flags |
+| Aspect                | Consideration                          |
+|-----------------------|----------------------------------------|
+| **Token Budget**      | Estimate and document token count      |
+| **Loading Priority**  | Set appropriate auto_load flags        |
 | **Context Relevance** | Tag content for scenario-based loading |
-| **Chunking** | Structure for partial retrieval |
+| **Chunking**          | Structure for partial retrieval        |
 
 ---
 

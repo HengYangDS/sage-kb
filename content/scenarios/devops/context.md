@@ -24,25 +24,25 @@ autonomy_default: L2
 
 ## 2. Relevant Knowledge
 
-| Priority      | Files                                                                                           |
-|---------------|-------------------------------------------------------------------------------------------------|
-| **Auto-Load** | `core/principles.md` · `practices/engineering/error_handling.md` · `templates/runbook.md`       |
-| **On-Demand** | `practices/engineering/logging.md` · `frameworks/resilience/timeout_patterns.md`                |
+| Priority      | Files                                                                                     |
+|---------------|-------------------------------------------------------------------------------------------|
+| **Auto-Load** | `core/principles.md` · `practices/engineering/error_handling.md` · `templates/runbook.md` |
+| **On-Demand** | `practices/engineering/logging.md` · `frameworks/resilience/timeout_patterns.md`          |
 
 ---
 
 ## 3. Project Structure
 
-| Directory         | Purpose                        |
-|-------------------|--------------------------------|
-| `.github/`        | GitHub Actions workflows       |
-| `.gitlab/`        | GitLab CI configuration        |
-| `infrastructure/` | Terraform/IaC modules          |
-| `kubernetes/`     | K8s manifests                  |
-| `docker/`         | Dockerfiles and compose        |
-| `scripts/`        | Automation scripts             |
-| `monitoring/`     | Dashboards, alerts config      |
-| `docs/runbooks/`  | Operational runbooks           |
+| Directory         | Purpose                   |
+|-------------------|---------------------------|
+| `.github/`        | GitHub Actions workflows  |
+| `.gitlab/`        | GitLab CI configuration   |
+| `infrastructure/` | Terraform/IaC modules     |
+| `kubernetes/`     | K8s manifests             |
+| `docker/`         | Dockerfiles and compose   |
+| `scripts/`        | Automation scripts        |
+| `monitoring/`     | Dashboards, alerts config |
+| `docs/runbooks/`  | Operational runbooks      |
 
 ---
 
@@ -315,21 +315,21 @@ spec:
 
 ### 6.1 Key Metrics
 
-| Category | Metrics |
-|----------|---------|
-| **Availability** | Uptime %, Error rate, SLA compliance |
-| **Performance** | Response time (p50, p95, p99), Throughput |
-| **Resources** | CPU, Memory, Disk, Network |
-| **Business** | Active users, Transactions, Revenue |
+| Category         | Metrics                                   |
+|------------------|-------------------------------------------|
+| **Availability** | Uptime %, Error rate, SLA compliance      |
+| **Performance**  | Response time (p50, p95, p99), Throughput |
+| **Resources**    | CPU, Memory, Disk, Network                |
+| **Business**     | Active users, Transactions, Revenue       |
 
 ### 6.2 Alert Rules
 
-| Severity | Condition | Response |
-|----------|-----------|----------|
+| Severity     | Condition            | Response                 |
+|--------------|----------------------|--------------------------|
 | **Critical** | Service down > 1 min | Page on-call immediately |
-| **High** | Error rate > 5% | Page within 5 min |
-| **Medium** | Latency p99 > 2s | Notify channel |
-| **Low** | Disk > 80% | Create ticket |
+| **High**     | Error rate > 5%      | Page within 5 min        |
+| **Medium**   | Latency p99 > 2s     | Notify channel           |
+| **Low**      | Disk > 80%           | Create ticket            |
 
 ### 6.3 Prometheus Alert Example
 
@@ -365,52 +365,52 @@ groups:
 
 ## 7. Common Tasks
 
-| Task                    | Steps                                                        |
-|-------------------------|--------------------------------------------------------------|
-| **Add CI job**          | Define job → Set triggers → Add steps → Test in branch       |
-| **Create infra module** | Define variables → Write resources → Output values → Test    |
-| **Add K8s resource**    | Write manifest → Apply to staging → Verify → Apply to prod   |
-| **Set up monitoring**   | Define metrics → Create dashboard → Add alerts               |
-| **Add secret**          | Create in vault → Reference in config → Deploy               |
+| Task                    | Steps                                                      |
+|-------------------------|------------------------------------------------------------|
+| **Add CI job**          | Define job → Set triggers → Add steps → Test in branch     |
+| **Create infra module** | Define variables → Write resources → Output values → Test  |
+| **Add K8s resource**    | Write manifest → Apply to staging → Verify → Apply to prod |
+| **Set up monitoring**   | Define metrics → Create dashboard → Add alerts             |
+| **Add secret**          | Create in vault → Reference in config → Deploy             |
 
 ---
 
 ## 8. Autonomy Calibration
 
-| Task Type                  | Level | Notes                          |
-|----------------------------|-------|--------------------------------|
-| Add CI test step           | L3-L4 | Low risk                       |
-| Modify deployment config   | L2    | Production impact              |
-| Change infrastructure      | L1-L2 | Full review required           |
-| Update monitoring          | L3    | Improves observability         |
-| Add new environment        | L2    | Security review needed         |
-| Modify secrets/credentials | L1    | High security impact           |
-| Scale resources            | L2-L3 | Cost and performance impact    |
-| Rollback deployment        | L2    | Use established procedures     |
+| Task Type                  | Level | Notes                       |
+|----------------------------|-------|-----------------------------|
+| Add CI test step           | L3-L4 | Low risk                    |
+| Modify deployment config   | L2    | Production impact           |
+| Change infrastructure      | L1-L2 | Full review required        |
+| Update monitoring          | L3    | Improves observability      |
+| Add new environment        | L2    | Security review needed      |
+| Modify secrets/credentials | L1    | High security impact        |
+| Scale resources            | L2-L3 | Cost and performance impact |
+| Rollback deployment        | L2    | Use established procedures  |
 
 ---
 
 ## 9. Quick Commands
 
-| Category    | Commands                                                    |
-|-------------|-------------------------------------------------------------|
-| **Docker**  | `docker build -t app .` · `docker compose up -d`            |
-| **K8s**     | `kubectl apply -f .` · `kubectl rollout status`             |
+| Category      | Commands                                                   |
+|---------------|------------------------------------------------------------|
+| **Docker**    | `docker build -t app .` · `docker compose up -d`           |
+| **K8s**       | `kubectl apply -f .` · `kubectl rollout status`            |
 | **Terraform** | `terraform plan` · `terraform apply` · `terraform destroy` |
-| **Debug**   | `kubectl logs -f` · `kubectl exec -it -- /bin/sh`           |
-| **Secrets** | `kubectl create secret` · `vault kv put`                    |
+| **Debug**     | `kubectl logs -f` · `kubectl exec -it -- /bin/sh`          |
+| **Secrets**   | `kubectl create secret` · `vault kv put`                   |
 
 ---
 
 ## Security Checklist
 
-| Area | Check |
-|------|-------|
-| **Secrets** | No hardcoded secrets, use vault/secrets manager |
-| **Images** | Scan for vulnerabilities, use minimal base images |
-| **Network** | Limit ingress/egress, use network policies |
-| **Access** | RBAC configured, least privilege principle |
-| **Audit** | Enable audit logging, monitor suspicious activity |
+| Area        | Check                                             |
+|-------------|---------------------------------------------------|
+| **Secrets** | No hardcoded secrets, use vault/secrets manager   |
+| **Images**  | Scan for vulnerabilities, use minimal base images |
+| **Network** | Limit ingress/egress, use network policies        |
+| **Access**  | RBAC configured, least privilege principle        |
+| **Audit**   | Enable audit logging, monitor suspicious activity |
 
 ---
 

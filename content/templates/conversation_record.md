@@ -7,7 +7,8 @@
 
 ## Overview
 
-This template helps capture the essential information from AI-human collaboration sessions. Use it to document important conversations that contain decisions, insights, or learnings worth preserving for future reference.
+This template helps capture the essential information from AI-human collaboration sessions. Use it to document important
+conversations that contain decisions, insights, or learnings worth preserving for future reference.
 
 ---
 

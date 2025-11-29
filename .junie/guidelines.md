@@ -3,6 +3,7 @@
 > **Purpose**: Primary entry point for JetBrains Junie AI collaboration.
 > **Last Updated**: 2025-11-29
 > **Version**: 0.1.0
+> **Status**: Alpha - Under active development and testing
 
 ---
 

@@ -160,4 +160,4 @@ metrics:
       email:
         enabled: false
         smtp_host: ""
-        recipients: []
+        recipients: [ ]

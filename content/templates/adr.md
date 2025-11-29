@@ -132,22 +132,22 @@ Use sequential 4-digit numbers: `ADR-0001`, `ADR-0002`, etc.
 
 ### 2. Status Lifecycle
 
-| Status | Meaning |
-|--------|---------|
-| **Proposed** | Under discussion |
-| **Accepted** | Approved and active |
-| **Deprecated** | No longer recommended |
+| Status         | Meaning                 |
+|----------------|-------------------------|
+| **Proposed**   | Under discussion        |
+| **Accepted**   | Approved and active     |
+| **Deprecated** | No longer recommended   |
 | **Superseded** | Replaced by another ADR |
 
 ### 3. Best Practices
 
-| Practice | Description |
-|----------|-------------|
-| Be concise | Focus on key points |
-| Be specific | Avoid vague language |
-| Include context | Future readers need background |
-| Link related ADRs | Maintain traceability |
-| Update status | Keep lifecycle current |
+| Practice          | Description                    |
+|-------------------|--------------------------------|
+| Be concise        | Focus on key points            |
+| Be specific       | Avoid vague language           |
+| Include context   | Future readers need background |
+| Link related ADRs | Maintain traceability          |
+| Update status     | Keep lifecycle current         |
 
 ### 4. File Naming
 

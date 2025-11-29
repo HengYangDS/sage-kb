@@ -32,10 +32,10 @@ sage-kb/
 
 ### 1.2 Directory Visibility
 
-| Prefix | Visibility | Purpose |
-|--------|------------|---------|
-| `.` (dot) | Hidden | Internal/system files |
-| No prefix | Visible | User-facing content |
+| Prefix    | Visibility | Purpose               |
+|-----------|------------|-----------------------|
+| `.` (dot) | Hidden     | Internal/system files |
+| No prefix | Visible    | User-facing content   |
 
 ### 1.3 Git-Ignored Directories
 
@@ -156,10 +156,10 @@ tests/
 
 ### 3.2 Test File Naming
 
-| Source File | Test File |
-|-------------|-----------|
-| `src/sage/core/config.py` | `tests/unit/core/test_config.py` |
-| `src/sage/services/cli.py` | `tests/unit/services/test_cli.py` |
+| Source File                     | Test File                              |
+|---------------------------------|----------------------------------------|
+| `src/sage/core/config.py`       | `tests/unit/core/test_config.py`       |
+| `src/sage/services/cli.py`      | `tests/unit/services/test_cli.py`      |
 | `src/sage/core/di/container.py` | `tests/unit/core/di/test_container.py` |
 
 ### 3.3 Test File Structure
@@ -274,6 +274,7 @@ includes:
 ```
 
 This pattern enables:
+
 - **Separation of concerns**: Each functional area has its own config
 - **Easy navigation**: Find settings by category
 - **Selective overrides**: Override specific areas without touching others
@@ -431,23 +432,23 @@ def _helper_function() -> None:
 
 ### 7.1 Project Root Files
 
-| File | Purpose |
-|------|---------|
-| `pyproject.toml` | Python project configuration |
-| `sage.yaml` | Main SAGE configuration |
-| `README.md` | Project overview |
-| `Makefile` | Development commands |
-| `environment.yml` | Conda environment |
-| `index.md` | Knowledge base entry point |
+| File              | Purpose                      |
+|-------------------|------------------------------|
+| `pyproject.toml`  | Python project configuration |
+| `sage.yaml`       | Main SAGE configuration      |
+| `README.md`       | Project overview             |
+| `Makefile`        | Development commands         |
+| `environment.yml` | Conda environment            |
+| `index.md`        | Knowledge base entry point   |
 
 ### 7.2 Hidden Configuration
 
-| File/Directory | Purpose |
-|----------------|---------|
-| `.junie/` | JetBrains Junie AI config |
-| `.context/` | Project knowledge |
-| `.gitignore` | Git ignore rules |
-| `.python-version` | Python version (pyenv) |
+| File/Directory    | Purpose                   |
+|-------------------|---------------------------|
+| `.junie/`         | JetBrains Junie AI config |
+| `.context/`       | Project knowledge         |
+| `.gitignore`      | Git ignore rules          |
+| `.python-version` | Python version (pyenv)    |
 
 ---
 

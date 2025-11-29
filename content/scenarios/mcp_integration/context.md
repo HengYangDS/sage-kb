@@ -24,21 +24,21 @@ autonomy_default: L3
 
 ## 2. Relevant Knowledge
 
-| Priority      | Files                                                                                        |
-|---------------|----------------------------------------------------------------------------------------------|
-| **Auto-Load** | `core/principles.md` · `docs/api/mcp.md` · `practices/engineering/api_design.md`            |
-| **On-Demand** | `frameworks/resilience/timeout_patterns.md` · `practices/engineering/error_handling.md`     |
+| Priority      | Files                                                                                   |
+|---------------|-----------------------------------------------------------------------------------------|
+| **Auto-Load** | `core/principles.md` · `docs/api/mcp.md` · `practices/engineering/api_design.md`        |
+| **On-Demand** | `frameworks/resilience/timeout_patterns.md` · `practices/engineering/error_handling.md` |
 
 ---
 
 ## 3. Project Structure
 
-| Directory              | Purpose                           |
-|------------------------|-----------------------------------|
-| `src/sage/services/`   | MCP server implementation         |
-| `config/services/`     | MCP configuration                 |
-| `tests/integration/`   | MCP integration tests             |
-| `docs/api/mcp.md`      | MCP API documentation             |
+| Directory            | Purpose                   |
+|----------------------|---------------------------|
+| `src/sage/services/` | MCP server implementation |
+| `config/services/`   | MCP configuration         |
+| `tests/integration/` | MCP integration tests     |
+| `docs/api/mcp.md`    | MCP API documentation     |
 
 ---
 
@@ -62,21 +62,21 @@ autonomy_default: L3
 
 ### 4.2 Core Components
 
-| Component | Purpose | Implementation |
-|-----------|---------|----------------|
-| **Server** | Protocol handler | `FastMCP` or custom |
-| **Tools** | Callable functions | `@mcp.tool()` decorator |
-| **Resources** | Readable content | `@mcp.resource()` decorator |
-| **Prompts** | Reusable templates | `@mcp.prompt()` decorator |
-| **Transport** | Communication layer | stdio, SSE, WebSocket |
+| Component     | Purpose             | Implementation              |
+|---------------|---------------------|-----------------------------|
+| **Server**    | Protocol handler    | `FastMCP` or custom         |
+| **Tools**     | Callable functions  | `@mcp.tool()` decorator     |
+| **Resources** | Readable content    | `@mcp.resource()` decorator |
+| **Prompts**   | Reusable templates  | `@mcp.prompt()` decorator   |
+| **Transport** | Communication layer | stdio, SSE, WebSocket       |
 
 ### 4.3 Transport Options
 
-| Transport | Use Case | Configuration |
-|-----------|----------|---------------|
-| **stdio** | Local CLI integration | Default for most clients |
-| **SSE** | Web-based clients | HTTP server required |
-| **WebSocket** | Real-time bidirectional | For streaming needs |
+| Transport     | Use Case                | Configuration            |
+|---------------|-------------------------|--------------------------|
+| **stdio**     | Local CLI integration   | Default for most clients |
+| **SSE**       | Web-based clients       | HTTP server required     |
+| **WebSocket** | Real-time bidirectional | For streaming needs      |
 
 ---
 
@@ -89,6 +89,7 @@ from mcp.server.fastmcp import FastMCP
 
 # Initialize server
 mcp = FastMCP("sage-kb")
+
 
 @mcp.tool()
 async def sage_get(layer: str = "core", topic: str | None = None) -> str:
@@ -103,6 +104,7 @@ async def sage_get(layer: str = "core", topic: str | None = None) -> str:
     """
     # Implementation
     return await load_knowledge(layer, topic)
+
 
 @mcp.tool()
 async def sage_search(query: str, limit: int = 10) -> str:
@@ -126,6 +128,7 @@ async def sage_search(query: str, limit: int = 10) -> str:
 async def get_principles() -> str:
     """Core principles of SAGE knowledge base."""
     return await load_file("content/core/principles.md")
+
 
 @mcp.resource("sage://layer/{layer}")
 async def get_layer(layer: str) -> str:
@@ -155,10 +158,12 @@ Code to review:
 ```
 
 Provide feedback on:
+
 1. Adherence to guidelines
 2. Code quality
 3. Potential improvements
-"""
+   """
+
 ```
 
 ### 5.4 Error Handling
@@ -199,11 +204,12 @@ async def sage_get(layer: str) -> str:
 import asyncio
 from sage.core.timeout import TimeoutLevel
 
+
 @mcp.tool()
 async def sage_search(query: str) -> str:
     """Search with timeout protection."""
     timeout = get_timeout(TimeoutLevel.T3_LAYER)
-    
+
     try:
         async with asyncio.timeout(timeout / 1000):
             results = await search_knowledge(query)
@@ -217,14 +223,14 @@ async def sage_search(query: str) -> str:
 
 ## 6. Common Tasks
 
-| Task                    | Steps                                                        |
-|-------------------------|--------------------------------------------------------------|
-| **Add new tool**        | Define function → Add decorator → Document → Test            |
-| **Add resource**        | Define URI pattern → Implement loader → Register             |
-| **Add prompt**          | Design template → Implement → Document arguments             |
-| **Configure transport** | Choose transport → Update config → Test connection           |
-| **Handle errors**       | Catch exceptions → Map to McpError → Return useful message   |
-| **Add rate limiting**   | Configure limits → Implement middleware → Monitor            |
+| Task                    | Steps                                                      |
+|-------------------------|------------------------------------------------------------|
+| **Add new tool**        | Define function → Add decorator → Document → Test          |
+| **Add resource**        | Define URI pattern → Implement loader → Register           |
+| **Add prompt**          | Design template → Implement → Document arguments           |
+| **Configure transport** | Choose transport → Update config → Test connection         |
+| **Handle errors**       | Catch exceptions → Map to McpError → Return useful message |
+| **Add rate limiting**   | Configure limits → Implement middleware → Monitor          |
 
 ### 6.1 Adding a New Tool
 
@@ -245,6 +251,7 @@ async def my_new_tool(param1: str, param2: int = 10) -> str:
     result = await process(param1, param2)
     return format_output(result)
 
+
 # 2. Add tests
 async def test_my_new_tool():
     result = await my_new_tool("test", 5)
@@ -261,6 +268,7 @@ import pytest
 from mcp.client import Client
 from mcp.client.stdio import stdio_client
 
+
 @pytest.mark.asyncio
 async def test_mcp_server():
     """Test MCP server end-to-end."""
@@ -268,7 +276,7 @@ async def test_mcp_server():
         # Test tool call
         result = await client.call_tool("sage_get", {"layer": "core"})
         assert result.content
-        
+
         # Test resource access
         resource = await client.read_resource("sage://core/principles")
         assert "principles" in resource.lower()
@@ -278,25 +286,25 @@ async def test_mcp_server():
 
 ## 7. Autonomy Calibration
 
-| Task Type                  | Level | Notes                          |
-|----------------------------|-------|--------------------------------|
-| Fix tool documentation     | L5    | Low risk                       |
-| Add new tool               | L3-L4 | Follow existing patterns       |
-| Modify existing tool API   | L2    | May break client compatibility |
-| Change transport config    | L2    | Affects all clients            |
-| Add authentication         | L1-L2 | Security implications          |
-| Protocol version upgrade   | L1    | Breaking changes possible      |
+| Task Type                | Level | Notes                          |
+|--------------------------|-------|--------------------------------|
+| Fix tool documentation   | L5    | Low risk                       |
+| Add new tool             | L3-L4 | Follow existing patterns       |
+| Modify existing tool API | L2    | May break client compatibility |
+| Change transport config  | L2    | Affects all clients            |
+| Add authentication       | L1-L2 | Security implications          |
+| Protocol version upgrade | L1    | Breaking changes possible      |
 
 ---
 
 ## 8. Quick Commands
 
-| Category    | Commands                                                    |
-|-------------|-------------------------------------------------------------|
-| **Start**   | `sage serve` · `sage serve --port 8080`                     |
-| **Test**    | `pytest tests/integration/test_mcp.py`                      |
-| **Debug**   | `sage serve --debug` · `SAGE_LOG_LEVEL=DEBUG sage serve`    |
-| **Client**  | `mcp dev sage serve` · `npx @anthropic/mcp-cli`             |
+| Category   | Commands                                                 |
+|------------|----------------------------------------------------------|
+| **Start**  | `sage serve` · `sage serve --port 8080`                  |
+| **Test**   | `pytest tests/integration/test_mcp.py`                   |
+| **Debug**  | `sage serve --debug` · `SAGE_LOG_LEVEL=DEBUG sage serve` |
+| **Client** | `mcp dev sage serve` · `npx @anthropic/mcp-cli`          |
 
 ---
 
@@ -311,13 +319,13 @@ mcp:
     name: sage-kb
     version: "0.1.0"
     description: "SAGE Knowledge Base MCP Server"
-  
+
   transport:
     type: stdio  # stdio, sse, websocket
     # SSE options
     host: "0.0.0.0"
     port: 8080
-  
+
   tools:
     sage_get:
       enabled: true
@@ -329,7 +337,7 @@ mcp:
     sage_info:
       enabled: true
       timeout_level: T1
-  
+
   rate_limit:
     enabled: true
     requests_per_minute: 60
@@ -343,7 +351,9 @@ mcp:
   "mcpServers": {
     "sage": {
       "command": "sage",
-      "args": ["serve"],
+      "args": [
+        "serve"
+      ],
       "env": {
         "SAGE_LOG_LEVEL": "INFO"
       }
@@ -356,13 +366,13 @@ mcp:
 
 ## Troubleshooting
 
-| Issue | Cause | Solution |
-|-------|-------|----------|
-| Connection refused | Server not running | Start with `sage serve` |
-| Tool not found | Tool not registered | Check `@mcp.tool()` decorator |
-| Timeout errors | Slow operations | Increase timeout or optimize |
-| Invalid params | Type mismatch | Verify parameter types |
-| Auth failed | Missing credentials | Configure authentication |
+| Issue              | Cause               | Solution                      |
+|--------------------|---------------------|-------------------------------|
+| Connection refused | Server not running  | Start with `sage serve`       |
+| Tool not found     | Tool not registered | Check `@mcp.tool()` decorator |
+| Timeout errors     | Slow operations     | Increase timeout or optimize  |
+| Invalid params     | Type mismatch       | Verify parameter types        |
+| Auth failed        | Missing credentials | Configure authentication      |
 
 ---
 

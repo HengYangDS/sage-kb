@@ -7,7 +7,8 @@
 
 ## Overview
 
-This template captures the current state of an AI collaboration session. It enables seamless continuation after interruptions, provides context for session recovery, and helps maintain focus during complex multi-step tasks.
+This template captures the current state of an AI collaboration session. It enables seamless continuation after
+interruptions, provides context for session recovery, and helps maintain focus during complex multi-step tasks.
 
 ---
 
@@ -123,6 +124,7 @@ This template captures the current state of an AI collaboration session. It enab
 ---
 
 *Session state from SAGE Knowledge Base*
+
 ```
 
 ---

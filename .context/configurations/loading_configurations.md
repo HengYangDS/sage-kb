@@ -14,12 +14,12 @@
 
 ### 1.1 Strategy Overview
 
-| Strategy | Description | Use Case |
-|----------|-------------|----------|
-| **eager** | Load all content at startup | Small KB, fast access needed |
-| **lazy** | Load on first access | Large KB, memory constrained |
-| **on-demand** | Load specific items only | Very large KB, selective use |
-| **hybrid** | Core eager, rest lazy | Balanced approach (default) |
+| Strategy      | Description                 | Use Case                     |
+|---------------|-----------------------------|------------------------------|
+| **eager**     | Load all content at startup | Small KB, fast access needed |
+| **lazy**      | Load on first access        | Large KB, memory constrained |
+| **on-demand** | Load specific items only    | Very large KB, selective use |
+| **hybrid**    | Core eager, rest lazy       | Balanced approach (default)  |
 
 ### 1.2 Strategy Selection
 
@@ -40,12 +40,12 @@ loading:
 
 ### 1.3 Strategy Comparison
 
-| Aspect | Eager | Lazy | On-Demand | Hybrid |
-|--------|-------|------|-----------|--------|
-| Startup time | Slow | Fast | Fast | Medium |
-| First access | Fast | Slow | Slow | Mixed |
-| Memory usage | High | Low | Lowest | Medium |
-| Complexity | Low | Medium | High | Medium |
+| Aspect       | Eager | Lazy   | On-Demand | Hybrid |
+|--------------|-------|--------|-----------|--------|
+| Startup time | Slow  | Fast   | Fast      | Medium |
+| First access | Fast  | Slow   | Slow      | Mixed  |
+| Memory usage | High  | Low    | Lowest    | Medium |
+| Complexity   | Low   | Medium | High      | Medium |
 
 ---
 
@@ -133,12 +133,12 @@ knowledge:
 
 ### 3.1 Load Triggers
 
-| Trigger | Description | Example |
-|---------|-------------|---------|
-| `startup` | Load at application start | Core layer |
-| `first_access` | Load on first request | Lazy layers |
-| `explicit` | Load only when requested | On-demand |
-| `scheduled` | Load at specific times | Background refresh |
+| Trigger        | Description               | Example            |
+|----------------|---------------------------|--------------------|
+| `startup`      | Load at application start | Core layer         |
+| `first_access` | Load on first request     | Lazy layers        |
+| `explicit`     | Load only when requested  | On-demand          |
+| `scheduled`    | Load at specific times    | Background refresh |
 
 ### 3.2 Trigger Configuration
 
@@ -345,13 +345,13 @@ export SAGE__CACHE__ENABLED=false
 
 ### 5.3 Default Values
 
-| Setting | Default | Description |
-|---------|---------|-------------|
-| `loading.strategy` | `hybrid` | Loading strategy |
-| `loading.timeouts.layer_load` | `2s` | Layer load timeout |
-| `loading.fallback.on_timeout` | `partial` | Timeout behavior |
-| `cache.enabled` | `true` | Enable caching |
-| `cache.ttl.default` | `1800` | Default TTL (30 min) |
+| Setting                       | Default   | Description          |
+|-------------------------------|-----------|----------------------|
+| `loading.strategy`            | `hybrid`  | Loading strategy     |
+| `loading.timeouts.layer_load` | `2s`      | Layer load timeout   |
+| `loading.fallback.on_timeout` | `partial` | Timeout behavior     |
+| `cache.enabled`               | `true`    | Enable caching       |
+| `cache.ttl.default`           | `1800`    | Default TTL (30 min) |
 
 ---
 

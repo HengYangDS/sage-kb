@@ -24,27 +24,27 @@ autonomy_default: L2
 
 ## 2. Relevant Knowledge
 
-| Priority      | Files                                                                                          |
-|---------------|------------------------------------------------------------------------------------------------|
-| **Auto-Load** | `core/principles.md` · `guidelines/python.md` · `practices/engineering/error_handling.md`      |
-| **On-Demand** | `practices/engineering/logging.md` · `practices/engineering/testing_strategy.md`               |
+| Priority      | Files                                                                                     |
+|---------------|-------------------------------------------------------------------------------------------|
+| **Auto-Load** | `core/principles.md` · `guidelines/python.md` · `practices/engineering/error_handling.md` |
+| **On-Demand** | `practices/engineering/logging.md` · `practices/engineering/testing_strategy.md`          |
 
 ---
 
 ## 3. Project Structure
 
-| Directory           | Purpose                       |
-|---------------------|-------------------------------|
-| `src/extractors/`   | Data extraction modules       |
-| `src/transformers/` | Transformation logic          |
-| `src/loaders/`      | Data loading modules          |
-| `src/validators/`   | Data quality checks           |
-| `src/models/`       | Data models and schemas       |
-| `src/utils/`        | Utility functions             |
-| `dags/`             | Airflow DAG definitions       |
-| `sql/`              | SQL transformations           |
-| `tests/`            | Test suite                    |
-| `config/`           | Pipeline configurations       |
+| Directory           | Purpose                 |
+|---------------------|-------------------------|
+| `src/extractors/`   | Data extraction modules |
+| `src/transformers/` | Transformation logic    |
+| `src/loaders/`      | Data loading modules    |
+| `src/validators/`   | Data quality checks     |
+| `src/models/`       | Data models and schemas |
+| `src/utils/`        | Utility functions       |
+| `dags/`             | Airflow DAG definitions |
+| `sql/`              | SQL transformations     |
+| `tests/`            | Test suite              |
+| `config/`           | Pipeline configurations |
 
 ---
 
@@ -280,13 +280,13 @@ def test_pipeline_success():
 
 ### 6.1 Validation Rules
 
-| Check Type | Example |
-|------------|---------|
-| **Null check** | `df["id"].notna().all()` |
-| **Unique check** | `df["id"].is_unique` |
-| **Range check** | `df["age"].between(0, 150).all()` |
+| Check Type       | Example                           |
+|------------------|-----------------------------------|
+| **Null check**   | `df["id"].notna().all()`          |
+| **Unique check** | `df["id"].is_unique`              |
+| **Range check**  | `df["age"].between(0, 150).all()` |
 | **Format check** | `df["email"].str.match(r".*@.*")` |
-| **Referential** | Foreign key exists |
+| **Referential**  | Foreign key exists                |
 
 ### 6.2 Validation Framework
 
@@ -335,39 +335,39 @@ validator = (
 
 ## 7. Common Tasks
 
-| Task                  | Steps                                                           |
-|-----------------------|-----------------------------------------------------------------|
-| **Add Extractor**     | Create class → Implement extract() → Add config → Test          |
-| **Add Transformation**| Define function → Add to chain → Test with sample data          |
-| **Add Validation**    | Define rule → Add to validator → Set failure action             |
-| **Schedule Pipeline** | Create DAG → Set schedule → Configure alerts                    |
-| **Add Data Source**   | Define connection → Create extractor → Update config            |
+| Task                   | Steps                                                  |
+|------------------------|--------------------------------------------------------|
+| **Add Extractor**      | Create class → Implement extract() → Add config → Test |
+| **Add Transformation** | Define function → Add to chain → Test with sample data |
+| **Add Validation**     | Define rule → Add to validator → Set failure action    |
+| **Schedule Pipeline**  | Create DAG → Set schedule → Configure alerts           |
+| **Add Data Source**    | Define connection → Create extractor → Update config   |
 
 ---
 
 ## 8. Autonomy Calibration
 
-| Task Type                  | Level | Notes                       |
-|----------------------------|-------|-----------------------------|
-| Add transformation         | L3-L4 | Test thoroughly             |
-| Modify schema              | L1-L2 | Breaking change risk        |
-| Add validation rule        | L4    | Low risk, improves quality  |
-| Change extraction query    | L2-L3 | Verify data consistency     |
-| Production deployment      | L1    | Full review required        |
-| Performance optimization   | L3    | Benchmark before/after      |
-| Add new data source        | L2    | Security review needed      |
+| Task Type                | Level | Notes                      |
+|--------------------------|-------|----------------------------|
+| Add transformation       | L3-L4 | Test thoroughly            |
+| Modify schema            | L1-L2 | Breaking change risk       |
+| Add validation rule      | L4    | Low risk, improves quality |
+| Change extraction query  | L2-L3 | Verify data consistency    |
+| Production deployment    | L1    | Full review required       |
+| Performance optimization | L3    | Benchmark before/after     |
+| Add new data source      | L2    | Security review needed     |
 
 ---
 
 ## 9. Quick Commands
 
-| Category   | Commands                                                 |
-|------------|----------------------------------------------------------|
-| **Run**    | `python -m pipelines.main` · `airflow dags trigger`      |
-| **Test**   | `pytest tests/` · `pytest --cov=src`                     |
-| **Lint**   | `ruff check .` · `mypy src/`                             |
-| **DB**     | `dbt run` · `dbt test` · `alembic upgrade head`          |
-| **Debug**  | `python -m pipelines.debug --sample 100`                 |
+| Category  | Commands                                            |
+|-----------|-----------------------------------------------------|
+| **Run**   | `python -m pipelines.main` · `airflow dags trigger` |
+| **Test**  | `pytest tests/` · `pytest --cov=src`                |
+| **Lint**  | `ruff check .` · `mypy src/`                        |
+| **DB**    | `dbt run` · `dbt test` · `alembic upgrade head`     |
+| **Debug** | `python -m pipelines.debug --sample 100`            |
 
 ---
 

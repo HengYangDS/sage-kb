@@ -28,21 +28,21 @@
 
 ### 1.2 Review Order
 
-| Phase | Focus | Files |
-|-------|-------|-------|
-| 1 | Standards document | `standards.md` |
-| 2 | Index files | `*/index.md` |
-| 3 | Core content | High-traffic files |
-| 4 | Supporting content | Remaining files |
+| Phase | Focus              | Files              |
+|-------|--------------------|--------------------|
+| 1     | Standards document | `standards.md`     |
+| 2     | Index files        | `*/index.md`       |
+| 3     | Core content       | High-traffic files |
+| 4     | Supporting content | Remaining files    |
 
 ### 1.3 Batch Processing Tips
 
-| Tip | Benefit |
-|-----|---------|
-| Process by directory | Maintain context |
-| Fix one issue type at a time | Consistency |
-| Use search/replace patterns | Efficiency |
-| Verify after each batch | Catch errors early |
+| Tip                          | Benefit            |
+|------------------------------|--------------------|
+| Process by directory         | Maintain context   |
+| Fix one issue type at a time | Consistency        |
+| Use search/replace patterns  | Efficiency         |
+| Verify after each batch      | Catch errors early |
 
 ---
 
@@ -89,31 +89,31 @@
 
 ### 3.1 High-Impact Patterns
 
-| Pattern | Token Savings | Application |
-|---------|---------------|-------------|
-| Tables vs paragraphs | ~40% | Structured comparisons |
-| Lists vs paragraphs | ~30% | Enumerations, steps |
-| Inline TOC vs list | ~50% | Document navigation |
-| References vs repeat | ~70% | Cross-document content |
-| Single-line header | ~60% | Document headers |
+| Pattern              | Token Savings | Application            |
+|----------------------|---------------|------------------------|
+| Tables vs paragraphs | ~40%          | Structured comparisons |
+| Lists vs paragraphs  | ~30%          | Enumerations, steps    |
+| Inline TOC vs list   | ~50%          | Document navigation    |
+| References vs repeat | ~70%          | Cross-document content |
+| Single-line header   | ~60%          | Document headers       |
 
 ### 3.2 Compression Techniques
 
-| Before | After | Savings |
-|--------|-------|---------|
-| "In order to" | "To" | 75% |
-| "It is important to note that" | "Note:" | 80% |
-| Multi-line metadata | Single blockquote | 60% |
-| Verbose explanations | Tables | 40% |
+| Before                         | After             | Savings |
+|--------------------------------|-------------------|---------|
+| "In order to"                  | "To"              | 75%     |
+| "It is important to note that" | "Note:"           | 80%     |
+| Multi-line metadata            | Single blockquote | 60%     |
+| Verbose explanations           | Tables            | 40%     |
 
 ### 3.3 Anti-Patterns to Fix
 
-| Anti-Pattern | Problem | Fix |
-|--------------|---------|-----|
-| Long paragraphs | High token cost | Convert to table/list |
-| Repeated content | Waste | Add cross-reference |
-| Verbose headers | Overhead | Single-line format |
-| Deep nesting | Complexity | Flatten structure |
+| Anti-Pattern     | Problem         | Fix                   |
+|------------------|-----------------|-----------------------|
+| Long paragraphs  | High token cost | Convert to table/list |
+| Repeated content | Waste           | Add cross-reference   |
+| Verbose headers  | Overhead        | Single-line format    |
+| Deep nesting     | Complexity      | Flatten structure     |
 
 ---
 
@@ -121,22 +121,22 @@
 
 ### 4.1 Target Values
 
-| Metric | Target | Rationale |
-|--------|--------|-----------|
-| Tokens per section | < 500 | Manageable context chunks |
-| Lines per file | < 300 | Quick to scan |
-| H2 headings per file | 5-15 | Clear but not fragmented |
-| Nesting depth | ≤ 3 | Avoid complexity |
-| Related links | 3-5 | Sufficient navigation |
+| Metric               | Target | Rationale                 |
+|----------------------|--------|---------------------------|
+| Tokens per section   | < 500  | Manageable context chunks |
+| Lines per file       | < 300  | Quick to scan             |
+| H2 headings per file | 5-15   | Clear but not fragmented  |
+| Nesting depth        | ≤ 3    | Avoid complexity          |
+| Related links        | 3-5    | Sufficient navigation     |
 
 ### 4.2 Measurement
 
-| What to Count | How |
-|---------------|-----|
-| Line count | `wc -l file.md` |
-| H2 count | `grep -c "^## " file.md` |
-| Missing TOC | Lines > 60 AND no "Table of Contents" |
-| Missing Related | No "## Related" section |
+| What to Count   | How                                   |
+|-----------------|---------------------------------------|
+| Line count      | `wc -l file.md`                       |
+| H2 count        | `grep -c "^## " file.md`              |
+| Missing TOC     | Lines > 60 AND no "Table of Contents" |
+| Missing Related | No "## Related" section               |
 
 ---
 
@@ -144,22 +144,22 @@
 
 ### 5.1 Issue Patterns
 
-| Issue | Frequency | Fix |
-|-------|-----------|-----|
-| Missing TOC | High | Add inline TOC |
-| Unnumbered sections | High | Add section numbers |
-| Missing Related | Medium | Add 3-5 links |
-| Non-standard footer | Medium | Replace with standard |
-| Verbose headers | Low | Compress to single line |
+| Issue               | Frequency | Fix                     |
+|---------------------|-----------|-------------------------|
+| Missing TOC         | High      | Add inline TOC          |
+| Unnumbered sections | High      | Add section numbers     |
+| Missing Related     | Medium    | Add 3-5 links           |
+| Non-standard footer | Medium    | Replace with standard   |
+| Verbose headers     | Low       | Compress to single line |
 
 ### 5.2 Prevention
 
-| Practice | Benefit |
-|----------|---------|
+| Practice              | Benefit                      |
+|-----------------------|------------------------------|
 | Use document template | Correct structure from start |
-| Review before commit | Catch issues early |
-| Periodic audits | Maintain consistency |
-| Automate checks | Scale quality assurance |
+| Review before commit  | Catch issues early           |
+| Periodic audits       | Maintain consistency         |
+| Automate checks       | Scale quality assurance      |
 
 ---
 

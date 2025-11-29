@@ -31,6 +31,7 @@ SAGE Knowledge Base must handle operations with varying time requirements:
 ### Problem Statement
 
 Without structured timeout handling:
+
 - Operations may block indefinitely
 - Users experience unresponsive behavior
 - No clear expectation of operation duration
@@ -44,13 +45,13 @@ Implement a **Five-Level Timeout Hierarchy (T1-T5)** with graduated timeouts and
 
 ### Timeout Levels
 
-| Level | Name | Timeout | Scope | Fallback Strategy |
-|-------|------|---------|-------|-------------------|
-| **T1** | Cache | 100ms | Cache lookup | Skip cache, proceed |
-| **T2** | File | 500ms | Single file read | Use fallback content |
-| **T3** | Layer | 2s | Full layer load | Return partial |
-| **T4** | Full | 5s | Complete KB load | Core only |
-| **T5** | Complex | 10s | Analysis operations | Abort + summary |
+| Level  | Name    | Timeout | Scope               | Fallback Strategy    |
+|--------|---------|---------|---------------------|----------------------|
+| **T1** | Cache   | 100ms   | Cache lookup        | Skip cache, proceed  |
+| **T2** | File    | 500ms   | Single file read    | Use fallback content |
+| **T3** | Layer   | 2s      | Full layer load     | Return partial       |
+| **T4** | Full    | 5s      | Complete KB load    | Core only            |
+| **T5** | Complex | 10s     | Analysis operations | Abort + summary      |
 
 ### Golden Rule
 
@@ -169,15 +170,15 @@ timeout:
 
 ### Level Selection Guide
 
-| Operation Type | Recommended Level |
-|----------------|-------------------|
-| Cache check | T1 |
-| Single file read | T2 |
-| Directory scan | T2-T3 |
-| Knowledge layer load | T3 |
-| Full KB initialization | T4 |
-| Code analysis | T5 |
-| Content search | T3-T4 |
+| Operation Type         | Recommended Level |
+|------------------------|-------------------|
+| Cache check            | T1                |
+| Single file read       | T2                |
+| Directory scan         | T2-T3             |
+| Knowledge layer load   | T3                |
+| Full KB initialization | T4                |
+| Code analysis          | T5                |
+| Content search         | T3-T4             |
 
 ---
 

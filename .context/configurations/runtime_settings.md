@@ -14,12 +14,12 @@
 
 ### 1.1 Core Environment Variables
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `SAGE_CONFIG_PATH` | `./sage.yaml` | Path to main config file |
-| `SAGE_ENV` | `production` | Environment (development/production) |
-| `SAGE_DEBUG` | `false` | Enable debug mode |
-| `SAGE_LOG_LEVEL` | `INFO` | Logging level |
+| Variable           | Default       | Description                          |
+|--------------------|---------------|--------------------------------------|
+| `SAGE_CONFIG_PATH` | `./sage.yaml` | Path to main config file             |
+| `SAGE_ENV`         | `production`  | Environment (development/production) |
+| `SAGE_DEBUG`       | `false`       | Enable debug mode                    |
+| `SAGE_LOG_LEVEL`   | `INFO`        | Logging level                        |
 
 ### 1.2 Override Pattern
 
@@ -61,13 +61,13 @@ export SAGE__LOADING__HYBRID__EAGER_LAYERS=core,frameworks
 
 ### 2.1 Logging Levels
 
-| Level | Value | Use Case |
-|-------|-------|----------|
-| `DEBUG` | 10 | Detailed debugging information |
-| `INFO` | 20 | General operational information |
-| `WARNING` | 30 | Warning messages |
-| `ERROR` | 40 | Error conditions |
-| `CRITICAL` | 50 | Critical failures |
+| Level      | Value | Use Case                        |
+|------------|-------|---------------------------------|
+| `DEBUG`    | 10    | Detailed debugging information  |
+| `INFO`     | 20    | General operational information |
+| `WARNING`  | 30    | Warning messages                |
+| `ERROR`    | 40    | Error conditions                |
+| `CRITICAL` | 50    | Critical failures               |
 
 ### 2.2 Logging Configuration
 
@@ -102,6 +102,7 @@ logging:
 ### 2.3 Log Format Examples
 
 **JSON Format** (default for production):
+
 ```json
 {
   "timestamp": "2025-11-29T10:30:00.123Z",
@@ -115,11 +116,13 @@ logging:
 ```
 
 **Text Format** (development):
+
 ```
 2025-11-29 10:30:00.123 INFO  [sage.core.loader] Knowledge loaded layer=core count=42 duration_ms=150
 ```
 
 **Rich Format** (CLI development):
+
 ```
 10:30:00 │ INFO  │ Knowledge loaded                    │ layer=core count=42
 ```

@@ -99,11 +99,11 @@ timeout:
 
 ## 6. Related
 
-| Document | Location | Description |
-|----------|----------|-------------|
-| Timeout Patterns | `content/frameworks/resilience/timeout_patterns.md` | Universal timeout and resilience patterns |
-| Main Configuration | `sage.yaml` | Runtime timeout settings |
-| Defaults | `content/core/defaults.md` | Default timeout values reference |
+| Document           | Location                                            | Description                               |
+|--------------------|-----------------------------------------------------|-------------------------------------------|
+| Timeout Patterns   | `content/frameworks/resilience/timeout_patterns.md` | Universal timeout and resilience patterns |
+| Main Configuration | `sage.yaml`                                         | Runtime timeout settings                  |
+| Defaults           | `content/core/defaults.md`                          | Default timeout values reference          |
 
 ---
 

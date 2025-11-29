@@ -70,7 +70,7 @@ mcp:
     enabled: false                     # Enable rate limiting
     requests_per_minute: 60            # Max requests per minute
     burst_size: 10                     # Burst allowance
-    per_tool_limits:                   # Per-tool rate limits
+    per_tool_limits: # Per-tool rate limits
       analyze_code:
         requests_per_minute: 20
       search_knowledge:

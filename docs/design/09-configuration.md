@@ -11,7 +11,8 @@ status: production-ready
 
 ## Overview
 
-SAGE uses a modular configuration system where settings are organized into focused YAML files in the `config/` directory, with `sage.yaml` serving as the main entry point.
+SAGE uses a modular configuration system where settings are organized into focused YAML files in the `config/`
+directory, with `sage.yaml` serving as the main entry point.
 
 ### Design Philosophy
 
@@ -65,31 +66,31 @@ SAGE_TIMEOUTS__T1_INSTANT=200
 
 ### Main Entry Point
 
-| File | Purpose |
-|------|---------|
+| File        | Purpose                                     |
+|-------------|---------------------------------------------|
 | `sage.yaml` | Main configuration, metadata, includes list |
 
 ### Modular Config Files
 
-| File | Purpose | Key Settings |
-|------|---------|--------------|
-| `config/core/timeout.yaml` | Timeout hierarchy & circuit breaker | operations, circuit_breaker, fallback |
-| `config/knowledge/loading.yaml` | Smart loading configuration | always, max_tokens, default_layers |
-| `config/knowledge/triggers.yaml` | Keyword-triggered content loading | 9 triggers with bilingual keywords |
-| `config/capabilities/plugins.yaml` | Plugin configuration | bundled plugins, cache settings |
-| `config/capabilities/features.yaml` | Feature flags | optimization features, service toggles |
-| `config/core/di.yaml` | Dependency injection | service registration, lifetimes |
-| `config/core/memory.yaml` | Memory persistence | store backend, session settings |
-| `config/core/logging.yaml` | Logging configuration | level, format, timestamps |
-| `config/capabilities/quality.yaml` | Quality thresholds | coverage, complexity, line limits |
-| `config/knowledge/token_budget.yaml` | Token management | max_tokens, thresholds, auto_actions |
-| `config/knowledge/guidelines.yaml` | Guideline section mapping | 34 aliases to guideline files |
-| `config/services/api.yaml` | HTTP API service | cors, rate_limit, docs |
+| File                                 | Purpose                             | Key Settings                           |
+|--------------------------------------|-------------------------------------|----------------------------------------|
+| `config/core/timeout.yaml`           | Timeout hierarchy & circuit breaker | operations, circuit_breaker, fallback  |
+| `config/knowledge/loading.yaml`      | Smart loading configuration         | always, max_tokens, default_layers     |
+| `config/knowledge/triggers.yaml`     | Keyword-triggered content loading   | 9 triggers with bilingual keywords     |
+| `config/capabilities/plugins.yaml`   | Plugin configuration                | bundled plugins, cache settings        |
+| `config/capabilities/features.yaml`  | Feature flags                       | optimization features, service toggles |
+| `config/core/di.yaml`                | Dependency injection                | service registration, lifetimes        |
+| `config/core/memory.yaml`            | Memory persistence                  | store backend, session settings        |
+| `config/core/logging.yaml`           | Logging configuration               | level, format, timestamps              |
+| `config/capabilities/quality.yaml`   | Quality thresholds                  | coverage, complexity, line limits      |
+| `config/knowledge/token_budget.yaml` | Token management                    | max_tokens, thresholds, auto_actions   |
+| `config/knowledge/guidelines.yaml`   | Guideline section mapping           | 34 aliases to guideline files          |
+| `config/services/api.yaml`           | HTTP API service                    | cors, rate_limit, docs                 |
 
 ### Data Files
 
-| File | Purpose |
-|------|---------|
+| File                               | Purpose                                   |
+|------------------------------------|-------------------------------------------|
 | `src/sage/data/fallback_core.yaml` | Fallback content for graceful degradation |
 
 ---
@@ -411,12 +412,12 @@ class SAGEConfig:
 
 ## Related Documentation
 
-| Document | Purpose |
-|----------|---------|
-| `docs/design/04-timeout-loading.md` | Timeout hierarchy details |
-| `docs/design/05-plugin-memory.md` | Plugin configuration |
-| `content/frameworks/timeout/hierarchy.md` | Timeout framework reference |
-| `content/core/defaults.md` | Default behavior documentation |
+| Document                                  | Purpose                        |
+|-------------------------------------------|--------------------------------|
+| `docs/design/04-timeout-loading.md`       | Timeout hierarchy details      |
+| `docs/design/05-plugin-memory.md`         | Plugin configuration           |
+| `content/frameworks/timeout/hierarchy.md` | Timeout framework reference    |
+| `content/core/defaults.md`                | Default behavior documentation |
 
 ---
 

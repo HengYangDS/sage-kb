@@ -149,7 +149,7 @@ autonomy:
 
     # Automatic feedback
     auto_collect: true                 # Automatically collect outcome feedback
-    success_indicators:                # How to determine success
+    success_indicators: # How to determine success
       - task_completed
       - no_errors
       - user_accepted
@@ -182,7 +182,7 @@ autonomy:
 
     # Scope restrictions
     scope:
-      allowed_directories:             # Empty = all allowed
+      allowed_directories: # Empty = all allowed
         - "src/"
         - "tests/"
         - "docs/"
@@ -199,7 +199,7 @@ autonomy:
     # Time-based restrictions
     time_restrictions:
       enabled: false
-      quiet_hours:                     # Require confirmation during these hours
+      quiet_hours: # Require confirmation during these hours
         start: "22:00"
         end: "06:00"
         timezone: "local"

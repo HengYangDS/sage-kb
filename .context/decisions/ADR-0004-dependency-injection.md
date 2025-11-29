@@ -50,11 +50,11 @@ class DIContainer:
 
 ### Lifetime Modes
 
-| Lifetime | Behavior | Use Case |
-|----------|----------|----------|
-| **SINGLETON** | One instance for container lifetime | Config, EventBus, shared state |
-| **TRANSIENT** | New instance per resolution | Stateless services, validators |
-| **SCOPED** | One instance per scope | Request handlers, session context |
+| Lifetime      | Behavior                            | Use Case                          |
+|---------------|-------------------------------------|-----------------------------------|
+| **SINGLETON** | One instance for container lifetime | Config, EventBus, shared state    |
+| **TRANSIENT** | New instance per resolution         | Stateless services, validators    |
+| **SCOPED**    | One instance per scope              | Request handlers, session context |
 
 ### Global Access Pattern
 

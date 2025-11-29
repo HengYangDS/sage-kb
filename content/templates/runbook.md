@@ -54,12 +54,12 @@ curl -s https://service.example.com/health | jq
 
 ### Key Metrics
 
-| Metric | Normal Range | Alert Threshold |
-|--------|--------------|-----------------|
-| Response time (p99) | < 200ms | > 500ms |
-| Error rate | < 0.1% | > 1% |
-| CPU usage | < 70% | > 85% |
-| Memory usage | < 80% | > 90% |
+| Metric              | Normal Range | Alert Threshold |
+|---------------------|--------------|-----------------|
+| Response time (p99) | < 200ms      | > 500ms         |
+| Error rate          | < 0.1%       | > 1%            |
+| CPU usage           | < 70%        | > 85%           |
+| Memory usage        | < 80%        | > 90%           |
 
 ---
 
@@ -112,21 +112,21 @@ curl -s https://service.example.com/health | jq
 
 ### Severity Levels
 
-| Level | Description | Response Time | Examples |
-|-------|-------------|---------------|----------|
-| SEV1 | Critical outage | Immediate | Service down |
-| SEV2 | Major degradation | 15 min | High error rate |
-| SEV3 | Minor issue | 1 hour | Slow performance |
-| SEV4 | Low impact | Next business day | Cosmetic issues |
+| Level | Description       | Response Time     | Examples         |
+|-------|-------------------|-------------------|------------------|
+| SEV1  | Critical outage   | Immediate         | Service down     |
+| SEV2  | Major degradation | 15 min            | High error rate  |
+| SEV3  | Minor issue       | 1 hour            | Slow performance |
+| SEV4  | Low impact        | Next business day | Cosmetic issues  |
 
 ### Escalation Path
 
-| Level | Contact | Method |
-|-------|---------|--------|
-| L1 | On-call engineer | PagerDuty |
-| L2 | Team lead | Slack + Phone |
-| L3 | Engineering manager | Phone |
-| L4 | VP Engineering | Phone |
+| Level | Contact             | Method        |
+|-------|---------------------|---------------|
+| L1    | On-call engineer    | PagerDuty     |
+| L2    | Team lead           | Slack + Phone |
+| L3    | Engineering manager | Phone         |
+| L4    | VP Engineering      | Phone         |
 
 ---
 
@@ -135,10 +135,12 @@ curl -s https://service.example.com/health | jq
 ### [Issue 1: e.g., High Latency]
 
 **Symptoms**:
+
 - [Symptom 1]
 - [Symptom 2]
 
 **Diagnosis**:
+
 ```bash
 # Check current latency
 [diagnostic command]
@@ -148,10 +150,12 @@ curl -s https://service.example.com/health | jq
 ```
 
 **Resolution**:
+
 1. [Step 1]
 2. [Step 2]
 
 **Root Causes**:
+
 - [Common cause 1]
 - [Common cause 2]
 
@@ -160,15 +164,18 @@ curl -s https://service.example.com/health | jq
 ### [Issue 2: e.g., Out of Memory]
 
 **Symptoms**:
+
 - [Symptom 1]
 - [Symptom 2]
 
 **Diagnosis**:
+
 ```bash
 [diagnostic command]
 ```
 
 **Resolution**:
+
 1. [Step 1]
 2. [Step 2]
 
@@ -178,11 +185,11 @@ curl -s https://service.example.com/health | jq
 
 ### Scheduled Maintenance
 
-| Task | Frequency | Duration | Impact |
-|------|-----------|----------|--------|
-| [Task 1] | Weekly | 5 min | None |
-| [Task 2] | Monthly | 30 min | Degraded |
-| [Task 3] | Quarterly | 2 hours | Outage |
+| Task     | Frequency | Duration | Impact   |
+|----------|-----------|----------|----------|
+| [Task 1] | Weekly    | 5 min    | None     |
+| [Task 2] | Monthly   | 30 min   | Degraded |
+| [Task 3] | Quarterly | 2 hours  | Outage   |
 
 ### Pre-Maintenance Checklist
 
@@ -203,24 +210,25 @@ curl -s https://service.example.com/health | jq
 
 ## Contacts
 
-| Role | Name | Contact |
-|------|------|---------|
-| Primary On-Call | [Name] | [Contact] |
-| Secondary On-Call | [Name] | [Contact] |
-| Team Lead | [Name] | [Contact] |
-| External Vendor | [Company] | [Contact] |
+| Role              | Name      | Contact   |
+|-------------------|-----------|-----------|
+| Primary On-Call   | [Name]    | [Contact] |
+| Secondary On-Call | [Name]    | [Contact] |
+| Team Lead         | [Name]    | [Contact] |
+| External Vendor   | [Company] | [Contact] |
 
 ---
 
 ## Changelog
 
-| Date | Author | Changes |
-|------|--------|---------|
+| Date       | Author | Changes         |
+|------------|--------|-----------------|
 | YYYY-MM-DD | [Name] | Initial version |
 
 ---
 
 *Runbook from SAGE Knowledge Base*
+
 ```
 
 ---

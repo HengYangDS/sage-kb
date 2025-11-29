@@ -150,7 +150,7 @@ content:
       code_blocks: true                # Extract code blocks
 
     # Required metadata fields
-    required_fields: []                # e.g., ["title", "description"]
+    required_fields: [ ]                # e.g., ["title", "description"]
 
     # Default metadata values
     defaults:

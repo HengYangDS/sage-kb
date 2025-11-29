@@ -16,8 +16,6 @@ import time
 from pathlib import Path
 from typing import Any
 
-import yaml
-
 # MCP imports
 try:
     from mcp.server.fastmcp import FastMCP
@@ -157,8 +155,7 @@ def _get_mcp_metadata() -> tuple[str, str]:
     config = _load_config()
     name = config.get("name", "sage-kb")
     description = config.get(
-        "description",
-        "SAGE Knowledge Base - Production-grade knowledge management"
+        "description", "SAGE Knowledge Base - Production-grade knowledge management"
     )
     return name, description
 
@@ -701,7 +698,7 @@ if MCP_AVAILABLE and app is not None:
                 project_root = Path(__file__).parent.parent.parent.parent
                 outputs_dir = project_root / ".outputs"
                 outputs_dir.mkdir(parents=True, exist_ok=True)
-                
+
                 # Use just the filename if a path is provided
                 output_filename = Path(output_file).name
                 output_path = outputs_dir / output_filename

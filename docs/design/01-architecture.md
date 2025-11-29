@@ -823,31 +823,31 @@ This project requires Python 3.12+ and adopts modern Python features progressive
 
 ### Python 3.12 Features (Required)
 
-| Feature               | PEP     | Application           | Code Example                       |
-|-----------------------|---------|-----------------------|------------------------------------|
-| Type parameter syntax | PEP 695 | Generic classes       | `class Loader[T]:`                 |
-| Type aliases          | PEP 695 | Type definitions      | `type LoadResult = dict[str, Any]` |
-| Union syntax          | -       | Optional types        | `value: str \| None`               |
-| @override decorator   | PEP 698 | Method overrides      | `@override def load():`            |
-| Improved f-strings    | PEP 701 | String formatting     | Nested quotes, multiline           |
-| Faster isinstance()   | -       | Protocol checks       | 2-20x speedup                      |
+| Feature               | PEP     | Application       | Code Example                       |
+|-----------------------|---------|-------------------|------------------------------------|
+| Type parameter syntax | PEP 695 | Generic classes   | `class Loader[T]:`                 |
+| Type aliases          | PEP 695 | Type definitions  | `type LoadResult = dict[str, Any]` |
+| Union syntax          | -       | Optional types    | `value: str \| None`               |
+| @override decorator   | PEP 698 | Method overrides  | `@override def load():`            |
+| Improved f-strings    | PEP 701 | String formatting | Nested quotes, multiline           |
+| Faster isinstance()   | -       | Protocol checks   | 2-20x speedup                      |
 
 ### Python 3.13 Features (Optional/Forward-Compatible)
 
-| Feature                 | PEP     | Application        | Code Example                    |
-|-------------------------|---------|--------------------|---------------------------------|
-| Type parameter defaults | PEP 696 | Generic defaults   | `class Cache[K = str]:`         |
-| @deprecated decorator   | PEP 702 | API deprecation    | `@deprecated("Use v2")`         |
-| typing.ReadOnly         | PEP 705 | Immutable fields   | `ReadOnly[str]`                 |
-| typing.TypeIs           | PEP 742 | Type narrowing     | `def is_str(x) -> TypeIs[str]:` |
+| Feature                 | PEP     | Application      | Code Example                    |
+|-------------------------|---------|------------------|---------------------------------|
+| Type parameter defaults | PEP 696 | Generic defaults | `class Cache[K = str]:`         |
+| @deprecated decorator   | PEP 702 | API deprecation  | `@deprecated("Use v2")`         |
+| typing.ReadOnly         | PEP 705 | Immutable fields | `ReadOnly[str]`                 |
+| typing.TypeIs           | PEP 742 | Type narrowing   | `def is_str(x) -> TypeIs[str]:` |
 
 ### Python 3.14 Features (Future-Ready)
 
-| Feature                 | PEP         | Application        | Notes                    |
-|-------------------------|-------------|--------------------|--------------------------|
-| Template strings        | PEP 750     | Safe templating    | t-string literals        |
-| Deferred annotations    | PEP 649/749 | Lazy evaluation    | No `__future__` import   |
-| concurrent.interpreters | PEP 734     | True parallelism   | Multi-interpreter stdlib |
+| Feature                 | PEP         | Application      | Notes                    |
+|-------------------------|-------------|------------------|--------------------------|
+| Template strings        | PEP 750     | Safe templating  | t-string literals        |
+| Deferred annotations    | PEP 649/749 | Lazy evaluation  | No `__future__` import   |
+| concurrent.interpreters | PEP 734     | True parallelism | Multi-interpreter stdlib |
 
 ### Modern Python Code Patterns
 

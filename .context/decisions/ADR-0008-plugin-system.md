@@ -57,13 +57,13 @@ Implement a **Protocol-Based Plugin System** with bundled and external plugin su
 
 ### Plugin Types
 
-| Type | Protocol | Purpose |
-|------|----------|---------|
-| Analyzer | `AnalyzerPlugin` | Code/content analysis |
-| Checker | `CheckerPlugin` | Validation and health checks |
-| Monitor | `MonitorPlugin` | Performance and usage monitoring |
-| Source | `SourcePlugin` | Custom knowledge sources |
-| Formatter | `FormatterPlugin` | Output formatting |
+| Type      | Protocol          | Purpose                          |
+|-----------|-------------------|----------------------------------|
+| Analyzer  | `AnalyzerPlugin`  | Code/content analysis            |
+| Checker   | `CheckerPlugin`   | Validation and health checks     |
+| Monitor   | `MonitorPlugin`   | Performance and usage monitoring |
+| Source    | `SourcePlugin`    | Custom knowledge sources         |
+| Formatter | `FormatterPlugin` | Output formatting                |
 
 ---
 

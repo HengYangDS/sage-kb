@@ -1058,6 +1058,7 @@ Traditional mocking (`unittest.mock`) has limitations. SAGE recommends these sup
 #### 1. Property-Based Testing with Hypothesis
 
 **Why Hypothesis over Mocks?**
+
 - Mocks test specific cases you think of; Hypothesis finds cases you didn't
 - Automatically generates edge cases and boundary conditions
 - Reduces test maintenance when APIs change
@@ -1142,20 +1143,21 @@ addopts = "--hypothesis-profile=ci"
 
 **When to Use Hypothesis**:
 
-| Scenario | Use Hypothesis | Use Traditional Mock |
-|----------|----------------|---------------------|
-| Data transformation | ✅ Yes | ❌ No |
-| Invariant properties | ✅ Yes | ❌ No |
-| Edge case discovery | ✅ Yes | ❌ No |
-| External API calls | ❌ No | ✅ Yes |
-| Specific error paths | ❌ No | ✅ Yes |
-| Time-dependent code | ❌ No | ✅ Yes (freezegun) |
+| Scenario             | Use Hypothesis | Use Traditional Mock |
+|----------------------|----------------|----------------------|
+| Data transformation  | ✅ Yes          | ❌ No                 |
+| Invariant properties | ✅ Yes          | ❌ No                 |
+| Edge case discovery  | ✅ Yes          | ❌ No                 |
+| External API calls   | ❌ No           | ✅ Yes                |
+| Specific error paths | ❌ No           | ✅ Yes                |
+| Time-dependent code  | ❌ No           | ✅ Yes (freezegun)    |
 
 ---
 
 #### 2. Test Data Factories with Factory Boy
 
 **Why Factory Boy over Manual Fixtures?**
+
 - DRY: Define model structure once, reuse everywhere
 - Flexible: Override only what matters for each test
 - Realistic: Generates connected, valid object graphs
@@ -1276,13 +1278,13 @@ def fake_config_yaml():
 
 #### 4. Comparison: Mock Alternatives
 
-| Technique | Best For | Avoid When |
-|-----------|----------|------------|
-| **Hypothesis** | Input validation, data transforms, invariants | External I/O, specific scenarios |
-| **Factory Boy** | Complex object graphs, ORM models | Simple primitives |
-| **Faker** | Realistic strings, dates, names | Structured domain objects |
-| **unittest.mock** | External boundaries, specific errors | Internal logic, data transforms |
-| **pytest fixtures** | Shared setup, resource management | Per-test variations |
+| Technique           | Best For                                      | Avoid When                       |
+|---------------------|-----------------------------------------------|----------------------------------|
+| **Hypothesis**      | Input validation, data transforms, invariants | External I/O, specific scenarios |
+| **Factory Boy**     | Complex object graphs, ORM models             | Simple primitives                |
+| **Faker**           | Realistic strings, dates, names               | Structured domain objects        |
+| **unittest.mock**   | External boundaries, specific errors          | Internal logic, data transforms  |
+| **pytest fixtures** | Shared setup, resource management             | Per-test variations              |
 
 **Decision Tree**:
 
@@ -1387,18 +1389,18 @@ class TestLoaderTimeout:
 
 #### Allure Decorators Reference
 
-| Decorator | Purpose | Example |
-|-----------|---------|---------|
-| `@allure.epic` | Top-level grouping | "Knowledge Management" |
-| `@allure.feature` | Feature area | "Search", "Loading" |
-| `@allure.story` | User story | "As a user, I can search" |
-| `@allure.severity` | Priority level | BLOCKER, CRITICAL, NORMAL, MINOR, TRIVIAL |
-| `@allure.title` | Test display name | Human-readable title |
-| `@allure.description` | Detailed description | Markdown supported |
-| `@allure.step` | Test step (context manager) | Logical test phases |
-| `@allure.attach` | Attach artifacts | Screenshots, logs, data |
-| `@allure.link` | External links | Issue tracker, docs |
-| `@allure.issue` | Bug/issue link | "SAGE-123" |
+| Decorator             | Purpose                     | Example                                   |
+|-----------------------|-----------------------------|-------------------------------------------|
+| `@allure.epic`        | Top-level grouping          | "Knowledge Management"                    |
+| `@allure.feature`     | Feature area                | "Search", "Loading"                       |
+| `@allure.story`       | User story                  | "As a user, I can search"                 |
+| `@allure.severity`    | Priority level              | BLOCKER, CRITICAL, NORMAL, MINOR, TRIVIAL |
+| `@allure.title`       | Test display name           | Human-readable title                      |
+| `@allure.description` | Detailed description        | Markdown supported                        |
+| `@allure.step`        | Test step (context manager) | Logical test phases                       |
+| `@allure.attach`      | Attach artifacts            | Screenshots, logs, data                   |
+| `@allure.link`        | External links              | Issue tracker, docs                       |
+| `@allure.issue`       | Bug/issue link              | "SAGE-123"                                |
 
 #### SAGE Test Hierarchy
 

@@ -17,7 +17,9 @@
 | File                                       | Purpose                       |
 |--------------------------------------------|-------------------------------|
 | `ai_collaboration/context_management.md`   | Managing shared context       |
+| `ai_collaboration/knowledge_capture.md`    | When and how to capture knowledge |
 | `ai_collaboration/knowledge_extraction.md` | Extracting reusable knowledge |
+| `ai_collaboration/session_management.md`   | Managing AI collaboration sessions |
 | `ai_collaboration/token_optimization.md`   | Token efficiency              |
 | `ai_collaboration/workflow.md`             | Collaboration workflows       |
 
@@ -29,12 +31,12 @@
 
 ### 1.3 Documentation
 
-| File                                          | Purpose                          |
-|-----------------------------------------------|----------------------------------|
-| `documentation/standards.md`                  | Documentation format standards   |
-| `documentation/optimization_workflow.md`      | Batch optimization process       |
-| `documentation/knowledge_organization.md`     | Knowledge hierarchy patterns     |
-| `documentation/project_directory_structure.md`| Project directory patterns       |
+| File                                           | Purpose                        |
+|------------------------------------------------|--------------------------------|
+| `documentation/standards.md`                   | Documentation format standards |
+| `documentation/optimization_workflow.md`       | Batch optimization process     |
+| `documentation/knowledge_organization.md`      | Knowledge hierarchy patterns   |
+| `documentation/project_directory_structure.md` | Project directory patterns     |
 
 ### 1.4 Engineering
 
@@ -44,12 +46,15 @@
 | `engineering/batch_optimization.md`      | Batch processing             |
 | `engineering/ci_cd.md`                   | CI/CD configuration          |
 | `engineering/code_review.md`             | Code review practices        |
+| `engineering/dependency_management.md`   | Dependency version control   |
 | `engineering/error_handling.md`          | Error handling patterns      |
 | `engineering/feature_flags.md`           | Feature flag patterns        |
 | `engineering/git_workflow.md`            | Git branching and commits    |
 | `engineering/incremental_improvement.md` | Incremental changes          |
 | `engineering/logging.md`                 | Logging practices            |
 | `engineering/patterns.md`                | Engineering patterns         |
+| `engineering/performance.md`             | Performance optimization     |
+| `engineering/security.md`                | Security best practices      |
 | `engineering/testing_strategy.md`        | Testing strategies           |
 | `engineering/yaml_conventions.md`        | YAML configuration standards |
 

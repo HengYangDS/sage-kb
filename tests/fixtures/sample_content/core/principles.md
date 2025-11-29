@@ -7,16 +7,19 @@
 The SAGE Knowledge Base follows the Xin-Da-Ya philosophy:
 
 ### 信 (Xin/Faithfulness)
+
 - Accurate information
 - Reliable behavior
 - Testable results
 
 ### 达 (Da/Clarity)
+
 - Clear communication
 - Maintainable code
 - Structured organization
 
 ### 雅 (Ya/Elegance)
+
 - Refined design
 - Balanced approach
 - Sustainable practices

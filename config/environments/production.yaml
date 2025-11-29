@@ -121,7 +121,7 @@ services:
     port: 8080
     cors:
       enabled: true
-      origins:                         # Restrict to known origins
+      origins: # Restrict to known origins
         - "https://your-domain.com"
     docs:
       enabled: false                   # Disable docs in production

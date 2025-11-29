@@ -102,13 +102,13 @@ sage info --config
 
 ### 2.4 Common Options
 
-| Option | Short | Description |
-|--------|-------|-------------|
-| `--help` | `-h` | Show help message |
-| `--version` | `-v` | Show version |
-| `--verbose` | | Enable verbose output |
-| `--format` | `-f` | Output format (text/json/yaml) |
-| `--layer` | `-l` | Filter by layer |
+| Option      | Short | Description                    |
+|-------------|-------|--------------------------------|
+| `--help`    | `-h`  | Show help message              |
+| `--version` | `-v`  | Show version                   |
+| `--verbose` |       | Enable verbose output          |
+| `--format`  | `-f`  | Output format (text/json/yaml) |
+| `--layer`   | `-l`  | Filter by layer                |
 
 ---
 
@@ -116,7 +116,8 @@ sage info --config
 
 ### 3.1 What is MCP?
 
-MCP (Model Context Protocol) enables AI agents to access SAGE knowledge directly. This allows AI assistants to retrieve relevant context during conversations.
+MCP (Model Context Protocol) enables AI agents to access SAGE knowledge directly. This allows AI assistants to retrieve
+relevant context during conversations.
 
 ### 3.2 Start MCP Server
 
@@ -208,12 +209,12 @@ asyncio.run(main())
 
 SAGE organizes knowledge into four layers:
 
-| Layer | Content | Priority |
-|-------|---------|----------|
-| **Core** | Fundamental principles and concepts | Highest |
-| **Guidelines** | Standards and conventions | High |
-| **Frameworks** | Reusable patterns and structures | Medium |
-| **Practices** | Specific implementation guidance | Normal |
+| Layer          | Content                             | Priority |
+|----------------|-------------------------------------|----------|
+| **Core**       | Fundamental principles and concepts | Highest  |
+| **Guidelines** | Standards and conventions           | High     |
+| **Frameworks** | Reusable patterns and structures    | Medium   |
+| **Practices**  | Specific implementation guidance    | Normal   |
 
 ### 5.2 Customize Configuration
 
@@ -242,12 +243,12 @@ Place your own knowledge files in:
 
 ### Common Issues
 
-| Issue | Solution |
-|-------|----------|
-| Command not found | Ensure SAGE is in PATH: `pip show sage-kb` |
-| Import error | Check Python version: `python --version` |
+| Issue                 | Solution                                         |
+|-----------------------|--------------------------------------------------|
+| Command not found     | Ensure SAGE is in PATH: `pip show sage-kb`       |
+| Import error          | Check Python version: `python --version`         |
 | MCP connection failed | Verify server is running: `sage serve --verbose` |
-| Slow loading | Check timeout settings in `config/sage.yaml` |
+| Slow loading          | Check timeout settings in `config/sage.yaml`     |
 
 ### Get Help
 

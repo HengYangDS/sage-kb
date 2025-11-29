@@ -8,12 +8,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+
 - AI collaboration patterns documentation (`.context/intelligence/patterns.md`)
 - Comprehensive API documentation (`docs/api/`)
 - User guides (`docs/guides/`)
 - Extended scenario documentation for knowledge management, MCP integration, and plugin development
 
 ### Changed
+
 - Updated configuration structure to modular YAML format
 - Improved documentation cross-references
 
@@ -22,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 #### Core Infrastructure
+
 - 5-level timeout hierarchy (T1: 100ms → T5: 10s)
 - Circuit breaker pattern for fault tolerance
 - Smart task-based loading with token budget management
@@ -30,6 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Dependency injection container
 
 #### Knowledge Management
+
 - 4-layer knowledge structure (Core, Guidelines, Frameworks, Practices)
 - Content directory with reusable knowledge
 - Project context directory (`.context/`)
@@ -37,11 +41,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Modular configuration system (`config/`)
 
 #### Services
+
 - CLI service using Typer + Rich
 - MCP server using FastMCP
 - REST API using FastAPI + Uvicorn (optional)
 
 #### Architecture Decisions
+
 - ADR-0001: Three-layer architecture
 - ADR-0002: SAGE protocol design
 - ADR-0003: Timeout hierarchy
@@ -52,12 +58,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ADR-0008: Plugin system
 
 #### Documentation
+
 - Design documents (`docs/design/00-09`)
 - Code conventions (`.context/conventions/`)
 - Document templates (`content/templates/`)
 - AI collaboration guidelines (`.junie/guidelines.md`)
 
 #### Development Tools
+
 - Ruff for linting and formatting
 - MyPy for type checking
 - pytest with asyncio support
@@ -67,6 +75,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Technical Details
 
 #### Dependencies
+
 - Python 3.12+
 - PyYAML >= 6.0
 - Pydantic >= 2.0
@@ -75,6 +84,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - structlog >= 24.0
 
 #### Optional Dependencies
+
 - MCP support: mcp >= 1.0, httpx >= 0.25, uvicorn >= 0.22
 - Development: pytest, pytest-asyncio, pytest-cov, ruff, mypy
 
@@ -82,11 +92,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Version History
 
-| Version | Date | Highlights |
-|---------|------|------------|
-| 0.1.0 | 2025-11-29 | Initial release with core features |
+| Version | Date       | Highlights                         |
+|---------|------------|------------------------------------|
+| 0.1.0   | 2025-11-29 | Initial release with core features |
 
 ---
 
 [Unreleased]: https://github.com/HengYangDS/sage-kb/compare/v0.1.0...HEAD
+
 [0.1.0]: https://github.com/HengYangDS/sage-kb/releases/tag/v0.1.0

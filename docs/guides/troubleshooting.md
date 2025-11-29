@@ -1,574 +1,544 @@
 # Troubleshooting Guide
 
-> Solutions for common issues with SAGE Knowledge Base
+> Common issues and solutions for SAGE Knowledge Base
 
 ---
 
 ## Table of Contents
 
-[1. Quick Diagnostics](#1-quick-diagnostics) · [2. Installation Issues](#2-installation-issues) · [3. CLI Issues](#3-cli-issues) · [4. MCP Server Issues](#4-mcp-server-issues) · [5. Loading Issues](#5-loading-issues) · [6. Performance Issues](#6-performance-issues) · [7. Configuration Issues](#7-configuration-issues) · [8. Log Analysis](#8-log-analysis) · [9. Getting Help](#9-getting-help)
+[1. Quick Diagnostics](#1-quick-diagnostics) · [2. Installation Issues](#2-installation-issues) · [3. CLI Issues](#3-cli-issues) · [4. MCP Server Issues](#4-mcp-server-issues) · [5. Configuration Issues](#5-configuration-issues) · [6. Performance Issues](#6-performance-issues) · [7. Getting Help](#7-getting-help)
 
 ---
 
 ## 1. Quick Diagnostics
 
-### 1.1 Health Check Command
+### 1.1 Health Check
 
 ```bash
-# Run comprehensive health check
-sage info --verbose
+# Check SAGE installation
+sage info
 
-# Check specific components
-sage info --component loader
-sage info --component mcp
-sage info --component config
+# Verify configuration
+sage config --validate
+
+# Test knowledge base access
+sage get --layer core --timeout 5000
 ```
 
-### 1.2 Common Error Categories
+### 1.2 Common Symptoms
 
-| Error Type | Symptoms | First Check |
-|------------|----------|-------------|
-| **Installation** | Import errors, missing commands | Python version, dependencies |
-| **Configuration** | Invalid config, missing files | Config file syntax |
-| **Loading** | Timeout, empty results | Content paths, permissions |
-| **Performance** | Slow responses | Token budgets, cache |
-| **MCP** | Connection refused | Server status, ports |
-
-### 1.3 Quick Fixes
-
-| Issue | Quick Fix |
-|-------|-----------|
-| Command not found | `pip install -e .` |
-| Config error | `sage info --validate-config` |
-| Timeout | Increase timeout in `config/core/timeout.yaml` |
-| Empty results | Check content path in `config/sage.yaml` |
+| Symptom | Likely Cause | Section |
+|---------|--------------|---------|
+| Command not found | Installation issue | [2.1](#21-command-not-found) |
+| Import errors | Missing dependencies | [2.2](#22-import-errors) |
+| Timeout errors | Performance/config | [6.1](#61-timeout-errors) |
+| Empty results | Path/config issue | [5.2](#52-knowledge-base-not-found) |
+| MCP connection failed | Server/port issue | [4.1](#41-connection-refused) |
 
 ---
 
 ## 2. Installation Issues
 
-### 2.1 Python Version Errors
+### 2.1 Command Not Found
 
-**Symptom**: `Python version X.X is not supported`
+**Symptom**: `sage: command not found` or `'sage' is not recognized`
 
-**Solution**:
-```bash
-# Check Python version
-python --version
+**Solutions**:
 
-# SAGE requires Python 3.12+
-# Install correct version
-pyenv install 3.12.0
-pyenv local 3.12.0
-```
+1. **Verify installation**:
+   ```bash
+   pip show sage-kb
+   ```
 
-### 2.2 Dependency Conflicts
+2. **Check PATH**:
+   ```bash
+   # Find where pip installs scripts
+   python -m site --user-base
+   
+   # Add to PATH if needed (Linux/macOS)
+   export PATH="$PATH:$(python -m site --user-base)/bin"
+   
+   # Windows
+   # Add %APPDATA%\Python\Python312\Scripts to PATH
+   ```
 
-**Symptom**: `pip` reports conflicting dependencies
+3. **Use module directly**:
+   ```bash
+   python -m sage --help
+   ```
 
-**Solution**:
-```bash
-# Create fresh virtual environment
-python -m venv .venv --clear
-source .venv/bin/activate  # Unix
-.venv\Scripts\activate     # Windows
+4. **Reinstall**:
+   ```bash
+   pip uninstall sage-kb
+   pip install sage-kb
+   ```
 
-# Install with fresh dependencies
-pip install -e ".[dev]"
-```
+### 2.2 Import Errors
 
-### 2.3 Missing Optional Dependencies
+**Symptom**: `ModuleNotFoundError` or `ImportError`
 
-**Symptom**: `ModuleNotFoundError: No module named 'mcp'`
+**Solutions**:
 
-**Solution**:
-```bash
-# Install with MCP support
-pip install -e ".[mcp]"
+1. **Check Python version**:
+   ```bash
+   python --version  # Requires 3.12+
+   ```
 
-# Or install all optional dependencies
-pip install -e ".[all]"
-```
+2. **Verify virtual environment**:
+   ```bash
+   # Ensure venv is activated
+   which python  # Should point to venv
+   
+   # Reinstall in correct environment
+   pip install -e ".[all]"
+   ```
 
-### 2.4 Permission Errors
+3. **Install missing dependencies**:
+   ```bash
+   pip install -e ".[all]"
+   ```
+
+### 2.3 Permission Errors
 
 **Symptom**: `PermissionError` during installation
 
-**Solution**:
-```bash
-# Don't use sudo with pip in venv
-# Instead, ensure venv is activated
-which python  # Should show .venv path
+**Solutions**:
 
-# If global install needed (not recommended)
-pip install --user sage-kb
-```
+1. **Use virtual environment** (recommended):
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate  # Linux/macOS
+   .venv\Scripts\activate     # Windows
+   pip install sage-kb
+   ```
+
+2. **User installation**:
+   ```bash
+   pip install --user sage-kb
+   ```
 
 ---
 
 ## 3. CLI Issues
 
-### 3.1 Command Not Found
+### 3.1 No Output
 
-**Symptom**: `sage: command not found`
-
-**Solution**:
-```bash
-# Verify installation
-pip show sage-kb
-
-# Check if scripts directory is in PATH
-python -c "import sage; print(sage.__file__)"
-
-# Run as module if command not found
-python -m sage.services.cli --help
-```
-
-### 3.2 No Output from Commands
-
-**Symptom**: Commands complete but show nothing
+**Symptom**: Commands return nothing or empty results
 
 **Diagnosis**:
 ```bash
-# Enable verbose output
-sage get --layer core --verbose
+# Enable debug output
+sage --debug get --layer core
 
-# Check if content exists
-ls -la content/core/
-
-# Validate configuration
-sage info --validate-config
+# Check configuration
+sage config --show
 ```
 
-### 3.3 Search Returns No Results
+**Solutions**:
 
-**Symptom**: `sage search "term"` returns empty
+1. **Verify content path**:
+   ```bash
+   # Check if content directory exists
+   ls content/  # or: dir content\
+   
+   # Verify in config
+   sage config --show | grep content_root
+   ```
 
-**Possible Causes**:
+2. **Check file permissions**:
+   ```bash
+   # Ensure readable
+   ls -la content/core/
+   ```
 
-| Cause | Check | Fix |
-|-------|-------|-----|
-| Wrong path | `config/sage.yaml` content_root | Update path |
-| No matching content | Manual search | Verify search term exists |
-| Index not built | N/A | Rebuild index (if applicable) |
+### 3.2 Invalid Command Arguments
 
-**Solution**:
-```bash
-# Check content root
-cat config/sage.yaml | grep content_root
+**Symptom**: `Error: Invalid value for...` or argument errors
 
-# Manual verification
-grep -r "search_term" content/
+**Solutions**:
 
-# Try broader search
-sage search "*" --layer core
-```
+1. **Check help**:
+   ```bash
+   sage --help
+   sage get --help
+   ```
+
+2. **Verify layer names**:
+   ```bash
+   # Valid layers: core, guidelines, practices, frameworks, scenarios
+   sage get --layer core
+   ```
+
+3. **Quote special characters**:
+   ```bash
+   sage search "timeout pattern"
+   ```
+
+### 3.3 Encoding Issues
+
+**Symptom**: `UnicodeDecodeError` or garbled output
+
+**Solutions**:
+
+1. **Set UTF-8 encoding**:
+   ```bash
+   # Linux/macOS
+   export LANG=en_US.UTF-8
+   
+   # Windows PowerShell
+   [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+   ```
+
+2. **Check file encoding**:
+   ```python
+   # Files should be UTF-8
+   with open(file, encoding='utf-8') as f:
+       content = f.read()
+   ```
 
 ---
 
 ## 4. MCP Server Issues
 
-### 4.1 Server Won't Start
+### 4.1 Connection Refused
 
-**Symptom**: `sage serve` fails immediately
+**Symptom**: `Connection refused` or `Cannot connect to MCP server`
 
 **Diagnosis**:
 ```bash
-# Check for port conflicts
-netstat -an | grep 8080  # Unix
-netstat -an | findstr 8080  # Windows
+# Check if server is running
+ps aux | grep sage  # Linux/macOS
+tasklist | findstr sage  # Windows
 
-# Check MCP dependencies
-python -c "import mcp; print(mcp.__version__)"
+# Check port availability
+netstat -an | grep 8080
 ```
 
 **Solutions**:
+
+1. **Start the server**:
+   ```bash
+   sage serve --port 8080
+   ```
+
+2. **Check port conflicts**:
+   ```bash
+   # Use different port
+   sage serve --port 8081
+   ```
+
+3. **Verify firewall settings**:
+   ```bash
+   # Allow port in firewall if needed
+   ```
+
+### 4.2 Server Crashes
+
+**Symptom**: Server starts but crashes immediately
+
+**Diagnosis**:
 ```bash
-# Use different port
-sage serve --port 8081
-
-# Check for existing processes
-ps aux | grep sage  # Unix
-tasklist | findstr sage  # Windows
-
-# Kill existing process
-kill <PID>  # Unix
-taskkill /PID <PID>  # Windows
+# Run with debug logging
+sage serve --debug --log-level DEBUG
 ```
 
-### 4.2 Connection Refused
+**Solutions**:
 
-**Symptom**: Client can't connect to MCP server
+1. **Check logs**:
+   ```bash
+   cat .logs/sage.log
+   ```
 
-**Checklist**:
-- [ ] Server is running (`sage serve` active)
-- [ ] Correct port being used
-- [ ] No firewall blocking connection
-- [ ] Client using correct endpoint
+2. **Verify dependencies**:
+   ```bash
+   pip install -e ".[mcp]"
+   ```
 
-**Verification**:
-```bash
-# Test server is responding
-curl http://localhost:8080/health
+3. **Check configuration**:
+   ```bash
+   sage config --validate
+   ```
 
-# Check server logs
-tail -f .logs/sage.log
-```
+### 4.3 Slow Responses
 
-### 4.3 MCP Protocol Errors
+**Symptom**: MCP server responds slowly or times out
 
-**Symptom**: `MCP protocol error` or malformed responses
+**Solutions**:
 
-**Solution**:
-```bash
-# Verify MCP version compatibility
-pip show mcp
+1. **Enable caching**:
+   ```yaml
+   # config/sage.yaml
+   cache:
+     enabled: true
+     ttl: 300
+   ```
 
-# Update to latest
-pip install --upgrade mcp
+2. **Reduce content scope**:
+   ```yaml
+   loading:
+     smart_loading: true
+     max_files_per_layer: 50
+   ```
 
-# Check server configuration
-cat config/services/mcp.yaml
-```
+3. **Increase timeout**:
+   ```yaml
+   timeouts:
+     mcp_request: 10000  # 10 seconds
+   ```
 
 ---
 
-## 5. Loading Issues
+## 5. Configuration Issues
 
-### 5.1 Content Not Found
+### 5.1 Config File Not Found
 
-**Symptom**: `FileNotFoundError` or `Content not found for layer`
-
-**Diagnosis**:
-```bash
-# Check content directory exists
-ls -la content/
-
-# Verify structure
-tree content/ -L 2
-
-# Check configuration
-cat config/sage.yaml | grep -A5 content
-```
-
-**Solution**:
-```yaml
-# config/sage.yaml - ensure correct path
-content:
-  root: "./content"  # Relative to project root
-  # Or absolute path
-  root: "/path/to/sage-kb/content"
-```
-
-### 5.2 Timeout Errors
-
-**Symptom**: `TimeoutError` during content loading
+**Symptom**: `Configuration file not found` or using defaults
 
 **Diagnosis**:
 ```bash
-# Check current timeout settings
-cat config/core/timeout.yaml
-
-# Test with increased timeout
-sage get --layer core --timeout 10000
+# Show config locations searched
+sage config --show-paths
 ```
 
 **Solutions**:
 
-```yaml
-# config/core/timeout.yaml - increase timeouts
-timeouts:
-  t1_cache_ms: 200      # Was 100
-  t2_single_file_ms: 1000  # Was 500
-  t3_layer_ms: 5000     # Was 2000
-  t4_full_load_ms: 15000   # Was 5000
-```
+1. **Create config file**:
+   ```bash
+   # Create default config
+   sage config --init
+   
+   # Or manually create
+   mkdir -p config
+   touch config/sage.yaml
+   ```
 
-### 5.3 Partial Loading
+2. **Specify config path**:
+   ```bash
+   sage --config /path/to/sage.yaml get --layer core
+   ```
 
-**Symptom**: Only some content loads, warnings about skipped files
+### 5.2 Knowledge Base Not Found
 
-**Cause**: Token budget exceeded or individual file timeouts
+**Symptom**: `Knowledge base path not found` or empty results
 
-**Solution**:
-```yaml
-# config/knowledge/token_budget.yaml - increase budget
-token_budget:
-  total: 10000  # Increase from default
-  per_layer:
-    core: 2000
-    guidelines: 3000
-    frameworks: 3000
-    practices: 2000
-```
+**Solutions**:
+
+1. **Verify path exists**:
+   ```bash
+   ls -la content/
+   ```
+
+2. **Update configuration**:
+   ```yaml
+   # config/sage.yaml
+   knowledge_base:
+     root: ./content
+     layers:
+       - core
+       - guidelines
+       - practices
+   ```
+
+3. **Use absolute path**:
+   ```yaml
+   knowledge_base:
+     root: /absolute/path/to/content
+   ```
+
+### 5.3 Invalid YAML
+
+**Symptom**: `YAML parsing error` or config not loading
+
+**Solutions**:
+
+1. **Validate YAML**:
+   ```bash
+   python -c "import yaml; yaml.safe_load(open('config/sage.yaml'))"
+   ```
+
+2. **Check common issues**:
+   - Indentation (use spaces, not tabs)
+   - Colons followed by space
+   - Quotes around special characters
+
+3. **Use YAML validator**:
+   ```bash
+   pip install yamllint
+   yamllint config/sage.yaml
+   ```
 
 ---
 
 ## 6. Performance Issues
 
-### 6.1 Slow Startup
+### 6.1 Timeout Errors
 
-**Symptom**: SAGE takes long time to initialize
+**Symptom**: `TimeoutError` or operations taking too long
 
 **Diagnosis**:
 ```bash
-# Profile startup time
-time sage info
+# Check current timeouts
+sage config --show | grep timeout
 
-# Check what's loading
-sage info --verbose --timing
+# Profile operation
+sage --debug --profile get --layer core
 ```
 
 **Solutions**:
 
-| Cause | Solution |
-|-------|----------|
-| Large content | Enable lazy loading |
-| No cache | Enable caching |
-| Many plugins | Disable unused plugins |
+1. **Increase timeouts**:
+   ```yaml
+   # config/sage.yaml
+   timeouts:
+     t1_cache: 100
+     t2_file: 500
+     t3_layer: 2000
+     t4_full: 5000
+     t5_analysis: 10000
+   ```
 
-```yaml
-# config/knowledge/loading.yaml
-loading:
-  lazy: true
-  cache_enabled: true
-  preload_layers: [core]  # Only preload essentials
-```
+2. **Enable smart loading**:
+   ```yaml
+   loading:
+     smart_loading: true
+     lazy_load: true
+   ```
 
-### 6.2 Slow Searches
+3. **Reduce content scope**:
+   ```bash
+   sage get --layer core  # Instead of all layers
+   ```
 
-**Symptom**: Search takes several seconds
+### 6.2 High Memory Usage
+
+**Symptom**: Memory errors or system slowdown
 
 **Solutions**:
-```yaml
-# config/knowledge/search.yaml
-search:
-  max_results: 50  # Limit results
-  timeout_ms: 2000
-  use_index: true  # Enable search index
-```
 
-### 6.3 Memory Issues
+1. **Enable streaming**:
+   ```yaml
+   loading:
+     streaming: true
+     chunk_size: 1000
+   ```
 
-**Symptom**: High memory usage or `MemoryError`
+2. **Limit cache size**:
+   ```yaml
+   cache:
+     max_size: 100  # Maximum items
+     max_memory: 50MB
+   ```
 
-**Diagnosis**:
-```bash
-# Monitor memory
-watch -n 1 'ps aux | grep sage'
+3. **Use lazy loading**:
+   ```yaml
+   loading:
+     lazy_load: true
+   ```
 
-# Check loaded content size
-sage info --memory
-```
+### 6.3 Slow Startup
 
-**Solution**:
-```yaml
-# config/core/memory.yaml
-memory:
-  max_content_mb: 100
-  eviction_policy: lru
-  gc_threshold: 0.8
-```
+**Symptom**: CLI or server takes long to start
 
----
+**Solutions**:
 
-## 7. Configuration Issues
+1. **Disable preloading**:
+   ```yaml
+   loading:
+     preload: false
+   ```
 
-### 7.1 Invalid YAML Syntax
-
-**Symptom**: `yaml.YAMLError` or `Invalid configuration`
-
-**Diagnosis**:
-```bash
-# Validate YAML syntax
-python -c "import yaml; yaml.safe_load(open('config/sage.yaml'))"
-
-# Use online validator
-# https://yamlvalidator.com
-```
-
-**Common Mistakes**:
-
-| Mistake | Wrong | Correct |
-|---------|-------|---------|
-| Tab indentation | `\t` | `  ` (2 spaces) |
-| Missing quotes | `pattern: *.md` | `pattern: "*.md"` |
-| Wrong type | `timeout: "100"` | `timeout: 100` |
-
-### 7.2 Missing Configuration
-
-**Symptom**: `KeyError` or `Configuration key not found`
-
-**Solution**:
-```bash
-# Check for required config files
-ls config/
-
-# Expected files:
-# - sage.yaml (main)
-# - core/*.yaml
-# - knowledge/*.yaml
-# - services/*.yaml
-
-# Restore defaults
-python -m tools.migration_toolkit restore-defaults
-```
-
-### 7.3 Environment Variable Issues
-
-**Symptom**: Environment variables not being read
-
-**Diagnosis**:
-```bash
-# Check if variable is set
-echo $SAGE_CONFIG_PATH  # Unix
-echo %SAGE_CONFIG_PATH%  # Windows
-
-# Verify in Python
-python -c "import os; print(os.environ.get('SAGE_CONFIG_PATH'))"
-```
-
-**Solution**:
-```bash
-# Set environment variable
-export SAGE_CONFIG_PATH=/path/to/config  # Unix
-set SAGE_CONFIG_PATH=C:\path\to\config   # Windows
-
-# Or use .env file (with python-dotenv)
-echo "SAGE_CONFIG_PATH=/path/to/config" >> .env
-```
+2. **Reduce initial scope**:
+   ```yaml
+   loading:
+     startup_layers:
+       - core  # Only load core at startup
+   ```
 
 ---
 
-## 8. Log Analysis
+## 7. Getting Help
 
-### 8.1 Log Locations
+### 7.1 Collect Debug Information
 
-| Log Type | Location | Purpose |
-|----------|----------|---------|
-| Application | `.logs/sage.log` | General operations |
-| Error | `.logs/error.log` | Errors only |
-| Debug | `.logs/debug.log` | Detailed debugging |
-| Audit | `.logs/audit.log` | Security events |
-
-### 8.2 Log Levels
-
-```yaml
-# config/core/logging.yaml
-logging:
-  level: INFO  # DEBUG, INFO, WARNING, ERROR, CRITICAL
-  format: json  # or text
-```
-
-### 8.3 Common Log Patterns
-
-**Timeout Warning**:
-```
-WARN - Timeout loading file: content/large_file.md (T2: 500ms exceeded)
-```
-→ Increase T2 timeout or optimize file
-
-**Circuit Breaker**:
-```
-WARN - Circuit breaker opened for loader after 3 failures
-```
-→ Check content source, may have persistent issues
-
-**Token Budget**:
-```
-INFO - Token budget exhausted, loaded 8/12 files
-```
-→ Increase token budget or prioritize content
-
-### 8.4 Debug Mode
-
-```bash
-# Enable debug logging temporarily
-SAGE_LOG_LEVEL=DEBUG sage get --layer core
-
-# Or in configuration
-# config/core/logging.yaml
-logging:
-  level: DEBUG
-  include_timestamps: true
-  include_caller: true
-```
-
----
-
-## 9. Getting Help
-
-### 9.1 Information to Gather
-
-Before reporting an issue, collect:
+Before reporting issues:
 
 ```bash
 # System information
 python --version
 pip show sage-kb
-uname -a  # Unix
-systeminfo  # Windows
-
-# SAGE information
-sage info --verbose
 
 # Configuration
-cat config/sage.yaml
+sage config --show
 
-# Relevant logs
-tail -100 .logs/sage.log
+# Debug output
+sage --debug get --layer core 2>&1 | tee debug.log
+
+# Log files
+cat .logs/sage.log
 ```
 
-### 9.2 Reporting Issues
+### 7.2 Log Files
 
-**GitHub Issues**: https://github.com/HengYangDS/sage-kb/issues
+| Log | Location | Content |
+|-----|----------|---------|
+| Main log | `.logs/sage.log` | General application logs |
+| Error log | `.logs/error.log` | Errors and exceptions |
+| Debug log | `.logs/debug.log` | Detailed debug info |
 
-**Issue Template**:
-```markdown
-## Description
-Brief description of the issue
+### 7.3 Reporting Issues
 
-## Steps to Reproduce
-1. Step one
-2. Step two
-3. ...
+When reporting issues, include:
 
-## Expected Behavior
-What should happen
+1. **Environment**:
+   - OS and version
+   - Python version
+   - SAGE version
 
-## Actual Behavior
-What actually happens
+2. **Steps to reproduce**:
+   - Exact commands run
+   - Configuration used
 
-## Environment
-- Python version:
-- SAGE version:
-- OS:
+3. **Expected vs actual behavior**
 
-## Logs
-```
-[paste relevant logs]
-```
-```
+4. **Relevant logs and error messages**
 
-### 9.3 Quick Reference
+### 7.4 Resources
 
-| Problem | Solution |
-|---------|----------|
-| Can't install | Check Python 3.12+, use venv |
-| Command not found | `pip install -e .` |
-| No results | Check content path in config |
-| Timeout | Increase timeout values |
-| Server won't start | Check port conflicts |
-| Slow performance | Enable caching, reduce content |
+- **Documentation**: `docs/guides/`
+- **API Reference**: `docs/api/`
+- **GitHub Issues**: Report bugs and feature requests
+- **Discussions**: Ask questions and share tips
 
 ---
 
-## Related
+## Quick Reference
 
-- `docs/guides/quickstart.md` — Getting started
-- `docs/guides/advanced.md` — Advanced configuration
-- `config/index.md` — Configuration reference
-- `.context/configurations/` — Configuration details
+### Diagnostic Commands
+
+```bash
+# Health check
+sage info
+
+# Configuration
+sage config --show
+sage config --validate
+
+# Debug mode
+sage --debug <command>
+
+# Verbose logging
+sage --log-level DEBUG <command>
+```
+
+### Common Fixes
+
+| Issue | Quick Fix |
+|-------|-----------|
+| Command not found | `pip install sage-kb` |
+| Import error | `pip install -e ".[all]"` |
+| Config not found | `sage config --init` |
+| Timeout | Increase timeout in config |
+| Connection refused | `sage serve --port 8080` |
 
 ---
 

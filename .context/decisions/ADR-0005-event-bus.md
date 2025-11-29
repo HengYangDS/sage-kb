@@ -58,12 +58,12 @@ class Event:
 
 ### Pattern Matching
 
-| Pattern | Matches |
-|---------|---------|
-| `knowledge.loaded` | Exact match only |
-| `knowledge.*` | `knowledge.loaded`, `knowledge.updated`, etc. |
-| `*.loaded` | `knowledge.loaded`, `config.loaded`, etc. |
-| `*` | All events |
+| Pattern            | Matches                                       |
+|--------------------|-----------------------------------------------|
+| `knowledge.loaded` | Exact match only                              |
+| `knowledge.*`      | `knowledge.loaded`, `knowledge.updated`, etc. |
+| `*.loaded`         | `knowledge.loaded`, `config.loaded`, etc.     |
+| `*`                | All events                                    |
 
 ---
 

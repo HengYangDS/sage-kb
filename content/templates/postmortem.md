@@ -221,22 +221,22 @@
 
 ### 1. Postmortem Principles
 
-| Principle | Description |
-|-----------|-------------|
-| **Blameless** | Focus on systems, not individuals |
-| **Thorough** | Document everything relevant |
-| **Actionable** | Every finding has an action item |
-| **Timely** | Complete within 5 business days |
-| **Shared** | Distribute learnings widely |
+| Principle      | Description                       |
+|----------------|-----------------------------------|
+| **Blameless**  | Focus on systems, not individuals |
+| **Thorough**   | Document everything relevant      |
+| **Actionable** | Every finding has an action item  |
+| **Timely**     | Complete within 5 business days   |
+| **Shared**     | Distribute learnings widely       |
 
 ### 2. When to Write
 
 | Severity | Postmortem Required |
 |----------|---------------------|
-| SEV1 | Always |
-| SEV2 | Always |
-| SEV3 | If learning value |
-| SEV4 | Rarely |
+| SEV1     | Always              |
+| SEV2     | Always              |
+| SEV3     | If learning value   |
+| SEV4     | Rarely              |
 
 ### 3. Timeline Best Practices
 
@@ -247,21 +247,21 @@
 
 ### 4. Action Item Guidelines
 
-| Quality | Example |
-|---------|---------|
+| Quality  | Example                                                |
+|----------|--------------------------------------------------------|
 | **Good** | "Add alerting for database connection pool exhaustion" |
-| **Bad** | "Improve monitoring" |
-| **Good** | "Implement circuit breaker for payment service" |
-| **Bad** | "Make service more reliable" |
+| **Bad**  | "Improve monitoring"                                   |
+| **Good** | "Implement circuit breaker for payment service"        |
+| **Bad**  | "Make service more reliable"                           |
 
 ### 5. Review Process
 
-| Step | Timeline |
-|------|----------|
-| Draft | Within 48 hours |
-| Team review | Within 72 hours |
-| Final approval | Within 5 days |
-| Action item tracking | Ongoing |
+| Step                 | Timeline        |
+|----------------------|-----------------|
+| Draft                | Within 48 hours |
+| Team review          | Within 72 hours |
+| Final approval       | Within 5 days   |
+| Action item tracking | Ongoing         |
 
 ---
 

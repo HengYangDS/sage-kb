@@ -14,12 +14,12 @@
 
 ### 1.1 Design Principles
 
-| Principle | Description |
-|-----------|-------------|
-| **Separation of Concerns** | Each directory has a single, clear purpose |
-| **Visibility Convention** | Hidden (`.prefix`) for internal, visible for external |
-| **Git Policy Clarity** | Clear tracking rules for each directory |
-| **MECE Organization** | Mutually exclusive, collectively exhaustive |
+| Principle                  | Description                                           |
+|----------------------------|-------------------------------------------------------|
+| **Separation of Concerns** | Each directory has a single, clear purpose            |
+| **Visibility Convention**  | Hidden (`.prefix`) for internal, visible for external |
+| **Git Policy Clarity**     | Clear tracking rules for each directory               |
+| **MECE Organization**      | Mutually exclusive, collectively exhaustive           |
 
 ### 1.2 Standard Project Layout
 
@@ -43,27 +43,27 @@ project/
 
 ### 2.1 By Visibility
 
-| Category | Prefix | Purpose | Example |
-|----------|--------|---------|---------|
-| **Hidden** | `.` | Internal, tooling, meta | `.context/`, `.logs/` |
-| **Visible** | None | Public, deliverable | `docs/`, `src/` |
+| Category    | Prefix | Purpose                 | Example               |
+|-------------|--------|-------------------------|-----------------------|
+| **Hidden**  | `.`    | Internal, tooling, meta | `.context/`, `.logs/` |
+| **Visible** | None   | Public, deliverable     | `docs/`, `src/`       |
 
 ### 2.2 By Git Policy
 
-| Policy | Directories | Rationale |
-|--------|-------------|-----------|
+| Policy      | Directories                                                             | Rationale                                  |
+|-------------|-------------------------------------------------------------------------|--------------------------------------------|
 | **Tracked** | `.context/`, `.history/`, `.archive/`, `.backups/`, `content/`, `docs/` | Preserve history and collaboration context |
-| **Ignored** | `.logs/`, `.outputs/` | Runtime artifacts, regenerable |
+| **Ignored** | `.logs/`, `.outputs/`                                                   | Runtime artifacts, regenerable             |
 
 ### 2.3 By Content Lifecycle
 
-| Stage | Directory | Description |
-|-------|-----------|-------------|
-| Active | `.context/`, `content/`, `docs/`, `src/` | Current, maintained |
-| Session | `.history/` | Collaboration records |
-| Backup | `.backups/` | Pre-change snapshots |
-| Deprecated | `.archive/` | Historical reference |
-| Ephemeral | `.logs/`, `.outputs/` | Temporary, regenerable |
+| Stage      | Directory                                | Description            |
+|------------|------------------------------------------|------------------------|
+| Active     | `.context/`, `content/`, `docs/`, `src/` | Current, maintained    |
+| Session    | `.history/`                              | Collaboration records  |
+| Backup     | `.backups/`                              | Pre-change snapshots   |
+| Deprecated | `.archive/`                              | Historical reference   |
+| Ephemeral  | `.logs/`, `.outputs/`                    | Temporary, regenerable |
 
 ---
 
@@ -73,10 +73,10 @@ project/
 
 **Purpose**: Store knowledge specific to this project only.
 
-| Subdirectory | Content |
-|--------------|---------|
-| `conventions/` | Project-specific coding conventions |
-| `decisions/` | Architecture Decision Records (ADRs) |
+| Subdirectory    | Content                               |
+|-----------------|---------------------------------------|
+| `conventions/`  | Project-specific coding conventions   |
+| `decisions/`    | Architecture Decision Records (ADRs)  |
 | `intelligence/` | Learned AI patterns for this codebase |
 
 **When to use**: Project-specific rules, decisions, patterns that don't apply universally.
@@ -85,11 +85,11 @@ project/
 
 **Purpose**: Store AI session records and task handoffs.
 
-| Subdirectory | Content |
-|--------------|---------|
-| `current/` | Current session state |
-| `conversations/` | Conversation records |
-| `handoffs/` | Task handoff documents |
+| Subdirectory     | Content                |
+|------------------|------------------------|
+| `current/`       | Current session state  |
+| `conversations/` | Conversation records   |
+| `handoffs/`      | Task handoff documents |
 
 **When to use**: Session continuity, collaboration handoffs, context preservation.
 
@@ -110,6 +110,7 @@ project/
 **When to use**: Pre-refactoring snapshots, configuration backups, critical data preservation.
 
 **Best Practices**:
+
 - Create backups before major refactoring
 - Include brief description in backup folder name
 - Clean up old backups periodically
@@ -138,14 +139,14 @@ project/
 
 **Purpose**: Universal knowledge that helps AI collaboration, reusable across projects.
 
-| Subdirectory | Content |
-|--------------|---------|
-| `core/` | Core principles, defaults |
+| Subdirectory  | Content                           |
+|---------------|-----------------------------------|
+| `core/`       | Core principles, defaults         |
 | `guidelines/` | Code style, engineering standards |
-| `frameworks/` | Deep conceptual frameworks |
-| `practices/` | Best practices, workflows |
-| `scenarios/` | Context-specific presets |
-| `templates/` | Reusable document templates |
+| `frameworks/` | Deep conceptual frameworks        |
+| `practices/`  | Best practices, workflows         |
+| `scenarios/`  | Context-specific presets          |
+| `templates/`  | Reusable document templates       |
 
 **When to use**: Knowledge that applies universally, not project-specific.
 
@@ -153,11 +154,11 @@ project/
 
 **Purpose**: User-facing documentation for the project.
 
-| Subdirectory | Content |
-|--------------|---------|
-| `design/` | Design documents |
-| `api/` | API documentation |
-| `guides/` | User and developer guides |
+| Subdirectory | Content                   |
+|--------------|---------------------------|
+| `design/`    | Design documents          |
+| `api/`       | API documentation         |
+| `guides/`    | User and developer guides |
 
 **When to use**: External documentation, user guides, API references.
 
@@ -195,30 +196,30 @@ Is this an intermediate/generated file?
 
 ### Quick Reference
 
-| Content Type | Location |
-|--------------|----------|
-| Project conventions | `.context/conventions/` |
-| Universal guidelines | `content/guidelines/` |
-| ADR records | `.context/decisions/` |
-| API documentation | `docs/api/` |
-| Session handoffs | `.history/handoffs/` |
-| Deprecated code | `.archive/` |
-| Pre-refactoring snapshots | `.backups/` |
-| Runtime logs | `.logs/` |
-| Test outputs | `.outputs/` |
+| Content Type              | Location                |
+|---------------------------|-------------------------|
+| Project conventions       | `.context/conventions/` |
+| Universal guidelines      | `content/guidelines/`   |
+| ADR records               | `.context/decisions/`   |
+| API documentation         | `docs/api/`             |
+| Session handoffs          | `.history/handoffs/`    |
+| Deprecated code           | `.archive/`             |
+| Pre-refactoring snapshots | `.backups/`             |
+| Runtime logs              | `.logs/`                |
+| Test outputs              | `.outputs/`             |
 
 ---
 
 ## 6. File Naming Conventions
 
-| Type | Convention | Example |
-|------|------------|---------|
-| Markdown | `snake_case.md` | `directory_structure.md` |
-| ADR | `ADR-NNNN-title.md` | `ADR-0001-fastmcp-choice.md` |
-| Session | `YYYY-MM-DD-topic.md` | `2025-11-29-timeout.md` |
-| Handoff | `YYYY-MM-DD-handoff.md` | `2025-11-29-api-handoff.md` |
-| Archive folder | `YYYYMM/` | `202511/` |
-| Backup folder | `YYYY-MM-DD-description/` | `2025-11-29-pre-refactor/` |
+| Type           | Convention                | Example                      |
+|----------------|---------------------------|------------------------------|
+| Markdown       | `snake_case.md`           | `directory_structure.md`     |
+| ADR            | `ADR-NNNN-title.md`       | `ADR-0001-fastmcp-choice.md` |
+| Session        | `YYYY-MM-DD-topic.md`     | `2025-11-29-timeout.md`      |
+| Handoff        | `YYYY-MM-DD-handoff.md`   | `2025-11-29-api-handoff.md`  |
+| Archive folder | `YYYYMM/`                 | `202511/`                    |
+| Backup folder  | `YYYY-MM-DD-description/` | `2025-11-29-pre-refactor/`   |
 
 ---
 

@@ -2,12 +2,14 @@
 title: SAGE Knowledge Base - Design Overview
 version: 0.1.0
 date: 2025-11-29
-status: production-ready
+status: alpha
 ---
 
 # SAGE Knowledge Base - Design Overview
 
 > **Production-grade knowledge management system for AI-human collaboration**
+>
+> ⚠️ **Status: Alpha (v0.1.0)** - Under active development and testing
 
 ## Project Summary
 
@@ -159,35 +161,35 @@ This design is organized into 10 independent documents:
 
 ## Key Metrics
 
-| Metric           | Target | Status             |
-|------------------|--------|--------------------|
-| Expert Score     | 95+    | **99.8/100** ✅     |
-| Token Efficiency | 95%+   | **98/100** ✅       |
-| Timeout Coverage | 100%   | **100%** ✅         |
-| MECE Compliance  | 100%   | **100%** ✅         |
-| Plugin Hooks     | 8      | **15 hooks** ✅     |
-| Python Support   | 3.12+  | **3.12-3.14** ✅    |
+| Metric           | Target | Status          |
+|------------------|--------|-----------------|
+| Expert Score     | 95+    | **99.8/100** ✅  |
+| Token Efficiency | 95%+   | **98/100** ✅    |
+| Timeout Coverage | 100%   | **100%** ✅      |
+| MECE Compliance  | 100%   | **100%** ✅      |
+| Plugin Hooks     | 8      | **15 hooks** ✅  |
+| Python Support   | 3.12+  | **3.12-3.14** ✅ |
 
 ---
 
 ## Implementation Progress (2025-11-29)
 
-| Milestone            | Status            | Notes                                       |
-|----------------------|-------------------|---------------------------------------------|
-| Package Installable  | ✅ Complete        | sage-kb installs, CLI works                 |
-| Core Functionality   | ✅ Complete        | loader.py, search, 17+ MCP tools            |
-| Capabilities Layer   | ✅ Complete        | analyzers/, checkers/, monitors/            |
-| 3-Layer Architecture | ✅ Complete        | core/, services/, capabilities/             |
-| Unified Logging      | ✅ Complete        | structlog + context management              |
-| EventBus System      | ✅ Complete        | Async pub/sub with priority & timeout       |
-| Memory Persistence   | ✅ Complete        | MemoryStore, TokenBudget, SessionContinuity |
-| DI Container         | ✅ Complete        | Lifetime mgmt, auto-wiring, 94% coverage    |
-| Test Suite           | ✅ Complete        | 841 tests, 89% coverage (incl. 30 perf)     |
-| Dev Toolchain        | ✅ Complete        | Makefile, py.typed, pyproject.toml          |
-| Config Files         | ✅ Complete        | sage.yaml, index.md created                 |
-| CI/CD Pipeline       | ✅ Complete        | GitHub Actions, pre-commit, Codecov         |
-| Type Safety          | ✅ Complete        | mypy strict, 26→9 errors fixed              |
-| Production Ready     | ✅ v1.2 Complete   | All MVP + v1.1 + v1.2 phases complete       |
+| Milestone            | Status          | Notes                                       |
+|----------------------|-----------------|---------------------------------------------|
+| Package Installable  | ✅ Complete      | sage-kb installs, CLI works                 |
+| Core Functionality   | ✅ Complete      | loader.py, search, 17+ MCP tools            |
+| Capabilities Layer   | ✅ Complete      | analyzers/, checkers/, monitors/            |
+| 3-Layer Architecture | ✅ Complete      | core/, services/, capabilities/             |
+| Unified Logging      | ✅ Complete      | structlog + context management              |
+| EventBus System      | ✅ Complete      | Async pub/sub with priority & timeout       |
+| Memory Persistence   | ✅ Complete      | MemoryStore, TokenBudget, SessionContinuity |
+| DI Container         | ✅ Complete      | Lifetime mgmt, auto-wiring, 94% coverage    |
+| Test Suite           | ✅ Complete      | 841 tests, 89% coverage (incl. 30 perf)     |
+| Dev Toolchain        | ✅ Complete      | Makefile, py.typed, pyproject.toml          |
+| Config Files         | ✅ Complete      | sage.yaml, index.md created                 |
+| CI/CD Pipeline       | ✅ Complete      | GitHub Actions, pre-commit, Codecov         |
+| Type Safety          | ✅ Complete      | mypy strict, 26→9 errors fixed              |
+| Production Ready     | ✅ v1.2 Complete | All MVP + v1.1 + v1.2 phases complete       |
 
 **Status**: Full v1.2 implementation complete with CI/CD pipeline and type safety improvements.
 

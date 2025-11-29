@@ -14,21 +14,21 @@
 
 ### 1.1 Security Principles
 
-| Principle | Description |
-|-----------|-------------|
+| Principle            | Description                          |
+|----------------------|--------------------------------------|
 | **Defense in Depth** | Multiple layers of security controls |
-| **Least Privilege** | Minimum necessary permissions |
-| **Fail Secure** | Default to secure state on failure |
-| **Zero Trust** | Verify everything, trust nothing |
+| **Least Privilege**  | Minimum necessary permissions        |
+| **Fail Secure**      | Default to secure state on failure   |
+| **Zero Trust**       | Verify everything, trust nothing     |
 
 ### 1.2 Risk Categories
 
-| Category | Examples | Priority |
-|----------|----------|----------|
-| **Critical** | Secret exposure, remote code execution | P0 |
-| **High** | SQL injection, path traversal | P1 |
-| **Medium** | Information disclosure, DoS | P2 |
-| **Low** | Minor information leaks | P3 |
+| Category     | Examples                               | Priority |
+|--------------|----------------------------------------|----------|
+| **Critical** | Secret exposure, remote code execution | P0       |
+| **High**     | SQL injection, path traversal          | P1       |
+| **Medium**   | Information disclosure, DoS            | P2       |
+| **Low**      | Minor information leaks                | P3       |
 
 ---
 
@@ -42,6 +42,7 @@ API_KEY = "sk-1234567890abcdef"
 
 # ✅ Good - Environment variable
 import os
+
 API_KEY = os.environ.get("API_KEY")
 
 # ✅ Better - With validation
@@ -52,12 +53,12 @@ if not API_KEY:
 
 ### 2.2 Secret Sources (Priority Order)
 
-| Source | Use Case | Security Level |
-|--------|----------|----------------|
-| Secret Manager | Production | ⭐⭐⭐⭐⭐ |
-| Environment Variables | Development/CI | ⭐⭐⭐⭐ |
-| `.env` files (gitignored) | Local development | ⭐⭐⭐ |
-| Config files | Non-sensitive only | ⭐⭐ |
+| Source                    | Use Case           | Security Level |
+|---------------------------|--------------------|----------------|
+| Secret Manager            | Production         | ⭐⭐⭐⭐⭐          |
+| Environment Variables     | Development/CI     | ⭐⭐⭐⭐           |
+| `.env` files (gitignored) | Local development  | ⭐⭐⭐            |
+| Config files              | Non-sensitive only | ⭐⭐             |
 
 ### 2.3 .gitignore Requirements
 
@@ -74,12 +75,12 @@ secrets.yaml
 
 ### 2.4 Secret Rotation
 
-| Secret Type | Rotation Frequency |
-|-------------|-------------------|
-| API Keys | 90 days |
-| Database Passwords | 60 days |
-| Service Tokens | 30 days |
-| Session Keys | 24 hours |
+| Secret Type        | Rotation Frequency |
+|--------------------|--------------------|
+| API Keys           | 90 days            |
+| Database Passwords | 60 days            |
+| Service Tokens     | 30 days            |
+| Session Keys       | 24 hours           |
 
 ---
 
@@ -87,17 +88,18 @@ secrets.yaml
 
 ### 3.1 Validation Principles
 
-| Principle | Description |
-|-----------|-------------|
-| **Whitelist** | Accept only known-good input |
-| **Validate Early** | Check input at entry point |
+| Principle               | Description                       |
+|-------------------------|-----------------------------------|
+| **Whitelist**           | Accept only known-good input      |
+| **Validate Early**      | Check input at entry point        |
 | **Validate Completely** | Check type, length, format, range |
-| **Reject Invalid** | Don't try to fix bad input |
+| **Reject Invalid**      | Don't try to fix bad input        |
 
 ### 3.2 Path Validation
 
 ```python
 from pathlib import Path
+
 
 def safe_path(user_input: str, base_dir: Path) -> Path:
     """Validate and resolve path safely.
@@ -114,11 +116,11 @@ def safe_path(user_input: str, base_dir: Path) -> Path:
     """
     # Resolve to absolute path
     requested = (base_dir / user_input).resolve()
-    
+
     # Ensure path is within base directory
     if not str(requested).startswith(str(base_dir.resolve())):
         raise ValueError(f"Path traversal detected: {user_input}")
-    
+
     return requested
 ```
 
@@ -127,6 +129,7 @@ def safe_path(user_input: str, base_dir: Path) -> Path:
 ```python
 import re
 from typing import Optional
+
 
 def validate_identifier(value: str, max_length: int = 64) -> str:
     """Validate identifier string.
@@ -143,14 +146,14 @@ def validate_identifier(value: str, max_length: int = 64) -> str:
     """
     if not value:
         raise ValueError("Identifier cannot be empty")
-    
+
     if len(value) > max_length:
         raise ValueError(f"Identifier exceeds {max_length} characters")
-    
+
     # Allow only alphanumeric, underscore, hyphen
     if not re.match(r'^[a-zA-Z0-9_-]+$', value):
         raise ValueError("Identifier contains invalid characters")
-    
+
     return value
 ```
 
@@ -169,15 +172,15 @@ def validate_timeout(value: int) -> int:
     Raises:
         ValueError: If value is out of range.
     """
-    MIN_TIMEOUT = 100    # T1 minimum
+    MIN_TIMEOUT = 100  # T1 minimum
     MAX_TIMEOUT = 10000  # T5 maximum
-    
+
     if not isinstance(value, int):
         raise TypeError(f"Timeout must be int, got {type(value)}")
-    
+
     if value < MIN_TIMEOUT or value > MAX_TIMEOUT:
         raise ValueError(f"Timeout must be {MIN_TIMEOUT}-{MAX_TIMEOUT}ms")
-    
+
     return value
 ```
 
@@ -196,6 +199,7 @@ SENSITIVE_PATTERNS = [
     (r'token["\']?\s*[:=]\s*["\']?[^"\'\s]+', 'token=***'),
     (r'secret["\']?\s*[:=]\s*["\']?[^"\'\s]+', 'secret=***'),
 ]
+
 
 def sanitize_log_message(message: str) -> str:
     """Remove sensitive data from log messages.
@@ -228,17 +232,17 @@ def safe_error_message(error: Exception, include_details: bool = False) -> str:
     # Map internal errors to user-safe messages
     ERROR_MESSAGES = {
         FileNotFoundError: "The requested resource was not found",
-        PermissionError: "Access denied",
-        TimeoutError: "The operation timed out",
-        ValueError: "Invalid input provided",
+        PermissionError  : "Access denied",
+        TimeoutError     : "The operation timed out",
+        ValueError       : "Invalid input provided",
     }
-    
+
     # Get safe message or generic fallback
     safe_message = ERROR_MESSAGES.get(type(error), "An error occurred")
-    
+
     if include_details and not _contains_sensitive_info(str(error)):
         safe_message += f": {error}"
-    
+
     return safe_message
 ```
 
@@ -248,12 +252,12 @@ def safe_error_message(error: Exception, include_details: bool = False) -> str:
 
 ### 5.1 Dependency Management
 
-| Practice | Description |
-|----------|-------------|
-| **Pin Versions** | Use exact versions in production |
-| **Regular Updates** | Update dependencies monthly |
-| **Vulnerability Scanning** | Scan on every commit |
-| **Minimal Dependencies** | Only add necessary packages |
+| Practice                   | Description                      |
+|----------------------------|----------------------------------|
+| **Pin Versions**           | Use exact versions in production |
+| **Regular Updates**        | Update dependencies monthly      |
+| **Vulnerability Scanning** | Scan on every commit             |
+| **Minimal Dependencies**   | Only add necessary packages      |
 
 ### 5.2 Security Scanning
 
@@ -296,8 +300,8 @@ repos:
     rev: 1.7.5
     hooks:
       - id: bandit
-        args: ["-r", "src/"]
-        
+        args: [ "-r", "src/" ]
+
   - repo: https://github.com/Yelp/detect-secrets
     rev: v1.4.0
     hooks:
@@ -310,22 +314,23 @@ repos:
 
 ### 6.1 What to Log
 
-| Log | Don't Log |
-|-----|-----------|
-| User actions (anonymized) | Passwords |
-| Error codes | API keys |
-| Request IDs | Session tokens |
-| Timestamps | Personal data |
-| IP addresses (if needed) | Credit card numbers |
+| Log                       | Don't Log           |
+|---------------------------|---------------------|
+| User actions (anonymized) | Passwords           |
+| Error codes               | API keys            |
+| Request IDs               | Session tokens      |
+| Timestamps                | Personal data       |
+| IP addresses (if needed)  | Credit card numbers |
 
 ### 6.2 Secure Logging Configuration
 
 ```python
 import structlog
 
+
 def configure_secure_logging():
     """Configure logging with security processors."""
-    
+
     processors = [
         structlog.processors.TimeStamper(fmt="iso"),
         structlog.processors.add_log_level,
@@ -333,12 +338,13 @@ def configure_secure_logging():
         sanitize_processor,
         structlog.processors.JSONRenderer(),
     ]
-    
+
     structlog.configure(
         processors=processors,
         context_class=dict,
         logger_factory=structlog.PrintLoggerFactory(),
     )
+
 
 def sanitize_processor(logger, method_name, event_dict):
     """Processor to sanitize sensitive data."""
@@ -353,6 +359,7 @@ def sanitize_processor(logger, method_name, event_dict):
 ```python
 from datetime import datetime
 from typing import Any
+
 
 def audit_log(
     action: str,
@@ -370,10 +377,10 @@ def audit_log(
     """
     log_entry = {
         "timestamp": datetime.utcnow().isoformat(),
-        "action": action,
-        "user_id": user_id,
-        "resource": resource,
-        "details": details or {},
+        "action"   : action,
+        "user_id"  : user_id,
+        "resource" : resource,
+        "details"  : details or {},
     }
     # Write to secure audit log
     audit_logger.info("audit_event", **log_entry)
@@ -389,23 +396,25 @@ def audit_log(
 from functools import wraps
 from typing import Callable
 
+
 def require_auth(func: Callable) -> Callable:
     """Decorator to require authentication."""
+
     @wraps(func)
     async def wrapper(*args, **kwargs):
         request = kwargs.get("request") or args[0]
-        
+
         # Check for authentication token
         auth_header = request.headers.get("Authorization")
         if not auth_header or not auth_header.startswith("Bearer "):
             raise HTTPException(status_code=401, detail="Authentication required")
-        
+
         token = auth_header.split(" ")[1]
         if not validate_token(token):
             raise HTTPException(status_code=401, detail="Invalid token")
-        
+
         return await func(*args, **kwargs)
-    
+
     return wrapper
 ```
 
@@ -415,28 +424,29 @@ def require_auth(func: Callable) -> Callable:
 from collections import defaultdict
 from time import time
 
+
 class RateLimiter:
     """Simple rate limiter."""
-    
+
     def __init__(self, max_requests: int = 100, window_seconds: int = 60):
         self.max_requests = max_requests
         self.window_seconds = window_seconds
         self.requests: dict[str, list[float]] = defaultdict(list)
-    
+
     def is_allowed(self, client_id: str) -> bool:
         """Check if request is allowed."""
         now = time()
         window_start = now - self.window_seconds
-        
+
         # Clean old requests
         self.requests[client_id] = [
             t for t in self.requests[client_id] if t > window_start
         ]
-        
+
         # Check limit
         if len(self.requests[client_id]) >= self.max_requests:
             return False
-        
+
         self.requests[client_id].append(now)
         return True
 ```
@@ -468,6 +478,7 @@ import tempfile
 ALLOWED_EXTENSIONS = {".md", ".yaml", ".yml", ".json", ".txt"}
 MAX_FILE_SIZE = 10 * 1024 * 1024  # 10 MB
 
+
 def safe_read_file(path: Path, base_dir: Path) -> str:
     """Safely read file with validation.
     
@@ -483,15 +494,15 @@ def safe_read_file(path: Path, base_dir: Path) -> str:
     """
     # Validate path is within base directory
     resolved = safe_path(str(path), base_dir)
-    
+
     # Check extension
     if resolved.suffix.lower() not in ALLOWED_EXTENSIONS:
         raise ValueError(f"File type not allowed: {resolved.suffix}")
-    
+
     # Check file size
     if resolved.stat().st_size > MAX_FILE_SIZE:
         raise ValueError(f"File exceeds maximum size: {MAX_FILE_SIZE}")
-    
+
     return resolved.read_text(encoding="utf-8")
 ```
 
@@ -500,6 +511,7 @@ def safe_read_file(path: Path, base_dir: Path) -> str:
 ```python
 import tempfile
 from contextlib import contextmanager
+
 
 @contextmanager
 def secure_temp_file(suffix: str = ".tmp"):
@@ -518,35 +530,35 @@ def secure_temp_file(suffix: str = ".tmp"):
 
 ### 9.1 Code Review Checklist
 
-| Check | Description |
-|-------|-------------|
+| Check                  | Description                         |
+|------------------------|-------------------------------------|
 | ☐ No hardcoded secrets | All secrets from environment/config |
-| ☐ Input validated | All user input validated |
-| ☐ Output sanitized | No sensitive data in logs/responses |
-| ☐ Paths validated | No path traversal possible |
-| ☐ Errors handled | No sensitive info in error messages |
-| ☐ Dependencies safe | No known vulnerabilities |
+| ☐ Input validated      | All user input validated            |
+| ☐ Output sanitized     | No sensitive data in logs/responses |
+| ☐ Paths validated      | No path traversal possible          |
+| ☐ Errors handled       | No sensitive info in error messages |
+| ☐ Dependencies safe    | No known vulnerabilities            |
 
 ### 9.2 Pre-Deployment Checklist
 
-| Check | Description |
-|-------|-------------|
-| ☐ Security scan passed | Bandit, safety checks pass |
-| ☐ Secrets configured | All secrets in secure storage |
-| ☐ Logging configured | Sensitive data not logged |
-| ☐ HTTPS enabled | All traffic encrypted |
-| ☐ Rate limiting active | DoS protection in place |
-| ☐ Backups configured | Recovery possible |
+| Check                  | Description                   |
+|------------------------|-------------------------------|
+| ☐ Security scan passed | Bandit, safety checks pass    |
+| ☐ Secrets configured   | All secrets in secure storage |
+| ☐ Logging configured   | Sensitive data not logged     |
+| ☐ HTTPS enabled        | All traffic encrypted         |
+| ☐ Rate limiting active | DoS protection in place       |
+| ☐ Backups configured   | Recovery possible             |
 
 ### 9.3 Incident Response
 
-| Step | Action |
-|------|--------|
-| 1 | Identify and contain the incident |
-| 2 | Assess impact and scope |
-| 3 | Rotate compromised credentials |
-| 4 | Fix vulnerability |
-| 5 | Document and review |
+| Step | Action                            |
+|------|-----------------------------------|
+| 1    | Identify and contain the incident |
+| 2    | Assess impact and scope           |
+| 3    | Rotate compromised credentials    |
+| 4    | Fix vulnerability                 |
+| 5    | Document and review               |
 
 ---
 

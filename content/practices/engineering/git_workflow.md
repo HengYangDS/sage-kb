@@ -14,14 +14,14 @@
 
 ### 1.1 Branch Types
 
-| Branch | Purpose | Naming | Lifetime |
-|--------|---------|--------|----------|
-| `main` | Production-ready code | - | Permanent |
-| `develop` | Integration branch | - | Permanent |
-| `feature/*` | New features | `feature/add-search` | Temporary |
-| `bugfix/*` | Bug fixes | `bugfix/fix-timeout` | Temporary |
-| `hotfix/*` | Urgent production fixes | `hotfix/critical-error` | Temporary |
-| `release/*` | Release preparation | `release/v1.0.0` | Temporary |
+| Branch      | Purpose                 | Naming                  | Lifetime  |
+|-------------|-------------------------|-------------------------|-----------|
+| `main`      | Production-ready code   | -                       | Permanent |
+| `develop`   | Integration branch      | -                       | Permanent |
+| `feature/*` | New features            | `feature/add-search`    | Temporary |
+| `bugfix/*`  | Bug fixes               | `bugfix/fix-timeout`    | Temporary |
+| `hotfix/*`  | Urgent production fixes | `hotfix/critical-error` | Temporary |
+| `release/*` | Release preparation     | `release/v1.0.0`        | Temporary |
 
 ### 1.2 Branch Flow
 
@@ -39,12 +39,12 @@ feature/b ───────────────●─────┘
 
 ### 1.3 Branch Rules
 
-| Rule | Description |
-|------|-------------|
+| Rule                   | Description                             |
+|------------------------|-----------------------------------------|
 | **Protected branches** | `main` and `develop` require PR reviews |
-| **No direct commits** | Always use feature branches |
-| **Up-to-date** | Rebase/merge from develop before PR |
-| **Clean history** | Squash commits when merging |
+| **No direct commits**  | Always use feature branches             |
+| **Up-to-date**         | Rebase/merge from develop before PR     |
+| **Clean history**      | Squash commits when merging             |
 
 ---
 
@@ -62,29 +62,29 @@ feature/b ───────────────●─────┘
 
 ### 2.2 Commit Types
 
-| Type | Description | Example |
-|------|-------------|---------|
-| `feat` | New feature | `feat(cli): add search command` |
-| `fix` | Bug fix | `fix(loader): handle empty files` |
-| `docs` | Documentation | `docs: update API reference` |
-| `style` | Formatting | `style: fix indentation` |
+| Type       | Description      | Example                                  |
+|------------|------------------|------------------------------------------|
+| `feat`     | New feature      | `feat(cli): add search command`          |
+| `fix`      | Bug fix          | `fix(loader): handle empty files`        |
+| `docs`     | Documentation    | `docs: update API reference`             |
+| `style`    | Formatting       | `style: fix indentation`                 |
 | `refactor` | Code refactoring | `refactor(core): simplify timeout logic` |
-| `perf` | Performance | `perf: optimize search algorithm` |
-| `test` | Tests | `test: add loader unit tests` |
-| `chore` | Maintenance | `chore: update dependencies` |
-| `ci` | CI/CD changes | `ci: add coverage report` |
+| `perf`     | Performance      | `perf: optimize search algorithm`        |
+| `test`     | Tests            | `test: add loader unit tests`            |
+| `chore`    | Maintenance      | `chore: update dependencies`             |
+| `ci`       | CI/CD changes    | `ci: add coverage report`                |
 
 ### 2.3 Scope Examples
 
-| Scope | Area |
-|-------|------|
-| `core` | Core layer |
-| `cli` | CLI service |
-| `mcp` | MCP service |
-| `api` | API service |
+| Scope    | Area          |
+|----------|---------------|
+| `core`   | Core layer    |
+| `cli`    | CLI service   |
+| `mcp`    | MCP service   |
+| `api`    | API service   |
 | `config` | Configuration |
-| `docs` | Documentation |
-| `tests` | Test suite |
+| `docs`   | Documentation |
+| `tests`  | Test suite    |
 
 ### 2.4 Good Commit Examples
 
@@ -118,14 +118,14 @@ Add comprehensive documentation for:
 
 ### 2.5 Commit Best Practices
 
-| Practice | Description |
-|----------|-------------|
-| **Atomic commits** | One logical change per commit |
-| **Present tense** | "add feature" not "added feature" |
-| **Imperative mood** | "fix bug" not "fixes bug" |
-| **No period** | Subject line without trailing period |
-| **72 char limit** | Wrap body at 72 characters |
-| **Reference issues** | Include issue numbers in footer |
+| Practice             | Description                          |
+|----------------------|--------------------------------------|
+| **Atomic commits**   | One logical change per commit        |
+| **Present tense**    | "add feature" not "added feature"    |
+| **Imperative mood**  | "fix bug" not "fixes bug"            |
+| **No period**        | Subject line without trailing period |
+| **72 char limit**    | Wrap body at 72 characters           |
+| **Reference issues** | Include issue numbers in footer      |
 
 ---
 
@@ -135,15 +135,18 @@ Add comprehensive documentation for:
 
 ```markdown
 ## Description
+
 [Describe what this PR does]
 
 ## Type of Change
+
 - [ ] Bug fix (non-breaking change fixing an issue)
 - [ ] New feature (non-breaking change adding functionality)
 - [ ] Breaking change (fix or feature causing existing functionality to change)
 - [ ] Documentation update
 
 ## Checklist
+
 - [ ] Code follows project style guidelines
 - [ ] Self-reviewed the code
 - [ ] Added/updated tests
@@ -152,6 +155,7 @@ Add comprehensive documentation for:
 - [ ] No new warnings
 
 ## Related Issues
+
 Closes #[issue number]
 ```
 
@@ -181,14 +185,14 @@ Closes #[issue number]
 
 ### 3.3 Review Guidelines
 
-| Aspect | Check |
-|--------|-------|
-| **Correctness** | Does it solve the problem? |
-| **Tests** | Are there adequate tests? |
-| **Style** | Does it follow conventions? |
-| **Performance** | Any performance concerns? |
-| **Security** | Any security implications? |
-| **Documentation** | Is it properly documented? |
+| Aspect            | Check                       |
+|-------------------|-----------------------------|
+| **Correctness**   | Does it solve the problem?  |
+| **Tests**         | Are there adequate tests?   |
+| **Style**         | Does it follow conventions? |
+| **Performance**   | Any performance concerns?   |
+| **Security**      | Any security implications?  |
+| **Documentation** | Is it properly documented?  |
 
 ---
 
@@ -204,11 +208,11 @@ MAJOR.MINOR.PATCH
 Example: 1.2.3
 ```
 
-| Component | Increment When |
-|-----------|----------------|
-| **MAJOR** | Breaking changes |
+| Component | Increment When                     |
+|-----------|------------------------------------|
+| **MAJOR** | Breaking changes                   |
 | **MINOR** | New features (backward compatible) |
-| **PATCH** | Bug fixes (backward compatible) |
+| **PATCH** | Bug fixes (backward compatible)    |
 
 ### 4.2 Release Process
 
@@ -244,23 +248,29 @@ git branch -d release/v1.2.0
 ## [1.2.0] - 2025-11-29
 
 ### Added
+
 - New feature X
 - New feature Y
 
 ### Changed
+
 - Updated behavior of Z
 
 ### Fixed
+
 - Bug in component A
 - Issue with feature B
 
 ### Deprecated
+
 - Old API method (use new method instead)
 
 ### Removed
+
 - Legacy feature C
 
 ### Security
+
 - Fixed vulnerability in D
 ```
 
@@ -325,16 +335,16 @@ git rebase --abort
 
 ### 5.4 Common Commands
 
-| Task | Command |
-|------|---------|
-| Create branch | `git checkout -b feature/name` |
-| Switch branch | `git checkout branch-name` |
+| Task               | Command                            |
+|--------------------|------------------------------------|
+| Create branch      | `git checkout -b feature/name`     |
+| Switch branch      | `git checkout branch-name`         |
 | Update from remote | `git pull --rebase origin develop` |
-| View history | `git log --oneline -20` |
-| Undo last commit | `git reset --soft HEAD~1` |
-| Stash changes | `git stash push -m "message"` |
-| Apply stash | `git stash pop` |
-| Cherry-pick | `git cherry-pick <commit-hash>` |
+| View history       | `git log --oneline -20`            |
+| Undo last commit   | `git reset --soft HEAD~1`          |
+| Stash changes      | `git stash push -m "message"`      |
+| Apply stash        | `git stash pop`                    |
+| Cherry-pick        | `git cherry-pick <commit-hash>`    |
 
 ---
 

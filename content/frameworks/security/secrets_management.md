@@ -16,12 +16,12 @@
 
 Secrets are sensitive data that must be protected from unauthorized access:
 
-| Category | Examples |
-|----------|----------|
-| **Credentials** | Passwords, API keys, tokens |
-| **Keys** | Encryption keys, SSH keys, TLS certificates |
-| **Connection Strings** | Database URLs, service endpoints |
-| **Configuration** | Sensitive settings, feature flags |
+| Category               | Examples                                    |
+|------------------------|---------------------------------------------|
+| **Credentials**        | Passwords, API keys, tokens                 |
+| **Keys**               | Encryption keys, SSH keys, TLS certificates |
+| **Connection Strings** | Database URLs, service endpoints            |
+| **Configuration**      | Sensitive settings, feature flags           |
 
 ### Threat Model
 
@@ -47,15 +47,15 @@ Secrets are sensitive data that must be protected from unauthorized access:
 
 ### Classification
 
-| Type | Sensitivity | Rotation Frequency | Example |
-|------|-------------|-------------------|---------|
-| **API Keys** | Medium | Monthly-Quarterly | Third-party service keys |
-| **Database Credentials** | High | Quarterly | PostgreSQL password |
-| **Encryption Keys** | Critical | Annually | AES master key |
-| **OAuth Secrets** | High | Quarterly | Client secret |
-| **TLS Certificates** | High | Annually | Server certificates |
-| **SSH Keys** | High | Annually | Deployment keys |
-| **Tokens** | Medium | Short-lived | JWT, session tokens |
+| Type                     | Sensitivity | Rotation Frequency | Example                  |
+|--------------------------|-------------|--------------------|--------------------------|
+| **API Keys**             | Medium      | Monthly-Quarterly  | Third-party service keys |
+| **Database Credentials** | High        | Quarterly          | PostgreSQL password      |
+| **Encryption Keys**      | Critical    | Annually           | AES master key           |
+| **OAuth Secrets**        | High        | Quarterly          | Client secret            |
+| **TLS Certificates**     | High        | Annually           | Server certificates      |
+| **SSH Keys**             | High        | Annually           | Deployment keys          |
+| **Tokens**               | Medium      | Short-lived        | JWT, session tokens      |
 
 ### Secret Lifecycle
 
@@ -75,15 +75,15 @@ Secrets are sensitive data that must be protected from unauthorized access:
 
 ### Comparison
 
-| Solution | Security | Ease of Use | Cost | Best For |
-|----------|----------|-------------|------|----------|
-| **Env Variables** | Low | High | Free | Development |
-| **Config Files** | Low | High | Free | Development |
-| **HashiCorp Vault** | High | Medium | $$ | Enterprise |
-| **AWS Secrets Manager** | High | High | $ | AWS workloads |
-| **Azure Key Vault** | High | High | $ | Azure workloads |
-| **GCP Secret Manager** | High | High | $ | GCP workloads |
-| **1Password/Bitwarden** | Medium | High | $ | Team secrets |
+| Solution                | Security | Ease of Use | Cost | Best For        |
+|-------------------------|----------|-------------|------|-----------------|
+| **Env Variables**       | Low      | High        | Free | Development     |
+| **Config Files**        | Low      | High        | Free | Development     |
+| **HashiCorp Vault**     | High     | Medium      | $$   | Enterprise      |
+| **AWS Secrets Manager** | High     | High        | $    | AWS workloads   |
+| **Azure Key Vault**     | High     | High        | $    | Azure workloads |
+| **GCP Secret Manager**  | High     | High        | $    | GCP workloads   |
+| **1Password/Bitwarden** | Medium   | High        | $    | Team secrets    |
 
 ### Environment Variables (Development Only)
 
@@ -185,14 +185,14 @@ class AWSSecretManager:
 
 ### DO's and DON'Ts
 
-| ✅ DO | ❌ DON'T |
-|-------|----------|
-| Use secrets manager | Hardcode secrets |
-| Encrypt at rest | Store in plain text |
-| Rotate regularly | Use same secret forever |
-| Audit access | Ignore access logs |
-| Use least privilege | Share admin credentials |
-| Encrypt in transit | Send over HTTP |
+| ✅ DO                   | ❌ DON'T                    |
+|------------------------|----------------------------|
+| Use secrets manager    | Hardcode secrets           |
+| Encrypt at rest        | Store in plain text        |
+| Rotate regularly       | Use same secret forever    |
+| Audit access           | Ignore access logs         |
+| Use least privilege    | Share admin credentials    |
+| Encrypt in transit     | Send over HTTP             |
 | Use short-lived tokens | Use long-lived credentials |
 
 ### Secret Generation
@@ -420,12 +420,12 @@ spec:
 
 ### Rotation Types
 
-| Strategy | Downtime | Complexity | Use Case |
-|----------|----------|------------|----------|
-| **Manual** | Possible | Low | Small scale |
-| **Scheduled** | Minimal | Medium | Regular rotation |
-| **Automatic** | Zero | High | Critical systems |
-| **On-demand** | Variable | Medium | Security incidents |
+| Strategy      | Downtime | Complexity | Use Case           |
+|---------------|----------|------------|--------------------|
+| **Manual**    | Possible | Low        | Small scale        |
+| **Scheduled** | Minimal  | Medium     | Regular rotation   |
+| **Automatic** | Zero     | High       | Critical systems   |
+| **On-demand** | Variable | Medium     | Security incidents |
 
 ### Zero-Downtime Rotation
 
@@ -475,15 +475,15 @@ class SecretRotator:
 
 ### Rotation Schedule
 
-| Secret Type | Frequency | Trigger |
-|-------------|-----------|---------|
-| API Keys | 90 days | Scheduled |
-| Database Passwords | 90 days | Scheduled |
-| JWT Secrets | 30 days | Scheduled |
-| TLS Certificates | 365 days | Before expiry |
-| Encryption Keys | 365 days | Scheduled |
-| OAuth Secrets | 90 days | Scheduled |
-| SSH Keys | 365 days | Scheduled |
+| Secret Type        | Frequency | Trigger       |
+|--------------------|-----------|---------------|
+| API Keys           | 90 days   | Scheduled     |
+| Database Passwords | 90 days   | Scheduled     |
+| JWT Secrets        | 30 days   | Scheduled     |
+| TLS Certificates   | 365 days  | Before expiry |
+| Encryption Keys    | 365 days  | Scheduled     |
+| OAuth Secrets      | 90 days   | Scheduled     |
+| SSH Keys           | 365 days  | Scheduled     |
 
 ---
 

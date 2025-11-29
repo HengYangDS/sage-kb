@@ -68,7 +68,7 @@ services:
       max_pattern_length: 100
 
       # Default subscriptions (auto-subscribe on connect)
-      defaults: []
+      defaults: [ ]
 
     # =========================================================================
     # Event Types

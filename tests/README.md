@@ -14,11 +14,11 @@
 
 ### Test Categories
 
-| Category | Location | Purpose | Run Time |
-|----------|----------|---------|----------|
-| **Unit** | `tests/unit/` | Component isolation | Fast (<1s each) |
-| **Integration** | `tests/integration/` | Component interaction | Medium (1-5s) |
-| **Performance** | `tests/performance/` | Benchmarks & stress | Slow (5-30s) |
+| Category        | Location             | Purpose               | Run Time        |
+|-----------------|----------------------|-----------------------|-----------------|
+| **Unit**        | `tests/unit/`        | Component isolation   | Fast (<1s each) |
+| **Integration** | `tests/integration/` | Component interaction | Medium (1-5s)   |
+| **Performance** | `tests/performance/` | Benchmarks & stress   | Slow (5-30s)    |
 
 ### Test Statistics
 
@@ -79,13 +79,13 @@ pytest tests/ -m "integration"
 
 ### Test Markers
 
-| Marker | Description | Usage |
-|--------|-------------|-------|
-| `@pytest.mark.unit` | Unit tests | Default |
+| Marker                     | Description       | Usage                   |
+|----------------------------|-------------------|-------------------------|
+| `@pytest.mark.unit`        | Unit tests        | Default                 |
 | `@pytest.mark.integration` | Integration tests | `pytest -m integration` |
 | `@pytest.mark.performance` | Performance tests | `pytest -m performance` |
-| `@pytest.mark.slow` | Slow tests (>5s) | `pytest -m "not slow"` |
-| `@pytest.mark.asyncio` | Async tests | Auto-detected |
+| `@pytest.mark.slow`        | Slow tests (>5s)  | `pytest -m "not slow"`  |
+| `@pytest.mark.asyncio`     | Async tests       | Auto-detected           |
 
 ---
 
@@ -142,12 +142,12 @@ tests/
 
 ### Naming Conventions
 
-| Element | Convention | Example |
-|---------|------------|---------|
-| Test files | `test_*.py` | `test_loader.py` |
-| Test classes | `Test*` | `TestKnowledgeLoader` |
-| Test functions | `test_*` | `test_load_core_success` |
-| Fixtures | Descriptive | `sample_content`, `mock_loader` |
+| Element        | Convention  | Example                         |
+|----------------|-------------|---------------------------------|
+| Test files     | `test_*.py` | `test_loader.py`                |
+| Test classes   | `Test*`     | `TestKnowledgeLoader`           |
+| Test functions | `test_*`    | `test_load_core_success`        |
+| Fixtures       | Descriptive | `sample_content`, `mock_loader` |
 
 ---
 
@@ -509,12 +509,12 @@ jobs:
 
 ### Coverage Requirements
 
-| Module | Minimum Coverage |
-|--------|------------------|
-| `sage.core` | 90% |
-| `sage.services` | 85% |
-| `sage.capabilities` | 80% |
-| Overall | 85% |
+| Module              | Minimum Coverage |
+|---------------------|------------------|
+| `sage.core`         | 90%              |
+| `sage.services`     | 85%              |
+| `sage.capabilities` | 80%              |
+| Overall             | 85%              |
 
 ### Pre-commit Hook
 
@@ -535,15 +535,15 @@ repos:
 
 ## Quick Reference
 
-| Task | Command |
-|------|---------|
-| Run all tests | `pytest tests/` |
-| Run with coverage | `pytest tests/ --cov=sage` |
-| Run unit tests | `pytest tests/unit/` |
-| Run fast tests | `pytest tests/ -m "not slow"` |
-| Run specific file | `pytest tests/unit/core/test_loader.py` |
-| Debug failing test | `pytest tests/ -x -v --tb=long` |
-| Parallel execution | `pytest tests/ -n auto` |
+| Task               | Command                                 |
+|--------------------|-----------------------------------------|
+| Run all tests      | `pytest tests/`                         |
+| Run with coverage  | `pytest tests/ --cov=sage`              |
+| Run unit tests     | `pytest tests/unit/`                    |
+| Run fast tests     | `pytest tests/ -m "not slow"`           |
+| Run specific file  | `pytest tests/unit/core/test_loader.py` |
+| Debug failing test | `pytest tests/ -x -v --tb=long`         |
+| Parallel execution | `pytest tests/ -n auto`                 |
 
 ---
 

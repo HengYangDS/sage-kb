@@ -80,7 +80,7 @@ services:
         - br                             # Brotli
       min_size_bytes: 1024               # Minimum size to compress
       level: 6                           # Compression level (1-9)
-      exclude_types:                     # MIME types to exclude
+      exclude_types: # MIME types to exclude
         - "image/*"
         - "video/*"
 
