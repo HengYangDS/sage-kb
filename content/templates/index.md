@@ -6,16 +6,23 @@
 
 ## Table of Contents
 
-[1. Available Templates](#1-available-templates) · [2. Expert Committee Template](#2-expert-committee-template) · [3. Project Setup Template](#3-project-setup-template) · [4. Template Format Standard](#4-template-format-standard) · [5. Creating New Templates](#5-creating-new-templates)
+[1. Available Templates](#1-available-templates) · [2. Expert Committee Template](#2-expert-committee-template) · [3. Project Setup Template](#3-project-setup-template) · [4. Conversation Record Template](#4-conversation-record-template) · [5. Session State Template](#5-session-state-template) · [6. Task Handoff Template](#6-task-handoff-template) · [7. Template Format Standard](#7-template-format-standard) · [8. Creating New Templates](#8-creating-new-templates)
 
 ---
 
 ## 1. Available Templates
 
-| Template             | File                  | Tokens | Purpose                          |
-|----------------------|-----------------------|--------|----------------------------------|
-| **Expert Committee** | `expert_committee.md` | ~150   | 24-expert review template        |
-| **Project Setup**    | `project_setup.md`    | ~150   | Project initialization checklist |
+| Template                | File                       | Tokens | Purpose                              |
+|-------------------------|----------------------------|--------|--------------------------------------|
+| **Expert Committee**    | `expert_committee.md`      | ~150   | 24-expert review template            |
+| **Project Setup**       | `project_setup.md`         | ~150   | Project initialization checklist     |
+| **Conversation Record** | `conversation_record.md`   | ~200   | AI session documentation             |
+| **Session State**       | `session_state.md`         | ~250   | Current session context capture      |
+| **Task Handoff**        | `task_handoff.md`          | ~300   | Task continuation between sessions   |
+| **ADR**                 | `adr.md`                   | ~200   | Architecture Decision Record         |
+| **API Spec**            | `api_spec.md`              | ~250   | API specification document           |
+| **Runbook**             | `runbook.md`               | ~250   | Operational runbook                  |
+| **Postmortem**          | `postmortem.md`            | ~250   | Incident postmortem report           |
 
 ---
 
@@ -75,7 +82,80 @@
 
 ---
 
-## 4. Template Format Standard
+## 4. Conversation Record Template
+
+**File**: `conversation_record.md`
+
+### When to Use
+
+- Recording significant AI collaboration sessions
+- Documenting design discussions and decisions
+- Capturing problem-solving sessions with learnings
+- Preserving insights for future reference
+
+### Structure
+
+- Context and participants
+- Key discussion points
+- Decisions made with rationale
+- Action items and follow-ups
+- Learnings and insights
+
+### Location
+
+Store in `.history/conversations/` with naming: `YYYY-MM-DD-topic.md`
+
+---
+
+## 5. Session State Template
+
+**File**: `session_state.md`
+
+### When to Use
+
+- Starting complex multi-step tasks
+- Before taking breaks during active work
+- When session may be interrupted
+- Beginning exploratory or research tasks
+
+### Structure
+
+- Current task objective and scope
+- Progress tracking (completed/current/remaining)
+- Working context (files, decisions, dependencies)
+- Quick resume guide for continuation
+
+### Location
+
+Store in `.history/current/` with naming: `session-YYYYMMDD-HHMM.md`
+
+---
+
+## 6. Task Handoff Template
+
+**File**: `task_handoff.md`
+
+### When to Use
+
+- Ending session with incomplete work
+- Passing tasks to different AI session
+- Requesting human review or input
+- Before extended breaks
+
+### Structure
+
+- Task summary and current status
+- Context for continuation (files, decisions)
+- Technical context and dependencies
+- Blockers, risks, and recommended next steps
+
+### Location
+
+Store in `.history/handoffs/` with naming: `YYYY-MM-DD-task-handoff.md`
+
+---
+
+## 7. Template Format Standard
 
 All templates follow this structure:
 
@@ -109,7 +189,7 @@ All templates follow this structure:
 
 ---
 
-## 5. Creating New Templates
+## 8. Creating New Templates
 
 1. Identify repeated documentation patterns
 2. Create template with `[PLACEHOLDER]` markers
