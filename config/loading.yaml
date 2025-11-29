@@ -1,0 +1,18 @@
+# SAGE Smart Loading Configuration
+#
+# Configuration for knowledge content loading behavior.
+# This file is part of the modular configuration system.
+
+# =============================================================================
+# Smart Loading Configuration
+# =============================================================================
+loading:
+  max_tokens: 4000                     # Maximum tokens to load
+  default_layers:
+    - core                             # Always start with the core
+
+  # Always loaded (pre-cached)
+  always:
+    - index.md
+    - content/core/principles.md
+    - content/core/quick_reference.md

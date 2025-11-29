@@ -1,0 +1,17 @@
+# SAGE Memory Persistence Configuration
+#
+# Configuration for memory store and session continuity.
+# This file is part of the modular configuration system.
+
+# =============================================================================
+# Memory Persistence Configuration
+# =============================================================================
+memory:
+  store:
+    backend: file                      # file | redis | sqlite
+    path: .history/memory              # Storage location
+
+  session:
+    auto_checkpoint: true              # Auto-checkpoint on critical events
+    checkpoint_interval: 300           # Checkpoint every 5 minutes (seconds)
+    max_history: 100                   # Max conversation entries

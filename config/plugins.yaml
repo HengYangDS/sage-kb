@@ -1,0 +1,40 @@
+# SAGE Plugin Configuration
+#
+# Configuration for the plugin loader and bundled plugins.
+# This file is part of the modular configuration system.
+#
+# Structure:
+#   plugins.loader      - Master controls for plugin behavior
+#   plugins.bundled.*   - Individual plugin configurations
+#
+# Note: Plugins are auto-configured when registered via PluginRegistry.register()
+#       Configuration is loaded from `plugins.bundled.<plugin_name>`.
+
+# =============================================================================
+# Plugin Configuration
+# =============================================================================
+plugins:
+  # Master controls for plugin loader behavior
+  loader:
+    # Master toggle for content caching (overrides bundled.content_cache.enabled)
+    cache_enabled: true
+    # Default TTL for cache (used if bundled.content_cache.ttl_seconds not set)
+    cache_ttl: 300                     # 5 minutes
+
+  # Bundled plugin configurations
+  # Each plugin is configured at plugins.bundled.<plugin_name>
+  bundled:
+    # ContentCachePlugin - LRU caching for knowledge content
+    content_cache:
+      enabled: true                    # Enable/disable caching
+      max_entries: 1000                # Maximum cache entries
+      max_size_bytes: 52428800         # 50MB maximum cache size
+      ttl_seconds: 3600                # 1 hour TTL
+
+    # SemanticSearchPlugin - Semantic search capabilities
+    semantic_search:
+      enabled: true                    # Enable/disable search
+      min_term_length: 2               # Minimum term length to index
+      max_results: 20                  # Maximum search results
+      score_threshold: 0.1             # Minimum relevance score
+      use_stemming: false              # Enable basic stemming

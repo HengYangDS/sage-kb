@@ -1,0 +1,12 @@
+# SAGE Logging Configuration
+#
+# Configuration for structured logging with structlog.
+# This file is part of the modular configuration system.
+
+# =============================================================================
+# Logging Configuration
+# =============================================================================
+logging:
+  level: INFO
+  format: structured                   # structured | plain
+  include_timestamps: true

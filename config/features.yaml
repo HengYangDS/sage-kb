@@ -1,0 +1,14 @@
+# SAGE Feature Flags Configuration
+#
+# Feature flags for optional capabilities.
+# This file is part of the modular configuration system.
+
+# =============================================================================
+# Feature Flags
+# =============================================================================
+features:
+  event_driven_plugins: true           # Enable event-driven plugin architecture
+  memory_persistence: true             # Enable cross-session memory persistence
+  api_service: false                   # Enable HTTP REST API service
+  differential_loading: false          # Load only changed content since the last session
+  compressed_loading: false            # Enable compressed/summarized content loading

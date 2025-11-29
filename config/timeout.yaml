@@ -1,0 +1,55 @@
+# SAGE Timeout Configuration
+#
+# 5-Level Timeout Hierarchy with Circuit Breaker and Fallback Strategies
+# This file is part of the modular configuration system.
+
+# =============================================================================
+# Timeout Configuration (5-Level Hierarchy)
+# =============================================================================
+timeout:
+  global_max: 10s                      # Absolute maximum (T5)
+  default: 5s                          # Default if not specified (T4)
+
+  operations:
+    cache_lookup: 100ms                # T1 - Cache hits
+    file_read: 500ms                   # T2 - Single file operations
+    layer_load: 2s                     # T3 - Layer/directory loading
+    full_load: 5s                      # T4 - Complete KB load
+    analysis: 10s                      # T5 - Complex analysis
+    mcp_call: 10s                      # MCP tool timeout
+    search: 3s                         # Search operations
+
+  strategies:
+    on_timeout:
+      - return_partial                 # Return what is available
+      - use_fallback                   # Use cached/default content
+      - log_warning                    # Log for monitoring
+      - never_hang                     # Guarantee response
+
+  # Circuit Breaker Pattern
+  circuit_breaker:
+    enabled: true
+    failure_threshold: 3               # Open after 3 consecutive failures
+    reset_timeout: 30s                 # Try again after 30 seconds
+    half_open_requests: 1              # Test requests in a half-open state
+
+  # Fallback Behavior Configuration
+  fallback:
+    strategy: graceful                 # graceful | strict | none
+    cache_stale_ms: 60000              # Use stale cache up to 60 seconds
+
+    timeout_short: # Timeout < 5s
+      action: return_partial
+      description: "Return partial results"
+    timeout_long: # Timeout > 5s
+      action: return_core
+      description: "Return core principles"
+    file_not_found:
+      action: return_error
+      description: "Return helpful error message"
+    parse_error:
+      action: return_raw
+      description: "Return raw content"
+    network_error:
+      action: use_cache
+      description: "Use cached content"

@@ -1,0 +1,32 @@
+# SAGE Dependency Injection Container Configuration
+#
+# Configuration for DI container service registration.
+# This file is part of the modular configuration system.
+
+# =============================================================================
+# DI Container Configuration
+# =============================================================================
+di:
+  auto_wire: true
+
+  services:
+    # Event Bus - Async pub/sub message broker
+    EventBus:
+      lifetime: singleton
+      implementation: AsyncEventBus
+
+    # Source Protocol - Knowledge loading
+    SourceProtocol:
+      lifetime: singleton
+      implementation: TimeoutLoader
+      config_key: plugins.loader
+
+    # Memory Store - Session persistence
+    MemoryStore:
+      lifetime: singleton
+      implementation: MemoryStore
+
+    # Token Budget - Token management
+    TokenBudget:
+      lifetime: singleton
+      implementation: TokenBudget

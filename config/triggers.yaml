@@ -1,0 +1,134 @@
+# SAGE Keyword Triggers Configuration
+#
+# Keyword triggers for context-aware content loading.
+# This file is part of the modular configuration system.
+
+# =============================================================================
+# Keyword Triggers for Context-Aware Loading
+# =============================================================================
+triggers:
+  code:
+    keywords:
+      # English
+      - code
+      - implement
+      - fix
+      - refactor
+      - debug
+      # Chinese (中文)
+      - 代码
+      - 实现
+      - 修复
+      - 重构
+      - 调试
+    load:
+      - content/guidelines/code_style.md
+      - content/guidelines/python.md
+    timeout_ms: 2000
+    priority: 1                        # Lower = higher priority
+
+  architecture:
+    keywords:
+      # English
+      - architecture
+      - design
+      - system
+      - pattern
+      # Chinese (中文)
+      - 架构
+      - 设计
+      - 系统
+      - 模式
+    load:
+      - content/guidelines/planning_design.md
+      - content/frameworks/decision/
+    timeout_ms: 3000
+    priority: 2
+
+  testing:
+    keywords:
+      # English
+      - test
+      - coverage
+      - unit
+      - integration
+      # Chinese (中文)
+      - 测试
+      - 覆盖率
+      - 单元
+      - 集成
+    load:
+      - content/guidelines/engineering.md
+    timeout_ms: 2000
+    priority: 3
+
+  ai_collaboration:
+    keywords:
+      # English
+      - autonomy
+      - collaboration
+      - ai
+      - level
+      # Chinese (中文)
+      - 自主
+      - 协作
+      - 人工智能
+      - 级别
+    load:
+      - content/guidelines/ai_collaboration.md
+      - content/frameworks/autonomy/
+    timeout_ms: 2000
+    priority: 4
+
+  timeout:
+    keywords:
+      # English
+      - timeout
+      - performance
+      - slow
+      - latency
+      # Chinese (中文)
+      - 超时
+      - 性能
+      - 慢
+      - 延迟
+    load:
+      - content/frameworks/timeout/
+    timeout_ms: 2000
+    priority: 5
+
+  expert:
+    keywords:
+      # English
+      - expert
+      - committee
+      - review
+      - decision
+      # Chinese (中文)
+      - 专家
+      - 委员会
+      - 评审
+      - 决策
+    load:
+      - content/frameworks/cognitive/
+    timeout_ms: 2000
+    priority: 6
+
+  analyze:
+    keywords:
+      # English
+      - analyze
+      - analysis
+      - quality
+      - check
+      - inspect
+      # Chinese (中文)
+      - 分析
+      - 质量
+      - 检查
+      - 审查
+    load:
+      - content/guidelines/quality.md
+      - content/frameworks/decision/quality_angles.md
+    timeout_ms: 2000
+    priority: 7

@@ -1,0 +1,21 @@
+# SAGE Token Budget Configuration
+#
+# Configuration for token budget management and auto-actions.
+# This file is part of the modular configuration system.
+
+# =============================================================================
+# Token Budget Configuration
+# =============================================================================
+token_budget:
+  max_tokens: 128000                   # Model context window
+  reserved_tokens: 4000                # Reserved for response generation
+
+  thresholds:
+    warning: 0.70                      # 70% - CAUTION level
+    caution: 0.80                      # 80% - WARNING level
+    critical: 0.90                     # 90% - CRITICAL level
+    overflow: 0.95                     # 95% - OVERFLOW level
+
+  auto_actions:
+    summarize: true                    # Auto-summarize at CRITICAL
+    prune: true                        # Auto-prune at OVERFLOW
