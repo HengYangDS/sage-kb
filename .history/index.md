@@ -54,7 +54,8 @@ Files prefixed with `_example-` are **reference templates**, not actual session 
 - `_example-session-20251129-2214.md` — Sample session state
 - `_example-2025-11-29-history-enhancement-handoff.md` — Sample handoff document
 
-**Usage**: Copy and rename (removing `_example-` prefix) when creating new records. These files demonstrate the expected format and content structure.
+**Usage**: Copy and rename (removing `_example-` prefix) when creating new records. These files demonstrate the expected
+format and content structure.
 
 **Note**: Example files are excluded from retention policies and archival processes.
 

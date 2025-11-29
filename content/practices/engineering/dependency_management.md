@@ -14,12 +14,12 @@
 
 ### 1.1 Dependency Types
 
-| Type | Purpose | Example |
-|------|---------|---------|
-| **Runtime** | Required to run | `pyyaml`, `typer` |
-| **Development** | Testing, linting | `pytest`, `ruff` |
-| **Optional** | Feature-specific | `uvicorn[standard]` |
-| **Build** | Package building | `build`, `twine` |
+| Type            | Purpose          | Example             |
+|-----------------|------------------|---------------------|
+| **Runtime**     | Required to run  | `pyyaml`, `typer`   |
+| **Development** | Testing, linting | `pytest`, `ruff`    |
+| **Optional**    | Feature-specific | `uvicorn[standard]` |
+| **Build**       | Package building | `build`, `twine`    |
 
 ### 1.2 Key Principles
 
@@ -71,13 +71,13 @@ all = [
 
 ### 2.2 Version Specifiers
 
-| Specifier | Meaning | Example |
-|-----------|---------|---------|
-| `>=X.Y` | Minimum version | `>=1.0` |
-| `>=X.Y,<Z` | Version range | `>=1.0,<2.0` |
-| `~=X.Y` | Compatible release | `~=1.4` (≥1.4, <2.0) |
-| `==X.Y.Z` | Exact version | `==1.2.3` |
-| `!=X.Y.Z` | Exclude version | `!=1.2.3` |
+| Specifier  | Meaning            | Example              |
+|------------|--------------------|----------------------|
+| `>=X.Y`    | Minimum version    | `>=1.0`              |
+| `>=X.Y,<Z` | Version range      | `>=1.0,<2.0`         |
+| `~=X.Y`    | Compatible release | `~=1.4` (≥1.4, <2.0) |
+| `==X.Y.Z`  | Exact version      | `==1.2.3`            |
+| `!=X.Y.Z`  | Exclude version    | `!=1.2.3`            |
 
 ### 2.3 Extras for Optional Features
 
@@ -94,11 +94,11 @@ all = [
 
 ### 3.1 Pinning Strategy
 
-| Environment | Strategy | File |
-|-------------|----------|------|
-| **Library** | Loose constraints | `pyproject.toml` |
-| **Application** | Lock file | `requirements.lock` |
-| **CI/CD** | Pinned versions | `requirements-ci.txt` |
+| Environment     | Strategy          | File                  |
+|-----------------|-------------------|-----------------------|
+| **Library**     | Loose constraints | `pyproject.toml`      |
+| **Application** | Lock file         | `requirements.lock`   |
+| **CI/CD**       | Pinned versions   | `requirements-ci.txt` |
 
 ### 3.2 Lock File Generation
 
@@ -168,13 +168,13 @@ updates:
 
 ### 4.3 Security Best Practices
 
-| Practice | Description |
-|----------|-------------|
-| **Use lock files** | Ensure reproducible builds |
-| **Verify hashes** | Prevent supply chain attacks |
-| **Regular audits** | Weekly security scans |
-| **Pin CI deps** | Avoid surprise breaks |
-| **Review updates** | Don't blindly update |
+| Practice           | Description                  |
+|--------------------|------------------------------|
+| **Use lock files** | Ensure reproducible builds   |
+| **Verify hashes**  | Prevent supply chain attacks |
+| **Regular audits** | Weekly security scans        |
+| **Pin CI deps**    | Avoid surprise breaks        |
+| **Review updates** | Don't blindly update         |
 
 ---
 
@@ -182,12 +182,12 @@ updates:
 
 ### 5.1 Update Frequency
 
-| Dependency Type | Frequency | Approach |
-|-----------------|-----------|----------|
-| **Security fixes** | Immediate | Patch ASAP |
-| **Bug fixes** | Weekly | Batch updates |
-| **Minor versions** | Monthly | Test thoroughly |
-| **Major versions** | Quarterly | Plan migration |
+| Dependency Type    | Frequency | Approach        |
+|--------------------|-----------|-----------------|
+| **Security fixes** | Immediate | Patch ASAP      |
+| **Bug fixes**      | Weekly    | Batch updates   |
+| **Minor versions** | Monthly   | Test thoroughly |
+| **Major versions** | Quarterly | Plan migration  |
 
 ### 5.2 Update Process
 
@@ -249,7 +249,7 @@ dependencies:
   - python=3.12
   - pip
   - pip:
-    - -e ".[all]"
+      - -e ".[all]"
 ```
 
 ```bash
@@ -304,13 +304,13 @@ pipdeptree
 
 ## Dependency Checklist
 
-| Check | Frequency |
-|-------|-----------|
-| Run `pip-audit` | Weekly |
-| Update lock file | Weekly |
-| Review Dependabot PRs | Weekly |
-| Check for major updates | Monthly |
-| Audit unused deps | Quarterly |
+| Check                   | Frequency |
+|-------------------------|-----------|
+| Run `pip-audit`         | Weekly    |
+| Update lock file        | Weekly    |
+| Review Dependabot PRs   | Weekly    |
+| Check for major updates | Monthly   |
+| Audit unused deps       | Quarterly |
 
 ---
 

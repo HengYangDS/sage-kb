@@ -33,7 +33,7 @@ Foundation knowledge loaded on every session:
 
 | File                 | Purpose                         |
 |----------------------|---------------------------------|
-| `principles.md`      | 信达雅 + 术法道 philosophy       |
+| `principles.md`      | 信达雅 + 术法道 philosophy            |
 | `quick_reference.md` | 5 questions + autonomy levels   |
 | `defaults.md`        | Default behaviors + calibration |
 
@@ -41,22 +41,22 @@ Foundation knowledge loaded on every session:
 
 Code style and collaboration standards:
 
-| File                   | Purpose                       |
-|------------------------|-------------------------------|
-| `quick_start.md`       | 3-minute productivity guide   |
-| `code_style.md`        | Code style standards          |
-| `ai_collaboration.md`  | Human-AI interaction patterns |
-| `python.md`            | Python-specific guidelines    |
-| `typescript.md`        | TypeScript guidelines         |
-| `sql.md`               | SQL conventions               |
-| `shell.md`             | Shell scripting standards     |
-| `documentation.md`     | Documentation standards       |
-| `engineering.md`       | Engineering practices         |
-| `security.md`          | Security guidelines           |
-| `quality.md`           | Quality assurance             |
-| `cognitive.md`         | Cognitive patterns            |
-| `planning.md`          | Planning guidelines           |
-| `success.md`           | Success metrics               |
+| File                  | Purpose                       |
+|-----------------------|-------------------------------|
+| `quick_start.md`      | 3-minute productivity guide   |
+| `code_style.md`       | Code style standards          |
+| `ai_collaboration.md` | Human-AI interaction patterns |
+| `python.md`           | Python-specific guidelines    |
+| `typescript.md`       | TypeScript guidelines         |
+| `sql.md`              | SQL conventions               |
+| `shell.md`            | Shell scripting standards     |
+| `documentation.md`    | Documentation standards       |
+| `engineering.md`      | Engineering practices         |
+| `security.md`         | Security guidelines           |
+| `quality.md`          | Quality assurance             |
+| `cognitive.md`        | Cognitive patterns            |
+| `planning.md`         | Planning guidelines           |
+| `success.md`          | Success metrics               |
 
 ### 2.3 Frameworks (20 files)
 
@@ -76,12 +76,12 @@ Reusable patterns and strategies across 7 categories:
 
 Real-world implementation guidance:
 
-| Subdirectory       | Files | Purpose                         |
-|--------------------|-------|---------------------------------|
-| `ai_collaboration/`| 6     | Context, session, token mgmt    |
-| `decisions/`       | 1     | Autonomy case studies           |
-| `documentation/`   | 4     | Knowledge org, standards        |
-| `engineering/`     | 19    | API, testing, CI/CD, logging    |
+| Subdirectory        | Files | Purpose                      |
+|---------------------|-------|------------------------------|
+| `ai_collaboration/` | 6     | Context, session, token mgmt |
+| `decisions/`        | 1     | Autonomy case studies        |
+| `documentation/`    | 4     | Knowledge org, standards     |
+| `engineering/`      | 19    | API, testing, CI/CD, logging |
 
 ### 2.5 Scenarios (16 files)
 
@@ -105,21 +105,21 @@ Context-specific project guides:
 
 Reusable document templates:
 
-| File                     | Purpose                    |
-|--------------------------|----------------------------|
-| `adr.md`                 | Architecture Decision Record |
-| `api_spec.md`            | API specification          |
-| `case_study.md`          | Case study template        |
-| `conversation_record.md` | Conversation logging       |
-| `expert_committee.md`    | Expert committee review    |
-| `meeting_notes.md`       | Meeting notes template     |
-| `postmortem.md`          | Incident postmortem        |
-| `project_setup.md`       | Project setup checklist    |
-| `release_notes.md`       | Release notes format       |
-| `runbook.md`             | Operational runbook        |
-| `session_state.md`       | AI session state           |
-| `task_handoff.md`        | Task handoff document      |
-| `troubleshooting_guide.md` | Troubleshooting template |
+| File                       | Purpose                      |
+|----------------------------|------------------------------|
+| `adr.md`                   | Architecture Decision Record |
+| `api_spec.md`              | API specification            |
+| `case_study.md`            | Case study template          |
+| `conversation_record.md`   | Conversation logging         |
+| `expert_committee.md`      | Expert committee review      |
+| `meeting_notes.md`         | Meeting notes template       |
+| `postmortem.md`            | Incident postmortem          |
+| `project_setup.md`         | Project setup checklist      |
+| `release_notes.md`         | Release notes format         |
+| `runbook.md`               | Operational runbook          |
+| `session_state.md`         | AI session state             |
+| `task_handoff.md`          | Task handoff document        |
+| `troubleshooting_guide.md` | Troubleshooting template     |
 
 ---
 

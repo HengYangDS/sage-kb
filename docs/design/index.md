@@ -12,31 +12,31 @@
 
 ## 1. Overview
 
-| Document | Description |
-|----------|-------------|
-| `00-overview.md` | Project overview, goals, and scope |
-| `07-roadmap.md` | Implementation roadmap and milestones |
+| Document           | Description                             |
+|--------------------|-----------------------------------------|
+| `00-overview.md`   | Project overview, goals, and scope      |
+| `07-roadmap.md`    | Implementation roadmap and milestones   |
 | `08-evaluation.md` | Success metrics and evaluation criteria |
 
 ---
 
 ## 2. Core Architecture
 
-| Document | Description |
-|----------|-------------|
-| `01-architecture.md` | Three-layer architecture (Core, Services, Capabilities) |
-| `02-sage-protocol.md` | SAGE protocol specification and interfaces |
-| `09-configuration.md` | Configuration management system |
+| Document              | Description                                             |
+|-----------------------|---------------------------------------------------------|
+| `01-architecture.md`  | Three-layer architecture (Core, Services, Capabilities) |
+| `02-sage-protocol.md` | SAGE protocol specification and interfaces              |
+| `09-configuration.md` | Configuration management system                         |
 
 ---
 
 ## 3. Detailed Design
 
-| Document | Description |
-|----------|-------------|
-| `03-services.md` | Service layer (API, CLI, MCP) design |
-| `04-timeout-loading.md` | Timeout hierarchy (T1-T5) and smart loading |
-| `05-plugin-memory.md` | Plugin system and memory persistence |
+| Document                  | Description                                 |
+|---------------------------|---------------------------------------------|
+| `03-services.md`          | Service layer (API, CLI, MCP) design        |
+| `04-timeout-loading.md`   | Timeout hierarchy (T1-T5) and smart loading |
+| `05-plugin-memory.md`     | Plugin system and memory persistence        |
 | `06-content-structure.md` | Knowledge content organization and taxonomy |
 
 ---

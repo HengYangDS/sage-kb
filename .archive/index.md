@@ -6,15 +6,16 @@
 
 ## Overview
 
-This directory contains archived documents that are no longer actively used but preserved for historical reference. Content here may be outdated or superseded by newer versions.
+This directory contains archived documents that are no longer actively used but preserved for historical reference.
+Content here may be outdated or superseded by newer versions.
 
 ---
 
 ## Directory Structure
 
-| Directory | Purpose                          | Files |
-|-----------|----------------------------------|-------|
-| `design/` | Archived design documents        | 1     |
+| Directory | Purpose                   | Files |
+|-----------|---------------------------|-------|
+| `design/` | Archived design documents | 1     |
 
 ---
 
@@ -22,9 +23,9 @@ This directory contains archived documents that are no longer actively used but 
 
 ### Design
 
-| File                       | Description                              | Archived Date |
-|----------------------------|------------------------------------------|---------------|
-| `ultimate_design_final.md` | Original comprehensive design document   | 2025-11       |
+| File                       | Description                            | Archived Date |
+|----------------------------|----------------------------------------|---------------|
+| `ultimate_design_final.md` | Original comprehensive design document | 2025-11       |
 
 ---
 

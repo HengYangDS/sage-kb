@@ -15,15 +15,15 @@
 
 ## Case Summary
 
-| Field | Value |
-|-------|-------|
-| **Case ID** | CASE-YYYY-MM-DD-NNN |
-| **Title** | [Brief descriptive title] |
-| **Date** | YYYY-MM-DD |
-| **Category** | [Bug Fix / Performance / Architecture / Integration / etc.] |
-| **Difficulty** | [Simple / Medium / Complex] |
-| **Time Spent** | [X hours/minutes] |
-| **Status** | [Resolved / Ongoing / Documented] |
+| Field          | Value                                                       |
+|----------------|-------------------------------------------------------------|
+| **Case ID**    | CASE-YYYY-MM-DD-NNN                                         |
+| **Title**      | [Brief descriptive title]                                   |
+| **Date**       | YYYY-MM-DD                                                  |
+| **Category**   | [Bug Fix / Performance / Architecture / Integration / etc.] |
+| **Difficulty** | [Simple / Medium / Complex]                                 |
+| **Time Spent** | [X hours/minutes]                                           |
+| **Status**     | [Resolved / Ongoing / Documented]                           |
 
 ---
 
@@ -70,11 +70,11 @@
 
 ### 2.2 Investigation Steps
 
-| Step | Action | Result |
-|------|--------|--------|
-| 1 | [What you did] | [What you found] |
-| 2 | [What you did] | [What you found] |
-| 3 | [What you did] | [What you found] |
+| Step | Action         | Result           |
+|------|----------------|------------------|
+| 1    | [What you did] | [What you found] |
+| 2    | [What you did] | [What you found] |
+| 3    | [What you did] | [What you found] |
 
 ### 2.3 Root Cause
 
@@ -96,6 +96,7 @@
 ### 3.2 Implementation
 
 **Files Changed**:
+
 - `path/to/file1.py` - [Brief description of change]
 - `path/to/file2.yaml` - [Brief description of change]
 
@@ -134,8 +135,8 @@
 
 ### 4.3 Key Takeaways
 
-| Takeaway | Action Item |
-|----------|-------------|
+| Takeaway     | Action Item       |
+|--------------|-------------------|
 | [Learning 1] | [How to apply it] |
 | [Learning 2] | [How to apply it] |
 
@@ -167,15 +168,15 @@
 
 ## Quick Reference: Case Categories
 
-| Category | Description | Examples |
-|----------|-------------|----------|
-| Bug Fix | Fixing incorrect behavior | Logic errors, edge cases |
-| Performance | Optimization issues | Slow queries, memory leaks |
-| Architecture | Design-level issues | Coupling, scalability |
-| Integration | External system issues | API changes, connectivity |
-| Configuration | Config-related issues | Wrong settings, env vars |
-| Security | Security vulnerabilities | Auth, data exposure |
-| Documentation | Doc-related fixes | Incorrect docs, missing info |
+| Category      | Description               | Examples                     |
+|---------------|---------------------------|------------------------------|
+| Bug Fix       | Fixing incorrect behavior | Logic errors, edge cases     |
+| Performance   | Optimization issues       | Slow queries, memory leaks   |
+| Architecture  | Design-level issues       | Coupling, scalability        |
+| Integration   | External system issues    | API changes, connectivity    |
+| Configuration | Config-related issues     | Wrong settings, env vars     |
+| Security      | Security vulnerabilities  | Auth, data exposure          |
+| Documentation | Doc-related fixes         | Incorrect docs, missing info |
 
 ---
 
@@ -183,19 +184,20 @@
 
 ### Case Summary
 
-| Field | Value |
-|-------|-------|
-| **Case ID** | CASE-2025-11-29-001 |
-| **Title** | Output files created in wrong directory |
-| **Date** | 2025-11-29 |
-| **Category** | Bug Fix |
-| **Difficulty** | Simple |
-| **Time Spent** | 15 minutes |
-| **Status** | Resolved |
+| Field          | Value                                   |
+|----------------|-----------------------------------------|
+| **Case ID**    | CASE-2025-11-29-001                     |
+| **Title**      | Output files created in wrong directory |
+| **Date**       | 2025-11-29                              |
+| **Category**   | Bug Fix                                 |
+| **Difficulty** | Simple                                  |
+| **Time Spent** | 15 minutes                              |
+| **Status**     | Resolved                                |
 
 ### Problem
 
-The `build_knowledge_graph` function was creating output files in the current working directory instead of the designated `.outputs/` directory.
+The `build_knowledge_graph` function was creating output files in the current working directory instead of the
+designated `.outputs/` directory.
 
 ### Root Cause
 
@@ -204,6 +206,7 @@ The function directly used the provided `output_file` path without ensuring it w
 ### Solution
 
 Modified `mcp_server.py` to:
+
 1. Create `.outputs/` directory if it doesn't exist
 2. Extract only the filename from user-provided path
 3. Construct output path as `.outputs/{filename}`

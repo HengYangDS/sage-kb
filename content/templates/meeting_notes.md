@@ -7,7 +7,8 @@
 
 ## Overview
 
-This template helps create consistent meeting notes that capture key information, decisions, and action items for future reference.
+This template helps create consistent meeting notes that capture key information, decisions, and action items for future
+reference.
 
 ---
 
@@ -54,6 +55,7 @@ This template helps create consistent meeting notes that capture key information
 **Context**: [Brief background]
 
 **Discussion**:
+
 - [Key point discussed]
 - [Key point discussed]
 - [Different viewpoint raised]
@@ -65,6 +67,7 @@ This template helps create consistent meeting notes that capture key information
 **Context**: [Brief background]
 
 **Discussion**:
+
 - [Key point discussed]
 - [Key point discussed]
 
@@ -111,8 +114,8 @@ Items to discuss later:
 - **Date**: [YYYY-MM-DD]
 - **Time**: [HH:MM] ([Timezone])
 - **Proposed Agenda**:
-  1. [Topic]
-  2. Action Items Review
+    1. [Topic]
+    2. Action Items Review
 
 ---
 
@@ -167,12 +170,12 @@ For each topic:
 
 Use status indicators:
 
-| Status | Icon | Meaning |
-|--------|------|---------|
-| Open | ⬜ | Not started |
-| In Progress | 🔄 | Being worked on |
-| Blocked | 🚫 | Waiting on something |
-| Complete | ✅ | Done |
+| Status      | Icon | Meaning              |
+|-------------|------|----------------------|
+| Open        | ⬜    | Not started          |
+| In Progress | 🔄   | Being worked on      |
+| Blocked     | 🚫   | Waiting on something |
+| Complete    | ✅    | Done                 |
 
 ---
 
@@ -219,6 +222,7 @@ Use status indicators:
 **Context**: Need to finalize plugin architecture for v0.2.0
 
 **Discussion**:
+
 - Alice presented three options for plugin discovery
 - Bob raised concerns about security sandboxing
 - Carol suggested using entry points for external plugins
@@ -230,6 +234,7 @@ Use status indicators:
 **Context**: Current timeouts causing issues in production
 
 **Discussion**:
+
 - T3 timeout (2s) too short for large knowledge bases
 - Suggested increasing to 3s with fallback mechanism
 
@@ -261,9 +266,9 @@ Use status indicators:
 - **Date**: 2025-12-06
 - **Time**: 14:00 (UTC+8)
 - **Proposed Agenda**:
-  1. Plugin System ADR Review
-  2. Timeout Changes Testing Results
-  3. Action Items Review
+    1. Plugin System ADR Review
+    2. Timeout Changes Testing Results
+    3. Action Items Review
 
 ---
 
@@ -274,15 +279,15 @@ Use status indicators:
 
 ## Meeting Types
 
-| Type | Focus | Typical Duration |
-|------|-------|------------------|
-| **Standup** | Daily sync, blockers | 15 min |
-| **Planning** | Sprint/iteration planning | 1-2 hours |
-| **Review** | Design/code/architecture | 1 hour |
-| **Decision** | Make specific decisions | 30-60 min |
-| **Brainstorm** | Generate ideas | 1 hour |
-| **1:1** | Individual check-in | 30 min |
-| **Retrospective** | Process improvement | 1 hour |
+| Type              | Focus                     | Typical Duration |
+|-------------------|---------------------------|------------------|
+| **Standup**       | Daily sync, blockers      | 15 min           |
+| **Planning**      | Sprint/iteration planning | 1-2 hours        |
+| **Review**        | Design/code/architecture  | 1 hour           |
+| **Decision**      | Make specific decisions   | 30-60 min        |
+| **Brainstorm**    | Generate ideas            | 1 hour           |
+| **1:1**           | Individual check-in       | 30 min           |
+| **Retrospective** | Process improvement       | 1 hour           |
 
 ---
 

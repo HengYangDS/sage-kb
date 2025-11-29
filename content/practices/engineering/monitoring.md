@@ -14,11 +14,11 @@
 
 ### Observability Overview
 
-| Pillar | Purpose | Tools |
-|--------|---------|-------|
+| Pillar      | Purpose                   | Tools               |
+|-------------|---------------------------|---------------------|
 | **Metrics** | Quantitative measurements | Prometheus, Grafana |
-| **Logs** | Event records | ELK, Loki |
-| **Traces** | Request flow | Jaeger, Zipkin |
+| **Logs**    | Event records             | ELK, Loki           |
+| **Traces**  | Request flow              | Jaeger, Zipkin      |
 
 ```
 ┌─────────────────────────────────────────────────┐
@@ -41,11 +41,13 @@
 ### Key Metrics (RED/USE)
 
 **RED Method (Services):**
+
 - **R**ate: Requests per second
 - **E**rrors: Failed requests per second
 - **D**uration: Request latency
 
 **USE Method (Resources):**
+
 - **U**tilization: % time busy
 - **S**aturation: Queue depth
 - **E**rrors: Error count
@@ -121,12 +123,12 @@ logger.info(f"Order {order.id} created for user {user.id}")
 
 ### Log Levels
 
-| Level | Use Case |
-|-------|----------|
-| **ERROR** | Failures requiring attention |
-| **WARN** | Unexpected but handled |
-| **INFO** | Business events, state changes |
-| **DEBUG** | Development troubleshooting |
+| Level     | Use Case                       |
+|-----------|--------------------------------|
+| **ERROR** | Failures requiring attention   |
+| **WARN**  | Unexpected but handled         |
+| **INFO**  | Business events, state changes |
+| **DEBUG** | Development troubleshooting    |
 
 ### Best Practices
 
@@ -182,11 +184,11 @@ await client.get(url, headers=headers)
 
 ### Alert Design
 
-| Severity | Response | Example |
-|----------|----------|---------|
-| **Critical** | Immediate | Service down |
-| **Warning** | Hours | High error rate |
-| **Info** | Next business day | Disk 70% |
+| Severity     | Response          | Example         |
+|--------------|-------------------|-----------------|
+| **Critical** | Immediate         | Service down    |
+| **Warning**  | Hours             | High error rate |
+| **Info**     | Next business day | Disk 70%        |
 
 ### Good Alerts
 
@@ -235,12 +237,12 @@ groups:
 
 ### Key Dashboards
 
-| Dashboard | Metrics |
-|-----------|---------|
-| **Overview** | Request rate, errors, latency |
-| **Resources** | CPU, memory, disk, network |
-| **Database** | Query time, connections, locks |
-| **Business** | Users, transactions, revenue |
+| Dashboard     | Metrics                        |
+|---------------|--------------------------------|
+| **Overview**  | Request rate, errors, latency  |
+| **Resources** | CPU, memory, disk, network     |
+| **Database**  | Query time, connections, locks |
+| **Business**  | Users, transactions, revenue   |
 
 ---
 

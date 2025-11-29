@@ -54,29 +54,44 @@ Adopt the **SAGE Protocol** — a four-phase processing model:
 @runtime_checkable
 class SourceProtocol(Protocol):
     """S - Knowledge sourcing."""
+
     async def load(self, path: str) -> Knowledge: ...
+
     async def search(self, query: str) -> list[Knowledge]: ...
+
     async def list_layers(self) -> list[str]: ...
+
 
 @runtime_checkable
 class AnalyzeProtocol(Protocol):
     """A - Processing & analysis."""
+
     async def analyze(self, content: Knowledge) -> AnalysisResult: ...
+
     async def extract(self, content: Knowledge) -> Metadata: ...
+
     async def validate(self, content: Knowledge) -> ValidationResult: ...
+
 
 @runtime_checkable
 class GenerateProtocol(Protocol):
     """G - Multi-channel output."""
+
     async def format(self, data: Any, format: str) -> str: ...
+
     async def render(self, template: str, context: dict) -> str: ...
+
     async def export(self, data: Any, target: str) -> None: ...
+
 
 @runtime_checkable
 class EvolveProtocol(Protocol):
     """E - Metrics & optimization."""
+
     async def track(self, event: str, data: dict) -> None: ...
+
     async def optimize(self, feedback: Feedback) -> None: ...
+
     async def report(self) -> MetricsReport: ...
 ```
 
@@ -140,10 +155,10 @@ Arbitrary stages without semantic meaning.
 
 ```python
 # Each phase emits lifecycle events
-"source.started"    → "source.completed"    | "source.failed"
-"analyze.started"   → "analyze.completed"   | "analyze.failed"
-"generate.started"  → "generate.completed"  | "generate.failed"
-"evolve.started"    → "evolve.completed"    | "evolve.failed"
+"source.started"    → "source.completed" | "source.failed"
+"analyze.started"   → "analyze.completed" | "analyze.failed"
+"generate.started"  → "generate.completed" | "generate.failed"
+"evolve.started"    → "evolve.completed" | "evolve.failed"
 ```
 
 ### Usage Example
@@ -153,16 +168,16 @@ Arbitrary stages without semantic meaning.
 async def process_knowledge(query: str) -> str:
     # Source
     knowledge = await source.search(query)
-    
+
     # Analyze
     analysis = await analyzer.analyze(knowledge[0])
-    
+
     # Generate
     output = await generator.format(analysis, "markdown")
-    
+
     # Evolve
     await evolver.track("query.completed", {"query": query})
-    
+
     return output
 ```
 

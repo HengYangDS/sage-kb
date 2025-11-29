@@ -97,19 +97,21 @@ async with semaphore:
 import pytest
 from sage.core.timeout import TimeoutManager, TimeoutLevel
 
+
 # Group fixtures at top
 @pytest.fixture
 def timeout_manager():
     return TimeoutManager()
 
+
 # Group tests by class/function
 class TestTimeoutManager:
     """Tests for TimeoutManager class."""
-    
+
     def test_default_timeout(self, timeout_manager):
         """Default timeout should be T3 level."""
         assert timeout_manager.default_level == TimeoutLevel.T3_LAYER
-    
+
     @pytest.mark.asyncio
     async def test_execute_within_timeout(self, timeout_manager):
         """Operation completing within timeout returns result."""
@@ -135,12 +137,13 @@ class TestTimeoutManager:
 # Preferred: Use Protocol-compliant mocks
 class MockLoader:
     """Mock implementing LoaderProtocol."""
-    
+
     def __init__(self, content: str = "test"):
         self._content = content
-    
+
     async def load(self, path: str) -> str:
         return self._content
+
 
 # Preferred: Fixture-based mock injection
 @pytest.fixture
@@ -247,6 +250,7 @@ config = get_config()
 ---
 
 ## Table of Contents
+
 [Section 1](#section-1) · [Section 2](#section-2)
 
 ---
@@ -294,6 +298,7 @@ async def stream_knowledge() -> AsyncGenerator[Knowledge, None]:
     for path in paths:
         yield await load_knowledge(path)
 
+
 # Preferred: Slots for frequently instantiated classes
 @dataclass(slots=True)
 class KnowledgeItem:
@@ -301,8 +306,10 @@ class KnowledgeItem:
     content: str
     metadata: dict
 
+
 # Preferred: Weak references for caches
 import weakref
+
 cache: weakref.WeakValueDictionary[str, Knowledge] = weakref.WeakValueDictionary()
 ```
 
@@ -313,9 +320,10 @@ cache: weakref.WeakValueDictionary[str, Knowledge] = weakref.WeakValueDictionary
 async def search(query: str, layer: str | None = None) -> list[Knowledge]:
     # Filter by layer first (fast)
     candidates = self._index.get_by_layer(layer) if layer else self._index.all()
-    
+
     # Then apply text search (slower)
     return [k for k in candidates if query.lower() in k.content.lower()]
+
 
 # Preferred: Limit results early
 async def search(query: str, limit: int = 10) -> list[Knowledge]:
@@ -337,12 +345,14 @@ async def search(query: str, limit: int = 10) -> list[Knowledge]:
 # Preferred: Module-level singleton with lazy init
 _instance: EventBus | None = None
 
+
 def get_event_bus() -> EventBus:
     """Get the global EventBus instance."""
     global _instance
     if _instance is None:
         _instance = EventBus()
     return _instance
+
 
 def reset_event_bus() -> None:
     """Reset for testing."""
@@ -359,6 +369,7 @@ def __init__(self):
     self._timeout = config.timeout.cache_lookup
     self._cache_enabled = config.features.enable_caching
 
+
 # Avoid: Repeated get_config() calls
 def process(self):
     if get_config().features.enable_caching:  # Don't repeat
@@ -369,30 +380,37 @@ def process(self):
 
 ```python
 # Preferred: Structured event data
-await bus.publish(Event(
-    type="knowledge.loaded",
-    data={
-        "layer": layer,
-        "count": len(items),
-        "duration_ms": duration * 1000,
-    }
-))
+await bus.publish(
+    Event(
+        type="knowledge.loaded",
+        data={
+            "layer"      : layer,
+            "count"      : len(items),
+            "duration_ms": duration * 1000,
+        }
+    )
+)
+
 
 # Preferred: Event emission in try/finally
 async def load_layer(self, layer: str) -> list[Knowledge]:
     await bus.publish(Event(type="knowledge.load.started", data={"layer": layer}))
     try:
         result = await self._do_load(layer)
-        await bus.publish(Event(
-            type="knowledge.load.completed",
-            data={"layer": layer, "count": len(result)}
-        ))
+        await bus.publish(
+            Event(
+                type="knowledge.load.completed",
+                data={"layer": layer, "count": len(result)}
+            )
+        )
         return result
     except Exception as e:
-        await bus.publish(Event(
-            type="knowledge.load.failed",
-            data={"layer": layer, "error": str(e)}
-        ))
+        await bus.publish(
+            Event(
+                type="knowledge.load.failed",
+                data={"layer": layer, "error": str(e)}
+            )
+        )
         raise
 ```
 
@@ -402,15 +420,16 @@ async def load_layer(self, layer: str) -> list[Knowledge]:
 # Preferred: Explicit protocol compliance
 class FileLoader:
     """File-based loader implementing LoaderProtocol."""
-    
+
     async def load(self, path: str) -> str:
         """Load content from file path."""
         async with aiofiles.open(path) as f:
             return await f.read()
-    
+
     async def exists(self, path: str) -> bool:
         """Check if path exists."""
         return Path(path).exists()
+
 
 # Verify at registration time
 def register_loader(loader: LoaderProtocol) -> None:

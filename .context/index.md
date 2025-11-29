@@ -12,12 +12,12 @@
 
 ## 1. Directory Structure
 
-| Directory         | Purpose                              | Files |
-|-------------------|--------------------------------------|-------|
-| `policies/`       | Project-specific policies            | 6     |
-| `conventions/`    | Project-specific coding conventions  | 3     |
-| `decisions/`      | Architecture Decision Records (ADRs) | 8     |
-| `intelligence/`   | AI intelligence patterns             | 7     |
+| Directory       | Purpose                              | Files |
+|-----------------|--------------------------------------|-------|
+| `policies/`     | Project-specific policies            | 6     |
+| `conventions/`  | Project-specific coding conventions  | 3     |
+| `decisions/`    | Architecture Decision Records (ADRs) | 8     |
+| `intelligence/` | AI intelligence patterns             | 7     |
 
 ---
 
@@ -65,15 +65,15 @@ Architecture Decision Records documenting significant technical decisions:
 
 AI collaboration patterns and learned behaviors:
 
-| Document              | Description                                       |
-|-----------------------|---------------------------------------------------|
-| `patterns.md`         | Successful interaction patterns and templates     |
-| `optimizations.md`    | Code generation preferences, testing, performance |
-| `calibration.md`      | Autonomy level calibration (L1-L6)                |
-| `cases.md`            | Case studies and real-world examples              |
-| `common_pitfalls.md`  | Common mistakes and how to avoid them             |
-| `lessons_learned.md`  | Key learnings from project development            |
-| `performance_tuning.md` | Performance optimization strategies             |
+| Document                | Description                                       |
+|-------------------------|---------------------------------------------------|
+| `patterns.md`           | Successful interaction patterns and templates     |
+| `optimizations.md`      | Code generation preferences, testing, performance |
+| `calibration.md`        | Autonomy level calibration (L1-L6)                |
+| `cases.md`              | Case studies and real-world examples              |
+| `common_pitfalls.md`    | Common mistakes and how to avoid them             |
+| `lessons_learned.md`    | Key learnings from project development            |
+| `performance_tuning.md` | Performance optimization strategies               |
 
 ---
 
@@ -81,14 +81,14 @@ AI collaboration patterns and learned behaviors:
 
 ### 3.1 By Topic
 
-| Topic                | Documents                                                                        |
-|----------------------|----------------------------------------------------------------------------------|
-| **Getting Started**  | `conventions/naming.md`, `conventions/file_structure.md`                         |
-| **Architecture**     | `decisions/ADR-0001-architecture.md`, `decisions/ADR-0002-sage-protocol.md`      |
-| **Configuration**    | `policies/runtime_settings.md`, `policies/loading_configurations.md` |
-| **Timeouts**         | `policies/timeout_hierarchy.md`, `decisions/ADR-0003-timeout-hierarchy.md` |
-| **DI & Events**      | `decisions/ADR-0004-dependency-injection.md`, `decisions/ADR-0005-event-bus.md`  |
-| **AI Collaboration** | `intelligence/patterns.md`, `intelligence/calibration.md`                        |
+| Topic                | Documents                                                                       |
+|----------------------|---------------------------------------------------------------------------------|
+| **Getting Started**  | `conventions/naming.md`, `conventions/file_structure.md`                        |
+| **Architecture**     | `decisions/ADR-0001-architecture.md`, `decisions/ADR-0002-sage-protocol.md`     |
+| **Configuration**    | `policies/runtime_settings.md`, `policies/loading_configurations.md`            |
+| **Timeouts**         | `policies/timeout_hierarchy.md`, `decisions/ADR-0003-timeout-hierarchy.md`      |
+| **DI & Events**      | `decisions/ADR-0004-dependency-injection.md`, `decisions/ADR-0005-event-bus.md` |
+| **AI Collaboration** | `intelligence/patterns.md`, `intelligence/calibration.md`                       |
 
 ### 3.2 All Documents
 

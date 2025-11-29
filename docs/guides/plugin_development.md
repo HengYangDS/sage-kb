@@ -24,12 +24,12 @@ SAGE plugins can:
 
 ### Plugin Types
 
-| Type | Purpose | Example |
-|------|---------|---------|
-| **Tool** | Add MCP tools | Custom search, analysis |
-| **Loader** | Extend content loading | Custom file formats |
-| **Analyzer** | Add analysis capabilities | Code quality checks |
-| **Formatter** | Custom output formats | Export to PDF |
+| Type          | Purpose                   | Example                 |
+|---------------|---------------------------|-------------------------|
+| **Tool**      | Add MCP tools             | Custom search, analysis |
+| **Loader**    | Extend content loading    | Custom file formats     |
+| **Analyzer**  | Add analysis capabilities | Code quality checks     |
+| **Formatter** | Custom output formats     | Export to PDF           |
 
 ---
 
@@ -166,15 +166,15 @@ class MyPlugin(PluginBase):
 
 ### Available Hooks
 
-| Hook | When Called | Parameters |
-|------|-------------|------------|
-| `on_load` | Plugin initialization | `context` |
-| `on_unload` | Plugin shutdown | `context` |
-| `register_tools` | Tool registration | `registry` |
-| `on_knowledge_request` | Before loading | `layer`, `query` |
-| `on_knowledge_loaded` | After loading | `layer`, `content` |
-| `on_search` | Before search | `query`, `options` |
-| `on_error` | On any error | `error`, `context` |
+| Hook                   | When Called           | Parameters         |
+|------------------------|-----------------------|--------------------|
+| `on_load`              | Plugin initialization | `context`          |
+| `on_unload`            | Plugin shutdown       | `context`          |
+| `register_tools`       | Tool registration     | `registry`         |
+| `on_knowledge_request` | Before loading        | `layer`, `query`   |
+| `on_knowledge_loaded`  | After loading         | `layer`, `content` |
+| `on_search`            | Before search         | `query`, `options` |
+| `on_error`             | On any error          | `error`, `context` |
 
 ### Hook Implementation
 
@@ -256,6 +256,7 @@ python -m twine upload dist/*
 ### Plugin Guidelines
 
 **Do:**
+
 - ✅ Follow SAGE naming conventions
 - ✅ Handle errors gracefully
 - ✅ Log important events
@@ -263,6 +264,7 @@ python -m twine upload dist/*
 - ✅ Include tests
 
 **Don't:**
+
 - ❌ Block the event loop
 - ❌ Modify core behavior unexpectedly
 - ❌ Store sensitive data in logs

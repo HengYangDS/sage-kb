@@ -128,11 +128,12 @@ Only Fast/Medium/Slow levels.
 ```python
 from enum import Enum
 
+
 class TimeoutLevel(Enum):
-    T1_CACHE = 100      # 100ms
-    T2_FILE = 500       # 500ms
-    T3_LAYER = 2000     # 2s
-    T4_FULL = 5000      # 5s
+    T1_CACHE = 100  # 100ms
+    T2_FILE = 500  # 500ms
+    T3_LAYER = 2000  # 2s
+    T4_FULL = 5000  # 5s
     T5_COMPLEX = 10000  # 10s
 ```
 
@@ -162,7 +163,7 @@ timeout:
     layer_load: 2s         # T3
     full_load: 5s          # T4
     analysis: 10s          # T5
-  
+
   fallback:
     strategy: graceful     # graceful | strict | none
     cache_stale_ms: 60000  # Use stale cache up to 60s

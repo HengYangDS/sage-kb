@@ -6,13 +6,13 @@
 
 ## Timeout Targets
 
-| Operation | Target | Level |
-|-----------|--------|-------|
-| Cache lookup | < 100ms | T1 |
-| Single file | < 500ms | T2 |
-| Layer load | < 2s | T3 |
-| Full KB load | < 5s | T4 |
-| Complex analysis | < 10s | T5 |
+| Operation        | Target  | Level |
+|------------------|---------|-------|
+| Cache lookup     | < 100ms | T1    |
+| Single file      | < 500ms | T2    |
+| Layer load       | < 2s    | T3    |
+| Full KB load     | < 5s    | T4    |
+| Complex analysis | < 10s   | T5    |
 
 ---
 
@@ -36,26 +36,26 @@ py-spy record -o profile.svg -- python script.py
 
 ## Performance Checklist
 
-| Area | Check |
-|------|-------|
+| Area                | Check                         |
+|---------------------|-------------------------------|
 | **Data Structures** | Using set vs list for lookups |
-| **Algorithms** | Optimal time complexity |
-| **I/O** | Batched, async where possible |
-| **Memory** | Generators for large data |
-| **Caching** | Hot paths cached |
-| **Profiling** | Measured before optimizing |
+| **Algorithms**      | Optimal time complexity       |
+| **I/O**             | Batched, async where possible |
+| **Memory**          | Generators for large data     |
+| **Caching**         | Hot paths cached              |
+| **Profiling**       | Measured before optimizing    |
 
 ---
 
 ## Common Optimizations
 
-| Slow | Fast |
-|------|------|
-| `for` + append | List comprehension |
-| String `+=` | `"".join()` |
-| `item in list` | `item in set` |
-| Nested loops | Dict lookups |
-| Read all at once | Stream/iterate |
+| Slow             | Fast               |
+|------------------|--------------------|
+| `for` + append   | List comprehension |
+| String `+=`      | `"".join()`        |
+| `item in list`   | `item in set`      |
+| Nested loops     | Dict lookups       |
+| Read all at once | Stream/iterate     |
 
 ---
 

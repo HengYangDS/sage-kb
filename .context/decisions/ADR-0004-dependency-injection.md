@@ -39,12 +39,17 @@ Implement a **custom lightweight DI container** with three lifetime modes and au
 ```python
 class DIContainer:
     """Lightweight dependency injection container."""
-    
+
     def register(self, interface, implementation, lifetime): ...
+
     def register_instance(self, interface, instance): ...
+
     def register_factory(self, interface, factory, lifetime): ...
+
     def resolve(self, interface, scope_id=None): ...
+
     def try_resolve(self, interface, scope_id=None): ...
+
     def create_scope(self, scope_id): ...
 ```
 
@@ -165,7 +170,7 @@ services:
     class: sage.core.loader.KnowledgeLoader
     lifetime: singleton
     config_key: loader
-  
+
   code_analyzer:
     class: sage.capabilities.analyzers.CodeAnalyzer
     lifetime: transient
@@ -177,6 +182,7 @@ services:
 class ServiceA:
     def __init__(self, dep: ServiceB):  # Auto-resolved
         self.dep = dep
+
 
 # Container auto-wires ServiceB when resolving ServiceA
 container.register(ServiceA, ServiceA, Lifetime.SINGLETON)

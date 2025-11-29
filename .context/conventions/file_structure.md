@@ -51,6 +51,40 @@ dist/
 *.egg-info/
 ```
 
+### 1.4 Output File Convention
+
+**All temporary and intermediate output files MUST be placed in `.outputs/` directory.**
+
+| File Type         | Correct Location      | Incorrect Location    |
+|-------------------|-----------------------|-----------------------|
+| Process output    | `.outputs/result.txt` | `./result.txt` (root) |
+| Temporary files   | `.outputs/temp_*.txt` | `./temp_*.txt` (root) |
+| Generated reports | `.outputs/report.md`  | `./report.md` (root)  |
+| Debug logs        | `.logs/debug.log`     | `./debug.log` (root)  |
+
+**Why this matters:**
+
+1. **Clean root directory**: Keeps project root organized and professional
+2. **Git hygiene**: `.outputs/` is git-ignored, preventing accidental commits
+3. **Easy cleanup**: All temporary files in one location
+4. **Tool compatibility**: External tools (MCP, scripts) should respect this convention
+
+**For external tools (MCP, Terminal, etc.):**
+
+When generating output files, always specify the full path to `.outputs/`:
+
+```bash
+# Correct
+command > .outputs/output.txt
+
+# Incorrect
+command > output.txt
+command > .output.txt
+```
+
+**Note**: Files like `.output.txt`, `output.txt`, `*.output.txt` in root are git-ignored as a safety measure, but should
+still be avoided.
+
 ---
 
 ## 2. Source Code Organization
@@ -350,24 +384,26 @@ content/
 
 The `src/sage/` directory contains several packages with distinct responsibilities:
 
-| Package | Purpose | Contains |
-|---------|---------|----------|
-| `domain/` | Business domain models | Pure data structures, enums, no logic |
-| `core/` | Infrastructure & logic | Loaders, timeout, config, DI, events |
-| `interfaces/` | Protocol re-exports | Convenience imports from core |
-| `services/` | External interfaces | CLI, MCP, HTTP API |
-| `capabilities/` | Runtime features | Analyzers, checkers, monitors |
-| `plugins/` | Extension system | Plugin base, registry, bundled plugins |
+| Package         | Purpose                | Contains                               |
+|-----------------|------------------------|----------------------------------------|
+| `domain/`       | Business domain models | Pure data structures, enums, no logic  |
+| `core/`         | Infrastructure & logic | Loaders, timeout, config, DI, events   |
+| `interfaces/`   | Protocol re-exports    | Convenience imports from core          |
+| `services/`     | External interfaces    | CLI, MCP, HTTP API                     |
+| `capabilities/` | Runtime features       | Analyzers, checkers, monitors          |
+| `plugins/`      | Extension system       | Plugin base, registry, bundled plugins |
 
 ### 6.2 Domain vs Core Distinction
 
 **Domain Package** (`domain/`):
+
 - Pure data structures with no business logic
 - Dataclasses and enums representing business concepts
 - No dependencies on infrastructure (no I/O, no external services)
 - Examples: `KnowledgeAsset`, `CollaborationSession`, `AutonomyLevel`
 
 **Core Package** (`core/`):
+
 - Infrastructure components with actual logic
 - Handles I/O, configuration, timing, events
 - Implements the SAGE protocol behaviors

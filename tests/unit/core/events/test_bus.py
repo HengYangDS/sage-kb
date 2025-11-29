@@ -3,7 +3,7 @@
 import pytest
 
 from sage.core.events.bus import EventBus, Subscription, get_event_bus, reset_event_bus
-from sage.core.events.events import Event, EventType
+from sage.core.events.events import Event
 
 
 class TestSubscription:
@@ -11,9 +11,10 @@ class TestSubscription:
 
     def test_subscription_creation(self) -> None:
         """Test that Subscription can be created."""
+
         async def handler(event: Event) -> None:
             pass
-        
+
         sub = Subscription(
             subscription_id="test-sub",
             event_pattern="test.*",
@@ -24,9 +25,10 @@ class TestSubscription:
 
     def test_subscription_matches_exact(self) -> None:
         """Test that subscription matches exact event type."""
+
         async def handler(event: Event) -> None:
             pass
-        
+
         sub = Subscription(
             subscription_id="test-sub",
             event_pattern="test.created",
@@ -37,9 +39,10 @@ class TestSubscription:
 
     def test_subscription_matches_wildcard(self) -> None:
         """Test that subscription matches wildcard pattern."""
+
         async def handler(event: Event) -> None:
             pass
-        
+
         sub = Subscription(
             subscription_id="test-sub",
             event_pattern="test.*",
@@ -65,10 +68,10 @@ class TestEventBus:
     def test_subscribe(self) -> None:
         """Test subscribing to events."""
         bus = EventBus()
-        
+
         async def handler(event: Event) -> None:
             pass
-        
+
         sub_id = bus.subscribe("test.*", handler)
         assert sub_id is not None
         assert bus.subscription_count > 0
@@ -76,13 +79,13 @@ class TestEventBus:
     def test_unsubscribe(self) -> None:
         """Test unsubscribing from events."""
         bus = EventBus()
-        
+
         async def handler(event: Event) -> None:
             pass
-        
+
         sub_id = bus.subscribe("test.*", handler)
         initial_count = bus.subscription_count
-        
+
         bus.unsubscribe(sub_id)
         assert bus.subscription_count < initial_count
 
@@ -91,42 +94,42 @@ class TestEventBus:
         """Test publishing events."""
         bus = EventBus()
         received_events: list[Event] = []
-        
+
         async def handler(event: Event) -> None:
             received_events.append(event)
-        
+
         bus.subscribe("test.created", handler)
-        
+
         event = Event(event_type="test.created", data={"id": 1})
         await bus.publish(event)
-        
+
         assert len(received_events) == 1
         assert received_events[0].event_type == "test.created"
 
     def test_clear(self) -> None:
         """Test clearing all subscriptions."""
         bus = EventBus()
-        
+
         async def handler(event: Event) -> None:
             pass
-        
+
         bus.subscribe("test.*", handler)
         bus.subscribe("other.*", handler)
         assert bus.subscription_count >= 2
-        
+
         bus.clear()
         assert bus.subscription_count == 0
 
     def test_get_subscriptions(self) -> None:
         """Test getting subscriptions by pattern."""
         bus = EventBus()
-        
+
         async def handler(event: Event) -> None:
             pass
-        
+
         bus.subscribe("test.created", handler)
         bus.subscribe("test.updated", handler)
-        
+
         subs = bus.get_subscriptions("test.created")
         assert len(subs) >= 1
 

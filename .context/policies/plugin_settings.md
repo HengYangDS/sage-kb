@@ -30,11 +30,11 @@
 
 ### 1.2 Plugin Types
 
-| Type | Location | Use Case |
-|------|----------|----------|
-| **Bundled** | `src/sage/plugins/bundled/` | Core functionality |
-| **External** | PyPI packages | Community plugins |
-| **Custom** | User directory | Project-specific |
+| Type         | Location                    | Use Case           |
+|--------------|-----------------------------|--------------------|
+| **Bundled**  | `src/sage/plugins/bundled/` | Core functionality |
+| **External** | PyPI packages               | Community plugins  |
+| **Custom**   | User directory              | Project-specific   |
 
 ---
 
@@ -156,13 +156,13 @@ export SAGE_PLUGIN_ANALYZER_MAX_DEPTH=10
 
 ### 4.1 Available Bundled Plugins
 
-| Plugin | Purpose | Default |
-|--------|---------|---------|
-| `knowledge_loader` | Load knowledge content | Enabled |
-| `content_analyzer` | Analyze content structure | Enabled |
-| `search_indexer` | Index for search | Enabled |
-| `cache_manager` | Caching functionality | Enabled |
-| `metrics_collector` | Usage metrics | Disabled |
+| Plugin              | Purpose                   | Default  |
+|---------------------|---------------------------|----------|
+| `knowledge_loader`  | Load knowledge content    | Enabled  |
+| `content_analyzer`  | Analyze content structure | Enabled  |
+| `search_indexer`    | Index for search          | Enabled  |
+| `cache_manager`     | Caching functionality     | Enabled  |
+| `metrics_collector` | Usage metrics             | Disabled |
 
 ### 4.2 Bundled Plugin Configuration
 
@@ -305,13 +305,13 @@ plugins:
 
 ### 6.2 Permission Levels
 
-| Level | File Read | File Write | Network | Subprocess |
-|-------|-----------|------------|---------|------------|
-| **Restricted** | ✗ | ✗ | ✗ | ✗ |
-| **Read-Only** | ✓ | ✗ | ✗ | ✗ |
-| **Standard** | ✓ | Limited | ✗ | ✗ |
-| **Extended** | ✓ | ✓ | Limited | ✗ |
-| **Full** | ✓ | ✓ | ✓ | ✓ |
+| Level          | File Read | File Write | Network | Subprocess |
+|----------------|-----------|------------|---------|------------|
+| **Restricted** | ✗         | ✗          | ✗       | ✗          |
+| **Read-Only**  | ✓         | ✗          | ✗       | ✗          |
+| **Standard**   | ✓         | Limited    | ✗       | ✗          |
+| **Extended**   | ✓         | ✓          | Limited | ✗          |
+| **Full**       | ✓         | ✓          | ✓       | ✓          |
 
 ### 6.3 Plugin Validation
 

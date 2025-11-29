@@ -57,17 +57,18 @@ from abc import ABC, abstractmethod
 from typing import Iterator
 import pandas as pd
 
+
 class BaseExtractor(ABC):
     """Base class for data extractors."""
-    
+
     def __init__(self, config: dict):
         self.config = config
-    
+
     @abstractmethod
     def extract(self) -> Iterator[pd.DataFrame]:
         """Extract data in chunks."""
         pass
-    
+
     def validate_source(self) -> bool:
         """Validate source accessibility."""
         return True
@@ -75,15 +76,15 @@ class BaseExtractor(ABC):
 
 class DatabaseExtractor(BaseExtractor):
     """Extract data from database."""
-    
+
     def __init__(self, config: dict):
         super().__init__(config)
         self.connection = self._create_connection()
-    
+
     def extract(self) -> Iterator[pd.DataFrame]:
         query = self.config["query"]
         chunk_size = self.config.get("chunk_size", 10000)
-        
+
         for chunk in pd.read_sql(query, self.connection, chunksize=chunk_size):
             yield chunk
 ```
@@ -94,17 +95,18 @@ class DatabaseExtractor(BaseExtractor):
 from typing import Callable
 import pandas as pd
 
+
 class DataTransformer:
     """Chain transformations on data."""
-    
+
     def __init__(self):
         self._transforms: list[Callable] = []
-    
+
     def add(self, transform: Callable) -> "DataTransformer":
         """Add transformation to chain."""
         self._transforms.append(transform)
         return self
-    
+
     def apply(self, df: pd.DataFrame) -> pd.DataFrame:
         """Apply all transformations."""
         result = df.copy()
@@ -129,6 +131,7 @@ result = transformer.apply(raw_data)
 from enum import Enum
 import pandas as pd
 
+
 class LoadMode(Enum):
     APPEND = "append"
     REPLACE = "replace"
@@ -137,19 +140,19 @@ class LoadMode(Enum):
 
 class DataLoader:
     """Load data to destination."""
-    
+
     def __init__(self, connection, table: str, mode: LoadMode = LoadMode.APPEND):
         self.connection = connection
         self.table = table
         self.mode = mode
-    
+
     def load(self, df: pd.DataFrame) -> int:
         """Load dataframe to destination."""
         if self.mode == LoadMode.REPLACE:
             self._truncate_table()
         elif self.mode == LoadMode.UPSERT:
             return self._upsert(df)
-        
+
         rows = df.to_sql(
             self.table,
             self.connection,
@@ -166,6 +169,7 @@ from dataclasses import dataclass
 from typing import Optional
 import logging
 
+
 @dataclass
 class PipelineResult:
     success: bool
@@ -175,11 +179,11 @@ class PipelineResult:
 
 class Pipeline:
     """ETL Pipeline orchestration."""
-    
+
     def __init__(self, name: str):
         self.name = name
         self.logger = logging.getLogger(name)
-    
+
     def run(
         self,
         extractor: BaseExtractor,
@@ -189,7 +193,7 @@ class Pipeline:
         """Execute the pipeline."""
         total_rows = 0
         errors = []
-        
+
         try:
             for chunk in extractor.extract():
                 transformed = transformer.apply(chunk)
@@ -199,7 +203,7 @@ class Pipeline:
         except Exception as e:
             errors.append(str(e))
             self.logger.error(f"Pipeline failed: {e}")
-        
+
         return PipelineResult(
             success=len(errors) == 0,
             rows_processed=total_rows,
@@ -218,13 +222,16 @@ import pytest
 import pandas as pd
 from transformers import DataTransformer, normalize_dates
 
+
 @pytest.fixture
 def sample_data():
-    return pd.DataFrame({
-        "date": ["2025-01-01", "2025-01-02"],
-        "VALUE": [100, 200],
-        "name": ["Alice", None]
-    })
+    return pd.DataFrame(
+        {
+            "date" : ["2025-01-01", "2025-01-02"],
+            "VALUE": [100, 200],
+            "name" : ["Alice", None]
+        }
+    )
 
 
 def test_transformer_chain(sample_data):
@@ -233,9 +240,9 @@ def test_transformer_chain(sample_data):
         .add(lambda df: df.dropna())
         .add(lambda df: df.rename(columns=str.lower))
     )
-    
+
     result = transformer.apply(sample_data)
-    
+
     assert len(result) == 1
     assert "value" in result.columns
     assert "VALUE" not in result.columns
@@ -252,22 +259,23 @@ def test_normalize_dates(sample_data):
 import pytest
 from unittest.mock import Mock, patch
 
+
 def test_pipeline_success():
     # Arrange
     extractor = Mock()
     extractor.extract.return_value = [pd.DataFrame({"a": [1, 2]})]
-    
+
     transformer = Mock()
     transformer.apply.return_value = pd.DataFrame({"a": [1, 2]})
-    
+
     loader = Mock()
     loader.load.return_value = 2
-    
+
     pipeline = Pipeline("test")
-    
+
     # Act
     result = pipeline.run(extractor, transformer, loader)
-    
+
     # Assert
     assert result.success
     assert result.rows_processed == 2
@@ -295,6 +303,7 @@ from dataclasses import dataclass
 from typing import Callable
 import pandas as pd
 
+
 @dataclass
 class ValidationResult:
     passed: bool
@@ -304,14 +313,14 @@ class ValidationResult:
 
 class DataValidator:
     """Validate data quality."""
-    
+
     def __init__(self):
         self._rules: list[tuple[str, Callable]] = []
-    
+
     def add_rule(self, name: str, check: Callable) -> "DataValidator":
         self._rules.append((name, check))
         return self
-    
+
     def validate(self, df: pd.DataFrame) -> list[ValidationResult]:
         results = []
         for name, check in self._rules:

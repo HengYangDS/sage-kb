@@ -6,19 +6,21 @@
 
 ## Overview
 
-This document records technical cases encountered during project development. Each case follows the structure defined in `content/templates/case_study.md`.
+This document records technical cases encountered during project development. Each case follows the structure defined in
+`content/templates/case_study.md`.
 
 ---
 
 ## Case Index
 
-| ID | Title | Category | Date | Status |
-|----|-------|----------|------|--------|
-| CASE-2025-11-29-001 | Output files in wrong directory | Bug Fix | 2025-11-29 | Resolved |
-| CASE-2025-11-29-002 | Knowledge consolidation initiative | Documentation | 2025-11-29 | Resolved |
-| CASE-2025-11-29-003 | Layer terminology standardization | Architecture | 2025-11-29 | Resolved |
-| CASE-2025-11-29-004 | Configuration context refactoring | Architecture | 2025-11-29 | Resolved |
-| CASE-2025-11-29-005 | Test coverage gap analysis | Engineering | 2025-11-29 | Identified |
+| ID                  | Title                                 | Category      | Date       | Status     |
+|---------------------|---------------------------------------|---------------|------------|------------|
+| CASE-2025-11-30-001 | Root directory output file prevention | Convention    | 2025-11-30 | Resolved   |
+| CASE-2025-11-29-001 | Output files in wrong directory       | Bug Fix       | 2025-11-29 | Resolved   |
+| CASE-2025-11-29-002 | Knowledge consolidation initiative    | Documentation | 2025-11-29 | Resolved   |
+| CASE-2025-11-29-003 | Layer terminology standardization     | Architecture  | 2025-11-29 | Resolved   |
+| CASE-2025-11-29-004 | Configuration context refactoring     | Architecture  | 2025-11-29 | Resolved   |
+| CASE-2025-11-29-005 | Test coverage gap analysis            | Engineering   | 2025-11-29 | Identified |
 
 ---
 
@@ -26,19 +28,20 @@ This document records technical cases encountered during project development. Ea
 
 ### Summary
 
-| Field | Value |
-|-------|-------|
-| **Case ID** | CASE-2025-11-29-001 |
-| **Title** | Output files created in wrong directory |
-| **Date** | 2025-11-29 |
-| **Category** | Bug Fix |
-| **Difficulty** | Simple |
-| **Time Spent** | 15 minutes |
-| **Status** | Resolved |
+| Field          | Value                                   |
+|----------------|-----------------------------------------|
+| **Case ID**    | CASE-2025-11-29-001                     |
+| **Title**      | Output files created in wrong directory |
+| **Date**       | 2025-11-29                              |
+| **Category**   | Bug Fix                                 |
+| **Difficulty** | Simple                                  |
+| **Time Spent** | 15 minutes                              |
+| **Status**     | Resolved                                |
 
 ### Problem Description
 
-The `build_knowledge_graph` MCP tool was creating output files (e.g., `test_graph.json`) in the current working directory or user-specified path instead of the designated `.outputs/` directory.
+The `build_knowledge_graph` MCP tool was creating output files (e.g., `test_graph.json`) in the current working
+directory or user-specified path instead of the designated `.outputs/` directory.
 
 **Expected Behavior**: Output files should be saved to `.outputs/` directory.
 
@@ -46,7 +49,8 @@ The `build_knowledge_graph` MCP tool was creating output files (e.g., `test_grap
 
 ### Root Cause
 
-The `build_knowledge_graph` function in `mcp_server.py` directly used the `output_file` parameter without normalizing the path to the `.outputs/` directory.
+The `build_knowledge_graph` function in `mcp_server.py` directly used the `output_file` parameter without normalizing
+the path to the `.outputs/` directory.
 
 ```python
 # Original code
@@ -57,6 +61,7 @@ if output_file:
 ### Solution
 
 Modified `src/sage/services/mcp_server.py` to:
+
 1. Create `.outputs/` directory if it doesn't exist
 2. Extract only the filename from user-provided path
 3. Construct output path as `.outputs/{filename}`
@@ -67,7 +72,7 @@ if output_file:
     project_root = Path(__file__).parent.parent.parent.parent
     outputs_dir = project_root / ".outputs"
     outputs_dir.mkdir(parents=True, exist_ok=True)
-    
+
     output_filename = Path(output_file).name
     output_path = outputs_dir / output_filename
     builder.export_to_json(output_path)
@@ -80,11 +85,11 @@ if output_file:
 
 ### Lessons Learned
 
-| Takeaway | Action |
-|----------|--------|
-| Output paths should be normalized | Always use designated output directories |
+| Takeaway                            | Action                                   |
+|-------------------------------------|------------------------------------------|
+| Output paths should be normalized   | Always use designated output directories |
 | Create directories programmatically | Use `mkdir(parents=True, exist_ok=True)` |
-| Document output locations | Update docstrings with file locations |
+| Document output locations           | Update docstrings with file locations    |
 
 ### Tags
 
@@ -96,15 +101,15 @@ if output_file:
 
 ### Summary
 
-| Field | Value |
-|-------|-------|
-| **Case ID** | CASE-2025-11-29-002 |
-| **Title** | Knowledge consolidation initiative |
-| **Date** | 2025-11-29 |
-| **Category** | Documentation |
-| **Difficulty** | Medium |
-| **Time Spent** | ~60 minutes |
-| **Status** | Resolved |
+| Field          | Value                              |
+|----------------|------------------------------------|
+| **Case ID**    | CASE-2025-11-29-002                |
+| **Title**      | Knowledge consolidation initiative |
+| **Date**       | 2025-11-29                         |
+| **Category**   | Documentation                      |
+| **Difficulty** | Medium                             |
+| **Time Spent** | ~60 minutes                        |
+| **Status**     | Resolved                           |
 
 ### Problem Description
 
@@ -116,44 +121,44 @@ User requested analysis of knowledge gaps in the SAGE Knowledge Base and impleme
 
 After analyzing the project structure, identified the following areas for improvement:
 
-| Category | Gap | Priority |
-|----------|-----|----------|
-| Troubleshooting | No dedicated troubleshooting guide | High |
-| Integration | No integration patterns document | High |
-| Security | No security practices document | Medium |
-| Migration | No version migration guide | Medium |
-| FAQ | No FAQ document | Medium |
-| Configuration | No comprehensive config guide | Medium |
-| Tools | No MCP tools guide | Medium |
-| Tools | No Knowledge Graph guide | Medium |
-| Cases | No case study template or repository | Medium |
+| Category        | Gap                                  | Priority |
+|-----------------|--------------------------------------|----------|
+| Troubleshooting | No dedicated troubleshooting guide   | High     |
+| Integration     | No integration patterns document     | High     |
+| Security        | No security practices document       | Medium   |
+| Migration       | No version migration guide           | Medium   |
+| FAQ             | No FAQ document                      | Medium   |
+| Configuration   | No comprehensive config guide        | Medium   |
+| Tools           | No MCP tools guide                   | Medium   |
+| Tools           | No Knowledge Graph guide             | Medium   |
+| Cases           | No case study template or repository | Medium   |
 
 ### Solution
 
 Created 10 new documentation files:
 
-| File | Lines | Purpose |
-|------|-------|---------|
-| `content/practices/engineering/troubleshooting.md` | 451 | Troubleshooting guide |
-| `content/frameworks/patterns/integration.md` | 574 | Integration patterns |
-| `content/practices/engineering/security.md` | 592 | Security practices |
-| `docs/guides/migration.md` | 477 | Version migration |
-| `docs/guides/faq.md` | 472 | FAQ |
-| `content/templates/case_study.md` | 231 | Case study template |
-| `docs/guides/configuration.md` | 756 | Configuration guide |
-| `content/practices/engineering/knowledge_graph.md` | 562 | Knowledge graph guide |
-| `docs/guides/mcp_tools.md` | 861 | MCP tools guide |
-| `.context/intelligence/cases.md` | This file | Cases repository |
+| File                                               | Lines     | Purpose               |
+|----------------------------------------------------|-----------|-----------------------|
+| `content/practices/engineering/troubleshooting.md` | 451       | Troubleshooting guide |
+| `content/frameworks/patterns/integration.md`       | 574       | Integration patterns  |
+| `content/practices/engineering/security.md`        | 592       | Security practices    |
+| `docs/guides/migration.md`                         | 477       | Version migration     |
+| `docs/guides/faq.md`                               | 472       | FAQ                   |
+| `content/templates/case_study.md`                  | 231       | Case study template   |
+| `docs/guides/configuration.md`                     | 756       | Configuration guide   |
+| `content/practices/engineering/knowledge_graph.md` | 562       | Knowledge graph guide |
+| `docs/guides/mcp_tools.md`                         | 861       | MCP tools guide       |
+| `.context/intelligence/cases.md`                   | This file | Cases repository      |
 
 **Total**: ~5,000 lines of documentation added
 
 ### Lessons Learned
 
-| Takeaway | Action |
-|----------|--------|
-| Regular knowledge audits are valuable | Schedule periodic KB reviews |
-| Documentation gaps accumulate | Address gaps proactively |
-| Templates accelerate documentation | Create templates for common doc types |
+| Takeaway                                     | Action                                         |
+|----------------------------------------------|------------------------------------------------|
+| Regular knowledge audits are valuable        | Schedule periodic KB reviews                   |
+| Documentation gaps accumulate                | Address gaps proactively                       |
+| Templates accelerate documentation           | Create templates for common doc types          |
 | Case studies capture institutional knowledge | Record significant problem-solving experiences |
 
 ### Tags
@@ -164,15 +169,15 @@ Created 10 new documentation files:
 
 ## Case Categories Reference
 
-| Category | Description |
-|----------|-------------|
-| Bug Fix | Fixing incorrect behavior |
-| Performance | Optimization issues |
-| Architecture | Design-level issues |
-| Integration | External system issues |
-| Configuration | Config-related issues |
-| Security | Security vulnerabilities |
-| Documentation | Doc-related improvements |
+| Category      | Description               |
+|---------------|---------------------------|
+| Bug Fix       | Fixing incorrect behavior |
+| Performance   | Optimization issues       |
+| Architecture  | Design-level issues       |
+| Integration   | External system issues    |
+| Configuration | Config-related issues     |
+| Security      | Security vulnerabilities  |
+| Documentation | Doc-related improvements  |
 
 ---
 
@@ -180,15 +185,15 @@ Created 10 new documentation files:
 
 ### Summary
 
-| Field | Value |
-|-------|-------|
-| **Case ID** | CASE-2025-11-29-003 |
-| **Title** | Layer terminology standardization |
-| **Date** | 2025-11-29 |
-| **Category** | Architecture |
-| **Difficulty** | Simple |
-| **Time Spent** | 20 minutes |
-| **Status** | Resolved |
+| Field          | Value                             |
+|----------------|-----------------------------------|
+| **Case ID**    | CASE-2025-11-29-003               |
+| **Title**      | Layer terminology standardization |
+| **Date**       | 2025-11-29                        |
+| **Category**   | Architecture                      |
+| **Difficulty** | Simple                            |
+| **Time Spent** | 20 minutes                        |
+| **Status**     | Resolved                          |
 
 ### Problem Description
 
@@ -204,6 +209,7 @@ Historical evolution of terminology without synchronization across all documenta
 ### Solution
 
 Updated `.junie/guidelines.md` Architecture Rules section:
+
 - Changed "Tools" to "Capabilities" in the Three-Layer Model description
 - Aligned with codebase directory structure and README
 
@@ -214,11 +220,11 @@ Updated `.junie/guidelines.md` Architecture Rules section:
 
 ### Lessons Learned
 
-| Takeaway | Action |
-|----------|--------|
-| Terminology drift occurs naturally | Periodic terminology audits needed |
-| Single source of truth | Code structure should drive doc terminology |
-| Expert committee reviews catch drift | Use Level 5 reviews for consistency |
+| Takeaway                             | Action                                      |
+|--------------------------------------|---------------------------------------------|
+| Terminology drift occurs naturally   | Periodic terminology audits needed          |
+| Single source of truth               | Code structure should drive doc terminology |
+| Expert committee reviews catch drift | Use Level 5 reviews for consistency         |
 
 ### Tags
 
@@ -230,21 +236,22 @@ Updated `.junie/guidelines.md` Architecture Rules section:
 
 ### Summary
 
-| Field | Value |
-|-------|-------|
-| **Case ID** | CASE-2025-11-29-004 |
-| **Title** | Configuration context refactoring |
-| **Date** | 2025-11-29 |
-| **Category** | Architecture |
-| **Difficulty** | Medium |
-| **Time Spent** | 45 minutes |
-| **Status** | Resolved |
+| Field          | Value                             |
+|----------------|-----------------------------------|
+| **Case ID**    | CASE-2025-11-29-004               |
+| **Title**      | Configuration context refactoring |
+| **Date**       | 2025-11-29                        |
+| **Category**   | Architecture                      |
+| **Difficulty** | Medium                            |
+| **Time Spent** | 45 minutes                        |
+| **Status**     | Resolved                          |
 
 ### Problem Description
 
 Semantic confusion between `.context/configurations/` (governance policies) and `config/` (runtime configuration).
 
 **Issue**: Both directories dealt with "configuration" but served different purposes:
+
 - `.context/configurations/`: Policy documents about how things should be configured
 - `config/`: Actual runtime YAML configuration files
 
@@ -256,12 +263,12 @@ Original naming didn't distinguish between "policy/governance" and "runtime sett
 
 1. Renamed `.context/configurations/` to `.context/policies/`
 2. Updated 16 files with cross-references:
-   - `.context/index.md` (comprehensive update)
-   - `.junie/guidelines.md`
-   - `config/index.md`
-   - ADRs (ADR-0003, ADR-0007)
-   - Content files in frameworks and practices
-   - Intelligence documents
+    - `.context/index.md` (comprehensive update)
+    - `.junie/guidelines.md`
+    - `config/index.md`
+    - ADRs (ADR-0003, ADR-0007)
+    - Content files in frameworks and practices
+    - Intelligence documents
 
 ### Verification
 
@@ -271,11 +278,11 @@ Original naming didn't distinguish between "policy/governance" and "runtime sett
 
 ### Lessons Learned
 
-| Takeaway | Action |
-|----------|--------|
-| Names should reflect purpose | Use "policies" for governance, "config" for runtime |
-| Refactoring requires thorough search | Use grep to find all references before renaming |
-| Document the distinction | Add clear descriptions in index files |
+| Takeaway                             | Action                                              |
+|--------------------------------------|-----------------------------------------------------|
+| Names should reflect purpose         | Use "policies" for governance, "config" for runtime |
+| Refactoring requires thorough search | Use grep to find all references before renaming     |
+| Document the distinction             | Add clear descriptions in index files               |
 
 ### Tags
 
@@ -287,15 +294,15 @@ Original naming didn't distinguish between "policy/governance" and "runtime sett
 
 ### Summary
 
-| Field | Value |
-|-------|-------|
-| **Case ID** | CASE-2025-11-29-005 |
-| **Title** | Test coverage gap analysis |
-| **Date** | 2025-11-29 |
-| **Category** | Engineering |
-| **Difficulty** | Large |
-| **Time Spent** | Ongoing |
-| **Status** | Identified |
+| Field          | Value                      |
+|----------------|----------------------------|
+| **Case ID**    | CASE-2025-11-29-005        |
+| **Title**      | Test coverage gap analysis |
+| **Date**       | 2025-11-29                 |
+| **Category**   | Engineering                |
+| **Difficulty** | Large                      |
+| **Time Spent** | Ongoing                    |
+| **Status**     | Identified                 |
 
 ### Problem Description
 
@@ -303,16 +310,16 @@ Level 5 Expert Committee identified significant asymmetry between source code im
 
 ### Analysis
 
-| Source Module | Implementation Files | Test Files | Gap |
-|---------------|---------------------|------------|-----|
-| `capabilities/analyzers/` | 3 | 0 | 3 |
-| `capabilities/checkers/` | 1 | 0 | 1 |
-| `capabilities/monitors/` | 1 | 0 | 1 |
-| `core/di/` | 2 | 0 | 2 |
-| `core/events/` | 4 | 0 | 4 |
-| `core/logging/` | 3 | 0 | 3 |
-| `core/memory/` | 3 | 0 | 3 |
-| **Total** | **17** | **0** | **17** |
+| Source Module             | Implementation Files | Test Files | Gap    |
+|---------------------------|----------------------|------------|--------|
+| `capabilities/analyzers/` | 3                    | 0          | 3      |
+| `capabilities/checkers/`  | 1                    | 0          | 1      |
+| `capabilities/monitors/`  | 1                    | 0          | 1      |
+| `core/di/`                | 2                    | 0          | 2      |
+| `core/events/`            | 4                    | 0          | 4      |
+| `core/logging/`           | 3                    | 0          | 3      |
+| `core/memory/`            | 3                    | 0          | 3      |
+| **Total**                 | **17**               | **0**      | **17** |
 
 ### Root Cause
 
@@ -334,6 +341,92 @@ Identified and documented. Implementation planned as Phase 4 of optimization ini
 ### Tags
 
 `testing` `coverage` `technical-debt` `engineering-practice`
+
+---
+
+## CASE-2025-11-30-001
+
+### Summary
+
+| Field          | Value                                 |
+|----------------|---------------------------------------|
+| **Case ID**    | CASE-2025-11-30-001                   |
+| **Title**      | Root directory output file prevention |
+| **Date**       | 2025-11-30                            |
+| **Category**   | Convention                            |
+| **Difficulty** | Simple                                |
+| **Time Spent** | 30 minutes                            |
+| **Status**     | Resolved                              |
+
+### Problem Description
+
+User discovered `.output.txt` file generated in project root directory instead of the designated `.outputs/` directory.
+This was caused by external tools (MCP, Terminal) generating temporary output files without respecting project
+conventions.
+
+**Expected Behavior**: All output files should be generated in `.outputs/` directory.
+
+**Actual Behavior**: Files like `.output.txt` were created in project root.
+
+### Root Cause
+
+1. External tools (MCP Desktop Commander, Terminal commands) may generate output files in the current working directory
+   by default
+2. No systematic documentation existed to guide tool usage regarding output file locations
+3. `.gitignore` did not cover root-level output files as a safety measure
+
+### Solution
+
+Implemented a three-part systematic prevention:
+
+**1. Updated `.gitignore`** (safety net):
+
+```gitignore
+# Root-level temporary output files (generated by external tools like MCP)
+# These should be placed in .outputs/ instead
+.output.txt
+*.output.txt
+output.txt
+```
+
+**2. Updated `.context/conventions/file_structure.md`** (documentation):
+
+- Added Section 1.4 "Output File Convention"
+- Documented correct vs incorrect file locations
+- Explained why this matters (4 reasons)
+- Provided guidance for external tools
+
+**3. Recorded case study** (knowledge capture):
+
+- Added this case to `.context/intelligence/cases.md`
+- Ensures future reference and learning
+
+### Verification
+
+- Confirmed `.gitignore` rules added
+- Confirmed documentation updated with clear conventions
+- Verified `.outputs/` directory exists with `.gitkeep`
+
+### Lessons Learned
+
+| Takeaway                     | Action                                                      |
+|------------------------------|-------------------------------------------------------------|
+| External tools need guidance | Document output conventions explicitly                      |
+| Defense in depth             | Use .gitignore as safety net + documentation                |
+| Systematic prevention        | Don't just fix, establish conventions to prevent recurrence |
+| Knowledge capture            | Record cases for future reference                           |
+
+### Prevention Measures
+
+For future development:
+
+1. **When using external tools**: Always specify `.outputs/` as the output directory
+2. **When creating new tools**: Default output path should be `.outputs/`
+3. **Code review**: Check for hardcoded output paths in root directory
+
+### Tags
+
+`convention` `file-structure` `output-files` `prevention` `documentation`
 
 ---
 

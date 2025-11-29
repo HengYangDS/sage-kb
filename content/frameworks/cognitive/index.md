@@ -6,16 +6,17 @@
 
 ## Overview
 
-The Cognitive Framework provides structured approaches to complex problem-solving, including expert committee simulation and information density optimization for AI-human collaboration.
+The Cognitive Framework provides structured approaches to complex problem-solving, including expert committee simulation
+and information density optimization for AI-human collaboration.
 
 ---
 
 ## Documents
 
-| Document                 | Description                                         |
-|--------------------------|-----------------------------------------------------|
-| `expert_committee.md`    | Expert committee pattern for complex decisions      |
-| `information_density.md` | Information density optimization strategies         |
+| Document                 | Description                                    |
+|--------------------------|------------------------------------------------|
+| `expert_committee.md`    | Expert committee pattern for complex decisions |
+| `information_density.md` | Information density optimization strategies    |
 
 ---
 

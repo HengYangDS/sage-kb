@@ -24,9 +24,9 @@ autonomy_default: L3
 
 ## 2. Relevant Knowledge
 
-| Priority      | Files                                                                                             |
-|---------------|---------------------------------------------------------------------------------------------------|
-| **Auto-Load** | `core/principles.md` · `content/references/knowledge_quick_ref.md`                                |
+| Priority      | Files                                                                                                                                                                      |
+|---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Auto-Load** | `core/principles.md` · `content/references/knowledge_quick_ref.md`                                                                                                         |
 | **On-Demand** | `practices/documentation/knowledge_organization.md` · `frameworks/design/` · `practices/documentation/standards.md` · `practices/ai_collaboration/knowledge_extraction.md` |
 
 ---
@@ -151,10 +151,12 @@ Content...
 ## By Topic
 
 ### Topic A
+
 - Document 1
 - Document 2
 
 ### Topic B
+
 - Document 3
 
 ---
@@ -168,13 +170,16 @@ Content...
 ## References
 
 ### Internal
+
 - `content/core/principles.md` — Core principles
 - `content/practices/workflow.md` — Implementation guide
 
 ### External
+
 - [External Resource](https://example.com) — Description
 
 ### Related Decisions
+
 - ADR-0001: Architecture decision
 ```
 

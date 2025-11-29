@@ -14,7 +14,8 @@
 
 ### 1.1 What is a Session?
 
-A session represents a continuous period of AI-human collaboration on a specific task or set of related tasks. Effective session management ensures:
+A session represents a continuous period of AI-human collaboration on a specific task or set of related tasks. Effective
+session management ensures:
 
 - **Continuity**: Work can be resumed without loss
 - **Context**: Relevant information is preserved
@@ -23,12 +24,12 @@ A session represents a continuous period of AI-human collaboration on a specific
 
 ### 1.2 Session Types
 
-| Type | Duration | Scope | Storage |
-|------|----------|-------|---------|
-| **Quick** | < 30 min | Single task | Memory only |
-| **Standard** | 30 min - 2 hr | Multiple related tasks | `.history/current/` |
-| **Extended** | > 2 hr | Complex feature/project | Full documentation |
-| **Multi-day** | Days/weeks | Major initiative | Handoff required |
+| Type          | Duration      | Scope                   | Storage             |
+|---------------|---------------|-------------------------|---------------------|
+| **Quick**     | < 30 min      | Single task             | Memory only         |
+| **Standard**  | 30 min - 2 hr | Multiple related tasks  | `.history/current/` |
+| **Extended**  | > 2 hr        | Complex feature/project | Full documentation  |
+| **Multi-day** | Days/weeks    | Major initiative        | Handoff required    |
 
 ---
 
@@ -66,12 +67,12 @@ A session represents a continuous period of AI-human collaboration on a specific
 
 ### 3.1 Context Layers
 
-| Layer | Content | Persistence |
-|-------|---------|-------------|
-| **Project** | Guidelines, conventions, architecture | Permanent |
-| **Task** | Current objective, requirements | Session |
-| **Working** | Files modified, decisions made | Session |
-| **Transient** | Temporary notes, exploration | Memory |
+| Layer         | Content                               | Persistence |
+|---------------|---------------------------------------|-------------|
+| **Project**   | Guidelines, conventions, architecture | Permanent   |
+| **Task**      | Current objective, requirements       | Session     |
+| **Working**   | Files modified, decisions made        | Session     |
+| **Transient** | Temporary notes, exploration          | Memory      |
 
 ### 3.2 Critical Context Elements
 
@@ -159,12 +160,12 @@ To continue: [specific next action]
 
 ### 4.2 Progress Tracking
 
-| Status | Marker | Meaning |
-|--------|--------|---------|
-| Completed | `✓` | Fully done this session |
-| In Progress | `*` | Currently working on |
-| Blocked | `!` | Cannot proceed |
-| Pending | (none) | Not yet started |
+| Status      | Marker | Meaning                 |
+|-------------|--------|-------------------------|
+| Completed   | `✓`    | Fully done this session |
+| In Progress | `*`    | Currently working on    |
+| Blocked     | `!`    | Cannot proceed          |
+| Pending     | (none) | Not yet started         |
 
 ### 4.3 When to Update State
 
@@ -180,12 +181,12 @@ To continue: [specific next action]
 
 ### 5.1 Handoff Types
 
-| Type | When | Content Level |
-|------|------|---------------|
-| **Self-handoff** | Break/pause | Minimal, resume context |
-| **AI-to-AI** | Session limit | Full context transfer |
-| **AI-to-Human** | Review needed | Detailed explanation |
-| **Human-to-AI** | New session | Task description |
+| Type             | When          | Content Level           |
+|------------------|---------------|-------------------------|
+| **Self-handoff** | Break/pause   | Minimal, resume context |
+| **AI-to-AI**     | Session limit | Full context transfer   |
+| **AI-to-Human**  | Review needed | Detailed explanation    |
+| **Human-to-AI**  | New session   | Task description        |
 
 ### 5.2 Handoff Document Structure
 
@@ -269,12 +270,12 @@ When context is lost mid-session:
 
 When multiple sessions conflict:
 
-| Situation | Resolution |
-|-----------|------------|
-| Overlapping changes | Merge carefully, test thoroughly |
-| Contradicting decisions | Escalate to human review |
-| Stale handoff | Refresh context from codebase |
-| Missing context | Ask for clarification |
+| Situation               | Resolution                       |
+|-------------------------|----------------------------------|
+| Overlapping changes     | Merge carefully, test thoroughly |
+| Contradicting decisions | Escalate to human review         |
+| Stale handoff           | Refresh context from codebase    |
+| Missing context         | Ask for clarification            |
 
 ---
 

@@ -112,6 +112,7 @@ async def on_knowledge_loaded(event: Event) -> None:
     layer = event.data.get("layer")
     logger.info(f"Layer {layer} loaded")
 
+
 subscription = bus.subscribe(
     event_pattern=EventType.KNOWLEDGE_LOADED,
     handler=on_knowledge_loaded,
@@ -164,10 +165,10 @@ result = await manager.execute_with_timeout(
 from sage.core.timeout import TimeoutLevel
 
 # Use appropriate level for operation scope
-TimeoutLevel.T1_CACHE    # 100ms - Cache lookup
-TimeoutLevel.T2_FILE     # 500ms - Single file
-TimeoutLevel.T3_LAYER    # 2s    - Full layer
-TimeoutLevel.T4_FULL     # 5s    - Complete KB
+TimeoutLevel.T1_CACHE  # 100ms - Cache lookup
+TimeoutLevel.T2_FILE  # 500ms - Single file
+TimeoutLevel.T3_LAYER  # 2s    - Full layer
+TimeoutLevel.T4_FULL  # 5s    - Complete KB
 TimeoutLevel.T5_COMPLEX  # 10s   - Analysis
 ```
 
@@ -175,6 +176,7 @@ TimeoutLevel.T5_COMPLEX  # 10s   - Analysis
 
 ```python
 from sage.core.timeout import with_timeout
+
 
 @with_timeout(TimeoutLevel.T2_FILE)
 async def load_file(path: str) -> str:
@@ -205,11 +207,11 @@ async def load_with_fallback() -> Knowledge:
 
 ```python
 from sage.core.exceptions import (
-    SAGEError,           # Base for all SAGE errors
+    SAGEError,  # Base for all SAGE errors
     ConfigurationError,  # Config-related errors
-    LoadError,           # Knowledge loading errors
-    TimeoutError,        # Timeout exceeded
-    ValidationError,     # Input validation errors
+    LoadError,  # Knowledge loading errors
+    TimeoutError,  # Timeout exceeded
+    ValidationError,  # Input validation errors
 )
 ```
 
@@ -217,6 +219,7 @@ from sage.core.exceptions import (
 
 ```python
 from sage.core.exceptions import SAGEError, LoadError
+
 
 async def safe_operation() -> Result:
     try:
@@ -252,11 +255,12 @@ from typing import TypeVar, Generic
 
 T = TypeVar("T")
 
+
 @dataclass
 class Result(Generic[T]):
     value: T | None = None
     error: str | None = None
-    
+
     @property
     def is_success(self) -> bool:
         return self.error is None
@@ -271,14 +275,15 @@ class Result(Generic[T]):
 ```python
 from typing import Protocol, runtime_checkable
 
+
 @runtime_checkable
 class SourceProtocol(Protocol):
     """Protocol for knowledge sourcing."""
-    
+
     async def load(self, path: str) -> Knowledge:
         """Load knowledge from path."""
         ...
-    
+
     async def search(self, query: str) -> list[Knowledge]:
         """Search for knowledge."""
         ...
@@ -289,14 +294,15 @@ class SourceProtocol(Protocol):
 ```python
 class FileSource:
     """File-based knowledge source."""
-    
+
     async def load(self, path: str) -> Knowledge:
         content = await read_file(path)
         return Knowledge(content=content)
-    
+
     async def search(self, query: str) -> list[Knowledge]:
         # Implementation
         ...
+
 
 # Type checking verifies protocol compliance
 source: SourceProtocol = FileSource()
@@ -342,10 +348,11 @@ layers = config.knowledge.layers
 ```python
 from pydantic import BaseModel, validator
 
+
 class TimeoutConfig(BaseModel):
     cache_lookup: int = 100
     file_read: int = 500
-    
+
     @validator("cache_lookup")
     def validate_cache_lookup(cls, v):
         if v < 10:
@@ -364,9 +371,10 @@ class AsyncResource:
     async def __aenter__(self) -> "AsyncResource":
         await self.initialize()
         return self
-    
+
     async def __aexit__(self, exc_type, exc_val, exc_tb) -> None:
         await self.cleanup()
+
 
 # Usage
 async with AsyncResource() as resource:
@@ -377,6 +385,7 @@ async with AsyncResource() as resource:
 
 ```python
 import asyncio
+
 
 async def load_all_layers() -> list[Knowledge]:
     tasks = [
@@ -392,6 +401,7 @@ async def load_all_layers() -> list[Knowledge]:
 ```python
 semaphore = asyncio.Semaphore(10)  # Max 10 concurrent
 
+
 async def rate_limited_load(path: str) -> Knowledge:
     async with semaphore:
         return await load_file(path)
@@ -403,6 +413,7 @@ async def rate_limited_load(path: str) -> Knowledge:
 async def stream_knowledge() -> AsyncGenerator[Knowledge, None]:
     for path in knowledge_paths:
         yield await load_knowledge(path)
+
 
 # Usage
 async for knowledge in stream_knowledge():
@@ -448,6 +459,7 @@ logger.info("processing_completed")  # Includes request_id
 import pytest
 from sage.core.di import DIContainer
 
+
 @pytest.fixture
 def container():
     container = DIContainer()
@@ -469,6 +481,7 @@ def mock_bus():
 
 ```python
 import pytest
+
 
 @pytest.mark.asyncio
 async def test_async_load():

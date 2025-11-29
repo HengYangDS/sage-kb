@@ -163,6 +163,7 @@ src/sage/
 ```python
 # Services → Core: Direct dependency
 from sage.core.config import get_config
+
 config = get_config()
 
 # Core → Services: Via EventBus (decoupled)

@@ -14,11 +14,11 @@
 
 ### 1.1 Tool Categories
 
-| Category | Purpose | Tools |
-|----------|---------|-------|
-| **Knowledge** | Content retrieval & search | 6 tools |
-| **Capability** | Analysis & health checks | 3 tools |
-| **Development** | Maintenance & debugging | 6 tools |
+| Category        | Purpose                    | Tools   |
+|-----------------|----------------------------|---------|
+| **Knowledge**   | Content retrieval & search | 6 tools |
+| **Capability**  | Analysis & health checks   | 3 tools |
+| **Development** | Maintenance & debugging    | 6 tools |
 
 ### 1.2 Quick Reference
 
@@ -32,12 +32,12 @@ print(result["dev_tools"])
 
 ### 1.3 Common Parameters
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `path` | string | Root path for operations |
-| `timeout_ms` | int | Operation timeout in milliseconds |
-| `layer` | int | Knowledge layer (0-3) |
-| `max_results` | int | Maximum results to return |
+| Parameter     | Type   | Description                       |
+|---------------|--------|-----------------------------------|
+| `path`        | string | Root path for operations          |
+| `timeout_ms`  | int    | Operation timeout in milliseconds |
+| `layer`       | int    | Knowledge layer (0-3)             |
+| `max_results` | int    | Maximum results to return         |
 
 ---
 
@@ -55,6 +55,7 @@ Retrieve knowledge by layer with smart loading.
 | `timeout_ms` | int | 5000 | Operation timeout |
 
 **Examples**:
+
 ```python
 # Get core knowledge
 result = await get_knowledge(layer=0)
@@ -68,15 +69,16 @@ result = await get_knowledge(
 
 # Response
 {
-    "status": "success",
-    "duration_ms": 245,
-    "content": {...},
-    "layer": 0,
+    "status"      : "success",
+    "duration_ms" : 245,
+    "content"     : {...},
+    "layer"       : 0,
     "files_loaded": 5
 }
 ```
 
 **Use Cases**:
+
 - Load context at session start
 - Get relevant guidelines for a task
 - Refresh knowledge periodically
@@ -95,6 +97,7 @@ Search across knowledge base content.
 | `layer` | int | None | Limit to specific layer |
 
 **Examples**:
+
 ```python
 # Basic search
 result = await search_knowledge(query="timeout patterns")
@@ -108,13 +111,13 @@ result = await search_knowledge(
 
 # Response
 {
-    "status": "success",
-    "query": "timeout patterns",
-    "results": [
+    "status"       : "success",
+    "query"        : "timeout patterns",
+    "results"      : [
         {
-            "path": "content/frameworks/resilience/timeout_patterns.md",
-            "title": "Timeout Patterns",
-            "score": 0.95,
+            "path"   : "content/frameworks/resilience/timeout_patterns.md",
+            "title"  : "Timeout Patterns",
+            "score"  : 0.95,
             "snippet": "..."
         }
     ],
@@ -123,6 +126,7 @@ result = await search_knowledge(
 ```
 
 **Use Cases**:
+
 - Find specific documentation
 - Discover related content
 - Verify knowledge exists
@@ -136,21 +140,22 @@ Get knowledge base information and statistics.
 **Parameters**: None
 
 **Examples**:
+
 ```python
 result = await kb_info()
 
 # Response
 {
-    "version": "0.1.0",
-    "status": "healthy",
-    "statistics": {
-        "total_files": 150,
+    "version"     : "0.1.0",
+    "status"      : "healthy",
+    "statistics"  : {
+        "total_files" : 150,
         "total_tokens": 45000,
-        "layers": {
-            "core": 10,
+        "layers"      : {
+            "core"      : 10,
             "guidelines": 25,
             "frameworks": 40,
-            "practices": 75
+            "practices" : 75
         }
     },
     "last_updated": "2025-11-29T22:00:00"
@@ -158,6 +163,7 @@ result = await kb_info()
 ```
 
 **Use Cases**:
+
 - Check KB status
 - Monitor KB health
 - Verify available content
@@ -174,6 +180,7 @@ Retrieve specific guideline sections.
 | `section` | string | required | Section name |
 
 **Examples**:
+
 ```python
 # Get coding guidelines
 result = await get_guidelines(section="code_style")
@@ -182,19 +189,22 @@ result = await get_guidelines(section="code_style")
 result = await get_guidelines(section="documentation")
 
 # Available sections
-sections = ["overview", "code_style", "documentation", 
-            "engineering", "ai_collaboration", "quality"]
+sections = [
+    "overview", "code_style", "documentation",
+    "engineering", "ai_collaboration", "quality"
+]
 
 # Response
 {
-    "status": "success",
+    "status" : "success",
     "section": "code_style",
     "content": "...",
-    "path": "content/guidelines/code_style.md"
+    "path"   : "content/guidelines/code_style.md"
 }
 ```
 
 **Use Cases**:
+
 - Load specific style guides
 - Get project conventions
 - Reference best practices
@@ -211,6 +221,7 @@ Retrieve framework documentation.
 | `name` | string | required | Framework name |
 
 **Examples**:
+
 ```python
 # Get autonomy framework
 result = await get_framework(name="autonomy")
@@ -219,19 +230,22 @@ result = await get_framework(name="autonomy")
 result = await get_framework(name="patterns")
 
 # Available frameworks
-frameworks = ["autonomy", "cognitive", "design", 
-              "patterns", "resilience"]
+frameworks = [
+    "autonomy", "cognitive", "design",
+    "patterns", "resilience"
+]
 
 # Response
 {
-    "status": "success",
+    "status"   : "success",
     "framework": "autonomy",
-    "content": "...",
-    "files": ["levels.md"]
+    "content"  : "...",
+    "files"    : ["levels.md"]
 }
 ```
 
 **Use Cases**:
+
 - Reference decision frameworks
 - Load pattern libraries
 - Get architectural guidance
@@ -248,6 +262,7 @@ Retrieve document templates.
 | `name` | string | required | Template name |
 
 **Examples**:
+
 ```python
 # Get ADR template
 result = await get_template(name="adr")
@@ -256,20 +271,23 @@ result = await get_template(name="adr")
 result = await get_template(name="api_spec")
 
 # Available templates
-templates = ["adr", "api_spec", "conversation_record",
-             "expert_committee", "postmortem", "project_setup",
-             "runbook", "session_state", "task_handoff", "case_study"]
+templates = [
+    "adr", "api_spec", "conversation_record",
+    "expert_committee", "postmortem", "project_setup",
+    "runbook", "session_state", "task_handoff", "case_study"
+]
 
 # Response
 {
-    "status": "success",
+    "status"  : "success",
     "template": "adr",
-    "content": "...",
-    "path": "content/templates/adr.md"
+    "content" : "...",
+    "path"    : "content/templates/adr.md"
 }
 ```
 
 **Use Cases**:
+
 - Create new documents
 - Follow standard formats
 - Ensure consistency
@@ -289,6 +307,7 @@ Analyze code/content quality metrics.
 | `extensions` | string | ".py,.md" | File extensions |
 
 **Examples**:
+
 ```python
 # Analyze Python files
 result = await analyze_quality(path="src/", extensions=".py")
@@ -299,14 +318,14 @@ result = await analyze_quality(path="docs/", extensions=".md")
 # Response
 {
     "success": true,
-    "result": {
+    "result" : {
         "files_analyzed": 25,
         "avg_complexity": 5.2,
-        "issues": [
+        "issues"        : [
             {"file": "...", "type": "...", "message": "..."}
         ],
-        "summary": {
-            "high_complexity": 2,
+        "summary"       : {
+            "high_complexity"   : 2,
             "missing_docstrings": 5
         }
     }
@@ -314,6 +333,7 @@ result = await analyze_quality(path="docs/", extensions=".md")
 ```
 
 **Use Cases**:
+
 - Code review preparation
 - Quality monitoring
 - Technical debt tracking
@@ -331,6 +351,7 @@ Analyze content structure and metrics.
 | `extensions` | string | ".md" | File extensions |
 
 **Examples**:
+
 ```python
 # Analyze markdown content
 result = await analyze_content(path="content/")
@@ -338,20 +359,21 @@ result = await analyze_content(path="content/")
 # Response
 {
     "success": true,
-    "result": {
-        "files_analyzed": 80,
-        "total_tokens": 45000,
+    "result" : {
+        "files_analyzed"     : 80,
+        "total_tokens"       : 45000,
         "avg_tokens_per_file": 562,
-        "structure": {
+        "structure"          : {
             "with_frontmatter": 75,
-            "with_toc": 60,
-            "avg_headings": 8
+            "with_toc"        : 60,
+            "avg_headings"    : 8
         }
     }
 }
 ```
 
 **Use Cases**:
+
 - Content inventory
 - Token budget planning
 - Structure validation
@@ -368,29 +390,31 @@ Comprehensive health check.
 | `path` | string | "." | Path to check |
 
 **Examples**:
+
 ```python
 result = await check_health(path=".")
 
 # Response
 {
     "success": true,
-    "result": {
-        "overall": "healthy",
-        "checks": {
-            "config": "pass",
-            "content": "pass",
-            "links": "warning",
+    "result" : {
+        "overall" : "healthy",
+        "checks"  : {
+            "config"   : "pass",
+            "content"  : "pass",
+            "links"    : "warning",
             "structure": "pass"
         },
         "warnings": [
             "3 broken links found"
         ],
-        "errors": []
+        "errors"  : []
     }
 }
 ```
 
 **Use Cases**:
+
 - Regular health monitoring
 - Pre-deployment validation
 - Issue detection
@@ -411,6 +435,7 @@ Build knowledge graph for analysis.
 | `output_file` | string | "" | Export filename (saved to .outputs/) |
 
 **Examples**:
+
 ```python
 # Build graph
 result = await build_knowledge_graph(path="content")
@@ -425,10 +450,10 @@ result = await build_knowledge_graph(
 # Response
 {
     "success": true,
-    "result": {
-        "total_nodes": 150,
-        "total_edges": 320,
-        "total_tokens": 45000,
+    "result" : {
+        "total_nodes"  : 150,
+        "total_edges"  : 320,
+        "total_tokens" : 45000,
         "nodes_by_type": {"file": 80, "concept": 50, "tag": 20},
         "edges_by_type": {"links_to": 200, "references": 100}
     }
@@ -436,6 +461,7 @@ result = await build_knowledge_graph(
 ```
 
 **Use Cases**:
+
 - Content relationship analysis
 - Navigation optimization
 - Knowledge gap detection
@@ -454,6 +480,7 @@ Validate links in markdown files.
 | `pattern` | string | "**/*.md" | File pattern |
 
 **Examples**:
+
 ```python
 # Check internal links
 result = await check_links(path="content")
@@ -468,22 +495,23 @@ result = await check_links(
 # Response
 {
     "success": true,
-    "result": {
-        "total_links": 250,
-        "valid_links": 247,
+    "result" : {
+        "total_links" : 250,
+        "valid_links" : 247,
         "broken_links": [
             {
                 "source": "docs/guide.md",
                 "target": "missing.md",
-                "line": 45
+                "line"  : 45
             }
         ],
-        "broken_rate": 0.012
+        "broken_rate" : 0.012
     }
 }
 ```
 
 **Use Cases**:
+
 - Documentation validation
 - Link maintenance
 - Quality assurance
@@ -502,6 +530,7 @@ Validate directory structure.
 | `dry_run` | bool | true | Preview only |
 
 **Examples**:
+
 ```python
 # Check structure
 result = await check_structure(path=".")
@@ -516,18 +545,19 @@ result = await check_structure(
 # Response
 {
     "success": true,
-    "result": {
-        "issues": [
+    "result" : {
+        "issues"         : [
             {"type": "missing_index", "path": "content/new_folder/"}
         ],
-        "error_count": 0,
-        "warning_count": 1,
+        "error_count"    : 0,
+        "warning_count"  : 1,
         "fixes_available": 1
     }
 }
 ```
 
 **Use Cases**:
+
 - Structure validation
 - Convention enforcement
 - Automated fixes
@@ -544,6 +574,7 @@ Get timeout performance statistics.
 | `minutes` | int | 60 | Time window |
 
 **Examples**:
+
 ```python
 # Get stats for last hour
 result = await get_timeout_stats(minutes=60)
@@ -554,17 +585,17 @@ result = await get_timeout_stats(minutes=30)
 # Response
 {
     "success": true,
-    "result": {
-        "total_operations": 150,
-        "timeout_count": 3,
-        "timeout_rate": 0.02,
+    "result" : {
+        "total_operations" : 150,
+        "timeout_count"    : 3,
+        "timeout_rate"     : 0.02,
         "near_timeout_rate": 0.08,
-        "avg_duration_ms": 245,
-        "by_level": {
+        "avg_duration_ms"  : 245,
+        "by_level"         : {
             "T1": {"count": 50, "avg_ms": 45},
             "T2": {"count": 40, "avg_ms": 180}
         },
-        "recommendations": [
+        "recommendations"  : [
             "Consider increasing T2 timeout for large files"
         ]
     }
@@ -572,6 +603,7 @@ result = await get_timeout_stats(minutes=30)
 ```
 
 **Use Cases**:
+
 - Performance monitoring
 - Timeout tuning
 - Issue detection
@@ -589,6 +621,7 @@ Create knowledge base backup.
 | `name` | string | "" | Backup name |
 
 **Examples**:
+
 ```python
 # Create named backup
 result = await create_backup(
@@ -602,16 +635,17 @@ result = await create_backup(path=".")
 # Response
 {
     "success": true,
-    "result": {
+    "result" : {
         "backup_path": ".backups/pre_migration_20251129_220000",
-        "name": "pre_migration",
-        "size_mb": 15.5,
+        "name"       : "pre_migration",
+        "size_mb"    : 15.5,
         "files_count": 200
     }
 }
 ```
 
 **Use Cases**:
+
 - Pre-migration backup
 - Version snapshots
 - Disaster recovery
@@ -628,28 +662,30 @@ List available backups.
 | `path` | string | ".backups" | Backup directory |
 
 **Examples**:
+
 ```python
 result = await list_backups(path=".backups")
 
 # Response
 {
     "success": true,
-    "result": {
-        "backups": [
+    "result" : {
+        "backups"      : [
             {
-                "name": "pre_migration",
-                "path": ".backups/pre_migration_20251129",
+                "name"   : "pre_migration",
+                "path"   : ".backups/pre_migration_20251129",
                 "created": "2025-11-29T22:00:00",
                 "size_mb": 15.5
             }
         ],
-        "total_count": 3,
+        "total_count"  : 3,
         "total_size_mb": 45.2
     }
 }
 ```
 
 **Use Cases**:
+
 - Backup inventory
 - Storage management
 - Recovery preparation
@@ -667,13 +703,13 @@ async def initialize_session():
     health = await check_health(path=".")
     if health["result"]["overall"] != "healthy":
         print("Warning: KB health issues detected")
-    
+
     # 2. Load core knowledge
     core = await get_knowledge(layer=0)
-    
+
     # 3. Get KB info
     info = await kb_info()
-    
+
     return {"health": health, "core": core, "info": info}
 ```
 
@@ -687,13 +723,13 @@ async def load_task_context(task_description: str):
         layer=1,
         task=task_description
     )
-    
+
     # 2. Search for specific content
     search_results = await search_knowledge(
         query=task_description,
         max_results=5
     )
-    
+
     return {"knowledge": knowledge, "related": search_results}
 ```
 
@@ -703,25 +739,25 @@ async def load_task_context(task_description: str):
 # Comprehensive quality check
 async def full_quality_check():
     results = {}
-    
+
     # 1. Check health
     results["health"] = await check_health(path=".")
-    
+
     # 2. Check links
     results["links"] = await check_links(path="content")
-    
+
     # 3. Check structure
     results["structure"] = await check_structure(path=".")
-    
+
     # 4. Analyze quality
     results["quality"] = await analyze_quality(path="src/")
-    
+
     # 5. Build graph for analysis
     results["graph"] = await build_knowledge_graph(
         path="content",
         output_file="quality_check_graph.json"
     )
-    
+
     return results
 ```
 
@@ -732,24 +768,24 @@ async def full_quality_check():
 async def maintenance_routine():
     # 1. Create backup
     backup = await create_backup(name="maintenance")
-    
+
     # 2. Check and fix structure
     structure = await check_structure(
         path=".",
         fix=True,
         dry_run=True  # Preview first
     )
-    
+
     # 3. Check links
     links = await check_links(path="content")
-    
+
     # 4. Get timeout stats
     stats = await get_timeout_stats(minutes=1440)  # 24 hours
-    
+
     return {
-        "backup": backup,
-        "structure": structure,
-        "links": links,
+        "backup"     : backup,
+        "structure"  : structure,
+        "links"      : links,
         "performance": stats
     }
 ```
@@ -774,12 +810,12 @@ async def safe_tool_call(tool_func, **kwargs):
 
 ### 6.2 Timeout Management
 
-| Tool | Recommended Timeout |
-|------|---------------------|
-| `get_knowledge` | 3000-5000ms |
-| `search_knowledge` | 2000-3000ms |
-| `build_knowledge_graph` | 10000-30000ms |
-| `check_links` (external) | 30000-60000ms |
+| Tool                     | Recommended Timeout |
+|--------------------------|---------------------|
+| `get_knowledge`          | 3000-5000ms         |
+| `search_knowledge`       | 2000-3000ms         |
+| `build_knowledge_graph`  | 10000-30000ms       |
+| `check_links` (external) | 30000-60000ms       |
 
 ### 6.3 Result Caching
 
@@ -787,15 +823,16 @@ async def safe_tool_call(tool_func, **kwargs):
 # Cache frequently used results
 knowledge_cache = {}
 
+
 async def get_cached_knowledge(layer: int, ttl_seconds: int = 300):
     cache_key = f"knowledge_{layer}"
     now = time.time()
-    
+
     if cache_key in knowledge_cache:
         cached, timestamp = knowledge_cache[cache_key]
         if now - timestamp < ttl_seconds:
             return cached
-    
+
     result = await get_knowledge(layer=layer)
     knowledge_cache[cache_key] = (result, now)
     return result
@@ -803,23 +840,23 @@ async def get_cached_knowledge(layer: int, ttl_seconds: int = 300):
 
 ### 6.4 Tool Selection Guide
 
-| Need | Tool |
-|------|------|
-| Load session context | `get_knowledge` |
-| Find specific content | `search_knowledge` |
-| Check KB status | `kb_info` |
-| Get coding standards | `get_guidelines` |
-| Reference patterns | `get_framework` |
-| Create document | `get_template` |
-| Analyze code | `analyze_quality` |
-| Analyze content | `analyze_content` |
-| Full health check | `check_health` |
+| Need                    | Tool                    |
+|-------------------------|-------------------------|
+| Load session context    | `get_knowledge`         |
+| Find specific content   | `search_knowledge`      |
+| Check KB status         | `kb_info`               |
+| Get coding standards    | `get_guidelines`        |
+| Reference patterns      | `get_framework`         |
+| Create document         | `get_template`          |
+| Analyze code            | `analyze_quality`       |
+| Analyze content         | `analyze_content`       |
+| Full health check       | `check_health`          |
 | Visualize relationships | `build_knowledge_graph` |
-| Validate links | `check_links` |
-| Validate structure | `check_structure` |
-| Monitor performance | `get_timeout_stats` |
-| Backup data | `create_backup` |
-| List backups | `list_backups` |
+| Validate links          | `check_links`           |
+| Validate structure      | `check_structure`       |
+| Monitor performance     | `get_timeout_stats`     |
+| Backup data             | `create_backup`         |
+| List backups            | `list_backups`          |
 
 ---
 
@@ -827,24 +864,24 @@ async def get_cached_knowledge(layer: int, ttl_seconds: int = 300):
 
 ### All Tools
 
-| Tool | Category | Primary Use |
-|------|----------|-------------|
-| `get_knowledge` | Knowledge | Load content by layer |
-| `search_knowledge` | Knowledge | Search content |
-| `kb_info` | Knowledge | Get KB status |
-| `get_guidelines` | Knowledge | Get guidelines |
-| `get_framework` | Knowledge | Get frameworks |
-| `get_template` | Knowledge | Get templates |
-| `list_tools` | Knowledge | List all tools |
-| `analyze_quality` | Capability | Code analysis |
-| `analyze_content` | Capability | Content analysis |
-| `check_health` | Capability | Health check |
-| `build_knowledge_graph` | Dev | Build graph |
-| `check_links` | Dev | Validate links |
-| `check_structure` | Dev | Validate structure |
-| `get_timeout_stats` | Dev | Performance stats |
-| `create_backup` | Dev | Create backup |
-| `list_backups` | Dev | List backups |
+| Tool                    | Category   | Primary Use           |
+|-------------------------|------------|-----------------------|
+| `get_knowledge`         | Knowledge  | Load content by layer |
+| `search_knowledge`      | Knowledge  | Search content        |
+| `kb_info`               | Knowledge  | Get KB status         |
+| `get_guidelines`        | Knowledge  | Get guidelines        |
+| `get_framework`         | Knowledge  | Get frameworks        |
+| `get_template`          | Knowledge  | Get templates         |
+| `list_tools`            | Knowledge  | List all tools        |
+| `analyze_quality`       | Capability | Code analysis         |
+| `analyze_content`       | Capability | Content analysis      |
+| `check_health`          | Capability | Health check          |
+| `build_knowledge_graph` | Dev        | Build graph           |
+| `check_links`           | Dev        | Validate links        |
+| `check_structure`       | Dev        | Validate structure    |
+| `get_timeout_stats`     | Dev        | Performance stats     |
+| `create_backup`         | Dev        | Create backup         |
+| `list_backups`          | Dev        | List backups          |
 
 ---
 

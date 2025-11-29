@@ -14,12 +14,12 @@
 
 ### 1.1 Integration Philosophy
 
-| Principle | Description |
-|-----------|-------------|
-| **Loose Coupling** | Minimize dependencies between systems |
-| **Protocol-First** | Define clear interfaces before implementation |
-| **Graceful Degradation** | Continue working when integrations fail |
-| **Observable** | Make integration state visible and debuggable |
+| Principle                | Description                                   |
+|--------------------------|-----------------------------------------------|
+| **Loose Coupling**       | Minimize dependencies between systems         |
+| **Protocol-First**       | Define clear interfaces before implementation |
+| **Graceful Degradation** | Continue working when integrations fail       |
+| **Observable**           | Make integration state visible and debuggable |
 
 ### 1.2 Integration Types
 
@@ -47,21 +47,25 @@
 
 **Supported Clients**:
 
-| Client | Integration Method | Status |
-|--------|-------------------|--------|
-| Claude Desktop | MCP Protocol | Native |
-| JetBrains Junie | MCP Protocol | Native |
-| Cursor | MCP Protocol | Supported |
-| VS Code + Continue | MCP Protocol | Supported |
-| Custom Clients | MCP SDK | Manual |
+| Client             | Integration Method | Status    |
+|--------------------|--------------------|-----------|
+| Claude Desktop     | MCP Protocol       | Native    |
+| JetBrains Junie    | MCP Protocol       | Native    |
+| Cursor             | MCP Protocol       | Supported |
+| VS Code + Continue | MCP Protocol       | Supported |
+| Custom Clients     | MCP SDK            | Manual    |
 
 **Configuration Example**:
+
 ```json
 {
   "mcpServers": {
     "sage-kb": {
       "command": "sage",
-      "args": ["serve", "--stdio"],
+      "args": [
+        "serve",
+        "--stdio"
+      ],
       "env": {
         "SAGE_CONFIG": "/path/to/config"
       }
@@ -78,6 +82,7 @@ from sage.services.mcp_server import create_app
 
 app = create_app()
 
+
 # Each client gets isolated session state
 @app.tool()
 async def get_knowledge(
@@ -91,26 +96,29 @@ async def get_knowledge(
 
 ### 2.3 Context Synchronization
 
-| Pattern | Use Case | Implementation |
-|---------|----------|----------------|
-| **Push** | Real-time updates | WebSocket/SSE |
-| **Pull** | On-demand refresh | Periodic polling |
+| Pattern    | Use Case          | Implementation                    |
+|------------|-------------------|-----------------------------------|
+| **Push**   | Real-time updates | WebSocket/SSE                     |
+| **Pull**   | On-demand refresh | Periodic polling                  |
 | **Hybrid** | Balanced approach | Push notifications + Pull details |
 
 **Example: Hybrid Sync**:
+
 ```python
 class ContextSync:
     def __init__(self, client):
         self.client = client
         self.last_sync = None
-    
+
     async def on_change(self, change_event):
         """Push: Notify client of changes."""
-        await self.client.notify("context_changed", {
-            "type": change_event.type,
-            "path": change_event.path
-        })
-    
+        await self.client.notify(
+            "context_changed", {
+                "type": change_event.type,
+                "path": change_event.path
+            }
+            )
+
     async def get_full_context(self):
         """Pull: Client requests full context."""
         self.last_sync = datetime.now()
@@ -124,42 +132,51 @@ class ContextSync:
 ### 3.1 JetBrains IDE Integration
 
 **Setup via .junie/guidelines.md**:
+
 ```markdown
 # Project Guidelines
 
 ## Knowledge Base
+
 - Use `sage get` for context loading
 - Follow timeout hierarchy (T1-T5)
 - Reference `.context/` for project-specific knowledge
 
 ## Autonomy Level
+
 Default: L4 (Medium-High)
 ```
 
 **File Watcher Integration**:
+
 ```yaml
 # .idea/sage-watcher.xml
 <component name="SageWatcher">
-  <watch path=".context/" />
-  <watch path="content/" />
-  <on-change action="sage rebuild --incremental" />
+<watch path=".context/" />
+<watch path="content/" />
+<on-change action="sage rebuild --incremental" />
 </component>
 ```
 
 ### 3.2 VS Code Integration
 
 **Extension Settings** (`.vscode/settings.json`):
+
 ```json
 {
   "sage.enable": true,
   "sage.configPath": "./config/sage.yaml",
   "sage.autoLoad": true,
   "sage.timeout": 5000,
-  "sage.layers": ["core", "guidelines"]
+  "sage.layers": [
+    "core",
+    "guidelines"
+  ]
 }
 ```
 
 **Tasks** (`.vscode/tasks.json`):
+
 ```json
 {
   "version": "2.0.0",
@@ -168,14 +185,19 @@ Default: L4 (Medium-High)
       "label": "SAGE: Reload Knowledge",
       "type": "shell",
       "command": "sage",
-      "args": ["reload"],
+      "args": [
+        "reload"
+      ],
       "problemMatcher": []
     },
     {
       "label": "SAGE: Check Links",
       "type": "shell",
       "command": "sage",
-      "args": ["check", "--links"],
+      "args": [
+        "check",
+        "--links"
+      ],
       "problemMatcher": []
     }
   ]
@@ -187,18 +209,18 @@ Default: L4 (Medium-High)
 ```python
 class EditorBridge:
     """Bridge between SAGE and any editor."""
-    
+
     def __init__(self, editor_type: str):
         self.editor = self._detect_editor(editor_type)
-    
+
     async def provide_context(self, file_path: str) -> dict:
         """Provide context for current file."""
         return {
-            "file_context": await self.get_file_context(file_path),
-            "project_context": await self.get_project_context(),
+            "file_context"      : await self.get_file_context(file_path),
+            "project_context"   : await self.get_project_context(),
             "relevant_knowledge": await self.search_relevant(file_path)
         }
-    
+
     async def on_file_save(self, file_path: str):
         """Hook for file save events."""
         if self._is_knowledge_file(file_path):
@@ -227,21 +249,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      
+
       - name: Install SAGE
         run: pip install -e .
-      
+
       - name: Check Structure
         run: sage check --structure
-      
+
       - name: Check Links
         run: sage check --links
-      
+
       - name: Validate Content
         run: sage check --content
 ```
@@ -288,7 +310,7 @@ repos:
         language: system
         files: '\.md$'
         pass_filenames: false
-      
+
       - id: sage-validate-structure
         name: Validate Structure
         entry: sage check --structure
@@ -298,12 +320,12 @@ repos:
 
 ### 4.4 Pipeline Patterns
 
-| Stage | Action | On Failure |
-|-------|--------|------------|
-| **Lint** | Check formatting, links | Block merge |
-| **Validate** | Structure, content validation | Block merge |
-| **Build** | Generate outputs | Block deploy |
-| **Deploy** | Update production KB | Rollback |
+| Stage        | Action                        | On Failure   |
+|--------------|-------------------------------|--------------|
+| **Lint**     | Check formatting, links       | Block merge  |
+| **Validate** | Structure, content validation | Block merge  |
+| **Build**    | Generate outputs              | Block deploy |
+| **Deploy**   | Update production KB          | Rollback     |
 
 ---
 
@@ -318,6 +340,7 @@ from sage.core.loader import KnowledgeLoader
 app = FastAPI()
 loader = KnowledgeLoader()
 
+
 @app.get("/api/v1/knowledge/{layer}")
 async def get_knowledge(layer: int, timeout_ms: int = 5000):
     """REST endpoint for knowledge retrieval."""
@@ -326,6 +349,7 @@ async def get_knowledge(layer: int, timeout_ms: int = 5000):
         return {"status": "success", "data": result}
     except TimeoutError:
         raise HTTPException(504, "Knowledge loading timed out")
+
 
 @app.get("/api/v1/search")
 async def search(q: str, max_results: int = 10):
@@ -340,6 +364,7 @@ async def search(q: str, max_results: int = 10):
 import strawberry
 from sage.core.loader import KnowledgeLoader
 
+
 @strawberry.type
 class KnowledgeNode:
     id: str
@@ -347,13 +372,14 @@ class KnowledgeNode:
     content: str
     layer: int
 
+
 @strawberry.type
 class Query:
     @strawberry.field
     async def knowledge(self, layer: int = 0) -> list[KnowledgeNode]:
         loader = KnowledgeLoader()
         return await loader.load_layer(layer)
-    
+
     @strawberry.field
     async def search(self, query: str) -> list[KnowledgeNode]:
         loader = KnowledgeLoader()
@@ -365,18 +391,21 @@ class Query:
 ```python
 from sage.core.events import EventBus
 
+
 class WebhookIntegration:
     def __init__(self, webhook_url: str):
         self.webhook_url = webhook_url
         EventBus.subscribe("knowledge.updated", self.on_update)
-    
+
     async def on_update(self, event):
         """Send webhook on knowledge update."""
-        await httpx.post(self.webhook_url, json={
-            "event": "knowledge.updated",
-            "timestamp": event.timestamp,
-            "changes": event.changes
-        })
+        await httpx.post(
+            self.webhook_url, json={
+                "event"    : "knowledge.updated",
+                "timestamp": event.timestamp,
+                "changes"  : event.changes
+            }
+            )
 ```
 
 ---
@@ -388,20 +417,21 @@ class WebhookIntegration:
 ```python
 from sage.plugins import PluginManager
 
+
 class IntegrationPlugin:
     """Base class for integration plugins."""
-    
+
     name: str = "base-integration"
     version: str = "1.0.0"
-    
+
     async def initialize(self, context: dict) -> None:
         """Called when plugin is loaded."""
         pass
-    
+
     async def on_knowledge_load(self, knowledge: dict) -> dict:
         """Hook for knowledge loading."""
         return knowledge
-    
+
     async def on_search(self, query: str, results: list) -> list:
         """Hook for search results."""
         return results
@@ -420,13 +450,15 @@ class IntegrationPlugin:
 ```
 
 **Event-Based Communication**:
+
 ```python
 from sage.core.events import EventBus
+
 
 class AnalyticsPlugin:
     async def initialize(self, context):
         EventBus.subscribe("tool.invoked", self.track_usage)
-    
+
     async def track_usage(self, event):
         # Track tool usage for analytics
         await self.analytics.track(event.tool_name, event.duration)
@@ -438,14 +470,15 @@ class AnalyticsPlugin:
 
 ### 7.1 Import Patterns
 
-| Source | Format | Handler |
-|--------|--------|---------|
+| Source     | Format        | Handler               |
+|------------|---------------|-----------------------|
 | Confluence | HTML/Markdown | `confluence_importer` |
-| Notion | Markdown | `notion_importer` |
-| Git Wiki | Markdown | `git_importer` |
-| Docusaurus | MDX | `mdx_importer` |
+| Notion     | Markdown      | `notion_importer`     |
+| Git Wiki   | Markdown      | `git_importer`        |
+| Docusaurus | MDX           | `mdx_importer`        |
 
 **Import Example**:
+
 ```python
 from sage.integrations import ConfluenceImporter
 
@@ -476,11 +509,11 @@ await exporter.to_json("dist/knowledge.json")
 
 ### 7.3 Sync Patterns
 
-| Pattern | Use Case | Complexity |
-|---------|----------|------------|
-| **One-way** | KB as source of truth | Low |
-| **Two-way** | Bidirectional edits | High |
-| **Merge** | Periodic consolidation | Medium |
+| Pattern     | Use Case               | Complexity |
+|-------------|------------------------|------------|
+| **One-way** | KB as source of truth  | Low        |
+| **Two-way** | Bidirectional edits    | High       |
+| **Merge**   | Periodic consolidation | Medium     |
 
 ---
 
@@ -488,22 +521,23 @@ await exporter.to_json("dist/knowledge.json")
 
 ### 8.1 Integration Checklist
 
-| Category | Checklist Item |
-|----------|---------------|
-| **Setup** | □ Define clear interface contract |
-| | □ Document authentication requirements |
-| | □ Set up error handling |
-| **Testing** | □ Unit tests for integration points |
-| | □ Integration tests with mocks |
-| | □ End-to-end tests in staging |
-| **Operations** | □ Monitor integration health |
-| | □ Set up alerts for failures |
-| | □ Document troubleshooting steps |
+| Category       | Checklist Item                         |
+|----------------|----------------------------------------|
+| **Setup**      | □ Define clear interface contract      |
+|                | □ Document authentication requirements |
+|                | □ Set up error handling                |
+| **Testing**    | □ Unit tests for integration points    |
+|                | □ Integration tests with mocks         |
+|                | □ End-to-end tests in staging          |
+| **Operations** | □ Monitor integration health           |
+|                | □ Set up alerts for failures           |
+|                | □ Document troubleshooting steps       |
 
 ### 8.2 Error Handling
 
 ```python
 from sage.integrations import IntegrationError
+
 
 class ResilientIntegration:
     async def call_external(self, request):
@@ -521,20 +555,20 @@ class ResilientIntegration:
 
 ### 8.3 Security Considerations
 
-| Aspect | Recommendation |
-|--------|----------------|
-| **Authentication** | Use API keys or OAuth2 |
-| **Authorization** | Implement RBAC for sensitive knowledge |
-| **Data Transit** | Always use TLS |
-| **Secrets** | Use environment variables or secret managers |
+| Aspect             | Recommendation                               |
+|--------------------|----------------------------------------------|
+| **Authentication** | Use API keys or OAuth2                       |
+| **Authorization**  | Implement RBAC for sensitive knowledge       |
+| **Data Transit**   | Always use TLS                               |
+| **Secrets**        | Use environment variables or secret managers |
 
 ### 8.4 Performance Optimization
 
-| Technique | When to Use |
-|-----------|-------------|
-| **Caching** | Frequently accessed data |
-| **Batching** | Multiple small requests |
-| **Async** | I/O-bound operations |
+| Technique              | When to Use               |
+|------------------------|---------------------------|
+| **Caching**            | Frequently accessed data  |
+| **Batching**           | Multiple small requests   |
+| **Async**              | I/O-bound operations      |
 | **Connection Pooling** | Database/HTTP connections |
 
 ---
@@ -543,12 +577,12 @@ class ResilientIntegration:
 
 ### Integration URLs
 
-| Service | Endpoint |
-|---------|----------|
-| MCP (stdio) | `sage serve --stdio` |
-| MCP (SSE) | `http://localhost:8080/sse` |
-| REST API | `http://localhost:8080/api/v1/` |
-| Health | `http://localhost:8080/health` |
+| Service     | Endpoint                        |
+|-------------|---------------------------------|
+| MCP (stdio) | `sage serve --stdio`            |
+| MCP (SSE)   | `http://localhost:8080/sse`     |
+| REST API    | `http://localhost:8080/api/v1/` |
+| Health      | `http://localhost:8080/health`  |
 
 ### Environment Variables
 

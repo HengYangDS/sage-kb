@@ -39,9 +39,11 @@ Implement an **async Event Bus** with pattern matching and priority-based dispat
 ```python
 class EventBus:
     """Async pub/sub message broker."""
-    
+
     def subscribe(self, pattern, handler, priority, timeout_ms): ...
+
     def unsubscribe(self, subscription_id): ...
+
     async def publish(self, event): ...
 ```
 
@@ -50,9 +52,9 @@ class EventBus:
 ```python
 @dataclass
 class Event:
-    type: str           # e.g., "knowledge.loaded"
-    data: dict          # Event payload
-    timestamp: float    # When event occurred
+    type: str  # e.g., "knowledge.loaded"
+    data: dict  # Event payload
+    timestamp: float  # When event occurred
     source: str | None  # Origin identifier
 ```
 
@@ -144,14 +146,15 @@ await bus.publish(event)
 async def on_loaded(event: Event) -> None:
     print(f"Loaded: {event.data}")
 
+
 bus.subscribe("knowledge.loaded", on_loaded)
 
 # With priority and timeout
 bus.subscribe(
     event_pattern="knowledge.*",
     handler=log_all_knowledge_events,
-    priority=10,      # Lower = higher priority
-    timeout_ms=1000   # Handler timeout
+    priority=10,  # Lower = higher priority
+    timeout_ms=1000  # Handler timeout
 )
 
 # Wildcard subscription
@@ -182,6 +185,7 @@ def on_handler_error(error, event, subscription):
         handler=subscription.handler.__name__
     )
 
+
 bus = EventBus(error_handler=on_handler_error)
 ```
 
@@ -194,18 +198,18 @@ class EventType(str, Enum):
     SOURCE_STARTED = "source.started"
     SOURCE_COMPLETED = "source.completed"
     SOURCE_FAILED = "source.failed"
-    
+
     # Analyze events
     ANALYZE_STARTED = "analyze.started"
     ANALYZE_COMPLETED = "analyze.completed"
-    
+
     # Generate events
     GENERATE_STARTED = "generate.started"
     GENERATE_COMPLETED = "generate.completed"
-    
+
     # Evolve events
     EVOLVE_METRICS = "evolve.metrics"
-    
+
     # Knowledge events
     KNOWLEDGE_LOADED = "knowledge.loaded"
     KNOWLEDGE_UPDATED = "knowledge.updated"
@@ -220,15 +224,16 @@ def event_bus():
     yield bus
     bus.clear()  # Clean up subscriptions
 
+
 async def test_event_publishing(event_bus):
     received = []
-    
+
     async def handler(event):
         received.append(event)
-    
+
     event_bus.subscribe("test.*", handler)
     await event_bus.publish(Event(type="test.event", data={}))
-    
+
     assert len(received) == 1
 ```
 

@@ -114,7 +114,7 @@ print(result)  # Output: "processed"
 
 ## Related
 
-- `practices/documentation/standards.md` — Full standards
+- `practices/documentation/documentation_standards.md` — Full standards (SSOT)
 - `config/capabilities/documentation.yaml` — TOC configuration
 
 ---

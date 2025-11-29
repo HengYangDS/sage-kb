@@ -14,12 +14,12 @@
 
 ### Why Cache?
 
-| Benefit | Description |
-|---------|-------------|
-| **Reduced Latency** | Faster response times |
-| **Lower Load** | Fewer database/API calls |
-| **Cost Savings** | Reduced compute/bandwidth |
-| **Improved Scalability** | Handle more requests |
+| Benefit                  | Description               |
+|--------------------------|---------------------------|
+| **Reduced Latency**      | Faster response times     |
+| **Lower Load**           | Fewer database/API calls  |
+| **Cost Savings**         | Reduced compute/bandwidth |
+| **Improved Scalability** | Handle more requests      |
 
 ### Cache Hierarchy
 
@@ -47,13 +47,13 @@
 
 ### Strategy Comparison
 
-| Strategy | Hit Rate | Freshness | Complexity | Use Case |
-|----------|----------|-----------|------------|----------|
-| **Cache-Aside** | High | Manual | Low | General purpose |
-| **Read-Through** | High | Auto | Medium | Read-heavy |
-| **Write-Through** | High | Immediate | Medium | Consistency needed |
-| **Write-Behind** | High | Delayed | High | Write-heavy |
-| **Refresh-Ahead** | Very High | Proactive | High | Predictable access |
+| Strategy          | Hit Rate  | Freshness | Complexity | Use Case           |
+|-------------------|-----------|-----------|------------|--------------------|
+| **Cache-Aside**   | High      | Manual    | Low        | General purpose    |
+| **Read-Through**  | High      | Auto      | Medium     | Read-heavy         |
+| **Write-Through** | High      | Immediate | Medium     | Consistency needed |
+| **Write-Behind**  | High      | Delayed   | High       | Write-heavy        |
+| **Refresh-Ahead** | Very High | Proactive | High       | Predictable access |
 
 ### Cache-Aside (Lazy Loading)
 
@@ -186,12 +186,12 @@ class WriteBehindCache:
 
 ### Invalidation Strategies
 
-| Strategy | Freshness | Complexity | Best For |
-|----------|-----------|------------|----------|
-| **TTL-based** | Eventually | Low | Static content |
-| **Event-driven** | Immediate | Medium | Dynamic content |
-| **Version-based** | Immediate | Medium | Atomic updates |
-| **Tag-based** | Immediate | High | Related content |
+| Strategy          | Freshness  | Complexity | Best For        |
+|-------------------|------------|------------|-----------------|
+| **TTL-based**     | Eventually | Low        | Static content  |
+| **Event-driven**  | Immediate  | Medium     | Dynamic content |
+| **Version-based** | Immediate  | Medium     | Atomic updates  |
+| **Tag-based**     | Immediate  | High       | Related content |
 
 ### TTL-Based Invalidation
 
@@ -418,22 +418,22 @@ class RedisCache:
 
 ### Cache Cluster Considerations
 
-| Consideration | Solution |
-|---------------|----------|
-| **Consistency** | Use consistent hashing |
-| **Failover** | Configure replicas |
-| **Hot Keys** | Local caching + replication |
-| **Memory** | Set eviction policies |
+| Consideration   | Solution                    |
+|-----------------|-----------------------------|
+| **Consistency** | Use consistent hashing      |
+| **Failover**    | Configure replicas          |
+| **Hot Keys**    | Local caching + replication |
+| **Memory**      | Set eviction policies       |
 
 ### Eviction Policies
 
-| Policy | Description | Use Case |
-|--------|-------------|----------|
-| **LRU** | Least Recently Used | General purpose |
-| **LFU** | Least Frequently Used | Hot data |
-| **FIFO** | First In First Out | Simple queue |
-| **TTL** | Time-based expiration | Time-sensitive |
-| **Random** | Random eviction | Simple, fast |
+| Policy     | Description           | Use Case        |
+|------------|-----------------------|-----------------|
+| **LRU**    | Least Recently Used   | General purpose |
+| **LFU**    | Least Frequently Used | Hot data        |
+| **FIFO**   | First In First Out    | Simple queue    |
+| **TTL**    | Time-based expiration | Time-sensitive  |
+| **Random** | Random eviction       | Simple, fast    |
 
 ```python
 # Redis eviction policy configuration
@@ -447,13 +447,13 @@ class RedisCache:
 
 ### Cache Decision Matrix
 
-| Question | Yes → | No → |
-|----------|-------|------|
-| Data changes rarely? | Long TTL | Short TTL |
-| Consistency critical? | Write-through | Cache-aside |
-| Write-heavy? | Write-behind | Write-through |
-| Read-heavy? | Aggressive caching | Minimal caching |
-| Distributed system? | Redis/Memcached | Local cache |
+| Question              | Yes →              | No →            |
+|-----------------------|--------------------|-----------------|
+| Data changes rarely?  | Long TTL           | Short TTL       |
+| Consistency critical? | Write-through      | Cache-aside     |
+| Write-heavy?          | Write-behind       | Write-through   |
+| Read-heavy?           | Aggressive caching | Minimal caching |
+| Distributed system?   | Redis/Memcached    | Local cache     |
 
 ### Cache Key Best Practices
 
@@ -471,13 +471,13 @@ user_data                     # No structure
 
 ### TTL Guidelines
 
-| Data Type | TTL | Reason |
-|-----------|-----|--------|
-| Static content | 24h+ | Rarely changes |
-| User profiles | 1h | Moderate updates |
-| Session data | 30m | Security |
-| Search results | 5m | Freshness important |
-| Real-time data | 10s | High change rate |
+| Data Type      | TTL  | Reason              |
+|----------------|------|---------------------|
+| Static content | 24h+ | Rarely changes      |
+| User profiles  | 1h   | Moderate updates    |
+| Session data   | 30m  | Security            |
+| Search results | 5m   | Freshness important |
+| Real-time data | 10s  | High change rate    |
 
 ---
 

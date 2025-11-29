@@ -61,10 +61,12 @@ sage serve
 import asyncio
 from sage.core.loader import KnowledgeLoader
 
+
 async def main():
     loader = KnowledgeLoader()
     result = await loader.load_core(timeout_ms=2000)
     print(result.content)
+
 
 asyncio.run(main())
 ```

@@ -14,12 +14,12 @@
 
 ### Schema Design
 
-| Principle | Description |
-|-----------|-------------|
+| Principle                   | Description                              |
+|-----------------------------|------------------------------------------|
 | **Normalize appropriately** | 3NF for OLTP, denormalize for read-heavy |
-| **Choose types carefully** | Use smallest type that fits |
-| **Define constraints** | NOT NULL, UNIQUE, FK where applicable |
-| **Plan for growth** | Consider partitioning early |
+| **Choose types carefully**  | Use smallest type that fits              |
+| **Define constraints**      | NOT NULL, UNIQUE, FK where applicable    |
+| **Plan for growth**         | Consider partitioning early              |
 
 ### Naming Conventions
 
@@ -40,13 +40,13 @@ CONSTRAINT fk_orders_user FOREIGN KEY (user_id) REFERENCES users(id)
 
 ### Index Strategy
 
-| Index Type | Use Case |
-|------------|----------|
-| **B-tree** | Range queries, sorting (default) |
-| **Hash** | Equality lookups only |
-| **Composite** | Multi-column WHERE/ORDER |
-| **Partial** | Filtered subset of rows |
-| **Covering** | Include all SELECT columns |
+| Index Type    | Use Case                         |
+|---------------|----------------------------------|
+| **B-tree**    | Range queries, sorting (default) |
+| **Hash**      | Equality lookups only            |
+| **Composite** | Multi-column WHERE/ORDER         |
+| **Partial**   | Filtered subset of rows          |
+| **Covering**  | Include all SELECT columns       |
 
 ```sql
 -- Composite index (column order matters!)
@@ -204,13 +204,13 @@ CREATE INDEX ix_users_active ON users(email) WHERE deleted_at IS NULL;
 
 ### Common Anti-Patterns
 
-| Anti-Pattern | Solution |
-|--------------|----------|
-| N+1 queries | Batch/JOIN |
-| SELECT * | Select specific columns |
-| No indexes | Add appropriate indexes |
-| No connection pool | Configure pooling |
-| OFFSET pagination | Keyset pagination |
+| Anti-Pattern       | Solution                |
+|--------------------|-------------------------|
+| N+1 queries        | Batch/JOIN              |
+| SELECT *           | Select specific columns |
+| No indexes         | Add appropriate indexes |
+| No connection pool | Configure pooling       |
+| OFFSET pagination  | Keyset pagination       |
 
 ---
 

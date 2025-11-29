@@ -1,7 +1,7 @@
 # SAGE Knowledge Base - Project Guidelines
 
 > **Purpose**: Primary entry point for JetBrains Junie AI collaboration.
-> **Last Updated**: 2025-11-29
+> **Last Updated**: 2025-11-30
 > **Version**: 0.1.0
 > **Status**: Alpha - Under active development and testing
 
@@ -133,6 +133,7 @@ sage-kb/
 3. **Follow existing patterns** in the codebase
 4. **Run tests** before committing changes
 5. **Update relevant documentation** when modifying features
+6. **Output files to `.outputs/`** — All temporary/intermediate files must go to `.outputs/`, never project root
 
 ### Expert Committee Pattern
 

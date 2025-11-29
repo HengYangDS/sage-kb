@@ -14,21 +14,21 @@
 
 ### Concurrency vs Parallelism
 
-| Aspect | Concurrency | Parallelism |
-|--------|-------------|-------------|
+| Aspect         | Concurrency             | Parallelism              |
+|----------------|-------------------------|--------------------------|
 | **Definition** | Managing multiple tasks | Executing multiple tasks |
-| **Focus** | Structure | Execution |
-| **Hardware** | Single core possible | Multiple cores required |
-| **Use Case** | I/O-bound work | CPU-bound work |
+| **Focus**      | Structure               | Execution                |
+| **Hardware**   | Single core possible    | Multiple cores required  |
+| **Use Case**   | I/O-bound work          | CPU-bound work           |
 
 ### Python Options
 
-| Model | Module | Best For | GIL Impact |
-|-------|--------|----------|------------|
-| **Threading** | `threading` | I/O-bound | Limited by GIL |
-| **Multiprocessing** | `multiprocessing` | CPU-bound | Bypasses GIL |
-| **Asyncio** | `asyncio` | I/O-bound, high concurrency | No GIL issue |
-| **Futures** | `concurrent.futures` | Both | Depends on executor |
+| Model               | Module               | Best For                    | GIL Impact          |
+|---------------------|----------------------|-----------------------------|---------------------|
+| **Threading**       | `threading`          | I/O-bound                   | Limited by GIL      |
+| **Multiprocessing** | `multiprocessing`    | CPU-bound                   | Bypasses GIL        |
+| **Asyncio**         | `asyncio`            | I/O-bound, high concurrency | No GIL issue        |
+| **Futures**         | `concurrent.futures` | Both                        | Depends on executor |
 
 ---
 

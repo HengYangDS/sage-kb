@@ -32,8 +32,8 @@ This template helps create consistent, informative release notes that communicat
 ### ✨ New Features
 
 - **[Feature Name]**: [Brief description of what it does and why it's useful]
-  - [Additional detail if needed]
-  - [Usage example or link to docs]
+    - [Additional detail if needed]
+    - [Usage example or link to docs]
 
 - **[Feature Name]**: [Brief description]
 
@@ -65,16 +65,19 @@ This template helps create consistent, informative release notes that communicat
 **What changed**: [Description of the change]
 
 **Migration steps**:
+
 1. [Step 1]
 2. [Step 2]
 3. [Step 3]
 
 **Before**:
+
 ```[language]
 [old code/config]
 ```
 
 **After**:
+
 ```[language]
 [new code/config]
 ```
@@ -85,10 +88,10 @@ This template helps create consistent, informative release notes that communicat
 
 The following features are deprecated and will be removed in [version]:
 
-| Feature | Replacement | Removal Version |
-|---------|-------------|-----------------|
-| [Old feature] | [New feature] | [X.Y.Z] |
-| [Old API] | [New API] | [X.Y.Z] |
+| Feature       | Replacement   | Removal Version |
+|---------------|---------------|-----------------|
+| [Old feature] | [New feature] | [X.Y.Z]         |
+| [Old API]     | [New API]     | [X.Y.Z]         |
 
 ---
 
@@ -123,10 +126,10 @@ The following features are deprecated and will be removed in [version]:
 
 ## Compatibility
 
-| Component | Minimum Version | Recommended |
-|-----------|-----------------|-------------|
-| Python | 3.11 | 3.12 |
-| [Dependency] | [Min] | [Recommended] |
+| Component    | Minimum Version | Recommended   |
+|--------------|-----------------|---------------|
+| Python       | 3.11            | 3.12          |
+| [Dependency] | [Min]           | [Recommended] |
 
 ---
 
@@ -150,6 +153,7 @@ Thanks to everyone who contributed to this release:
 ---
 
 *Released by [Team/Person] on [DATE]*
+
 ```
 
 ---
@@ -257,6 +261,7 @@ timeouts:
 ```
 
 **After**:
+
 ```yaml
 performance:
   timeouts:
@@ -282,6 +287,7 @@ performance:
 ---
 
 *Released by SAGE Team on 2025-11-29*
+
 ```
 
 ---

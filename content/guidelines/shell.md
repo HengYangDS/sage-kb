@@ -14,21 +14,21 @@
 
 ### 1.1 Core Principles
 
-| Principle | Description |
-|-----------|-------------|
-| **Safety** | Use strict mode, handle errors |
-| **Clarity** | Write readable, self-documenting scripts |
-| **Portability** | Consider POSIX compatibility |
-| **Idempotent** | Safe to run multiple times |
+| Principle       | Description                              |
+|-----------------|------------------------------------------|
+| **Safety**      | Use strict mode, handle errors           |
+| **Clarity**     | Write readable, self-documenting scripts |
+| **Portability** | Consider POSIX compatibility             |
+| **Idempotent**  | Safe to run multiple times               |
 
 ### 1.2 File Conventions
 
-| Element | Convention | Example |
-|---------|------------|---------|
-| Script files | `snake_case.sh` | `deploy_app.sh` |
-| Functions | `snake_case` | `check_status` |
-| Constants | `UPPER_SNAKE_CASE` | `MAX_RETRIES` |
-| Variables | `lower_snake_case` | `output_dir` |
+| Element      | Convention         | Example         |
+|--------------|--------------------|-----------------|
+| Script files | `snake_case.sh`    | `deploy_app.sh` |
+| Functions    | `snake_case`       | `check_status`  |
+| Constants    | `UPPER_SNAKE_CASE` | `MAX_RETRIES`   |
+| Variables    | `lower_snake_case` | `output_dir`    |
 
 ---
 
@@ -269,20 +269,20 @@ fi
 
 ### 4.2 Test Operators
 
-| Operator | Description |
-|----------|-------------|
-| `-f file` | File exists and is regular file |
-| `-d dir` | Directory exists |
-| `-e path` | Path exists |
-| `-r file` | File is readable |
-| `-w file` | File is writable |
-| `-x file` | File is executable |
-| `-z str` | String is empty |
-| `-n str` | String is not empty |
-| `str1 == str2` | Strings are equal |
-| `num1 -eq num2` | Numbers are equal |
-| `num1 -gt num2` | Greater than |
-| `num1 -lt num2` | Less than |
+| Operator        | Description                     |
+|-----------------|---------------------------------|
+| `-f file`       | File exists and is regular file |
+| `-d dir`        | Directory exists                |
+| `-e path`       | Path exists                     |
+| `-r file`       | File is readable                |
+| `-w file`       | File is writable                |
+| `-x file`       | File is executable              |
+| `-z str`        | String is empty                 |
+| `-n str`        | String is not empty             |
+| `str1 == str2`  | Strings are equal               |
+| `num1 -eq num2` | Numbers are equal               |
+| `num1 -gt num2` | Greater than                    |
+| `num1 -lt num2` | Less than                       |
 
 ### 4.3 Loops
 
@@ -687,25 +687,25 @@ spinner $!
 
 ### Common Commands
 
-| Task | Command |
-|------|---------|
-| Check file exists | `[[ -f file ]]` |
-| Check dir exists | `[[ -d dir ]]` |
-| Check var set | `[[ -n "${var:-}" ]]` |
-| String match | `[[ "${str}" == "value" ]]` |
-| Regex match | `[[ "${str}" =~ pattern ]]` |
-| Numeric compare | `[[ "${n}" -gt 10 ]]` |
+| Task              | Command                     |
+|-------------------|-----------------------------|
+| Check file exists | `[[ -f file ]]`             |
+| Check dir exists  | `[[ -d dir ]]`              |
+| Check var set     | `[[ -n "${var:-}" ]]`       |
+| String match      | `[[ "${str}" == "value" ]]` |
+| Regex match       | `[[ "${str}" =~ pattern ]]` |
+| Numeric compare   | `[[ "${n}" -gt 10 ]]`       |
 
 ### Checklist
 
-| Check | Description |
-|-------|-------------|
-| ☐ Shebang | `#!/usr/bin/env bash` |
-| ☐ Strict mode | `set -euo pipefail` |
-| ☐ Quote variables | `"${var}"` |
-| ☐ Local variables | `local var=""` |
-| ☐ Error handling | Trap and exit codes |
-| ☐ shellcheck | No warnings |
+| Check             | Description           |
+|-------------------|-----------------------|
+| ☐ Shebang         | `#!/usr/bin/env bash` |
+| ☐ Strict mode     | `set -euo pipefail`   |
+| ☐ Quote variables | `"${var}"`            |
+| ☐ Local variables | `local var=""`        |
+| ☐ Error handling  | Trap and exit codes   |
+| ☐ shellcheck      | No warnings           |
 
 ---
 

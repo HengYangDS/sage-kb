@@ -37,13 +37,13 @@
 
 ### Optimization Priorities
 
-| Priority | Focus | Expected Impact |
-|----------|-------|-----------------|
-| 1 | Algorithm complexity | 10x-1000x |
-| 2 | I/O and database | 10x-100x |
-| 3 | Caching | 5x-50x |
-| 4 | Concurrency | 2x-10x |
-| 5 | Micro-optimizations | 1.1x-2x |
+| Priority | Focus                | Expected Impact |
+|----------|----------------------|-----------------|
+| 1        | Algorithm complexity | 10x-1000x       |
+| 2        | I/O and database     | 10x-100x        |
+| 3        | Caching              | 5x-50x          |
+| 4        | Concurrency          | 2x-10x          |
+| 5        | Micro-optimizations  | 1.1x-2x         |
 
 ---
 
@@ -51,14 +51,14 @@
 
 ### Algorithm Complexity
 
-| Complexity | Name | Example | Scalability |
-|------------|------|---------|-------------|
-| O(1) | Constant | Hash lookup | Excellent |
-| O(log n) | Logarithmic | Binary search | Excellent |
-| O(n) | Linear | Array scan | Good |
-| O(n log n) | Linearithmic | Merge sort | Good |
-| O(n²) | Quadratic | Nested loops | Poor |
-| O(2ⁿ) | Exponential | Brute force | Terrible |
+| Complexity | Name         | Example       | Scalability |
+|------------|--------------|---------------|-------------|
+| O(1)       | Constant     | Hash lookup   | Excellent   |
+| O(log n)   | Logarithmic  | Binary search | Excellent   |
+| O(n)       | Linear       | Array scan    | Good        |
+| O(n log n) | Linearithmic | Merge sort    | Good        |
+| O(n²)      | Quadratic    | Nested loops  | Poor        |
+| O(2ⁿ)      | Exponential  | Brute force   | Terrible    |
 
 ```python
 # Bad: O(n²) - nested iteration
@@ -83,13 +83,13 @@ def find_duplicates_fast(items: list) -> list:
 
 ### Data Structure Selection
 
-| Need | Best Choice | Why |
-|------|-------------|-----|
-| Fast lookup | dict, set | O(1) average |
-| Ordered data | list, deque | Sequence access |
-| Sorted iteration | sorted containers | Maintained order |
-| Queue operations | deque | O(1) both ends |
-| Priority queue | heapq | O(log n) operations |
+| Need             | Best Choice       | Why                 |
+|------------------|-------------------|---------------------|
+| Fast lookup      | dict, set         | O(1) average        |
+| Ordered data     | list, deque       | Sequence access     |
+| Sorted iteration | sorted containers | Maintained order    |
+| Queue operations | deque             | O(1) both ends      |
+| Priority queue   | heapq             | O(log n) operations |
 
 ```python
 from collections import deque
@@ -195,13 +195,13 @@ WHERE u.status = 'active';
 
 ### Index Strategies
 
-| Index Type | Use Case | Example |
-|------------|----------|---------|
-| **B-tree** | Range queries, sorting | `created_at`, `price` |
-| **Hash** | Equality lookups | `user_id`, `email` |
-| **Composite** | Multi-column queries | `(user_id, created_at)` |
-| **Partial** | Filtered subset | `WHERE status = 'active'` |
-| **Covering** | Avoid table lookup | Include all query columns |
+| Index Type    | Use Case               | Example                   |
+|---------------|------------------------|---------------------------|
+| **B-tree**    | Range queries, sorting | `created_at`, `price`     |
+| **Hash**      | Equality lookups       | `user_id`, `email`        |
+| **Composite** | Multi-column queries   | `(user_id, created_at)`   |
+| **Partial**   | Filtered subset        | `WHERE status = 'active'` |
+| **Covering**  | Avoid table lookup     | Include all query columns |
 
 ```sql
 -- Create composite index for common query pattern
@@ -267,13 +267,13 @@ cursor.copy_from(buffer, 'items', sep=',')
 
 ### Request Optimization
 
-| Technique | Benefit | Implementation |
-|-----------|---------|----------------|
-| **Compression** | 60-80% size reduction | gzip, brotli |
-| **Minification** | 20-40% size reduction | JS/CSS minify |
-| **Bundling** | Fewer requests | Webpack, rollup |
-| **CDN** | Lower latency | CloudFlare, AWS |
-| **HTTP/2** | Multiplexing | Server config |
+| Technique        | Benefit               | Implementation  |
+|------------------|-----------------------|-----------------|
+| **Compression**  | 60-80% size reduction | gzip, brotli    |
+| **Minification** | 20-40% size reduction | JS/CSS minify   |
+| **Bundling**     | Fewer requests        | Webpack, rollup |
+| **CDN**          | Lower latency         | CloudFlare, AWS |
+| **HTTP/2**       | Multiplexing          | Server config   |
 
 ```python
 # Enable compression in FastAPI
@@ -455,13 +455,13 @@ class ResourcePool:
 
 ### Vertical vs Horizontal
 
-| Aspect | Vertical | Horizontal |
-|--------|----------|------------|
-| **Method** | Bigger machine | More machines |
-| **Limit** | Hardware max | Unlimited |
-| **Cost** | Exponential | Linear |
-| **Downtime** | Required | Zero |
-| **Complexity** | Low | High |
+| Aspect         | Vertical       | Horizontal    |
+|----------------|----------------|---------------|
+| **Method**     | Bigger machine | More machines |
+| **Limit**      | Hardware max   | Unlimited     |
+| **Cost**       | Exponential    | Linear        |
+| **Downtime**   | Required       | Zero          |
+| **Complexity** | Low            | High          |
 
 ### Load Balancing
 
@@ -490,12 +490,12 @@ class ResourcePool:
 
 ### Load Balancing Algorithms
 
-| Algorithm | Use Case | Pros | Cons |
-|-----------|----------|------|------|
-| **Round Robin** | Equal servers | Simple | Ignores load |
-| **Least Connections** | Varying requests | Adaptive | More overhead |
-| **IP Hash** | Session affinity | Sticky sessions | Uneven distribution |
-| **Weighted** | Mixed capacity | Flexible | Manual config |
+| Algorithm             | Use Case         | Pros            | Cons                |
+|-----------------------|------------------|-----------------|---------------------|
+| **Round Robin**       | Equal servers    | Simple          | Ignores load        |
+| **Least Connections** | Varying requests | Adaptive        | More overhead       |
+| **IP Hash**           | Session affinity | Sticky sessions | Uneven distribution |
+| **Weighted**          | Mixed capacity   | Flexible        | Manual config       |
 
 ### Read Replicas
 
@@ -545,14 +545,14 @@ class DatabaseRouter:
 
 ### Performance Anti-Patterns
 
-| Anti-Pattern | Problem | Solution |
-|--------------|---------|----------|
-| N+1 queries | Many DB calls | Batch/JOIN |
-| Premature optimization | Wasted effort | Profile first |
-| Missing indexes | Slow queries | Add indexes |
-| No caching | Repeated work | Cache results |
-| Blocking I/O | Wasted CPU | Use async |
-| Large payloads | Slow transfer | Pagination/compression |
+| Anti-Pattern           | Problem       | Solution               |
+|------------------------|---------------|------------------------|
+| N+1 queries            | Many DB calls | Batch/JOIN             |
+| Premature optimization | Wasted effort | Profile first          |
+| Missing indexes        | Slow queries  | Add indexes            |
+| No caching             | Repeated work | Cache results          |
+| Blocking I/O           | Wasted CPU    | Use async              |
+| Large payloads         | Slow transfer | Pagination/compression |
 
 ---
 

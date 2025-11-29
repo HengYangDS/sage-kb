@@ -1,7 +1,5 @@
 """Tests for sage.core.di.registry module."""
 
-import pytest
-
 from sage.core.di.registry import TypeRegistry, get_registry
 
 
@@ -26,30 +24,30 @@ class TestTypeRegistry:
     def test_register_type(self) -> None:
         """Test registering a type in the registry."""
         registry = TypeRegistry()
-        
+
         class TestService:
             pass
-        
+
         registry.register("test_service", TestService)
         assert registry.is_registered("test_service")
 
     def test_register_factory(self) -> None:
         """Test registering a factory function."""
         registry = TypeRegistry()
-        
+
         def create_service() -> dict:
             return {"name": "test"}
-        
+
         registry.register_factory("service_factory", create_service)
         assert registry.is_registered("service_factory")
 
     def test_resolve_type(self) -> None:
         """Test resolving a registered type."""
         registry = TypeRegistry()
-        
+
         class TestService:
             pass
-        
+
         registry.register_type("test_service", TestService)
         resolved = registry.resolve("test_service")
         assert isinstance(resolved, TestService)
@@ -62,16 +60,16 @@ class TestTypeRegistry:
     def test_get_all_types(self) -> None:
         """Test getting all registered types."""
         registry = TypeRegistry()
-        
+
         class Service1:
             pass
-        
+
         class Service2:
             pass
-        
+
         registry.register_type("service1", Service1)
         registry.register_type("service2", Service2)
-        
+
         all_types = registry.get_all_types()
         assert "service1" in all_types
         assert "service2" in all_types
@@ -79,13 +77,13 @@ class TestTypeRegistry:
     def test_clear_registry(self) -> None:
         """Test clearing the registry."""
         registry = TypeRegistry()
-        
+
         class TestService:
             pass
-        
+
         registry.register_type("test_service", TestService)
         assert registry.is_registered("test_service")
-        
+
         registry.clear()
         assert not registry.is_registered("test_service")
 

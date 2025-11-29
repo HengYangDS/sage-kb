@@ -133,7 +133,8 @@ conversations that contain decisions, insights, or learnings worth preserving fo
 
 ## Context
 
-Designing the timeout hierarchy for SAGE Knowledge Base to ensure responsive AI interactions while handling varying content load times.
+Designing the timeout hierarchy for SAGE Knowledge Base to ensure responsive AI interactions while handling varying
+content load times.
 
 ---
 
@@ -141,7 +142,8 @@ Designing the timeout hierarchy for SAGE Knowledge Base to ensure responsive AI 
 
 ### Timeout Tier Structure
 
-Discussed 5-tier approach from T1 (100ms cache) to T5 (10s complex analysis). Evaluated tradeoffs between responsiveness and completeness.
+Discussed 5-tier approach from T1 (100ms cache) to T5 (10s complex analysis). Evaluated tradeoffs between responsiveness
+and completeness.
 
 ### Fallback Strategies
 

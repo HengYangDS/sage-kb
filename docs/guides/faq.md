@@ -14,11 +14,13 @@
 
 ### What is SAGE?
 
-SAGE (Smart AI-Guided Expertise) is a knowledge management system designed for AI-human collaboration. It provides structured knowledge through CLI, MCP server, and Python API.
+SAGE (Smart AI-Guided Expertise) is a knowledge management system designed for AI-human collaboration. It provides
+structured knowledge through CLI, MCP server, and Python API.
 
 ### What does SAGE stand for?
 
 SAGE represents the protocol flow:
+
 - **S**ource — Knowledge sourcing and loading
 - **A**nalyze — Processing and analysis
 - **G**enerate — Multi-channel output
@@ -83,12 +85,12 @@ sage search "timeout"
 
 ### What layers are available?
 
-| Layer | Content |
-|-------|---------|
-| `core` | Core principles and defaults |
-| `guidelines` | Practical guidelines |
-| `frameworks` | Conceptual frameworks |
-| `practices` | Implementation practices |
+| Layer        | Content                      |
+|--------------|------------------------------|
+| `core`       | Core principles and defaults |
+| `guidelines` | Practical guidelines         |
+| `frameworks` | Conceptual frameworks        |
+| `practices`  | Implementation practices     |
 
 ### How do I see system info?
 
@@ -120,7 +122,9 @@ Add to `claude_desktop_config.json`:
   "mcpServers": {
     "sage": {
       "command": "sage",
-      "args": ["serve"]
+      "args": [
+        "serve"
+      ]
     }
   }
 }
@@ -128,12 +132,12 @@ Add to `claude_desktop_config.json`:
 
 ### What MCP tools are available?
 
-| Tool | Description |
-|------|-------------|
-| `get_knowledge` | Retrieve knowledge by layer |
-| `search_knowledge` | Search knowledge base |
-| `kb_info` | Get system information |
-| `get_framework` | Get specific framework |
+| Tool               | Description                 |
+|--------------------|-----------------------------|
+| `get_knowledge`    | Retrieve knowledge by layer |
+| `search_knowledge` | Search knowledge base       |
+| `kb_info`          | Get system information      |
+| `get_framework`    | Get specific framework      |
 
 ### Why isn't my AI client seeing SAGE tools?
 
@@ -163,13 +167,13 @@ sage --config custom.yaml get core
 
 ### What are the timeout levels?
 
-| Level | Timeout | Scope |
-|-------|---------|-------|
-| T1 | 100ms | Cache lookup |
-| T2 | 500ms | Single file |
-| T3 | 2s | Layer load |
-| T4 | 5s | Full KB load |
-| T5 | 10s | Complex analysis |
+| Level | Timeout | Scope            |
+|-------|---------|------------------|
+| T1    | 100ms   | Cache lookup     |
+| T2    | 500ms   | Single file      |
+| T3    | 2s      | Layer load       |
+| T4    | 5s      | Full KB load     |
+| T5    | 10s     | Complex analysis |
 
 ---
 
@@ -225,12 +229,14 @@ pytest tests/unit/
 See the [Plugin Development Guide](plugin_development.md) for detailed instructions.
 
 Quick start:
+
 ```python
 from sage.plugins import PluginBase, hookimpl
 
+
 class MyPlugin(PluginBase):
     name = "my-plugin"
-    
+
     @hookimpl
     def register_tools(self, registry):
         registry.add_tool(self.my_tool)
@@ -255,12 +261,12 @@ https://github.com/HengYangDS/sage-kb/issues
 
 ### Common Issues
 
-| Issue | Solution |
-|-------|----------|
-| Command not found | Check PATH, reinstall |
-| Import error | Install with all dependencies |
-| Timeout errors | Increase timeout in config |
-| MCP not connecting | Check server, restart client |
+| Issue              | Solution                      |
+|--------------------|-------------------------------|
+| Command not found  | Check PATH, reinstall         |
+| Import error       | Install with all dependencies |
+| Timeout errors     | Increase timeout in config    |
+| MCP not connecting | Check server, restart client  |
 
 ### Getting Help
 

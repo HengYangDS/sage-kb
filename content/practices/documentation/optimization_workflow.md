@@ -15,7 +15,7 @@
 ### 1.1 Workflow Steps
 
 ```
-1. Establish Standards (standards.md)
+1. Establish Standards (DOCUMENTATION_STANDARDS.md)
        ↓
 2. Systematic File Review
        ↓
@@ -28,10 +28,10 @@
 
 ### 1.2 Review Order
 
-| Phase | Focus              | Files              |
-|-------|--------------------|--------------------|
-| 1     | Standards document | `standards.md`     |
-| 2     | Index files        | `*/index.md`       |
+| Phase | Focus              | Files                       |
+|-------|--------------------|-----------------------------| 
+| 1     | Standards document | `DOCUMENTATION_STANDARDS.md`|
+| 2     | Index files        | `*/index.md`                |
 | 3     | Core content       | High-traffic files |
 | 4     | Supporting content | Remaining files    |
 
@@ -165,8 +165,8 @@
 
 ## Related
 
-- `content/practices/documentation/standards.md` — Documentation format standards
-- `content/practices/documentation/knowledge_organization.md` — Knowledge hierarchy patterns
+- `documentation_standards.md` — Documentation format standards (SSOT)
+- `knowledge_organization.md` — Knowledge hierarchy patterns
 - `content/guidelines/documentation.md` — Documentation guidelines
 
 ---

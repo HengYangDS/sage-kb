@@ -226,7 +226,7 @@ Is this an intermediate/generated file?
 ## Related
 
 - `knowledge_organization.md` — Knowledge content layer architecture
-- `standards.md` — Documentation format standards
+- `documentation_standards.md` — Documentation format standards (SSOT)
 - `content/frameworks/design/axioms.md` — Design principles (MECE, SSOT)
 
 ---

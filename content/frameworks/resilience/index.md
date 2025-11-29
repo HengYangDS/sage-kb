@@ -6,15 +6,16 @@
 
 ## Overview
 
-The Resilience Framework provides patterns for building fault-tolerant systems that gracefully handle failures, timeouts, and degraded conditions while maintaining useful functionality.
+The Resilience Framework provides patterns for building fault-tolerant systems that gracefully handle failures,
+timeouts, and degraded conditions while maintaining useful functionality.
 
 ---
 
 ## Documents
 
-| Document              | Description                                    |
-|-----------------------|------------------------------------------------|
-| `timeout_patterns.md` | Timeout handling and fallback strategies       |
+| Document              | Description                              |
+|-----------------------|------------------------------------------|
+| `timeout_patterns.md` | Timeout handling and fallback strategies |
 
 ---
 

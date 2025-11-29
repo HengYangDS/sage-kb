@@ -14,22 +14,22 @@
 
 ### 1.1 Migration Philosophy
 
-| Principle | Description |
-|-----------|-------------|
+| Principle                  | Description                         |
+|----------------------------|-------------------------------------|
 | **Backward Compatibility** | Support N-1 versions where possible |
-| **Safe by Default** | Dry-run before actual changes |
-| **Reversible** | Always create backups |
-| **Incremental** | Step-by-step migration |
+| **Safe by Default**        | Dry-run before actual changes       |
+| **Reversible**             | Always create backups               |
+| **Incremental**            | Step-by-step migration              |
 
 ### 1.2 Version Numbering
 
 SAGE follows semantic versioning: `MAJOR.MINOR.PATCH`
 
-| Change Type | Version Bump | Example |
-|-------------|--------------|---------|
-| Breaking changes | MAJOR | 1.0.0 → 2.0.0 |
-| New features | MINOR | 1.0.0 → 1.1.0 |
-| Bug fixes | PATCH | 1.0.0 → 1.0.1 |
+| Change Type      | Version Bump | Example       |
+|------------------|--------------|---------------|
+| Breaking changes | MAJOR        | 1.0.0 → 2.0.0 |
+| New features     | MINOR        | 1.0.0 → 1.1.0 |
+| Bug fixes        | PATCH        | 1.0.0 → 1.0.1 |
 
 ---
 
@@ -37,12 +37,12 @@ SAGE follows semantic versioning: `MAJOR.MINOR.PATCH`
 
 ### 2.1 Before You Start
 
-| Step | Command | Description |
-|------|---------|-------------|
-| 1. Check current version | `sage --version` | Know your starting point |
-| 2. Review changelog | See `CHANGELOG.md` | Understand changes |
-| 3. Backup | `sage backup create` | Create restore point |
-| 4. Test environment | Clone and test | Verify in non-production |
+| Step                     | Command              | Description              |
+|--------------------------|----------------------|--------------------------|
+| 1. Check current version | `sage --version`     | Know your starting point |
+| 2. Review changelog      | See `CHANGELOG.md`   | Understand changes       |
+| 3. Backup                | `sage backup create` | Create restore point     |
+| 4. Test environment      | Clone and test       | Verify in non-production |
 
 ### 2.2 Backup Procedure
 
@@ -58,6 +58,7 @@ sage backup list
 ```
 
 **Manual backup** (alternative):
+
 ```bash
 # Create timestamped backup directory
 BACKUP_DIR=".backups/$(date +%Y%m%d_%H%M%S)"
@@ -153,7 +154,7 @@ timeout:
   default: 5000
   cache: 100
 knowledge:
-  layers: [core, guidelines]
+  layers: [ core, guidelines ]
 
 # NEW: config/ (modular)
 # config/core/timeout.yaml
@@ -161,28 +162,30 @@ default: 5000
 cache: 100
 
 # config/knowledge/loading.yaml
-layers: [core, guidelines]
+layers: [ core, guidelines ]
 ```
 
 **Migration script**:
+
 ```python
 import yaml
 from pathlib import Path
+
 
 def migrate_config_0_1_to_0_2():
     old_config = Path("config/sage.yaml")
     if not old_config.exists():
         return
-    
+
     with open(old_config) as f:
         config = yaml.safe_load(f)
-    
+
     # Split into modular configs
     if "timeout" in config:
         Path("config/core").mkdir(exist_ok=True)
         with open("config/core/timeout.yaml", "w") as f:
             yaml.dump(config["timeout"], f)
-    
+
     if "knowledge" in config:
         Path("config/knowledge").mkdir(exist_ok=True)
         with open("config/knowledge/loading.yaml", "w") as f:
@@ -191,11 +194,11 @@ def migrate_config_0_1_to_0_2():
 
 #### 4.2.2 Environment Variable Changes
 
-| Old Variable | New Variable | Notes |
-|--------------|--------------|-------|
+| Old Variable   | New Variable           | Notes                |
+|----------------|------------------------|----------------------|
 | `SAGE_TIMEOUT` | `SAGE_TIMEOUT_DEFAULT` | More specific naming |
-| `SAGE_DEBUG` | `SAGE_LOG_LEVEL=DEBUG` | Use log levels |
-| `SAGE_KB_PATH` | `SAGE_CONTENT_PATH` | Clearer naming |
+| `SAGE_DEBUG`   | `SAGE_LOG_LEVEL=DEBUG` | Use log levels       |
+| `SAGE_KB_PATH` | `SAGE_CONTENT_PATH`    | Clearer naming       |
 
 ### 4.3 Config Validation
 
@@ -224,6 +227,7 @@ sage migrate content
 ```
 
 **Example: Moving guidelines**:
+
 ```bash
 # v0.1.x location
 content/guidelines/
@@ -239,44 +243,48 @@ sage rebuild --indices
 ### 5.2 Frontmatter Changes
 
 **v0.1.x format**:
+
 ```yaml
 ---
 title: Document Title
-tags: [tag1, tag2]
+tags: [ tag1, tag2 ]
 ---
 ```
 
 **v0.2.x format** (if changed):
+
 ```yaml
 ---
 title: Document Title
 metadata:
-  tags: [tag1, tag2]
+  tags: [ tag1, tag2 ]
   layer: core
 ---
 ```
 
 **Migration script**:
+
 ```python
 import yaml
 import re
 from pathlib import Path
 
+
 def migrate_frontmatter(file_path: Path):
     content = file_path.read_text()
-    
+
     # Extract frontmatter
     match = re.match(r'^---\n(.*?)\n---\n(.*)$', content, re.DOTALL)
     if not match:
         return
-    
+
     fm = yaml.safe_load(match.group(1))
     body = match.group(2)
-    
+
     # Transform frontmatter
     if "tags" in fm and "metadata" not in fm:
         fm["metadata"] = {"tags": fm.pop("tags")}
-    
+
     # Write back
     new_content = f"---\n{yaml.dump(fm)}---\n{body}"
     file_path.write_text(new_content)
@@ -301,21 +309,23 @@ sage fix --links
 
 #### v0.2.0 Breaking Changes
 
-| Change | Migration Action |
-|--------|------------------|
+| Change       | Migration Action          |
+|--------------|---------------------------|
 | Config split | Run `sage config migrate` |
-| API changes | Update tool calls |
-| CLI changes | Update scripts |
+| API changes  | Update tool calls         |
+| CLI changes  | Update scripts            |
 
 #### API Changes
 
 ```python
 # OLD (v0.1.x)
 from sage.core import load_knowledge
+
 result = load_knowledge(layer=0)
 
 # NEW (v0.2.x)
 from sage.core.loader import KnowledgeLoader
+
 loader = KnowledgeLoader()
 result = loader.load_layer(0)
 ```
@@ -335,10 +345,13 @@ sage get --layer 0  # or: sage get --layer core
 ```python
 # Check for deprecation warnings
 import warnings
+
 warnings.filterwarnings("default", category=DeprecationWarning)
 
 # Run with warnings visible
-python -W default -c "import sage"
+python - W
+default - c
+"import sage"
 ```
 
 ---
@@ -387,12 +400,12 @@ sage backup restore --latest --only content
 
 ### 8.1 Common Migration Issues
 
-| Issue | Cause | Solution |
-|-------|-------|----------|
-| Config validation fails | Schema changed | Run `sage config migrate` |
-| Import errors | API changed | Update import paths |
-| Missing files | Path changed | Check migration notes |
-| Tests failing | Breaking changes | Update test code |
+| Issue                   | Cause            | Solution                  |
+|-------------------------|------------------|---------------------------|
+| Config validation fails | Schema changed   | Run `sage config migrate` |
+| Import errors           | API changed      | Update import paths       |
+| Missing files           | Path changed     | Check migration notes     |
+| Tests failing           | Breaking changes | Update test code          |
 
 ### 8.2 Debug Migration
 
@@ -457,10 +470,10 @@ git checkout <commit> -- config/ content/
 
 ## Version History
 
-| Version | Release Date | Migration Notes |
-|---------|--------------|-----------------|
-| 0.1.0 | 2025-11-15 | Initial release |
-| 0.2.0 | TBD | Modular config, see breaking changes |
+| Version | Release Date | Migration Notes                      |
+|---------|--------------|--------------------------------------|
+| 0.1.0   | 2025-11-15   | Initial release                      |
+| 0.2.0   | TBD          | Modular config, see breaking changes |
 
 ---
 

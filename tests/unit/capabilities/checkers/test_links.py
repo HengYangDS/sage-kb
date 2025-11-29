@@ -1,15 +1,14 @@
 """Tests for sage.capabilities.checkers.links module."""
 
-import pytest
 import tempfile
 from pathlib import Path
 
 from sage.capabilities.checkers.links import (
     LinkChecker,
-    LinkResult,
     LinkReport,
-    LinkType,
+    LinkResult,
     LinkStatus,
+    LinkType,
     check_links,
 )
 
@@ -116,31 +115,31 @@ class TestLinkChecker:
         """Test checking a file with valid internal links."""
         with tempfile.TemporaryDirectory() as tmpdir:
             tmppath = Path(tmpdir)
-            
+
             # Create target file
             (tmppath / "target.md").write_text("# Target\n\nContent.")
-            
+
             # Create source file with link to target
             source = tmppath / "source.md"
             source.write_text("# Source\n\nLink to [target](./target.md).")
-            
+
             checker = LinkChecker(kb_path=tmppath)
             results = checker.check_file(source)
-            
+
             assert isinstance(results, list)
 
     def test_check_file_with_broken_links(self) -> None:
         """Test checking a file with broken links."""
         with tempfile.TemporaryDirectory() as tmpdir:
             tmppath = Path(tmpdir)
-            
+
             # Create source file with broken link
             source = tmppath / "source.md"
             source.write_text("# Source\n\nLink to [missing](./missing.md).")
-            
+
             checker = LinkChecker(kb_path=tmppath)
             results = checker.check_file(source)
-            
+
             # Should find the broken link
             broken = [r for r in results if r.status == LinkStatus.BROKEN]
             assert len(broken) >= 1
@@ -149,28 +148,28 @@ class TestLinkChecker:
         """Test checking all files in directory."""
         with tempfile.TemporaryDirectory() as tmpdir:
             tmppath = Path(tmpdir)
-            
+
             # Create test files
             (tmppath / "file1.md").write_text("# File 1\n\nNo links.")
             (tmppath / "file2.md").write_text("# File 2\n\nNo links.")
-            
+
             checker = LinkChecker(kb_path=tmppath)
             report = checker.check_all()
-            
+
             assert isinstance(report, LinkReport)
 
     def test_get_broken_links(self) -> None:
         """Test getting only broken links."""
         with tempfile.TemporaryDirectory() as tmpdir:
             tmppath = Path(tmpdir)
-            
+
             # Create file with broken link
             (tmppath / "test.md").write_text("[broken](./missing.md)")
-            
+
             checker = LinkChecker(kb_path=tmppath)
             checker.check_all()
             broken = checker.get_broken_links()
-            
+
             assert isinstance(broken, list)
 
     def test_clear_cache(self) -> None:
@@ -188,6 +187,6 @@ class TestCheckLinksFunction:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmppath = Path(tmpdir)
             (tmppath / "test.md").write_text("# Test\n\nNo links.")
-            
+
             report = check_links(kb_path=tmppath)
             assert isinstance(report, LinkReport)

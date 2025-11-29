@@ -305,6 +305,7 @@ Task types for context loading.
 ```python
 from sage.domain.knowledge import TaskType
 
+
 class TaskType(Enum):
     CODING = "coding"
     DEBUGGING = "debugging"

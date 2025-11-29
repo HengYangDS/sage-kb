@@ -12,16 +12,17 @@
 
 ## 1. Overview
 
-This document catalogs common pitfalls encountered during SAGE development. Each pitfall includes symptoms, root cause, and prevention strategies.
+This document catalogs common pitfalls encountered during SAGE development. Each pitfall includes symptoms, root cause,
+and prevention strategies.
 
 ### 1.1 Pitfall Severity
 
-| Severity | Impact | Response |
-|----------|--------|----------|
-| **Critical** | System failure, data loss | Immediate fix |
-| **High** | Major functionality broken | Fix in current sprint |
-| **Medium** | Degraded performance/UX | Plan for fix |
-| **Low** | Minor inconvenience | Fix when convenient |
+| Severity     | Impact                     | Response              |
+|--------------|----------------------------|-----------------------|
+| **Critical** | System failure, data loss  | Immediate fix         |
+| **High**     | Major functionality broken | Fix in current sprint |
+| **Medium**   | Degraded performance/UX    | Plan for fix          |
+| **Low**      | Minor inconvenience        | Fix when convenient   |
 
 ---
 
@@ -32,6 +33,7 @@ This document catalogs common pitfalls encountered during SAGE development. Each
 **Severity**: High
 
 **Symptoms**:
+
 - Import errors at runtime
 - Unexpected `None` values
 - Module initialization failures
@@ -39,6 +41,7 @@ This document catalogs common pitfalls encountered during SAGE development. Each
 **Root Cause**: Two modules importing each other directly.
 
 **Prevention**:
+
 ```python
 # ❌ Bad - Circular import
 # module_a.py
@@ -72,6 +75,7 @@ class B:
 **Severity**: Critical
 
 **Symptoms**:
+
 - Application hangs
 - Unresponsive CLI
 - Memory growth
@@ -79,6 +83,7 @@ class B:
 **Root Cause**: I/O operations without timeout.
 
 **Prevention**:
+
 ```python
 # ❌ Bad - No timeout
 content = await file.read()
@@ -97,6 +102,7 @@ async with asyncio.timeout(5.0):
 **Severity**: Medium
 
 **Symptoms**:
+
 - Changes cascade across files
 - Hard to test in isolation
 - Difficult to replace components
@@ -104,6 +110,7 @@ async with asyncio.timeout(5.0):
 **Root Cause**: Direct dependencies instead of interfaces.
 
 **Prevention**:
+
 ```python
 # ❌ Bad - Direct dependency
 class Service:
@@ -125,6 +132,7 @@ class Service:
 **Severity**: High
 
 **Symptoms**:
+
 - State shared between calls
 - Unexpected data accumulation
 - Hard-to-debug behavior
@@ -132,6 +140,7 @@ class Service:
 **Root Cause**: Python evaluates defaults once at definition.
 
 **Prevention**:
+
 ```python
 # ❌ Bad - Mutable default
 def process(items: list = []):
@@ -153,6 +162,7 @@ def process(items: list | None = None):
 **Severity**: Medium
 
 **Symptoms**:
+
 - Silent failures
 - Hidden bugs
 - Incorrect error handling
@@ -160,6 +170,7 @@ def process(items: list | None = None):
 **Root Cause**: Catching `Exception` or bare `except`.
 
 **Prevention**:
+
 ```python
 # ❌ Bad - Too broad
 try:
@@ -184,6 +195,7 @@ except ValueError as e:
 **Severity**: High
 
 **Symptoms**:
+
 - `RuntimeWarning: coroutine never awaited`
 - Functions return coroutine objects
 - Async operations not completing
@@ -191,6 +203,7 @@ except ValueError as e:
 **Root Cause**: Missing `await` keyword.
 
 **Prevention**:
+
 ```python
 # ❌ Bad - Missing await
 def get_content():
@@ -212,6 +225,7 @@ def get_content():
 **Severity**: Medium
 
 **Symptoms**:
+
 - Resource exhaustion
 - "Too many open files" errors
 - Memory leaks
@@ -219,6 +233,7 @@ def get_content():
 **Root Cause**: Not using context managers.
 
 **Prevention**:
+
 ```python
 # ❌ Bad - Resource leak
 file = open("data.txt")
@@ -244,6 +259,7 @@ async with aiofiles.open("data.txt") as file:
 **Severity**: Medium
 
 **Symptoms**:
+
 - Can't change behavior without code changes
 - Different behavior in different environments
 - Difficult to test
@@ -251,6 +267,7 @@ async with aiofiles.open("data.txt") as file:
 **Root Cause**: Magic numbers/strings in code.
 
 **Prevention**:
+
 ```python
 # ❌ Bad - Hardcoded
 timeout = 5000
@@ -270,6 +287,7 @@ if len(content) > config.get("max_content_length", 10000):
 **Severity**: High
 
 **Symptoms**:
+
 - Dev settings in production
 - Production data in dev
 - Security issues
@@ -277,6 +295,7 @@ if len(content) > config.get("max_content_length", 10000):
 **Root Cause**: Single config for all environments.
 
 **Prevention**:
+
 ```yaml
 # config/sage.yaml
 defaults:
@@ -298,6 +317,7 @@ production:
 **Severity**: Critical
 
 **Symptoms**:
+
 - Secrets in git history
 - Security vulnerabilities
 - Compliance issues
@@ -305,6 +325,7 @@ production:
 **Root Cause**: Committing sensitive values.
 
 **Prevention**:
+
 ```yaml
 # ❌ Bad - Secret in config
 api_key: "sk-1234567890"
@@ -326,6 +347,7 @@ api_key: "sk-1234567890"
 **Severity**: Medium
 
 **Symptoms**:
+
 - Tests break on refactoring
 - High test maintenance
 - False confidence
@@ -333,6 +355,7 @@ api_key: "sk-1234567890"
 **Root Cause**: Testing internal details.
 
 **Prevention**:
+
 ```python
 # ❌ Bad - Testing implementation
 def test_user_service():
@@ -355,6 +378,7 @@ def test_user_service():
 **Severity**: High
 
 **Symptoms**:
+
 - Tests pass/fail randomly
 - CI unreliable
 - Test suite distrust
@@ -362,6 +386,7 @@ def test_user_service():
 **Root Cause**: Timing dependencies, shared state, external services.
 
 **Prevention**:
+
 ```python
 # ❌ Bad - Time-dependent
 def test_timeout():
@@ -384,6 +409,7 @@ def test_timeout(mocker):
 **Severity**: Medium
 
 **Symptoms**:
+
 - Bugs in production
 - Unexpected behavior
 - Crashes on unusual input
@@ -391,6 +417,7 @@ def test_timeout(mocker):
 **Root Cause**: Only testing happy path.
 
 **Prevention**:
+
 ```python
 # Test edge cases
 class TestLoadContent:
@@ -413,6 +440,7 @@ class TestLoadContent:
 **Severity**: Medium
 
 **Symptoms**:
+
 - AI makes incorrect assumptions
 - Inconsistent decisions
 - Repeated mistakes
@@ -420,6 +448,7 @@ class TestLoadContent:
 **Root Cause**: Not providing necessary context.
 
 **Prevention**:
+
 - Always load core principles
 - Reference relevant ADRs
 - Provide recent history
@@ -431,6 +460,7 @@ class TestLoadContent:
 **Severity**: Medium
 
 **Symptoms**:
+
 - AI does too much
 - Unexpected changes
 - Scope creep
@@ -438,6 +468,7 @@ class TestLoadContent:
 **Root Cause**: Vague task descriptions.
 
 **Prevention**:
+
 ```markdown
 # ❌ Bad - Too broad
 "Fix the loading issues"
@@ -455,6 +486,7 @@ timeout instead of raising exception."
 **Severity**: High
 
 **Symptoms**:
+
 - Bugs introduced
 - Style inconsistencies
 - Unintended side effects
@@ -462,6 +494,7 @@ timeout instead of raising exception."
 **Root Cause**: Accepting AI output without review.
 
 **Prevention**:
+
 - Always review diffs
 - Run tests after changes
 - Check for side effects
@@ -473,25 +506,25 @@ timeout instead of raising exception."
 
 ### Red Flags to Watch For
 
-| Red Flag | Likely Pitfall |
-|----------|----------------|
-| `except Exception` | Too broad exception |
-| No `await` on async call | Missing async context |
-| `def func(items=[])` | Mutable default |
+| Red Flag                 | Likely Pitfall          |
+|--------------------------|-------------------------|
+| `except Exception`       | Too broad exception     |
+| No `await` on async call | Missing async context   |
+| `def func(items=[])`     | Mutable default         |
 | Direct file path strings | Missing path validation |
-| `time.sleep` in tests | Flaky test |
-| Hardcoded numbers | Missing configuration |
+| `time.sleep` in tests    | Flaky test              |
+| Hardcoded numbers        | Missing configuration   |
 
 ### Prevention Checklist
 
-| Check | Description |
-|-------|-------------|
-| ☐ Timeout on I/O | Every I/O has timeout |
-| ☐ Specific exceptions | No bare `except` |
-| ☐ Resources closed | Using context managers |
-| ☐ Config externalized | No hardcoded values |
-| ☐ Tests cover edges | Not just happy path |
-| ☐ AI output reviewed | Diff checked |
+| Check                 | Description            |
+|-----------------------|------------------------|
+| ☐ Timeout on I/O      | Every I/O has timeout  |
+| ☐ Specific exceptions | No bare `except`       |
+| ☐ Resources closed    | Using context managers |
+| ☐ Config externalized | No hardcoded values    |
+| ☐ Tests cover edges   | Not just happy path    |
+| ☐ AI output reviewed  | Diff checked           |
 
 ---
 

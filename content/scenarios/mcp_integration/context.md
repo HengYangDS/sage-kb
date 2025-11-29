@@ -24,9 +24,9 @@ autonomy_default: L3
 
 ## 2. Relevant Knowledge
 
-| Priority      | Files                                                                                   |
-|---------------|-----------------------------------------------------------------------------------------|
-| **Auto-Load** | `core/principles.md` · `content/references/mcp_api.md` · `practices/engineering/api_design.md` |
+| Priority      | Files                                                                                                       |
+|---------------|-------------------------------------------------------------------------------------------------------------|
+| **Auto-Load** | `core/principles.md` · `content/references/mcp_api.md` · `practices/engineering/api_design.md`              |
 | **On-Demand** | `docs/api/mcp.md` · `frameworks/resilience/timeout_patterns.md` · `practices/engineering/error_handling.md` |
 
 ---

@@ -14,13 +14,13 @@
 
 ### 1.1 Unit Test Principles
 
-| Principle | Description |
-|-----------|-------------|
-| **Fast** | Tests should run quickly (< 100ms each) |
-| **Isolated** | No dependencies between tests |
-| **Repeatable** | Same result every time |
-| **Self-validating** | Pass or fail, no manual inspection |
-| **Thorough** | Cover edge cases and error paths |
+| Principle           | Description                             |
+|---------------------|-----------------------------------------|
+| **Fast**            | Tests should run quickly (< 100ms each) |
+| **Isolated**        | No dependencies between tests           |
+| **Repeatable**      | Same result every time                  |
+| **Self-validating** | Pass or fail, no manual inspection      |
+| **Thorough**        | Cover edge cases and error paths        |
 
 ### 1.2 Test Pyramid
 
@@ -45,10 +45,10 @@ def test_user_can_be_created():
     # Arrange - Set up test data and conditions
     user_data = {"name": "Alice", "email": "alice@example.com"}
     service = UserService()
-    
+
     # Act - Execute the code under test
     user = service.create(user_data)
-    
+
     # Assert - Verify the results
     assert user.name == "Alice"
     assert user.email == "alice@example.com"
@@ -62,10 +62,10 @@ def test_user_registration():
     # Given a new user with valid data
     user_data = {"name": "Bob", "email": "bob@example.com"}
     service = UserService()
-    
+
     # When the user registers
     result = service.register(user_data)
-    
+
     # Then the registration succeeds
     assert result.success is True
     assert result.user.email == "bob@example.com"
@@ -76,18 +76,21 @@ def test_user_registration():
 ```python
 class TestUserService:
     """Tests for UserService."""
-    
+
     class TestCreate:
         """Tests for create method."""
-        
+
         def test_creates_user_with_valid_data(self): ...
+
         def test_raises_error_for_invalid_email(self): ...
+
         def test_raises_error_for_duplicate_email(self): ...
-    
+
     class TestGet:
         """Tests for get method."""
-        
+
         def test_returns_user_by_id(self): ...
+
         def test_returns_none_for_missing_user(self): ...
 ```
 
@@ -97,24 +100,39 @@ class TestUserService:
 
 ### 3.1 Test Function Names
 
-| Pattern | Example |
-|---------|---------|
+| Pattern                   | Example                             |
+|---------------------------|-------------------------------------|
 | `test_<what>_<condition>` | `test_login_with_valid_credentials` |
-| `test_<action>_<result>` | `test_create_returns_new_user` |
-| `test_<scenario>` | `test_user_can_reset_password` |
+| `test_<action>_<result>`  | `test_create_returns_new_user`      |
+| `test_<scenario>`         | `test_user_can_reset_password`      |
 
 ### 3.2 Good vs Bad Names
 
 ```python
 # ❌ Bad - Unclear what's being tested
-def test_user(): ...
-def test_1(): ...
-def test_it_works(): ...
+def test_user():
+    ...
+
+
+def test_1():
+    ...
+
+
+def test_it_works():
+    ...
+
 
 # ✅ Good - Clear and descriptive
-def test_create_user_with_valid_email_succeeds(): ...
-def test_create_user_with_invalid_email_raises_validation_error(): ...
-def test_get_user_returns_none_when_not_found(): ...
+def test_create_user_with_valid_email_succeeds():
+    ...
+
+
+def test_create_user_with_invalid_email_raises_validation_error():
+    ...
+
+
+def test_get_user_returns_none_when_not_found():
+    ...
 ```
 
 ---
@@ -126,15 +144,18 @@ def test_get_user_returns_none_when_not_found(): ...
 ```python
 import pytest
 
+
 @pytest.fixture
 def user():
     """Create a test user."""
     return User(id="1", name="Test User", email="test@example.com")
 
+
 @pytest.fixture
 def user_service(mock_repository):
     """Create UserService with mocked repository."""
     return UserService(repository=mock_repository)
+
 
 def test_get_user(user_service, user):
     result = user_service.get(user.id)
@@ -145,16 +166,23 @@ def test_get_user(user_service, user):
 
 ```python
 @pytest.fixture(scope="function")  # Default - new for each test
-def user(): ...
+def user():
+    ...
 
-@pytest.fixture(scope="class")     # Shared within test class
-def database(): ...
 
-@pytest.fixture(scope="module")    # Shared within module
-def config(): ...
+@pytest.fixture(scope="class")  # Shared within test class
+def database():
+    ...
 
-@pytest.fixture(scope="session")   # Shared across all tests
-def app(): ...
+
+@pytest.fixture(scope="module")  # Shared within module
+def config():
+    ...
+
+
+@pytest.fixture(scope="session")  # Shared across all tests
+def app():
+    ...
 ```
 
 ### 4.3 Factory Fixtures
@@ -163,14 +191,17 @@ def app(): ...
 @pytest.fixture
 def user_factory():
     """Factory for creating users with custom attributes."""
+
     def _create_user(**kwargs):
         defaults = {
-            "id": "1",
-            "name": "Test User",
+            "id"   : "1",
+            "name" : "Test User",
             "email": "test@example.com",
         }
         return User(**{**defaults, **kwargs})
+
     return _create_user
+
 
 def test_user_with_custom_name(user_factory):
     user = user_factory(name="Alice")
@@ -187,6 +218,7 @@ def temp_config_file(tmp_path):
     config_file.write_text("debug: true\n")
     return config_file
 
+
 def test_load_config(temp_config_file):
     config = load_config(temp_config_file)
     assert config["debug"] is True
@@ -201,17 +233,18 @@ def test_load_config(temp_config_file):
 ```python
 from unittest.mock import Mock, MagicMock
 
+
 def test_service_calls_repository():
     # Create mock
     mock_repo = Mock()
     mock_repo.get.return_value = User(id="1", name="Test")
-    
+
     # Inject mock
     service = UserService(repository=mock_repo)
-    
+
     # Call method
     result = service.get("1")
-    
+
     # Verify interactions
     mock_repo.get.assert_called_once_with("1")
     assert result.name == "Test"
@@ -222,14 +255,16 @@ def test_service_calls_repository():
 ```python
 from unittest.mock import patch
 
+
 def test_send_email():
     with patch("myapp.email.send_email") as mock_send:
         mock_send.return_value = True
-        
+
         result = notify_user("user@example.com", "Hello")
-        
+
         mock_send.assert_called_once()
         assert result is True
+
 
 # Using decorator
 @patch("myapp.email.send_email")
@@ -249,9 +284,9 @@ def test_retry_on_failure():
         ConnectionError("Failed"),
         {"status": "ok"}
     ]
-    
+
     result = retry_call(mock_service, max_retries=3)
-    
+
     assert result == {"status": "ok"}
     assert mock_service.call.call_count == 2
 ```
@@ -263,9 +298,9 @@ def test_with_mocker(mocker):
     # mocker is a pytest-mock fixture
     mock_func = mocker.patch("myapp.utils.expensive_operation")
     mock_func.return_value = 42
-    
+
     result = process_data()
-    
+
     assert result == 42
     mock_func.assert_called_once()
 ```
@@ -299,11 +334,13 @@ assert key in dictionary
 ```python
 import pytest
 
+
 def test_raises_value_error():
     with pytest.raises(ValueError) as exc_info:
         validate_email("invalid")
-    
+
     assert "Invalid email" in str(exc_info.value)
+
 
 def test_raises_with_match():
     with pytest.raises(ValueError, match=r"Invalid.*email"):
@@ -349,10 +386,12 @@ assert len(result) == 3
 ```python
 import pytest
 
+
 @pytest.mark.asyncio
 async def test_async_operation():
     result = await async_fetch_data()
     assert result is not None
+
 
 @pytest.mark.asyncio
 async def test_async_with_fixture(async_client):
@@ -365,11 +404,13 @@ async def test_async_with_fixture(async_client):
 ```python
 import pytest
 
+
 @pytest.fixture
 async def async_client():
     """Async HTTP client fixture."""
     async with AsyncClient() as client:
         yield client
+
 
 @pytest.fixture
 async def database():
@@ -384,14 +425,15 @@ async def database():
 ```python
 from unittest.mock import AsyncMock
 
+
 @pytest.mark.asyncio
 async def test_async_service():
     mock_repo = AsyncMock()
     mock_repo.get.return_value = User(id="1")
-    
+
     service = UserService(repository=mock_repo)
     result = await service.get("1")
-    
+
     mock_repo.get.assert_awaited_once_with("1")
 ```
 
@@ -404,11 +446,14 @@ async def test_async_service():
 ```python
 import pytest
 
-@pytest.mark.parametrize("input,expected", [
-    ("hello", "HELLO"),
-    ("world", "WORLD"),
-    ("", ""),
-])
+
+@pytest.mark.parametrize(
+    "input,expected", [
+        ("hello", "HELLO"),
+        ("world", "WORLD"),
+        ("", ""),
+    ]
+    )
 def test_uppercase(input, expected):
     assert input.upper() == expected
 ```
@@ -416,12 +461,14 @@ def test_uppercase(input, expected):
 ### 8.2 Multiple Parameters
 
 ```python
-@pytest.mark.parametrize("a,b,expected", [
-    (1, 2, 3),
-    (0, 0, 0),
-    (-1, 1, 0),
-    (100, 200, 300),
-])
+@pytest.mark.parametrize(
+    "a,b,expected", [
+        (1, 2, 3),
+        (0, 0, 0),
+        (-1, 1, 0),
+        (100, 200, 300),
+    ]
+    )
 def test_add(a, b, expected):
     assert add(a, b) == expected
 ```
@@ -429,12 +476,14 @@ def test_add(a, b, expected):
 ### 8.3 Named Test Cases
 
 ```python
-@pytest.mark.parametrize("email,valid", [
-    pytest.param("user@example.com", True, id="valid_email"),
-    pytest.param("invalid", False, id="no_at_sign"),
-    pytest.param("@example.com", False, id="no_local_part"),
-    pytest.param("user@", False, id="no_domain"),
-])
+@pytest.mark.parametrize(
+    "email,valid", [
+        pytest.param("user@example.com", True, id="valid_email"),
+        pytest.param("invalid", False, id="no_at_sign"),
+        pytest.param("@example.com", False, id="no_local_part"),
+        pytest.param("user@", False, id="no_domain"),
+    ]
+    )
 def test_validate_email(email, valid):
     assert validate_email(email) == valid
 ```
@@ -456,23 +505,23 @@ def test_endpoints(method, path):
 
 ### Test Structure Checklist
 
-| Check | Description |
-|-------|-------------|
-| ☐ Single assertion focus | Test one thing |
-| ☐ Clear arrange/act/assert | Organized structure |
-| ☐ Descriptive name | What and when |
-| ☐ Independent | No test order dependency |
-| ☐ Fast | < 100ms per test |
+| Check                      | Description              |
+|----------------------------|--------------------------|
+| ☐ Single assertion focus   | Test one thing           |
+| ☐ Clear arrange/act/assert | Organized structure      |
+| ☐ Descriptive name         | What and when            |
+| ☐ Independent              | No test order dependency |
+| ☐ Fast                     | < 100ms per test         |
 
 ### Common Patterns
 
-| Pattern | Use Case |
-|---------|----------|
-| Factory fixture | Create test objects |
-| Mock | Isolate dependencies |
-| Parametrize | Multiple test cases |
-| tmp_path | Temporary files |
-| monkeypatch | Environment variables |
+| Pattern         | Use Case              |
+|-----------------|-----------------------|
+| Factory fixture | Create test objects   |
+| Mock            | Isolate dependencies  |
+| Parametrize     | Multiple test cases   |
+| tmp_path        | Temporary files       |
+| monkeypatch     | Environment variables |
 
 ---
 

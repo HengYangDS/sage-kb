@@ -144,10 +144,14 @@ default_level: DEBUG
 
 ```python
 # Add breakpoint
-import pdb; pdb.set_trace()
+import pdb;
+
+pdb.set_trace()
 
 # Or use IPython
-from IPython import embed; embed()
+from IPython import embed;
+
+embed()
 
 # Or use breakpoint() (Python 3.7+)
 breakpoint()
@@ -159,10 +163,12 @@ breakpoint()
 # Trace function calls
 import sys
 
+
 def trace_calls(frame, event, arg):
     if event == 'call':
         print(f"Call: {frame.f_code.co_name}")
     return trace_calls
+
 
 sys.settrace(trace_calls)
 ```
@@ -172,6 +178,7 @@ sys.settrace(trace_calls)
 ```python
 # Install: pip install memory-profiler
 from memory_profiler import profile
+
 
 @profile
 def memory_intensive_function():
@@ -222,6 +229,7 @@ tail -f .logs/sage.log
 
 ```python
 import json
+
 
 def parse_structured_log(log_file):
     with open(log_file) as f:

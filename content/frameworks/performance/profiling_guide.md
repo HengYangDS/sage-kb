@@ -39,13 +39,13 @@
 
 ### Key Metrics
 
-| Category | Metric | Tool |
-|----------|--------|------|
-| **Time** | Response time, CPU time | cProfile, line_profiler |
-| **Memory** | Heap size, allocations | memory_profiler, tracemalloc |
-| **I/O** | Disk reads/writes | iostat, strace |
-| **Network** | Latency, throughput | tcpdump, Wireshark |
-| **Database** | Query time, connections | EXPLAIN, pg_stat |
+| Category     | Metric                  | Tool                         |
+|--------------|-------------------------|------------------------------|
+| **Time**     | Response time, CPU time | cProfile, line_profiler      |
+| **Memory**   | Heap size, allocations  | memory_profiler, tracemalloc |
+| **I/O**      | Disk reads/writes       | iostat, strace               |
+| **Network**  | Latency, throughput     | tcpdump, Wireshark           |
+| **Database** | Query time, connections | EXPLAIN, pg_stat             |
 
 ---
 
@@ -101,6 +101,7 @@ def slow_function(items):
 ```
 
 **Output example:**
+
 ```
 Line #    Hits    Time  Per Hit   % Time  Line Contents
 =======================================================
@@ -129,6 +130,7 @@ def memory_intensive():
 ```
 
 **Output example:**
+
 ```
 Line #    Mem usage    Increment   Line Contents
 ================================================
@@ -234,6 +236,7 @@ SELECT * FROM users WHERE email = 'test@example.com';
 ```
 
 **Understanding EXPLAIN output:**
+
 ```
 Seq Scan on users  (cost=0.00..1234.00 rows=1 width=100) (actual time=0.015..12.345 rows=1 loops=1)
   Filter: (email = 'test@example.com'::text)
@@ -242,14 +245,14 @@ Planning Time: 0.100 ms
 Execution Time: 12.400 ms
 ```
 
-| Term | Meaning |
-|------|---------|
-| **Seq Scan** | Full table scan (usually bad) |
-| **Index Scan** | Using index (good) |
-| **cost** | Estimated cost units |
-| **actual time** | Real execution time (ms) |
-| **rows** | Rows returned |
-| **Rows Removed** | Filtered out rows |
+| Term             | Meaning                       |
+|------------------|-------------------------------|
+| **Seq Scan**     | Full table scan (usually bad) |
+| **Index Scan**   | Using index (good)            |
+| **cost**         | Estimated cost units          |
+| **actual time**  | Real execution time (ms)      |
+| **rows**         | Rows returned                 |
+| **Rows Removed** | Filtered out rows             |
 
 ### Query Performance Monitoring
 
@@ -640,25 +643,25 @@ What to profile?
 
 ### Performance Targets
 
-| Metric | Good | Acceptable | Poor |
-|--------|------|------------|------|
-| P50 Latency | <50ms | <200ms | >500ms |
-| P99 Latency | <200ms | <1s | >2s |
-| Error Rate | <0.1% | <1% | >5% |
-| CPU Usage | <50% | <80% | >90% |
-| Memory | <70% | <85% | >95% |
+| Metric      | Good   | Acceptable | Poor   |
+|-------------|--------|------------|--------|
+| P50 Latency | <50ms  | <200ms     | >500ms |
+| P99 Latency | <200ms | <1s        | >2s    |
+| Error Rate  | <0.1%  | <1%        | >5%    |
+| CPU Usage   | <50%   | <80%       | >90%   |
+| Memory      | <70%   | <85%       | >95%   |
 
 ### Profiling Tools Summary
 
-| Tool | Type | Use Case |
-|------|------|----------|
-| cProfile | CPU | Function-level timing |
-| line_profiler | CPU | Line-by-line timing |
-| py-spy | CPU | Production profiling |
-| memory_profiler | Memory | Line-by-line memory |
-| tracemalloc | Memory | Allocation tracking |
-| EXPLAIN | Database | Query analysis |
-| Locust | Load | HTTP load testing |
+| Tool            | Type     | Use Case              |
+|-----------------|----------|-----------------------|
+| cProfile        | CPU      | Function-level timing |
+| line_profiler   | CPU      | Line-by-line timing   |
+| py-spy          | CPU      | Production profiling  |
+| memory_profiler | Memory   | Line-by-line memory   |
+| tracemalloc     | Memory   | Allocation tracking   |
+| EXPLAIN         | Database | Query analysis        |
+| Locust          | Load     | HTTP load testing     |
 
 ---
 

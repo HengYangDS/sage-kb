@@ -20,14 +20,14 @@ content/
 
 ## Layer Token Budgets
 
-| Layer | Budget | Load Timing |
-|-------|--------|-------------|
-| Core | ~500 | Always |
-| Guidelines | ~1200 | By role/task |
-| Frameworks | ~2000 | On-demand |
-| Practices | ~1500 | Implementation |
-| Scenarios | ~500 | By trigger |
-| Templates | ~300 | Direct use |
+| Layer      | Budget | Load Timing    |
+|------------|--------|----------------|
+| Core       | ~500   | Always         |
+| Guidelines | ~1200  | By role/task   |
+| Frameworks | ~2000  | On-demand      |
+| Practices  | ~1500  | Implementation |
+| Scenarios  | ~500   | By trigger     |
+| Templates  | ~300   | Direct use     |
 
 ---
 
@@ -41,36 +41,36 @@ content/
 
 ## MECE Principle
 
-| Aspect | Rule |
-|--------|------|
-| Mutually Exclusive | No overlapping content |
-| Collectively Exhaustive | Complete coverage |
-| Single location | Each concept defined once |
-| Cross-reference | Link, don't duplicate |
+| Aspect                  | Rule                      |
+|-------------------------|---------------------------|
+| Mutually Exclusive      | No overlapping content    |
+| Collectively Exhaustive | Complete coverage         |
+| Single location         | Each concept defined once |
+| Cross-reference         | Link, don't duplicate     |
 
 ---
 
 ## Loading Strategy
 
-| Phase | Load | Purpose |
-|-------|------|---------|
-| Session start | Core | Foundation |
-| Task definition | Guidelines | Standards |
+| Phase            | Load       | Purpose        |
+|------------------|------------|----------------|
+| Session start    | Core       | Foundation     |
+| Task definition  | Guidelines | Standards      |
 | Complex decision | Frameworks | Deep reference |
-| Implementation | Practices | Actionable |
-| Specific context | Scenario | Pre-configured |
+| Implementation   | Practices  | Actionable     |
+| Specific context | Scenario   | Pre-configured |
 
 ---
 
 ## Content Distribution
 
-| Type | Location | Reference From |
-|------|----------|---------------|
-| Philosophy | `core/` | All layers |
-| Standards | `guidelines/` | Practices |
-| Concepts | `frameworks/` | Guidelines |
-| How-to | `practices/` | Scenarios |
-| Presets | `scenarios/` | Index only |
+| Type       | Location      | Reference From |
+|------------|---------------|----------------|
+| Philosophy | `core/`       | All layers     |
+| Standards  | `guidelines/` | Practices      |
+| Concepts   | `frameworks/` | Guidelines     |
+| How-to     | `practices/`  | Scenarios      |
+| Presets    | `scenarios/`  | Index only     |
 
 ---
 

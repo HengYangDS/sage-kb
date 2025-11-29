@@ -12,14 +12,14 @@ These guides help you get started with SAGE and explore advanced features.
 
 ## Quick Links
 
-| Guide | Description | Time |
-|-------|-------------|------|
-| [Quick Start](quickstart.md) | Get up and running in 5 minutes | 5 min |
-| [Advanced Usage](advanced.md) | Deep dive into advanced features | 30 min |
-| [Configuration](configuration.md) | Complete configuration reference | 20 min |
-| [MCP Tools](mcp_tools.md) | MCP tools reference and examples | 25 min |
-| [Migration](migration.md) | Version upgrade and migration guide | 15 min |
-| [FAQ](faq.md) | Frequently asked questions | 10 min |
+| Guide                             | Description                         | Time   |
+|-----------------------------------|-------------------------------------|--------|
+| [Quick Start](quickstart.md)      | Get up and running in 5 minutes     | 5 min  |
+| [Advanced Usage](advanced.md)     | Deep dive into advanced features    | 30 min |
+| [Configuration](configuration.md) | Complete configuration reference    | 20 min |
+| [MCP Tools](mcp_tools.md)         | MCP tools reference and examples    | 25 min |
+| [Migration](migration.md)         | Version upgrade and migration guide | 15 min |
+| [FAQ](faq.md)                     | Frequently asked questions          | 10 min |
 
 ---
 

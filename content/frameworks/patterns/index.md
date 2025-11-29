@@ -6,18 +6,19 @@
 
 ## Overview
 
-The Patterns Framework provides battle-tested patterns for collaboration, decision-making, integration, and data persistence in AI-human collaborative systems.
+The Patterns Framework provides battle-tested patterns for collaboration, decision-making, integration, and data
+persistence in AI-human collaborative systems.
 
 ---
 
 ## Documents
 
-| Document           | Description                                      |
-|--------------------|--------------------------------------------------|
-| `collaboration.md` | Collaboration patterns for AI-human interaction  |
-| `decision.md`      | Decision-making patterns and workflows           |
-| `integration.md`   | System integration patterns                      |
-| `persistence.md`   | Data persistence and state management patterns   |
+| Document           | Description                                     |
+|--------------------|-------------------------------------------------|
+| `collaboration.md` | Collaboration patterns for AI-human interaction |
+| `decision.md`      | Decision-making patterns and workflows          |
+| `integration.md`   | System integration patterns                     |
+| `persistence.md`   | Data persistence and state management patterns  |
 
 ---
 

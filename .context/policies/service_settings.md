@@ -31,11 +31,11 @@
 
 ### 1.2 Configuration Locations
 
-| Service | Config Key | Environment Variable |
-|---------|------------|---------------------|
-| CLI | `services.cli` | `SAGE_CLI_*` |
-| MCP | `services.mcp` | `SAGE_MCP_*` |
-| API | `services.api` | `SAGE_API_*` |
+| Service | Config Key     | Environment Variable |
+|---------|----------------|----------------------|
+| CLI     | `services.cli` | `SAGE_CLI_*`         |
+| MCP     | `services.mcp` | `SAGE_MCP_*`         |
+| API     | `services.api` | `SAGE_API_*`         |
 
 ---
 
@@ -73,11 +73,11 @@ services:
 
 ### 2.2 Output Formats
 
-| Format | Use Case | Example |
-|--------|----------|---------|
-| `rich` | Interactive terminal | Colored, formatted output |
-| `plain` | Piping, scripts | Plain text |
-| `json` | Programmatic use | JSON output |
+| Format  | Use Case             | Example                   |
+|---------|----------------------|---------------------------|
+| `rich`  | Interactive terminal | Colored, formatted output |
+| `plain` | Piping, scripts      | Plain text                |
+| `json`  | Programmatic use     | JSON output               |
 
 ### 2.3 Environment Variables
 
@@ -136,11 +136,11 @@ services:
 
 ### 3.2 Transport Types
 
-| Transport | Use Case | Configuration |
-|-----------|----------|---------------|
-| `stdio` | Local integration | Default, no network |
-| `sse` | Web clients | Requires host/port |
-| `websocket` | Real-time apps | Requires host/port |
+| Transport   | Use Case          | Configuration       |
+|-------------|-------------------|---------------------|
+| `stdio`     | Local integration | Default, no network |
+| `sse`       | Web clients       | Requires host/port  |
+| `websocket` | Real-time apps    | Requires host/port  |
 
 ### 3.3 Tool Configuration
 

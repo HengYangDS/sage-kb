@@ -23,10 +23,10 @@ autonomy_default: L2
 
 ## 2. Relevant Knowledge
 
-| Priority      | Files                                                                                            |
-|---------------|--------------------------------------------------------------------------------------------------|
+| Priority      | Files                                                                                                   |
+|---------------|---------------------------------------------------------------------------------------------------------|
 | **Auto-Load** | `core/principles.md` · `guidelines/engineering.md` · `practices/engineering/incremental_improvement.md` |
-| **On-Demand** | `practices/engineering/testing_strategy.md` · `practices/engineering/code_review.md`             |
+| **On-Demand** | `practices/engineering/testing_strategy.md` · `practices/engineering/code_review.md`                    |
 
 ---
 
@@ -34,24 +34,24 @@ autonomy_default: L2
 
 ### 3.1 Strategy Overview
 
-| Strategy | Description | Risk | Timeline |
-|----------|-------------|------|----------|
-| **Rehost** | Move to new infrastructure | Low | Short |
-| **Replatform** | Minor optimizations during move | Low-Med | Short-Med |
-| **Refactor** | Restructure code, keep functionality | Medium | Medium |
-| **Rearchitect** | Redesign for new paradigm | High | Long |
-| **Rebuild** | Rewrite from scratch | High | Long |
-| **Replace** | Use commercial/SaaS solution | Medium | Medium |
+| Strategy        | Description                          | Risk    | Timeline  |
+|-----------------|--------------------------------------|---------|-----------|
+| **Rehost**      | Move to new infrastructure           | Low     | Short     |
+| **Replatform**  | Minor optimizations during move      | Low-Med | Short-Med |
+| **Refactor**    | Restructure code, keep functionality | Medium  | Medium    |
+| **Rearchitect** | Redesign for new paradigm            | High    | Long      |
+| **Rebuild**     | Rewrite from scratch                 | High    | Long      |
+| **Replace**     | Use commercial/SaaS solution         | Medium  | Medium    |
 
 ### 3.2 Strategy Selection Matrix
 
-| Factor | Rehost | Refactor | Rebuild |
-|--------|--------|----------|---------|
-| Time pressure | ✅ Best | ⚠️ Medium | ❌ Worst |
-| Budget limited | ✅ Best | ⚠️ Medium | ❌ Worst |
-| Code quality | N/A | ✅ Improves | ✅ Fresh |
-| Business logic complex | ✅ Preserves | ⚠️ Risk | ❌ Risk |
-| Technical debt | ❌ Keeps | ✅ Reduces | ✅ Eliminates |
+| Factor                 | Rehost      | Refactor   | Rebuild      |
+|------------------------|-------------|------------|--------------|
+| Time pressure          | ✅ Best      | ⚠️ Medium  | ❌ Worst      |
+| Budget limited         | ✅ Best      | ⚠️ Medium  | ❌ Worst      |
+| Code quality           | N/A         | ✅ Improves | ✅ Fresh      |
+| Business logic complex | ✅ Preserves | ⚠️ Risk    | ❌ Risk       |
+| Technical debt         | ❌ Keeps     | ✅ Reduces  | ✅ Eliminates |
 
 ### 3.3 Strangler Fig Pattern
 
@@ -78,23 +78,23 @@ autonomy_default: L2
 
 ### 4.1 Code Assessment Checklist
 
-| Area | Questions |
-|------|-----------|
-| **Documentation** | Is there documentation? Is it current? |
-| **Testing** | What test coverage exists? Are tests passing? |
-| **Dependencies** | What external dependencies? Are they maintained? |
-| **Architecture** | Is architecture documented? Clear boundaries? |
-| **Data** | What data stores? Schema documented? |
-| **Deployment** | How is it deployed? CI/CD exists? |
+| Area              | Questions                                        |
+|-------------------|--------------------------------------------------|
+| **Documentation** | Is there documentation? Is it current?           |
+| **Testing**       | What test coverage exists? Are tests passing?    |
+| **Dependencies**  | What external dependencies? Are they maintained? |
+| **Architecture**  | Is architecture documented? Clear boundaries?    |
+| **Data**          | What data stores? Schema documented?             |
+| **Deployment**    | How is it deployed? CI/CD exists?                |
 
 ### 4.2 Technical Debt Categories
 
-| Category | Examples | Priority |
-|----------|----------|----------|
-| **Critical** | Security vulnerabilities, data corruption risk | P0 |
-| **High** | No tests, outdated dependencies | P1 |
-| **Medium** | Code duplication, poor naming | P2 |
-| **Low** | Style inconsistencies, minor optimizations | P3 |
+| Category     | Examples                                       | Priority |
+|--------------|------------------------------------------------|----------|
+| **Critical** | Security vulnerabilities, data corruption risk | P0       |
+| **High**     | No tests, outdated dependencies                | P1       |
+| **Medium**   | Code duplication, poor naming                  | P2       |
+| **Low**      | Style inconsistencies, minor optimizations     | P3       |
 
 ### 4.3 Risk Assessment
 
@@ -117,11 +117,11 @@ autonomy_default: L2
 
 ### 5.1 Data Migration
 
-| Pattern | Use Case | Approach |
-|---------|----------|----------|
-| **Big Bang** | Simple, short downtime OK | Migrate all at once |
-| **Trickle** | Zero downtime required | Sync incrementally |
-| **Parallel Run** | High risk data | Run both, compare |
+| Pattern          | Use Case                  | Approach            |
+|------------------|---------------------------|---------------------|
+| **Big Bang**     | Simple, short downtime OK | Migrate all at once |
+| **Trickle**      | Zero downtime required    | Sync incrementally  |
+| **Parallel Run** | High risk data            | Run both, compare   |
 
 ### 5.2 Incremental Migration Steps
 
@@ -154,23 +154,23 @@ class UserRepository:
         self.legacy = legacy_db
         self.new = new_db
         self.migration_complete = False
-    
+
     def save(self, user):
         # Write to both during migration
         self.legacy.save(user)
         self.new.save(self._transform(user))
-    
+
     def get(self, user_id):
         if self.migration_complete:
             return self.new.get(user_id)
-        
+
         # Read from legacy, verify with new
         legacy_user = self.legacy.get(user_id)
         new_user = self.new.get(user_id)
-        
+
         if legacy_user != self._transform_back(new_user):
             self._log_discrepancy(user_id)
-        
+
         return legacy_user
 ```
 
@@ -178,6 +178,7 @@ class UserRepository:
 
 ```python
 from feature_flags import FeatureFlags
+
 
 def get_user(user_id: str):
     if FeatureFlags.is_enabled("use_new_user_service", user_id):
@@ -192,21 +193,21 @@ def get_user(user_id: str):
 
 ### 6.1 Rollback Strategy
 
-| Level | Trigger | Action |
-|-------|---------|--------|
-| **L1** | Minor issues | Fix forward |
-| **L2** | Significant bugs | Feature flag off |
-| **L3** | Data issues | Restore from backup |
-| **L4** | Critical failure | Full rollback |
+| Level  | Trigger          | Action              |
+|--------|------------------|---------------------|
+| **L1** | Minor issues     | Fix forward         |
+| **L2** | Significant bugs | Feature flag off    |
+| **L3** | Data issues      | Restore from backup |
+| **L4** | Critical failure | Full rollback       |
 
 ### 6.2 Testing Strategy
 
-| Phase | Test Type | Coverage |
-|-------|-----------|----------|
-| **Before** | Characterization tests | Document current behavior |
-| **During** | Contract tests | Ensure compatibility |
-| **After** | Regression tests | Verify no breakage |
-| **Continuous** | Integration tests | End-to-end flows |
+| Phase          | Test Type              | Coverage                  |
+|----------------|------------------------|---------------------------|
+| **Before**     | Characterization tests | Document current behavior |
+| **During**     | Contract tests         | Ensure compatibility      |
+| **After**      | Regression tests       | Verify no breakage        |
+| **Continuous** | Integration tests      | End-to-end flows          |
 
 ### 6.3 Monitoring During Migration
 
@@ -216,11 +217,11 @@ metrics:
   - name: error_rate
     threshold: 1%
     action: alert
-  
+
   - name: latency_p99
     threshold: 500ms
     action: alert
-  
+
   - name: data_sync_lag
     threshold: 5min
     action: pause_migration
@@ -230,72 +231,72 @@ metrics:
 
 ## 7. Common Tasks
 
-| Task | Steps |
-|------|-------|
+| Task                         | Steps                                                                    |
+|------------------------------|--------------------------------------------------------------------------|
 | **Add tests to legacy code** | Identify critical paths → Write characterization tests → Verify behavior |
-| **Extract module** | Define interface → Create adapter → Migrate code → Update callers |
-| **Update dependency** | Assess impact → Create branch → Update → Test thoroughly → Deploy |
-| **Document system** | Interview stakeholders → Trace code flows → Create diagrams → Review |
-| **Migrate database** | Schema analysis → Create migration → Test with prod data copy → Execute |
+| **Extract module**           | Define interface → Create adapter → Migrate code → Update callers        |
+| **Update dependency**        | Assess impact → Create branch → Update → Test thoroughly → Deploy        |
+| **Document system**          | Interview stakeholders → Trace code flows → Create diagrams → Review     |
+| **Migrate database**         | Schema analysis → Create migration → Test with prod data copy → Execute  |
 
 ### 7.1 Modernization Checklist
 
-| Phase | Item | Status |
-|-------|------|--------|
-| **Discovery** | ☐ System inventory complete | |
-| | ☐ Dependencies documented | |
-| | ☐ Risks identified | |
-| **Planning** | ☐ Strategy selected | |
-| | ☐ Rollback plan defined | |
-| | ☐ Success metrics defined | |
-| **Preparation** | ☐ Tests added | |
-| | ☐ Monitoring in place | |
-| | ☐ Team trained | |
-| **Execution** | ☐ Incremental migration | |
-| | ☐ Data validation | |
-| | ☐ Performance testing | |
-| **Completion** | ☐ Legacy decommissioned | |
-| | ☐ Documentation updated | |
-| | ☐ Lessons learned captured | |
+| Phase           | Item                        | Status |
+|-----------------|-----------------------------|--------|
+| **Discovery**   | ☐ System inventory complete |        |
+|                 | ☐ Dependencies documented   |        |
+|                 | ☐ Risks identified          |        |
+| **Planning**    | ☐ Strategy selected         |        |
+|                 | ☐ Rollback plan defined     |        |
+|                 | ☐ Success metrics defined   |        |
+| **Preparation** | ☐ Tests added               |        |
+|                 | ☐ Monitoring in place       |        |
+|                 | ☐ Team trained              |        |
+| **Execution**   | ☐ Incremental migration     |        |
+|                 | ☐ Data validation           |        |
+|                 | ☐ Performance testing       |        |
+| **Completion**  | ☐ Legacy decommissioned     |        |
+|                 | ☐ Documentation updated     |        |
+|                 | ☐ Lessons learned captured  |        |
 
 ---
 
 ## 8. Autonomy Calibration
 
-| Task Type | Level | Notes |
-|-----------|-------|-------|
-| Add tests to existing code | L3-L4 | Non-breaking |
-| Refactor within module | L3 | Keep behavior |
-| Update dependencies | L2-L3 | Test thoroughly |
-| Database schema change | L1-L2 | Data risk |
-| Extract to new service | L2 | Architecture impact |
-| Decommission legacy | L1 | Point of no return |
-| Production data migration | L1 | Full review |
+| Task Type                  | Level | Notes               |
+|----------------------------|-------|---------------------|
+| Add tests to existing code | L3-L4 | Non-breaking        |
+| Refactor within module     | L3    | Keep behavior       |
+| Update dependencies        | L2-L3 | Test thoroughly     |
+| Database schema change     | L1-L2 | Data risk           |
+| Extract to new service     | L2    | Architecture impact |
+| Decommission legacy        | L1    | Point of no return  |
+| Production data migration  | L1    | Full review         |
 
 ---
 
 ## Key Principles
 
-| Principle | Description |
-|-----------|-------------|
-| **Incremental** | Small, reversible steps |
-| **Test First** | Add tests before changing |
-| **Parallel Run** | Verify before switching |
-| **Feature Flags** | Control rollout |
-| **Monitor** | Watch metrics closely |
-| **Document** | Capture decisions and learnings |
+| Principle         | Description                     |
+|-------------------|---------------------------------|
+| **Incremental**   | Small, reversible steps         |
+| **Test First**    | Add tests before changing       |
+| **Parallel Run**  | Verify before switching         |
+| **Feature Flags** | Control rollout                 |
+| **Monitor**       | Watch metrics closely           |
+| **Document**      | Capture decisions and learnings |
 
 ---
 
 ## Pitfalls to Avoid
 
-| Pitfall | Solution |
-|---------|----------|
-| **Big bang rewrite** | Use strangler pattern |
-| **No tests** | Add characterization tests first |
-| **Skip documentation** | Document as you go |
-| **Ignore data migration** | Plan data strategy early |
-| **Rush to production** | Parallel run first |
+| Pitfall                   | Solution                         |
+|---------------------------|----------------------------------|
+| **Big bang rewrite**      | Use strangler pattern            |
+| **No tests**              | Add characterization tests first |
+| **Skip documentation**    | Document as you go               |
+| **Ignore data migration** | Plan data strategy early         |
+| **Rush to production**    | Parallel run first               |
 
 ---
 

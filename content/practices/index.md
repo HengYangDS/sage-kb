@@ -14,14 +14,14 @@
 
 ### 1.1 AI Collaboration
 
-| File                                       | Purpose                       |
-|--------------------------------------------|-------------------------------|
-| `ai_collaboration/context_management.md`   | Managing shared context       |
-| `ai_collaboration/knowledge_capture.md`    | When and how to capture knowledge |
-| `ai_collaboration/knowledge_extraction.md` | Extracting reusable knowledge |
+| File                                       | Purpose                            |
+|--------------------------------------------|------------------------------------|
+| `ai_collaboration/context_management.md`   | Managing shared context            |
+| `ai_collaboration/knowledge_capture.md`    | When and how to capture knowledge  |
+| `ai_collaboration/knowledge_extraction.md` | Extracting reusable knowledge      |
 | `ai_collaboration/session_management.md`   | Managing AI collaboration sessions |
-| `ai_collaboration/token_optimization.md`   | Token efficiency              |
-| `ai_collaboration/workflow.md`             | Collaboration workflows       |
+| `ai_collaboration/token_optimization.md`   | Token efficiency                   |
+| `ai_collaboration/workflow.md`             | Collaboration workflows            |
 
 ### 1.2 Decisions
 

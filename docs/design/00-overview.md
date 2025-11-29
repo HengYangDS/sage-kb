@@ -68,7 +68,7 @@ The project follows the classical Chinese translation principles adapted for sof
 |--------------------------|---------------------------------------------------------------------------------------|
 | **SAGE**                 | Smart AI-Guided Expertise; also the 4-stage protocol (Source-Analyze-Generate-Evolve) |
 | **MECE**                 | Mutually Exclusive, Collectively Exhaustive - a classification principle              |
-| **信达雅 (Xin-Da-Ya)**   | Classical Chinese translation principles: Faithfulness, Clarity, Elegance             |
+| **信达雅 (Xin-Da-Ya)**      | Classical Chinese translation principles: Faithfulness, Clarity, Elegance             |
 | **MCP**                  | Model Context Protocol - JSON-RPC based protocol for AI assistant integration         |
 | **EventBus**             | Async pub/sub message broker for decoupled component communication                    |
 | **DI Container**         | Dependency Injection Container for service lifecycle management                       |

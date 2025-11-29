@@ -12,21 +12,21 @@
 
 ## 1. Available Templates
 
-| Template                  | File                       | Tokens | Purpose                              |
-|---------------------------|----------------------------|--------|--------------------------------------|
-| **Expert Committee**      | `expert_committee.md`      | ~150   | 24-expert review template            |
-| **Project Setup**         | `project_setup.md`         | ~150   | Project initialization checklist     |
-| **Conversation Record**   | `conversation_record.md`   | ~200   | AI session documentation             |
-| **Session State**         | `session_state.md`         | ~250   | Current session context capture      |
-| **Task Handoff**          | `task_handoff.md`          | ~300   | Task continuation between sessions   |
-| **ADR**                   | `adr.md`                   | ~200   | Architecture Decision Record         |
-| **API Spec**              | `api_spec.md`              | ~250   | API specification document           |
-| **Runbook**               | `runbook.md`               | ~250   | Operational runbook                  |
-| **Postmortem**            | `postmortem.md`            | ~250   | Incident postmortem report           |
-| **Troubleshooting Guide** | `troubleshooting_guide.md` | ~300   | Problem diagnosis and solutions      |
-| **Release Notes**         | `release_notes.md`         | ~350   | Software release documentation       |
-| **Meeting Notes**         | `meeting_notes.md`         | ~300   | Meeting records and action items     |
-| **Case Study**            | `case_study.md`            | ~230   | Problem-solving case documentation   |
+| Template                  | File                       | Tokens | Purpose                            |
+|---------------------------|----------------------------|--------|------------------------------------|
+| **Expert Committee**      | `expert_committee.md`      | ~150   | 24-expert review template          |
+| **Project Setup**         | `project_setup.md`         | ~150   | Project initialization checklist   |
+| **Conversation Record**   | `conversation_record.md`   | ~200   | AI session documentation           |
+| **Session State**         | `session_state.md`         | ~250   | Current session context capture    |
+| **Task Handoff**          | `task_handoff.md`          | ~300   | Task continuation between sessions |
+| **ADR**                   | `adr.md`                   | ~200   | Architecture Decision Record       |
+| **API Spec**              | `api_spec.md`              | ~250   | API specification document         |
+| **Runbook**               | `runbook.md`               | ~250   | Operational runbook                |
+| **Postmortem**            | `postmortem.md`            | ~250   | Incident postmortem report         |
+| **Troubleshooting Guide** | `troubleshooting_guide.md` | ~300   | Problem diagnosis and solutions    |
+| **Release Notes**         | `release_notes.md`         | ~350   | Software release documentation     |
+| **Meeting Notes**         | `meeting_notes.md`         | ~300   | Meeting records and action items   |
+| **Case Study**            | `case_study.md`            | ~230   | Problem-solving case documentation |
 
 ---
 
@@ -201,18 +201,11 @@ All templates follow this structure:
 4. Update this index
 5. Add trigger keywords if applicable
 
-### Recommended Templates (Future)
-
-- `adr.md` — Architecture Decision Record
-- `api_spec.md` — API specification
-- `runbook.md` — Operational runbook
-- `postmortem.md` — Incident postmortem
-
 ---
 
 ## Related
 
-- `practices/documentation/standards.md` — Documentation standards
+- `practices/documentation/documentation_standards.md` — Documentation standards (SSOT)
 - `frameworks/cognitive/expert_committee.md` — Expert committee framework
 - `guidelines/documentation.md` — Documentation guidelines
 

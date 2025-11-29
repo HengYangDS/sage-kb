@@ -22,22 +22,22 @@ A knowledge graph represents relationships between knowledge base content:
 
 ### 1.2 Benefits
 
-| Benefit | Description |
-|---------|-------------|
+| Benefit                  | Description                        |
+|--------------------------|------------------------------------|
 | **Discover connections** | Find related content automatically |
-| **Identify gaps** | Spot missing documentation |
-| **Analyze structure** | Understand KB organization |
-| **Optimize navigation** | Improve content findability |
-| **Validate links** | Detect broken references |
+| **Identify gaps**        | Spot missing documentation         |
+| **Analyze structure**    | Understand KB organization         |
+| **Optimize navigation**  | Improve content findability        |
+| **Validate links**       | Detect broken references           |
 
 ### 1.3 Graph Types
 
-| Type | Nodes | Edges | Use Case |
-|------|-------|-------|----------|
-| **File Graph** | Files | Links between files | Navigation analysis |
-| **Concept Graph** | Concepts | Semantic relations | Topic modeling |
-| **Tag Graph** | Tags | Co-occurrence | Classification |
-| **Full Graph** | All types | All relations | Comprehensive analysis |
+| Type              | Nodes     | Edges               | Use Case               |
+|-------------------|-----------|---------------------|------------------------|
+| **File Graph**    | Files     | Links between files | Navigation analysis    |
+| **Concept Graph** | Concepts  | Semantic relations  | Topic modeling         |
+| **Tag Graph**     | Tags      | Co-occurrence       | Classification         |
+| **Full Graph**    | All types | All relations       | Comprehensive analysis |
 
 ---
 
@@ -91,23 +91,23 @@ builder.export_to_json(Path(".outputs/graph.json"))
 
 ### 3.1 Node Types
 
-| Type | Description | Properties |
-|------|-------------|------------|
-| `FILE` | Markdown/YAML files | path, title, tokens |
-| `DIRECTORY` | Folders | path, file_count |
-| `CONCEPT` | Extracted concepts | name, frequency |
-| `TAG` | Document tags | name, count |
-| `CATEGORY` | Content categories | name, description |
+| Type        | Description         | Properties          |
+|-------------|---------------------|---------------------|
+| `FILE`      | Markdown/YAML files | path, title, tokens |
+| `DIRECTORY` | Folders             | path, file_count    |
+| `CONCEPT`   | Extracted concepts  | name, frequency     |
+| `TAG`       | Document tags       | name, count         |
+| `CATEGORY`  | Content categories  | name, description   |
 
 ### 3.2 Edge Types
 
-| Type | Description | Example |
-|------|-------------|---------|
-| `LINKS_TO` | File links to file | `A.md → B.md` |
-| `CONTAINS` | Directory contains file | `docs/ → A.md` |
-| `REFERENCES` | File references concept | `A.md → "timeout"` |
-| `TAGGED_WITH` | File has tag | `A.md → "guide"` |
-| `RELATED_TO` | Semantic similarity | `A.md ↔ B.md` |
+| Type          | Description             | Example            |
+|---------------|-------------------------|--------------------|
+| `LINKS_TO`    | File links to file      | `A.md → B.md`      |
+| `CONTAINS`    | Directory contains file | `docs/ → A.md`     |
+| `REFERENCES`  | File references concept | `A.md → "timeout"` |
+| `TAGGED_WITH` | File has tag            | `A.md → "guide"`   |
+| `RELATED_TO`  | Semantic similarity     | `A.md ↔ B.md`      |
 
 ### 3.3 Data Model
 
@@ -115,17 +115,20 @@ builder.export_to_json(Path(".outputs/graph.json"))
 from dataclasses import dataclass
 from enum import Enum
 
+
 class NodeType(Enum):
     FILE = "file"
     DIRECTORY = "directory"
     CONCEPT = "concept"
     TAG = "tag"
 
+
 class EdgeType(Enum):
     LINKS_TO = "links_to"
     CONTAINS = "contains"
     REFERENCES = "references"
     TAGGED_WITH = "tagged_with"
+
 
 @dataclass
 class KnowledgeNode:
@@ -134,6 +137,7 @@ class KnowledgeNode:
     node_type: NodeType
     properties: dict
     tokens: int = 0
+
 
 @dataclass
 class KnowledgeEdge:
@@ -156,7 +160,7 @@ builder = KnowledgeGraphBuilder(kb_path=Path("content"))
 graph = builder.build_from_directory(
     include_content=True,  # Include file content in nodes
     extract_concepts=True,  # Extract concepts from text
-    extract_tags=True,      # Extract tags from frontmatter
+    extract_tags=True,  # Extract tags from frontmatter
 )
 ```
 
@@ -221,13 +225,13 @@ file_graph = builder.get_file_graph("content/core/principles.md")
 
 # Find files linked from this file
 outgoing = [
-    edge.target for edge in file_graph.edges 
+    edge.target for edge in file_graph.edges
     if edge.edge_type == EdgeType.LINKS_TO
 ]
 
 # Find files linking to this file
 incoming = [
-    edge.source for edge in graph.edges 
+    edge.source for edge in graph.edges
     if edge.target == file_id and edge.edge_type == EdgeType.LINKS_TO
 ]
 ```
@@ -239,15 +243,15 @@ def find_orphans(graph):
     """Find files with no incoming links."""
     linked_files = set()
     all_files = set()
-    
+
     for node in graph.nodes.values():
         if node.node_type == NodeType.FILE:
             all_files.add(node.id)
-    
+
     for edge in graph.edges:
         if edge.edge_type == EdgeType.LINKS_TO:
             linked_files.add(edge.target)
-    
+
     return all_files - linked_files
 ```
 
@@ -258,15 +262,17 @@ def find_broken_links(graph):
     """Find edges pointing to non-existent nodes."""
     broken = []
     node_ids = set(graph.nodes.keys())
-    
+
     for edge in graph.edges:
         if edge.target not in node_ids:
-            broken.append({
-                "source": edge.source,
-                "target": edge.target,
-                "type": edge.edge_type.value
-            })
-    
+            broken.append(
+                {
+                    "source": edge.source,
+                    "target": edge.target,
+                    "type"  : edge.edge_type.value
+                }
+            )
+
     return broken
 ```
 
@@ -276,12 +282,12 @@ def find_broken_links(graph):
 def calculate_centrality(graph):
     """Calculate node importance by connection count."""
     centrality = {}
-    
+
     for node_id in graph.nodes:
         incoming = sum(1 for e in graph.edges if e.target == node_id)
         outgoing = sum(1 for e in graph.edges if e.source == node_id)
         centrality[node_id] = incoming + outgoing
-    
+
     # Sort by centrality
     return sorted(centrality.items(), key=lambda x: x[1], reverse=True)
 ```
@@ -292,12 +298,12 @@ def calculate_centrality(graph):
 
 ### 6.1 Export Formats
 
-| Format | Use Case | Tool |
-|--------|----------|------|
-| JSON | Data exchange | Any |
-| GraphML | Graph tools | Gephi, yEd |
-| DOT | Graphviz | Graphviz |
-| D3 JSON | Web visualization | D3.js |
+| Format  | Use Case          | Tool       |
+|---------|-------------------|------------|
+| JSON    | Data exchange     | Any        |
+| GraphML | Graph tools       | Gephi, yEd |
+| DOT     | Graphviz          | Graphviz   |
+| D3 JSON | Web visualization | D3.js      |
 
 ### 6.2 JSON Export
 
@@ -324,24 +330,26 @@ builder.export_to_json(Path(".outputs/graph.json"))
 ### 6.3 Visualization Tools
 
 **Graphviz (DOT format)**:
+
 ```python
 def export_to_dot(graph, output_path):
     lines = ["digraph KnowledgeGraph {"]
     lines.append('  rankdir=LR;')
-    
+
     for node in graph.nodes.values():
         shape = "box" if node.node_type == NodeType.FILE else "ellipse"
         lines.append(f'  "{node.id}" [label="{node.name}" shape={shape}];')
-    
+
     for edge in graph.edges:
         lines.append(f'  "{edge.source}" -> "{edge.target}";')
-    
+
     lines.append("}")
-    
+
     Path(output_path).write_text("\n".join(lines))
 ```
 
 **D3.js Format**:
+
 ```python
 def export_to_d3(graph, output_path):
     d3_data = {
@@ -354,7 +362,7 @@ def export_to_d3(graph, output_path):
             for e in graph.edges
         ]
     }
-    
+
     with open(output_path, "w") as f:
         json.dump(d3_data, f, indent=2)
 ```
@@ -365,12 +373,12 @@ def export_to_d3(graph, output_path):
 
 ### 7.1 Performance Tips
 
-| Tip | Description |
-|-----|-------------|
-| **Limit scope** | Build graphs for specific directories |
-| **Exclude large files** | Skip files over token limit |
-| **Cache results** | Reuse graphs when content unchanged |
-| **Incremental builds** | Only process changed files |
+| Tip                     | Description                           |
+|-------------------------|---------------------------------------|
+| **Limit scope**         | Build graphs for specific directories |
+| **Exclude large files** | Skip files over token limit           |
+| **Cache results**       | Reuse graphs when content unchanged   |
+| **Incremental builds**  | Only process changed files            |
 
 ### 7.2 Graph Maintenance
 
@@ -379,29 +387,29 @@ def export_to_d3(graph, output_path):
 def maintain_graph():
     builder = KnowledgeGraphBuilder(kb_path=Path("content"))
     graph = builder.build_from_directory()
-    
+
     # Check for issues
     orphans = find_orphans(graph)
     broken = find_broken_links(graph)
-    
+
     if orphans:
         print(f"Warning: {len(orphans)} orphan files found")
-    
+
     if broken:
         print(f"Error: {len(broken)} broken links found")
-    
+
     # Export for review
     builder.export_to_json(Path(".outputs/maintenance_graph.json"))
 ```
 
 ### 7.3 Content Organization
 
-| Practice | Benefit |
-|----------|---------|
-| **Use consistent naming** | Better concept extraction |
-| **Add frontmatter tags** | Improved classification |
+| Practice                    | Benefit                     |
+|-----------------------------|-----------------------------|
+| **Use consistent naming**   | Better concept extraction   |
+| **Add frontmatter tags**    | Improved classification     |
 | **Maintain internal links** | Stronger graph connectivity |
-| **Group related content** | Clearer structure |
+| **Group related content**   | Clearer structure           |
 
 ---
 
@@ -415,15 +423,15 @@ def audit_documentation():
     builder = KnowledgeGraphBuilder(kb_path=Path("content"))
     graph = builder.build_from_directory()
     stats = builder.get_statistics()
-    
+
     report = {
-        "total_files": stats["nodes_by_type"].get("file", 0),
-        "total_concepts": stats["nodes_by_type"].get("concept", 0),
-        "orphan_files": len(find_orphans(graph)),
-        "broken_links": len(find_broken_links(graph)),
+        "total_files"    : stats["nodes_by_type"].get("file", 0),
+        "total_concepts" : stats["nodes_by_type"].get("concept", 0),
+        "orphan_files"   : len(find_orphans(graph)),
+        "broken_links"   : len(find_broken_links(graph)),
         "avg_connections": stats["total_edges"] / max(stats["total_nodes"], 1)
     }
-    
+
     return report
 ```
 
@@ -433,21 +441,21 @@ def audit_documentation():
 # Find related content for a file
 def recommend_related(file_path, graph, top_n=5):
     file_id = f"file:{file_path}"
-    
+
     # Get concepts from this file
     file_concepts = set()
     for edge in graph.edges:
         if edge.source == file_id and edge.edge_type == EdgeType.REFERENCES:
             file_concepts.add(edge.target)
-    
+
     # Find files with similar concepts
     similarity = {}
     for edge in graph.edges:
-        if (edge.edge_type == EdgeType.REFERENCES and 
+        if (edge.edge_type == EdgeType.REFERENCES and
             edge.target in file_concepts and
             edge.source != file_id):
             similarity[edge.source] = similarity.get(edge.source, 0) + 1
-    
+
     # Return top N
     return sorted(similarity.items(), key=lambda x: x[1], reverse=True)[:top_n]
 ```
@@ -458,18 +466,18 @@ def recommend_related(file_path, graph, top_n=5):
 # Identify topics needing more documentation
 def find_knowledge_gaps(graph, min_coverage=3):
     concept_coverage = {}
-    
+
     for edge in graph.edges:
         if edge.edge_type == EdgeType.REFERENCES:
             concept = edge.target
             concept_coverage[concept] = concept_coverage.get(concept, 0) + 1
-    
+
     # Find under-documented concepts
     gaps = [
         concept for concept, count in concept_coverage.items()
         if count < min_coverage
     ]
-    
+
     return gaps
 ```
 
@@ -480,33 +488,35 @@ def find_knowledge_gaps(graph, min_coverage=3):
 def suggest_links(graph, threshold=0.5):
     suggestions = []
     file_nodes = [n for n in graph.nodes.values() if n.node_type == NodeType.FILE]
-    
+
     for file1 in file_nodes:
         for file2 in file_nodes:
             if file1.id == file2.id:
                 continue
-            
+
             # Calculate similarity based on shared concepts
             concepts1 = get_file_concepts(file1.id, graph)
             concepts2 = get_file_concepts(file2.id, graph)
-            
+
             if concepts1 and concepts2:
                 similarity = len(concepts1 & concepts2) / len(concepts1 | concepts2)
-                
+
                 if similarity >= threshold:
                     # Check if link exists
                     link_exists = any(
                         e.source == file1.id and e.target == file2.id
                         for e in graph.edges if e.edge_type == EdgeType.LINKS_TO
                     )
-                    
+
                     if not link_exists:
-                        suggestions.append({
-                            "from": file1.name,
-                            "to": file2.name,
-                            "similarity": similarity
-                        })
-    
+                        suggestions.append(
+                            {
+                                "from"      : file1.name,
+                                "to"        : file2.name,
+                                "similarity": similarity
+                            }
+                        )
+
     return suggestions
 ```
 
@@ -537,10 +547,10 @@ result = await build_knowledge_graph(
 # Result structure
 {
     "success": True,
-    "result": {
-        "total_nodes": 150,
-        "total_edges": 320,
-        "total_tokens": 45000,
+    "result" : {
+        "total_nodes"  : 150,
+        "total_edges"  : 320,
+        "total_tokens" : 45000,
         "nodes_by_type": {...},
         "edges_by_type": {...}
     }

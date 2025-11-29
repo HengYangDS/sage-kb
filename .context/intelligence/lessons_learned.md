@@ -12,11 +12,13 @@
 
 ## 1. Overview
 
-This document captures significant lessons learned during the development of SAGE Knowledge Base. These insights help avoid repeating mistakes and reinforce successful patterns.
+This document captures significant lessons learned during the development of SAGE Knowledge Base. These insights help
+avoid repeating mistakes and reinforce successful patterns.
 
 ### 1.1 Document Format
 
 Each lesson follows this structure:
+
 - **Context**: What situation led to this learning
 - **Challenge**: What problem was encountered
 - **Solution**: How it was resolved
@@ -34,15 +36,16 @@ Each lesson follows this structure:
 
 **Solution**: Implemented 5-level timeout hierarchy (T1-T5) with clear escalation.
 
-**Lesson**: Design timeout strategy upfront. Every I/O operation needs a timeout. Graceful degradation is better than hanging.
+**Lesson**: Design timeout strategy upfront. Every I/O operation needs a timeout. Graceful degradation is better than
+hanging.
 
-| Level | Timeout | Use Case |
-|-------|---------|----------|
-| T1 | 100ms | Cache lookup |
-| T2 | 500ms | Single file |
-| T3 | 2s | Layer load |
-| T4 | 5s | Full KB load |
-| T5 | 10s | Complex analysis |
+| Level | Timeout | Use Case         |
+|-------|---------|------------------|
+| T1    | 100ms   | Cache lookup     |
+| T2    | 500ms   | Single file      |
+| T3    | 2s      | Layer load       |
+| T4    | 5s      | Full KB load     |
+| T5    | 10s     | Complex analysis |
 
 ### 2.2 Three-Layer Architecture
 
@@ -52,7 +55,8 @@ Each lesson follows this structure:
 
 **Solution**: Refactored to Core → Services → Plugins architecture.
 
-**Lesson**: Clear layer boundaries with defined interfaces make the system more maintainable. Core should have zero external dependencies.
+**Lesson**: Clear layer boundaries with defined interfaces make the system more maintainable. Core should have zero
+external dependencies.
 
 ### 2.3 Event-Driven Communication
 
@@ -62,7 +66,8 @@ Each lesson follows this structure:
 
 **Solution**: Introduced EventBus for component communication.
 
-**Lesson**: Event-driven architecture reduces coupling and makes testing easier. Components should communicate through events, not direct calls.
+**Lesson**: Event-driven architecture reduces coupling and makes testing easier. Components should communicate through
+events, not direct calls.
 
 ---
 
@@ -76,7 +81,8 @@ Each lesson follows this structure:
 
 **Solution**: Modular YAML configuration with clear hierarchy.
 
-**Lesson**: Configuration should follow the same principles as code: single responsibility, clear naming, documented defaults.
+**Lesson**: Configuration should follow the same principles as code: single responsibility, clear naming, documented
+defaults.
 
 ```
 config/
@@ -100,6 +106,7 @@ config/
 # Define protocol
 class LoaderProtocol(Protocol):
     async def load(self, path: str) -> Content: ...
+
 
 # Implementation can vary
 class FileLoader:  # Implicitly implements LoaderProtocol
@@ -148,7 +155,8 @@ class FileLoader:  # Implicitly implements LoaderProtocol
 
 **Solution**: Test pyramid approach: unit → integration → e2e.
 
-**Lesson**: Focus on testing behavior, not implementation. Integration tests catch more real issues than unit tests alone.
+**Lesson**: Focus on testing behavior, not implementation. Integration tests catch more real issues than unit tests
+alone.
 
 ---
 

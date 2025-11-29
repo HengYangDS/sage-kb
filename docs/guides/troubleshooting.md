@@ -27,13 +27,13 @@ sage get --layer core --timeout 5000
 
 ### 1.2 Common Symptoms
 
-| Symptom | Likely Cause | Section |
-|---------|--------------|---------|
-| Command not found | Installation issue | [2.1](#21-command-not-found) |
-| Import errors | Missing dependencies | [2.2](#22-import-errors) |
-| Timeout errors | Performance/config | [6.1](#61-timeout-errors) |
-| Empty results | Path/config issue | [5.2](#52-knowledge-base-not-found) |
-| MCP connection failed | Server/port issue | [4.1](#41-connection-refused) |
+| Symptom               | Likely Cause         | Section                             |
+|-----------------------|----------------------|-------------------------------------|
+| Command not found     | Installation issue   | [2.1](#21-command-not-found)        |
+| Import errors         | Missing dependencies | [2.2](#22-import-errors)            |
+| Timeout errors        | Performance/config   | [6.1](#61-timeout-errors)           |
+| Empty results         | Path/config issue    | [5.2](#52-knowledge-base-not-found) |
+| MCP connection failed | Server/port issue    | [4.1](#41-connection-refused)       |
 
 ---
 
@@ -126,6 +126,7 @@ sage get --layer core --timeout 5000
 **Symptom**: Commands return nothing or empty results
 
 **Diagnosis**:
+
 ```bash
 # Enable debug output
 sage --debug get --layer core
@@ -205,6 +206,7 @@ sage config --show
 **Symptom**: `Connection refused` or `Cannot connect to MCP server`
 
 **Diagnosis**:
+
 ```bash
 # Check if server is running
 ps aux | grep sage  # Linux/macOS
@@ -237,6 +239,7 @@ netstat -an | grep 8080
 **Symptom**: Server starts but crashes immediately
 
 **Diagnosis**:
+
 ```bash
 # Run with debug logging
 sage serve --debug --log-level DEBUG
@@ -295,6 +298,7 @@ sage serve --debug --log-level DEBUG
 **Symptom**: `Configuration file not found` or using defaults
 
 **Diagnosis**:
+
 ```bash
 # Show config locations searched
 sage config --show-paths
@@ -357,9 +361,9 @@ sage config --show-paths
    ```
 
 2. **Check common issues**:
-   - Indentation (use spaces, not tabs)
-   - Colons followed by space
-   - Quotes around special characters
+    - Indentation (use spaces, not tabs)
+    - Colons followed by space
+    - Quotes around special characters
 
 3. **Use YAML validator**:
    ```bash
@@ -376,6 +380,7 @@ sage config --show-paths
 **Symptom**: `TimeoutError` or operations taking too long
 
 **Diagnosis**:
+
 ```bash
 # Check current timeouts
 sage config --show | grep timeout
@@ -479,24 +484,24 @@ cat .logs/sage.log
 
 ### 7.2 Log Files
 
-| Log | Location | Content |
-|-----|----------|---------|
-| Main log | `.logs/sage.log` | General application logs |
-| Error log | `.logs/error.log` | Errors and exceptions |
-| Debug log | `.logs/debug.log` | Detailed debug info |
+| Log       | Location          | Content                  |
+|-----------|-------------------|--------------------------|
+| Main log  | `.logs/sage.log`  | General application logs |
+| Error log | `.logs/error.log` | Errors and exceptions    |
+| Debug log | `.logs/debug.log` | Detailed debug info      |
 
 ### 7.3 Reporting Issues
 
 When reporting issues, include:
 
 1. **Environment**:
-   - OS and version
-   - Python version
-   - SAGE version
+    - OS and version
+    - Python version
+    - SAGE version
 
 2. **Steps to reproduce**:
-   - Exact commands run
-   - Configuration used
+    - Exact commands run
+    - Configuration used
 
 3. **Expected vs actual behavior**
 
@@ -532,13 +537,13 @@ sage --log-level DEBUG <command>
 
 ### Common Fixes
 
-| Issue | Quick Fix |
-|-------|-----------|
-| Command not found | `pip install sage-kb` |
-| Import error | `pip install -e ".[all]"` |
-| Config not found | `sage config --init` |
-| Timeout | Increase timeout in config |
-| Connection refused | `sage serve --port 8080` |
+| Issue              | Quick Fix                  |
+|--------------------|----------------------------|
+| Command not found  | `pip install sage-kb`      |
+| Import error       | `pip install -e ".[all]"`  |
+| Config not found   | `sage config --init`       |
+| Timeout            | Increase timeout in config |
+| Connection refused | `sage serve --port 8080`   |
 
 ---
 

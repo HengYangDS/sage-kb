@@ -14,12 +14,12 @@
 
 ### 1.1 Configuration Philosophy
 
-| Principle | Description |
-|-----------|-------------|
-| **Modular** | Split by concern into separate files |
-| **Layered** | Defaults → File → Environment |
-| **Validated** | Schema-based validation |
-| **Documented** | Self-documenting with comments |
+| Principle      | Description                          |
+|----------------|--------------------------------------|
+| **Modular**    | Split by concern into separate files |
+| **Layered**    | Defaults → File → Environment        |
+| **Validated**  | Schema-based validation              |
+| **Documented** | Self-documenting with comments       |
 
 ### 1.2 Configuration Hierarchy
 
@@ -145,10 +145,10 @@ operations:
 behavior:
   # Action when timeout occurs
   on_timeout: "fallback"  # fallback | error | partial
-  
+
   # Enable timeout statistics
   track_stats: true
-  
+
   # Warning threshold (percentage of timeout)
   warning_threshold: 0.8
 ```
@@ -170,14 +170,14 @@ outputs:
     enabled: true
     level: INFO
     format: simple
-  
+
   file:
     enabled: true
     path: ".logs/sage.log"
     level: DEBUG
     max_size_mb: 10
     backup_count: 5
-  
+
   error_file:
     enabled: true
     path: ".logs/error.log"
@@ -246,9 +246,9 @@ rate_limiting:
 # CORS settings
 cors:
   enabled: true
-  allow_origins: ["*"]
-  allow_methods: ["GET", "POST"]
-  allow_headers: ["Authorization", "Content-Type"]
+  allow_origins: [ "*" ]
+  allow_methods: [ "GET", "POST" ]
+  allow_headers: [ "Authorization", "Content-Type" ]
 
 # Content security
 content:
@@ -278,19 +278,19 @@ layers:
     auto_load: true
     paths:
       - content/core
-    
+
   - name: guidelines
     priority: 1
     auto_load: true
     paths:
       - content/guidelines
-    
+
   - name: frameworks
     priority: 2
     auto_load: false
     paths:
       - content/frameworks
-    
+
   - name: practices
     priority: 3
     auto_load: false
@@ -302,7 +302,7 @@ behavior:
   lazy_load: true
   parallel_load: true
   max_parallel: 4
-  
+
 # File patterns
 patterns:
   include:
@@ -324,19 +324,19 @@ patterns:
 files:
   max_size_kb: 500
   encoding: "utf-8"
-  
+
 # Markdown processing
 markdown:
   extract_frontmatter: true
   extract_headings: true
   extract_links: true
-  
+
 # Content validation
 validation:
   require_frontmatter: false
   require_title: true
   max_heading_depth: 4
-  
+
 # Content indexing
 indexing:
   enabled: true
@@ -357,11 +357,11 @@ task_triggers:
     load:
       - content/practices/engineering/security.md
       - content/frameworks/patterns/authentication.md
-    
+
   - pattern: "test|testing"
     load:
       - content/practices/engineering/testing_strategy.md
-    
+
   - pattern: "api|endpoint"
     load:
       - content/practices/engineering/api_design.md
@@ -372,7 +372,7 @@ file_triggers:
   - pattern: "*.test.py"
     load:
       - content/practices/engineering/testing_strategy.md
-    
+
   - pattern: "*.yaml"
     load:
       - content/practices/engineering/yaml_conventions.md
@@ -426,13 +426,13 @@ output:
   format: "rich"  # rich | plain | json
   color: true
   width: auto
-  
+
 # Default command options
 defaults:
   layer: 0
   timeout_ms: 5000
   max_results: 10
-  
+
 # Progress display
 progress:
   show_spinner: true
@@ -448,16 +448,16 @@ progress:
 server:
   name: "sage-kb"
   version: "0.1.0"
-  
+
 # Transport
 transport:
   type: "stdio"  # stdio | sse | websocket
-  
+
 # SSE settings (if type: sse)
 sse:
   host: "127.0.0.1"
   port: 8080
-  
+
 # Tool configuration
 tools:
   enabled:
@@ -496,18 +496,18 @@ server:
   host: "127.0.0.1"
   port: 8000
   workers: 4
-  
+
 # API versioning
 versioning:
   current: "v1"
-  supported: ["v1"]
-  
+  supported: [ "v1" ]
+
 # Endpoints
 endpoints:
   knowledge: "/api/v1/knowledge"
   search: "/api/v1/search"
   health: "/health"
-  
+
 # Documentation
 docs:
   enabled: true
@@ -521,40 +521,40 @@ docs:
 
 ### 6.1 Core Variables
 
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `SAGE_CONFIG_PATH` | Config directory path | `./config` |
+| Variable            | Description            | Default     |
+|---------------------|------------------------|-------------|
+| `SAGE_CONFIG_PATH`  | Config directory path  | `./config`  |
 | `SAGE_CONTENT_PATH` | Content directory path | `./content` |
-| `SAGE_LOG_LEVEL` | Log level | `INFO` |
-| `SAGE_LOG_PATH` | Log file path | `./.logs` |
+| `SAGE_LOG_LEVEL`    | Log level              | `INFO`      |
+| `SAGE_LOG_PATH`     | Log file path          | `./.logs`   |
 
 ### 6.2 Timeout Variables
 
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `SAGE_TIMEOUT_DEFAULT` | Default timeout (ms) | `5000` |
-| `SAGE_TIMEOUT_T1` | T1 timeout (ms) | `100` |
-| `SAGE_TIMEOUT_T2` | T2 timeout (ms) | `500` |
-| `SAGE_TIMEOUT_T3` | T3 timeout (ms) | `2000` |
-| `SAGE_TIMEOUT_T4` | T4 timeout (ms) | `5000` |
-| `SAGE_TIMEOUT_T5` | T5 timeout (ms) | `10000` |
+| Variable               | Description          | Default |
+|------------------------|----------------------|---------|
+| `SAGE_TIMEOUT_DEFAULT` | Default timeout (ms) | `5000`  |
+| `SAGE_TIMEOUT_T1`      | T1 timeout (ms)      | `100`   |
+| `SAGE_TIMEOUT_T2`      | T2 timeout (ms)      | `500`   |
+| `SAGE_TIMEOUT_T3`      | T3 timeout (ms)      | `2000`  |
+| `SAGE_TIMEOUT_T4`      | T4 timeout (ms)      | `5000`  |
+| `SAGE_TIMEOUT_T5`      | T5 timeout (ms)      | `10000` |
 
 ### 6.3 Service Variables
 
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `SAGE_MCP_TRANSPORT` | MCP transport type | `stdio` |
-| `SAGE_MCP_PORT` | MCP SSE port | `8080` |
-| `SAGE_API_PORT` | API server port | `8000` |
-| `SAGE_API_HOST` | API server host | `127.0.0.1` |
+| Variable             | Description        | Default     |
+|----------------------|--------------------|-------------|
+| `SAGE_MCP_TRANSPORT` | MCP transport type | `stdio`     |
+| `SAGE_MCP_PORT`      | MCP SSE port       | `8080`      |
+| `SAGE_API_PORT`      | API server port    | `8000`      |
+| `SAGE_API_HOST`      | API server host    | `127.0.0.1` |
 
 ### 6.4 Security Variables
 
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `SAGE_API_KEY` | API key for auth | - |
-| `SAGE_JWT_SECRET` | JWT signing secret | - |
-| `SAGE_CORS_ORIGINS` | CORS allowed origins | `*` |
+| Variable            | Description          | Default |
+|---------------------|----------------------|---------|
+| `SAGE_API_KEY`      | API key for auth     | -       |
+| `SAGE_JWT_SECRET`   | JWT signing secret   | -       |
+| `SAGE_CORS_ORIGINS` | CORS allowed origins | `*`     |
 
 ---
 
@@ -563,36 +563,38 @@ docs:
 ### 7.1 Environment-Specific Configuration
 
 **Development** (`config/environments/development.yaml`):
+
 ```yaml
 extends: base
 
 logging:
   default_level: DEBUG
-  
+
 timeout:
   default: T4  # More lenient
-  
+
 features:
   debug_mode: true
   hot_reload: true
 ```
 
 **Production** (`config/environments/production.yaml`):
+
 ```yaml
 extends: base
 
 logging:
   default_level: WARNING
-  
+
 timeout:
   default: T3  # Stricter
-  
+
 security:
   authentication:
     enabled: true
   rate_limiting:
     enabled: true
-    
+
 features:
   debug_mode: false
 ```
@@ -660,13 +662,13 @@ timeout:
   levels:
     T3: 3000
     T4: 8000
-    
+
 knowledge:
   loading:
     lazy_load: true
     parallel_load: true
     max_parallel: 8
-    
+
 cache:
   enabled: true
   max_mb: 200
@@ -705,10 +707,10 @@ logging:
   outputs:
     console:
       format: simple
-      
+
 timeout:
   default_ms: 10000  # Lenient for debugging
-  
+
 features:
   hot_reload: true
   debug_endpoints: true

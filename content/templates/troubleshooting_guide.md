@@ -34,11 +34,11 @@ This template helps create structured troubleshooting guides for components, fea
 
 ### Common Symptoms
 
-| Symptom | Likely Cause | Solution Section |
-|---------|--------------|------------------|
-| [Symptom 1] | [Cause] | [Link to section] |
-| [Symptom 2] | [Cause] | [Link to section] |
-| [Symptom 3] | [Cause] | [Link to section] |
+| Symptom     | Likely Cause | Solution Section  |
+|-------------|--------------|-------------------|
+| [Symptom 1] | [Cause]      | [Link to section] |
+| [Symptom 2] | [Cause]      | [Link to section] |
+| [Symptom 3] | [Cause]      | [Link to section] |
 
 ---
 
@@ -105,11 +105,11 @@ This template helps create structured troubleshooting guides for components, fea
 
 ## Error Reference
 
-| Error Code/Message | Meaning | Solution |
-|--------------------|---------|----------|
-| `[ERROR_001]` | [What it means] | [Quick fix] |
-| `[ERROR_002]` | [What it means] | [Quick fix] |
-| `[ERROR_003]` | [What it means] | [Quick fix] |
+| Error Code/Message | Meaning         | Solution    |
+|--------------------|-----------------|-------------|
+| `[ERROR_001]`      | [What it means] | [Quick fix] |
+| `[ERROR_002]`      | [What it means] | [Quick fix] |
+| `[ERROR_003]`      | [What it means] | [Quick fix] |
 
 ---
 
@@ -147,6 +147,7 @@ Before escalating, gather:
 ---
 
 *Last Updated: [DATE]*
+
 ```
 
 ---
@@ -209,11 +210,11 @@ curl http://localhost:8080/health
 
 ### Common Symptoms
 
-| Symptom | Likely Cause | Solution Section |
-|---------|--------------|------------------|
-| Connection refused | Server not running | #server-not-starting |
-| Timeout errors | Performance issue | #slow-responses |
-| Auth failures | Invalid credentials | #authentication-issues |
+| Symptom            | Likely Cause        | Solution Section       |
+|--------------------|---------------------|------------------------|
+| Connection refused | Server not running  | #server-not-starting   |
+| Timeout errors     | Performance issue   | #slow-responses        |
+| Auth failures      | Invalid credentials | #authentication-issues |
 
 ---
 
@@ -256,6 +257,7 @@ sage serve --port 8081
 
 - Always stop server properly with Ctrl+C
 - Use unique ports per environment
+
 ```
 
 ---

@@ -1,12 +1,13 @@
 """Tests for sage.capabilities.monitors.health module."""
 
-import pytest
 import tempfile
 from pathlib import Path
 
+import pytest
+
 from sage.capabilities.monitors.health import (
-    HealthMonitor,
     HealthCheck,
+    HealthMonitor,
     HealthReport,
     HealthStatus,
     get_health_monitor,
@@ -100,10 +101,10 @@ class TestHealthMonitor:
             tmppath = Path(tmpdir)
             # Create some content
             (tmppath / "test.md").write_text("# Test")
-            
+
             monitor = HealthMonitor(kb_path=tmppath)
             check = await monitor.check_filesystem()
-            
+
             assert isinstance(check, HealthCheck)
             assert check.name == "filesystem"
 
@@ -113,7 +114,7 @@ class TestHealthMonitor:
         with tempfile.TemporaryDirectory() as tmpdir:
             monitor = HealthMonitor(kb_path=Path(tmpdir))
             check = await monitor.check_config()
-            
+
             assert isinstance(check, HealthCheck)
             assert check.name == "config"
 
@@ -123,7 +124,7 @@ class TestHealthMonitor:
         with tempfile.TemporaryDirectory() as tmpdir:
             monitor = HealthMonitor(kb_path=Path(tmpdir))
             report = await monitor.check_all()
-            
+
             assert isinstance(report, HealthReport)
             assert len(report.checks) > 0
 
@@ -131,12 +132,12 @@ class TestHealthMonitor:
         """Test registering alert callback."""
         with tempfile.TemporaryDirectory() as tmpdir:
             monitor = HealthMonitor(kb_path=Path(tmpdir))
-            
+
             alerts_received: list[HealthReport] = []
-            
+
             def on_alert(report: HealthReport) -> None:
                 alerts_received.append(report)
-            
+
             monitor.register_alert_callback(on_alert)
             # Callback should be registered without error
 
@@ -145,7 +146,7 @@ class TestHealthMonitor:
         with tempfile.TemporaryDirectory() as tmpdir:
             monitor = HealthMonitor(kb_path=Path(tmpdir))
             history = monitor.get_history()
-            
+
             assert isinstance(history, list)
 
     def test_get_status_summary(self) -> None:
@@ -153,7 +154,7 @@ class TestHealthMonitor:
         with tempfile.TemporaryDirectory() as tmpdir:
             monitor = HealthMonitor(kb_path=Path(tmpdir))
             summary = monitor.get_status_summary()
-            
+
             assert isinstance(summary, dict)
 
 

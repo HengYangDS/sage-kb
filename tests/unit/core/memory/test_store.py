@@ -1,15 +1,16 @@
 """Tests for sage.core.memory.store module."""
 
-import pytest
 import tempfile
+from collections.abc import Generator
 from pathlib import Path
-from typing import Generator
+
+import pytest
 
 from sage.core.memory.store import (
-    MemoryStore,
     MemoryEntry,
-    MemoryType,
     MemoryPriority,
+    MemoryStore,
+    MemoryType,
 )
 
 
@@ -132,7 +133,7 @@ class TestMemoryStore:
         """Test querying entries by type."""
         temp_store.add(type=MemoryType.CONVERSATION, content="Conv 1")
         temp_store.add(type=MemoryType.DECISION, content="Decision 1")
-        
+
         results = temp_store.query(type=MemoryType.CONVERSATION)
         assert len(results) >= 1
 
@@ -140,7 +141,7 @@ class TestMemoryStore:
         """Test clearing the store."""
         temp_store.add(type=MemoryType.CONVERSATION, content="Test 1")
         temp_store.add(type=MemoryType.CONVERSATION, content="Test 2")
-        
+
         temp_store.clear()
         results = temp_store.query()
         assert len(results) == 0
@@ -149,6 +150,6 @@ class TestMemoryStore:
         """Test getting total token count."""
         temp_store.add(type=MemoryType.CONVERSATION, content="Test", tokens=100)
         temp_store.add(type=MemoryType.CONVERSATION, content="Test", tokens=200)
-        
+
         total = temp_store.get_total_tokens()
         assert total >= 300

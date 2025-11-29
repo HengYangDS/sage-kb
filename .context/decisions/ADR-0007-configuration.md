@@ -183,6 +183,7 @@ features:
 from pydantic import BaseModel, Field
 from pydantic_settings import BaseSettings
 
+
 class TimeoutConfig(BaseModel):
     cache_lookup: int = Field(default=100, ge=10)
     file_read: int = Field(default=500, ge=50)
@@ -190,10 +191,11 @@ class TimeoutConfig(BaseModel):
     full_load: int = Field(default=5000, ge=1000)
     analysis: int = Field(default=10000, ge=2000)
 
+
 class SAGEConfig(BaseSettings):
     version: str = "0.1.0"
     timeout: TimeoutConfig = TimeoutConfig()
-    
+
     class Config:
         env_prefix = "SAGE__"
         env_nested_delimiter = "__"
@@ -232,12 +234,12 @@ def load_config(config_path: str | None = None) -> SAGEConfig:
     """Load configuration with hierarchy."""
     # 1. Start with defaults
     config_dict = {}
-    
+
     # 2. Load from YAML files
     if config_path:
         yaml_config = load_yaml(config_path)
         config_dict = deep_merge(config_dict, yaml_config)
-    
+
     # 3. Environment variables applied by Pydantic
     return SAGEConfig(**config_dict)
 ```

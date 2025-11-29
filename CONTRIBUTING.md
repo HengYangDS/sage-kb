@@ -1,6 +1,7 @@
 # Contributing to SAGE Knowledge Base
 
-Thank you for your interest in contributing to SAGE! This document provides guidelines and instructions for contributing.
+Thank you for your interest in contributing to SAGE! This document provides guidelines and instructions for
+contributing.
 
 ---
 
@@ -32,17 +33,18 @@ We are committed to providing a welcoming and inclusive environment. Please:
 
 ### Types of Contributions
 
-| Type | Description | Difficulty |
-|------|-------------|------------|
-| 🐛 Bug fixes | Fix reported issues | Beginner |
-| 📚 Documentation | Improve docs, fix typos | Beginner |
-| ✨ Features | Add new functionality | Intermediate |
-| 🏗️ Architecture | Core system changes | Advanced |
-| 🧪 Testing | Add or improve tests | Intermediate |
+| Type             | Description             | Difficulty   |
+|------------------|-------------------------|--------------|
+| 🐛 Bug fixes     | Fix reported issues     | Beginner     |
+| 📚 Documentation | Improve docs, fix typos | Beginner     |
+| ✨ Features       | Add new functionality   | Intermediate |
+| 🏗️ Architecture | Core system changes     | Advanced     |
+| 🧪 Testing       | Add or improve tests    | Intermediate |
 
 ### First Contribution?
 
 Look for issues labeled:
+
 - `good first issue` - Simple, well-defined tasks
 - `help wanted` - We'd love assistance
 - `documentation` - Docs improvements
@@ -123,12 +125,12 @@ sage-kb/
 
 ### Branch Naming
 
-| Type | Format | Example |
-|------|--------|---------|
-| Feature | `feature/description` | `feature/add-mcp-streaming` |
-| Bug fix | `bugfix/description` | `bugfix/fix-timeout-handling` |
-| Docs | `docs/description` | `docs/update-api-guide` |
-| Hotfix | `hotfix/description` | `hotfix/security-patch` |
+| Type    | Format                | Example                       |
+|---------|-----------------------|-------------------------------|
+| Feature | `feature/description` | `feature/add-mcp-streaming`   |
+| Bug fix | `bugfix/description`  | `bugfix/fix-timeout-handling` |
+| Docs    | `docs/description`    | `docs/update-api-guide`       |
+| Hotfix  | `hotfix/description`  | `hotfix/security-patch`       |
 
 ### Creating a Branch
 
@@ -162,17 +164,18 @@ ruff format src/
 
 ### Key Standards
 
-| Standard | Requirement |
-|----------|-------------|
-| Line length | 88 characters |
-| Type hints | Required for public functions |
-| Docstrings | Google style |
-| Imports | Sorted by ruff |
+| Standard    | Requirement                   |
+|-------------|-------------------------------|
+| Line length | 88 characters                 |
+| Type hints  | Required for public functions |
+| Docstrings  | Google style                  |
+| Imports     | Sorted by ruff                |
 
 ### Example Code
 
 ```python
 from typing import Optional
+
 
 def process_content(
     content: str,
@@ -192,11 +195,11 @@ def process_content(
     """
     if not content:
         raise ValueError("Content cannot be empty")
-    
+
     result = content.strip()
     if max_length is not None:
         result = result[:max_length]
-    
+
     return result
 ```
 
@@ -235,26 +238,27 @@ pytest -v
 import pytest
 from sage.core.loader import Loader
 
+
 class TestLoader:
     """Tests for the Loader class."""
-    
+
     def test_load_file_success(self, tmp_path):
         """Test successful file loading."""
         # Arrange
         file = tmp_path / "test.md"
         file.write_text("# Test Content")
         loader = Loader()
-        
+
         # Act
         result = loader.load(file)
-        
+
         # Assert
         assert result.content == "# Test Content"
-    
+
     def test_load_file_not_found(self):
         """Test loading non-existent file raises error."""
         loader = Loader()
-        
+
         with pytest.raises(FileNotFoundError):
             loader.load("nonexistent.md")
 ```
@@ -272,12 +276,12 @@ class TestLoader:
 
 ### Types of Documentation
 
-| Type | Location | Purpose |
-|------|----------|---------|
-| API docs | `docs/api/` | API reference |
-| Guides | `docs/guides/` | How-to guides |
-| Design | `docs/design/` | Architecture docs |
-| Content | `content/` | Knowledge content |
+| Type     | Location       | Purpose           |
+|----------|----------------|-------------------|
+| API docs | `docs/api/`    | API reference     |
+| Guides   | `docs/guides/` | How-to guides     |
+| Design   | `docs/design/` | Architecture docs |
+| Content  | `content/`     | Knowledge content |
 
 ### Documentation Style
 
@@ -317,6 +321,7 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
 **Types**: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`
 
 **Examples**:
+
 ```
 feat(cli): add export command for knowledge layers
 fix(loader): handle empty files gracefully
@@ -336,19 +341,23 @@ docs(api): update MCP protocol documentation
 
 ```markdown
 ## Description
+
 Brief description of changes
 
 ## Type of Change
+
 - [ ] Bug fix
 - [ ] New feature
 - [ ] Documentation update
 - [ ] Refactoring
 
 ## Testing
+
 - [ ] Tests added/updated
 - [ ] All tests passing
 
 ## Checklist
+
 - [ ] Code follows style guidelines
 - [ ] Self-reviewed code
 - [ ] Documentation updated
@@ -395,6 +404,7 @@ pre-commit run --all-files # Run all hooks
 ## Recognition
 
 Contributors will be:
+
 - Listed in CHANGELOG for their contributions
 - Acknowledged in release notes
 - Added to contributors list (for significant contributions)

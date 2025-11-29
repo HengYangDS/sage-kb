@@ -1,10 +1,8 @@
 """Tests for sage.core.logging.config module."""
 
-import pytest
-
 from sage.core.logging.config import (
-    LogLevel,
     LogFormat,
+    LogLevel,
     configure_logging,
     get_default_processors,
     reset_logging,

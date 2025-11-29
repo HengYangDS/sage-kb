@@ -23,12 +23,12 @@ Knowledge capture transforms ephemeral collaboration insights into persistent, r
 
 ### 1.2 Capture Philosophy
 
-| Principle | Description |
-|-----------|-------------|
-| **Capture at Source** | Document while context is fresh |
-| **Right-size Content** | Not too brief, not too verbose |
+| Principle              | Description                      |
+|------------------------|----------------------------------|
+| **Capture at Source**  | Document while context is fresh  |
+| **Right-size Content** | Not too brief, not too verbose   |
 | **Structured Storage** | Consistent locations and formats |
-| **Living Documents** | Update as understanding evolves |
+| **Living Documents**   | Update as understanding evolves  |
 
 ---
 
@@ -38,24 +38,24 @@ Knowledge capture transforms ephemeral collaboration insights into persistent, r
 
 These situations should always trigger knowledge capture:
 
-| Trigger | What to Capture | Where |
-|---------|-----------------|-------|
-| **Architecture Decision** | Decision, context, alternatives | `.context/decisions/ADR-*.md` |
-| **New Convention** | Pattern, rationale, examples | `.context/conventions/*.md` |
-| **Bug Resolution** | Problem, cause, solution | Session notes or postmortem |
-| **Performance Finding** | Benchmark, optimization | `.context/intelligence/optimizations.md` |
+| Trigger                   | What to Capture                 | Where                                    |
+|---------------------------|---------------------------------|------------------------------------------|
+| **Architecture Decision** | Decision, context, alternatives | `.context/decisions/ADR-*.md`            |
+| **New Convention**        | Pattern, rationale, examples    | `.context/conventions/*.md`              |
+| **Bug Resolution**        | Problem, cause, solution        | Session notes or postmortem              |
+| **Performance Finding**   | Benchmark, optimization         | `.context/intelligence/optimizations.md` |
 
 ### 2.2 Conditional Triggers
 
 Capture if the insight is likely to be useful again:
 
-| Trigger | Capture If... |
-|---------|---------------|
-| **Solved a tricky problem** | Solution wasn't obvious |
-| **Made a workaround** | Underlying issue persists |
+| Trigger                              | Capture If...             |
+|--------------------------------------|---------------------------|
+| **Solved a tricky problem**          | Solution wasn't obvious   |
+| **Made a workaround**                | Underlying issue persists |
 | **Discovered undocumented behavior** | Others might encounter it |
-| **Found useful tool/command** | Not common knowledge |
-| **Identified a pattern** | Applicable to future work |
+| **Found useful tool/command**        | Not common knowledge      |
+| **Identified a pattern**             | Applicable to future work |
 
 ### 2.3 Session-End Triggers
 
@@ -77,12 +77,12 @@ Always review at session end:
 
 ### 3.1 Knowledge Categories
 
-| Category | Description | Examples |
-|----------|-------------|----------|
-| **Declarative** | Facts and information | API endpoints, config values |
-| **Procedural** | How to do something | Setup steps, deployment process |
-| **Conceptual** | Why things work | Architecture rationale, design principles |
-| **Contextual** | Project-specific | Conventions, team preferences |
+| Category        | Description           | Examples                                  |
+|-----------------|-----------------------|-------------------------------------------|
+| **Declarative** | Facts and information | API endpoints, config values              |
+| **Procedural**  | How to do something   | Setup steps, deployment process           |
+| **Conceptual**  | Why things work       | Architecture rationale, design principles |
+| **Contextual**  | Project-specific      | Conventions, team preferences             |
 
 ### 3.2 Knowledge Hierarchy
 
@@ -110,12 +110,12 @@ Always review at session end:
 
 ### 3.3 Knowledge Lifecycle
 
-| Stage | Action | Duration |
-|-------|--------|----------|
-| **Emerging** | Capture in session notes | Hours |
-| **Validated** | Promote to appropriate location | Days |
-| **Established** | Reference in guidelines | Weeks-Months |
-| **Deprecated** | Archive with reason | When superseded |
+| Stage           | Action                          | Duration        |
+|-----------------|---------------------------------|-----------------|
+| **Emerging**    | Capture in session notes        | Hours           |
+| **Validated**   | Promote to appropriate location | Days            |
+| **Established** | Reference in guidelines         | Weeks-Months    |
+| **Deprecated**  | Archive with reason             | When superseded |
 
 ---
 
@@ -189,7 +189,9 @@ How does it work?
 ```
 
 ### Related
+
 - Links to related patterns
+
 ```
 
 #### Gotcha Capture
@@ -216,17 +218,17 @@ How to fix or avoid it?
 
 ### 5.1 Location Guide
 
-| Knowledge Type | Location | Format |
-|----------------|----------|--------|
-| Architecture decisions | `.context/decisions/` | ADR template |
-| Coding conventions | `.context/conventions/` | Standard doc |
-| AI collaboration insights | `.context/intelligence/` | Patterns/calibration |
-| Configuration docs | `.context/policies/`       | Config reference |
-| General practices | `content/practices/` | Practice guide |
-| Reusable frameworks | `content/frameworks/` | Framework doc |
-| Scenario contexts | `content/scenarios/` | Context file |
-| Session records | `.history/conversations/` | Conversation record |
-| User documentation | `docs/` | User-facing docs |
+| Knowledge Type            | Location                  | Format               |
+|---------------------------|---------------------------|----------------------|
+| Architecture decisions    | `.context/decisions/`     | ADR template         |
+| Coding conventions        | `.context/conventions/`   | Standard doc         |
+| AI collaboration insights | `.context/intelligence/`  | Patterns/calibration |
+| Configuration docs        | `.context/policies/`      | Config reference     |
+| General practices         | `content/practices/`      | Practice guide       |
+| Reusable frameworks       | `content/frameworks/`     | Framework doc        |
+| Scenario contexts         | `content/scenarios/`      | Context file         |
+| Session records           | `.history/conversations/` | Conversation record  |
+| User documentation        | `docs/`                   | User-facing docs     |
 
 ### 5.2 Decision Tree
 
@@ -281,13 +283,13 @@ Always link related knowledge:
 
 ### 6.2 Writing Guidelines
 
-| Do | Don't |
-|----|-------|
-| Be concise but complete | Write novels |
-| Use examples | Only use abstract descriptions |
-| Include rationale | Just state rules |
-| Link to sources | Leave references vague |
-| Update when things change | Let docs go stale |
+| Do                        | Don't                          |
+|---------------------------|--------------------------------|
+| Be concise but complete   | Write novels                   |
+| Use examples              | Only use abstract descriptions |
+| Include rationale         | Just state rules               |
+| Link to sources           | Leave references vague         |
+| Update when things change | Let docs go stale              |
 
 ### 6.3 Review Criteria
 
@@ -322,11 +324,11 @@ touch .history/conversations/$(date +%Y-%m-%d)-topic.md
 
 ### Capture Checklist
 
-| When | What | Where |
-|------|------|-------|
-| Made a decision | ADR | `.context/decisions/` |
-| Found a pattern | Pattern doc | `.context/conventions/` |
-| Learned something | Session note | `.history/` |
+| When                | What              | Where                    |
+|---------------------|-------------------|--------------------------|
+| Made a decision     | ADR               | `.context/decisions/`    |
+| Found a pattern     | Pattern doc       | `.context/conventions/`  |
+| Learned something   | Session note      | `.history/`              |
 | Optimized something | Optimization note | `.context/intelligence/` |
 
 ---

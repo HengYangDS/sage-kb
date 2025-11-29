@@ -71,10 +71,20 @@ SAGE protocols follow the Source-Analyze-Generate-Evolve pattern:
 
 ```python
 # Core SAGE protocols
-class SourceProtocol(Protocol): ...    # S - Knowledge sourcing
-class AnalyzeProtocol(Protocol): ...   # A - Processing & analysis
-class GenerateProtocol(Protocol): ...  # G - Multi-channel output
-class EvolveProtocol(Protocol): ...    # E - Metrics & optimization
+class SourceProtocol(Protocol):
+    ...  # S - Knowledge sourcing
+
+
+class AnalyzeProtocol(Protocol):
+    ...  # A - Processing & analysis
+
+
+class GenerateProtocol(Protocol):
+    ...  # G - Multi-channel output
+
+
+class EvolveProtocol(Protocol):
+    ...  # E - Metrics & optimization
 ```
 
 ### 3.2 Service Names
@@ -97,13 +107,25 @@ class EvolveProtocol(Protocol): ...    # E - Metrics & optimization
 
 ```python
 # Knowledge domain
-class KnowledgeAsset: ...      # Base knowledge unit
-class KnowledgeLayer: ...      # Layer abstraction (core, frameworks, etc.)
-class KnowledgeIndex: ...      # Index/navigation structure
+class KnowledgeAsset:
+    ...  # Base knowledge unit
+
+
+class KnowledgeLayer:
+    ...  # Layer abstraction (core, frameworks, etc.)
+
+
+class KnowledgeIndex:
+    ...  # Index/navigation structure
+
 
 # Session domain
-class Session: ...             # User/AI session
-class SessionContext: ...      # Session state container
+class Session:
+    ...  # User/AI session
+
+
+class SessionContext:
+    ...  # Session state container
 ```
 
 ---
@@ -151,26 +173,33 @@ Events follow the pattern: `{domain}.{action}` or `{domain}.{entity}.{action}`
 
 ```python
 # Domain events
-"source.started"           # Source operation started
-"source.completed"         # Source operation completed
-"source.failed"            # Source operation failed
+"source.started"  # Source operation started
+"source.completed"  # Source operation completed
+"source.failed"  # Source operation failed
 
 # Entity events
-"knowledge.layer.loaded"   # Specific layer loaded
+"knowledge.layer.loaded"  # Specific layer loaded
 "knowledge.asset.updated"  # Asset updated
 
 # Lifecycle events
-"system.initialized"       # System startup complete
-"system.shutdown"          # System shutting down
+"system.initialized"  # System startup complete
+"system.shutdown"  # System shutting down
 ```
 
 ### 5.2 Event Classes
 
 ```python
 # Event class naming
-class SourceStartedEvent: ...
-class KnowledgeLoadedEvent: ...
-class TimeoutOccurredEvent: ...
+class SourceStartedEvent:
+    ...
+
+
+class KnowledgeLoadedEvent:
+    ...
+
+
+class TimeoutOccurredEvent:
+    ...
 ```
 
 ---

@@ -1,6 +1,5 @@
 """Tests for sage.capabilities.analyzers.content module."""
 
-import pytest
 import tempfile
 from pathlib import Path
 
@@ -98,13 +97,11 @@ print("hello")
     def test_analyze_file(self) -> None:
         """Test analyzing a file."""
         analyzer = ContentAnalyzer()
-        
-        with tempfile.NamedTemporaryFile(
-            mode="w", suffix=".md", delete=False
-        ) as f:
+
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".md", delete=False) as f:
             f.write("# Test\n\nContent here.")
             f.flush()
-            
+
             metrics = analyzer.analyze_file(Path(f.name))
             assert metrics is not None
             assert metrics.header_count >= 1
@@ -112,12 +109,12 @@ print("hello")
     def test_analyze_directory(self) -> None:
         """Test analyzing a directory."""
         analyzer = ContentAnalyzer()
-        
+
         with tempfile.TemporaryDirectory() as tmpdir:
             # Create test files
             (Path(tmpdir) / "test1.md").write_text("# File 1\n\nContent.")
             (Path(tmpdir) / "test2.md").write_text("# File 2\n\nMore content.")
-            
+
             metrics_list = analyzer.analyze_directory(Path(tmpdir))
             assert len(metrics_list) >= 2
 
@@ -148,11 +145,9 @@ class TestAnalyzeContentFunction:
 
     def test_analyze_content_function(self) -> None:
         """Test the convenience function."""
-        with tempfile.NamedTemporaryFile(
-            mode="w", suffix=".md", delete=False
-        ) as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".md", delete=False) as f:
             f.write("# Test\n\nContent here.")
             f.flush()
-            
+
             metrics = analyze_content(Path(f.name))
             assert metrics is not None

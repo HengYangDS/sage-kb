@@ -24,9 +24,9 @@ autonomy_default: L3
 
 ## 2. Relevant Knowledge
 
-| Priority      | Files                                                                                          |
-|---------------|------------------------------------------------------------------------------------------------|
-| **Auto-Load** | `core/principles.md` · `content/references/plugin_api.md` · `practices/engineering/patterns.md` |
+| Priority      | Files                                                                                                                            |
+|---------------|----------------------------------------------------------------------------------------------------------------------------------|
+| **Auto-Load** | `core/principles.md` · `content/references/plugin_api.md` · `practices/engineering/patterns.md`                                  |
 | **On-Demand** | `practices/engineering/testing_strategy.md` · `.context/decisions/ADR-0008-plugin-system.md` · `docs/design/05-plugin-memory.md` |
 
 ---

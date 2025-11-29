@@ -24,10 +24,10 @@ autonomy_default: L3
 
 ## 2. Relevant Knowledge
 
-| Priority      | Files                                                                                          |
-|---------------|------------------------------------------------------------------------------------------------|
-| **Auto-Load** | `core/principles.md` · `guidelines/engineering.md` · `practices/engineering/patterns.md`       |
-| **On-Demand** | `practices/documentation/project_directory_structure.md` · `guidelines/code_style.md`          |
+| Priority      | Files                                                                                    |
+|---------------|------------------------------------------------------------------------------------------|
+| **Auto-Load** | `core/principles.md` · `guidelines/engineering.md` · `practices/engineering/patterns.md` |
+| **On-Demand** | `practices/documentation/project_directory_structure.md` · `guidelines/code_style.md`    |
 
 ---
 
@@ -57,22 +57,22 @@ monorepo/
 
 ### 3.2 Package Naming Convention
 
-| Type | Pattern | Example |
-|------|---------|---------|
-| Applications | `@org/app-name` | `@acme/web`, `@acme/api` |
-| Libraries | `@org/lib-name` | `@acme/ui`, `@acme/utils` |
-| Config | `@org/config-*` | `@acme/config-eslint` |
-| Types | `@org/types-*` | `@acme/types-shared` |
+| Type         | Pattern         | Example                   |
+|--------------|-----------------|---------------------------|
+| Applications | `@org/app-name` | `@acme/web`, `@acme/api`  |
+| Libraries    | `@org/lib-name` | `@acme/ui`, `@acme/utils` |
+| Config       | `@org/config-*` | `@acme/config-eslint`     |
+| Types        | `@org/types-*`  | `@acme/types-shared`      |
 
 ### 3.3 Architecture Principles
 
-| Principle | Description |
-|-----------|-------------|
-| **Single Version** | One version of each dependency across repo |
-| **Shared Tooling** | Common lint, test, build configuration |
-| **Clear Boundaries** | Well-defined package interfaces |
-| **Dependency Graph** | Explicit internal dependencies |
-| **Incremental Builds** | Only rebuild what changed |
+| Principle              | Description                                |
+|------------------------|--------------------------------------------|
+| **Single Version**     | One version of each dependency across repo |
+| **Shared Tooling**     | Common lint, test, build configuration     |
+| **Clear Boundaries**   | Well-defined package interfaces            |
+| **Dependency Graph**   | Explicit internal dependencies             |
+| **Incremental Builds** | Only rebuild what changed                  |
 
 ---
 
@@ -80,28 +80,41 @@ monorepo/
 
 ### 4.1 Tool Comparison
 
-| Tool | Language | Best For | Key Feature |
-|------|----------|----------|-------------|
-| **Nx** | TypeScript | Full-featured | Computation caching |
-| **Turborepo** | Any | Fast builds | Remote caching |
-| **pnpm** | Node.js | Package management | Disk efficient |
-| **Lerna** | Node.js | Publishing | Version management |
-| **Bazel** | Any | Large scale | Hermetic builds |
+| Tool          | Language   | Best For           | Key Feature         |
+|---------------|------------|--------------------|---------------------|
+| **Nx**        | TypeScript | Full-featured      | Computation caching |
+| **Turborepo** | Any        | Fast builds        | Remote caching      |
+| **pnpm**      | Node.js    | Package management | Disk efficient      |
+| **Lerna**     | Node.js    | Publishing         | Version management  |
+| **Bazel**     | Any        | Large scale        | Hermetic builds     |
 
 ### 4.2 Turborepo Configuration
 
 ```json
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": ["**/.env.*local"],
+  "globalDependencies": [
+    "**/.env.*local"
+  ],
   "pipeline": {
     "build": {
-      "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".next/**"]
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "dist/**",
+        ".next/**"
+      ]
     },
     "test": {
-      "dependsOn": ["build"],
-      "inputs": ["src/**/*.tsx", "src/**/*.ts", "test/**/*.ts"]
+      "dependsOn": [
+        "build"
+      ],
+      "inputs": [
+        "src/**/*.tsx",
+        "src/**/*.ts",
+        "test/**/*.ts"
+      ]
     },
     "lint": {
       "outputs": []
@@ -131,16 +144,29 @@ packages:
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "targetDefaults": {
     "build": {
-      "dependsOn": ["^build"],
-      "inputs": ["production", "^production"]
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ]
     },
     "test": {
-      "inputs": ["default", "^production"]
+      "inputs": [
+        "default",
+        "^production"
+      ]
     }
   },
   "namedInputs": {
-    "default": ["{projectRoot}/**/*"],
-    "production": ["default", "!{projectRoot}/**/*.spec.ts"]
+    "default": [
+      "{projectRoot}/**/*"
+    ],
+    "production": [
+      "default",
+      "!{projectRoot}/**/*.spec.ts"
+    ]
   }
 }
 ```
@@ -167,18 +193,18 @@ packages:
 ```typescript
 // packages/config-eslint/index.js
 module.exports = {
-  extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
-  parser: "@typescript-eslint/parser",
-  plugins: ["@typescript-eslint"],
-  rules: {
-    "@typescript-eslint/no-unused-vars": "error",
-  },
+    extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+    parser: "@typescript-eslint/parser",
+    plugins: ["@typescript-eslint"],
+    rules: {
+        "@typescript-eslint/no-unused-vars": "error",
+    },
 };
 
 // apps/web/.eslintrc.js
 module.exports = {
-  root: true,
-  extends: ["@acme/config-eslint"],
+    root: true,
+    extends: ["@acme/config-eslint"],
 };
 ```
 
@@ -192,8 +218,12 @@ module.exports = {
     "declarationMap": true
   },
   "references": [
-    { "path": "../packages/ui" },
-    { "path": "../packages/utils" }
+    {
+      "path": "../packages/ui"
+    },
+    {
+      "path": "../packages/utils"
+    }
   ]
 }
 ```
@@ -207,7 +237,7 @@ module.exports = {
 ```yaml
 # GitHub Actions with Nx
 name: CI
-on: [push, pull_request]
+on: [ push, pull_request ]
 
 jobs:
   main:
@@ -216,17 +246,17 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      
+
       - uses: pnpm/action-setup@v2
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'pnpm'
-      
+
       - run: pnpm install
-      
+
       - uses: nrwl/nx-set-shas@v4
-      
+
       - run: pnpm nx affected -t lint test build
 ```
 
@@ -234,22 +264,22 @@ jobs:
 
 ```yaml
 name: CI
-on: [push, pull_request]
+on: [ push, pull_request ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - uses: pnpm/action-setup@v2
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'pnpm'
-      
+
       - run: pnpm install
-      
+
       - run: pnpm turbo run build test lint
         env:
           TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
@@ -261,8 +291,8 @@ jobs:
 ```yaml
 deploy-web:
   needs: build
-  if: contains(github.event.head_commit.modified, 'apps/web/') || 
-      contains(github.event.head_commit.modified, 'packages/')
+  if: contains(github.event.head_commit.modified, 'apps/web/') ||
+    contains(github.event.head_commit.modified, 'packages/')
   runs-on: ubuntu-latest
   steps:
     - run: pnpm --filter @acme/web deploy
@@ -272,17 +302,17 @@ deploy-web:
 
 ## 7. Common Tasks
 
-| Task | Command |
-|------|---------|
-| **Install all** | `pnpm install` |
-| **Build all** | `pnpm turbo build` |
-| **Build affected** | `pnpm nx affected -t build` |
-| **Test single** | `pnpm --filter @acme/web test` |
-| **Add dependency** | `pnpm --filter @acme/web add lodash` |
+| Task                  | Command                                            |
+|-----------------------|----------------------------------------------------|
+| **Install all**       | `pnpm install`                                     |
+| **Build all**         | `pnpm turbo build`                                 |
+| **Build affected**    | `pnpm nx affected -t build`                        |
+| **Test single**       | `pnpm --filter @acme/web test`                     |
+| **Add dependency**    | `pnpm --filter @acme/web add lodash`               |
 | **Add workspace dep** | `pnpm --filter @acme/web add @acme/ui@workspace:*` |
-| **Run dev** | `pnpm turbo dev --filter @acme/web` |
-| **Lint all** | `pnpm turbo lint` |
-| **Graph** | `pnpm nx graph` |
+| **Run dev**           | `pnpm turbo dev --filter @acme/web`                |
+| **Lint all**          | `pnpm turbo lint`                                  |
+| **Graph**             | `pnpm nx graph`                                    |
 
 ### 7.1 Creating New Package
 
@@ -309,41 +339,41 @@ pnpm init
 
 ### 7.2 Package Checklist
 
-| Item | Status |
-|------|--------|
-| ☐ Package.json with correct name | |
-| ☐ TypeScript configuration | |
-| ☐ Build script | |
-| ☐ ESLint configuration | |
-| ☐ Test setup | |
-| ☐ README.md | |
-| ☐ Export in index.ts | |
+| Item                             | Status |
+|----------------------------------|--------|
+| ☐ Package.json with correct name |        |
+| ☐ TypeScript configuration       |        |
+| ☐ Build script                   |        |
+| ☐ ESLint configuration           |        |
+| ☐ Test setup                     |        |
+| ☐ README.md                      |        |
+| ☐ Export in index.ts             |        |
 
 ---
 
 ## 8. Autonomy Calibration
 
-| Task Type | Level | Notes |
-|-----------|-------|-------|
-| Add code to existing package | L4 | Follow existing patterns |
-| Create new package | L3 | Review structure |
-| Modify shared config | L2-L3 | Affects all packages |
-| Update root dependencies | L2 | Version compatibility |
-| Change build pipeline | L2 | CI/CD impact |
-| Restructure packages | L1-L2 | Breaking changes |
-| Update tooling (Nx/Turbo) | L2 | Compatibility check |
+| Task Type                    | Level | Notes                    |
+|------------------------------|-------|--------------------------|
+| Add code to existing package | L4    | Follow existing patterns |
+| Create new package           | L3    | Review structure         |
+| Modify shared config         | L2-L3 | Affects all packages     |
+| Update root dependencies     | L2    | Version compatibility    |
+| Change build pipeline        | L2    | CI/CD impact             |
+| Restructure packages         | L1-L2 | Breaking changes         |
+| Update tooling (Nx/Turbo)    | L2    | Compatibility check      |
 
 ---
 
 ## Pitfalls to Avoid
 
-| Pitfall | Solution |
-|---------|----------|
-| **Circular dependencies** | Use dependency graph tools |
-| **Version drift** | Single version policy |
-| **Slow CI** | Use affected commands, remote cache |
-| **Large node_modules** | Use pnpm, shared hoisting |
-| **Unclear ownership** | CODEOWNERS file |
+| Pitfall                   | Solution                            |
+|---------------------------|-------------------------------------|
+| **Circular dependencies** | Use dependency graph tools          |
+| **Version drift**         | Single version policy               |
+| **Slow CI**               | Use affected commands, remote cache |
+| **Large node_modules**    | Use pnpm, shared hoisting           |
+| **Unclear ownership**     | CODEOWNERS file                     |
 
 ---
 
