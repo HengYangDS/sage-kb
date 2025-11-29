@@ -6,261 +6,259 @@
 
 ---
 
+<a id="toc"></a>
+## 📑 Table of Contents
+
+| Section                                                       | Description                                  |
+|---------------------------------------------------------------|----------------------------------------------|
+| [🎯 Default Autonomy Settings](#default-autonomy-settings)    | Context-based autonomy levels                |
+| [📋 Default Behaviors](#default-behaviors)                    | Communication, code changes, decision-making |
+| [⚙️ Configuration Reference](#configuration-reference)        | All config modules with defaults             |
+| [🔄 Calibration Workflow](#calibration-workflow)              | Autonomy adjustment process                  |
+| [🚨 Override Conditions](#override-conditions)                | When to force different autonomy             |
+| [📊 Default Response Structure](#default-response-structure)  | Standard response format                     |
+| [⏱️ Fallback Behavior](#fallback-behavior)                    | Timeout and error handling                   |
+| [📚 Related Documentation](#related-documentation)            | Links to detailed docs                       |
+
+---
+
+<a id="default-autonomy-settings"></a>
 ## 🎯 Default Autonomy Settings
 
-> **Reference**: See `content/frameworks/autonomy/levels.md` for full 6-level framework
+> **Reference**: `content/frameworks/autonomy/levels.md`
 
-| Context             | Default Level       | Rationale             |
-|---------------------|---------------------|-----------------------|
-| New project         | L2 (Low)            | Build trust gradually |
-| Established project | L4 (Medium-High)    | Proven patterns       |
-| Critical changes    | L1-L2 (Minimal/Low) | High stakes           |
-| Routine maintenance | L4 (Medium-High)    | Low risk              |
-| Documentation       | L4-L5               | Well-defined scope    |
-| Refactoring         | L3-L4               | Needs verification    |
+| Context             | Level | Rationale             |
+|---------------------|-------|-----------------------|
+| New project         | L2    | Build trust gradually |
+| Established project | L4    | Proven patterns       |
+| Critical changes    | L1-L2 | High stakes           |
+| Routine maintenance | L4    | Low risk              |
+| Documentation       | L4-L5 | Well-defined scope    |
+| Refactoring         | L3-L4 | Needs verification    |
+
+<p align="right"><sub><a href="#toc">📑 ↑ TOC</a></sub></p>
 
 ---
 
+<a id="default-behaviors"></a>
 ## 📋 Default Behaviors
 
-### Communication
+| Area                | Aspect        | Default                          |
+|---------------------|---------------|----------------------------------|
+| **Communication**   | Verbosity     | Concise with detail on request   |
+|                     | Format        | Markdown with code blocks        |
+|                     | Language      | Match user's (default: English)  |
+|                     | Uncertainty   | State explicitly when unsure     |
+| **Code Changes**    | Scope         | Minimal necessary changes        |
+|                     | Style         | Follow existing conventions      |
+|                     | Comments      | Match existing frequency         |
+|                     | Tests         | Run affected tests when possible |
+| **Decision-Making** | Ambiguity     | Ask for clarification            |
+|                     | Risk          | Err on side of caution           |
+|                     | Reversibility | Prefer reversible actions        |
+|                     | Documentation | Document significant decisions   |
 
-- **Verbosity**: Concise with detail on request
-- **Format**: Markdown with code blocks
-- **Language**: Match the user’s language (default: English)
-- **Uncertainty**: State explicitly when unsure
-
-### Code Changes
-
-- **Scope**: Minimal necessary changes
-- **Style**: Follow existing codebase conventions
-- **Comments**: Match existing frequency
-- **Tests**: Run affected tests when possible
-
-### Decision-Making
-
-- **Ambiguity**: Ask for clarification
-- **Risk**: Err on the side of caution
-- **Reversibility**: Prefer reversible actions
-- **Documentation**: Document significant decisions
+<p align="right"><sub><a href="#toc">📑 ↑ TOC</a></sub></p>
 
 ---
 
+<a id="configuration-reference"></a>
 ## ⚙️ Configuration Reference
 
-> **Single Source of Truth**: Configuration is modularized into separate files.
-> - Main entry: `sage.yaml`
-> - Modular configs: `config/*.yaml`
->
-> This section describes the configuration structure and purpose only.
+> **Single Source of Truth**: `sage.yaml` (entry) + `config/*.yaml` (modules)
 
-### Timeout Configuration
+### Timeout (`config/timeout.yaml`)
 
-> **Location**: `config/timeout.yaml` → `timeout`
+| Level | Key                       | Default  | Purpose          |
+|-------|---------------------------|----------|------------------|
+| T1    | `operations.cache_lookup` | 100ms    | Cache hit        |
+| T2    | `operations.file_read`    | 500ms    | Single file      |
+| T3    | `operations.layer_load`   | 2s       | Layer/directory  |
+| T4    | `operations.full_load`    | 5s       | Complete KB      |
+| T5    | `operations.analysis`     | 10s      | Complex analysis |
+| -     | `operations.mcp_call`     | 10s      | MCP tool         |
+| -     | `operations.search`       | 3s       | Search           |
+| -     | `global_max` / `default`  | 10s / 5s | Max / default    |
 
-| Level | Key                       | Purpose                  |
-|-------|---------------------------|--------------------------|
-| T1    | `operations.cache_lookup` | Cache hit operations     |
-| T2    | `operations.file_read`    | Single file operations   |
-| T3    | `operations.layer_load`   | Layer/directory loading  |
-| T4    | `operations.full_load`    | Complete KB load         |
-| T5    | `operations.analysis`     | Complex analysis         |
-| -     | `operations.mcp_call`     | MCP tool timeout         |
-| -     | `operations.search`       | Search operations        |
-| -     | `global_max`              | Absolute maximum timeout |
-| -     | `default`                 | Default if not specified |
+**Circuit Breaker**: `enabled`=true, `failure_threshold`=3, `reset_timeout`=30s, `half_open_requests`=1
 
-**Additional Features** (see `config/timeout.yaml`):
+**Strategies** (`on_timeout`): `return_partial` · `use_fallback` · `log_warning` · `never_hang`
 
-- `strategies.on_timeout` - Timeout handling strategies
-- `circuit_breaker` - Circuit breaker pattern configuration
+### Loading (`config/loading.yaml`)
 
-### Loading Configuration
+| Key              | Default                                                                     | Purpose                |
+|------------------|-----------------------------------------------------------------------------|------------------------|
+| `max_tokens`     | 4000                                                                        | Max tokens per request |
+| `default_layers` | `[core]`                                                                    | Default layers         |
+| `always`         | `index.md`, `content/core/principles.md`, `content/core/quick_reference.md` | Pre-cached             |
 
-> **Location**: `config/loading.yaml` → `loading`
+### Quality (`config/quality.yaml`)
 
-| Key              | Purpose                            |
-|------------------|------------------------------------|
-| `max_tokens`     | Maximum tokens to load per request |
-| `default_layers` | Layers loaded by default           |
-| `always`         | Files always pre-cached            |
+| Category | Key                                     | Default  |
+|----------|-----------------------------------------|----------|
+| Code     | `min_test_coverage`                     | 95%      |
+| Code     | `max_function_lines` / `max_file_lines` | 50 / 500 |
+| Code     | `max_complexity`                        | 10       |
+| Style    | `max_line_length`                       | 88       |
+| Style    | `min_type_hint_coverage`                | 50%      |
+| Docs     | `max_doc_line_length`                   | 120      |
 
-### Quality Thresholds
+### Token Budget (`config/token_budget.yaml`)
 
-> **Location**: `config/quality.yaml` → `quality`
+| Key               | Default                                                          | Purpose                           |
+|-------------------|------------------------------------------------------------------|-----------------------------------|
+| `max_tokens`      | 128000                                                           | Context window                    |
+| `reserved_tokens` | 4000                                                             | Response reserve                  |
+| `thresholds`      | NORMAL<70%, WARNING=70%, CAUTION=80%, CRITICAL=90%, OVERFLOW=95% | Action triggers                   |
+| `auto_actions`    | `summarize`=true, `prune`=true                                   | Auto-actions at CRITICAL/OVERFLOW |
 
-| Category      | Keys                                                                          | Purpose              |
-|---------------|-------------------------------------------------------------------------------|----------------------|
-| Code Quality  | `min_test_coverage`, `max_function_lines`, `max_file_lines`, `max_complexity` | Code quality metrics |
-| Code Style    | `max_line_length`, `min_type_hint_coverage`                                   | Style enforcement    |
-| Documentation | `max_doc_line_length`                                                         | Markdown formatting  |
+### Memory (`config/memory.yaml`)
 
-### Token Budget Configuration
+| Key                            | Default                    | Purpose             |
+|--------------------------------|----------------------------|---------------------|
+| `store.backend` / `store.path` | `file` / `.history/memory` | Storage config      |
+| `session.auto_checkpoint`      | true                       | Auto-checkpoint     |
+| `session.checkpoint_interval`  | 300s                       | Checkpoint interval |
+| `session.max_history`          | 100                        | Max entries         |
 
-> **Location**: `config/token_budget.yaml` → `token_budget`
+### Plugins (`config/plugins.yaml`)
 
-| Key               | Purpose                                     |
-|-------------------|---------------------------------------------|
-| `max_tokens`      | Model context window size                   |
-| `reserved_tokens` | Reserved for response generation            |
-| `thresholds.*`    | Warning level thresholds (CAUTION→OVERFLOW) |
-| `auto_actions.*`  | Automatic summarization and pruning         |
+| Component           | Key                                                                                | Default                     |
+|---------------------|------------------------------------------------------------------------------------|-----------------------------|
+| **Loader**          | `cache_enabled` / `cache_ttl`                                                      | true / 300s                 |
+| **Content Cache**   | `enabled` / `max_entries` / `max_size_bytes` / `ttl_seconds`                       | true / 1000 / 50MB / 3600s  |
+| **Semantic Search** | `enabled` / `min_term_length` / `max_results` / `score_threshold` / `use_stemming` | true / 2 / 20 / 0.1 / false |
 
-**Warning Levels** (see `config/token_budget.yaml` for thresholds):
+### Logging (`config/logging.yaml`)
 
-- NORMAL: No action needed
-- CAUTION: Suggest summarization
-- WARNING: Recommend summarization
-- CRITICAL: Auto-summarize if enabled
-- OVERFLOW: Force pruning if enabled
+`level`=INFO · `format`=structured · `include_timestamps`=true
 
-### Memory Configuration
+### Features (`config/features.yaml`)
 
-> **Location**: `config/memory.yaml` → `memory`
+| Feature                | Default | Feature                | Default |
+|------------------------|---------|------------------------|---------|
+| `event_driven_plugins` | true    | `differential_loading` | false   |
+| `memory_persistence`   | true    | `compressed_loading`   | false   |
+| `api_service`          | false   | `client_cache`         | true    |
+| `lazy_expansion`       | true    | `context_pruning`      | false   |
 
-| Key                           | Purpose                             |
-|-------------------------------|-------------------------------------|
-| `store.backend`               | Storage backend (file/redis/sqlite) |
-| `store.path`                  | Storage location for file backend   |
-| `session.auto_checkpoint`     | Auto-checkpoint on critical events  |
-| `session.checkpoint_interval` | Checkpoint interval in seconds      |
-| `session.max_history`         | Maximum conversation entries        |
+### DI (`config/di.yaml`)
 
-### Plugin Configuration
+`auto_wire`=true
 
-> **Location**: `config/plugins.yaml` → `plugins`
+| Service          | Lifetime  | Implementation  |
+|------------------|-----------|-----------------|
+| `EventBus`       | singleton | `AsyncEventBus` |
+| `SourceProtocol` | singleton | `TimeoutLoader` |
+| `MemoryStore`    | singleton | `MemoryStore`   |
+| `TokenBudget`    | singleton | `TokenBudget`   |
 
-| Key                         | Purpose                         |
-|-----------------------------|---------------------------------|
-| `loader.cache_enabled`      | Enable content caching          |
-| `loader.cache_ttl`          | Cache time-to-live (seconds)    |
-| `bundled.content_cache.*`   | Content cache plugin settings   |
-| `bundled.semantic_search.*` | Semantic search plugin settings |
+### API (`config/api.yaml`) – disabled by default
 
-### Other Configuration Sections
+| Key                     | Default          | Key                        | Default          |
+|-------------------------|------------------|----------------------------|------------------|
+| `enabled`               | false            | `cors.enabled` / `origins` | true / `["*"]`   |
+| `host` / `port`         | `0.0.0.0` / 8080 | `docs.enabled` / `path`    | true / `/docs`   |
+| `rate_limit.enabled`    | false            | `health.enabled` / `path`  | true / `/health` |
+| `request.max_body_size` | 1MB              | `request.timeout_ms`       | 30s              |
 
-> **Location**: `config/` directory (modular configuration)
+### Other Configs
 
-| Config File              | Section               | Purpose                                 |
-|--------------------------|-----------------------|-----------------------------------------|
-| `config/guidelines.yaml` | `guidelines.sections` | Alias mapping for guidelines            |
-| `config/triggers.yaml`   | `triggers`            | Keyword-based context loading           |
-| `config/logging.yaml`    | `logging`             | Logging level, format, timestamps       |
-| `config/di.yaml`         | `di`                  | Dependency injection container          |
-| `config/features.yaml`   | `features`            | Feature flags for optional capabilities |
+| File                     | Section               | Purpose               |
+|--------------------------|-----------------------|-----------------------|
+| `config/guidelines.yaml` | `guidelines.sections` | Alias mapping         |
+| `config/triggers.yaml`   | `triggers`            | Keyword-based loading |
+
+<p align="right"><sub><a href="#toc">📑 ↑ TOC</a></sub></p>
 
 ---
 
+<a id="calibration-workflow"></a>
 ## 🔄 Calibration Workflow
 
-### Initial Session
+**Initial**: L2-L3 → small tasks → feedback → adjust
 
-1. Start at L2-L3 (Low/Medium)
-2. Execute small tasks
-3. Gather feedback
-4. Adjust based on results
+| Success Rate | Adjustment  |
+|--------------|-------------|
+| > 95%        | +1 (max L5) |
+| 85-95%       | Maintain    |
+| 70-85%       | -1          |
+| < 70%        | -2, review  |
 
-### Ongoing Calibration
+**Triggers**: Major errors · New domain · Team change · Extended absence
 
-```
-Success Rate    Adjustment
-─────────────────────────────
-> 95%           +1 level (max L5)
-85-95%          Maintain
-70-85%          -1 level
-< 70%           -2 levels, review
-```
-
-### Recalibration Triggers
-
-- Major errors or misunderstandings
-- New domain or technology
-- Team or project change
-- Extended absence
+<p align="right"><sub><a href="#toc">📑 ↑ TOC</a></sub></p>
 
 ---
 
+<a id="override-conditions"></a>
 ## 🚨 Override Conditions
 
-### Force Lower Autonomy (L1-L2)
+| Force Lower (L1-L2)    | Allow Higher (L5-L6)     |
+|------------------------|--------------------------|
+| Production deployments | Explicitly granted       |
+| Database migrations    | Routine + tested         |
+| Security-sensitive     | Sandbox/dev environments |
+| Irreversible actions   | Pipelines with rollback  |
+| Regulatory compliance  |                          |
 
-- Production deployments
-- Database migrations
-- Security-sensitive operations
-- Irreversible actions
-- Regulatory compliance
-
-### Allow Higher Autonomy (L5-L6)
-
-- Explicitly granted by the user
-- Well-tested, routine operations
-- Sandbox/development environments
-- Automated pipelines with rollback
+<p align="right"><sub><a href="#toc">📑 ↑ TOC</a></sub></p>
 
 ---
 
+<a id="default-response-structure"></a>
 ## 📊 Default Response Structure
 
 ```markdown
-## Summary
+## Summary → [Brief outcome]
 
-[Brief outcome statement]
+## Changes Made → [List of modifications]
 
-## Changes Made
+## Verification → [How to verify]
 
-[List of modifications]
-
-## Verification
-
-[How changes to be verified]
-
-## Next Steps (if applicable)
-
-[Recommended follow-up actions]
+## Next Steps → [Follow-up actions] (if applicable)
 ```
+
+<p align="right"><sub><a href="#toc">📑 ↑ TOC</a></sub></p>
 
 ---
 
+<a id="fallback-behavior"></a>
 ## ⏱️ Fallback Behavior
 
 > **Location**: `config/timeout.yaml` → `timeout.fallback`
 
-When a timeout or error occurs, the system applies configured fallback actions.
-
-**Fallback Strategy** (see `config/timeout.yaml` for configured values):
-
-| Key              | Purpose                                       |
-|------------------|-----------------------------------------------|
-| `strategy`       | Fallback mode: `graceful` / `strict` / `none` |
-| `cache_stale_ms` | Max age (ms) for stale cache usage            |
-
-**Fallback Situations** (see `config/timeout.yaml` for configured actions):
-
-| Situation       | Config Key       |
-|-----------------|------------------|
-| Timeout (short) | `timeout_short`  |
-| Timeout (long)  | `timeout_long`   |
-| File not found  | `file_not_found` |
-| Parse error     | `parse_error`    |
-| Network error   | `network_error`  |
+| Key / Situation  | Default / Action | Description                |
+|------------------|------------------|----------------------------|
+| `strategy`       | `graceful`       | Mode: graceful/strict/none |
+| `cache_stale_ms` | 60000            | Max stale cache age (60s)  |
+| Timeout < 5s     | `return_partial` | Return partial results     |
+| Timeout > 5s     | `return_core`    | Return core principles     |
+| File not found   | `return_error`   | Helpful error message      |
+| Parse error      | `return_raw`     | Return raw content         |
+| Network error    | `use_cache`      | Use cached content         |
 
 **Golden Rule**: Always return something useful, never hang or crash.
 
+<p align="right"><sub><a href="#toc">📑 ↑ TOC</a></sub></p>
+
 ---
 
+<a id="related-documentation"></a>
 ## 📚 Related Documentation
 
-| Document                                         | Purpose                         |
-|--------------------------------------------------|---------------------------------|
-| `sage.yaml`                                      | Main configuration entry point  |
-| `config/`                                        | Modular configuration directory |
-| `content/frameworks/design/design_axioms.md`     | Design axioms including SSOT    |
-| `content/frameworks/autonomy/levels.md`          | 6-level autonomy framework      |
-| `content/frameworks/timeout/hierarchy.md`        | Timeout strategies and recovery |
-| `content/frameworks/cognitive/expert_committee.md` | Decision-making framework       |
-| `docs/design/04-timeout-loading.md`              | Technical timeout design        |
-| `docs/design/05-plugin-memory.md`                | Plugin and memory architecture  |
+- `sage.yaml` — Main config entry
+- `config/` — Modular configs
+- `content/frameworks/autonomy/levels.md` — 6-level autonomy
+- `content/frameworks/timeout/hierarchy.md` — Timeout strategies
+- `content/frameworks/design/design_axioms.md` — Design axioms (SSOT)
+- `content/frameworks/cognitive/expert_committee.md` — Decision framework
+- `docs/design/04-timeout-loading.md` — Timeout design
+- `docs/design/05-plugin-memory.md` — Plugin/memory architecture
+- `docs/design/09-configuration.md` — Configuration system
+
+<p align="right"><sub><a href="#toc">📑 ↑ TOC</a></sub></p>
 
 ---
 
-*Configuration is modularized: `sage.yaml` (entry point) + `config/*.yaml` (modules).*
+*Config: `sage.yaml` (entry) + `config/*.yaml` (modules)*
