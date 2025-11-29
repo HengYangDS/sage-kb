@@ -1,33 +1,19 @@
 # Quality Assurance Guidelines
 
-> **Load Time**: On-demand (~150 tokens)  
+> **Load Time**: On-demand  
 > **Purpose**: Quality metrics, review processes, continuous improvement
 
 ---
 
 ## 8.1 Quality Dimensions
 
-### The Quality Triangle
-
-```
-        Correctness
-           /\
-          /  \
-         /    \
-        /      \
-       /________\
-Maintainability  Performance
-```
-
-### Quality Metrics
-
-| Dimension           | Metrics                            | Target                          |
-|---------------------|------------------------------------|---------------------------------|
-| **Correctness**     | Test coverage, bug rate            | >80% coverage, <1 bug/KLOC      |
-| **Maintainability** | Cyclomatic complexity, duplication | <10 complexity, <3% duplication |
-| **Performance**     | Response time, throughput          | <200ms P95, >1000 RPS           |
-| **Security**        | Vulnerability count, audit score   | 0 critical, >90% score          |
-| **Reliability**     | Uptime, MTTR                       | >99.9%, <15min MTTR             |
+| Dimension | Metrics | Target |
+|-----------|---------|--------|
+| **Correctness** | Test coverage, bug rate | >80% coverage, <1 bug/KLOC |
+| **Maintainability** | Complexity, duplication | <10 cyclomatic, <3% duplication |
+| **Performance** | Response time, throughput | <200ms P95, >1000 RPS |
+| **Security** | Vulnerabilities, audit score | 0 critical, >90% score |
+| **Reliability** | Uptime, MTTR | >99.9%, <15min MTTR |
 
 ---
 
@@ -35,181 +21,100 @@ Maintainability  Performance
 
 ### Review Checklist
 
-```markdown
-## Code Review Checklist
+| Category | Items |
+|----------|-------|
+| **Correctness** | Logic correct · Edge cases · Error handling |
+| **Quality** | Style guidelines · No duplication · Clear names |
+| **Testing** | New functionality · Edge cases · All pass |
+| **Security** | No secrets · Input validation · No injection |
+| **Docs** | APIs documented · Complex logic explained |
 
-### Correctness
+### Feedback Prefixes
 
-- [ ] Logic is correct and complete
-- [ ] Edge cases are handled
-- [ ] Error handling is appropriate
-
-### Code Quality
-
-- [ ] Follows style guidelines
-- [ ] No code duplication
-- [ ] Names are clear and consistent
-
-### Testing
-
-- [ ] Tests cover new functionality
-- [ ] Tests cover edge cases
-- [ ] All tests pass
-
-### Security
-
-- [ ] No hardcoded secrets
-- [ ] Input validation present
-- [ ] No SQL injection risks
-
-### Documentation
-
-- [ ] Public APIs documented
-- [ ] Complex logic explained
-- [ ] README updated if needed
-```
-
-### Review Feedback Guidelines
-
-| Type         | Prefix         | Example                   |
-|--------------|----------------|---------------------------|
-| Must fix     | `[REQUIRED]`   | Security vulnerability    |
-| Should fix   | `[SUGGESTION]` | Better approach available |
-| Nice to have | `[NIT]`        | Minor style preference    |
-| Question     | `[QUESTION]`   | Seeking clarification     |
-| Praise       | `[PRAISE]`     | Well-done aspect          |
+| Prefix | Meaning | Example |
+|--------|---------|---------|
+| `[REQUIRED]` | Must fix | Security vulnerability |
+| `[SUGGESTION]` | Should fix | Better approach |
+| `[NIT]` | Nice to have | Style preference |
+| `[QUESTION]` | Clarification | Seeking understanding |
 
 ---
 
 ## 8.3 Testing Strategy
 
-### Test Coverage Goals
+### Coverage Goals
 
-| Test Type   | Coverage Target | Focus                  |
-|-------------|-----------------|------------------------|
-| Unit        | >80%            | Business logic         |
-| Integration | >60%            | Component interactions |
-| E2E         | Critical paths  | User journeys          |
+| Type | Target | Focus |
+|------|--------|-------|
+| Unit | >80% | Business logic |
+| Integration | >60% | Component interactions |
+| E2E | Critical paths | User journeys |
 
-### Test Quality Criteria
+### Test Quality
 
 ```python
-# GOOD: Clear, focused, maintainable test
-def test_user_creation_with_valid_data_returns_user():
-    # Arrange
-    service = UserService(mock_repo)
-    valid_data = {"name": "Alice", "email": "alice@example.com"}
-    
-    # Act
-    result = service.create(valid_data)
-    
-    # Assert
-    assert result.name == "Alice"
-    assert result.email == "alice@example.com"
-    assert mock_repo.save.called_once()
+# ✅ Clear, focused, AAA pattern
+def test_user_creation_with_valid_data():
+    service = UserService(mock_repo)  # Arrange
+    result = service.create({"name": "Alice"})  # Act
+    assert result.name == "Alice"  # Assert
 
-# BAD: Multiple concerns, unclear purpose
+# ❌ Multiple concerns, unclear
 def test_user():
     # Tests creation, update, delete all in one
-    # Hard to understand what's being tested
 ```
 
 ---
 
 ## 8.4 Quality Gates
 
-### Pre-Commit Gates
-
-- [ ] Linting passes (no errors)
-- [ ] Formatting correct
-- [ ] Type checking passes
-- [ ] Unit tests pass
-
-### Pre-Merge Gates
-
-- [ ] All tests pass (unit, integration)
-- [ ] Code review approved
-- [ ] Coverage maintained or improved
-- [ ] No security vulnerabilities
-- [ ] Documentation updated
-
-### Pre-Release Gates
-
-- [ ] E2E tests pass
-- [ ] Performance benchmarks met
-- [ ] Security scan clean
-- [ ] Changelog updated
-- [ ] Version bumped
+| Stage | Requirements |
+|-------|--------------|
+| **Pre-Commit** | Lint · Format · Type check · Unit tests |
+| **Pre-Merge** | All tests · Review approved · Coverage maintained · No vulns · Docs updated |
+| **Pre-Release** | E2E pass · Performance OK · Security scan · Changelog · Version bump |
 
 ---
 
 ## 8.5 Continuous Improvement
 
-### Retrospective Questions
+**Retrospective**: What went well? · What to improve? · What to try differently?
 
-1. What went well?
-2. What could be improved?
-3. What will we try differently?
+### Quality Debt
 
-### Quality Debt Tracking
+| Category | Priority |
+|----------|----------|
+| Security (unpatched) | High |
+| Technical (missing tests) | Medium |
+| Performance (slow query) | Medium |
+| Documentation (outdated) | Low |
 
-| Category      | Example              | Priority |
-|---------------|----------------------|----------|
-| Technical     | Missing tests        | Medium   |
-| Documentation | Outdated README      | Low      |
-| Security      | Unpatched dependency | High     |
-| Performance   | Slow query           | Medium   |
-
-### Improvement Metrics
-
-```
-Track over time:
-- Defect escape rate (bugs found in production)
-- Mean time to resolution
-- Code review turnaround time
-- Test coverage trend
-- Technical debt ratio
-```
+**Track**: Defect escape rate · MTTR · Review turnaround · Coverage trend · Debt ratio
 
 ---
 
 ## 8.6 Quality Culture
 
-### Principles
+**Principles**: Everyone's responsibility · Prevention > Detection · Continuous improvement · Measure what matters
 
-1. **Quality is everyone's responsibility**
-2. **Prevention over detection**
-3. **Continuous improvement**
-4. **Measure what matters**
-5. **Celebrate quality wins**
+### Anti-Patterns
 
-### Anti-Patterns to Avoid
-
-| Anti-Pattern         | Problem                  | Better Approach              |
-|----------------------|--------------------------|------------------------------|
-| "Ship and fix"       | Quality debt accumulates | Build quality in from start  |
-| "Not my code"        | Ownership gaps           | Collective ownership         |
-| "Tests slow us down" | Short-term thinking      | Tests enable speed long-term |
-| "Good enough"        | Gradual degradation      | Maintain standards           |
+| ❌ Anti-Pattern | ✅ Better |
+|----------------|-----------|
+| "Ship and fix" | Build quality in |
+| "Not my code" | Collective ownership |
+| "Tests slow us down" | Tests enable speed |
+| "Good enough" | Maintain standards |
 
 ---
 
-## 8.7 Quick Quality Reference
+## 8.7 Quick Reference
 
-### Daily Quality Habits
-
-- [ ] Run tests before committing
-- [ ] Review own code before PR
-- [ ] Update docs with code changes
-- [ ] Address review feedback promptly
-
-### Weekly Quality Habits
-
-- [ ] Review test coverage reports
-- [ ] Check for dependency updates
-- [ ] Address technical debt items
-- [ ] Share quality learnings
+| Frequency | Habits |
+|-----------|--------|
+| **Daily** | Tests before commit · Self-review before PR · Update docs · Address feedback |
+| **Weekly** | Coverage reports · Dependency updates · Technical debt · Share learnings |
 
 ---
 
-*Part of AI Collaboration Knowledge Base v2.0.0*
+*Part of AI Collaboration Knowledge Base*

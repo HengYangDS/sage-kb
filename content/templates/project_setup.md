@@ -1,96 +1,63 @@
 # Project Setup Templates
 
-> **Load Time**: On-demand (~100 tokens)  
+> **Load Time**: On-demand (~80 tokens)  
 > **Purpose**: Ready-to-use templates for project initialization
+
+---
+
+## Template Overview
+
+| Template | Purpose | Lines |
+|----------|---------|-------|
+| [Thin Layer](#thin-layer-junieguidelines-md) | Minimal local config | ~20 |
+| [pyproject.toml](#python-project) | Python project config | ~15 |
+| [README](#readme-template) | Project documentation | ~25 |
+| [.gitignore](#gitignore-template) | Git ignore patterns | ~15 |
+| [Docker](#docker-template) | Containerization | ~20 |
+| [CI/CD](#cicd-template) | GitHub Actions | ~20 |
 
 ---
 
 ## Thin Layer .junie/guidelines.md
 
-Minimal local configuration pointing to global knowledge base:
-
 ```markdown
 # Project Guidelines
 
-## Project Info
-
-- **Name**: [Project Name]
-- **Type**: [Python Backend / Web Frontend / Data Analysis / etc.]
-- **Language**: [Python 3.12 / TypeScript / etc.]
+**Name**: [Project Name] | **Type**: [Python Backend/Web/etc.] | **Language**: [Python 3.12/etc.]
 
 ## Knowledge Base
+Uses AI Collaboration KB v0.1.0 — Load: `sage get --scenario python_backend`
 
-This project uses AI Collaboration Knowledge Base.
+## Project-Specific
+- Naming: [overrides if any]
+- Structure: [notes if any]
+- Dependencies: [key constraints]
 
-- **Version**: 0.1.0
-- **Load**: `sage get --scenario python_backend`
+## Autonomy
+Default: L4 | Elevated: [routine tasks → L5] | Lowered: [sensitive areas → L1-L2]
 
-## Project-Specific Rules
-
-### Naming Conventions
-
-- [Any overrides to standard naming]
-
-### File Organization
-
-- [Project-specific structure notes]
-
-### Dependencies
-
-- [Key dependencies and version constraints]
-
-### Testing
-
-- [Project-specific test requirements]
-
-## Autonomy Calibration
-
-- **Default Level**: L4 (Medium-High)
-- **Elevated for**: [routine tasks that can be L5+]
-- **Lowered for**: [sensitive areas requiring L1-L2]
-
-## Quick Commands
-
-```bash
-# Development
-[dev command]
-
-# Test
-[test command]
-
-# Build
-[build command]
-```
-
+## Commands
+`[dev cmd]` · `[test cmd]` · `[build cmd]`
 ```
 
 ---
 
-## Python Project Template
+## Python Project
 
 ### pyproject.toml
+
 ```toml
 [project]
 name = "project-name"
 version = "0.1.0"
-description = "Project description"
 requires-python = ">=3.11"
-dependencies = [
-    "pydantic>=2.0",
-    "httpx>=0.24",
-]
+dependencies = ["pydantic>=2.0", "httpx>=0.24"]
 
 [project.optional-dependencies]
-dev = [
-    "pytest>=7.0",
-    "pytest-cov>=4.0",
-    "mypy>=1.0",
-    "ruff>=0.1",
-]
+dev = ["pytest>=7.0", "pytest-cov>=4.0", "mypy>=1.0", "ruff>=0.1"]
 
 [tool.ruff]
 line-length = 88
-target-version = "py311"
 
 [tool.mypy]
 python_version = "3.11"
@@ -103,25 +70,13 @@ addopts = "-v --cov=src"
 
 ### Directory Structure
 
-```
-project-name/
-├── src/
-│   └── project_name/
-│       ├── __init__.py
-│       ├── models/
-│       ├── services/
-│       └── api/
-├── tests/
-│   ├── unit/
-│   ├── integration/
-│   └── conftest.py
-├── docs/
-├── .junie/
-│   └── guidelines.md
-├── pyproject.toml
-├── README.md
-└── .gitignore
-```
+| Path | Purpose |
+|------|---------|
+| `src/project_name/` | Source code (models/, services/, api/) |
+| `tests/` | Test suite (unit/, integration/, conftest.py) |
+| `docs/` | Documentation |
+| `.junie/guidelines.md` | AI collaboration config |
+| `pyproject.toml` | Project config |
 
 ---
 
@@ -130,73 +85,26 @@ project-name/
 ```markdown
 # Project Name
 
-Brief description of the project.
-
-## Features
-
-- Feature 1
-- Feature 2
-- Feature 3
+Brief description.
 
 ## Quick Start
-
-### Prerequisites
-
-- Python 3.11+
-- [Other requirements]
-
-### Installation
-
-```bash
-pip install project-name
-```
-
-### Usage
+`pip install project-name`
 
 ```python
 from project_name import main_function
-
 result = main_function()
 ```
 
 ## Development
+`git clone <url> && cd project-name && pip install -e ".[dev]"`
 
-### Setup
-
-```bash
-git clone https://github.com/user/project-name
-cd project-name
-pip install -e ".[dev]"
-```
-
-### Testing
-
-```bash
-pytest
-```
-
-### Code Quality
-
-```bash
-ruff check .
-mypy src/
-```
-
-## Documentation
-
-See [docs/](docs/) for full documentation.
+**Test**: `pytest` | **Lint**: `ruff check . && mypy src/`
 
 ## Contributing
-
-1. Fork the repository
-2. Create feature branch
-3. Make changes with tests
-4. Submit pull request
+Fork → Branch → Changes + Tests → PR
 
 ## License
-
-MIT License - see LICENSE file.
-
+MIT
 ```
 
 ---
@@ -205,56 +113,19 @@ MIT License - see LICENSE file.
 
 ```gitignore
 # Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
+__pycache__/ | *.py[cod] | *.egg-info/ | dist/ | build/ | .eggs/
 
-# Virtual environments
-.env
-.venv
-env/
-venv/
-ENV/
+# Virtual env
+.env | .venv | venv/
 
 # IDE
-.idea/
-.vscode/
-*.swp
-*.swo
+.idea/ | .vscode/ | *.swp
 
 # Testing
-.tox/
-.coverage
-.coverage.*
-htmlcov/
-.pytest_cache/
-.mypy_cache/
+.coverage | htmlcov/ | .pytest_cache/ | .mypy_cache/
 
-# Build
-*.manifest
-*.spec
-
-# Local config
-.env.local
-*.local.yaml
-secrets.yaml
+# Local
+.env.local | *.local.yaml | secrets.yaml
 ```
 
 ---
@@ -265,93 +136,55 @@ secrets.yaml
 
 ```dockerfile
 FROM python:3.11-slim
-
 WORKDIR /app
-
-# Install dependencies
 COPY pyproject.toml .
 RUN pip install --no-cache-dir .
-
-# Copy source
 COPY src/ src/
-
-# Run
 CMD ["python", "-m", "project_name"]
 ```
 
 ### docker-compose.yml
 
 ```yaml
-version: '3.8'
-
 services:
   app:
     build: .
-    ports:
-      - "8000:8000"
-    environment:
-      - DATABASE_URL=postgresql://user:pass@db:5432/dbname
-    depends_on:
-      - db
-
+    ports: ["8000:8000"]
+    environment: [DATABASE_URL=postgresql://user:pass@db:5432/dbname]
+    depends_on: [db]
   db:
     image: postgres:15
-    environment:
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=pass
-      - POSTGRES_DB=dbname
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
+    environment: [POSTGRES_USER=user, POSTGRES_PASSWORD=pass, POSTGRES_DB=dbname]
+    volumes: [postgres_data:/var/lib/postgresql/data]
 volumes:
   postgres_data:
 ```
 
 ---
 
-## CI/CD Template (GitHub Actions)
+## CI/CD Template
 
 ### .github/workflows/ci.yml
 
 ```yaml
 name: CI
-
 on:
-  push:
-    branches: [ main, develop ]
-  pull_request:
-    branches: [ main ]
+  push: {branches: [main, develop]}
+  pull_request: {branches: [main]}
 
 jobs:
   test:
     runs-on: ubuntu-latest
     strategy:
-      matrix:
-        python-version: [ '3.11', '3.12' ]
-
+      matrix: {python-version: ['3.11', '3.12']}
     steps:
       - uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.python-version }}
-
-      - name: Install dependencies
-        run: |
-          pip install -e ".[dev]"
-
-      - name: Lint
-        run: |
-          ruff check .
-          mypy src/
-
-      - name: Test
-        run: |
-          pytest --cov --cov-report=xml
-
-      - name: Upload coverage
-        uses: codecov/codecov-action@v3
+      - uses: actions/setup-python@v5
+        with: {python-version: '${{ matrix.python-version }}'}
+      - run: pip install -e ".[dev]"
+      - run: ruff check . && mypy src/
+      - run: pytest --cov --cov-report=xml
+      - uses: codecov/codecov-action@v3
 ```
 
 ---
@@ -360,39 +193,23 @@ jobs:
 
 ```bash
 #!/bin/bash
-# setup_project.sh - Initialize new project with AI Collab KB
-
-PROJECT_NAME=$1
-
-if [ -z "$PROJECT_NAME" ]; then
-    echo "Usage: ./setup_project.sh <project-name>"
-    exit 1
-fi
-
-# Create structure
-mkdir -p "$PROJECT_NAME"/{src/"$PROJECT_NAME",tests/{unit,integration},docs,.junie}
-
-# Create files
-touch "$PROJECT_NAME"/src/"$PROJECT_NAME"/__init__.py
-touch "$PROJECT_NAME"/tests/conftest.py
-touch "$PROJECT_NAME"/README.md
-touch "$PROJECT_NAME"/.gitignore
-
-# Create thin layer guidelines
-cat > "$PROJECT_NAME"/.junie/guidelines.md << 'EOF'
-# Project Guidelines
-
-## Knowledge Base
-Uses AI Collaboration Knowledge Base v2.0.0
-
-## Project-Specific
-[Add project-specific rules here]
-EOF
-
-echo "Project $PROJECT_NAME initialized!"
-echo "Next: cd $PROJECT_NAME && sage get"
+# Usage: ./setup_project.sh <project-name>
+PROJECT=$1
+[[ -z "$PROJECT" ]] && echo "Usage: ./setup_project.sh <name>" && exit 1
+mkdir -p "$PROJECT"/{src/"$PROJECT",tests/{unit,integration},docs,.junie}
+touch "$PROJECT"/{src/"$PROJECT"/__init__.py,tests/conftest.py,README.md,.gitignore}
+echo "# Guidelines\nUses AI Collaboration KB v0.1.0" > "$PROJECT"/.junie/guidelines.md
+echo "Created $PROJECT! Next: cd $PROJECT && sage get"
 ```
 
 ---
 
-*Part of AI Collaboration Knowledge Base v2.0.0*
+## Related
+
+- `content/scenarios/python_backend/context.md` — Python backend context
+- `content/guidelines/python.md` — Python guidelines
+- `content/practices/engineering/patterns.md` — Design patterns
+
+---
+
+*Part of AI Collaboration Knowledge Base*

@@ -15,3 +15,16 @@ memory:
     auto_checkpoint: true              # Auto-checkpoint on critical events
     checkpoint_interval: 300           # Checkpoint every 5 minutes (seconds)
     max_history: 100                   # Max conversation entries
+
+  # Memory type retention policy (from 05-plugin-memory.md)
+  retention:
+    conversation: 50                   # Keep last N conversations
+    decision: 100                      # Keep last N decisions
+    summary: 20                        # Keep last N summaries
+    checkpoint: 10                     # Keep last N checkpoints
+
+  # Auto-cleanup configuration
+  cleanup:
+    enabled: true                      # Enable automatic cleanup
+    max_age_days: 30                   # Maximum retention days
+    min_priority: 30                   # Cleanup below this priority (LOW=30)

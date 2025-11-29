@@ -1,118 +1,81 @@
 # Planning and Design Guidelines
 
-> **Load Time**: On-demand (~150 tokens)  
+> **Load Time**: On-demand  
 > **Purpose**: Architecture and design principles for sustainable systems
 
 ---
 
 ## 1.1 Execution Principles
 
-### Think Before Acting
+**Think Before Acting**: Understand scope → Plan with milestones → Validate assumptions → Iterate on feedback
 
-- **Understand** the full scope before implementation
-- **Plan** the approach with clear milestones
-- **Validate** assumptions early
-- **Iterate** based on feedback
+**Scope**: ✅ "Implement user auth with JWT" · ❌ "Make the app secure"
 
-### Scope Management
-
-```
-GOOD: "Implement user authentication with JWT"
-BAD:  "Make the app secure"
-```
-
-### Task Decomposition
-
-1. Break large tasks into subtasks (max 2-4 hours each)
-2. Define clear acceptance criteria per subtask
-3. Identify dependencies between subtasks
-4. Estimate and track progress
+**Task Decomposition**: Break into 2-4 hour subtasks · Clear acceptance criteria · Identify dependencies · Track progress
 
 ---
 
 ## 1.2 Architecture Patterns
 
-### Layered Architecture
+**Layered Architecture**: Presentation (UI/API) → Business Logic (Domain) → Data Access (Repository) → Infrastructure
 
-```
-┌─────────────────────┐
-│   Presentation      │  ← UI/API Layer
-├─────────────────────┤
-│   Business Logic    │  ← Core Domain
-├─────────────────────┤
-│   Data Access       │  ← Repository/ORM
-├─────────────────────┤
-│   Infrastructure    │  ← External Services
-└─────────────────────┘
-```
+### SOLID Principles
 
-### Key Principles
-
-| Principle | Description           | Example                    |
-|-----------|-----------------------|----------------------------|
-| **SRP**   | Single Responsibility | One class = one purpose    |
-| **OCP**   | Open/Closed           | Extend, don't modify       |
-| **LSP**   | Liskov Substitution   | Subtypes are substitutable |
-| **ISP**   | Interface Segregation | Small, focused interfaces  |
-| **DIP**   | Dependency Inversion  | Depend on abstractions     |
+| Principle | Description | Example |
+|-----------|-------------|---------|
+| **SRP** | Single Responsibility | One class = one purpose |
+| **OCP** | Open/Closed | Extend, don't modify |
+| **LSP** | Liskov Substitution | Subtypes substitutable |
+| **ISP** | Interface Segregation | Small, focused interfaces |
+| **DIP** | Dependency Inversion | Depend on abstractions |
 
 ---
 
 ## 1.3 Modularity Guidelines
 
-### Module Design
-
 ```python
-# GOOD: Clear boundaries
+# ✅ Clear boundaries, DI
 class UserService:
     def __init__(self, repository: UserRepository):
         self._repository = repository
     
     def create_user(self, data: UserCreate) -> User:
-        # Business logic here
         return self._repository.save(data)
 
-# BAD: Mixed concerns
+# ❌ Mixed concerns
 class UserService:
     def create_user(self, data):
-        # Direct DB access, email sending, logging all mixed
-        conn = sqlite3.connect('db.sqlite')
-        # ...
+        conn = sqlite3.connect('db.sqlite')  # Direct DB, email, logging mixed
 ```
 
-### Dependency Management
-
-1. **Explicit dependencies**: Pass via constructor
-2. **Interface-based**: Depend on protocols/ABCs
-3. **Minimal coupling**: Only expose what's needed
-4. **Testability**: Easy to mock/stub
+**Dependency Management**: Explicit (constructor) · Interface-based (protocols) · Minimal coupling · Testable (mockable)
 
 ---
 
 ## 1.4 Design Checklist
 
-Before implementation, verify:
-
-- [ ] Requirements are clear and complete
-- [ ] Edge cases are identified
-- [ ] Error handling strategy defined
-- [ ] Performance requirements known
-- [ ] Security considerations addressed
-- [ ] Testing approach determined
-- [ ] Documentation plan in place
-
----
-
-## 1.5 Anti-Patterns to Avoid
-
-| Anti-Pattern           | Problem                 | Solution                       |
-|------------------------|-------------------------|--------------------------------|
-| God Class              | Does everything         | Split by responsibility        |
-| Spaghetti Code         | No structure            | Apply SOLID principles         |
-| Premature Optimization | Complexity without need | Profile first, optimize second |
-| Copy-Paste             | Duplication             | Extract to shared modules      |
-| Magic Numbers          | Unclear intent          | Use named constants            |
+| ✓ | Item |
+|---|------|
+| [ ] | Requirements clear and complete |
+| [ ] | Edge cases identified |
+| [ ] | Error handling strategy defined |
+| [ ] | Performance requirements known |
+| [ ] | Security considerations addressed |
+| [ ] | Testing approach determined |
+| [ ] | Documentation plan in place |
 
 ---
 
-*Part of AI Collaboration Knowledge Base v2.0.0*
+## 1.5 Anti-Patterns
+
+| ❌ Anti-Pattern | Problem | ✅ Solution |
+|----------------|---------|-------------|
+| God Class | Does everything | Split by responsibility |
+| Spaghetti Code | No structure | Apply SOLID |
+| Premature Optimization | Complexity without need | Profile first |
+| Copy-Paste | Duplication | Extract to shared |
+| Magic Numbers | Unclear intent | Named constants |
+
+---
+
+*Part of AI Collaboration Knowledge Base*

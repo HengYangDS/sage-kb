@@ -5,6 +5,8 @@
 #
 # Structure:
 #   plugins.loader      - Master controls for plugin behavior
+#   plugins.event_handler - Event handler configuration
+#   plugins.loading     - Plugin loading configuration
 #   plugins.bundled.*   - Individual plugin configurations
 #
 # Note: Plugins are auto-configured when registered via PluginRegistry.register()
@@ -20,6 +22,17 @@ plugins:
     cache_enabled: true
     # Default TTL for cache (used if bundled.content_cache.ttl_seconds not set)
     cache_ttl: 300                     # 5 minutes
+
+  # Event handler configuration (from 05-plugin-memory.md)
+  event_handler:
+    timeout_ms: 1000                   # Single handler timeout
+    max_concurrent: 10                 # Maximum concurrent handlers
+
+  # Plugin loading configuration
+  loading:
+    auto_discover: true                # Auto-discover plugins
+    plugin_dir: "plugins"              # Custom plugins directory
+    disabled: []                       # List of disabled plugins
 
   # Bundled plugin configurations
   # Each plugin is configured at plugins.bundled.<plugin_name>

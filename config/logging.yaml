@@ -10,3 +10,18 @@ logging:
   level: INFO
   format: structured                   # structured | plain
   include_timestamps: true
+
+  # Output configuration
+  output:
+    console: true                      # Output to console
+    file: false                        # Output to file
+    file_path: "logs/sage.log"         # Log file path
+    max_size_mb: 10                    # Max file size before rotation
+    backup_count: 5                    # Number of backup files to keep
+
+  # Module-level logging configuration
+  modules:
+    sage.core: INFO
+    sage.services: INFO
+    sage.plugins: WARNING
+    sage.capabilities: INFO

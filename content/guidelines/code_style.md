@@ -1,219 +1,141 @@
 # Code Style Guidelines
 
-> **Load Time**: On-demand (~200 tokens)  
+> **Load Time**: On-demand  
 > **Purpose**: Consistent, readable, maintainable code
 
 ---
 
 ## 2.1 General Principles
 
-### Readability First
+**Readability First**: Self-documenting code over cryptic shortcuts
 
 ```python
-# GOOD: Self-documenting
+# ✅ Self-documenting
 def calculate_monthly_payment(principal: float, rate: float, months: int) -> float:
     monthly_rate = rate / 12
     return principal * monthly_rate / (1 - (1 + monthly_rate) ** -months)
 
-# BAD: Cryptic
+# ❌ Cryptic
 def calc(p, r, m):
     return p * r/12 / (1 - (1 + r/12) ** -m)
 ```
 
-### Consistency Over Preference
-
-- Follow project's existing style
-- Use formatters (black, prettier, rustfmt)
-- Configure linters for enforcement
+**Consistency**: Follow project style · Use formatters (black, prettier) · Configure linters
 
 ---
 
 ## 2.2 Naming Conventions
 
-| Element     | Style            | Example                           |
-|-------------|------------------|-----------------------------------|
-| Classes     | PascalCase       | `UserAccount`, `HttpClient`       |
-| Functions   | snake_case       | `get_user()`, `calculate_total()` |
-| Variables   | snake_case       | `user_count`, `max_retries`       |
-| Constants   | SCREAMING_SNAKE  | `MAX_CONNECTIONS`, `API_URL`      |
-| Private     | _prefix          | `_internal_state`, `_helper()`    |
-| Type Params | Single uppercase | `T`, `K`, `V`                     |
+| Element | Style | Example |
+|---------|-------|---------|
+| Classes | PascalCase | `UserAccount`, `HttpClient` |
+| Functions | snake_case | `get_user()`, `calculate_total()` |
+| Variables | snake_case | `user_count`, `max_retries` |
+| Constants | SCREAMING_SNAKE | `MAX_CONNECTIONS`, `API_URL` |
+| Private | _prefix | `_internal_state`, `_helper()` |
+| Type Params | Single uppercase | `T`, `K`, `V` |
 
-### Naming Quality Checklist
-
-- [ ] Reveals intent (`user_count` vs `n`)
-- [ ] Avoids abbreviations (`configuration` vs `cfg`)
-- [ ] Uses domain language (`Order` vs `Thing1`)
-- [ ] Searchable in codebase
+**Quality**: Reveals intent · Avoids abbreviations · Uses domain language · Searchable
 
 ---
 
 ## 2.3 Code Formatting
 
-### Line Length
+| Aspect | Python | JS/TS | Markdown |
+|--------|--------|-------|----------|
+| Line length | 88 | 100 | 120 |
+| Indent | 4 spaces | 2 spaces | 2 spaces |
 
-- **Python**: 88 characters (black default)
-- **JavaScript/TypeScript**: 100 characters
-- **Markdown**: 120 characters (documentation)
-
-### Indentation
-
-- **Python**: 4 spaces
-- **JavaScript/TypeScript**: 2 spaces
-- **YAML/JSON**: 2 spaces
-
-### Blank Lines
-
-```python
-# Two blank lines before top-level definitions
-import os
-
-
-class UserService:
-    """User management service."""
-    
-    # One blank line between methods
-    def create(self, data: dict) -> User:
-        pass
-    
-    def delete(self, user_id: str) -> bool:
-        pass
-```
+**Blank Lines**: 2 before top-level definitions · 1 between methods
 
 ---
 
 ## 2.4 Import Organization
 
-### Python Import Order
-
 ```python
 # 1. Standard library
 import os
-import sys
-from datetime import datetime
 from typing import Optional, List
 
-# 2. Third-party packages
-import httpx
+# 2. Third-party
 from pydantic import BaseModel
 
-# 3. Local imports
+# 3. Local
 from .models import User
-from .services import UserService
 ```
 
-### Import Best Practices
-
-- Use absolute imports when possible
-- Avoid wildcard imports (`from x import *`)
-- Group related imports together
-- Sort alphabetically within groups
+**Best Practices**: Absolute imports · No wildcards · Group related · Sort alphabetically
 
 ---
 
 ## 2.5 Comments and Documentation
 
-### When to Comment
-
 ```python
-# GOOD: Explain WHY, not WHAT
-# Using binary search for O(log n) lookup in sorted data
+# ✅ Explain WHY
+# Using binary search for O(log n) lookup
 index = bisect.bisect_left(sorted_items, target)
 
-# BAD: Stating the obvious
-# Increment counter by 1
-counter += 1
+# ❌ Stating the obvious
+counter += 1  # Increment counter
 ```
 
-### Docstring Standards (Google Style)
-
-```python
-def fetch_user(user_id: str, include_deleted: bool = False) -> Optional[User]:
-    """Fetch a user by their unique identifier.
-    
-    Args:
-        user_id: The unique identifier of the user.
-        include_deleted: Whether to include soft-deleted users.
-        
-    Returns:
-        The User object if found, None otherwise.
-        
-    Raises:
-        ValueError: If user_id is empty or invalid format.
-        ConnectionError: If database is unavailable.
-    """
-    pass
-```
+**Docstrings**: See `guidelines/python.md` for Google style
 
 ---
 
-## 2.6 Error Handling Style
-
-### Explicit Error Handling
+## 2.6 Error Handling
 
 ```python
-# GOOD: Specific exceptions with context
+# ✅ Specific exceptions with context
 try:
     user = repository.get(user_id)
 except UserNotFoundError:
     logger.warning(f"User {user_id} not found")
     raise
 except DatabaseError as e:
-    logger.error(f"Database error fetching user {user_id}: {e}")
     raise ServiceUnavailableError("Unable to fetch user") from e
 
-# BAD: Catching everything
+# ❌ Silent failure
 try:
     user = repository.get(user_id)
 except Exception:
-    pass  # Silent failure
+    pass
 ```
 
 ---
 
-## 2.7 Code Organization
-
-### File Structure Template
+## 2.7 File Structure
 
 ```python
-"""Module docstring explaining purpose."""
+"""Module docstring."""
 
-# Imports (organized as per 2.4)
-import ...
-
-# Constants
+# 1. Imports (organized)
+# 2. Constants
 MAX_RETRIES = 3
-DEFAULT_TIMEOUT = 30
 
-# Type definitions
-UserDict = dict[str, Any]
-
-# Classes
-class MainClass:
-    pass
-
-# Functions
-def helper_function():
-    pass
-
-# Entry point (if applicable)
+# 3. Type definitions
+# 4. Classes
+# 5. Functions
+# 6. Entry point
 if __name__ == "__main__":
     main()
 ```
 
 ---
 
-## 2.8 Quick Style Checklist
+## 2.8 Quick Checklist
 
-- [ ] Names are descriptive and consistent
-- [ ] Formatting follows project standards
-- [ ] Imports are organized and minimal
-- [ ] Comments explain "why" not "what"
-- [ ] Error handling is explicit
-- [ ] No magic numbers or strings
-- [ ] Functions are focused (< 50 lines ideal)
-- [ ] Classes follow single responsibility
+| ✓ | Item |
+|---|------|
+| [ ] | Names descriptive and consistent |
+| [ ] | Formatting follows standards |
+| [ ] | Imports organized and minimal |
+| [ ] | Comments explain "why" not "what" |
+| [ ] | Error handling explicit |
+| [ ] | No magic numbers/strings |
+| [ ] | Functions focused (<50 lines) |
+| [ ] | Classes single responsibility |
 
 ---
 
-*Part of AI Collaboration Knowledge Base v2.0.0*
+*Part of AI Collaboration Knowledge Base*

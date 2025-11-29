@@ -1,189 +1,99 @@
 # Engineering Patterns Practice Guide
 
-> **Load Time**: On-demand (~200 tokens)  
+> **Load Time**: On-demand (~150 tokens)  
 > **Purpose**: Common engineering patterns and their practical application
+
+---
+
+## Pattern Quick Reference
+
+| Pattern | Purpose | When to Use |
+|---------|---------|-------------|
+| **Repository** | Abstract data access | Multiple data sources, swappable backends, mock testing |
+| **Service Layer** | Encapsulate business logic | Logic spans entities, side effects, transaction mgmt |
+| **Factory** | Encapsulate object creation | Complex creation, dynamic type selection |
+| **Strategy** | Interchangeable algorithms | Multiple algorithms, runtime selection, avoid conditionals |
+| **Observer** | Decoupled notifications | Event-driven, plugin architecture, async processing |
+| **Circuit Breaker** | Prevent cascade failures | External services, graceful degradation, self-healing |
 
 ---
 
 ## Repository Pattern
 
-### Purpose
-
-Abstract data access logic from business logic.
-
-### Implementation
+**Purpose**: Abstract data access from business logic
 
 ```python
-from abc import ABC, abstractmethod
-from typing import Optional, List, Generic, TypeVar
-
-T = TypeVar('T')
-
 class Repository(ABC, Generic[T]):
-    """Abstract repository interface."""
-    
     @abstractmethod
-    def get(self, id: str) -> Optional[T]:
-        """Retrieve entity by ID."""
-        pass
-    
+    def get(self, id: str) -> Optional[T]: ...
     @abstractmethod
-    def save(self, entity: T) -> T:
-        """Persist entity."""
-        pass
-    
+    def save(self, entity: T) -> T: ...
     @abstractmethod
-    def delete(self, id: str) -> bool:
-        """Remove entity."""
-        pass
-    
+    def delete(self, id: str) -> bool: ...
     @abstractmethod
-    def find_all(self) -> List[T]:
-        """Retrieve all entities."""
-        pass
+    def find_all(self) -> List[T]: ...
 
 class UserRepository(Repository[User]):
-    """Concrete user repository."""
-    
     def __init__(self, session: Session):
         self._session = session
-    
     def get(self, id: str) -> Optional[User]:
         return self._session.query(User).get(id)
-    
-    def save(self, user: User) -> User:
-        self._session.add(user)
-        self._session.commit()
-        return user
 ```
-
-### When to Use
-
-- Multiple data sources possible
-- Need to swap storage backends
-- Testing requires mock data access
-- Complex query logic to encapsulate
 
 ---
 
 ## Service Layer Pattern
 
-### Purpose
-
-Encapsulate business logic separate from presentation and data access.
-
-### Implementation
+**Purpose**: Encapsulate business logic separate from presentation/data access
 
 ```python
 class UserService:
-    """Business logic for user operations."""
-    
-    def __init__(
-        self,
-        repository: UserRepository,
-        email_service: EmailService,
-        event_bus: EventBus
-    ):
-        self._repository = repository
-        self._email_service = email_service
-        self._event_bus = event_bus
+    def __init__(self, repository: UserRepository, email: EmailService, events: EventBus):
+        self._repo, self._email, self._events = repository, email, events
     
     def register(self, data: UserCreate) -> User:
-        """Register new user with validation and notifications."""
-        # Validate
-        if self._repository.find_by_email(data.email):
+        if self._repo.find_by_email(data.email):
             raise EmailAlreadyExistsError(data.email)
-        
-        # Create
-        user = User(
-            email=data.email,
-            password_hash=hash_password(data.password),
-            name=data.name
-        )
-        user = self._repository.save(user)
-        
-        # Side effects
-        self._email_service.send_welcome(user)
-        self._event_bus.publish(UserRegistered(user.id))
-        
+        user = self._repo.save(User(email=data.email, password_hash=hash(data.password)))
+        self._email.send_welcome(user)
+        self._events.publish(UserRegistered(user.id))
         return user
 ```
-
-### When to Use
-
-- Business logic spans multiple entities
-- Operations have side effects (email, events)
-- Same logic needed from multiple entry points
-- Transaction management required
 
 ---
 
 ## Factory Pattern
 
-### Purpose
-
-Encapsulate object creation logic.
-
-### Implementation
+**Purpose**: Encapsulate object creation logic
 
 ```python
-from typing import Dict, Type
-
 class HandlerFactory:
-    """Factory for creating message handlers."""
-    
     _handlers: Dict[str, Type[Handler]] = {}
     
     @classmethod
-    def register(cls, message_type: str):
-        """Decorator to register handler."""
-        def decorator(handler_class: Type[Handler]):
-            cls._handlers[message_type] = handler_class
-            return handler_class
+    def register(cls, msg_type: str):
+        def decorator(handler_cls):
+            cls._handlers[msg_type] = handler_cls
+            return handler_cls
         return decorator
     
     @classmethod
-    def create(cls, message_type: str, **kwargs) -> Handler:
-        """Create handler for message type."""
-        handler_class = cls._handlers.get(message_type)
-        if not handler_class:
-            raise UnknownMessageTypeError(message_type)
-        return handler_class(**kwargs)
+    def create(cls, msg_type: str, **kwargs) -> Handler:
+        return cls._handlers[msg_type](**kwargs)
 
 @HandlerFactory.register("order.created")
-class OrderCreatedHandler(Handler):
-    def handle(self, message: Message) -> None:
-        # Handle order created
-        pass
+class OrderCreatedHandler(Handler): ...
 ```
-
-### When to Use
-
-- Object creation is complex
-- Multiple types share interface
-- Need to decouple creation from usage
-- Dynamic type selection at runtime
 
 ---
 
 ## Strategy Pattern
 
-### Purpose
-
-Define family of algorithms, encapsulate each, make them interchangeable.
-
-### Implementation
+**Purpose**: Define interchangeable algorithms
 
 ```python
-from abc import ABC, abstractmethod
-from typing import Protocol
-
 class PricingStrategy(Protocol):
-    """Protocol for pricing strategies."""
-    
-    def calculate(self, base_price: float, quantity: int) -> float:
-        """Calculate final price."""
-        ...
+    def calculate(self, base_price: float, quantity: int) -> float: ...
 
 class RegularPricing:
     def calculate(self, base_price: float, quantity: int) -> float:
@@ -191,169 +101,86 @@ class RegularPricing:
 
 class BulkPricing:
     def __init__(self, threshold: int, discount: float):
-        self.threshold = threshold
-        self.discount = discount
-    
+        self.threshold, self.discount = threshold, discount
     def calculate(self, base_price: float, quantity: int) -> float:
-        if quantity >= self.threshold:
-            return base_price * quantity * (1 - self.discount)
-        return base_price * quantity
+        return base_price * quantity * (1 - self.discount if quantity >= self.threshold else 1)
 
 class Order:
     def __init__(self, pricing: PricingStrategy):
         self._pricing = pricing
-    
-    def total(self, items: List[Item]) -> float:
-        return sum(
-            self._pricing.calculate(item.price, item.quantity)
-            for item in items
-        )
 ```
-
-### When to Use
-
-- Multiple algorithms for same task
-- Algorithm selection at runtime
-- Avoid complex conditionals
-- Need to add new algorithms easily
 
 ---
 
 ## Observer Pattern
 
-### Purpose
-
-Define one-to-many dependency; when one object changes, dependents are notified.
-
-### Implementation
+**Purpose**: One-to-many dependency with decoupled notifications
 
 ```python
-from typing import List, Callable, Any
-
 class EventBus:
-    """Simple event bus implementation."""
-    
     def __init__(self):
         self._subscribers: Dict[str, List[Callable]] = {}
     
     def subscribe(self, event_type: str, handler: Callable) -> None:
-        """Subscribe to event type."""
-        if event_type not in self._subscribers:
-            self._subscribers[event_type] = []
-        self._subscribers[event_type].append(handler)
+        self._subscribers.setdefault(event_type, []).append(handler)
     
     def publish(self, event_type: str, data: Any) -> None:
-        """Publish event to all subscribers."""
         for handler in self._subscribers.get(event_type, []):
             handler(data)
 
-# Usage
-event_bus = EventBus()
-event_bus.subscribe("user.created", send_welcome_email)
-event_bus.subscribe("user.created", update_analytics)
-event_bus.publish("user.created", {"user_id": "123"})
+# Usage: event_bus.subscribe("user.created", send_email)
 ```
-
-### When to Use
-
-- Decoupled communication needed
-- Multiple reactions to single event
-- Plugin/extension architecture
-- Async event processing
 
 ---
 
 ## Circuit Breaker Pattern
 
-### Purpose
-
-Prevent cascading failures by failing fast when service is unavailable.
-
-### Implementation
+**Purpose**: Prevent cascading failures by failing fast
 
 ```python
-from enum import Enum
-from datetime import datetime, timedelta
-
-
 class CircuitState(Enum):
-    CLOSED = "closed"  # Normal operation
-    OPEN = "open"  # Failing fast
+    CLOSED = "closed"      # Normal operation
+    OPEN = "open"          # Failing fast
     HALF_OPEN = "half_open"  # Testing recovery
 
-
 class CircuitBreaker:
-    """Circuit breaker for external calls."""
-
-    def __init__(
-        self,
-        failure_threshold: int = 5,
-        recovery_timeout: int = 30
-    ):
-        self.failure_threshold = failure_threshold
-        self.recovery_timeout = recovery_timeout
-        self.failures = 0
-        self.state = CircuitState.CLOSED
-        self.last_failure_time = None
-
+    def __init__(self, failure_threshold: int = 5, recovery_timeout: int = 30):
+        self.threshold, self.timeout = failure_threshold, recovery_timeout
+        self.failures, self.state = 0, CircuitState.CLOSED
+    
     def call(self, func: Callable, *args, **kwargs):
-        """Execute function with circuit breaker protection."""
         if self.state == CircuitState.OPEN:
-            if self._should_attempt_recovery():
-                self.state = CircuitState.HALF_OPEN
-            else:
-                raise CircuitOpenError("Circuit is open")
-
+            raise CircuitOpenError("Circuit is open")
         try:
             result = func(*args, **kwargs)
-            self._on_success()
+            self.failures, self.state = 0, CircuitState.CLOSED
             return result
-        except Exception as e:
-            self._on_failure()
+        except Exception:
+            self.failures += 1
+            if self.failures >= self.threshold:
+                self.state = CircuitState.OPEN
             raise
-
-    def _on_success(self):
-        self.failures = 0
-        self.state = CircuitState.CLOSED
-
-    def _on_failure(self):
-        self.failures += 1
-        self.last_failure_time = datetime.now()
-        if self.failures >= self.failure_threshold:
-            self.state = CircuitState.OPEN
 ```
-
-### When to Use
-
-- Calling external services
-- Preventing cascade failures
-- Graceful degradation needed
-- Self-healing systems
-
----
-
-## Pattern Selection Guide
-
-| Scenario                     | Recommended Pattern |
-|------------------------------|---------------------|
-| Data access abstraction      | Repository          |
-| Business logic encapsulation | Service Layer       |
-| Complex object creation      | Factory             |
-| Interchangeable algorithms   | Strategy            |
-| Decoupled event handling     | Observer            |
-| External service resilience  | Circuit Breaker     |
 
 ---
 
 ## Anti-Patterns to Avoid
 
-| Anti-Pattern      | Problem                | Solution               |
-|-------------------|------------------------|------------------------|
-| God Object        | Does everything        | Split responsibilities |
-| Anemic Domain     | Logic outside entities | Rich domain models     |
-| Service Locator   | Hidden dependencies    | Dependency injection   |
-| Singleton Overuse | Global state           | Scoped instances       |
+| Anti-Pattern | Problem | Solution |
+|--------------|---------|----------|
+| God Object | Does everything | Split responsibilities |
+| Anemic Domain | Logic outside entities | Rich domain models |
+| Service Locator | Hidden dependencies | Dependency injection |
+| Singleton Overuse | Global state | Scoped instances |
 
 ---
 
-*Part of AI Collaboration Knowledge Base v2.0.0*
+## Related
+
+- `content/guidelines/code_style.md` — Code style guidelines
+- `content/guidelines/python.md` — Python-specific patterns
+- `content/frameworks/design/design_axioms.md` — Design principles
+
+---
+
+*Part of AI Collaboration Knowledge Base*

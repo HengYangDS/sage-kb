@@ -16,18 +16,30 @@
 # Configuration Includes
 # =============================================================================
 includes:
+  # Core configuration
   - config/timeout.yaml
   - config/loading.yaml
   - config/quality.yaml
+  - config/documentation.yaml
+  # Service configuration
+  - config/cli.yaml
+  - config/mcp.yaml
+  - config/api.yaml
+  # Content and search
+  - config/content.yaml
+  - config/search.yaml
+  # Guidelines and triggers
   - config/guidelines.yaml
   - config/triggers.yaml
+  # Infrastructure
   - config/plugins.yaml
   - config/logging.yaml
   - config/token_budget.yaml
   - config/memory.yaml
   - config/di.yaml
   - config/features.yaml
-  - config/api.yaml
+  # AI collaboration
+  - config/autonomy.yaml
 
 # =============================================================================
 # Metadata (kept in main file for quick reference)

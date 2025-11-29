@@ -1,219 +1,74 @@
 # AI Collaboration Workflow Practices
 
-> **Load Time**: On-demand (~180 tokens)  
+> **Load Time**: On-demand (~120 tokens)  
 > **Purpose**: Practical workflows for effective human-AI collaboration
 
 ---
 
 ## Daily Workflow Pattern
 
-### Session Start
+### Session Start (3 steps)
 
+| Step | Action | Duration |
+|------|--------|----------|
+| 1. Context | State project/task, recent changes, autonomy level | 2 min |
+| 2. Goal | Clear objective, success criteria, time constraints | 1 min |
+| 3. Begin | AI confirms understanding, work proceeds per level | — |
+
+**Example**:
 ```
-1. Context Setting (2 min)
-   - State current project/task
-   - Mention relevant recent changes
-   - Set autonomy level for session
-
-2. Goal Definition (1 min)
-   - Clear objective statement
-   - Success criteria
-   - Time constraints
-
-3. Begin Work
-   - AI confirms understanding
-   - Work proceeds per autonomy level
-```
-
-### Example Session Start
-
-```markdown
-## Session Context
-
-Project: AI Collaboration KB
-Recent: Completed guidelines chapters 01-09
-Autonomy: L3 (autonomous execution)
-
-## Today's Goal
-
-Create framework documents for 03_frameworks/
-
-- autonomy/levels.md
-- cognitive/expert_committee.md
-- timeout/hierarchy.md
-
-Success: All three files created with comprehensive content
-Time: 2 hours
+Project: AI Collaboration KB | Recent: Completed guidelines 01-09 | Autonomy: L3
+Goal: Create framework docs (autonomy/levels.md, cognitive/expert_committee.md)
+Success: All files created | Time: 2 hours
 ```
 
 ---
 
 ## Task Handoff Patterns
 
-### Simple Handoff
+| Type | Format | Use Case |
+|------|--------|----------|
+| **Simple** | "Create X" → AI executes → Reports | Clear, small tasks |
+| **Detailed** | Requirements + Constraints + Autonomy | Complex features |
+| **Batch** | Task list + Completion criteria | Multiple related tasks |
 
+**Detailed Handoff Template**:
 ```
-Human: "Create a user registration endpoint"
-AI: [Confirms understanding, executes, reports]
-```
-
-### Detailed Handoff
-
-```markdown
-## Task: User Registration Endpoint
-
-### Requirements
-
-- POST /api/users/register
-- Accept: email, password, name
-- Validate email format and password strength
-- Return JWT token on success
-
-### Constraints
-
-- Use existing auth middleware
-- Follow project API patterns
-- Add tests
-
-### Autonomy: L2 (checkpoints at design and before merge)
-```
-
-### Batch Handoff
-
-```markdown
-## Task Batch: Code Quality Improvements
-
-### Tasks (L4 autonomy)
-
-1. Add type hints to services/*.py
-2. Fix all linting errors in models/
-3. Update docstrings in api/
-
-### Completion Criteria
-
-- All files pass mypy --strict
-- Zero linting errors
-- 100% public method documentation
+Task: [Name] | Autonomy: L[n]
+Requirements: [bullet list]
+Constraints: [bullet list]
+Success: [criteria]
 ```
 
 ---
 
 ## Progress Reporting
 
-### Checkpoint Report
+### Report Types
 
-```markdown
-## Checkpoint: Feature Implementation
+| Type | When | Key Fields |
+|------|------|------------|
+| **Checkpoint** | Mid-task | Progress (n/m), Status, Completed, Current, Remaining, Questions |
+| **Completion** | Task done | Summary, Changes Made, Testing, Notes, Next Steps |
+| **Error** | Issue found | Type, Severity, Location, Analysis, Proposed Solutions |
 
-**Progress**: 3/5 steps complete
-**Status**: On track
+**Checkpoint Format**: `Progress: n/m | Status: [On track/Blocked/Delayed] | Current: [item] | Questions: [if any]`
 
-### Completed
+**Completion Format**: `Summary → Changes → Testing (pass/fail) → Next Steps`
 
-- [x] Database schema designed
-- [x] Models implemented
-- [x] Repository layer done
-
-### Current
-
-- [ ] Service layer (70% complete)
-
-### Remaining
-
-- [ ] API endpoints
-
-### Issues
-
-None currently
-
-### Questions
-
-Should pagination use cursor or offset?
-```
-
-### Completion Report
-
-```markdown
-## Task Complete: User Registration
-
-### Summary
-
-Implemented user registration endpoint with full validation
-and JWT token generation.
-
-### Changes Made
-
-- Created `api/routes/register.py`
-- Added `services/registration.py`
-- Updated `models/user.py` with validation
-- Added 12 unit tests (100% pass)
-
-### Testing
-
-- Unit tests: 12/12 passing
-- Integration tests: 3/3 passing
-- Manual testing: Verified with Postman
-
-### Notes
-
-- Used bcrypt for password hashing
-- JWT expiry set to 24 hours (configurable)
-
-### Next Steps (if any)
-
-- Consider rate limiting for registration endpoint
-```
+**Error Format**: `Type: [X] | Severity: [H/M/L] | Location: [path] | Root Cause: [X] | Solutions: [1,2,3] | Recommendation: [n]`
 
 ---
 
 ## Error Handling Workflow
 
-### When AI Encounters Error
+**Steps**: Stop → Document → Analyze → Propose → Wait (unless L4+)
 
-```
-1. Stop execution
-2. Document error clearly
-3. Analyze root cause
-4. Propose solutions
-5. Wait for guidance (unless L4+)
-```
-
-### Error Report Format
-
-```markdown
-## Error Encountered
-
-**Type**: Test Failure
-**Severity**: Medium (blocking PR)
-**Location**: tests/test_user_service.py::test_create_user
-
-### Error Details
-```
-
-AssertionError: Expected User object, got None
-
-```
-
-### Analysis
-The `create_user` method returns None when email 
-validation fails silently instead of raising exception.
-
-### Root Cause
-Missing validation in UserService.create_user()
-
-### Proposed Solutions
-1. **Quick fix**: Add email validation before save
-2. **Better**: Create ValidationError exception class
-3. **Best**: Implement pydantic model validation
-
-### Recommendation
-Option 3 - aligns with project patterns
-
-### Action Needed
-- [ ] Approve solution
-- [ ] Provide alternative
-- [ ] Escalate
-```
+| Severity | Action | Autonomy Override |
+|----------|--------|-------------------|
+| High | Stop, report immediately | Always wait |
+| Medium | Document, propose solutions | L4+ may proceed |
+| Low | Note, continue if clear fix | L3+ may proceed |
 
 ---
 
@@ -221,120 +76,55 @@ Option 3 - aligns with project patterns
 
 ### Session Summary (End of Day)
 
-```markdown
-## Session Summary: 2024-01-15
-
-### Accomplished
-
-- Completed 02_guidelines/ (9 chapters)
-- Created 03_frameworks/autonomy/levels.md
-- Fixed 3 bugs in loader.py
-
-### In Progress
-
-- 03_frameworks/cognitive/ (50%)
-
-### Pending
-
-- 04_practices/ directory
-- Test coverage improvement
-
-### Key Decisions
-
-- Merged decorator patterns into Python chapter
-- Adopted 5-level timeout hierarchy
-
-### Tomorrow
-
-- Complete 03_frameworks/
-- Start 04_practices/
-
-### Notes
-
-- Consider adding mermaid diagrams
-- User requested English documentation
+```
+Date: [YYYY-MM-DD]
+Accomplished: [list] | In Progress: [list] | Pending: [list]
+Key Decisions: [list] | Tomorrow: [priorities] | Notes: [if any]
 ```
 
 ### Context for New Session
 
-```markdown
-## Previous Context
-
-### Project State
-
-- AI Collaboration KB, version 0.1.0
-- 85% complete on documentation
-- Core Python modules functional
-
-### Recent Changes
-
-- Created 9 guideline chapters
-- Implemented TimeoutLoader
-- Added MCP server support
-
-### Current Branch
-
-feature/complete-documentation
-
-### Known Issues
-
-- CLI help text needs updating
-- Missing tests for plugins
+```
+Project: [name, version, % complete]
+Recent Changes: [list]
+Branch: [name] | Known Issues: [list]
 ```
 
 ---
 
 ## Collaboration Anti-Patterns
 
-### What to Avoid
+| Pattern | Problem | Better Approach |
+|---------|---------|-----------------|
+| Vague requests | "Make it better" | Specific criteria |
+| No context | Starting from scratch | Provide background |
+| Micro-managing | Approving every line | Trust autonomy levels |
+| Ignoring updates | Missed important info | Review checkpoints |
+| Scope creep | Endless expansion | Define boundaries |
 
-| Pattern          | Problem               | Better Approach       |
-|------------------|-----------------------|-----------------------|
-| Vague requests   | "Make it better"      | Specific criteria     |
-| No context       | Starting from scratch | Provide background    |
-| Micro-managing   | Approving every line  | Trust autonomy levels |
-| Ignoring updates | Missed important info | Review checkpoints    |
-| Scope creep      | Endless expansion     | Define boundaries     |
+**Warning Signs**: Frequent misunderstandings · Repeated clarifications · Unexpected changes · Slow progress
 
-### Warning Signs
-
-- Frequent misunderstandings
-- Repeated clarification requests
-- Unexpected changes
-- Slow progress
-
-### Recovery Actions
-
-1. Pause and align on goals
-2. Adjust autonomy level
-3. Provide more context
-4. Simplify scope
+**Recovery**: Pause → Align goals → Adjust autonomy → Add context → Simplify scope
 
 ---
 
-## Quick Reference
+## Quick Reference Checklists
 
-### Session Checklist
-
-- [ ] Context provided
-- [ ] Goals defined
-- [ ] Autonomy set
-- [ ] Constraints stated
-
-### Handoff Checklist
-
-- [ ] Requirements clear
-- [ ] Success criteria defined
-- [ ] Time expectations set
-- [ ] Questions answered
-
-### Review Checklist
-
-- [ ] Results match goals
-- [ ] Quality acceptable
-- [ ] Tests included
-- [ ] Documentation updated
+| Session Start | Task Handoff | Review |
+|---------------|--------------|--------|
+| ✓ Context provided | ✓ Requirements clear | ✓ Results match goals |
+| ✓ Goals defined | ✓ Success criteria set | ✓ Quality acceptable |
+| ✓ Autonomy set | ✓ Time expectations | ✓ Tests included |
+| ✓ Constraints stated | ✓ Questions answered | ✓ Docs updated |
 
 ---
 
-*Part of AI Collaboration Knowledge Base v2.0.0*
+## Related
+
+- `content/frameworks/autonomy/levels.md` — Autonomy framework
+- `content/core/quick_reference.md` — Quick reference card
+- `token_optimization.md` — Token efficiency principles
+
+---
+
+*Part of AI Collaboration Knowledge Base*

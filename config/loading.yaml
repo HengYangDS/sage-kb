@@ -16,3 +16,18 @@ loading:
     - index.md
     - content/core/principles.md
     - content/core/quick_reference.md
+
+  # Layer token budgets (from 06-content-structure.md)
+  layer_budgets:
+    core: 500                          # Core principles
+    guidelines: 1200                   # Engineering guidelines
+    frameworks: 2000                   # Deep frameworks
+    practices: 1500                    # Best practices
+    scenarios: 500                     # Scenario presets
+    templates: 300                     # Reusable templates
+
+  # Loading strategy
+  strategy:
+    preload_on_startup: true           # Preload 'always' list on startup
+    parallel_loading: true             # Enable parallel file loading
+    max_parallel: 5                    # Maximum parallel load operations
