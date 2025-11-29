@@ -252,6 +252,7 @@ This `.junie/` configuration follows the **Thin Layer** principle with clear sep
 |------------|------|---------------------------------------------|
 | `generic/` | 🔄   | Generic settings (config.yaml, quickref.md) |
 | `mcp/`     | 🔄   | MCP server configuration                    |
+| `schema/`  | 🔄   | JSON Schema validation files                |
 | `docs/`    | 🔄   | Junie documentation                         |
 | `project/` | 📌   | Project-specific files                      |
 

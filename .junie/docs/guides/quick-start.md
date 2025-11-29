@@ -171,4 +171,4 @@ In Junie chat, try:
 
 ---
 
-*Part of the Junie Documentation*
+*Part of the Junie Configuration Template System*

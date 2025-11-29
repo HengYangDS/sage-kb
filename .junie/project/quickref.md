@@ -192,4 +192,4 @@ For SAGE-related decisions, the expert groups include:
 
 ---
 
-*Part of SAGE Knowledge Base - Project-Specific Guidelines*
+*Part of the Junie Configuration Template System — Project-Specific Guidelines*
