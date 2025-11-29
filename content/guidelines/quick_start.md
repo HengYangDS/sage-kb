@@ -8,11 +8,11 @@
 
 **信达雅 (Xin-Da-Ya)**: Faithful → Clear → Elegant
 
-| Principle | Question |
-|-----------|----------|
-| 信 (Faithful) | Is it correct? |
-| 达 (Clear) | Is it understandable? |
-| 雅 (Elegant) | Is it simple? |
+| Principle    | Question              |
+|--------------|-----------------------|
+| 信 (Faithful) | Is it correct?        |
+| 达 (Clear)    | Is it understandable? |
+| 雅 (Elegant)  | Is it simple?         |
 
 ---
 
@@ -30,10 +30,10 @@ Ask before every task:
 
 ## 3. Autonomy Levels
 
-| Level | When to Use |
-|-------|-------------|
-| L1-L2 | New collaboration, sensitive tasks |
-| L3-L4 | Established trust, routine work |
+| Level | When to Use                              |
+|-------|------------------------------------------|
+| L1-L2 | New collaboration, sensitive tasks       |
+| L3-L4 | Established trust, routine work          |
 | L5-L6 | Explicitly granted, sandbox environments |
 
 **Default**: Start at L3, calibrate based on success rate.
@@ -44,12 +44,15 @@ Ask before every task:
 
 ```markdown
 ## Summary
+
 [What was done]
 
 ## Changes Made
+
 [List of changes]
 
 ## Verification
+
 [How to verify]
 ```
 
@@ -67,11 +70,11 @@ sage serve             # Start MCP server
 
 ## 6. Next Steps
 
-| Goal | Read |
-|------|------|
-| Code standards | `code_style.md` |
-| Architecture | `planning.md` |
-| AI patterns | `ai_collaboration.md` |
+| Goal           | Read                      |
+|----------------|---------------------------|
+| Code standards | `code_style.md`           |
+| Architecture   | `planning.md`             |
+| AI patterns    | `ai_collaboration.md`     |
 | Full reference | `core/quick_reference.md` |
 
 ---

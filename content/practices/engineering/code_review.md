@@ -6,12 +6,12 @@
 
 ## 1. Review Goals
 
-| Goal | Focus |
-|------|-------|
-| Correctness | Logic, edge cases, bugs |
-| Quality | Style, patterns, maintainability |
-| Security | Vulnerabilities, data handling |
-| Learning | Knowledge transfer, mentoring |
+| Goal        | Focus                            |
+|-------------|----------------------------------|
+| Correctness | Logic, edge cases, bugs          |
+| Quality     | Style, patterns, maintainability |
+| Security    | Vulnerabilities, data handling   |
+| Learning    | Knowledge transfer, mentoring    |
 
 ---
 
@@ -48,13 +48,13 @@
 
 ## 3. Review Process
 
-| Step | Action |
-|------|--------|
-| 1 | Understand context (PR description) |
-| 2 | Review high-level design |
-| 3 | Check implementation details |
-| 4 | Run/test if needed |
-| 5 | Provide constructive feedback |
+| Step | Action                              |
+|------|-------------------------------------|
+| 1    | Understand context (PR description) |
+| 2    | Review high-level design            |
+| 3    | Check implementation details        |
+| 4    | Run/test if needed                  |
+| 5    | Provide constructive feedback       |
 
 ---
 
@@ -62,56 +62,56 @@
 
 ### 4.1 Effective Feedback
 
-| ✓ Do | ❌ Don't |
-|------|---------|
-| Be specific | Be vague |
-| Explain why | Just say "wrong" |
-| Suggest alternatives | Only criticize |
-| Ask questions | Assume intent |
-| Be respectful | Be dismissive |
+| ✓ Do                 | ❌ Don't          |
+|----------------------|------------------|
+| Be specific          | Be vague         |
+| Explain why          | Just say "wrong" |
+| Suggest alternatives | Only criticize   |
+| Ask questions        | Assume intent    |
+| Be respectful        | Be dismissive    |
 
 ### 4.2 Comment Types
 
-| Prefix | Meaning |
-|--------|---------|
-| `nit:` | Minor, optional |
-| `suggestion:` | Consider this |
-| `question:` | Need clarification |
-| `issue:` | Must address |
-| `praise:` | Good work |
+| Prefix        | Meaning            |
+|---------------|--------------------|
+| `nit:`        | Minor, optional    |
+| `suggestion:` | Consider this      |
+| `question:`   | Need clarification |
+| `issue:`      | Must address       |
+| `praise:`     | Good work          |
 
 ---
 
 ## 5. Author Responsibilities
 
-| Before Review | During Review |
-|---------------|---------------|
-| Self-review first | Respond to all comments |
-| Clear PR description | Explain decisions |
-| Small, focused changes | Be open to feedback |
-| Tests included | Update as needed |
+| Before Review          | During Review           |
+|------------------------|-------------------------|
+| Self-review first      | Respond to all comments |
+| Clear PR description   | Explain decisions       |
+| Small, focused changes | Be open to feedback     |
+| Tests included         | Update as needed        |
 
 ---
 
 ## 6. Reviewer Responsibilities
 
-| Responsibility | Action |
-|----------------|--------|
-| Timely review | Within 24 hours |
+| Responsibility  | Action            |
+|-----------------|-------------------|
+| Timely review   | Within 24 hours   |
 | Thorough review | Check all aspects |
-| Constructive | Help improve |
-| Available | Answer follow-ups |
+| Constructive    | Help improve      |
+| Available       | Answer follow-ups |
 
 ---
 
 ## 7. Review Size Guidelines
 
-| Size | Lines | Review Time |
-|------|-------|-------------|
-| Small | < 100 | 15 min |
-| Medium | 100-300 | 30 min |
-| Large | 300-500 | 1 hour |
-| Too Large | > 500 | Split PR |
+| Size      | Lines   | Review Time |
+|-----------|---------|-------------|
+| Small     | < 100   | 15 min      |
+| Medium    | 100-300 | 30 min      |
+| Large     | 300-500 | 1 hour      |
+| Too Large | > 500   | Split PR    |
 
 ---
 

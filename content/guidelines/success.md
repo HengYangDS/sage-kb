@@ -6,11 +6,11 @@
 
 ## 1. Xin-Da-Ya Success Mapping
 
-| Principle | Success Indicator | Failure Sign |
-|-----------|-------------------|--------------|
-| **信 (Faithful)** | Works correctly, tests pass | Bugs, incorrect behavior |
-| **达 (Clear)** | Easy to understand, maintain | Confusing, hard to modify |
-| **雅 (Elegant)** | Simple, minimal complexity | Over-engineered, bloated |
+| Principle        | Success Indicator            | Failure Sign              |
+|------------------|------------------------------|---------------------------|
+| **信 (Faithful)** | Works correctly, tests pass  | Bugs, incorrect behavior  |
+| **达 (Clear)**    | Easy to understand, maintain | Confusing, hard to modify |
+| **雅 (Elegant)**  | Simple, minimal complexity   | Over-engineered, bloated  |
 
 ### 1.1 Priority Application
 
@@ -26,43 +26,43 @@ Never sacrifice correctness for elegance.
 
 ### 2.1 Task Success
 
-| Dimension | Question | Measure |
-|-----------|----------|---------|
-| Functional | Does it work? | Tests pass |
-| Quality | Is it well done? | Metrics met |
-| Timeliness | On schedule? | Delivery time |
-| Alignment | Meets intent? | Stakeholder approval |
+| Dimension  | Question         | Measure              |
+|------------|------------------|----------------------|
+| Functional | Does it work?    | Tests pass           |
+| Quality    | Is it well done? | Metrics met          |
+| Timeliness | On schedule?     | Delivery time        |
+| Alignment  | Meets intent?    | Stakeholder approval |
 
 ### 2.2 Collaboration Success
 
-| Metric | Indicator |
-|--------|-----------|
-| Communication | Clear, efficient exchanges |
-| Autonomy calibration | Right level for context |
-| Error recovery | Quick, effective corrections |
-| Learning | Improved performance over time |
+| Metric               | Indicator                      |
+|----------------------|--------------------------------|
+| Communication        | Clear, efficient exchanges     |
+| Autonomy calibration | Right level for context        |
+| Error recovery       | Quick, effective corrections   |
+| Learning             | Improved performance over time |
 
 ---
 
 ## 3. Excellence Dimensions
 
-| Dimension | Description | Target |
-|-----------|-------------|--------|
-| Technical | Code quality, architecture | High standards |
-| Process | Workflow efficiency | Continuous improvement |
-| Communication | Clear, effective exchange | Minimal friction |
-| Learning | Knowledge growth | Ongoing development |
+| Dimension     | Description                | Target                 |
+|---------------|----------------------------|------------------------|
+| Technical     | Code quality, architecture | High standards         |
+| Process       | Workflow efficiency        | Continuous improvement |
+| Communication | Clear, effective exchange  | Minimal friction       |
+| Learning      | Knowledge growth           | Ongoing development    |
 
 ---
 
 ## 4. Anti-Patterns
 
-| Anti-Pattern | Problem | Solution |
-|--------------|---------|----------|
-| Perfectionism | Delays delivery | Good enough, iterate |
-| Over-engineering | Unnecessary complexity | YAGNI principle |
-| Under-communication | Misalignment | Confirm understanding |
-| Assumption errors | Wrong direction | State assumptions |
+| Anti-Pattern        | Problem                | Solution              |
+|---------------------|------------------------|-----------------------|
+| Perfectionism       | Delays delivery        | Good enough, iterate  |
+| Over-engineering    | Unnecessary complexity | YAGNI principle       |
+| Under-communication | Misalignment           | Confirm understanding |
+| Assumption errors   | Wrong direction        | State assumptions     |
 
 ---
 
@@ -70,11 +70,11 @@ Never sacrifice correctness for elegance.
 
 ### 5.1 Feedback Integration
 
-| Source | Action |
-|--------|--------|
-| Task outcome | Adjust approach |
-| User feedback | Improve quality |
-| Metrics | Optimize process |
+| Source         | Action                |
+|----------------|-----------------------|
+| Task outcome   | Adjust approach       |
+| User feedback  | Improve quality       |
+| Metrics        | Optimize process      |
 | Retrospectives | Systemic improvements |
 
 ### 5.2 Learning Cycle
@@ -87,11 +87,11 @@ Do → Reflect → Learn → Apply → Do
 
 ## 6. Success Checklist
 
-| Phase | Questions |
-|-------|-----------|
+| Phase      | Questions                                       |
+|------------|-------------------------------------------------|
 | **Before** | Goal clear? Constraints known? Success defined? |
-| **During** | 信 Correct? 达 Clear? 雅 Elegant? |
-| **After** | Criteria met? Learnings? Improvements? |
+| **During** | 信 Correct? 达 Clear? 雅 Elegant?                  |
+| **After**  | Criteria met? Learnings? Improvements?          |
 
 ---
 

@@ -1,314 +1,208 @@
 # Testing Strategy
 
-> **Load Time**: On-demand (~120 tokens)  
-> **Purpose**: Universal testing layers, organization, and best practices
+> Universal testing layers, organization, and best practices
+
+---
+
+## Table of Contents
+
+[1. Test Pyramid](#1-test-pyramid) · [2. Test Types](#2-test-types) · [3. Test Naming](#3-test-naming) · [4. Test Structure](#4-test-structure) · [5. Fixtures](#5-fixtures) · [6. Mocking](#6-mocking) · [7. Coverage](#7-coverage)
 
 ---
 
 ## 1. Test Pyramid
 
 ```
-        /\
-       /  \        E2E Tests (Few)
-      /────\       - End-to-end flows
-     /      \      - Slow, high cost
-    /────────\     Integration Tests (Some)
-   /          \    - Component interactions
-  /────────────\   - Medium speed
- /              \  Unit Tests (Many)
-/────────────────\ - Single function/class
-                   - Fast, low cost
+        /\          E2E (Few) - User flows
+       /──\         Integration (Some) - Components
+      /────\        Unit (Many) - Functions
+     /──────\
 ```
 
-### Recommended Ratios
-
-| Test Type         | Ratio | Execution Time |
-|-------------------|-------|----------------|
-| Unit tests        | 70%   | < 10ms each    |
-| Integration tests | 20%   | < 1s each      |
-| E2E tests         | 10%   | < 30s each     |
+| Type        | Ratio | Speed  | Focus     |
+|-------------|-------|--------|-----------|
+| Unit        | 70%   | < 10ms | Logic     |
+| Integration | 20%   | < 1s   | Contracts |
+| E2E         | 10%   | < 30s  | Flows     |
 
 ---
 
 ## 2. Test Types
 
-### Unit Tests
+### 2.1 Unit Tests
 
-| Aspect       | Description                  |
-|--------------|------------------------------|
-| Scope        | Single function/method/class |
-| Dependencies | All mocked                   |
-| Speed        | Very fast (< 10ms)           |
-| Goal         | Logic correctness            |
+| Aspect       | Description           |
+|--------------|-----------------------|
+| Scope        | Single function/class |
+| Dependencies | All mocked            |
+| Speed        | Very fast             |
+| Goal         | Logic correctness     |
 
-### Integration Tests
+### 2.2 Integration Tests
 
-| Aspect       | Description                     |
-|--------------|---------------------------------|
-| Scope        | Multi-component interaction     |
-| Dependencies | Partially real (e.g., database) |
-| Speed        | Medium (< 1s)                   |
-| Goal         | Interface contracts, data flow  |
+| Aspect       | Description         |
+|--------------|---------------------|
+| Scope        | Multi-component     |
+| Dependencies | Partially real      |
+| Speed        | Medium              |
+| Goal         | Interface contracts |
 
-### End-to-End Tests (E2E)
+### 2.3 E2E Tests
 
-| Aspect       | Description                       |
-|--------------|-----------------------------------|
-| Scope        | Complete user flows               |
-| Dependencies | All real                          |
-| Speed        | Slow (seconds to tens of seconds) |
-| Goal         | Business flow correctness         |
+| Aspect       | Description    |
+|--------------|----------------|
+| Scope        | Complete flows |
+| Dependencies | All real       |
+| Speed        | Slow           |
+| Goal         | Business flows |
 
 ---
 
 ## 3. Test Naming
 
-### Naming Convention
+### 3.1 Convention
 
 ```python
-def test_function_scenario_expected_result():
-    pass
+def test_[function]_[scenario]
+
+
+_[expected]():
+pass
 
 
 # Examples
 def test_calculate_total_empty_cart_returns_zero():
-    pass
+    ...
 
 
-def test_login_invalid_password_raises_auth_error():
-    pass
+def test_login_invalid_password_raises_error():
+    ...
 ```
 
-### Test Class Organization
+### 3.2 Class Organization
 
 ```python
 class TestUserService:
-    """User service tests"""
-
     class TestCreate:
         def test_valid_data_creates_user(self): ...
 
         def test_duplicate_email_raises_error(self): ...
-
-    class TestDelete:
-        def test_existing_user_deleted(self): ...
-
-        def test_nonexistent_user_raises_not_found(self): ...
 ```
 
 ---
 
-## 4. Test Structure (AAA)
+## 4. Test Structure
 
-### Arrange-Act-Assert
+### 4.1 Arrange-Act-Assert (AAA)
 
 ```python
 def test_add_item_to_cart():
-    # Arrange - Setup
+    # Arrange
     cart = Cart()
     item = Item(id=1, price=100)
 
-    # Act - Execute
+    # Act
     cart.add(item)
 
-    # Assert - Verify
+    # Assert
     assert cart.total == 100
     assert len(cart.items) == 1
 ```
 
-### Given-When-Then (BDD Style)
+### 4.2 Given-When-Then (BDD)
 
 ```python
-def test_user_checkout():
-    # Given - a user with items in cart
-    user = create_user_with_cart_items()
+def test_user_registration():
+    # Given a new user
+    user_data = {"email": "test@example.com"}
 
-    # When - user completes checkout
-    order = checkout_service.process(user)
+    # When registering
+    result = service.register(user_data)
 
-    # Then - order is created successfully
-    assert order.status == "completed"
-    assert user.cart.is_empty()
+    # Then user is created
+    assert result.id is not None
 ```
 
 ---
 
-## 5. Test Data
+## 5. Fixtures
 
-### Fixtures
+### 5.1 Pytest Fixtures
 
 ```python
 @pytest.fixture
-def sample_user():
-    return User(id=1, name="Test User", email="test@example.com")
+def user():
+    return User(name="Test", email="test@example.com")
 
 
 @pytest.fixture
-def sample_order(sample_user):
-    return Order(user=sample_user, items=[])
-
-
-def test_order_belongs_to_user(sample_order, sample_user):
-    assert sample_order.user == sample_user
+def db_session():
+    session = create_session()
+    yield session
+    session.rollback()
 ```
 
-### Factory Pattern
+### 5.2 Fixture Scopes
 
-```python
-class UserFactory:
-    @staticmethod
-    def create(**overrides):
-        defaults = {
-            "name"  : "Test User",
-            "email" : "test@example.com",
-            "active": True,
-        }
-        return User(**{**defaults, **overrides})
-
-
-# Usage
-def test_inactive_user_cannot_login():
-    user = UserFactory.create(active=False)
-    assert not auth_service.can_login(user)
-```
+| Scope    | Lifetime   | Use For          |
+|----------|------------|------------------|
+| function | Each test  | Default          |
+| class    | Per class  | Related tests    |
+| module   | Per file   | Expensive setup  |
+| session  | Entire run | Global resources |
 
 ---
 
 ## 6. Mocking
 
-### When to Mock
-
-| Mock                     | Don't Mock             |
-|--------------------------|------------------------|
-| External APIs            | Core business logic    |
-| Database (in unit tests) | Simple data structures |
-| Time/random              | Pure functions         |
-| File system              | Tested components      |
-
-### Mock Examples
+### 6.1 Basic Mocking
 
 ```python
-from unittest.mock import Mock, patch
+def test_with_mock(mocker):
+    mock_api = mocker.patch("module.api_call")
+    mock_api.return_value = {"status": "ok"}
 
+    result = service.process()
 
-def test_send_notification():
-    # Mock external service
-    email_service = Mock()
-    email_service.send.return_value = True
-
-    notifier = Notifier(email_service)
-    result = notifier.notify("user@example.com", "Hello")
-
-    assert result is True
-    email_service.send.assert_called_once()
-
-
-@patch("app.services.external_api.fetch")
-def test_data_fetcher(mock_fetch):
-    mock_fetch.return_value = {"data": "test"}
-    result = fetch_and_process()
-    assert result == "processed: test"
+    mock_api.assert_called_once()
 ```
+
+### 6.2 When to Mock
+
+| Mock          | Don't Mock          |
+|---------------|---------------------|
+| External APIs | Core logic          |
+| Databases     | Pure functions      |
+| Time/random   | Value objects       |
+| File system   | Simple calculations |
 
 ---
 
-## 7. Coverage Guidelines
+## 7. Coverage
 
-### Coverage Targets
+### 7.1 Targets
 
-| Code Type           | Target | Reason         |
-|---------------------|--------|----------------|
-| Core business logic | 95%+   | Critical paths |
-| Utilities           | 90%+   | Widely used    |
-| API endpoints       | 85%+   | User-facing    |
-| Configuration       | 70%+   | Less critical  |
+| Metric          | Target |
+|-----------------|--------|
+| Line coverage   | > 80%  |
+| Branch coverage | > 70%  |
+| Critical paths  | 100%   |
 
-### What to Cover
+### 7.2 Quality over Quantity
 
-| Priority | Examples                            |
-|----------|-------------------------------------|
-| High     | Happy path, error paths, edge cases |
-| Medium   | Boundary values, null handling      |
-| Low      | Logging, debug code                 |
-
----
-
-## 8. Test Organization
-
-### Directory Structure
-
-```
-tests/
-├── conftest.py           # Shared fixtures
-├── fixtures/             # Test data files
-├── unit/                 # Unit tests
-│   ├── test_models.py
-│   └── test_utils.py
-├── integration/          # Integration tests
-│   ├── test_api.py
-│   └── test_database.py
-└── e2e/                  # End-to-end tests
-    └── test_workflows.py
-```
-
-### File Naming
-
-| Source File        | Test File               |
-|--------------------|-------------------------|
-| `models.py`        | `test_models.py`        |
-| `services/user.py` | `services/test_user.py` |
-| `utils/helpers.py` | `utils/test_helpers.py` |
-
----
-
-## 9. Quick Checklist
-
-| ✓ Do                       | ✗ Don't                   |
-|----------------------------|---------------------------|
-| Test one thing per test    | Test multiple behaviors   |
-| Use descriptive names      | Use `test_1`, `test_2`    |
-| Keep tests independent     | Share state between tests |
-| Test edge cases            | Only test happy path      |
-| Mock external dependencies | Mock everything           |
-| Run tests frequently       | Run only before commit    |
-
----
-
-## 10. CI Integration
-
-### Pipeline Stages
-
-```yaml
-test:
-  stages:
-    - unit:
-        command: pytest tests/unit -v
-        timeout: 5m
-    - integration:
-        command: pytest tests/integration -v
-        timeout: 15m
-    - e2e:
-        command: pytest tests/e2e -v
-        timeout: 30m
-        only: [ main, release/* ]
-```
-
-### Failure Actions
-
-| Stage       | On Failure          |
-|-------------|---------------------|
-| Unit        | Block merge         |
-| Integration | Block merge         |
-| E2E         | Notify, investigate |
+| Good Coverage         | Bad Coverage          |
+|-----------------------|-----------------------|
+| Tests edge cases      | Tests only happy path |
+| Meaningful assertions | Trivial assertions    |
+| Tests behavior        | Tests implementation  |
 
 ---
 
 ## Related
 
-- `content/practices/engineering/code_review.md` — Code review checklist
-- `content/guidelines/python.md` — Python testing specifics
-- `content/guidelines/quality.md` — Quality standards
+- `../../guidelines/quality.md` — Quality standards
+- `code_review.md` — Review practices
 
 ---
 
-*Part of AI Collaboration Knowledge Base*
+*Part of SAGE Knowledge Base*

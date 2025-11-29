@@ -6,11 +6,11 @@
 
 ## 1. Core Principles
 
-| Principle | Description |
-|-----------|-------------|
-| Fail fast | Detect and report errors early |
-| Be specific | Use specific exception types |
-| Provide context | Include helpful information |
+| Principle          | Description                       |
+|--------------------|-----------------------------------|
+| Fail fast          | Detect and report errors early    |
+| Be specific        | Use specific exception types      |
+| Provide context    | Include helpful information       |
 | Recover gracefully | Handle or propagate appropriately |
 
 ---
@@ -22,13 +22,16 @@ class AppError(Exception):
     """Base application error."""
     pass
 
+
 class ValidationError(AppError):
     """Input validation failed."""
     pass
 
+
 class NotFoundError(AppError):
     """Resource not found."""
     pass
+
 
 class AuthorizationError(AppError):
     """Access denied."""
@@ -76,6 +79,7 @@ class ValidationError(AppError):
         self.field = field
         self.message = message
 
+
 raise ValidationError("Invalid email", field="email")
 ```
 
@@ -92,13 +96,13 @@ except ParseError as e:
 
 ## 5. Logging Strategy
 
-| Level | Use For |
-|-------|---------|
-| DEBUG | Diagnostic details |
-| INFO | Normal operations |
-| WARNING | Handled errors |
-| ERROR | Unhandled errors |
-| CRITICAL | System failures |
+| Level    | Use For            |
+|----------|--------------------|
+| DEBUG    | Diagnostic details |
+| INFO     | Normal operations  |
+| WARNING  | Handled errors     |
+| ERROR    | Unhandled errors   |
+| CRITICAL | System failures    |
 
 ```python
 try:
@@ -114,23 +118,23 @@ except Exception as e:
 
 ## 6. Recovery Patterns
 
-| Pattern | Use When |
-|---------|----------|
-| Retry | Transient failures |
-| Fallback | Alternative available |
-| Default | Safe default exists |
-| Propagate | Caller should handle |
+| Pattern   | Use When              |
+|-----------|-----------------------|
+| Retry     | Transient failures    |
+| Fallback  | Alternative available |
+| Default   | Safe default exists   |
+| Propagate | Caller should handle  |
 
 ---
 
 ## 7. Anti-Patterns
 
-| Anti-Pattern | Problem | Solution |
-|--------------|---------|----------|
-| Bare except | Catches everything | Specific exceptions |
-| Silent catch | Hides errors | Log or re-raise |
-| String exceptions | No type info | Exception classes |
-| Exception for flow | Performance | Use conditionals |
+| Anti-Pattern       | Problem            | Solution            |
+|--------------------|--------------------|---------------------|
+| Bare except        | Catches everything | Specific exceptions |
+| Silent catch       | Hides errors       | Log or re-raise     |
+| String exceptions  | No type info       | Exception classes   |
+| Exception for flow | Performance        | Use conditionals    |
 
 ---
 

@@ -1,283 +1,155 @@
 # Incremental Improvement Practices
 
-> **Load Priority**: On-demand
-> **Purpose**: Systematic approach to continuous, low-risk enhancement
+> Systematic approach to continuous, low-risk enhancement
 
 ---
 
-## Overview
+## Table of Contents
 
-| Aspect         | Description                                      |
-|----------------|--------------------------------------------------|
-| **Goal**       | Steady progress through small, validated changes |
-| **Philosophy** | Many small steps > few large leaps               |
-| **Benefit**    | Lower risk, easier rollback, continuous delivery |
+[1. Principles](#1-principles) · [2. Improvement Cycle](#2-improvement-cycle) · [3. Risk Management](#3-risk-management) · [4. Validation](#4-validation) · [5. Patterns](#5-patterns) · [6. Anti-Patterns](#6-anti-patterns)
 
 ---
 
-## Core Principles
+## 1. Principles
 
-### The Incremental Mindset
+| Principle             | Description              | Anti-Pattern        |
+|-----------------------|--------------------------|---------------------|
+| Small steps           | Each change minimal      | Big bang releases   |
+| Continuous validation | Test after every step    | Test only at end    |
+| Always shippable      | Main branch deployable   | Long-lived branches |
+| Learn and adapt       | Adjust based on feedback | Rigid adherence     |
 
-| Principle                 | Description              | Anti-Pattern         |
-|---------------------------|--------------------------|----------------------|
-| **Small steps**           | Each change is minimal   | Big bang releases    |
-| **Continuous validation** | Test after every step    | Test only at end     |
-| **Always shippable**      | Main branch deployable   | Long-lived branches  |
-| **Learn and adapt**       | Adjust based on feedback | Rigid plan adherence |
+### 1.1 Step Size Guidelines
 
-### Step Size Guidelines
-
-| Change Type      | Recommended Size       | Validation     |
-|------------------|------------------------|----------------|
-| **Bug fix**      | Single issue           | Unit test      |
-| **Refactor**     | One pattern            | Existing tests |
-| **Feature**      | Minimal viable slice   | Feature test   |
-| **Optimization** | One metric improvement | Benchmark      |
+| Change Type  | Size          | Validation     |
+|--------------|---------------|----------------|
+| Bug fix      | Single issue  | Unit test      |
+| Refactor     | One pattern   | Existing tests |
+| Feature      | Minimal slice | Feature test   |
+| Optimization | One metric    | Benchmark      |
 
 ---
 
-## Improvement Cycle
+## 2. Improvement Cycle
 
-### Four-Step Loop
+### 2.1 PDCA Loop
 
 ```
-Plan → Do → Check → Adjust
-  │     │      │       │
-  ▼     ▼      ▼       ▼
-Scope  Apply  Verify  Learn
+Plan → Do → Check → Adjust → (repeat)
 ```
 
-| Step       | Duration | Output                        |
-|------------|----------|-------------------------------|
-| **Plan**   | 10-20%   | Clear scope, success criteria |
-| **Do**     | 40-50%   | Implemented change            |
-| **Check**  | 20-30%   | Validation results            |
-| **Adjust** | 10-20%   | Lessons, next iteration       |
+| Step   | Duration | Output          |
+|--------|----------|-----------------|
+| Plan   | 10-20%   | Scope, criteria |
+| Do     | 40-50%   | Implementation  |
+| Check  | 20-30%   | Validation      |
+| Adjust | 10-20%   | Lessons learned |
 
-### Cycle Frequency
+### 2.2 Cycle Frequency
 
-| Context                  | Cycle Duration | Batch Size   |
-|--------------------------|----------------|--------------|
-| **Rapid iteration**      | Minutes-Hours  | 1-2 changes  |
-| **Standard development** | Hours-Days     | 3-5 changes  |
-| **Careful migration**    | Days-Weeks     | 5-10 changes |
-
----
-
-## Risk Management
-
-### Risk Assessment Matrix
-
-| Impact ↓ / Likelihood → | Low     | Medium | High     |
-|-------------------------|---------|--------|----------|
-| **High**                | Medium  | High   | Critical |
-| **Medium**              | Low     | Medium | High     |
-| **Low**                 | Minimal | Low    | Medium   |
-
-### Risk Mitigation by Level
-
-| Risk Level   | Step Size | Validation    | Rollback |
-|--------------|-----------|---------------|----------|
-| **Minimal**  | Normal    | Automated     | Standard |
-| **Low**      | Normal    | +Spot check   | Standard |
-| **Medium**   | Smaller   | +Peer review  | Prepared |
-| **High**     | Minimal   | +Staging test | Ready    |
-| **Critical** | Atomic    | +Manual QA    | Instant  |
+| Context         | Duration      | Batch Size   |
+|-----------------|---------------|--------------|
+| Rapid iteration | Minutes-Hours | 1-2 changes  |
+| Standard dev    | Hours-Days    | 3-5 changes  |
+| Migration       | Days-Weeks    | 5-10 changes |
 
 ---
 
-## Validation Strategy
+## 3. Risk Management
 
-### Continuous Validation
+### 3.1 Risk Matrix
 
-| After           | Validation Type   | Scope            |
-|-----------------|-------------------|------------------|
-| **Each edit**   | Syntax/lint       | Changed files    |
-| **Each commit** | Unit tests        | Affected modules |
-| **Each PR**     | Integration tests | Full suite       |
-| **Each deploy** | Smoke tests       | Critical paths   |
+| Impact / Likelihood | Low     | Medium | High     |
+|---------------------|---------|--------|----------|
+| High                | Medium  | High   | Critical |
+| Medium              | Low     | Medium | High     |
+| Low                 | Minimal | Low    | Medium   |
 
-### Quality Gates
+### 3.2 Mitigation by Level
+
+| Risk     | Step Size | Validation   | Rollback |
+|----------|-----------|--------------|----------|
+| Minimal  | Normal    | Automated    | Standard |
+| Low      | Normal    | +Spot check  | Standard |
+| Medium   | Smaller   | +Peer review | Prepared |
+| High     | Minimal   | +Staging     | Ready    |
+| Critical | Atomic    | +Manual QA   | Instant  |
+
+---
+
+## 4. Validation
+
+### 4.1 Continuous Validation
+
+| After       | Type        | Scope            |
+|-------------|-------------|------------------|
+| Each edit   | Lint        | Changed files    |
+| Each commit | Unit tests  | Affected modules |
+| Each PR     | Integration | Full suite       |
+| Each deploy | Smoke tests | Critical paths   |
+
+### 4.2 Quality Gates
 
 ```
-Edit → Lint ✓ → Commit → Tests ✓ → PR → Review ✓ → Merge → Deploy
+Edit → Lint ✓ → Commit → Tests ✓ → PR → Review ✓ → Merge
 ```
 
-| Gate            | Criteria   | Block on Failure |
-|-----------------|------------|------------------|
-| **Lint**        | No errors  | Yes              |
-| **Unit tests**  | 100% pass  | Yes              |
-| **Integration** | 100% pass  | Yes              |
-| **Review**      | Approved   | Yes              |
-| **Coverage**    | ≥ baseline | Warning          |
+| Gate        | Criteria    | Block   |
+|-------------|-------------|---------|
+| Lint        | No errors   | Yes     |
+| Unit tests  | 100% pass   | Yes     |
+| Integration | 100% pass   | Yes     |
+| Coverage    | > threshold | Warning |
 
 ---
 
-## Progress Measurement
+## 5. Patterns
 
-### Velocity Metrics
+### 5.1 Feature Toggles
 
-| Metric               | Formula            | Healthy Range |
-|----------------------|--------------------|---------------|
-| **Cycle time**       | Start → Done       | 1-3 days      |
-| **Change frequency** | Deploys / Week     | 5-20          |
-| **Change size**      | Lines / Change     | 10-100        |
-| **Success rate**     | Successful / Total | >95%          |
-
-### Quality Metrics
-
-| Metric            | Formula             | Target  |
-|-------------------|---------------------|---------|
-| **Defect rate**   | Bugs / Changes      | <5%     |
-| **Rollback rate** | Rollbacks / Deploys | <2%     |
-| **Recovery time** | Detection → Fix     | <1 hour |
-
----
-
-## Handling Setbacks
-
-### When Things Go Wrong
-
-| Situation                  | Action                | Learning           |
-|----------------------------|-----------------------|--------------------|
-| **Test failure**           | Fix immediately       | Add test case      |
-| **Unexpected behavior**    | Rollback, investigate | Improve validation |
-| **Performance regression** | Rollback, profile     | Add benchmark      |
-| **User complaint**         | Quick fix             | Add monitoring     |
-
-### Recovery Protocol
-
-```
-Detect → Assess → Decide → Act → Document
+```python
+if feature_enabled("new_algorithm"):
+    return new_algorithm(data)
+return old_algorithm(data)
 ```
 
-| Step         | Time Budget      | Output                  |
-|--------------|------------------|-------------------------|
-| **Detect**   | ASAP             | Issue identified        |
-| **Assess**   | 5-15 min         | Impact understood       |
-| **Decide**   | 1-5 min          | Rollback or fix forward |
-| **Act**      | Minutes          | Issue resolved          |
-| **Document** | After resolution | Lessons captured        |
+**Benefits**: Deploy without releasing, gradual rollout, instant rollback.
+
+### 5.2 Strangler Fig
+
+| Phase | Action                      |
+|-------|-----------------------------|
+| 1     | Build new alongside old     |
+| 2     | Route traffic incrementally |
+| 3     | Remove old when complete    |
+
+### 5.3 Branch by Abstraction
+
+| Phase | Action                           |
+|-------|----------------------------------|
+| 1     | Create abstraction layer         |
+| 2     | Implement new behind abstraction |
+| 3     | Switch implementations           |
+| 4     | Remove old implementation        |
 
 ---
 
-## Incremental Patterns
+## 6. Anti-Patterns
 
-### Feature Flags
-
-| State      | Behavior     | Use Case     |
-|------------|--------------|--------------|
-| **Off**    | Old behavior | Default/safe |
-| **Canary** | % of users   | Testing      |
-| **On**     | New behavior | Rolled out   |
-
-### Strangler Fig Pattern
-
-```
-Old System ────────────────────────►
-     ↓          ↓          ↓
-  New Part 1  Part 2    Part N
-     └──────────┴──────────┘
-              New System
-```
-
-| Phase        | Old System | New System |
-|--------------|------------|------------|
-| **Start**    | 100%       | 0%         |
-| **Midpoint** | 50%        | 50%        |
-| **End**      | 0%         | 100%       |
-
-### Parallel Run
-
-| Mode         | Description                 | When          |
-|--------------|-----------------------------|---------------|
-| **Shadow**   | New runs, results discarded | Testing logic |
-| **Compare**  | Both run, compare results   | Validation    |
-| **Failover** | New primary, old backup     | Safe cutover  |
-
----
-
-## Documentation
-
-### Change Log Entry
-
-```markdown
-## [Date] Change: [Brief Description]
-
-### What
-
-- [Specific change made]
-
-### Why
-
-- [Problem solved / improvement gained]
-
-### Validation
-
-- [Tests run, results]
-
-### Impact
-
-- [Affected areas, metrics change]
-```
-
-### Improvement Backlog
-
-| Priority | Item   | Effort | Impact       | Status |
-|----------|--------|--------|--------------|--------|
-| P1       | [Item] | S/M/L  | High/Med/Low | ○/*/✓  |
-| P2       | [Item] | S/M/L  | High/Med/Low | ○/*/✓  |
-
----
-
-## Anti-Patterns
-
-| Anti-Pattern            | Problem             | Fix                       |
-|-------------------------|---------------------|---------------------------|
-| **Perfectionism**       | Never ships         | Good enough, then iterate |
-| **Scope creep**         | Growing changes     | Strict scope boundaries   |
-| **Skipping validation** | Hidden defects      | Always validate           |
-| **Ignoring feedback**   | Repeated mistakes   | Learn and adjust          |
-| **Big merges**          | Conflict hell       | Frequent small merges     |
-| **No rollback plan**    | Stuck with problems | Always have escape route  |
-
----
-
-## Decision Framework
-
-### When to Proceed
-
-| Signal            | Action  |
-|-------------------|---------|
-| Tests pass        | Proceed |
-| Clear improvement | Proceed |
-| Low risk          | Proceed |
-| Reversible        | Proceed |
-
-### When to Pause
-
-| Signal          | Action           |
-|-----------------|------------------|
-| Tests fail      | Fix first        |
-| Unclear benefit | Re-evaluate      |
-| High risk       | Reduce scope     |
-| Irreversible    | Extra validation |
-
----
-
-## Integration with 信达雅
-
-| Principle            | Incremental Application         |
-|----------------------|---------------------------------|
-| **信 (Faithfulness)** | Each step maintains correctness |
-| **达 (Clarity)**      | Clear progress and status       |
-| **雅 (Elegance)**     | Smooth, sustainable pace        |
+| Anti-Pattern  | Problem         | Solution              |
+|---------------|-----------------|-----------------------|
+| Big bang      | High risk       | Small increments      |
+| Long branches | Merge conflicts | Trunk-based           |
+| No validation | Hidden bugs     | Continuous testing    |
+| Scope creep   | Never done      | Fixed scope per cycle |
 
 ---
 
 ## Related
 
-- `batch_optimization.md` — Batch processing approach
-- `patterns.md` — Engineering patterns
-- `../../frameworks/resilience/timeout_patterns.md` — Resilience patterns
+- `batch_optimization.md` — Batch processing
+- `../../frameworks/patterns/collaboration.md` — Collaboration patterns
+
+---
+
+*Part of SAGE Knowledge Base*

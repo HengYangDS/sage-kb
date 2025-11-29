@@ -6,25 +6,25 @@
 
 ## 1. Quality Dimensions
 
-| Dimension | Description | Measure |
-|-----------|-------------|---------|
-| Correctness | Works as intended | Tests pass |
-| Completeness | All requirements met | Coverage |
-| Clarity | Understandable | Review feedback |
-| Efficiency | Optimal performance | Benchmarks |
-| Maintainability | Easy to modify | Complexity metrics |
+| Dimension       | Description          | Measure            |
+|-----------------|----------------------|--------------------|
+| Correctness     | Works as intended    | Tests pass         |
+| Completeness    | All requirements met | Coverage           |
+| Clarity         | Understandable       | Review feedback    |
+| Efficiency      | Optimal performance  | Benchmarks         |
+| Maintainability | Easy to modify       | Complexity metrics |
 
 ---
 
 ## 2. Code Quality Metrics
 
-| Metric | Target | Tool |
-|--------|--------|------|
-| Test coverage | > 80% | pytest-cov |
-| Cyclomatic complexity | < 10 | radon |
-| Function length | < 50 lines | pylint |
-| File length | < 500 lines | wc |
-| Type hint coverage | > 80% | mypy |
+| Metric                | Target      | Tool       |
+|-----------------------|-------------|------------|
+| Test coverage         | > 80%       | pytest-cov |
+| Cyclomatic complexity | < 10        | radon      |
+| Function length       | < 50 lines  | pylint     |
+| File length           | < 500 lines | wc         |
+| Type hint coverage    | > 80%       | mypy       |
 
 ---
 
@@ -41,12 +41,12 @@
 
 ### 3.2 Peer Review Focus
 
-| Reviewer Checks | Author Prepares |
-|-----------------|-----------------|
-| Logic correctness | Clear PR description |
-| Edge cases | Test coverage |
-| Code style | Self-review completed |
-| Performance | Context for decisions |
+| Reviewer Checks   | Author Prepares       |
+|-------------------|-----------------------|
+| Logic correctness | Clear PR description  |
+| Edge cases        | Test coverage         |
+| Code style        | Self-review completed |
+| Performance       | Context for decisions |
 
 ---
 
@@ -54,11 +54,11 @@
 
 ### 4.1 Test Pyramid
 
-| Level | Coverage | Focus |
-|-------|----------|-------|
-| Unit | 80%+ | Individual functions |
-| Integration | Key paths | Component interaction |
-| E2E | Critical flows | User journeys |
+| Level       | Coverage       | Focus                 |
+|-------------|----------------|-----------------------|
+| Unit        | 80%+           | Individual functions  |
+| Integration | Key paths      | Component interaction |
+| E2E         | Critical flows | User journeys         |
 
 ### 4.2 Test Quality
 
@@ -67,10 +67,10 @@
 def test_user_creation():
     # Arrange
     data = {"name": "Alice"}
-    
+
     # Act
     result = service.create(data)
-    
+
     # Assert
     assert result.name == "Alice"
 ```
@@ -81,30 +81,30 @@ def test_user_creation():
 
 ### 5.1 Feedback Loops
 
-| Loop | Frequency | Action |
-|------|-----------|--------|
-| Tests | Every commit | Fix failures immediately |
-| Reviews | Every PR | Address feedback |
-| Retrospectives | Weekly | Process improvements |
-| Metrics | Monthly | Trend analysis |
+| Loop           | Frequency    | Action                   |
+|----------------|--------------|--------------------------|
+| Tests          | Every commit | Fix failures immediately |
+| Reviews        | Every PR     | Address feedback         |
+| Retrospectives | Weekly       | Process improvements     |
+| Metrics        | Monthly      | Trend analysis           |
 
 ### 5.2 Technical Debt
 
-| Priority | Timeline | Action |
-|----------|----------|--------|
-| Critical | This sprint | Fix immediately |
-| High | This month | Schedule fix |
-| Medium | This quarter | Plan fix |
-| Low | Backlog | Track |
+| Priority | Timeline     | Action          |
+|----------|--------------|-----------------|
+| Critical | This sprint  | Fix immediately |
+| High     | This month   | Schedule fix    |
+| Medium   | This quarter | Plan fix        |
+| Low      | Backlog      | Track           |
 
 ---
 
 ## 6. Quality Checklist
 
-| Phase | Actions |
-|-------|---------|
-| **Daily** | Tests before commit, self-review, update docs |
-| **Weekly** | Coverage reports, dependency updates, share learnings |
+| Phase       | Actions                                                  |
+|-------------|----------------------------------------------------------|
+| **Daily**   | Tests before commit, self-review, update docs            |
+| **Weekly**  | Coverage reports, dependency updates, share learnings    |
 | **Monthly** | Complexity analysis, performance review, debt assessment |
 
 ---

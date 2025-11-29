@@ -6,13 +6,13 @@
 
 ## 1. Five-Level Hierarchy
 
-| Level | Name | Timeout | Scope | Fallback |
-|-------|------|---------|-------|----------|
-| **T1** | Cache | 100ms | Cache lookup | Skip cache |
-| **T2** | File | 500ms | Single file | Use fallback |
-| **T3** | Layer | 2s | Full layer | Partial load |
-| **T4** | Full | 5s | Complete KB | Core only |
-| **T5** | Complex | 10s | Analysis | Abort + summary |
+| Level  | Name    | Timeout | Scope        | Fallback        |
+|--------|---------|---------|--------------|-----------------|
+| **T1** | Cache   | 100ms   | Cache lookup | Skip cache      |
+| **T2** | File    | 500ms   | Single file  | Use fallback    |
+| **T3** | Layer   | 2s      | Full layer   | Partial load    |
+| **T4** | Full    | 5s      | Complete KB  | Core only       |
+| **T5** | Complex | 10s     | Analysis     | Abort + summary |
 
 ---
 
@@ -49,30 +49,30 @@ Request
 
 ## 3. Fallback Strategies
 
-| Situation | Action |
-|-----------|--------|
-| Cache miss | Proceed to file |
-| File timeout | Use embedded fallback |
-| Layer timeout | Return loaded portion |
-| Full timeout | Return core principles |
-| Analysis timeout | Return summary |
+| Situation        | Action                 |
+|------------------|------------------------|
+| Cache miss       | Proceed to file        |
+| File timeout     | Use embedded fallback  |
+| Layer timeout    | Return loaded portion  |
+| Full timeout     | Return core principles |
+| Analysis timeout | Return summary         |
 
 ---
 
 ## 4. Circuit Breaker
 
-| Parameter | Value | Purpose |
-|-----------|-------|---------|
-| Failure threshold | 3 | Open after N failures |
-| Reset timeout | 30s | Try again after |
-| Half-open requests | 1 | Test recovery |
+| Parameter          | Value | Purpose               |
+|--------------------|-------|-----------------------|
+| Failure threshold  | 3     | Open after N failures |
+| Reset timeout      | 30s   | Try again after       |
+| Half-open requests | 1     | Test recovery         |
 
 ### 4.1 States
 
-| State | Behavior |
-|-------|----------|
-| **Closed** | Normal operation |
-| **Open** | Fail fast, use fallback |
+| State         | Behavior                 |
+|---------------|--------------------------|
+| **Closed**    | Normal operation         |
+| **Open**      | Fail fast, use fallback  |
 | **Half-Open** | Test with single request |
 
 ---
@@ -97,13 +97,13 @@ timeout:
 
 ## 6. Implementation Guidelines
 
-| Guideline | Application |
-|-----------|-------------|
-| Always set timeouts | Every external call |
+| Guideline            | Application           |
+|----------------------|-----------------------|
+| Always set timeouts  | Every external call   |
 | Use appropriate tier | Match operation scope |
-| Implement fallbacks | Every timeout path |
-| Log timeouts | For monitoring |
-| Test timeouts | Include in test suite |
+| Implement fallbacks  | Every timeout path    |
+| Log timeouts         | For monitoring        |
+| Test timeouts        | Include in test suite |
 
 ---
 

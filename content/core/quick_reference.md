@@ -8,44 +8,44 @@
 
 Ask before every task:
 
-| # | Question | Purpose |
-|---|----------|---------|
-| 1 | What assumptions am I making? | Validate premises |
-| 2 | What could go wrong? | Risk assessment |
-| 3 | Is there a simpler approach? | Avoid over-engineering |
-| 4 | Will this be maintainable? | Long-term thinking |
-| 5 | How does this fit the big picture? | Context alignment |
+| # | Question                           | Purpose                |
+|---|------------------------------------|------------------------|
+| 1 | What assumptions am I making?      | Validate premises      |
+| 2 | What could go wrong?               | Risk assessment        |
+| 3 | Is there a simpler approach?       | Avoid over-engineering |
+| 4 | Will this be maintainable?         | Long-term thinking     |
+| 5 | How does this fit the big picture? | Context alignment      |
 
 ---
 
 ## 2. Autonomy Levels
 
-| Level | Name | Range | Behavior |
-|-------|------|-------|----------|
-| **L1** | Minimal | 0-20% | Ask before all changes |
-| **L2** | Low | 20-40% | Ask before significant changes |
-| **L3** | Medium | 40-60% | Proceed routine, ask novel |
-| **L4** | Medium-High | 60-80% | Proceed, report after |
-| **L5** | High | 80-95% | High autonomy, minimal checks |
-| **L6** | Full | 95-100% | Full autonomy |
+| Level  | Name        | Range   | Behavior                       |
+|--------|-------------|---------|--------------------------------|
+| **L1** | Minimal     | 0-20%   | Ask before all changes         |
+| **L2** | Low         | 20-40%  | Ask before significant changes |
+| **L3** | Medium      | 40-60%  | Proceed routine, ask novel     |
+| **L4** | Medium-High | 60-80%  | Proceed, report after          |
+| **L5** | High        | 80-95%  | High autonomy, minimal checks  |
+| **L6** | Full        | 95-100% | Full autonomy                  |
 
 ### 2.1 Level Selection
 
-| Context | Recommended |
-|---------|-------------|
-| New collaboration | L2-L3 |
-| Established trust | L4-L5 |
-| Production/sensitive | L1-L2 |
-| Routine tasks | L4-L5 |
+| Context              | Recommended |
+|----------------------|-------------|
+| New collaboration    | L2-L3       |
+| Established trust    | L4-L5       |
+| Production/sensitive | L1-L2       |
+| Routine tasks        | L4-L5       |
 
 ### 2.2 Calibration
 
-| Success Rate | Action |
-|--------------|--------|
-| > 95% | Upgrade +1 level |
-| 85-95% | Maintain |
-| 70-85% | Downgrade -1 |
-| < 70% | Downgrade -2, review |
+| Success Rate | Action               |
+|--------------|----------------------|
+| > 95%        | Upgrade +1 level     |
+| 85-95%       | Maintain             |
+| 70-85%       | Downgrade -1         |
+| < 70%        | Downgrade -2, review |
 
 ---
 
@@ -53,15 +53,19 @@ Ask before every task:
 
 ```markdown
 ## Summary
+
 [Brief outcome]
 
 ## Changes Made
+
 [List of modifications]
 
 ## Verification
+
 [How to verify]
 
 ## Next Steps
+
 [Follow-up actions if applicable]
 ```
 
@@ -69,13 +73,13 @@ Ask before every task:
 
 ## 4. Timeout Tiers
 
-| Tier | Time | Use For |
-|------|------|---------|
-| T1 | 100ms | Cache lookup |
-| T2 | 500ms | Single file |
-| T3 | 2s | Layer load |
-| T4 | 5s | Full KB load |
-| T5 | 10s | Complex analysis |
+| Tier | Time  | Use For          |
+|------|-------|------------------|
+| T1   | 100ms | Cache lookup     |
+| T2   | 500ms | Single file      |
+| T3   | 2s    | Layer load       |
+| T4   | 5s    | Full KB load     |
+| T5   | 10s   | Complex analysis |
 
 **Rule**: Always return something, never hang.
 
@@ -83,11 +87,11 @@ Ask before every task:
 
 ## 5. Philosophy Quick Check
 
-| Principle | Question |
-|-----------|----------|
-| 信 (Faithful) | Is this correct? |
-| 达 (Clear) | Is this understandable? |
-| 雅 (Elegant) | Is this the simplest solution? |
+| Principle    | Question                       |
+|--------------|--------------------------------|
+| 信 (Faithful) | Is this correct?               |
+| 达 (Clear)    | Is this understandable?        |
+| 雅 (Elegant)  | Is this the simplest solution? |
 
 ---
 

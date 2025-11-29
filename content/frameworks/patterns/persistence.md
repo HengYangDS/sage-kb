@@ -6,13 +6,13 @@
 
 ## 1. Data Lifecycle
 
-| Phase | Description | Actions |
-|-------|-------------|---------|
-| **Create** | Initial storage | Validate, store, index |
-| **Read** | Data access | Cache, query, return |
-| **Update** | Modification | Validate, version, store |
-| **Archive** | Long-term storage | Compress, move, index |
-| **Delete** | Removal | Verify, remove, cleanup |
+| Phase       | Description       | Actions                  |
+|-------------|-------------------|--------------------------|
+| **Create**  | Initial storage   | Validate, store, index   |
+| **Read**    | Data access       | Cache, query, return     |
+| **Update**  | Modification      | Validate, version, store |
+| **Archive** | Long-term storage | Compress, move, index    |
+| **Delete**  | Removal           | Verify, remove, cleanup  |
 
 ---
 
@@ -20,32 +20,32 @@
 
 ### 2.1 Time-Based Retention
 
-| Strategy | Description | Use Case |
-|----------|-------------|----------|
-| TTL | Fixed lifetime | Cache entries |
-| Rolling window | Keep last N days | Logs |
-| Tiered | Hot → warm → cold | Analytics |
+| Strategy       | Description       | Use Case      |
+|----------------|-------------------|---------------|
+| TTL            | Fixed lifetime    | Cache entries |
+| Rolling window | Keep last N days  | Logs          |
+| Tiered         | Hot → warm → cold | Analytics     |
 
 ### 2.2 Count-Based Retention
 
-| Strategy | Description | Use Case |
-|----------|-------------|----------|
-| Max entries | Keep last N items | History |
-| Max size | Keep until size limit | Cache |
-| Priority-based | Keep high priority | Memory |
+| Strategy       | Description           | Use Case |
+|----------------|-----------------------|----------|
+| Max entries    | Keep last N items     | History  |
+| Max size       | Keep until size limit | Cache    |
+| Priority-based | Keep high priority    | Memory   |
 
 ---
 
 ## 3. Priority Levels
 
-| Priority | Value | Retention |
-|----------|-------|-----------|
-| EPHEMERAL | 10 | Discard first |
-| LOW | 30 | Short retention |
-| NORMAL | 50 | Standard retention |
-| HIGH | 70 | Extended retention |
-| CRITICAL | 90 | Long retention |
-| PERMANENT | 100 | Never discard |
+| Priority  | Value | Retention          |
+|-----------|-------|--------------------|
+| EPHEMERAL | 10    | Discard first      |
+| LOW       | 30    | Short retention    |
+| NORMAL    | 50    | Standard retention |
+| HIGH      | 70    | Extended retention |
+| CRITICAL  | 90    | Long retention     |
+| PERMANENT | 100   | Never discard      |
 
 ---
 
@@ -53,20 +53,20 @@
 
 ### 4.1 Cleanup Triggers
 
-| Trigger | When | Action |
-|---------|------|--------|
-| Time-based | Scheduled | Background cleanup |
-| Threshold | Limit reached | Immediate cleanup |
-| On-demand | Manual request | Targeted cleanup |
+| Trigger     | When               | Action             |
+|-------------|--------------------|--------------------|
+| Time-based  | Scheduled          | Background cleanup |
+| Threshold   | Limit reached      | Immediate cleanup  |
+| On-demand   | Manual request     | Targeted cleanup   |
 | Event-based | On specific events | Contextual cleanup |
 
 ### 4.2 Cleanup Strategies
 
-| Strategy | Description |
-|----------|-------------|
-| LRU | Least recently used |
-| LFU | Least frequently used |
-| FIFO | First in, first out |
+| Strategy | Description           |
+|----------|-----------------------|
+| LRU      | Least recently used   |
+| LFU      | Least frequently used |
+| FIFO     | First in, first out   |
 | Priority | Lowest priority first |
 
 ---
@@ -75,21 +75,21 @@
 
 ### 5.1 Cache Strategies
 
-| Pattern | Description | Use Case |
-|---------|-------------|----------|
-| Read-through | Load on miss | General caching |
-| Write-through | Write to both | Consistency |
-| Write-behind | Async write | Performance |
+| Pattern       | Description        | Use Case           |
+|---------------|--------------------|--------------------|
+| Read-through  | Load on miss       | General caching    |
+| Write-through | Write to both      | Consistency        |
+| Write-behind  | Async write        | Performance        |
 | Refresh-ahead | Preemptive refresh | Predictable access |
 
 ### 5.2 Cache Invalidation
 
-| Strategy | When |
-|----------|------|
-| TTL expiry | After fixed time |
-| Event-based | On data change |
-| Manual | Explicit invalidation |
-| Version-based | On version mismatch |
+| Strategy      | When                  |
+|---------------|-----------------------|
+| TTL expiry    | After fixed time      |
+| Event-based   | On data change        |
+| Manual        | Explicit invalidation |
+| Version-based | On version mismatch   |
 
 ---
 
@@ -102,11 +102,12 @@ class RetentionPolicy:
     max_age_days: int = 30
     min_priority: int = 30  # LOW
 
+
 def cleanup(store: DataStore, policy: RetentionPolicy):
     # Remove by age
     cutoff = datetime.now() - timedelta(days=policy.max_age_days)
     store.delete_before(cutoff)
-    
+
     # Remove by priority if over limit
     if store.count() > policy.max_entries:
         store.delete_lowest_priority(

@@ -8,11 +8,11 @@
 
 Classical translation principles adapted for software and AI collaboration.
 
-| Principle | Chinese | Meaning | Application |
-|-----------|---------|---------|-------------|
-| **Faithfulness** | 信 (Xin) | True to intent | Accurate, reliable, testable, complete |
-| **Clarity** | 达 (Da) | Clear expression | Readable, maintainable, well-structured |
-| **Elegance** | 雅 (Ya) | Refined beauty | Minimal, balanced, sustainable |
+| Principle        | Chinese | Meaning          | Application                             |
+|------------------|---------|------------------|-----------------------------------------|
+| **Faithfulness** | 信 (Xin) | True to intent   | Accurate, reliable, testable, complete  |
+| **Clarity**      | 达 (Da)  | Clear expression | Readable, maintainable, well-structured |
+| **Elegance**     | 雅 (Ya)  | Refined beauty   | Minimal, balanced, sustainable          |
 
 ### 1.1 Priority Order
 
@@ -24,11 +24,11 @@ Classical translation principles adapted for software and AI collaboration.
 
 ### 1.2 Application Examples
 
-| Context | 信 (Faithful) | 达 (Clear) | 雅 (Elegant) |
-|---------|---------------|------------|--------------|
-| Code | Correct logic | Readable names | Minimal complexity |
-| Docs | Accurate info | Well-organized | Concise expression |
-| Design | Meets requirements | Intuitive structure | Clean architecture |
+| Context | 信 (Faithful)       | 达 (Clear)           | 雅 (Elegant)        |
+|---------|--------------------|---------------------|--------------------|
+| Code    | Correct logic      | Readable names      | Minimal complexity |
+| Docs    | Accurate info      | Well-organized      | Concise expression |
+| Design  | Meets requirements | Intuitive structure | Clean architecture |
 
 ---
 
@@ -36,11 +36,11 @@ Classical translation principles adapted for software and AI collaboration.
 
 Three levels of mastery from technique to wisdom.
 
-| Level | Chinese | Focus | Description |
-|-------|---------|-------|-------------|
-| **Technique** | 术 (Shu) | How | Tools, syntax, commands, mechanics |
-| **Method** | 法 (Fa) | What | Patterns, principles, best practices |
-| **Philosophy** | 道 (Dao) | Why | Wisdom, intuition, contextual mastery |
+| Level          | Chinese | Focus | Description                           |
+|----------------|---------|-------|---------------------------------------|
+| **Technique**  | 术 (Shu) | How   | Tools, syntax, commands, mechanics    |
+| **Method**     | 法 (Fa)  | What  | Patterns, principles, best practices  |
+| **Philosophy** | 道 (Dao) | Why   | Wisdom, intuition, contextual mastery |
 
 ### 2.1 Growth Path
 
@@ -60,17 +60,18 @@ Three levels of mastery from technique to wisdom.
 
 Both frameworks work together:
 
-| Xin-Da-Ya | Shu-Fa-Dao | Combined Focus |
-|-----------|------------|----------------|
-| 信 (Faithful) | 术 (Technique) | Correct implementation |
-| 达 (Clear) | 法 (Method) | Structured approach |
-| 雅 (Elegant) | 道 (Philosophy) | Wise simplicity |
+| Xin-Da-Ya    | Shu-Fa-Dao     | Combined Focus         |
+|--------------|----------------|------------------------|
+| 信 (Faithful) | 术 (Technique)  | Correct implementation |
+| 达 (Clear)    | 法 (Method)     | Structured approach    |
+| 雅 (Elegant)  | 道 (Philosophy) | Wise simplicity        |
 
 ---
 
 ## 4. Daily Application
 
 Before any task, ask:
+
 1. **信**: Is this accurate and complete?
 2. **达**: Is this clear and maintainable?
 3. **雅**: Is this the elegant solution?

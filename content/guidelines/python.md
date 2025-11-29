@@ -38,11 +38,11 @@ class Repository(Generic[T], Protocol):
 
 ### 1.3 Type Hint Rules
 
-| Rule | Example |
-|------|---------|
-| All public functions | `def func(x: int) -> str:` |
-| Optional for nullable | `Optional[str]` not `str | None` |
-| Use TypeVar for generics | `T = TypeVar("T")` |
+| Rule                     | Example                    |
+|--------------------------|----------------------------|
+| All public functions     | `def func(x: int) -> str:` |
+| Optional for nullable    | `Optional[str]` not `str   | None` |
+| Use TypeVar for generics | `T = TypeVar("T")`         |
 
 ---
 
@@ -68,12 +68,12 @@ def process(data: str) -> str:
 
 ### 2.2 Class Decorators
 
-| Decorator | Use For |
-|-----------|---------|
-| `@dataclass` | Data containers |
-| `@property` | Computed attributes |
-| `@classmethod` | Alternative constructors |
-| `@staticmethod` | Utility functions |
+| Decorator       | Use For                  |
+|-----------------|--------------------------|
+| `@dataclass`    | Data containers          |
+| `@property`     | Computed attributes      |
+| `@classmethod`  | Alternative constructors |
+| `@staticmethod` | Utility functions        |
 
 ---
 
@@ -115,11 +115,11 @@ async def fetch_all(urls: List[str]) -> List[dict]:
 
 ### 4.2 Async Guidelines
 
-| Pattern | Use For |
-|---------|---------|
-| `async/await` | I/O-bound operations |
-| `asyncio.gather` | Concurrent execution |
-| `asyncio.timeout` | Timeout protection |
+| Pattern           | Use For              |
+|-------------------|----------------------|
+| `async/await`     | I/O-bound operations |
+| `asyncio.gather`  | Concurrent execution |
+| `asyncio.timeout` | Timeout protection   |
 
 ---
 

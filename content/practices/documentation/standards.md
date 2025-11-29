@@ -71,7 +71,7 @@ content/
 ### 2.2 Section Order
 
 1. Title + Purpose (header)
-2. TOC (if > 100 lines or > 5 headings)
+2. TOC (if > 60 lines or > 3 headings)
 3. Numbered content sections
 4. Related/References (unnumbered)
 5. Footer
@@ -88,7 +88,9 @@ content/
 ```markdown
 ## Table of Contents
 
-[Section 1](#1-section) · [Section 2](#2-section) · [Section 3](#3-section)
+[Section 1](#1-section)
+[Section 2](#2-section)
+[Section 3](#3-section)
 
 ---
 ```

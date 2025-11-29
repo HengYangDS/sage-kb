@@ -6,23 +6,23 @@
 
 ## 1. Core Principles
 
-| Principle | Description |
-|-----------|-------------|
-| Chunk work | Process in manageable batches |
-| Checkpoint | Save progress regularly |
-| Recover | Handle failures gracefully |
-| Monitor | Track progress and performance |
+| Principle  | Description                    |
+|------------|--------------------------------|
+| Chunk work | Process in manageable batches  |
+| Checkpoint | Save progress regularly        |
+| Recover    | Handle failures gracefully     |
+| Monitor    | Track progress and performance |
 
 ---
 
 ## 2. Batch Size Guidelines
 
-| Data Size | Batch Size | Rationale |
-|-----------|------------|-----------|
-| < 1K | All at once | Overhead not worth it |
-| 1K - 10K | 100-500 | Balance speed/memory |
-| 10K - 100K | 500-1000 | Reasonable chunks |
-| > 100K | 1000-5000 | Prevent memory issues |
+| Data Size  | Batch Size  | Rationale             |
+|------------|-------------|-----------------------|
+| < 1K       | All at once | Overhead not worth it |
+| 1K - 10K   | 100-500     | Balance speed/memory  |
+| 10K - 100K | 500-1000    | Reasonable chunks     |
+| > 100K     | 1000-5000   | Prevent memory issues |
 
 ---
 
@@ -70,7 +70,7 @@ class Checkpoint:
 def process_with_checkpoint(items: List, checkpoint_file: str):
     checkpoint = load_checkpoint(checkpoint_file)
     start = checkpoint.processed if checkpoint else 0
-    
+
     for i, item in enumerate(items[start:], start):
         process_item(item)
         if i % 100 == 0:
@@ -81,11 +81,11 @@ def process_with_checkpoint(items: List, checkpoint_file: str):
 
 ## 5. Error Handling
 
-| Strategy | Use When |
-|----------|----------|
-| Skip + log | Non-critical items |
-| Retry | Transient errors |
-| Abort | Critical failures |
+| Strategy    | Use When               |
+|-------------|------------------------|
+| Skip + log  | Non-critical items     |
+| Retry       | Transient errors       |
+| Abort       | Critical failures      |
 | Dead letter | Process failures later |
 
 ```python
@@ -106,23 +106,23 @@ def process_with_errors(items: List):
 
 ## 6. Performance Optimization
 
-| Technique | Benefit |
-|-----------|---------|
-| Parallel processing | Utilize multiple cores |
-| Async I/O | Efficient for I/O-bound |
-| Bulk operations | Reduce round trips |
-| Connection pooling | Reuse connections |
+| Technique           | Benefit                 |
+|---------------------|-------------------------|
+| Parallel processing | Utilize multiple cores  |
+| Async I/O           | Efficient for I/O-bound |
+| Bulk operations     | Reduce round trips      |
+| Connection pooling  | Reuse connections       |
 
 ---
 
 ## 7. Monitoring
 
-| Metric | Purpose |
-|--------|---------|
-| Items/second | Throughput |
-| Error rate | Quality |
-| Memory usage | Resource health |
-| Time remaining | ETA |
+| Metric         | Purpose         |
+|----------------|-----------------|
+| Items/second   | Throughput      |
+| Error rate     | Quality         |
+| Memory usage   | Resource health |
+| Time remaining | ETA             |
 
 ---
 

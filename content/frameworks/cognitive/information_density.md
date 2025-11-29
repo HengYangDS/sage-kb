@@ -6,13 +6,13 @@
 
 ## 1. Density Spectrum
 
-| Level | Density | Use Case | Example |
-|-------|---------|----------|---------|
+| Level  | Density | Use Case             | Example           |
+|--------|---------|----------------------|-------------------|
 | **L1** | Minimal | Tutorials, beginners | Full explanations |
-| **L2** | Low | Documentation | Moderate detail |
-| **L3** | Medium | Technical docs | Balanced |
-| **L4** | High | Reference | Concise |
-| **L5** | Maximum | Quick reference | Tables, bullets |
+| **L2** | Low     | Documentation        | Moderate detail   |
+| **L3** | Medium  | Technical docs       | Balanced          |
+| **L4** | High    | Reference            | Concise           |
+| **L5** | Maximum | Quick reference      | Tables, bullets   |
 
 ---
 
@@ -20,33 +20,33 @@
 
 ### 2.1 High-Density Patterns
 
-| Technique | Token Savings | Example |
-|-----------|---------------|---------|
-| Tables | ~40% | Structured comparisons |
-| Bullet lists | ~30% | Enumerations |
-| Code blocks | ~20% | Examples |
-| Abbreviations | ~15% | Common terms |
+| Technique     | Token Savings | Example                |
+|---------------|---------------|------------------------|
+| Tables        | ~40%          | Structured comparisons |
+| Bullet lists  | ~30%          | Enumerations           |
+| Code blocks   | ~20%          | Examples               |
+| Abbreviations | ~15%          | Common terms           |
 
 ### 2.2 Low-Density Patterns
 
-| Pattern | When to Use |
-|---------|-------------|
+| Pattern        | When to Use          |
+|----------------|----------------------|
 | Full sentences | Complex explanations |
-| Step-by-step | Tutorials |
-| Examples first | Teaching concepts |
-| Redundancy | Critical information |
+| Step-by-step   | Tutorials            |
+| Examples first | Teaching concepts    |
+| Redundancy     | Critical information |
 
 ---
 
 ## 3. Context-Based Selection
 
-| Audience | Recommended Density |
-|----------|---------------------|
-| Beginners | L1-L2 |
-| Intermediate | L2-L3 |
-| Experts | L4-L5 |
-| AI assistants | L4-L5 |
-| Quick reference | L5 |
+| Audience        | Recommended Density |
+|-----------------|---------------------|
+| Beginners       | L1-L2               |
+| Intermediate    | L2-L3               |
+| Experts         | L4-L5               |
+| AI assistants   | L4-L5               |
+| Quick reference | L5                  |
 
 ---
 
@@ -54,21 +54,21 @@
 
 ### 4.1 Content Compression
 
-| Strategy | Before | After |
-|----------|--------|-------|
-| Remove filler | "In order to" | "To" |
-| Active voice | "is processed by" | "processes" |
-| Implicit subjects | "You should use" | "Use" |
-| Tables over prose | Paragraph | Table |
+| Strategy          | Before            | After       |
+|-------------------|-------------------|-------------|
+| Remove filler     | "In order to"     | "To"        |
+| Active voice      | "is processed by" | "processes" |
+| Implicit subjects | "You should use"  | "Use"       |
+| Tables over prose | Paragraph         | Table       |
 
 ### 4.2 Structure Compression
 
-| Strategy | Application |
-|----------|-------------|
-| Headers as summaries | Key info in heading |
-| Progressive disclosure | Details on demand |
-| Cross-references | Link, don't repeat |
-| Layered content | Summary → details |
+| Strategy               | Application         |
+|------------------------|---------------------|
+| Headers as summaries   | Key info in heading |
+| Progressive disclosure | Details on demand   |
+| Cross-references       | Link, don't repeat  |
+| Layered content        | Summary → details   |
 
 ---
 
@@ -76,32 +76,32 @@
 
 ### 5.1 Compression Limits
 
-| Preserve | Can Compress |
-|----------|--------------|
-| Accuracy | Verbose explanations |
-| Completeness | Redundant examples |
-| Clarity | Filler words |
-| Context | Obvious information |
+| Preserve     | Can Compress         |
+|--------------|----------------------|
+| Accuracy     | Verbose explanations |
+| Completeness | Redundant examples   |
+| Clarity      | Filler words         |
+| Context      | Obvious information  |
 
 ### 5.2 Warning Signs
 
-| Sign | Problem | Solution |
-|------|---------|----------|
+| Sign      | Problem         | Solution    |
+|-----------|-----------------|-------------|
 | Ambiguity | Over-compressed | Add context |
-| Confusion | Missing info | Expand |
-| Questions | Unclear | Clarify |
+| Confusion | Missing info    | Expand      |
+| Questions | Unclear         | Clarify     |
 
 ---
 
 ## 6. Application Matrix
 
-| Content Type | Target Density | Key Technique |
-|--------------|----------------|---------------|
-| API Reference | L5 | Tables |
-| Tutorials | L2 | Step-by-step |
-| Guidelines | L3-L4 | Bullets + tables |
-| Quick Reference | L5 | Tables only |
-| Explanations | L2-L3 | Prose + examples |
+| Content Type    | Target Density | Key Technique    |
+|-----------------|----------------|------------------|
+| API Reference   | L5             | Tables           |
+| Tutorials       | L2             | Step-by-step     |
+| Guidelines      | L3-L4          | Bullets + tables |
+| Quick Reference | L5             | Tables only      |
+| Explanations    | L2-L3          | Prose + examples |
 
 ---
 
