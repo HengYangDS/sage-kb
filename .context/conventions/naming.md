@@ -1,4 +1,4 @@
-# SAGE Naming Conventions
+﻿# SAGE Naming Conventions
 
 > Project-specific naming standards for SAGE Knowledge Base
 
@@ -23,7 +23,7 @@
 **SAGE-specific principles:**
 
 | Principle            | Description                                              |
-|----------------------|----------------------------------------------------------|
+|:----------------------|:----------------------------------------------------------|
 | Clarity over brevity | Prefer `knowledge_loader` over `kb_ldr`                  |
 | Domain alignment     | Use SAGE terminology (Source, Analyze, Generate, Evolve) |
 
@@ -63,7 +63,7 @@ class EvolveProtocol(Protocol):
 ### 2.2 Service Names
 
 | Service | Class Name   | Module            |
-|---------|--------------|-------------------|
+|:---------|:--------------|:-------------------|
 | CLI     | `CLIService` | `services/cli.py` |
 | MCP     | `MCPService` | `services/mcp.py` |
 | API     | `APIService` | `services/api.py` |
@@ -71,7 +71,7 @@ class EvolveProtocol(Protocol):
 ### 2.3 Capability Names
 
 | Type     | Class Pattern | Example                              |
-|----------|---------------|--------------------------------------|
+|:----------|:---------------|:--------------------------------------|
 | Analyzer | `*Analyzer`   | `CodeAnalyzer`, `ContentAnalyzer`    |
 | Checker  | `*Checker`    | `HealthChecker`, `ConfigChecker`     |
 | Monitor  | `*Monitor`    | `PerformanceMonitor`, `UsageMonitor` |
@@ -131,7 +131,7 @@ features:
 ### 3.2 Environment Variables
 
 | Pattern                | Example                       |
-|------------------------|-------------------------------|
+|:------------------------|:-------------------------------|
 | `SAGE_` prefix         | `SAGE_CONFIG_PATH`            |
 | `UPPER_SNAKE_CASE`     | `SAGE_TIMEOUT_MS`             |
 | Hierarchical with `__` | `SAGE__TIMEOUT__CACHE_LOOKUP` |
@@ -182,7 +182,7 @@ class TimeoutOccurredEvent:
 ### 5.1 Source Files
 
 | Type         | Pattern             | Example              |
-|--------------|---------------------|----------------------|
+|:--------------|:---------------------|:----------------------|
 | Module       | `snake_case.py`     | `timeout_manager.py` |
 | Package init | `__init__.py`       | Always present       |
 | Test file    | `test_*.py`         | `test_timeout.py`    |
@@ -191,7 +191,7 @@ class TimeoutOccurredEvent:
 ### 5.2 Documentation Files
 
 | Type       | Pattern                            | Example                    |
-|------------|------------------------------------|----------------------------|
+|:------------|:------------------------------------|:----------------------------|
 | Markdown   | `kebab-case.md` or `snake_case.md` | `timeout-hierarchy.md`     |
 | ADR        | `ADR-NNNN-title.md`                | `ADR-0001-architecture.md` |
 | Design doc | `NN-title.md`                      | `01-architecture.md`       |
@@ -199,7 +199,7 @@ class TimeoutOccurredEvent:
 ### 5.3 Directory Structure
 
 | Directory   | Purpose         | Naming         |
-|-------------|-----------------|----------------|
+|:-------------|:-----------------|:----------------|
 | `src/sage/` | Source code     | Package name   |
 | `tests/`    | Test suite      | Mirrors source |
 | `docs/`     | Documentation   | Categorical    |
@@ -215,7 +215,7 @@ class TimeoutOccurredEvent:
 The project version follows [Semantic Versioning](https://semver.org/):
 
 | Component | Format   | Example | Meaning             |
-|-----------|----------|---------|---------------------|
+|:-----------|:----------|:---------|:---------------------|
 | Version   | `X.Y.Z`  | `0.1.0` | MAJOR.MINOR.PATCH   |
 | Pre-alpha | `0.x.y`  | `0.1.0` | Initial development |
 | Alpha     | `0.x.y`  | `0.5.0` | Feature incomplete  |
@@ -229,7 +229,7 @@ The project version follows [Semantic Versioning](https://semver.org/):
 Internal development milestones use **M-prefix** format to avoid confusion with release versions:
 
 | Milestone | Format | Description            | Example Reference |
-|-----------|--------|------------------------|-------------------|
+|:-----------|:--------|:------------------------|:-------------------|
 | MVP       | `M1`   | Minimum Viable Product | "M1 complete"     |
 | Phase 2   | `M2`   | Second major milestone | "M2 in progress"  |
 | Phase 3   | `M3`   | Third major milestone  | "M3 planned"      |
@@ -243,7 +243,7 @@ Internal development milestones use **M-prefix** format to avoid confusion with 
 ### 6.3 Version References in Documentation
 
 | Context             | Format               | Example                     |
-|---------------------|----------------------|-----------------------------|
+|:---------------------|:----------------------|:-----------------------------|
 | Code/config version | `"X.Y.Z"`            | `version: "0.1.0"`          |
 | Milestone reference | `MN`                 | "Completed in M2"           |
 | Roadmap phases      | `MN` or `Phase N`    | "M3 Phases:", "Phase I:"    |
@@ -258,7 +258,7 @@ format.
 ## 7. Anti-Patterns to Avoid
 
 | Avoid                          | Prefer           | Reason                |
-|--------------------------------|------------------|-----------------------|
+|:--------------------------------|:------------------|:-----------------------|
 | `kb` abbreviation              | `knowledge_base` | Clarity               |
 | `mgr` suffix                   | `manager`        | Full word             |
 | `Impl` suffix                  | Descriptive name | Implementation detail |

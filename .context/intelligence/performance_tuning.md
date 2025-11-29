@@ -1,4 +1,4 @@
-# SAGE Performance Tuning
+﻿# SAGE Performance Tuning
 
 > SAGE-specific performance goals, benchmarks, and monitoring
 
@@ -9,7 +9,7 @@
 For comprehensive performance optimization guides, see:
 
 | Topic                       | Reference                                                      |
-|-----------------------------|----------------------------------------------------------------|
+|:-----------------------------|:----------------------------------------------------------------|
 | **Optimization Strategies** | `.knowledge/frameworks/performance/optimization_strategies.md` |
 | **Caching Patterns**        | `.knowledge/frameworks/performance/caching_patterns.md`        |
 | **Profiling Guide**         | `.knowledge/frameworks/performance/profiling_guide.md`         |
@@ -30,7 +30,7 @@ For comprehensive performance optimization guides, see:
 ### 1.1 Target Metrics
 
 | Metric           | Target  | Measured | Status |
-|------------------|---------|----------|--------|
+|:------------------|:---------|:----------|:--------|
 | Cold start       | < 2s    | ~1.5s    | ✓      |
 | Warm start       | < 500ms | ~300ms   | ✓      |
 | Single file load | < 100ms | ~50ms    | ✓      |
@@ -40,7 +40,7 @@ For comprehensive performance optimization guides, see:
 ### 1.2 Key Principles
 
 | Principle        | Description                       |
-|------------------|-----------------------------------|
+|:------------------|:-----------------------------------|
 | **Lazy Loading** | Load content only when needed     |
 | **Caching**      | Cache frequently accessed content |
 | **Timeouts**     | Never let operations hang         |
@@ -49,7 +49,7 @@ For comprehensive performance optimization guides, see:
 ### 1.3 Token Budget Allocation
 
 | Layer      | Budget | Priority  |
-|------------|--------|-----------|
+|:------------|:--------|:-----------|
 | Core       | 2000   | Always    |
 | Guidelines | 2000   | High      |
 | Frameworks | 2000   | Medium    |
@@ -63,7 +63,7 @@ For comprehensive performance optimization guides, see:
 ### 2.1 Current Benchmarks
 
 | Operation          | P50   | P95   | P99   |
-|--------------------|-------|-------|-------|
+|:--------------------|:-------|:-------|:-------|
 | Load core layer    | 150ms | 200ms | 250ms |
 | Load single file   | 30ms  | 50ms  | 80ms  |
 | Search (indexed)   | 5ms   | 15ms  | 30ms  |
@@ -90,7 +90,7 @@ python -m cProfile -s cumulative -m pytest tests/performance/
 ### 3.1 Key Metrics
 
 | Metric            | Description            | Alert Threshold |
-|-------------------|------------------------|-----------------|
+|:-------------------|:------------------------|:-----------------|
 | `load_time_ms`    | Time to load content   | > 2000ms        |
 | `search_time_ms`  | Time to execute search | > 500ms         |
 | `memory_mb`       | Memory usage           | > 200MB         |
@@ -122,7 +122,7 @@ def measure_time(operation: str):
 ## 4. Tuning Checklist
 
 | Area        | Check                            | Status |
-|-------------|----------------------------------|--------|
+|:-------------|:----------------------------------|:--------|
 | **Loading** | ☐ Lazy loading enabled           |        |
 |             | ☐ Core preloading configured     |        |
 |             | ☐ Parallel loading for batch ops |        |

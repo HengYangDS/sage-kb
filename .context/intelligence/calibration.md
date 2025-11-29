@@ -1,4 +1,4 @@
-# Autonomy Calibration Records
+﻿# Autonomy Calibration Records
 
 > Historical calibration data and effectiveness evaluation for AI collaboration
 
@@ -28,7 +28,7 @@ This document tracks:
 ### 1.2 Autonomy Level Reference
 
 | Level | Name        | Autonomy | Description                             |
-|-------|-------------|----------|-----------------------------------------|
+|:-------|:-------------|:----------|:-----------------------------------------|
 | L1    | Minimal     | 0-20%    | Full review required, high-risk changes |
 | L2    | Low         | 20-40%   | Significant review, important changes   |
 | L3    | Medium      | 40-60%   | Standard review, routine development    |
@@ -47,7 +47,7 @@ This document tracks:
 ### 2.1 Initial Calibration (2025-11-29)
 
 | Task Category         | Initial Level | Rationale                       |
-|-----------------------|---------------|---------------------------------|
+|:-----------------------|:---------------|:---------------------------------|
 | Documentation updates | L5            | Low risk, well-defined patterns |
 | Bug fixes             | L4            | Requires testing but familiar   |
 | New features          | L3            | Design discussion valuable      |
@@ -57,7 +57,7 @@ This document tracks:
 ### 2.2 Calibration Adjustments
 
 | Date       | Category          | Before | After | Reason                         |
-|------------|-------------------|--------|-------|--------------------------------|
+|:------------|:-------------------|:--------|:-------|:--------------------------------|
 | 2025-11-29 | Documentation     | L4     | L5    | Consistent quality observed    |
 | 2025-11-29 | Template creation | L3     | L4    | Established patterns work well |
 
@@ -68,7 +68,7 @@ This document tracks:
 ### 3.1 Documentation Tasks
 
 | Task                 | Recommended Level | Success Rate | Notes                    |
-|----------------------|-------------------|--------------|--------------------------|
+|:----------------------|:-------------------|:--------------|:--------------------------|
 | Fix typos            | L6                | 100%         | No issues                |
 | Update existing docs | L5                | 98%          | Rare minor issues        |
 | Create new docs      | L4                | 95%          | Review for completeness  |
@@ -77,7 +77,7 @@ This document tracks:
 ### 3.2 Code Tasks
 
 | Task               | Recommended Level | Success Rate | Notes                  |
-|--------------------|-------------------|--------------|------------------------|
+|:--------------------|:-------------------|:--------------|:------------------------|
 | Format/style fixes | L5-L6             | 100%         | Ruff handles well      |
 | Add tests          | L4                | 92%          | Review coverage        |
 | Bug fixes          | L3-L4             | 88%          | Verify test coverage   |
@@ -89,7 +89,7 @@ This document tracks:
 ### 3.3 Configuration Tasks
 
 | Task            | Recommended Level | Success Rate | Notes                |
-|-----------------|-------------------|--------------|----------------------|
+|:-----------------|:-------------------|:--------------|:----------------------|
 | Update values   | L4                | 95%          | Low risk             |
 | Add new config  | L3                | 90%          | Validation needed    |
 | Schema changes  | L2                | 80%          | Impact assessment    |
@@ -102,7 +102,7 @@ This document tracks:
 ### 4.1 Key Metrics
 
 | Metric                | Definition                      | Target         |
-|-----------------------|---------------------------------|----------------|
+|:-----------------------|:---------------------------------|:----------------|
 | **Task Success Rate** | Tasks completed without rework  | > 90%          |
 | **Review Efficiency** | Reviews that require no changes | > 80%          |
 | **Time to Complete**  | Average task completion time    | Varies by type |
@@ -111,13 +111,13 @@ This document tracks:
 ### 4.2 Historical Performance
 
 | Period               | Success Rate | Review Efficiency | Defect Rate |
-|----------------------|--------------|-------------------|-------------|
+|:----------------------|:--------------|:-------------------|:-------------|
 | Initial (2025-11-29) | 95%          | 85%               | 3%          |
 
 ### 4.3 Level Effectiveness
 
 | Level | Appropriate Use  | Overuse Risk  | Underuse Risk  |
-|-------|------------------|---------------|----------------|
+|:-------|:------------------|:---------------|:----------------|
 | L1    | Breaking changes | Slow velocity | -              |
 | L2    | Architecture     | Bottleneck    | Missed issues  |
 | L3    | Features         | Overhead      | Quality issues |
@@ -132,7 +132,7 @@ This document tracks:
 ### 5.1 When to Increase Autonomy
 
 | Signal                            | Action            |
-|-----------------------------------|-------------------|
+|:-----------------------------------|:-------------------|
 | Consistent success rate > 95%     | Consider +1 level |
 | Reviews find no issues repeatedly | Consider +1 level |
 | Task type becomes routine         | Consider +1 level |
@@ -141,7 +141,7 @@ This document tracks:
 ### 5.2 When to Decrease Autonomy
 
 | Signal                 | Action            |
-|------------------------|-------------------|
+|:------------------------|:-------------------|
 | Defect rate > 10%      | Consider -1 level |
 | Reviews require rework | Consider -1 level |
 | New/unfamiliar domain  | Start lower       |
@@ -151,7 +151,7 @@ This document tracks:
 ### 5.3 Context Factors
 
 | Factor            | Level Adjustment            |
-|-------------------|-----------------------------|
+|:-------------------|:-----------------------------|
 | **Familiarity**   | Higher for familiar areas   |
 | **Risk**          | Lower for high-risk changes |
 | **Reversibility** | Higher for easy rollback    |
@@ -190,7 +190,7 @@ This document tracks:
 ### Changes Made
 
 | Category | Before | After | Rationale |
-|----------|--------|-------|-----------|
+|:----------|:--------|:-------|:-----------|
 | [Category] | L[X] | L[Y] | [Reason] |
 
 ### Supporting Data
@@ -211,7 +211,7 @@ This document tracks:
 ### 7.1 Security-Related Tasks
 
 | Task               | Fixed Level | Notes              |
-|--------------------|-------------|--------------------|
+|:--------------------|:-------------|:--------------------|
 | Auth changes       | L1          | Always full review |
 | Secret management  | L1          | Security critical  |
 | Input validation   | L2          | Security impact    |
@@ -220,7 +220,7 @@ This document tracks:
 ### 7.2 Production-Impacting Tasks
 
 | Task                | Fixed Level | Notes            |
-|---------------------|-------------|------------------|
+|:---------------------|:-------------|:------------------|
 | Database migrations | L1-L2       | Data integrity   |
 | API changes         | L2          | Client impact    |
 | Config changes      | L2-L3       | Runtime behavior |
@@ -229,7 +229,7 @@ This document tracks:
 ### 7.3 Learning Phase Tasks
 
 | Situation    | Approach              |
-|--------------|-----------------------|
+|:--------------|:-----------------------|
 | New project  | Start at L2-L3        |
 | New domain   | Start at L2-L3        |
 | New patterns | Start at L3           |
@@ -242,7 +242,7 @@ This document tracks:
 ### 8.1 Successful Patterns
 
 | Pattern                        | Observation           |
-|--------------------------------|-----------------------|
+|:--------------------------------|:-----------------------|
 | Template-based work            | High success at L4-L5 |
 | Following existing conventions | High success at L4    |
 | Well-defined scope             | Higher autonomy works |
@@ -251,7 +251,7 @@ This document tracks:
 ### 8.2 Challenges Encountered
 
 | Challenge              | Resolution                           |
-|------------------------|--------------------------------------|
+|:------------------------|:--------------------------------------|
 | Ambiguous requirements | Request clarification first          |
 | Cross-cutting changes  | Lower autonomy level                 |
 | New patterns           | Discuss approach before implementing |

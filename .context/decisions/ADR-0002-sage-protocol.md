@@ -1,6 +1,18 @@
-# ADR-0002: SAGE Protocol Design
+﻿# ADR-0002: SAGE Protocol Design
 
 > Architecture Decision Record for SAGE Knowledge Base
+
+---
+
+## Table of Contents
+
+- [Status](#status)
+- [Context](#context)
+- [Decision](#decision)
+- [Alternatives Considered](#alternatives-considered)
+- [Consequences](#consequences)
+- [Implementation](#implementation)
+- [Related](#related)
 
 ---
 
@@ -42,7 +54,7 @@ Adopt the **SAGE Protocol** — a four-phase processing model:
 ### Phase Definitions
 
 | Phase        | Purpose                 | Input           | Output           |
-|--------------|-------------------------|-----------------|------------------|
+|:--------------|:-------------------------|:-----------------|:------------------|
 | **Source**   | Knowledge acquisition   | Paths, queries  | Raw content      |
 | **Analyze**  | Processing & enrichment | Raw content     | Structured data  |
 | **Generate** | Multi-channel output    | Structured data | Formatted output |

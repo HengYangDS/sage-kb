@@ -1,4 +1,4 @@
-# SAGE File Structure Conventions
+﻿# SAGE File Structure Conventions
 
 > Project-specific file organization standards for SAGE Knowledge Base
 
@@ -41,7 +41,7 @@ sage-kb/
 ### 1.2 Directory Visibility
 
 | Prefix    | Visibility | Purpose               |
-|-----------|------------|-----------------------|
+|:-----------|:------------|:-----------------------|
 | `.` (dot) | Hidden     | Internal/system files |
 | No prefix | Visible    | User-facing content   |
 
@@ -64,7 +64,7 @@ dist/
 **All temporary and intermediate output files MUST be placed in `.outputs/` directory.**
 
 | File Type         | Correct Location      | Incorrect Location    |
-|-------------------|-----------------------|-----------------------|
+|:-------------------|:-----------------------|:-----------------------|
 | Process output    | `.outputs/result.txt` | `./result.txt` (root) |
 | Temporary files   | `.outputs/temp_*.txt` | `./temp_*.txt` (root) |
 | Generated reports | `.outputs/report.md`  | `./report.md` (root)  |
@@ -102,7 +102,7 @@ This section defines the rules for organizing knowledge across the project's dir
 ### 2.1 Directory Purpose Matrix
 
 | Directory     | Content Type       | Scope            | Distributable |
-|---------------|--------------------|------------------|---------------|
+|:---------------|:--------------------|:------------------|:---------------|
 | `.knowledge/` | Generic knowledge  | Universal        | ✅ Yes         |
 | `.context/`   | Project-specific   | SAGE only        | ❌ No          |
 | `docs/`       | User documentation | SAGE users       | ✅ Yes         |
@@ -113,7 +113,7 @@ This section defines the rules for organizing knowledge across the project's dir
 **Purpose**: Generic, reusable knowledge that can be distributed and used across different projects.
 
 | Should Include                      | Should NOT Include           |
-|-------------------------------------|------------------------------|
+|:-------------------------------------|:------------------------------|
 | Universal best practices            | SAGE-specific configurations |
 | Generic frameworks (autonomy, etc.) | Project ADRs                 |
 | Reusable patterns and guidelines    | Internal calibration data    |
@@ -128,7 +128,7 @@ project.
 **Purpose**: Project-specific knowledge, conventions, and decisions unique to SAGE.
 
 | Should Include                       | Should NOT Include             |
-|--------------------------------------|--------------------------------|
+|:--------------------------------------|:--------------------------------|
 | Architecture Decision Records (ADRs) | Generic best practices         |
 | SAGE-specific coding conventions     | Universal frameworks           |
 | Project policies (timeout hierarchy) | Reusable patterns              |
@@ -142,7 +142,7 @@ project.
 **Purpose**: User-facing documentation for SAGE users and contributors.
 
 | Should Include            | Should NOT Include                     |
-|---------------------------|----------------------------------------|
+|:---------------------------|:----------------------------------------|
 | Design documents          | Internal conventions                   |
 | API documentation         | AI session records                     |
 | User guides and tutorials | Generic knowledge (belongs in content) |
@@ -156,7 +156,7 @@ project.
 **Purpose**: AI collaboration records, session history, and task handoffs.
 
 | Should Include         | Should NOT Include          |
-|------------------------|-----------------------------|
+|:------------------------|:-----------------------------|
 | Session state records  | Permanent documentation     |
 | Conversation summaries | Code or configuration       |
 | Task handoff documents | Design decisions (use ADRs) |
@@ -292,7 +292,7 @@ tests/
 ### 4.2 Test File Naming
 
 | Source File                     | Test File                              |
-|---------------------------------|----------------------------------------|
+|:---------------------------------|:----------------------------------------|
 | `src/sage/core/config.py`       | `tests/unit/core/test_config.py`       |
 | `src/sage/services/cli.py`      | `tests/unit/services/test_cli.py`      |
 | `src/sage/core/di/container.py` | `tests/unit/core/di/test_container.py` |
@@ -489,7 +489,7 @@ docs/
 The `src/sage/` directory contains several packages with distinct responsibilities:
 
 | Package         | Purpose                | Contains                               |
-|-----------------|------------------------|----------------------------------------|
+|:-----------------|:------------------------|:----------------------------------------|
 | `domain/`       | Business domain models | Pure data structures, enums, no logic  |
 | `core/`         | Infrastructure & logic | Loaders, timeout, config, DI, events   |
 | `interfaces/`   | Protocol re-exports    | Convenience imports from core          |
@@ -634,7 +634,7 @@ def _helper_function() -> None:
 ### 9.1 Project Root Files
 
 | File              | Purpose                      |
-|-------------------|------------------------------|
+|:-------------------|:------------------------------|
 | `pyproject.toml`  | Python project configuration |
 | `sage.yaml`       | Main SAGE configuration      |
 | `README.md`       | Project overview             |
@@ -645,7 +645,7 @@ def _helper_function() -> None:
 ### 9.2 Hidden Configuration
 
 | File/Directory    | Purpose                   |
-|-------------------|---------------------------|
+|:-------------------|:---------------------------|
 | `.junie/`         | JetBrains Junie AI config |
 | `.context/`       | Project knowledge         |
 | `.gitignore`      | Git ignore rules          |

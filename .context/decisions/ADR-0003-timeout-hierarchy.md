@@ -1,6 +1,18 @@
-# ADR-0003: Timeout Hierarchy Design
+﻿# ADR-0003: Timeout Hierarchy Design
 
 > Architecture Decision Record for SAGE Knowledge Base
+
+---
+
+## Table of Contents
+
+- [Status](#status)
+- [Context](#context)
+- [Decision](#decision)
+- [Alternatives Considered](#alternatives-considered)
+- [Consequences](#consequences)
+- [Implementation](#implementation)
+- [Related](#related)
 
 ---
 
@@ -46,7 +58,7 @@ Implement a **Five-Level Timeout Hierarchy (T1-T5)** with graduated timeouts and
 ### Timeout Levels
 
 | Level  | Name    | Timeout | Scope               | Fallback Strategy    |
-|--------|---------|---------|---------------------|----------------------|
+|:--------|:---------|:---------|:---------------------|:----------------------|
 | **T1** | Cache   | 100ms   | Cache lookup        | Skip cache, proceed  |
 | **T2** | File    | 500ms   | Single file read    | Use fallback content |
 | **T3** | Layer   | 2s      | Full layer load     | Return partial       |
@@ -172,7 +184,7 @@ timeout:
 ### Level Selection Guide
 
 | Operation Type         | Recommended Level |
-|------------------------|-------------------|
+|:------------------------|:-------------------|
 | Cache check            | T1                |
 | Single file read       | T2                |
 | Directory scan         | T2-T3             |

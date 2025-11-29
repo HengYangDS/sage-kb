@@ -1,4 +1,4 @@
-# Memory and Persistence Configuration
+﻿# Memory and Persistence Configuration
 
 > Configuration reference for caching, memory management, and data persistence
 
@@ -35,7 +35,7 @@
 ### 1.2 Storage Hierarchy
 
 | Layer           | Storage    | TTL       | Use Case            |
-|-----------------|------------|-----------|---------------------|
+|:-----------------|:------------|:-----------|:---------------------|
 | **L1**          | In-memory  | Minutes   | Frequently accessed |
 | **L2**          | File/Redis | Hours     | Recently accessed   |
 | **Persistence** | Disk/DB    | Permanent | Historical data     |
@@ -424,7 +424,7 @@ memory:
 Reference to timeout hierarchy:
 
 | Operation        | Timeout | Related Setting                       |
-|------------------|---------|---------------------------------------|
+|:------------------|:---------|:---------------------------------------|
 | L1 cache lookup  | 100ms   | `memory.cache.levels.l1.timeout`      |
 | L2 cache lookup  | 500ms   | `memory.cache.levels.l2.timeout`      |
 | Persistence read | 2000ms  | `memory.persistence.timeout`          |

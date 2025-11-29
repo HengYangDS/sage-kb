@@ -1,6 +1,18 @@
-# ADR-0001: Three-Layer Architecture
+﻿# ADR-0001: Three-Layer Architecture
 
 > Architecture Decision Record for SAGE Knowledge Base
+
+---
+
+## Table of Contents
+
+- [Status](#status)
+- [Context](#context)
+- [Decision](#decision)
+- [Alternatives Considered](#alternatives-considered)
+- [Consequences](#consequences)
+- [Implementation](#implementation)
+- [Related](#related)
 
 ---
 
@@ -65,7 +77,7 @@ Adopt a **Core-Services-Capabilities** three-layer architecture with dev tools i
 ### Layer Responsibilities
 
 | Layer            | Responsibility                         | Dependencies      |
-|------------------|----------------------------------------|-------------------|
+|:------------------|:----------------------------------------|:-------------------|
 | **Core**         | Infrastructure, protocols, DI, events  | None (standalone) |
 | **Services**     | User interfaces (CLI, MCP, API)        | Core              |
 | **Capabilities** | Runtime features (analyzers, checkers) | Core              |

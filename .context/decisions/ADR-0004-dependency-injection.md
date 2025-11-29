@@ -1,6 +1,18 @@
-# ADR-0004: Dependency Injection Container
+﻿# ADR-0004: Dependency Injection Container
 
 > Architecture Decision Record for SAGE Knowledge Base
+
+---
+
+## Table of Contents
+
+- [Status](#status)
+- [Context](#context)
+- [Decision](#decision)
+- [Alternatives Considered](#alternatives-considered)
+- [Consequences](#consequences)
+- [Implementation](#implementation)
+- [Related](#related)
 
 ---
 
@@ -56,7 +68,7 @@ class DIContainer:
 ### Lifetime Modes
 
 | Lifetime      | Behavior                            | Use Case                          |
-|---------------|-------------------------------------|-----------------------------------|
+|:---------------|:-------------------------------------|:-----------------------------------|
 | **SINGLETON** | One instance for container lifetime | Config, EventBus, shared state    |
 | **TRANSIENT** | New instance per resolution         | Stateless services, validators    |
 | **SCOPED**    | One instance per scope              | Request handlers, session context |

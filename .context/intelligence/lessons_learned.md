@@ -1,4 +1,4 @@
-# Lessons Learned
+﻿# Lessons Learned
 
 > Key insights and learnings from SAGE Knowledge Base development
 
@@ -44,7 +44,7 @@ Each lesson follows this structure:
 hanging.
 
 | Level | Timeout | Use Case         |
-|-------|---------|------------------|
+|:-------|:---------|:------------------|
 | T1    | 100ms   | Cache lookup     |
 | T2    | 500ms   | Single file      |
 | T3    | 2s      | Layer load       |

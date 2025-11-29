@@ -1,4 +1,4 @@
-# Project Context Navigation
+﻿# Project Context Navigation
 
 > Project-specific knowledge base for SAGE Knowledge Base
 
@@ -16,7 +16,7 @@
 ## 1. Directory Structure
 
 | Directory       | Purpose                              | Files |
-|-----------------|--------------------------------------|-------|
+|:-----------------|:--------------------------------------|:-------|
 | `policies/`     | Project-specific policies            | 6     |
 | `conventions/`  | Project-specific coding conventions  | 3     |
 | `decisions/`    | Architecture Decision Records (ADRs) | 8     |
@@ -31,7 +31,7 @@
 Project-specific policy documentation:
 
 | Document                    | Description                                   |
-|-----------------------------|-----------------------------------------------|
+|:-----------------------------|:-----------------------------------------------|
 | `timeout_hierarchy.md`      | T1-T5 timeout levels and fallback strategies  |
 | `loading_configurations.md` | Knowledge loading strategies and layer config |
 | `runtime_settings.md`       | Environment variables, logging, services      |
@@ -44,17 +44,22 @@ Project-specific policy documentation:
 Project-specific rules and standards:
 
 | Document            | Description                              |
-|---------------------|------------------------------------------|
+|:---------------------|:------------------------------------------|
 | `naming.md`         | Naming conventions for all code elements |
 | `code_patterns.md`  | DI, EventBus, timeout, async patterns    |
 | `file_structure.md` | Directory layout, module organization    |
 
 ### 2.3 Decisions
 
-Architecture Decision Records documenting significant technical decisions:
+Architecture Decision Records (ADRs) documenting significant technical decisions.
+
+**ADR Format**: All ADRs follow the standard ADR template structure:
+- **Status** → **Context** → **Decision** → **Alternatives Considered** → **Consequences** → **Implementation** → **Related**
+
+This format is an industry-standard pattern for documenting architecture decisions, providing consistent structure for decision rationale and traceability.
 
 | ADR      | Title                           | Status   |
-|----------|---------------------------------|----------|
+|:----------|:---------------------------------|:----------|
 | ADR-0001 | Three-Layer Architecture        | Accepted |
 | ADR-0002 | SAGE Protocol Design            | Accepted |
 | ADR-0003 | Timeout Hierarchy Design        | Accepted |
@@ -66,10 +71,18 @@ Architecture Decision Records documenting significant technical decisions:
 
 ### 2.4 Intelligence
 
+AI collaboration patterns, learned behaviors, and project-specific calibration data.
+
+**Purpose**: This directory contains knowledge that helps AI assistants collaborate effectively with the project:
+- **Calibration**: Autonomy levels and decision boundaries for this project
+- **Patterns**: Successful interaction templates and workflows
+- **Learning**: Cases, lessons, and pitfalls from actual development
+- **Optimization**: Performance tuning and efficiency improvements
+
 AI collaboration patterns and learned behaviors:
 
 | Document                             | Description                                       |
-|--------------------------------------|---------------------------------------------------|
+|:--------------------------------------|:---------------------------------------------------|
 | `patterns.md`                        | Successful interaction patterns and templates     |
 | `optimizations.md`                   | Code generation preferences, testing, performance |
 | `calibration.md`                     | Autonomy level calibration (L1-L6)                |
@@ -86,7 +99,7 @@ AI collaboration patterns and learned behaviors:
 ### 3.1 By Topic
 
 | Topic                | Documents                                                                       |
-|----------------------|---------------------------------------------------------------------------------|
+|:----------------------|:---------------------------------------------------------------------------------|
 | **Getting Started**  | `conventions/naming.md`, `conventions/file_structure.md`                        |
 | **Architecture**     | `decisions/ADR-0001-architecture.md`, `decisions/ADR-0002-sage-protocol.md`     |
 | **Configuration**    | `policies/runtime_settings.md`, `policies/loading_configurations.md`            |

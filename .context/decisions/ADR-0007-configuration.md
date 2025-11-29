@@ -4,6 +4,18 @@
 
 ---
 
+## Table of Contents
+
+- [Status](#status)
+- [Context](#context)
+- [Decision](#decision)
+- [Alternatives Considered](#alternatives-considered)
+- [Consequences](#consequences)
+- [Implementation](#implementation)
+- [Related](#related)
+
+---
+
 ## Status
 
 **Accepted** | Date: 2025-11-28

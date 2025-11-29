@@ -1,6 +1,18 @@
-# ADR-0005: Event Bus Architecture
+﻿# ADR-0005: Event Bus Architecture
 
 > Architecture Decision Record for SAGE Knowledge Base
+
+---
+
+## Table of Contents
+
+- [Status](#status)
+- [Context](#context)
+- [Decision](#decision)
+- [Alternatives Considered](#alternatives-considered)
+- [Consequences](#consequences)
+- [Implementation](#implementation)
+- [Related](#related)
 
 ---
 
@@ -61,7 +73,7 @@ class Event:
 ### Pattern Matching
 
 | Pattern            | Matches                                       |
-|--------------------|-----------------------------------------------|
+|:--------------------|:-----------------------------------------------|
 | `knowledge.loaded` | Exact match only                              |
 | `knowledge.*`      | `knowledge.loaded`, `knowledge.updated`, etc. |
 | `*.loaded`         | `knowledge.loaded`, `config.loaded`, etc.     |

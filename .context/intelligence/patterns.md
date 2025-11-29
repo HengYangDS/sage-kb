@@ -1,10 +1,18 @@
-# AI Collaboration Patterns - SAGE Project Reference
+﻿# AI Collaboration Patterns - SAGE Project Reference
 
 > Project-specific calibration and patterns for SAGE Knowledge Base
 
 ---
 
-## Generic Patterns Reference
+## Table of Contents
+
+- [1. Generic Patterns Reference](#1-generic-patterns-reference)
+- [2. SAGE-Specific Calibration Data](#2-sage-specific-calibration-data)
+- [3. SAGE-Specific Patterns](#3-sage-specific-patterns)
+
+---
+
+## 1. Generic Patterns Reference
 
 For the comprehensive guide on AI collaboration patterns, see:
 
@@ -19,14 +27,14 @@ This includes:
 
 ---
 
-## SAGE-Specific Calibration Data
+## 2. SAGE-Specific Calibration Data
 
 ### Autonomy Level Calibration
 
 Current calibration for SAGE project:
 
 | Task Type             | Recommended Level | Notes                      |
-|-----------------------|-------------------|----------------------------|
+|:-----------------------|:-------------------|:----------------------------|
 | Documentation updates | L5 (High)         | Well-established patterns  |
 | Code formatting       | L5 (High)         | Ruff handles automatically |
 | Bug fixes             | L4 (Medium-High)  | Verify with tests          |
@@ -37,7 +45,7 @@ Current calibration for SAGE project:
 ### Response Time Expectations
 
 | Operation           | Expected Time | Timeout Level |
-|---------------------|---------------|---------------|
+|:---------------------|:---------------|:---------------|
 | Simple query        | < 100ms       | T1            |
 | Single file read    | < 500ms       | T2            |
 | Multi-file analysis | < 2s          | T3            |
@@ -47,7 +55,7 @@ Current calibration for SAGE project:
 ### Quality Thresholds
 
 | Metric        | Target | Action if Below        |
-|---------------|--------|------------------------|
+|:---------------|:--------|:------------------------|
 | Test coverage | > 80%  | Add tests before merge |
 | Type coverage | > 90%  | Add type hints         |
 | Doc coverage  | > 70%  | Add docstrings         |
@@ -55,7 +63,7 @@ Current calibration for SAGE project:
 
 ---
 
-## SAGE-Specific Patterns
+## 3. SAGE-Specific Patterns
 
 ### Session Start for SAGE
 
