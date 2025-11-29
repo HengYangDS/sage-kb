@@ -23,10 +23,16 @@ status: production-ready
 > | Config file | `sage.yaml` | Created at project root | ✅ Complete |
 > | Directory structure | Core/Services/Capabilities | core/, services/, capabilities/ | ✅ Complete |
 > | Capabilities layer | analyzers, checkers, monitors | Implemented | ✅ Complete |
-> | Core infrastructure | DI, EventBus, Protocols | Not implemented | ⏸️ Deferred to v1.1 |
-> | Structured logging | structlog integration | Not implemented | ⏸️ Deferred to v1.1 |
+> | Core infrastructure | DI, EventBus, Protocols | core/di/, core/events/, core/protocols.py | ✅ Complete |
+> | Structured logging | structlog integration | core/logging/ | ✅ Complete |
+> | Memory persistence | MemoryStore, TokenBudget | core/memory/ | ✅ Complete |
+> | SAGE Protocol | models, protocols, exceptions | core/models.py, core/protocols.py, core/exceptions.py | ✅ Complete |
+> | Configuration | SAGEConfig, env overrides | core/config.py | ✅ Complete |
+> | Domain models | KnowledgeAsset, Session | domain/knowledge.py, domain/session.py | ✅ Complete |
+> | Interfaces | Protocol re-exports | interfaces/__init__.py | ✅ Complete |
+> | Entry point | python -m sage | __main__.py | ✅ Complete |
 >
-> **MVP Status**: Phase 0, A, B, D, E, F complete. Package installs correctly, 56 tests passing.
+> **Status**: v1.2 complete. 841+ tests passing, 89% coverage.
 >
 > For detailed implementation status and roadmap, see `07-roadmap.md`.
 

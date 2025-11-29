@@ -131,7 +131,7 @@ class HealthMonitor:
         """Check file system health."""
         start = time.monotonic()
         try:
-            # Check if KB path exists
+            # Check if the KB path exists
             if not self.kb_path.exists():
                 return HealthCheck(
                     name="filesystem",
@@ -191,13 +191,13 @@ class HealthMonitor:
         """Check configuration health."""
         start = time.monotonic()
         try:
-            config_path = self.kb_path / "aikb.yaml"
+            config_path = self.kb_path / "sage.yaml"
 
             if not config_path.exists():
                 return HealthCheck(
                     name="config",
                     status=HealthStatus.DEGRADED,
-                    message="aikb.yaml not found",
+                    message="sage.yaml not found",
                     duration_ms=(time.monotonic() - start) * 1000,
                 )
 
@@ -302,7 +302,7 @@ class HealthMonitor:
         )
 
         # Process results
-        results = []
+        results: list[HealthCheck] = []
         for check in checks:
             if isinstance(check, Exception):
                 results.append(
@@ -312,7 +312,7 @@ class HealthMonitor:
                         message=str(check),
                     )
                 )
-            else:
+            elif isinstance(check, HealthCheck):
                 results.append(check)
 
         # Determine overall status
@@ -353,7 +353,7 @@ class HealthMonitor:
 
         self._running = True
 
-        async def monitor_loop():
+        async def monitor_loop() -> None:
             while self._running:
                 try:
                     await self.check_all()

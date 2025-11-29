@@ -6,6 +6,7 @@ These models represent the core concepts in the knowledge management domain.
 
 Version: 0.1.0
 """
+
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum
@@ -24,7 +25,7 @@ class KnowledgeLayer(str, Enum):
 
 
 class ContentType(str, Enum):
-    """Type of knowledge content."""
+    """Knowledge content type."""
 
     PRINCIPLE = "principle"
     GUIDELINE = "guideline"
@@ -84,7 +85,9 @@ class KnowledgeAsset:
     layer: KnowledgeLayer
     content_type: ContentType
     content: str
-    metadata: KnowledgeMetadata = field(default_factory=lambda: KnowledgeMetadata(title="Untitled"))
+    metadata: KnowledgeMetadata = field(
+        default_factory=lambda: KnowledgeMetadata(title="Untitled")
+    )
     status: AssetStatus = AssetStatus.APPROVED
     tokens: int = 0
     checksum: str | None = None
@@ -92,13 +95,17 @@ class KnowledgeAsset:
     def __post_init__(self) -> None:
         """Calculate tokens if not provided."""
         if self.tokens == 0 and self.content:
-            # Rough estimate: ~4 chars per token
+            # Estimate: ~4 chars per token
             self.tokens = len(self.content) // 4
 
     @property
     def is_loadable(self) -> bool:
-        """Check if asset can be loaded (not deprecated/archived)."""
-        return self.status in (AssetStatus.DRAFT, AssetStatus.REVIEW, AssetStatus.APPROVED)
+        """Check if the asset can be loaded (not deprecated/archived)."""
+        return self.status in (
+            AssetStatus.DRAFT,
+            AssetStatus.REVIEW,
+            AssetStatus.APPROVED,
+        )
 
 
 @dataclass
@@ -132,12 +139,12 @@ class KnowledgeCycle:
     metrics: dict[str, Any] = field(default_factory=dict)
 
     def complete(self) -> None:
-        """Mark cycle as completed."""
+        """Mark the cycle as completed."""
         self.completed_at = datetime.now()
         self.status = "completed"
 
     def fail(self, error: str) -> None:
-        """Mark cycle as failed."""
+        """Mark the cycle as failed."""
         self.completed_at = datetime.now()
         self.status = "failed"
         self.metrics["error"] = error

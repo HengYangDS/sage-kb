@@ -95,7 +95,7 @@ class ContentAnalyzer:
     # Average tokens per character (rough estimate for English)
     TOKENS_PER_CHAR = 0.25
 
-    def __init__(self):
+    def __init__(self) -> None:
         """Initialize the content analyzer."""
         pass
 

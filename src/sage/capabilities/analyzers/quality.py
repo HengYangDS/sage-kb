@@ -46,7 +46,7 @@ class QualityScore:
             "testability": 0.15,
         }
         total = sum(getattr(self, dim) * weight for dim, weight in weights.items())
-        return round(total, 2)
+        return round(float(total), 2)
 
     @property
     def grade(self) -> str:
@@ -93,7 +93,7 @@ class QualityAnalyzer:
     - Issue identification and suggestions
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """Initialize the quality analyzer."""
         self._code_patterns = self._load_code_patterns()
         self._doc_patterns = self._load_doc_patterns()

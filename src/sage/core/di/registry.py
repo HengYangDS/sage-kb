@@ -118,7 +118,7 @@ class TypeRegistry:
 
         module_path, class_name = parts
         module = importlib.import_module(module_path)
-        return getattr(module, class_name)
+        return getattr(module, class_name)  # type: ignore[no-any-return]
 
     def is_registered(self, name: str) -> bool:
         """Check if a name is registered."""
@@ -156,11 +156,28 @@ def register_default_types(registry: TypeRegistry | None = None) -> None:
     if registry is None:
         registry = get_registry()
 
-    # Core types
+    # Core types - Loader
     try:
         from sage.core.loader import KnowledgeLoader
 
         registry.register("KnowledgeLoader", KnowledgeLoader)
+        registry.register("TimeoutLoader", KnowledgeLoader)  # Alias for YAML config
+    except ImportError:
+        pass
+
+    # Core types - Protocols (interfaces)
+    try:
+        from sage.core.protocols import (
+            AnalyzeProtocol,
+            EvolveProtocol,
+            GenerateProtocol,
+            SourceProtocol,
+        )
+
+        registry.register("SourceProtocol", SourceProtocol)
+        registry.register("AnalyzeProtocol", AnalyzeProtocol)
+        registry.register("GenerateProtocol", GenerateProtocol)
+        registry.register("EvolveProtocol", EvolveProtocol)
     except ImportError:
         pass
 

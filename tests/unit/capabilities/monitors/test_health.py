@@ -251,7 +251,7 @@ timeout:
 loading:
   lazy: true
 """
-        (tmp_path / "aikb.yaml").write_text(config_content)
+        (tmp_path / "sage.yaml").write_text(config_content)
         monitor = HealthMonitor(kb_path=tmp_path)
         check = await monitor.check_config()
         assert check.status == HealthStatus.HEALTHY
@@ -260,7 +260,7 @@ loading:
     @pytest.mark.asyncio
     async def test_check_config_missing_keys(self, tmp_path):
         """Test config check with missing required keys."""
-        (tmp_path / "aikb.yaml").write_text("version: 0.1.0\n")
+        (tmp_path / "sage.yaml").write_text("version: 0.1.0\n")
         monitor = HealthMonitor(kb_path=tmp_path)
         check = await monitor.check_config()
         assert check.status == HealthStatus.DEGRADED
@@ -269,7 +269,7 @@ loading:
     @pytest.mark.asyncio
     async def test_check_config_invalid_yaml(self, tmp_path):
         """Test config check with invalid YAML."""
-        (tmp_path / "aikb.yaml").write_text("invalid: yaml: content: [")
+        (tmp_path / "sage.yaml").write_text("invalid: yaml: content: [")
         monitor = HealthMonitor(kb_path=tmp_path)
         check = await monitor.check_config()
         assert check.status == HealthStatus.UNHEALTHY

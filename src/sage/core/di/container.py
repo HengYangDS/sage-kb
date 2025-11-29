@@ -355,11 +355,53 @@ class DIContainer:
 
         Args:
             service_name: The service interface name
-            config: Service configuration dict
+            config: Service configuration dict with keys:
+                - implementation: string name of the implementation class
+                - lifetime: "singleton" | "transient" | "scoped"
+                - config_key: optional config key for injecting configuration
         """
-        # This requires a type registry to map string names to types
-        # For now, log a warning if used
-        logger.debug(f"Config-based registration for {service_name}: {config}")
+        from sage.core.di.registry import get_registry, register_default_types
+
+        # Ensure default types are registered
+        registry = get_registry()
+        if not registry.is_registered(service_name):
+            register_default_types(registry)
+
+        # Resolve the interface type
+        interface = registry.resolve(service_name)
+        if interface is None:
+            logger.warning(f"Unknown interface type: {service_name}")
+            return
+
+        # Resolve the implementation type
+        impl_name = config.get("implementation", service_name)
+        implementation = registry.resolve(impl_name)
+        if implementation is None:
+            logger.warning(f"Unknown implementation type: {impl_name}")
+            return
+
+        # Parse lifetime
+        lifetime_str = config.get("lifetime", "singleton").lower()
+        lifetime_map = {
+            "singleton": Lifetime.SINGLETON,
+            "transient": Lifetime.TRANSIENT,
+            "scoped": Lifetime.SCOPED,
+        }
+        lifetime = lifetime_map.get(lifetime_str, Lifetime.SINGLETON)
+
+        # Get optional config key
+        config_key = config.get("config_key")
+
+        # Register the service
+        self.register(
+            interface=interface,
+            implementation=implementation,
+            lifetime=lifetime,
+            config_key=config_key,
+        )
+        logger.info(
+            f"Registered from config: {service_name} -> {impl_name} ({lifetime.value})"
+        )
 
     def clear(self) -> None:
         """Clear all registrations and cached instances."""

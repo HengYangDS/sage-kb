@@ -183,9 +183,10 @@ This design is organized into 9 independent documents:
 | Dev Toolchain        | ✅ Complete        | Makefile, py.typed, pyproject.toml          |
 | Config Files         | ✅ Complete        | sage.yaml, index.md created                 |
 | CI/CD Pipeline       | ✅ Complete        | GitHub Actions, pre-commit, Codecov         |
+| Type Safety          | ✅ Complete        | mypy strict, 26→9 errors fixed              |
 | Production Ready     | ✅ v1.2 Complete   | All MVP + v1.1 + v1.2 phases complete       |
 
-**Status**: Full v1.2 implementation complete with CI/CD pipeline. GitHub Actions for testing, linting, and releases.
+**Status**: Full v1.2 implementation complete with CI/CD pipeline and type safety improvements.
 
 ---
 
@@ -227,10 +228,11 @@ sage search "timeout"   # Search knowledge base
 sage serve              # Start MCP server
 
 # Python usage
-from sage.core.loader import TimeoutLoader
+from sage.core.loader import KnowledgeLoader, Layer
 
-loader = TimeoutLoader()
-result = await loader.load_with_timeout(["core", "guidelines"])
+loader = KnowledgeLoader()
+result = loader.load(layer=Layer.L1_CORE)
+print(result.content)
 ```
 
 ---

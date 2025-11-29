@@ -214,7 +214,7 @@ class MigrationToolkit:
             )
 
         # Copy config files
-        for config_file in ["aikb.yaml", "index.md"]:
+        for config_file in ["sage.yaml", "index.md"]:
             src = self.kb_path / config_file
             if src.exists():
                 shutil.copy2(src, backup_path / config_file)
@@ -243,7 +243,7 @@ class MigrationToolkit:
                 shutil.copytree(content_backup, content_dest)
 
             # Restore config files
-            for config_file in ["aikb.yaml", "index.md"]:
+            for config_file in ["sage.yaml", "index.md"]:
                 src = backup_path / config_file
                 if src.exists():
                     shutil.copy2(src, self.kb_path / config_file)

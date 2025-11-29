@@ -1,14 +1,22 @@
 """
-Timeout Manager - Production-grade timeout handling with circuit breaker.
+SAGE Timeout Management.
 
-This module provides:
+Production-grade timeout handling with circuit breaker pattern.
+
+Features:
 - 5-level timeout hierarchy (T1-T5)
 - Circuit breaker pattern for fault tolerance
 - Graceful degradation strategies
 - Configurable timeout settings
 
-Author: SAGE AI Collab Team
 Version: 0.1.0
+
+Timeout Hierarchy:
+    T1_CACHE (100ms)    - Cache lookup
+    T2_FILE (500ms)     - Single file read
+    T3_LAYER (2s)       - Layer load
+    T4_FULL (5s)        - Full KB load
+    T5_ANALYSIS (10s)   - Complex analysis
 """
 
 import asyncio
@@ -26,7 +34,11 @@ T = TypeVar("T")
 
 
 class TimeoutLevel(Enum):
-    """5-level timeout hierarchy."""
+    """
+    5-level timeout hierarchy.
+
+    Each level represents a different operation type with appropriate timeout.
+    """
 
     T1_CACHE = 1  # 100 ms - Cache lookup
     T2_FILE = 2  # 500 ms - Single file read
@@ -45,7 +57,11 @@ class CircuitState(Enum):
 
 @dataclass
 class TimeoutConfig:
-    """Configurable timeout settings."""
+    """
+    Configurable timeout settings.
+
+    All values in milliseconds.
+    """
 
     cache_ms: int = 100
     file_ms: int = 500
@@ -65,6 +81,10 @@ class TimeoutConfig:
         }
         return mapping.get(level, self.full_ms) / 1000
 
+    def get_timeout_ms(self, level: TimeoutLevel) -> int:
+        """Get timeout in milliseconds for a given level."""
+        return int(self.get_timeout(level) * 1000)
+
 
 @dataclass
 class CircuitBreakerConfig:
@@ -77,7 +97,18 @@ class CircuitBreakerConfig:
 
 @dataclass
 class TimeoutResult(Generic[T]):
-    """Result of a timeout-protected operation."""
+    """
+    Result of a timeout-protected operation.
+
+    Attributes:
+        success: Whether the operation succeeded
+        value: The result value (if successful)
+        error: Error message (if failed)
+        duration_ms: Actual execution time
+        timeout_ms: Configured timeout
+        partial: Whether result is partial
+        fallback_used: Whether fallback was used
+    """
 
     success: bool
     value: T | None = None
@@ -87,7 +118,7 @@ class TimeoutResult(Generic[T]):
     partial: bool = False
     fallback_used: bool = False
 
-    def to_dict(self) -> dict:
+    def to_dict(self) -> dict[str, Any]:
         """Convert to dictionary for JSON serialization."""
         return {
             "success": self.success,
@@ -108,9 +139,18 @@ class CircuitBreaker:
     - CLOSED: Normal operation, requests pass through
     - OPEN: Too many failures, requests are rejected immediately
     - HALF_OPEN: Testing if service recovered
+
+    Example:
+        >>> breaker = CircuitBreaker()
+        >>> if breaker.allow_request():
+        ...     try:
+        ...         result = await do_operation()
+        ...         breaker.record_success()
+        ...     except Exception:
+        ...         breaker.record_failure()
     """
 
-    def __init__(self, config: CircuitBreakerConfig | None = None):
+    def __init__(self, config: CircuitBreakerConfig | None = None) -> None:
         self.config = config or CircuitBreakerConfig()
         self._state = CircuitState.CLOSED
         self._failure_count = 0
@@ -183,15 +223,25 @@ class TimeoutManager:
     Features:
     - 5-level timeout hierarchy
     - Circuit breaker for fault tolerance
-    - Graceful degradation
+    - Graceful degradation with fallbacks
     - Configurable settings
+
+    Example:
+        >>> manager = TimeoutManager()
+        >>> result = await manager.execute_with_timeout(
+        ...     load_content(),
+        ...     TimeoutLevel.T3_LAYER,
+        ...     fallback_key="default_content"
+        ... )
+        >>> if result.success:
+        ...     print(result.value)
     """
 
     def __init__(
         self,
         timeout_config: TimeoutConfig | None = None,
         circuit_config: CircuitBreakerConfig | None = None,
-    ):
+    ) -> None:
         self.timeout_config = timeout_config or TimeoutConfig()
         self.circuit_breaker = CircuitBreaker(circuit_config)
         self._fallbacks: dict[str, Callable[[], Any]] = {}
@@ -212,7 +262,7 @@ class TimeoutManager:
         level: TimeoutLevel,
         fallback_key: str | None = None,
         timeout_ms: int | None = None,
-    ) -> TimeoutResult:
+    ) -> TimeoutResult[Any]:
         """
         Execute a coroutine with timeout protection.
 
@@ -298,71 +348,44 @@ class TimeoutManager:
         self,
         level: TimeoutLevel,
         fallback_key: str | None = None,
-    ):
+    ) -> Callable[[Callable[..., Any]], Callable[..., Any]]:
         """
         Decorator for adding timeout protection to async functions.
 
         Usage:
             @timeout_manager.timeout_decorator(TimeoutLevel.T2_FILE)
-            async def load_file(path: str) → str:
+            async def load_file(path: str) -> str:
                 ...
         """
 
-        def decorator(func: Callable) -> Callable:
+        def decorator(func: Callable[..., Any]) -> Callable[..., Any]:
             @wraps(func)
-            async def wrapper(*args, **kwargs) -> TimeoutResult:
-                coro = func(*args, **kwargs)
-                return await self.execute_with_timeout(coro, level, fallback_key)
+            async def wrapper(*args: Any, **kwargs: Any) -> TimeoutResult[Any]:
+                return await self.execute_with_timeout(
+                    func(*args, **kwargs), level, fallback_key
+                )
 
             return wrapper
 
         return decorator
 
 
-# Embedded fallback content for emergency situations
-EMBEDDED_CORE = """# Core Principles (Emergency Fallback)
+# =============================================================================
+# Global Instance
+# =============================================================================
 
-## Xin-Da-Ya (信达雅)
-- **信 (Xin)**: Faithfulness - accurate, reliable, testable
-- **达 (Da)**: Clarity - clear, maintainable, structured
-- **雅 (Ya)**: Elegance - refined, balanced, sustainable
-
-## 5 Critical Questions
-1. What am I assuming?
-2. What could go wrong?
-3. Is there a simpler way?
-4. What will future maintainers need?
-5. How does this fit the bigger picture?
-
-## Autonomy Levels (L1-L6)
-- L1: Minimal (0-20%) - ask before every decision
-- L2: Low (20-40%) - ask on implementation choices
-- L3: Medium (40-60%) - ask for architectural changes
-- L4: Medium-High (60-80%) - proactive partner [DEFAULT]
-- L5: High (80-95%) - strategic decisions
-- L6: Full (95-100%) - autonomous (rarely recommended)
-
-*This is emergency fallback content. Full KB may be unavailable.*
-"""
-
-
-def get_default_timeout_manager() -> TimeoutManager:
-    """Get a pre-configured timeout manager with default fallbacks."""
-    manager = TimeoutManager()
-    manager.register_fallback("core", lambda: EMBEDDED_CORE)
-    manager.register_fallback(
-        "index", lambda: "# Navigation\nUse `sage info` for help."
-    )
-    return manager
-
-
-# Module-level singleton
 _default_manager: TimeoutManager | None = None
 
 
 def get_timeout_manager() -> TimeoutManager:
-    """Get the global timeout manager singleton."""
+    """Get the default timeout manager instance."""
     global _default_manager
     if _default_manager is None:
-        _default_manager = get_default_timeout_manager()
+        _default_manager = TimeoutManager()
     return _default_manager
+
+
+def reset_timeout_manager() -> None:
+    """Reset the default timeout manager (mainly for testing)."""
+    global _default_manager
+    _default_manager = None

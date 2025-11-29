@@ -280,6 +280,24 @@
       "metadata": {}
     },
     {
+      "id": "dir_content_practices_decisions",
+      "name": "decisions",
+      "type": "directory",
+      "path": "content\\practices\\decisions",
+      "level": 0,
+      "tokens": 0,
+      "metadata": {}
+    },
+    {
+      "id": "file_content_practices_decisions_autonomy_cases_md",
+      "name": "autonomy_cases",
+      "type": "file",
+      "path": "content\\practices\\decisions\\autonomy_cases.md",
+      "level": 0,
+      "tokens": 0,
+      "metadata": {}
+    },
+    {
       "id": "dir_content_practices_documentation",
       "name": "documentation",
       "type": "directory",
@@ -325,15 +343,6 @@
       "metadata": {}
     },
     {
-      "id": "dir_content_scenarios_data_analysis",
-      "name": "data_analysis",
-      "type": "directory",
-      "path": "content\\scenarios\\data_analysis",
-      "level": 0,
-      "tokens": 0,
-      "metadata": {}
-    },
-    {
       "id": "dir_content_scenarios_python_backend",
       "name": "python_backend",
       "type": "directory",
@@ -352,19 +361,19 @@
       "metadata": {}
     },
     {
-      "id": "dir_content_scenarios_web_frontend",
-      "name": "web_frontend",
+      "id": "dir_content_templates",
+      "name": "templates",
       "type": "directory",
-      "path": "content\\scenarios\\web_frontend",
+      "path": "content\\templates",
       "level": 0,
       "tokens": 0,
       "metadata": {}
     },
     {
-      "id": "dir_content_templates",
-      "name": "templates",
-      "type": "directory",
-      "path": "content\\templates",
+      "id": "file_content_templates_expert_committee_md",
+      "name": "expert_committee",
+      "type": "file",
+      "path": "content\\templates\\expert_committee.md",
       "level": 0,
       "tokens": 0,
       "metadata": {}
@@ -487,15 +496,6 @@
       "metadata": {}
     },
     {
-      "id": "dir_output",
-      "name": "output",
-      "type": "directory",
-      "path": "output",
-      "level": 0,
-      "tokens": 0,
-      "metadata": {}
-    },
-    {
       "id": "file_readme_md",
       "name": "README",
       "type": "file",
@@ -604,10 +604,37 @@
       "metadata": {}
     },
     {
+      "id": "dir_src_sage_domain",
+      "name": "domain",
+      "type": "directory",
+      "path": "src\\sage\\domain",
+      "level": 0,
+      "tokens": 0,
+      "metadata": {}
+    },
+    {
+      "id": "dir_src_sage_interfaces",
+      "name": "interfaces",
+      "type": "directory",
+      "path": "src\\sage\\interfaces",
+      "level": 0,
+      "tokens": 0,
+      "metadata": {}
+    },
+    {
       "id": "dir_src_sage_plugins",
       "name": "plugins",
       "type": "directory",
       "path": "src\\sage\\plugins",
+      "level": 0,
+      "tokens": 0,
+      "metadata": {}
+    },
+    {
+      "id": "dir_src_sage_plugins_bundled",
+      "name": "bundled",
+      "type": "directory",
+      "path": "src\\sage\\plugins\\bundled",
       "level": 0,
       "tokens": 0,
       "metadata": {}
@@ -671,6 +698,24 @@
       "name": "core",
       "type": "directory",
       "path": "tests\\fixtures\\sample_content\\core",
+      "level": 0,
+      "tokens": 0,
+      "metadata": {}
+    },
+    {
+      "id": "file_tests_fixtures_sample_content_core_principles_md",
+      "name": "principles",
+      "type": "file",
+      "path": "tests\\fixtures\\sample_content\\core\\principles.md",
+      "level": 0,
+      "tokens": 0,
+      "metadata": {}
+    },
+    {
+      "id": "file_tests_fixtures_sample_content_index_md",
+      "name": "index",
+      "type": "file",
+      "path": "tests\\fixtures\\sample_content\\index.md",
       "level": 0,
       "tokens": 0,
       "metadata": {}
@@ -1069,6 +1114,20 @@
     },
     {
       "source": "dir_content_practices",
+      "target": "dir_content_practices_decisions",
+      "type": "contains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "dir_content_practices_decisions",
+      "target": "file_content_practices_decisions_autonomy_cases_md",
+      "type": "contains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "dir_content_practices",
       "target": "dir_content_practices_documentation",
       "type": "contains",
       "weight": 1.0,
@@ -1104,13 +1163,6 @@
     },
     {
       "source": "dir_content_scenarios",
-      "target": "dir_content_scenarios_data_analysis",
-      "type": "contains",
-      "weight": 1.0,
-      "metadata": {}
-    },
-    {
-      "source": "dir_content_scenarios",
       "target": "dir_content_scenarios_python_backend",
       "type": "contains",
       "weight": 1.0,
@@ -1124,15 +1176,15 @@
       "metadata": {}
     },
     {
-      "source": "dir_content_scenarios",
-      "target": "dir_content_scenarios_web_frontend",
+      "source": "dir_content",
+      "target": "dir_content_templates",
       "type": "contains",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "dir_content",
-      "target": "dir_content_templates",
+      "source": "dir_content_templates",
+      "target": "file_content_templates_expert_committee_md",
       "type": "contains",
       "weight": 1.0,
       "metadata": {}
@@ -1230,13 +1282,6 @@
     },
     {
       "source": "root",
-      "target": "dir_output",
-      "type": "contains",
-      "weight": 1.0,
-      "metadata": {}
-    },
-    {
-      "source": "root",
       "target": "file_readme_md",
       "type": "contains",
       "weight": 1.0,
@@ -1321,7 +1366,28 @@
     },
     {
       "source": "dir_src_sage",
+      "target": "dir_src_sage_domain",
+      "type": "contains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "dir_src_sage",
+      "target": "dir_src_sage_interfaces",
+      "type": "contains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "dir_src_sage",
       "target": "dir_src_sage_plugins",
+      "type": "contains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "dir_src_sage_plugins",
+      "target": "dir_src_sage_plugins_bundled",
       "type": "contains",
       "weight": 1.0,
       "metadata": {}
@@ -1371,6 +1437,20 @@
     {
       "source": "dir_tests_fixtures_sample_content",
       "target": "dir_tests_fixtures_sample_content_core",
+      "type": "contains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "dir_tests_fixtures_sample_content_core",
+      "target": "file_tests_fixtures_sample_content_core_principles_md",
+      "type": "contains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "dir_tests_fixtures_sample_content",
+      "target": "file_tests_fixtures_sample_content_index_md",
       "type": "contains",
       "weight": 1.0,
       "metadata": {}
@@ -1517,16 +1597,16 @@
     }
   ],
   "metadata": {
-    "built_at": "2025-11-29T05:17:39.924732",
+    "built_at": "2025-11-29T16:35:23.890584",
     "kb_path": ".",
     "include_content": false
   },
   "stats": {
-    "node_count": 95,
-    "edge_count": 94,
+    "node_count": 100,
+    "edge_count": 99,
     "node_types": {
-      "directory": 61,
-      "file": 34
+      "directory": 62,
+      "file": 38
     }
   }
 }

@@ -206,10 +206,10 @@ def get(
     Get knowledge from the knowledge base.
 
     Examples:
-        aikb get                    # Get core principles
-        aikb get 1                  # Get all guidelines
-        aikb get -t "fix bug"       # Get code-related knowledge
-        aikb get -t "design api"    # Get design knowledge
+        sage get                    # Get core principles
+        sage get 1                  # Get all guidelines
+        sage get -t "fix bug"       # Get code-related knowledge
+        sage get -t "design api"    # Get design knowledge
     """
     loader = get_loader()
 
@@ -221,7 +221,7 @@ def get(
     ) as progress:
         task_id = progress.add_task(f"Loading layer {layer}...", total=None)
 
-        async def do_load():
+        async def do_load():  # type: ignore[no-untyped-def]
             if topic:
                 return await loader.load_for_task(topic, timeout_ms=timeout)
             else:
@@ -255,10 +255,10 @@ def guidelines(
     Get engineering guidelines by section.
 
     Examples:
-        aikb guidelines                    # Overview
-        aikb guidelines code_style         # Code style
-        aikb guidelines ai_collaboration   # AI collaboration
-        aikb guidelines python             # Python practices
+        sage guidelines                    # Overview
+        sage guidelines code_style         # Code style
+        sage guidelines ai_collaboration   # AI collaboration
+        sage guidelines python             # Python practices
     """
     loader = get_loader()
 
@@ -292,9 +292,9 @@ def framework(
     Get framework documentation.
 
     Examples:
-        aikb framework autonomy     # Autonomy levels
-        aikb framework cognitive    # Cognitive enhancement
-        aikb framework decision     # Decision framework
+        sage framework autonomy     # Autonomy levels
+        sage framework cognitive    # Cognitive enhancement
+        sage framework decision     # Decision framework
     """
     loader = get_loader()
 
@@ -320,8 +320,8 @@ def search(
     Search the knowledge base.
 
     Examples:
-        aikb search "autonomy"
-        aikb search "testing strategy" -n 5
+        sage search "autonomy"
+        sage search "testing strategy" -n 5
     """
     loader = get_loader()
 
@@ -532,7 +532,7 @@ Experts: 24 Level 5
 
 [dim]Philosophy: 信达雅 · 术法道[/dim]
         """.strip(),
-            title="aikb",
+            title="sage",
             border_style="blue",
         )
     )
@@ -571,7 +571,7 @@ Available commands:
 
     while True:
         try:
-            cmd = console.input("[bold blue]aikb>[/bold blue] ").strip()
+            cmd = console.input("[bold blue]sage>[/bold blue] ").strip()
 
             if not cmd:
                 continue

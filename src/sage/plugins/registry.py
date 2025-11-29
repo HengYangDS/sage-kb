@@ -233,7 +233,7 @@ class PluginRegistry:
         Returns:
             Number of plugins loaded from file
         """
-        module_name = f"aikb_plugin_{path.stem}"
+        module_name = f"sage_plugin_{path.stem}"
 
         # Load module
         spec = importlib.util.spec_from_file_location(module_name, path)

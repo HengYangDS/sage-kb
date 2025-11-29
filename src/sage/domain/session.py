@@ -6,6 +6,7 @@ These models track AI-human collaboration state and history.
 
 Version: 0.1.0
 """
+
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum
@@ -37,7 +38,7 @@ class AutonomyLevel(int, Enum):
 
     L1_MINIMAL = 1  # Wait for explicit approval
     L2_SUGGEST = 2  # Suggest and wait
-    L3_INFORM = 3  # Inform then proceed
+    L3_INFORM = 3  # Inform and then proceed
     L4_AUTONOMOUS = 4  # Proceed with logs
     L5_FULL = 5  # Full autonomy
     L6_EXPERT = 6  # Expert committee mode

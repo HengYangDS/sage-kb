@@ -23,7 +23,7 @@ Minimal local configuration pointing to global knowledge base:
 This project uses AI Collaboration Knowledge Base.
 
 - **Version**: 0.1.0
-- **Load**: `aikb get --scenario python_backend`
+- **Load**: `sage get --scenario python_backend`
 
 ## Project-Specific Rules
 
@@ -390,7 +390,7 @@ Uses AI Collaboration Knowledge Base v2.0.0
 EOF
 
 echo "Project $PROJECT_NAME initialized!"
-echo "Next: cd $PROJECT_NAME && aikb get"
+echo "Next: cd $PROJECT_NAME && sage get"
 ```
 
 ---

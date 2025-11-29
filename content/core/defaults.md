@@ -26,7 +26,7 @@
 
 - **Verbosity**: Concise with detail on request
 - **Format**: Markdown with code blocks
-- **Language**: Match user's language (default: English)
+- **Language**: Match the user’s language (default: English)
 - **Uncertainty**: State explicitly when unsure
 
 ### Code Changes
@@ -36,10 +36,10 @@
 - **Comments**: Match existing frequency
 - **Tests**: Run affected tests when possible
 
-### Decision Making
+### Decision-Making
 
 - **Ambiguity**: Ask for clarification
-- **Risk**: Err on side of caution
+- **Risk**: Err on the side of caution
 - **Reversibility**: Prefer reversible actions
 - **Documentation**: Document significant decisions
 
@@ -51,33 +51,34 @@
 
 ```yaml
 timeout:
-  cache_lookup: 100ms
-  file_read: 500ms
-  layer_load: 2000ms
-  full_load: 5000ms
-  analysis: 10000ms
-  mcp_call: 10000ms
+  cache_lookup: 100ms    # T1 - Cache hits
+  file_read: 500ms       # T2 - Single file operations
+  layer_load: 2s         # T3 - Layer/directory loading
+  full_load: 5s          # T4 - Complete KB load
+  analysis: 10s          # T5 - Complex analysis
+  mcp_call: 10s          # MCP tool timeout
+  search: 3s             # Search operations
 ```
 
 ### Loading Defaults
 
 ```yaml
 loading:
-  always_load:
-    - index.md
-    - 01_core/principles.md
-    - 01_core/quick_reference.md
+  max_tokens: 4000                   # Maximum tokens to load
+  default_layers:
+    - core                           # Always start with core
 
-  max_tokens_per_request: 4000
-  cache_ttl: 300s  # 5 minutes
-  retry_attempts: 2
+  always:                            # Always loaded (pre-cached)
+    - index.md
+    - content/core/principles.md
+    - content/core/quick_reference.md
 ```
 
 ### Quality Thresholds
 
 ```yaml
 quality:
-  min_test_coverage: 80%
+  min_test_coverage: 95%
   max_function_lines: 50
   max_file_lines: 500
   max_complexity: 10
@@ -126,7 +127,7 @@ Success Rate    Adjustment
 
 ### Allow Higher Autonomy (L5-L6)
 
-- Explicitly granted by user
+- Explicitly granted by the user
 - Well-tested, routine operations
 - Sandbox/development environments
 - Automated pipelines with rollback
@@ -146,7 +147,7 @@ Success Rate    Adjustment
 
 ## Verification
 
-[How changes were verified]
+[How changes to be verified]
 
 ## Next Steps (if applicable)
 
@@ -171,4 +172,4 @@ When timeout or error occurs:
 
 ---
 
-*These defaults can be overridden via aikb.yaml or runtime parameters.*
+*These defaults can be overridden via sage.yaml or runtime parameters.*

@@ -21,7 +21,7 @@ try:
     from platformdirs import user_data_dir
 except ImportError:
     # Fallback if platformdirs not installed
-    def user_data_dir(appname: str, appauthor: str | None = None) -> str:
+    def user_data_dir(appname: str, appauthor: str | None = None) -> str:  # type: ignore[misc]
         """Fallback user data directory."""
         import os
 

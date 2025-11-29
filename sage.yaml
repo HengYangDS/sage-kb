@@ -40,7 +40,7 @@ timeout:
 loading:
   max_tokens: 4000                     # Maximum tokens to load
   default_layers:
-    - core                             # Always start with core
+    - core                             # Always start with the core
 
   # Always loaded (pre-cached)
   always:
@@ -187,9 +187,16 @@ triggers:
 
   timeout:
     keywords:
+      # English
       - timeout
       - performance
       - slow
+      - latency
+      # Chinese (中文)
+      - 超时
+      - 性能
+      - 慢
+      - 延迟
     load:
       - content/frameworks/timeout/
     timeout_ms: 2000
@@ -197,13 +204,39 @@ triggers:
 
   expert:
     keywords:
+      # English
       - expert
       - committee
       - review
+      - decision
+      # Chinese (中文)
+      - 专家
+      - 委员会
+      - 评审
+      - 决策
     load:
       - content/frameworks/cognitive/
     timeout_ms: 2000
     priority: 6
+
+  analyze:
+    keywords:
+      # English
+      - analyze
+      - analysis
+      - quality
+      - check
+      - inspect
+      # Chinese (中文)
+      - 分析
+      - 质量
+      - 检查
+      - 审查
+    load:
+      - content/guidelines/quality.md
+      - content/frameworks/decision/quality_angles.md
+    timeout_ms: 2000
+    priority: 7
 
 # =============================================================================
 # Plugin Configuration
@@ -222,14 +255,29 @@ logging:
   include_timestamps: true
 
 # =============================================================================
-# v1.1 Placeholder (DI Container - Not Active)
+# DI Container Configuration
 # =============================================================================
-# di:
-#   auto_wire: true
-#   services:
-#     EventBus:
-#       lifetime: singleton
-#       implementation: AsyncEventBus
-#     SourceProtocol:
-#       lifetime: singleton
-#       implementation: TimeoutLoader
+di:
+  auto_wire: true
+
+  services:
+    # Event Bus - Async pub/sub message broker
+    EventBus:
+      lifetime: singleton
+      implementation: AsyncEventBus
+
+    # Source Protocol - Knowledge loading
+    SourceProtocol:
+      lifetime: singleton
+      implementation: TimeoutLoader
+      config_key: plugins.loader
+
+    # Memory Store - Session persistence
+    MemoryStore:
+      lifetime: singleton
+      implementation: MemoryStore
+
+    # Token Budget - Token management
+    TokenBudget:
+      lifetime: singleton
+      implementation: TokenBudget

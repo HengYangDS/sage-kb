@@ -145,6 +145,7 @@ import asyncio
 
 T = TypeVar('T')
 
+
 async def with_timeout(
     operation: Callable[[], T],
     timeout_ms: int,
@@ -161,9 +162,10 @@ async def with_timeout(
             return await fallback()
         raise
 
+
 async def load_with_hierarchy(query: str) -> str:
     """Load content using timeout hierarchy."""
-    
+
     # Level 0: Cache
     try:
         return await with_timeout(
@@ -173,7 +175,7 @@ async def load_with_hierarchy(query: str) -> str:
         )
     except Exception:
         pass
-    
+
     # Level 1: File
     try:
         return await with_timeout(
@@ -183,9 +185,9 @@ async def load_with_hierarchy(query: str) -> str:
         )
     except Exception:
         pass
-    
+
     # ... continue through levels ...
-    
+
     # Hard fallback
     return EMBEDDED_FALLBACK
 ```
@@ -194,7 +196,7 @@ async def load_with_hierarchy(query: str) -> str:
 
 ## Timeout Configuration
 
-### Default Timeouts (aikb.yaml)
+### Default Timeouts (sage.yaml)
 
 ```yaml
 timeouts:
@@ -203,7 +205,7 @@ timeouts:
   layer_ms: 2000
   full_ms: 5000
   emergency_ms: 10000
-  
+
   # Adjustment factors
   network_multiplier: 1.5  # For remote sources
   stress_multiplier: 2.0   # Under high load
@@ -215,13 +217,13 @@ timeouts:
 def adjust_timeout(base_ms: int, context: Context) -> int:
     """Adjust timeout based on context."""
     timeout = base_ms
-    
+
     if context.is_remote:
         timeout *= config.network_multiplier
-    
+
     if context.system_load > 0.8:
         timeout *= config.stress_multiplier
-    
+
     return min(timeout, config.max_timeout_ms)
 ```
 

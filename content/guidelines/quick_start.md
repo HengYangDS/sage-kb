@@ -20,17 +20,17 @@
 
 ```bash
 # Get core principles
-aikb get
+sage get
 
 # Get specific guidelines
-aikb guidelines code_style
-aikb guidelines ai_collaboration
+sage guidelines code_style
+sage guidelines ai_collaboration
 
 # Search knowledge
-aikb search "autonomy levels"
+sage search "autonomy levels"
 
 # Start MCP server
-aikb serve
+sage serve
 ```
 
 ---
@@ -100,9 +100,9 @@ aikb serve
 
 ## 🔗 Next Steps
 
-1. **Explore**: `aikb info` - See full KB structure
-2. **Search**: `aikb search "<topic>"` - Find specific content
-3. **Deep Dive**: `aikb framework autonomy` - Load frameworks
+1. **Explore**: `sage info` - See full KB structure
+2. **Search**: `sage search "<topic>"` - Find specific content
+3. **Deep Dive**: `sage framework autonomy` - Load frameworks
 
 ---
 
