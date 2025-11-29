@@ -134,6 +134,33 @@ sage-kb/
 4. **Run tests** before committing changes
 5. **Update relevant documentation** when modifying features
 6. **Output files to `.outputs/`** — All temporary/intermediate files must go to `.outputs/`, never project root
+7. **Create session records** for significant work sessions (see Session History below)
+
+### Session History Management
+
+At the end of significant work sessions, create appropriate records in `.history/`:
+
+| Record Type | When to Create | Location | Template |
+|-------------|----------------|----------|----------|
+| **Session State** | Active work in progress | `.history/current/` | `_example-session-*.md` |
+| **Conversation** | Important decisions/outcomes | `.history/conversations/` | `_example-*-review.md` |
+| **Handoff** | Task continuation needed | `.history/handoffs/` | `_example-*-handoff.md` |
+
+**Session End Checklist:**
+
+1. ☐ Summarize completed tasks and key decisions
+2. ☐ Document any pending items or blockers
+3. ☐ Note important findings or lessons learned
+4. ☐ If work continues: create handoff document
+5. ☐ If significant decisions made: create conversation record
+6. ☐ Clear `.history/current/` of completed session files
+
+**Naming Convention:**
+- Conversations: `YYYY-MM-DD-topic.md` (e.g., `2025-11-30-knowledge-reorganization.md`)
+- Handoffs: `YYYY-MM-DD-task-handoff.md` (e.g., `2025-11-30-api-refactor-handoff.md`)
+- Sessions: `session-YYYYMMDD-HHMM.md` (e.g., `session-20251130-0010.md`)
+
+> **Reference**: See `.history/index.md` for detailed usage guidelines and retention policies.
 
 ### Expert Committee Pattern
 

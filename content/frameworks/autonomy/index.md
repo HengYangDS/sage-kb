@@ -4,14 +4,19 @@
 
 ---
 
-## Overview
+## Table of Contents
 
-The Autonomy Framework defines 6 levels (L1-L6) of AI autonomy for human-AI collaboration, ranging from minimal
-autonomy (always ask) to full autonomy (act independently).
+[1. Overview](#1-overview) · [2. Documents](#2-documents) · [3. Quick Reference](#3-quick-reference)
 
 ---
 
-## Documents
+## 1. Overview
+
+The Autonomy Framework defines 6 levels (L1-L6) of AI autonomy for human-AI collaboration, ranging from minimal autonomy (always ask) to full autonomy (act independently).
+
+---
+
+## 2. Documents
 
 | Document    | Description                                 |
 |-------------|---------------------------------------------|
@@ -19,7 +24,7 @@ autonomy (always ask) to full autonomy (act independently).
 
 ---
 
-## Quick Reference
+## 3. Quick Reference
 
 | Level | Name        | Autonomy | Description                    |
 |-------|-------------|----------|--------------------------------|
@@ -42,4 +47,4 @@ autonomy (always ask) to full autonomy (act independently).
 
 ---
 
-*Part of SAGE Knowledge Base - Frameworks*
+*Part of SAGE Knowledge Base*

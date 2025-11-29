@@ -87,6 +87,8 @@
 | 4    | Add cross-references      |
 | 5    | Validate completeness     |
 
+> **详细格式规范**: 参见 `practices/documentation/documentation_standards.md`
+
 ---
 
 ## 6. Tiered Loading

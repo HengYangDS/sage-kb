@@ -4,14 +4,19 @@
 
 ---
 
-## Overview
+## Table of Contents
 
-The Resilience Framework provides patterns for building fault-tolerant systems that gracefully handle failures,
-timeouts, and degraded conditions while maintaining useful functionality.
+[1. Overview](#1-overview) · [2. Documents](#2-documents) · [3. Key Concepts](#3-key-concepts)
 
 ---
 
-## Documents
+## 1. Overview
+
+The Resilience Framework provides patterns for building fault-tolerant systems that gracefully handle failures, timeouts, and degraded conditions while maintaining useful functionality.
+
+---
+
+## 2. Documents
 
 | Document              | Description                              |
 |-----------------------|------------------------------------------|
@@ -19,9 +24,9 @@ timeouts, and degraded conditions while maintaining useful functionality.
 
 ---
 
-## Key Concepts
+## 3. Key Concepts
 
-### Timeout Hierarchy (T1-T5)
+### 3.1 Timeout Hierarchy (T1-T5)
 
 | Level | Timeout | Scope            | Action on Timeout      |
 |-------|---------|------------------|------------------------|
@@ -31,7 +36,7 @@ timeouts, and degraded conditions while maintaining useful functionality.
 | T4    | 5s      | Full KB load     | Emergency core only    |
 | T5    | 10s     | Complex analysis | Abort + summary        |
 
-### Resilience Principles
+### 3.2 Resilience Principles
 
 - **Never hang**: Always return within timeout
 - **Graceful degradation**: Partial results over no results
@@ -48,4 +53,4 @@ timeouts, and degraded conditions while maintaining useful functionality.
 
 ---
 
-*Part of SAGE Knowledge Base - Frameworks*
+*Part of SAGE Knowledge Base*

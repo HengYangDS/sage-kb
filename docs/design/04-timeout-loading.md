@@ -924,9 +924,19 @@ class TestLoaderPerformance:
 
 ## References
 
+### Design Documents
+
 - **Architecture**: See `01-architecture.md`
 - **Services**: See `03-services.md`
 - **Plugin System**: See `05-plugin-memory.md`
+
+### Architecture Decision Records
+
+- **ADR-0003**: `.context/decisions/ADR-0003-timeout-hierarchy.md` — Timeout hierarchy design decisions
+
+### Related Policies
+
+- **Timeout Policy**: `.context/policies/timeout_hierarchy.md` — Runtime timeout configuration
 
 ---
 

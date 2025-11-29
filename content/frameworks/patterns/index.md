@@ -4,14 +4,19 @@
 
 ---
 
-## Overview
+## Table of Contents
 
-The Patterns Framework provides battle-tested patterns for collaboration, decision-making, integration, and data
-persistence in AI-human collaborative systems.
+[1. Overview](#1-overview) · [2. Documents](#2-documents) · [3. Pattern Categories](#3-pattern-categories)
 
 ---
 
-## Documents
+## 1. Overview
+
+The Patterns Framework provides battle-tested patterns for collaboration, decision-making, integration, and data persistence in AI-human collaborative systems.
+
+---
+
+## 2. Documents
 
 | Document           | Description                                     |
 |--------------------|-------------------------------------------------|
@@ -22,27 +27,27 @@ persistence in AI-human collaborative systems.
 
 ---
 
-## Pattern Categories
+## 3. Pattern Categories
 
-### Collaboration Patterns
+### 3.1 Collaboration Patterns
 
 - Communication protocols
 - Task handoff strategies
 - Feedback loops
 
-### Decision Patterns
+### 3.2 Decision Patterns
 
 - Autonomy level selection
 - Escalation rules
 - Consensus building
 
-### Integration Patterns
+### 3.3 Integration Patterns
 
 - API design patterns
 - Event-driven integration
 - Plugin architecture
 
-### Persistence Patterns
+### 3.4 Persistence Patterns
 
 - State management
 - Session continuity
@@ -58,4 +63,4 @@ persistence in AI-human collaborative systems.
 
 ---
 
-*Part of SAGE Knowledge Base - Frameworks*
+*Part of SAGE Knowledge Base*

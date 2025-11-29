@@ -4,14 +4,19 @@
 
 ---
 
-## Overview
+## Table of Contents
 
-The Cognitive Framework provides structured approaches to complex problem-solving, including expert committee simulation
-and information density optimization for AI-human collaboration.
+[1. Overview](#1-overview) · [2. Documents](#2-documents) · [3. Key Concepts](#3-key-concepts)
 
 ---
 
-## Documents
+## 1. Overview
+
+The Cognitive Framework provides structured approaches to complex problem-solving, including expert committee simulation and information density optimization for AI-human collaboration.
+
+---
+
+## 2. Documents
 
 | Document                 | Description                                    |
 |--------------------------|------------------------------------------------|
@@ -20,9 +25,9 @@ and information density optimization for AI-human collaboration.
 
 ---
 
-## Key Concepts
+## 3. Key Concepts
 
-### Expert Committee Pattern
+### 3.1 Expert Committee Pattern
 
 Simulates a multi-expert review process with:
 
@@ -31,7 +36,7 @@ Simulates a multi-expert review process with:
 - **AI Collaboration Group** (6 experts): Human-AI interaction patterns
 - **Engineering Practice Group** (6 experts): Code quality, testing
 
-### Information Density
+### 3.2 Information Density
 
 Optimizes knowledge representation for:
 
@@ -49,4 +54,4 @@ Optimizes knowledge representation for:
 
 ---
 
-*Part of SAGE Knowledge Base - Frameworks*
+*Part of SAGE Knowledge Base*

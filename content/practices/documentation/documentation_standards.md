@@ -96,6 +96,8 @@
 
 ## 3. Token Efficiency
 
+> **深入优化技术**: 参见 `practices/ai_collaboration/token_optimization.md`
+
 ### 3.1 High-Impact Patterns
 
 | Pattern              | Savings | Use For                |

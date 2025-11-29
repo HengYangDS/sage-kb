@@ -4,14 +4,19 @@
 
 ---
 
-## Overview
+## Table of Contents
 
-The Design Framework establishes foundational design principles and axioms that guide all architectural and
-implementation decisions in SAGE Knowledge Base.
+[1. Overview](#1-overview) · [2. Documents](#2-documents) · [3. Design Philosophy](#3-design-philosophy)
 
 ---
 
-## Documents
+## 1. Overview
+
+The Design Framework establishes foundational design principles and axioms that guide all architectural and implementation decisions in SAGE Knowledge Base.
+
+---
+
+## 2. Documents
 
 | Document    | Description                                   |
 |-------------|-----------------------------------------------|
@@ -19,7 +24,7 @@ implementation decisions in SAGE Knowledge Base.
 
 ---
 
-## Design Philosophy (信达雅)
+## 3. Design Philosophy (信达雅)
 
 | Principle        | Chinese | Meaning              | Application                             |
 |------------------|---------|----------------------|-----------------------------------------|
@@ -37,4 +42,4 @@ implementation decisions in SAGE Knowledge Base.
 
 ---
 
-*Part of SAGE Knowledge Base - Frameworks*
+*Part of SAGE Knowledge Base*

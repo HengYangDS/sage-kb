@@ -15,13 +15,13 @@
 | Layer          | Path          | Purpose                                   | Files |
 |----------------|---------------|-------------------------------------------|-------|
 | **Core**       | `core/`       | Principles, defaults, quick reference     | 4     |
-| **Guidelines** | `guidelines/` | Code style, engineering, AI collaboration | 14    |
-| **Frameworks** | `frameworks/` | Autonomy, timeout, cognitive patterns     | 20    |
-| **Practices**  | `practices/`  | Documentation, engineering, decisions     | 30    |
-| **Scenarios**  | `scenarios/`  | Context-specific guides                   | 16    |
+| **Guidelines** | `guidelines/` | Code style, engineering, AI collaboration | 15    |
+| **Frameworks** | `frameworks/` | Autonomy, timeout, cognitive patterns     | 23    |
+| **Practices**  | `practices/`  | Documentation, engineering, decisions     | 35    |
+| **Scenarios**  | `scenarios/`  | Context-specific guides                   | 23    |
 | **Templates**  | `templates/`  | Reusable document templates               | 14    |
 
-**Total**: ~98 knowledge files
+**Total**: ~114 knowledge files
 
 ---
 
@@ -37,7 +37,7 @@ Foundation knowledge loaded on every session:
 | `quick_reference.md` | 5 questions + autonomy levels   |
 | `defaults.md`        | Default behaviors + calibration |
 
-### 2.2 Guidelines (14 files)
+### 2.2 Guidelines (15 files)
 
 Code style and collaboration standards:
 
@@ -58,7 +58,7 @@ Code style and collaboration standards:
 | `planning.md`         | Planning guidelines           |
 | `success.md`          | Success metrics               |
 
-### 2.3 Frameworks (20 files)
+### 2.3 Frameworks (23 files)
 
 Reusable patterns and strategies across 7 categories:
 
@@ -72,18 +72,18 @@ Reusable patterns and strategies across 7 categories:
 | `resilience/`  | 2     | Timeout patterns, fallbacks      |
 | `security/`    | 5     | Auth, secrets, security checks   |
 
-### 2.4 Practices (30 files)
+### 2.4 Practices (35 files)
 
 Real-world implementation guidance:
 
 | Subdirectory        | Files | Purpose                      |
 |---------------------|-------|------------------------------|
-| `ai_collaboration/` | 6     | Context, session, token mgmt |
+| `ai_collaboration/` | 7     | Context, session, token mgmt |
 | `decisions/`        | 1     | Autonomy case studies        |
 | `documentation/`    | 4     | Knowledge org, standards     |
-| `engineering/`      | 19    | API, testing, CI/CD, logging |
+| `engineering/`      | 23    | API, testing, CI/CD, logging |
 
-### 2.5 Scenarios (16 files)
+### 2.5 Scenarios (23 files)
 
 Context-specific project guides:
 

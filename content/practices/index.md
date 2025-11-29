@@ -17,6 +17,7 @@
 | File                                       | Purpose                            |
 |--------------------------------------------|------------------------------------|
 | `ai_collaboration/context_management.md`   | Managing shared context            |
+| `ai_collaboration/interaction_patterns.md` | AI collaboration patterns          |
 | `ai_collaboration/knowledge_capture.md`    | When and how to capture knowledge  |
 | `ai_collaboration/knowledge_extraction.md` | Extracting reusable knowledge      |
 | `ai_collaboration/session_management.md`   | Managing AI collaboration sessions |
@@ -31,12 +32,12 @@
 
 ### 1.3 Documentation
 
-| File                                           | Purpose                        |
-|------------------------------------------------|--------------------------------|
-| `documentation/standards.md`                   | Documentation format standards |
-| `documentation/optimization_workflow.md`       | Batch optimization process     |
-| `documentation/knowledge_organization.md`      | Knowledge hierarchy patterns   |
-| `documentation/project_directory_structure.md` | Project directory patterns     |
+| File                                           | Purpose                               |
+|------------------------------------------------|---------------------------------------|
+| `documentation/DOCUMENTATION_STANDARDS.md`     | Documentation format standards (SSOT) |
+| `documentation/optimization_workflow.md`       | Batch optimization process            |
+| `documentation/knowledge_organization.md`      | Knowledge hierarchy patterns          |
+| `documentation/project_directory_structure.md` | Project directory patterns            |
 
 ### 1.4 Engineering
 
@@ -46,16 +47,24 @@
 | `engineering/batch_optimization.md`      | Batch processing             |
 | `engineering/ci_cd.md`                   | CI/CD configuration          |
 | `engineering/code_review.md`             | Code review practices        |
+| `engineering/common_pitfalls.md`         | Common mistakes to avoid     |
+| `engineering/concurrency.md`             | Concurrency patterns         |
+| `engineering/database.md`                | Database best practices      |
 | `engineering/dependency_management.md`   | Dependency version control   |
 | `engineering/error_handling.md`          | Error handling patterns      |
 | `engineering/feature_flags.md`           | Feature flag patterns        |
 | `engineering/git_workflow.md`            | Git branching and commits    |
 | `engineering/incremental_improvement.md` | Incremental changes          |
+| `engineering/integration_testing.md`     | Integration testing          |
+| `engineering/knowledge_graph.md`         | Knowledge graph patterns     |
 | `engineering/logging.md`                 | Logging practices            |
+| `engineering/monitoring.md`              | Monitoring and observability |
 | `engineering/patterns.md`                | Engineering patterns         |
 | `engineering/performance.md`             | Performance optimization     |
 | `engineering/security.md`                | Security best practices      |
 | `engineering/testing_strategy.md`        | Testing strategies           |
+| `engineering/troubleshooting.md`         | Troubleshooting guides       |
+| `engineering/unit_testing_patterns.md`   | Unit testing patterns        |
 | `engineering/yaml_conventions.md`        | YAML configuration standards |
 
 ---
@@ -69,7 +78,7 @@
 | Code quality     | `engineering/code_review.md`             |
 | Error handling   | `engineering/error_handling.md`          |
 | Testing          | `engineering/testing_strategy.md`        |
-| Documentation    | `documentation/standards.md`             |
+| Documentation    | `documentation/DOCUMENTATION_STANDARDS.md` |
 
 ---
 

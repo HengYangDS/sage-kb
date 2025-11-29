@@ -20,9 +20,13 @@
 | `engineering.md`      | Config, testing, performance, maintenance |
 | `documentation.md`    | Documentation standards                   |
 | `python.md`           | Python-specific guidelines                |
+| `typescript.md`       | TypeScript-specific guidelines            |
+| `sql.md`              | SQL conventions and best practices        |
+| `shell.md`            | Shell scripting guidelines                |
 | `ai_collaboration.md` | Human-AI interaction patterns             |
 | `cognitive.md`        | Metacognitive enhancement                 |
 | `quality.md`          | Quality metrics and review                |
+| `security.md`         | Security guidelines and practices         |
 | `success.md`          | Success criteria and philosophy mapping   |
 
 ---

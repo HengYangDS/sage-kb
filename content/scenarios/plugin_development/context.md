@@ -26,7 +26,7 @@ autonomy_default: L3
 
 | Priority      | Files                                                                                                                            |
 |---------------|----------------------------------------------------------------------------------------------------------------------------------|
-| **Auto-Load** | `core/principles.md` · `content/references/plugin_api.md` · `practices/engineering/patterns.md`                                  |
+| **Auto-Load** | `core/principles.md` · `docs/api/plugin_quick_ref.md` · `practices/engineering/patterns.md`                                  |
 | **On-Demand** | `practices/engineering/testing_strategy.md` · `.context/decisions/ADR-0008-plugin-system.md` · `docs/design/05-plugin-memory.md` |
 
 ---

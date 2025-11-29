@@ -26,7 +26,7 @@ autonomy_default: L4
 
 | Priority      | Files                                                                                         |
 |---------------|-----------------------------------------------------------------------------------------------|
-| **Auto-Load** | `core/principles.md` · `guidelines/documentation.md` · `practices/documentation/standards.md` |
+| **Auto-Load** | `core/principles.md` · `guidelines/documentation.md` · `practices/documentation/DOCUMENTATION_STANDARDS.md` |
 | **On-Demand** | `practices/documentation/knowledge_organization.md` · `templates/index.md`                    |
 
 ---
@@ -292,7 +292,7 @@ def process_data(
 ## Related
 
 - `guidelines/documentation.md` — Documentation guidelines
-- `practices/documentation/standards.md` — Documentation standards
+- `practices/documentation/DOCUMENTATION_STANDARDS.md` — Documentation standards (SSOT)
 - `practices/documentation/knowledge_organization.md` — Knowledge organization
 - `frameworks/cognitive/information_density.md` — Information density
 

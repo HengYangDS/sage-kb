@@ -22,6 +22,11 @@ SAGE provides three interface layers for accessing knowledge:
 - [MCP Protocol](mcp.md) — MCP server tools and resources
 - [Python API](python.md) — Python library usage
 
+### Quick References
+
+- [MCP Quick Reference](mcp_quick_ref.md) — Essential MCP tools and resources
+- [Plugin API Quick Reference](plugin_quick_ref.md) — Plugin development API
+
 ---
 
 ## Interface Comparison

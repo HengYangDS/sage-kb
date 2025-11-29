@@ -6,7 +6,7 @@
 
 ## Table of Contents
 
-[1. Directory Structure](#1-directory-structure) · [2. Content Categories](#2-content-categories) · [3. Quick Access](#3-quick-access)
+[1. Directory Structure](#1-directory-structure) · [2. Content Categories](#2-content-categories) · [3. Quick Access](#3-quick-access) · [4. Usage Guide](#4-usage-guide)
 
 ---
 

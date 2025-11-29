@@ -20,6 +20,7 @@
 | **Design**      | `design/axioms.md`                       | 8 design principles           |
 | **Patterns**    | `patterns/collaboration.md`              | AI collaboration patterns     |
 | **Patterns**    | `patterns/decision.md`                   | Quality angles framework      |
+| **Patterns**    | `patterns/integration.md`                | System integration patterns   |
 | **Patterns**    | `patterns/persistence.md`                | Data lifecycle patterns       |
 | **Performance** | `performance/index.md`                   | Performance optimization      |
 | **Performance** | `performance/caching_patterns.md`        | Caching strategies            |
@@ -44,6 +45,7 @@
 | Design guidance    | `design/axioms.md`                       |
 | AI interaction     | `patterns/collaboration.md`              |
 | Quality evaluation | `patterns/decision.md`                   |
+| Integration        | `patterns/integration.md`                |
 | Data management    | `patterns/persistence.md`                |
 | Caching strategy   | `performance/caching_patterns.md`        |
 | Performance tuning | `performance/optimization_strategies.md` |

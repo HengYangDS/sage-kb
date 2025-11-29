@@ -1,208 +1,26 @@
-# AI Collaboration Patterns
+# AI Collaboration Patterns - SAGE Project Reference
 
-> Successful interaction patterns and project-specific optimizations for SAGE Knowledge Base
-
----
-
-## Table of Contents
-
-[1. Overview](#1-overview) · [2. Interaction Patterns](#2-interaction-patterns) · [3. Knowledge Capture Patterns](#3-knowledge-capture-patterns) · [4. Optimization Strategies](#4-optimization-strategies) · [5. Calibration Data](#5-calibration-data)
+> Project-specific calibration and patterns for SAGE Knowledge Base
 
 ---
 
-## 1. Overview
+## Generic Patterns Reference
 
-This document captures successful AI collaboration patterns discovered during SAGE development. These patterns help
-maintain consistency and efficiency in human-AI interactions.
+For the comprehensive guide on AI collaboration patterns, see:
 
-### 1.1 Purpose
+**→ `content/practices/ai_collaboration/interaction_patterns.md`**
 
-- Document proven interaction strategies
-- Capture project-specific optimizations
-- Track calibration data for autonomy levels
-- Provide reference for future sessions
-
-### 1.2 Pattern Categories
-
-| Category              | Description                         |
-|-----------------------|-------------------------------------|
-| **Interaction**       | Communication and workflow patterns |
-| **Knowledge Capture** | When and how to document knowledge  |
-| **Optimization**      | Efficiency improvements             |
-| **Calibration**       | Autonomy level adjustments          |
+This includes:
+- Interaction Patterns (Session Start, Progressive Disclosure, Clarification Request, Batch Operation)
+- Knowledge Capture Patterns (Decision Point, Convention Discovery, Session Handoff, Problem-Solution)
+- Optimization Strategies (Context Window, Token Budget, Parallel Task, Error Recovery)
+- Anti-Patterns (Over-Engineering, Silent Assumptions, Monolithic Changes, Context Overload)
 
 ---
 
-## 2. Interaction Patterns
+## SAGE-Specific Calibration Data
 
-### 2.1 Session Start Pattern
-
-**Context**: Beginning a new collaboration session
-
-**Pattern**:
-
-1. Review `.junie/guidelines.md` for project context
-2. Check `.history/current/` for active sessions
-3. Review recent commits for context continuity
-4. Establish task scope and autonomy level
-
-**Benefits**: Faster context loading, consistent behavior
-
-### 2.2 Progressive Disclosure Pattern
-
-**Context**: Handling complex multi-step tasks
-
-**Pattern**:
-
-1. Start with high-level plan
-2. Execute one step at a time
-3. Report progress after each step
-4. Adjust plan based on findings
-
-**Benefits**: Maintains transparency, allows course correction
-
-### 2.3 Clarification Request Pattern
-
-**Context**: Ambiguous or incomplete requirements
-
-**Pattern**:
-
-1. State understanding of the requirement
-2. List specific ambiguities
-3. Propose default interpretation
-4. Ask for confirmation or clarification
-
-**Example**:
-
-```
-I understand you wish to update the configuration files. A few points to confirm:
-1. Does this include configuration in all subdirectories? (Default: Yes)
-2. Should the original files be backed up? (Default: No)
-Please confirm or adjust.
-```
-
-### 2.4 Batch Operation Pattern
-
-**Context**: Multiple similar changes across files
-
-**Pattern**:
-
-1. Identify all affected files first
-2. Group by change type
-3. Execute in batches with verification
-4. Summarize changes at end
-
-**Benefits**: Reduces errors, maintains consistency
-
----
-
-## 3. Knowledge Capture Patterns
-
-### 3.1 Decision Point Pattern
-
-**When to capture**: Significant technical decisions made during development
-
-**What to capture**:
-
-- Context and constraints
-- Options considered
-- Decision rationale
-- Expected consequences
-
-**Where**: `.context/decisions/ADR-NNNN-*.md`
-
-### 3.2 Convention Discovery Pattern
-
-**When to capture**: New coding patterns or standards emerge
-
-**What to capture**:
-
-- Pattern description
-- Usage examples
-- When to apply
-- Exceptions
-
-**Where**: `.context/conventions/*.md`
-
-### 3.3 Session Handoff Pattern
-
-**When to capture**: End of significant work session
-
-**What to capture**:
-
-- Completed tasks
-- Pending items
-- Important findings
-- Next steps
-
-**Where**: `.history/handoffs/*.md`
-
-### 3.4 Problem-Solution Pattern
-
-**When to capture**: Solving non-trivial problems
-
-**What to capture**:
-
-- Problem description
-- Investigation steps
-- Root cause
-- Solution applied
-
-**Where**: Relevant documentation or `.history/conversations/`
-
----
-
-## 4. Optimization Strategies
-
-### 4.1 Context Window Optimization
-
-**Strategy**: Minimize context while maximizing relevance
-
-**Techniques**:
-
-- Use targeted file searches over full directory scans
-- Request specific line ranges when opening files
-- Collapse completed plan items to save space
-- Reference files by path instead of including content
-
-### 4.2 Token Budget Management
-
-**Strategy**: Stay within T4 (5s) timeout for most operations
-
-**Techniques**:
-
-- Load core knowledge first (highest priority)
-- Use smart loading based on task type
-- Implement graceful degradation for large requests
-- Cache frequently accessed content
-
-### 4.3 Parallel Task Execution
-
-**Strategy**: Execute independent tasks concurrently
-
-**Techniques**:
-
-- Identify task dependencies
-- Group independent operations
-- Use batch commands where possible
-- Verify results collectively
-
-### 4.4 Error Recovery Strategy
-
-**Strategy**: Graceful handling of failures
-
-**Techniques**:
-
-- Always have fallback approach
-- Document partial progress
-- Preserve work before risky operations
-- Report issues with context
-
----
-
-## 5. Calibration Data
-
-### 5.1 Autonomy Level Calibration
+### Autonomy Level Calibration
 
 Current calibration for SAGE project:
 
@@ -215,7 +33,7 @@ Current calibration for SAGE project:
 | Architecture changes  | L2 (Low)          | Requires approval          |
 | Breaking changes      | L1 (Minimal)      | Full review required       |
 
-### 5.2 Response Time Expectations
+### Response Time Expectations
 
 | Operation           | Expected Time | Timeout Level |
 |---------------------|---------------|---------------|
@@ -225,7 +43,7 @@ Current calibration for SAGE project:
 | Full KB load        | < 5s          | T4            |
 | Complex analysis    | < 10s         | T5            |
 
-### 5.3 Quality Thresholds
+### Quality Thresholds
 
 | Metric        | Target | Action if Below        |
 |---------------|--------|------------------------|
@@ -236,41 +54,46 @@ Current calibration for SAGE project:
 
 ---
 
-## 6. Anti-Patterns
+## SAGE-Specific Patterns
 
-### 6.1 Avoid: Over-Engineering
+### Session Start for SAGE
 
-**Problem**: Adding complexity for hypothetical future needs
+When starting a SAGE development session:
 
-**Instead**: Implement minimal solution, extend when needed
+1. Review `.junie/guidelines.md` for project context
+2. Check `.history/current/` for active sessions
+3. Review recent commits for context continuity
+4. Reference `.context/policies/` for runtime settings
 
-### 6.2 Avoid: Silent Assumptions
+### Knowledge Layer Loading
 
-**Problem**: Proceeding without confirming ambiguous requirements
+When working with SAGE knowledge layers:
 
-**Instead**: Use Clarification Request Pattern (2.3)
+1. Core layer loads first (always)
+2. Guidelines load by task type
+3. Frameworks load on-demand
+4. Use smart triggers from `config/knowledge/triggers.yaml`
 
-### 6.3 Avoid: Monolithic Changes
+### Timeout-Aware Operations
 
-**Problem**: Large changes that are hard to review/revert
+For all I/O operations in SAGE:
 
-**Instead**: Use Batch Operation Pattern (2.4) with small commits
-
-### 6.4 Avoid: Context Overload
-
-**Problem**: Loading entire codebase into context
-
-**Instead**: Use targeted searches and specific file sections
+1. Reference `.context/policies/timeout_hierarchy.md`
+2. Use appropriate timeout level (T1-T5)
+3. Implement fallback for timeout scenarios
+4. Log timeout events for calibration
 
 ---
 
 ## Related
 
+- `content/practices/ai_collaboration/interaction_patterns.md` — Generic patterns
 - `content/frameworks/autonomy/levels.md` — Autonomy level definitions
-- `content/practices/ai_collaboration/` — AI collaboration best practices
+- `.context/policies/timeout_hierarchy.md` — Timeout policy
+- `.context/intelligence/calibration.md` — Detailed calibration data
 - `.junie/guidelines.md` — Project collaboration guidelines
-- `.history/` — Session history and handoffs
 
 ---
 
-*Part of SAGE Knowledge Base - AI Intelligence Patterns*
+*Last updated: 2025-11-30*
+*Part of SAGE Knowledge Base - Project Intelligence*

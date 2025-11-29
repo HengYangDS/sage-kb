@@ -205,3 +205,48 @@ triggers:
       - content/guidelines/python.md
     timeout_ms: 2000
     priority: 9
+
+  token_optimization:
+    keywords:
+      # English
+      - token
+      - compress
+      - compression
+      - density
+      - optimize
+      - efficiency
+      - verbose
+      - concise
+      # Chinese (中文)
+      - 令牌
+      - 压缩
+      - 密度
+      - 优化
+      - 效率
+      - 冗长
+      - 简洁
+    load:
+      - content/practices/ai_collaboration/token_optimization.md
+      - content/frameworks/cognitive/information_density.md
+    timeout_ms: 2000
+    priority: 10
+
+  doc_quality:
+    keywords:
+      # English
+      - review doc
+      - doc quality
+      - check doc
+      - doc standard
+      - format check
+      # Chinese (中文)
+      - 文档质量
+      - 检查文档
+      - 文档规范
+      - 格式检查
+      - 审查文档
+    load:
+      - content/practices/documentation/documentation_standards.md
+      - content/practices/ai_collaboration/token_optimization.md
+    timeout_ms: 2000
+    priority: 11

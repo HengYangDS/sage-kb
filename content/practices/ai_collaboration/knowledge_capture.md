@@ -336,7 +336,7 @@ touch .history/conversations/$(date +%Y-%m-%d)-topic.md
 ## Related
 
 - `practices/ai_collaboration/session_management.md` — Session handling
-- `practices/documentation/standards.md` — Documentation standards
+- `practices/documentation/DOCUMENTATION_STANDARDS.md` — Documentation standards (SSOT)
 - `templates/adr.md` — ADR template
 - `.context/intelligence/patterns.md` — AI patterns
 

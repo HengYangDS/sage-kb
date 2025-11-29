@@ -1002,7 +1002,7 @@ class SageSettings(BaseSettings):
     )
 
     # Version
-    version: str = Field(default="1.0.0")
+    version: str = Field(default="0.1.0")
     debug: bool = Field(default=False)
 
     # Timeout settings
@@ -1045,9 +1045,15 @@ def get_settings() -> SageSettings:
 
 ## References
 
+### Design Documents
+
 - **Architecture**: See `01-architecture.md`
 - **Services**: See `03-services.md`
 - **Plugin System**: See `05-plugin-memory.md`
+
+### Architecture Decision Records
+
+- **ADR-0002**: `.context/decisions/ADR-0002-sage-protocol.md` — SAGE Protocol design decisions
 
 ---
 

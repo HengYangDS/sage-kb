@@ -127,11 +127,11 @@ sage/                          # Project root directory
 
 ### content/practices/ - Best Practices (~1,500 tokens, On-Demand)
 
-| Directory           | File           | Purpose                            |
-|---------------------|----------------|------------------------------------|
-| `ai_collaboration/` | `workflow.md`  | Workflow, interaction patterns     |
-| `documentation/`    | `standards.md` | Documentation standards, templates |
-| `engineering/`      | `patterns.md`  | Design patterns, best practices    |
+| Directory           | File                         | Purpose                            |
+|---------------------|------------------------------|------------------------------------|
+| `ai_collaboration/` | `workflow.md`                | Workflow, interaction patterns     |
+| `documentation/`    | `DOCUMENTATION_STANDARDS.md` | Documentation standards (SSOT)     |
+| `engineering/`      | `patterns.md`                | Design patterns, best practices    |
 
 ### content/scenarios/ - Scenario Presets (~500 tokens, On-Demand)
 

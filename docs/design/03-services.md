@@ -131,7 +131,7 @@ def info():
     table.add_column("Property", style="cyan")
     table.add_column("Value", style="green")
 
-    table.add_row("Version", "1.0.0")
+    table.add_row("Version", "0.1.0")
     table.add_row("Layers", "core, guidelines, frameworks, practices, scenarios")
     table.add_row("Total Files", "~30")
     table.add_row("Total Tokens", "~6,000")
@@ -394,7 +394,7 @@ async def kb_info() -> dict:
         dict with version, layers, statistics
     """
     return {
-        "version"       : "1.0.0",
+        "version"       : "0.1.0",
         "layers"        : {
             "core"      : {"tokens": 500, "always_load": True},
             "guidelines": {"tokens": 1200, "always_load": False},
@@ -542,7 +542,7 @@ def create_api_app() -> FastAPI:
 
     app = FastAPI(
         title="SAGE Knowledge Base API",
-        version="1.0.0",
+        version="0.1.0",
         description="Production-grade knowledge management with timeout protection",
         docs_url="/docs" if settings.debug else None,
         redoc_url="/redoc" if settings.debug else None,
@@ -565,7 +565,7 @@ def create_api_app() -> FastAPI:
         """Health check endpoint."""
         return HealthResponse(
             status="healthy",
-            version="1.0.0",
+            version="0.1.0",
             services={
                 "loader": "operational",
                 "search": "operational",

@@ -265,7 +265,7 @@ sage/                                  # 📁 Project root directory
 │   │   ├── decisions/                 # 🆕 Dynamic framework cases
 │   │   │   └── autonomy_cases.md      #    Concrete autonomy decision examples
 │   │   ├── documentation/             #    Documentation practices
-│   │   │   └── standards.md           #    Documentation standards, templates
+│   │   │   └── DOCUMENTATION_STANDARDS.md  #    Documentation standards (SSOT)
 │   │   └── engineering/               #    Engineering practices
 │   │       └── patterns.md            #    Design patterns, best practices
 │   │
@@ -733,7 +733,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "sage-kb"
-version = "1.0.0"
+version = "0.1.0"
 description = "Production-grade knowledge management for AI collaboration"
 readme = "README.md"
 license = "MIT"
@@ -1624,6 +1624,8 @@ Decision Factors:
 
 ## References
 
+### Design Documents
+
 - **Protocol Design**: See `02-sage-protocol.md`
 - **Services**: See `03-services.md`
 - **Timeout Details**: See `04-timeout-loading.md`
@@ -1631,4 +1633,11 @@ Decision Factors:
 - **Content Structure**: See `06-content-structure.md`
 - **Implementation**: See `07-roadmap.md`
 - **Expert Evaluation**: See `08-evaluation.md`
+
+### Architecture Decision Records
+
+- **ADR-0001**: `.context/decisions/ADR-0001-architecture.md` — Architecture design decisions
+- **ADR-0004**: `.context/decisions/ADR-0004-dependency-injection.md` — DI container design
+- **ADR-0005**: `.context/decisions/ADR-0005-event-bus.md` — EventBus design
+- **ADR-0006**: `.context/decisions/ADR-0006-protocol-first.md` — Protocol-first design
 

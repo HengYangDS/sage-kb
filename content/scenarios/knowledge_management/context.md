@@ -27,7 +27,7 @@ autonomy_default: L3
 | Priority      | Files                                                                                                                                                                      |
 |---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Auto-Load** | `core/principles.md` · `content/references/knowledge_quick_ref.md`                                                                                                         |
-| **On-Demand** | `practices/documentation/knowledge_organization.md` · `frameworks/design/` · `practices/documentation/standards.md` · `practices/ai_collaboration/knowledge_extraction.md` |
+| **On-Demand** | `practices/documentation/knowledge_organization.md` · `frameworks/design/` · `practices/documentation/DOCUMENTATION_STANDARDS.md` · `practices/ai_collaboration/knowledge_extraction.md` |
 
 ---
 
@@ -301,7 +301,7 @@ sage search "new topic"
 ## Related
 
 - `practices/documentation/knowledge_organization.md` — Organization patterns
-- `practices/documentation/standards.md` — Documentation standards
+- `practices/documentation/DOCUMENTATION_STANDARDS.md` — Documentation standards (SSOT)
 - `practices/ai_collaboration/knowledge_extraction.md` — Extraction techniques
 - `frameworks/design/` — Design patterns
 

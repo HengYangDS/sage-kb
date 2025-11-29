@@ -114,7 +114,7 @@
 ## Related
 
 - `practices/ai_collaboration/token_optimization.md` — Token efficiency
-- `practices/documentation/standards.md` — Documentation standards
+- `practices/documentation/DOCUMENTATION_STANDARDS.md` — Documentation standards (SSOT)
 
 ---
 

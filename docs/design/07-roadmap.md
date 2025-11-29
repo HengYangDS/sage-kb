@@ -62,7 +62,7 @@ Parallelizable:
 >
 > This roadmap tracks progress toward the **target architecture** defined in `01-architecture.md`.
 >
-> ✅ **Phase 0, A, B, C, D, E, F, G, H + DI COMPLETE**: Full v1.2 implementation with DI Container.
+> ✅ **Phase 0, A, B, C, D, E, F, G, H + DI COMPLETE**: Full M3 implementation with DI Container.
 
 | Component           | Current Status | Current | Target | Notes                                            |
 |---------------------|----------------|---------|--------|--------------------------------------------------|
@@ -84,10 +84,10 @@ Parallelizable:
 
 ---
 
-## 7.2 Phase Overview (MVP: 6 Phases, v1.1: 2 Phases)
+## 7.2 Phase Overview (M1/MVP: 6 Phases, M2: 2 Phases)
 
 ```
-MVP Phases (v1.0):
+M1/MVP Phases:
 Phase 0: Package Fix        ██████████ Fix pyproject.toml, verify install (0.5 days) [COMPLETE ✅]
 Phase A: Base Reorg         ██████████ core/, services/ directories (2 days) [COMPLETE ✅]
 Phase B: Core Migration     ██████████ loader → core, imports fixed (1 day) [COMPLETE ✅]
@@ -96,14 +96,14 @@ Phase D: Capabilities+Tools ██████████ capabilities/ + tools
 Phase E: Tests Reorg        ██████████ fixtures/, unit/, integration/, conftest.py (1 day) [COMPLETE ✅]
 Phase F: Enhancement        ██████████ Makefile, py.typed (1 day) [COMPLETE ✅]
 
-v1.1 Phases:
+M2 Phases:
 Phase G: Event System       ██████████ Protocol + EventBus architecture (4 days) [COMPLETE ✅]
 Phase H: Memory System      ██████████ Cross-task persistence + token mgmt (4 days) [COMPLETE ✅]
 
-v1.2 Phases:
+M3 Phases:
 Phase I: DI Container       ██████████ Dependency injection + auto-wiring (1 day) [COMPLETE ✅]
 
-v1.3 Phases:
+M4 Phases:
 Phase J: Config & Services  ██████░░░░ Configuration completeness + services (7 days) [IN PROGRESS 🔄]
   - Part 1: Config Complete ██████████ triggers, features, fallback, api.yaml (1 day) [COMPLETE ✅]
   - Part 2: DI Services     ░░░░░░░░░░ KnowledgeProtocol, OutputProtocol (2 days) [PLANNED 📋]
@@ -113,16 +113,16 @@ Phase J: Config & Services  ██████░░░░ Configuration complet
 COMPLETED: 0 → A → B → C → D → E → F → G → H → I → J.Part1
 REMAINING: J.Part2 (DI Services) → J.Part3 (API Service) → J.Part4 (Optimization)
 
-MVP Duration: Structure complete, logging + events operational ✅
-v1.1 Duration: 340 tests passing (71% coverage), memory persistence operational ✅
-v1.2 Duration: 523 tests passing (82% coverage), DI container operational ✅
-v1.3 Duration: Configuration system aligned with design document (Part 1 complete) 🔄
-Current: v1.3 in progress - configuration complete, services planned
+M1/MVP Duration: Structure complete, logging + events operational ✅
+M2 Duration: 340 tests passing (71% coverage), memory persistence operational ✅
+M3 Duration: 523 tests passing (82% coverage), DI container operational ✅
+M4 Duration: Configuration system aligned with design document (Part 1 complete) 🔄
+Current: M4 in progress - configuration complete, services planned
 ```
 
 ### Timeline Scenarios
 
-| Scenario         | MVP Duration | v1.1 Add | Total   | Team    | Notes                               |
+| Scenario         | MVP Duration | M2 Add   | Total   | Team    | Notes                               |
 |------------------|--------------|----------|---------|---------|-------------------------------------|
 | **Optimistic**   | 14 days      | +8 days  | 22 days | 1.5 FTE | No major issues, parallel execution |
 | **Realistic**    | 18 days      | +10 days | 28 days | 1.5 FTE | Some integration challenges         |
@@ -424,7 +424,7 @@ C:\Users\<user>\AppData\Local\sage\memory\    # Windows
 
 ---
 
-## 7.10.2 Phase J: Configuration & Services (v1.3)
+## 7.10.2 Phase J: Configuration & Services (M4)
 
 > **Status**: IN PROGRESS 🔄
 > **Goal**: Complete configuration system alignment with design document
@@ -516,7 +516,7 @@ C:\Users\<user>\AppData\Local\sage\memory\    # Windows
 
 - [ ] All operations support timeout protection (5-level)
 - [ ] Token efficiency improvement 95%+
-- [ ] Test coverage 80%+ (MVP), 90%+ (v1.1)
+- [ ] Test coverage 80%+ (MVP), 90%+ (M2)
 - [ ] No blocking operations
 
 ### Developer Experience Standards

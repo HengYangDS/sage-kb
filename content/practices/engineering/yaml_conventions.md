@@ -186,7 +186,7 @@ database:
 
 ## Related
 
-- `content/practices/documentation/standards.md` — Documentation standards
+- `content/practices/documentation/DOCUMENTATION_STANDARDS.md` — Documentation standards (SSOT)
 - `content/guidelines/code_style.md` — Code style guidelines
 
 ---
