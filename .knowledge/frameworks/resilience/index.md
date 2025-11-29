@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~400
+---
+
 # Resilience Framework
 
 > Fault tolerance and graceful degradation patterns

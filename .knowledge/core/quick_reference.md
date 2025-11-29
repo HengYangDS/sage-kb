@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~750
+---
+
 # Quick Reference Card
 
 > Critical questions and autonomy levels at a glance

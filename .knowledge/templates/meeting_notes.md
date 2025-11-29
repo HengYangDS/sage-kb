@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~1600
+---
+
 # Meeting Notes Template
 
 > **Purpose**: Template for documenting meetings and discussions

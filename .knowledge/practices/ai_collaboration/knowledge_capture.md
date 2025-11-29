@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~2500
+---
+
 # Knowledge Capture
 
 > When and how to document knowledge during AI collaboration

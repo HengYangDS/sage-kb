@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~2750
+---
+
 # Unit Testing Patterns
 
 > Best practices and patterns for writing effective unit tests

@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~800
+---
+
 # Code Review Practices
 
 > Effective code review patterns for quality and knowledge sharing

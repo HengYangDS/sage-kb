@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~300
+---
+
 # Design Framework
 
 > Core design principles and axioms for SAGE

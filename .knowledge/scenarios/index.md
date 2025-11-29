@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~700
+---
+
 # Scenario Presets
 
 > Context-specific knowledge presets for common development scenarios
@@ -108,7 +115,7 @@ scenarios/[name]/
 - `.knowledge/guidelines/index.md` — General guidelines
 - `.knowledge/practices/index.md` — Implementation practices
 - `.knowledge/templates/index.md` — Document templates
-- `config/knowledge/triggers.yaml` — Trigger configuration
+- `.config/knowledge/triggers.yaml` — Trigger configuration
 
 ---
 

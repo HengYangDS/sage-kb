@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~1150
+---
+
 # Expert Committee Framework
 
 > Multi-perspective analysis using 35+ expert roles

@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~3850
+---
+
 # Security Checklist
 
 > Comprehensive security review guide for development, deployment, and audit
@@ -488,9 +495,9 @@ def log_security_event(
 
 ## Related
 
-- [Authentication](authentication.md) — Identity verification
-- [Authorization](authorization.md) — Access control
-- [Secrets Management](secrets_management.md) — Credential handling
+- `.knowledge/frameworks/security/authentication.md` — Identity verification
+- `.knowledge/frameworks/security/authorization.md` — Access control
+- `.knowledge/frameworks/security/secrets_management.md` — Credential handling
 - `.knowledge/practices/engineering/code_review.md` — Review practices
 
 ---

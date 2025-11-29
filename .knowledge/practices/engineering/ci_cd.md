@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~2150
+---
+
 # CI/CD Practices
 
 > Continuous Integration and Continuous Deployment best practices for SAGE projects

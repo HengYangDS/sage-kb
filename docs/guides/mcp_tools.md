@@ -1,3 +1,11 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~2500
+note: "TODO: Split into 3 documents (knowledge, capabilities, patterns) - see docs improvement plan"
+---
+
 # MCP Tools Guide
 
 > Complete reference for SAGE Knowledge Base MCP tools

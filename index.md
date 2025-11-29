@@ -60,7 +60,7 @@ sage-kb/
 | `config/services/`     | Service layer (CLI, MCP, API)                      | Visible              |
 | `config/knowledge/`    | Knowledge management (content, loading, search)    | Visible              |
 | `config/capabilities/` | Features and plugins (autonomy, quality)           | Visible              |
-| `.backups/`            | Backup files                                       | Hidden (git-ignored) |
+| `.backups/`            | Backup files                                       | Hidden (tracked)     |
 | `.logs/`               | Runtime log files                                  | Hidden (git-ignored) |
 | `.outputs/`            | Intermediate process files                         | Hidden (git-ignored) |
 

@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~350
+---
+
 # Patterns Framework
 
 > Reusable patterns for AI-human collaboration and system design

@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~450
+---
+
 # Performance Quick Reference
 
 > Essential performance checks and commands for DevOps workflows
@@ -79,4 +86,4 @@ async def read_files(paths):
 
 ---
 
-**Full Guide**: `practices/engineering/performance.md`
+**Full Guide**: `.knowledge/practices/engineering/performance.md`

@@ -1,0 +1,42 @@
+name: Validate Knowledge Base
+
+on:
+  push:
+    paths:
+      - '.knowledge/**'
+      - 'scripts/validate_knowledge.py'
+  pull_request:
+    paths:
+      - '.knowledge/**'
+      - 'scripts/validate_knowledge.py'
+  schedule:
+    # Run weekly on Monday at 00:00 UTC
+    - cron: '0 0 * * 1'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    name: Validate Knowledge Base
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Run validation
+        run: python scripts/validate_knowledge.py
+      
+      - name: Check for errors
+        run: |
+          result=$(python scripts/validate_knowledge.py 2>&1)
+          echo "$result"
+          if echo "$result" | grep -q "errors: [1-9]"; then
+            echo "::error::Knowledge base validation found errors"
+            exit 1
+          fi
+          echo "✅ Knowledge base validation passed"

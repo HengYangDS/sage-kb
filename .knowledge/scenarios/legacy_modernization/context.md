@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~2850
+---
+
 # Legacy Modernization Scenario Context
 
 > Pre-configured context for modernizing legacy systems

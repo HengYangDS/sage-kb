@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~1100
+---
+
 # Token Optimization Principles
 
 > Maximize knowledge density per token in AI collaboration
@@ -117,6 +124,37 @@
 | Load progressively | Dump everything    |
 | Compress text      | Be verbose         |
 | Structure clearly  | Use prose for data |
+
+---
+
+## 8. Practical Examples
+
+### Example 1: Before/After Optimization
+
+**Before** (~120 tokens):
+```
+In order to ensure that the application performs well, it is important 
+to note that you should implement caching for frequently accessed data.
+There are several ways to accomplish this task effectively.
+```
+
+**After** (~40 tokens):
+```
+Performance: Implement caching for frequent data access.
+Options: Redis | Memcached | In-memory
+```
+
+### Example 2: Context Loading
+
+**Inefficient**:
+```
+Load: entire docs/ directory (5000+ tokens)
+```
+
+**Optimized**:
+```
+Load: docs/api/auth.md lines 1-50 (~200 tokens)
+```
 
 ---
 

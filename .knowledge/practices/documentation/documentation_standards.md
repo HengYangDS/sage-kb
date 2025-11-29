@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~2750
+---
+
 # Documentation Standards (SSOT)
 
 > Single source of truth for documentation writing standards
@@ -20,6 +27,13 @@
 ### 1.1 Document Template
 
 ```markdown
+---
+version: "1.0"
+last_updated: "YYYY-MM-DD"
+status: draft | review | published
+tokens: ~NNN
+---
+
 # Title
 
 > Single-line purpose
@@ -321,9 +335,9 @@ print(greet("World"))  # Output: Hello, World
 
 ## Related
 
-- `knowledge_organization.md` — Layer architecture details
-- `optimization_workflow.md` — Full optimization process
-- `project_directory_structure.md` — Directory conventions details
+- `.knowledge/practices/documentation/knowledge_organization.md` — Layer architecture details
+- `.knowledge/practices/documentation/optimization_workflow.md` — Full optimization process
+- `.knowledge/practices/documentation/project_directory_structure.md` — Directory conventions details
 - `.knowledge/templates/index.md` — Document templates
 
 ---

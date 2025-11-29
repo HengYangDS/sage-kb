@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~2550
+---
+
 # Common Pitfalls
 
 > Known pitfalls and how to avoid them in software development

@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~450
+---
+
 # Microservices Checklist
 
 > Task checklist for microservices architecture design and implementation

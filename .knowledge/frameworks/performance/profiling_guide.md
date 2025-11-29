@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~4400
+---
+
 # Profiling Guide
 
 > Performance measurement and bottleneck identification
@@ -672,8 +679,8 @@ What to profile?
 
 ## Related
 
-- [Optimization Strategies](optimization_strategies.md) — Optimization techniques
-- [Caching Patterns](caching_patterns.md) — Caching strategies
+- `.knowledge/frameworks/performance/optimization_strategies.md` — Optimization techniques
+- `.knowledge/frameworks/performance/caching_patterns.md` — Caching strategies
 - `tools/timeout_manager.py` — SAGE timeout testing
 
 ---

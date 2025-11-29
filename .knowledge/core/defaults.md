@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~950
+---
+
 # Default Behaviors and Calibration
 
 > Universal baseline behaviors and calibration parameters for AI collaboration

@@ -1,3 +1,11 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~2000
+note: "TODO: Split into 3 documents (basic, advanced, environments) - see docs improvement plan"
+---
+
 # Configuration Guide
 
 > Complete reference for SAGE Knowledge Base configuration options

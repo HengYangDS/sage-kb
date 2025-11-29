@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~950
+---
+
 # ASCII Art Formatting Best Practices
 
 > Guidelines for consistent rendering of ASCII art boxes and diagrams

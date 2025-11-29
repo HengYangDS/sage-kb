@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~1700
+---
+
 # Dependency Management
 
 > Best practices for managing project dependencies in Python projects

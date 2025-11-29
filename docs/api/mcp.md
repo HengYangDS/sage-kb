@@ -1,19 +1,40 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~300
+---
+
 # MCP Protocol Reference
 
 > SAGE Model Context Protocol (MCP) Server Documentation
 
 ---
 
-## Overview
+## Table of Contents
 
-SAGE provides an MCP server for AI agent integration. Built with FastMCP, it exposes knowledge base functionality
-through standardized tools and resources.
+- [1. Overview](#1-overview)
+- [2. Server Configuration](#2-server-configuration)
+- [3. Quick Reference](#3-quick-reference)
+- [4. Detailed Documentation](#4-detailed-documentation)
 
 ---
 
-## Server Configuration
+## 1. Overview
 
-### Starting the Server
+SAGE provides an MCP server for AI agent integration. Built with FastMCP, it exposes knowledge base functionality through standardized tools and resources.
+
+| Component   | Description                        |
+|-------------|------------------------------------|
+| Tools       | Knowledge retrieval and search     |
+| Resources   | URI-based knowledge access         |
+| Prompts     | Task-specific system prompts       |
+
+---
+
+## 2. Server Configuration
+
+### 2.1 Starting the Server
 
 ```bash
 # Via CLI
@@ -23,7 +44,7 @@ sage serve --host localhost --port 8000
 python -m sage.services.mcp_server
 ```
 
-### Configuration
+### 2.2 Configuration
 
 Located in `config/services/mcp.yaml`:
 
@@ -41,317 +62,29 @@ mcp:
 
 ---
 
-## Tools
+## 3. Quick Reference
 
-### sage_get_knowledge
+### 3.1 Tools
 
-Retrieve knowledge from the knowledge base.
+| Tool                 | Purpose                     |
+|----------------------|-----------------------------|
+| `sage_get_knowledge` | Retrieve knowledge by layer |
+| `sage_search`        | Search the knowledge base   |
+| `sage_get_context`   | Get task-specific context   |
+| `sage_info`          | Get system information      |
 
-**Input Schema:**
+### 3.2 Resources
 
-```json
-{
-  "type": "object",
-  "properties": {
-    "layer": {
-      "type": "string",
-      "enum": ["core", "guidelines", "frameworks", "practices", "all"],
-      "description": "Knowledge layer to retrieve"
-    },
-    "topic": {
-      "type": "string",
-      "description": "Specific topic within the layer"
-    },
-    "timeout_ms": {
-      "type": "integer",
-      "default": 2000,
-      "description": "Timeout in milliseconds"
-    }
-  },
-  "required": ["layer"]
-}
-```
+| Resource                   | Description              |
+|----------------------------|--------------------------|
+| `knowledge://core`         | Core principles          |
+| `knowledge://guidelines`   | Coding guidelines        |
+| `knowledge://frameworks`   | Conceptual frameworks    |
+| `knowledge://practices`    | Best practices           |
 
-**Output:**
+### 3.3 Timeout Levels
 
-```json
-{
-  "content": "...",
-  "metadata": {
-    "layer": "core",
-    "files_loaded": 3,
-    "load_time_ms": 150,
-    "from_cache": false
-  }
-}
-```
-
-**Example:**
-
-```json
-{
-  "tool": "sage_get_knowledge",
-  "arguments": {
-    "layer": "core",
-    "timeout_ms": 2000
-  }
-}
-```
-
----
-
-### sage_search
-
-Search the knowledge base.
-
-**Input Schema:**
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "query": {
-      "type": "string",
-      "description": "Search query"
-    },
-    "limit": {
-      "type": "integer",
-      "default": 10,
-      "description": "Maximum number of results"
-    },
-    "layer": {
-      "type": "string",
-      "enum": ["core", "guidelines", "frameworks", "practices", "all"],
-      "default": "all",
-      "description": "Layer to search in"
-    }
-  },
-  "required": ["query"]
-}
-```
-
-**Output:**
-
-```json
-{
-  "results": [
-    {
-      "path": ".knowledge/core/principles.md",
-      "title": "Core Principles",
-      "snippet": "...matching text...",
-      "score": 0.95
-    }
-  ],
-  "total": 5,
-  "query_time_ms": 45
-}
-```
-
----
-
-### sage_get_context
-
-Get task-specific context based on task type.
-
-**Input Schema:**
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "task_type": {
-      "type": "string",
-      "enum": ["coding", "debugging", "reviewing", "planning", "documenting"],
-      "description": "Type of task"
-    },
-    "language": {
-      "type": "string",
-      "default": "python",
-      "description": "Programming language context"
-    },
-    "token_budget": {
-      "type": "integer",
-      "default": 4000,
-      "description": "Maximum tokens for response"
-    }
-  },
-  "required": ["task_type"]
-}
-```
-
-**Output:**
-
-```json
-{
-  "context": "...",
-  "sections": ["principles", "guidelines", "patterns"],
-  "token_count": 3500,
-  "load_time_ms": 200
-}
-```
-
----
-
-### sage_info
-
-Get system information and status.
-
-**Input Schema:**
-
-```json
-{
-  "type": "object",
-  "properties": {}
-}
-```
-
-**Output:**
-
-```json
-{
-  "version": "0.1.0",
-  "status": "healthy",
-  "knowledge_base": {
-    "content_files": 45,
-    "total_size_kb": 256
-  },
-  "cache": {
-    "enabled": true,
-    "hit_rate": 0.85
-  },
-  "uptime_seconds": 3600
-}
-```
-
----
-
-## Resources
-
-### knowledge://core
-
-Core principles and philosophy.
-
-**URI Pattern:** `knowledge://core/{topic?}`
-
-**Examples:**
-
-- `knowledge://core` — All core content
-- `knowledge://core/principles` — Principles only
-- `knowledge://core/defaults` — Default values
-
----
-
-### knowledge://guidelines
-
-Coding and collaboration guidelines.
-
-**URI Pattern:** `knowledge://guidelines/{category?}`
-
-**Examples:**
-
-- `knowledge://guidelines` — All guidelines
-- `knowledge://guidelines/python` — Python guidelines
-- `knowledge://guidelines/ai_collaboration` — AI collaboration
-
----
-
-### knowledge://frameworks
-
-Conceptual frameworks and patterns.
-
-**URI Pattern:** `knowledge://frameworks/{framework?}`
-
-**Examples:**
-
-- `knowledge://frameworks` — All frameworks
-- `knowledge://frameworks/autonomy` — Autonomy levels
-- `knowledge://frameworks/timeout` — Timeout patterns
-
----
-
-### knowledge://practices
-
-Best practices and engineering patterns.
-
-**URI Pattern:** `knowledge://practices/{category?}`
-
-**Examples:**
-
-- `knowledge://practices` — All practices
-- `knowledge://practices/engineering` — Engineering practices
-- `knowledge://practices/documentation` — Documentation practices
-
----
-
-## Prompts
-
-### sage_task_prompt
-
-Generate a task-specific system prompt.
-
-**Arguments:**
-
-| Argument    | Type   | Description        |
-|-------------|--------|--------------------|
-| `task_type` | string | Type of task       |
-| `context`   | string | Additional context |
-
-**Example Response:**
-
-```
-You are an AI assistant with access to the SAGE Knowledge Base.
-
-Current task: coding
-Relevant guidelines:
-- Follow Python style guide
-- Use type hints
-- Write tests
-
-Available knowledge layers:
-- core: Core principles
-- guidelines: Coding standards
-- practices: Best practices
-```
-
----
-
-## Error Handling
-
-### Error Codes
-
-| Code            | Name           | Description                  |
-|-----------------|----------------|------------------------------|
-| `TIMEOUT`       | Timeout Error  | Operation exceeded timeout   |
-| `NOT_FOUND`     | Not Found      | Requested resource not found |
-| `INVALID_INPUT` | Invalid Input  | Invalid request parameters   |
-| `INTERNAL`      | Internal Error | Server-side error            |
-
-### Error Response Format
-
-```json
-{
-  "error": {
-    "code": "TIMEOUT",
-    "message": "Operation exceeded T3 timeout (2000ms)",
-    "details": {
-      "timeout_level": "T3",
-      "elapsed_ms": 2150
-    }
-  },
-  "fallback": {
-    "content": "Partial content loaded before timeout...",
-    "complete": false
-  }
-}
-```
-
----
-
-## Timeout Behavior
-
-The MCP server respects the 5-level timeout hierarchy:
-
-| Level | Timeout | MCP Behavior           |
+| Level | Timeout | Use Case               |
 |-------|---------|------------------------|
 | T1    | 100ms   | Cache-only responses   |
 | T2    | 500ms   | Single file operations |
@@ -359,66 +92,25 @@ The MCP server respects the 5-level timeout hierarchy:
 | T4    | 5s      | Full knowledge load    |
 | T5    | 10s     | Complex analysis       |
 
-**Graceful Degradation:**
-
-When a timeout is approaching:
-
-1. Return partial results
-2. Include `complete: false` flag
-3. Provide fallback content
-4. Log timeout event
-
 ---
 
-## Client Integration
+## 4. Detailed Documentation
 
-### Claude Desktop
-
-Add to `claude_desktop_config.json`:
-
-```json
-{
-  "mcpServers": {
-    "sage": {
-      "command": "sage",
-      "args": ["serve"],
-      "env": {
-        "SAGE_CONFIG": "/path/to/config/sage.yaml"
-      }
-    }
-  }
-}
-```
-
-### Generic MCP Client
-
-```python
-from mcp import Client
-
-async with Client("localhost", 8000) as client:
-    # Get knowledge
-    result = await client.call_tool(
-        "sage_get_knowledge",
-        {"layer": "core"}
-    )
-    
-    # Search
-    results = await client.call_tool(
-        "sage_search",
-        {"query": "timeout", "limit": 5}
-    )
-```
+| Document                                   | Content                              |
+|--------------------------------------------|--------------------------------------|
+| [MCP Tools Reference](mcp_tools_ref.md)    | Detailed tool schemas and examples   |
+| [MCP Resources](mcp_resources.md)          | Resources, prompts, error handling   |
+| [MCP Quick Reference](mcp_quick_ref.md)    | One-page quick reference             |
 
 ---
 
 ## Related
 
-- [API Index](index.md) — API overview
-- [CLI Reference](cli.md) — CLI documentation
-- [Python API](python.md) — Python library
-- `config/services/mcp.yaml` — MCP configuration
+- `docs/api/index.md` — API overview
+- `docs/api/cli.md` — CLI reference
+- `docs/api/python.md` — Python API
 - `docs/design/02-sage-protocol.md` — Protocol design
 
 ---
 
-*SAGE Knowledge Base - MCP Protocol Reference*
+*Part of SAGE Knowledge Base*

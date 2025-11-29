@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~2750
+---
+
 # MCP Integration Scenario Context
 
 > Pre-configured context for Model Context Protocol integration development

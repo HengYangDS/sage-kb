@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~3750
+---
+
 # Secrets Management
 
 > Secure handling of sensitive data, credentials, and encryption keys
@@ -523,9 +530,9 @@ class SecretRotator:
 
 ## Related
 
-- [Authentication](authentication.md) — Credential usage patterns
-- [Authorization](authorization.md) — Access control
-- [Security Checklist](security_checklist.md) — Complete security review
+- `.knowledge/frameworks/security/authentication.md` — Credential usage patterns
+- `.knowledge/frameworks/security/authorization.md` — Access control
+- `.knowledge/frameworks/security/security_checklist.md` — Complete security review
 
 ---
 

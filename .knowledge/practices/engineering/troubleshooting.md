@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~2450
+---
+
 # Troubleshooting Guide
 
 > Common issues, debugging techniques, and solutions for SAGE Knowledge Base

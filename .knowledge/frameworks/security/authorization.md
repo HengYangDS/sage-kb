@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~4450
+---
+
 # Authorization Patterns
 
 > Access control strategies and permission management
@@ -546,9 +553,9 @@ async def delete_content(id: str):
 
 ## Related
 
-- [Authentication](authentication.md) — Identity verification
-- [Secrets Management](secrets_management.md) — Credential handling
-- [Security Checklist](security_checklist.md) — Implementation checklist
+- `.knowledge/frameworks/security/authentication.md` — Identity verification
+- `.knowledge/frameworks/security/secrets_management.md` — Credential handling
+- `.knowledge/frameworks/security/security_checklist.md` — Implementation checklist
 
 ---
 

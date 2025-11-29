@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~1500
+---
+
 # Release Notes Template
 
 > **Purpose**: Template for documenting software releases

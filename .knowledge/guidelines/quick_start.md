@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~450
+---
+
 # Quick Start Guide
 
 > Get productive in 3 minutes
@@ -81,12 +88,12 @@ sage serve             # Start MCP server
 
 ## 6. Next Steps
 
-| Goal           | Read                      |
-|----------------|---------------------------|
-| Code standards | `code_style.md`           |
-| Architecture   | `planning.md`             |
-| AI patterns    | `ai_collaboration.md`     |
-| Full reference | `core/quick_reference.md` |
+| Goal           | Read                                        |
+|----------------|---------------------------------------------|
+| Code standards | `.knowledge/guidelines/code_style.md`       |
+| Architecture   | `.knowledge/guidelines/planning.md`         |
+| AI patterns    | `.knowledge/guidelines/ai_collaboration.md` |
+| Full reference | `.knowledge/core/quick_reference.md`        |
 
 ---
 

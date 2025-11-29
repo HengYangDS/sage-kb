@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~3850
+---
+
 # Integration Patterns
 
 > Patterns for integrating SAGE with AI tools, IDEs, and CI/CD systems

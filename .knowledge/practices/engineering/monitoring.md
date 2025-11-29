@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~1450
+---
+
 # Monitoring & Observability
 
 > Best practices for system monitoring and observability

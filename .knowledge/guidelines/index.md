@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~300
+---
+
 # Engineering Guidelines
 
 > Standards for code, documentation, and AI collaboration
@@ -6,13 +13,29 @@
 
 ## Table of Contents
 
-- [1. Contents](#1-contents)
-- [2. Quick Start Path](#2-quick-start-path)
-- [3. By Role](#3-by-role)
+- [1. Scope & Boundaries](#1-scope--boundaries)
+- [2. Contents](#2-contents)
+- [3. Quick Start Path](#3-quick-start-path)
+- [4. By Role](#4-by-role)
 
 ---
 
-## 1. Contents
+## 1. Scope & Boundaries
+
+| Layer | Focus | Contains | Example |
+|:------|:------|:---------|:--------|
+| **Guidelines** | "What rules" | Standards, principles, conventions | Code style rules |
+| **Practices** | "How to do" | Procedures, workflows, operations | Step-by-step testing guide |
+
+**When to use which**:
+- Need a rule/standard? → Guidelines
+- Need implementation steps? → Practices
+- Guidelines reference practices for details
+- Practices implement guidelines
+
+---
+
+## 2. Contents
 
 | File                  | Purpose                                   |
 |-----------------------|-------------------------------------------|
@@ -33,7 +56,7 @@
 
 ---
 
-## 2. Quick Start Path
+## 3. Quick Start Path
 
 ```
 quick_start.md → code_style.md → engineering.md → [specific topic]
@@ -41,7 +64,7 @@ quick_start.md → code_style.md → engineering.md → [specific topic]
 
 ---
 
-## 3. By Role
+## 4. By Role
 
 | Role             | Start With                            |
 |------------------|---------------------------------------|

@@ -1,17 +1,34 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~500
+---
+
 # Python API Reference
 
 > SAGE Knowledge Base Python Library Documentation
 
 ---
 
-## Overview
+## Table of Contents
 
-The SAGE Python API provides programmatic access to the knowledge base. It supports both synchronous and asynchronous
-operations with built-in timeout protection.
+- [1. Overview](#1-overview)
+- [2. Installation](#2-installation)
+- [3. Quick Start](#3-quick-start)
+- [4. Core Classes](#4-core-classes)
+- [5. Configuration](#5-configuration)
+- [6. Advanced Topics](#6-advanced-topics)
 
 ---
 
-## Installation
+## 1. Overview
+
+The SAGE Python API provides programmatic access to the knowledge base. It supports both synchronous and asynchronous operations with built-in timeout protection.
+
+---
+
+## 2. Installation
 
 ```bash
 # Basic installation
@@ -23,7 +40,7 @@ pip install sage-kb[all]
 
 ---
 
-## Quick Start
+## 3. Quick Start
 
 ```python
 from sage.core.loader import KnowledgeLoader
@@ -48,9 +65,9 @@ asyncio.run(main())
 
 ---
 
-## Core Classes
+## 4. Core Classes
 
-### KnowledgeLoader
+### 4.1 KnowledgeLoader
 
 Main class for loading knowledge from the knowledge base.
 
@@ -66,9 +83,7 @@ loader = KnowledgeLoader(config=None)
 |-----------|--------------|-------------------------------|
 | `config`  | `SAGEConfig` | Optional configuration object |
 
-#### Methods
-
-##### load
+#### load
 
 Load knowledge asynchronously.
 
@@ -90,7 +105,7 @@ async def load(
 
 **Returns:** `LoadResult`
 
-##### load_sync
+#### load_sync
 
 Synchronous wrapper for `load`.
 
@@ -102,7 +117,7 @@ def load_sync(
 ) -> LoadResult
 ```
 
-##### load_core
+#### load_core
 
 Load core knowledge layer.
 
@@ -110,55 +125,31 @@ Load core knowledge layer.
 async def load_core(timeout_ms: int = 2000) -> LoadResult
 ```
 
-##### load_for_task
+#### load_for_task
 
-Load knowledge optimized for a specific task type.
+Load context optimized for a specific task type.
 
 ```python
 async def load_for_task(
     task_type: TaskType,
-    token_budget: int = 4000,
-    timeout_ms: int = 5000
+    token_budget: int = 4000
 ) -> LoadResult
 ```
 
-**Parameters:**
+### 4.2 LoadResult
 
-| Parameter      | Type       | Default  | Description   |
-|----------------|------------|----------|---------------|
-| `task_type`    | `TaskType` | required | Type of task  |
-| `token_budget` | `int`      | `4000`   | Max tokens    |
-| `timeout_ms`   | `int`      | `5000`   | Timeout in ms |
-
----
-
-### LoadResult
-
-Result object returned by loader methods.
+Result object from loading operations.
 
 ```python
 @dataclass
 class LoadResult:
     content: str
     metadata: LoadMetadata
-    complete: bool
-    error: str | None
 ```
 
-**Attributes:**
+### 4.3 LoadMetadata
 
-| Attribute  | Type           | Description            |
-|------------|----------------|------------------------|
-| `content`  | `str`          | Loaded content         |
-| `metadata` | `LoadMetadata` | Load metadata          |
-| `complete` | `bool`         | Whether load completed |
-| `error`    | `str \| None`  | Error message if any   |
-
----
-
-### LoadMetadata
-
-Metadata about the load operation.
+Metadata about load operation.
 
 ```python
 @dataclass
@@ -166,28 +157,26 @@ class LoadMetadata:
     layer: str
     files_loaded: int
     load_time_ms: int
-    from_cache: bool
     token_count: int
+    from_cache: bool
 ```
 
 ---
 
-### SAGEConfig
+## 5. Configuration
 
-Configuration class for SAGE.
+### 5.1 SAGEConfig
+
+Configuration object for SAGE operations.
 
 ```python
 from sage.core.config import SAGEConfig, get_config
 
-# Get default config
+# Load from default location
 config = get_config()
 
-# Custom config
-config = SAGEConfig(
-    knowledge_base_path="./content",
-    timeout_t3=2000,
-    cache_enabled=True
-)
+# Load from custom path
+config = SAGEConfig.from_file("custom/config.yaml")
 ```
 
 **Key Attributes:**
@@ -204,278 +193,28 @@ config = SAGEConfig(
 
 ---
 
-## Search API
-
-### KnowledgeSearcher
-
-Search the knowledge base.
-
-```python
-from sage.core.search import KnowledgeSearcher
-
-searcher = KnowledgeSearcher()
-```
-
-#### Methods
-
-##### search
-
-Search for content.
-
-```python
-async def search(
-    query: str,
-    limit: int = 10,
-    layer: str | None = None,
-    timeout_ms: int = 2000
-) -> SearchResult
-```
-
-**Parameters:**
-
-| Parameter    | Type  | Default  | Description     |
-|--------------|-------|----------|-----------------|
-| `query`      | `str` | required | Search query    |
-| `limit`      | `int` | `10`     | Max results     |
-| `layer`      | `str` | `None`   | Filter by layer |
-| `timeout_ms` | `int` | `2000`   | Timeout in ms   |
-
-**Returns:** `SearchResult`
-
----
-
-### SearchResult
-
-Search result object.
-
-```python
-@dataclass
-class SearchResult:
-    results: list[SearchHit]
-    total: int
-    query_time_ms: int
-```
-
-### SearchHit
-
-Individual search hit.
-
-```python
-@dataclass
-class SearchHit:
-    path: str
-    title: str
-    snippet: str
-    score: float
-```
-
----
-
-## Events
-
-### EventBus
-
-Pub/sub system for decoupled communication.
-
-```python
-from sage.core.events import EventBus, Event
-
-bus = EventBus()
-
-# Subscribe to events
-@bus.subscribe("knowledge.loaded")
-async def on_load(event: Event):
-    print(f"Loaded: {event.data}")
-
-# Publish events
-await bus.publish(Event(
-    type="knowledge.loaded",
-    data={"layer": "core"}
-))
-```
-
----
-
-## Enums
-
-### TaskType
-
-Task types for context loading.
-
-```python
-from sage.domain.knowledge import TaskType
-
-
-class TaskType(Enum):
-    CODING = "coding"
-    DEBUGGING = "debugging"
-    REVIEWING = "reviewing"
-    PLANNING = "planning"
-    DOCUMENTING = "documenting"
-```
-
-### TimeoutLevel
-
-Timeout levels.
-
-```python
-from sage.core.timeout import TimeoutLevel
-
-class TimeoutLevel(Enum):
-    T1 = 100    # Cache lookup
-    T2 = 500    # Single file
-    T3 = 2000   # Layer load
-    T4 = 5000   # Full KB
-    T5 = 10000  # Complex analysis
-```
-
----
-
-## Exceptions
-
-### SAGEError
-
-Base exception for all SAGE errors.
-
-```python
-from sage.core.exceptions import SAGEError
-
-try:
-    result = await loader.load("invalid")
-except SAGEError as e:
-    print(f"Error: {e}")
-```
-
-### TimeoutError
-
-Raised when operation exceeds timeout.
-
-```python
-from sage.core.exceptions import TimeoutError
-
-try:
-    result = await loader.load("all", timeout_ms=100)
-except TimeoutError as e:
-    print(f"Timeout at level {e.level}: {e.elapsed_ms}ms")
-    # Use fallback content
-    print(e.partial_result)
-```
-
-### NotFoundError
-
-Raised when content is not found.
-
-```python
-from sage.core.exceptions import NotFoundError
-
-try:
-    result = await loader.load("core", topic="nonexistent")
-except NotFoundError as e:
-    print(f"Not found: {e.path}")
-```
-
----
-
-## Context Managers
-
-### timeout_context
-
-Context manager for timeout protection.
-
-```python
-from sage.core.timeout import timeout_context
-
-async with timeout_context(TimeoutLevel.T3) as ctx:
-    result = await long_operation()
-    if ctx.remaining_ms < 100:
-        # Running low on time
-        return partial_result
-```
-
----
-
-## Usage Examples
-
-### Basic Loading
-
-```python
-from sage.core.loader import KnowledgeLoader
-
-loader = KnowledgeLoader()
-
-# Load different layers
-core = await loader.load("core")
-guidelines = await loader.load("guidelines")
-frameworks = await loader.load("frameworks")
-
-# Load specific topic
-python_guide = await loader.load("guidelines", topic="python")
-```
-
-### Task-Based Loading
-
-```python
-from sage.core.loader import KnowledgeLoader
-from sage.domain.knowledge import TaskType
-
-loader = KnowledgeLoader()
-
-# Load context for coding task
-context = await loader.load_for_task(
-    task_type=TaskType.CODING,
-    token_budget=4000
-)
-
-print(f"Loaded {context.metadata.token_count} tokens")
-```
-
-### Search with Filters
-
-```python
-from sage.core.search import KnowledgeSearcher
-
-searcher = KnowledgeSearcher()
-
-# Basic search
-results = await searcher.search("timeout")
-
-# Search specific layer
-results = await searcher.search(
-    "pattern",
-    layer="frameworks",
-    limit=5
-)
-
-for hit in results.results:
-    print(f"{hit.title}: {hit.snippet}")
-```
-
-### Error Handling
-
-```python
-from sage.core.loader import KnowledgeLoader
-from sage.core.exceptions import SAGEError, TimeoutError
-
-loader = KnowledgeLoader()
-
-try:
-    result = await loader.load("all", timeout_ms=1000)
-except TimeoutError as e:
-    # Use partial result
-    print(f"Partial load: {e.partial_result.content[:100]}...")
-except SAGEError as e:
-    print(f"Error: {e}")
-```
+## 6. Advanced Topics
+
+For advanced features, see [Python API Advanced Reference](python_advanced.md):
+
+| Topic            | Description                        |
+|------------------|------------------------------------|
+| Search API       | KnowledgeSearcher and SearchResult |
+| Events           | EventBus pub/sub system            |
+| Enums            | TaskType and TimeoutLevel          |
+| Exceptions       | SAGEError, TimeoutError, etc.      |
+| Context Managers | timeout_context                    |
+| Usage Examples   | Complete code examples             |
 
 ---
 
 ## Related
 
-- [API Index](index.md) — API overview
-- [CLI Reference](cli.md) — CLI documentation
-- [MCP Protocol](mcp.md) — MCP server
-- `docs/design/01-architecture.md` — Architecture design
+- `docs/api/python_advanced.md` — Advanced Python API
+- `docs/api/index.md` — API overview
+- `docs/api/mcp.md` — MCP protocol reference
+- `docs/guides/quickstart.md` — Quick start guide
 
 ---
 
-*SAGE Knowledge Base - Python API Reference*
+*Part of SAGE Knowledge Base*

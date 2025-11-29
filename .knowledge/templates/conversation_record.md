@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~1000
+---
+
 # Conversation Record Template
 
 > **Purpose**: Document AI collaboration sessions with key decisions and learnings

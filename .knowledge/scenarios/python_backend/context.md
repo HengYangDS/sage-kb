@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~1350
+---
+
 # Python Backend Scenario Context
 
 > Pre-configured context for Python backend development

@@ -1,0 +1,150 @@
+# =============================================================================
+# SAGE Knowledge Base - Feature Flags Configuration
+# =============================================================================
+# This file controls feature availability across the application.
+# Features can be enabled/disabled without code changes.
+#
+# Status values:
+#   - enabled: Feature is active and available
+#   - disabled: Feature is inactive
+#   - experimental: Feature is in testing (requires SAGE_FEATURE_EXPERIMENTAL=true)
+#   - deprecated: Feature will be removed in future versions
+
+version: "1.0"
+last_updated: "2025-11-30"
+
+# =============================================================================
+# Core Features
+# =============================================================================
+core:
+  # Knowledge loading and management
+  knowledge_loading:
+    status: enabled
+    description: "Core knowledge loading functionality"
+    
+  # Smart loading with token budgets
+  smart_loading:
+    status: enabled
+    description: "Token-aware content loading"
+    config:
+      default_budget: 8000
+      max_budget: 32000
+      
+  # Event bus for inter-service communication
+  event_bus:
+    status: enabled
+    description: "Async pub/sub message broker"
+    
+  # Dependency injection container
+  di_container:
+    status: enabled
+    description: "YAML-driven dependency injection"
+
+# =============================================================================
+# Service Features
+# =============================================================================
+services:
+  # CLI service
+  cli:
+    status: enabled
+    description: "Command-line interface"
+    commands:
+      - get
+      - search
+      - info
+      - serve
+      - analyze
+      - check
+      
+  # MCP service
+  mcp:
+    status: enabled
+    description: "Model Context Protocol server"
+    config:
+      default_port: 8080
+      
+  # REST API service
+  api:
+    status: experimental
+    description: "HTTP REST API"
+    config:
+      default_port: 8000
+
+# =============================================================================
+# Capability Features
+# =============================================================================
+capabilities:
+  # Content analyzers
+  analyzers:
+    quality_analyzer:
+      status: enabled
+      description: "Document quality analysis"
+    content_analyzer:
+      status: enabled
+      description: "Content structure analysis"
+      
+  # Checkers
+  checkers:
+    link_checker:
+      status: enabled
+      description: "Cross-reference link validation"
+    style_checker:
+      status: experimental
+      description: "Documentation style checking"
+      
+  # Monitors
+  monitors:
+    health_monitor:
+      status: enabled
+      description: "System health monitoring"
+
+# =============================================================================
+# Plugin Features
+# =============================================================================
+plugins:
+  # Plugin system itself
+  plugin_system:
+    status: enabled
+    description: "Dynamic plugin loading"
+    
+  # Bundled plugins
+  bundled:
+    timeout_plugin:
+      status: enabled
+      description: "Timeout management plugin"
+    logging_plugin:
+      status: enabled
+      description: "Structured logging plugin"
+    memory_plugin:
+      status: enabled
+      description: "Memory persistence plugin"
+
+# =============================================================================
+# Experimental Features
+# =============================================================================
+experimental:
+  # AI autonomy levels
+  autonomy_system:
+    status: experimental
+    description: "L1-L6 autonomy level management"
+    
+  # Cognitive enhancement
+  cognitive_patterns:
+    status: experimental
+    description: "Expert committee and chain-of-thought patterns"
+    
+  # Auto-optimization
+  auto_optimization:
+    status: disabled
+    description: "Automatic token and performance optimization"
+
+# =============================================================================
+# Deprecated Features
+# =============================================================================
+deprecated:
+  # Legacy loader (to be removed in v0.2.0)
+  legacy_loader:
+    status: deprecated
+    description: "Old synchronous loader"
+    removal_version: "0.2.0"
+    migration_guide: "Use smart_loading instead"

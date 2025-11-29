@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~1750
+---
+
 # Feature Flag Patterns
 
 > Feature flag design principles and best practices

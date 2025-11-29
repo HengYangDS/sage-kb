@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~2650
+---
+
 # Security Practices
 
 > Security best practices for Python applications and knowledge systems

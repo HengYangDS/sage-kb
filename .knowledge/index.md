@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~800
+---
+
 # Knowledge Base Navigation
 
 > Entry point for SAGE knowledge content
@@ -21,11 +28,11 @@
 | **Guidelines** | `guidelines/` | Code style, engineering, AI collaboration | 15    |
 | **Frameworks** | `frameworks/` | Autonomy, timeout, cognitive patterns     | 23    |
 | **Practices**  | `practices/`  | Documentation, engineering, decisions     | 35    |
-| **References** | `references/` | Quick reference guides and checklists     | 2     |
+| **References** | `references/` | Quick reference guides and checklists     | 4     |
 | **Scenarios**  | `scenarios/`  | Context-specific guides                   | 23    |
-| **Templates**  | `templates/`  | Reusable document templates               | 14    |
+| **Templates**  | `templates/`  | Reusable document templates               | 17    |
 
-**Total**: ~116 knowledge files
+**Total**: ~125 knowledge files
 
 ---
 

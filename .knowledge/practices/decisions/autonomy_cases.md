@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~800
+---
+
 # Autonomy Decision Cases
 
 > Concrete examples for autonomy level decisions

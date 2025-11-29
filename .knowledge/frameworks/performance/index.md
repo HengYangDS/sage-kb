@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~1450
+---
+
 # Performance Framework
 
 > Optimization patterns and best practices for high-performance systems

@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~2800
+---
+
 # DevOps Scenario Context
 
 > Pre-configured context for CI/CD, infrastructure, and operations

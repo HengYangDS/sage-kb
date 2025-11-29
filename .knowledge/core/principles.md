@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~500
+---
+
 # Core Principles - 信达雅 · 术法道
 
 > Foundational philosophy for AI collaboration

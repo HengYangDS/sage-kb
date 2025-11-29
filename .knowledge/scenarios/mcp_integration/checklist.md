@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~450
+---
+
 # MCP Integration Checklist
 
 > Task checklist for Model Context Protocol (MCP) server and client integration

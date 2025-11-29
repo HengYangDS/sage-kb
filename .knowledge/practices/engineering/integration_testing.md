@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~3150
+---
+
 # Integration Testing
 
 > Best practices for testing component interactions and system integration

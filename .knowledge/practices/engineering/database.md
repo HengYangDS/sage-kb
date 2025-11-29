@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~1350
+---
+
 # Database Best Practices
 
 > Guidelines for effective database design and usage

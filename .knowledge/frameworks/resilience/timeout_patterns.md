@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~1100
+---
+
 # Timeout Design Patterns
 
 > Universal timeout and resilience patterns for system design

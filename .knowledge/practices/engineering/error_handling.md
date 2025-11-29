@@ -1,3 +1,10 @@
+---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~850
+---
+
 # Error Handling Patterns
 
 > Consistent error handling for robust applications
