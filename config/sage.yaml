@@ -21,10 +21,14 @@ includes:
   - config/core/logging.yaml
   - config/core/memory.yaml
   - config/core/di.yaml
+  - config/core/security.yaml          # NEW: Security & authentication
+  - config/core/metrics.yaml           # NEW: Metrics & monitoring
+  - config/core/tracing.yaml           # NEW: Distributed tracing
   # Service layer
   - config/services/cli.yaml
   - config/services/mcp.yaml
   - config/services/api.yaml
+  - config/services/websocket.yaml     # NEW: WebSocket service
   # Knowledge management
   - config/knowledge/content.yaml
   - config/knowledge/loading.yaml
@@ -38,6 +42,20 @@ includes:
   - config/capabilities/autonomy.yaml
   - config/capabilities/quality.yaml
   - config/capabilities/documentation.yaml
+
+# =============================================================================
+# Environment Configuration
+# =============================================================================
+# Environment-specific overrides are loaded based on SAGE_ENV variable.
+# Default: development
+# Options: development | production | testing
+#
+# To use: Set SAGE_ENV=production before running SAGE
+# The corresponding file (config/environments/production.yaml) will be loaded
+# and override base configuration values.
+environment:
+  default: development
+  config_dir: config/environments
 
 # =============================================================================
 # Metadata (kept in main file for quick reference)

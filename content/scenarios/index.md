@@ -12,13 +12,16 @@
 
 ## 1. Available Scenarios
 
-| Scenario                | Path                    | Tokens | Context                          |
-|-------------------------|-------------------------|--------|----------------------------------|
-| **Python Backend**      | `python_backend/`       | ~200   | Python web service development   |
-| **TypeScript Frontend** | `typescript_frontend/`  | ~300   | React/Vue frontend development   |
-| **Data Pipeline**       | `data_pipeline/`        | ~400   | ETL and data processing workflows|
-| **DevOps**              | `devops/`               | ~400   | CI/CD and infrastructure         |
-| **Documentation**       | `documentation/`        | ~300   | Technical writing projects       |
+| Scenario                  | Path                      | Tokens | Context                           |
+|---------------------------|---------------------------|--------|-----------------------------------|
+| **Python Backend**        | `python_backend/`         | ~200   | Python web service development    |
+| **TypeScript Frontend**   | `typescript_frontend/`    | ~300   | React/Vue frontend development    |
+| **Data Pipeline**         | `data_pipeline/`          | ~400   | ETL and data processing workflows |
+| **DevOps**                | `devops/`                 | ~400   | CI/CD and infrastructure          |
+| **Documentation**         | `documentation/`          | ~300   | Technical writing projects        |
+| **Knowledge Management**  | `knowledge_management/`   | ~300   | Knowledge base system development |
+| **MCP Integration**       | `mcp_integration/`        | ~400   | Model Context Protocol services   |
+| **Plugin Development**    | `plugin_development/`     | ~400   | SAGE plugin development           |
 
 ---
 

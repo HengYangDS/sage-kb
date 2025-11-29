@@ -30,27 +30,35 @@ config/
 ├── sage.yaml           # Main configuration entry point
 ├── index.md            # This documentation
 ├── capabilities/       # Capability configurations
-│   ├── autonomy.yaml   # Autonomy level settings
+│   ├── autonomy.yaml   # Autonomy level settings (+ risk assessment, audit)
 │   ├── documentation.yaml # Documentation generation
 │   ├── features.yaml   # Feature flags
-│   ├── plugins.yaml    # Plugin system
+│   ├── plugins.yaml    # Plugin system (+ sandbox, health check)
 │   └── quality.yaml    # Quality checks
 ├── core/               # Core infrastructure
 │   ├── di.yaml         # Dependency injection
-│   ├── logging.yaml    # Logging configuration
+│   ├── logging.yaml    # Logging configuration (+ sampling, aggregation)
 │   ├── memory.yaml     # Memory persistence
-│   └── timeout.yaml    # Timeout settings (T1-T5)
+│   ├── metrics.yaml    # Metrics & monitoring (NEW)
+│   ├── security.yaml   # Security & authentication (NEW)
+│   ├── timeout.yaml    # Timeout settings (+ retry, degradation)
+│   └── tracing.yaml    # Distributed tracing (NEW)
+├── environments/       # Environment-specific overrides (NEW)
+│   ├── development.yaml # Development environment
+│   ├── production.yaml  # Production environment
+│   └── testing.yaml     # Testing environment
 ├── knowledge/          # Knowledge management
-│   ├── content.yaml    # Content directories
+│   ├── content.yaml    # Content directories (+ versioning, preprocessing)
 │   ├── guidelines.yaml # Guidelines mapping
 │   ├── loading.yaml    # Smart loading
 │   ├── search.yaml     # Search configuration
 │   ├── token_budget.yaml # Token budgets
 │   └── triggers.yaml   # Keyword triggers
 └── services/           # Service layer
-    ├── api.yaml        # HTTP REST API
+    ├── api.yaml        # HTTP REST API (+ SSL, compression, versioning)
     ├── cli.yaml        # Command-line interface
-    └── mcp.yaml        # MCP protocol
+    ├── mcp.yaml        # MCP protocol (+ connection, resources)
+    └── websocket.yaml  # WebSocket service (NEW)
 ```
 
 ---
@@ -67,38 +75,50 @@ config/
 
 | File | Purpose |
 |------|---------|
-| `api.yaml` | HTTP REST API service settings |
+| `api.yaml` | HTTP REST API service (SSL/TLS, compression, versioning, tracing) |
 | `cli.yaml` | Command-line interface settings |
-| `mcp.yaml` | MCP protocol service settings |
+| `mcp.yaml` | MCP protocol service (connection, resources, rate limiting) |
+| `websocket.yaml` | WebSocket real-time service **(NEW)** |
 
 ### 3.3 Core (`core/`)
 
 | File | Purpose |
 |------|---------|
 | `di.yaml` | Dependency injection container settings |
-| `logging.yaml` | Structured logging configuration |
+| `logging.yaml` | Structured logging (sampling, redaction, aggregation) |
 | `memory.yaml` | Memory persistence settings |
-| `timeout.yaml` | Timeout hierarchy (T1-T5) settings |
+| `metrics.yaml` | Metrics & monitoring (Prometheus, alerting) **(NEW)** |
+| `security.yaml` | Security & authentication (auth, secrets, validation) **(NEW)** |
+| `timeout.yaml` | Timeout hierarchy (retry, graceful degradation) |
+| `tracing.yaml` | Distributed tracing (OpenTelemetry) **(NEW)** |
 
-### 3.4 Knowledge (`knowledge/`)
+### 3.4 Environments (`environments/`) **(NEW)**
 
 | File | Purpose |
 |------|---------|
-| `content.yaml` | Content directory configuration |
+| `development.yaml` | Development environment overrides (verbose logging, no cache) |
+| `production.yaml` | Production environment (security, metrics, optimization) |
+| `testing.yaml` | Testing environment (minimal, in-memory, fast) |
+
+### 3.5 Knowledge (`knowledge/`)
+
+| File | Purpose |
+|------|---------|
+| `content.yaml` | Content management (versioning, compression, preprocessing) |
 | `guidelines.yaml` | Guidelines section mapping |
 | `loading.yaml` | Smart loading strategies |
 | `search.yaml` | Search functionality settings |
 | `token_budget.yaml` | Token budget per layer |
 | `triggers.yaml` | Keyword triggers for auto-loading |
 
-### 3.5 Capabilities (`capabilities/`)
+### 3.6 Capabilities (`capabilities/`)
 
 | File | Purpose |
 |------|---------|
-| `autonomy.yaml` | Autonomy level configuration |
+| `autonomy.yaml` | Autonomy levels (risk assessment, audit, guardrails) |
 | `documentation.yaml` | Documentation generation settings |
 | `features.yaml` | Feature flags (enable/disable) |
-| `plugins.yaml` | Plugin system configuration |
+| `plugins.yaml` | Plugin system (sandbox, health check, lifecycle) |
 | `quality.yaml` | Quality check settings |
 
 ---
