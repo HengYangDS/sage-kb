@@ -1,6 +1,6 @@
 # Quick Reference Card
 
-> **Load Priority**: Always Load (~150 tokens)  
+> **Load Priority**: Always Load   
 > **Purpose**: Critical questions and autonomy levels at a glance
 
 ---
