@@ -14,6 +14,7 @@
 
 ```
 sage-kb/
+├── .backups/        # Backup files (hidden, git-ignored)
 ├── .context/        # Project-specific knowledge (hidden)
 ├── .history/        # AI session history (hidden)
 ├── .archive/        # Historical archives (hidden)
@@ -23,6 +24,7 @@ sage-kb/
 ├── config/          # Runtime configuration
 │   ├── capabilities/  # Feature and plugin configs
 │   ├── core/          # Core infrastructure configs
+│   ├── environments/  # Environment-specific configs
 │   ├── knowledge/     # Knowledge management configs
 │   ├── services/      # Service layer configs
 │   └── sage.yaml      # Main configuration entry
@@ -51,9 +53,11 @@ sage-kb/
 |------------------------|----------------------------------------------------|----------------------|
 | `config/`              | Runtime configuration (modular YAML structure)     | Visible              |
 | `config/core/`         | Core infrastructure (timeout, logging, memory, DI) | Visible              |
+| `config/environments/` | Environment-specific configs (dev, prod, test)     | Visible              |
 | `config/services/`     | Service layer (CLI, MCP, API)                      | Visible              |
 | `config/knowledge/`    | Knowledge management (content, loading, search)    | Visible              |
 | `config/capabilities/` | Features and plugins (autonomy, quality)           | Visible              |
+| `.backups/`            | Backup files                                       | Hidden (git-ignored) |
 | `.logs/`               | Runtime log files                                  | Hidden (git-ignored) |
 | `.outputs/`            | Intermediate process files                         | Hidden (git-ignored) |
 
@@ -114,6 +118,9 @@ sage info              # Show system information
 - `content/index.md` — Knowledge content navigation
 - `.context/index.md` — Project context navigation
 - `config/index.md` — Configuration documentation
+- `docs/index.md` — User documentation navigation
+- `.history/index.md` — Session history navigation
+- `.archive/index.md` — Archive navigation
 
 ---
 

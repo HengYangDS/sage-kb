@@ -141,11 +141,32 @@ GitHub Actions workflows:
 
 ## Documentation
 
-See `docs/design/` for comprehensive design documents:
+See `docs/` for comprehensive documentation:
 
-- `00-overview.md` - Project overview
-- `01-architecture.md` - Architecture design
-- `07-roadmap.md` - Implementation roadmap
+### Design Documents (`docs/design/`)
+
+- `00-overview.md` — Project overview
+- `01-architecture.md` — Three-layer architecture
+- `02-sage-protocol.md` — SAGE protocol specification
+- `03-services.md` — Service layer design
+- `04-timeout-loading.md` — Timeout hierarchy and smart loading
+- `05-plugin-memory.md` — Plugin system and memory
+- `06-content-structure.md` — Knowledge content organization
+- `07-roadmap.md` — Implementation roadmap
+- `08-evaluation.md` — Evaluation criteria
+- `09-configuration.md` — Configuration management
+
+### API Reference (`docs/api/`)
+
+- `cli.md` — Command-line interface
+- `mcp.md` — MCP (Model Context Protocol) API
+- `python.md` — Python SDK reference
+
+### User Guides (`docs/guides/`)
+
+- `quickstart.md` — Quick start guide
+- `configuration.md` — Configuration guide
+- `plugin_development.md` — Plugin development
 
 ## License
 

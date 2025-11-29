@@ -40,12 +40,14 @@ and smart loading.
 
 ```
 sage-kb/
+├── .backups/        # Backup files (git-ignored)
 ├── .junie/          # JetBrains Junie configuration (this directory)
 ├── .context/        # Project-specific knowledge base
 ├── .history/        # AI session history and handoffs
 ├── .archive/        # Historical archives
 ├── .logs/           # Runtime log files (git-ignored)
 ├── .outputs/        # Intermediate process files (git-ignored)
+├── config/          # Runtime configuration (modular YAML)
 ├── docs/            # User-facing documentation
 ├── content/         # Generic knowledge (distributable)
 ├── src/sage/        # Source code (3-layer architecture)
@@ -57,12 +59,14 @@ sage-kb/
 
 | Directory   | Purpose                                        | Visibility |
 |-------------|------------------------------------------------|------------|
+| `.backups/` | Backup files                                   | Hidden     |
 | `.junie/`   | AI client config for JetBrains Junie           | Hidden     |
 | `.context/` | Project-specific knowledge (ADRs, conventions) | Hidden     |
 | `.history/` | AI session records and task handoffs           | Hidden     |
 | `.archive/` | Historical/deprecated content                  | Hidden     |
 | `.logs/`    | Runtime log files                              | Hidden     |
 | `.outputs/` | Intermediate process files                     | Hidden     |
+| `config/`   | Runtime configuration (modular YAML structure) | Visible    |
 | `docs/`     | User-facing documentation                      | Visible    |
 | `content/`  | Generic, distributable knowledge               | Visible    |
 
@@ -156,11 +160,13 @@ For complex decisions, simulate a **Level 5 Expert Committee** review with:
 ## 🔗 References
 
 - **Design Documents**: @file:docs/design/00-overview.md
+- **Documentation Index**: @file:docs/index.md
 - **Configuration**: @file:config/sage.yaml
 - **Project Context**: @file:.context/index.md
+- **Knowledge Content**: @file:content/index.md
 - **Directory Conventions**: @file:content/practices/documentation/project_directory_structure.md
 - **Timeout Hierarchy**: @file:.context/configurations/timeout_hierarchy.md
-- **Knowledge Content**: @file:content/core/principles.md
+- **Core Principles**: @file:content/core/principles.md
 
 ---
 
