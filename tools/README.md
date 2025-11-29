@@ -1,310 +1,372 @@
-# Development Tools
+# SAGE Development Tools
 
-> Utility tools for SAGE Knowledge Base development and operations
+> Utilities and scripts for SAGE Knowledge Base development
 
 ---
 
 ## Table of Contents
 
-[1. Overview](#1-overview) · [2. Tool Reference](#2-tool-reference) · [3. Usage Examples](#3-usage-examples) · [4. Development](#4-development)
+[1. Overview](#1-overview) · [2. Development Scripts](#2-development-scripts) · [3. Knowledge Graph](#3-knowledge-graph) · [4. Monitors](#4-monitors) · [5. Migration Toolkit](#5-migration-toolkit) · [6. Timeout Manager](#6-timeout-manager)
 
 ---
 
 ## 1. Overview
 
-This directory contains development and operational tools for the SAGE Knowledge Base project.
-
-### 1.1 Tool Categories
-
-| Category | Directory | Purpose |
-|----------|-----------|---------|
-| **Core Tools** | `tools/` | Main utility scripts |
-| **Dev Scripts** | `tools/dev_scripts/` | Development environment setup |
-| **Knowledge Graph** | `tools/knowledge_graph/` | Knowledge structure analysis |
-| **Monitors** | `tools/monitors/` | Runtime monitoring |
-
-### 1.2 Quick Reference
-
-| Tool | Command | Purpose |
-|------|---------|---------|
-| Timeout Manager | `python -m tools.timeout_manager` | Manage timeout configurations |
-| Migration Toolkit | `python -m tools.migration_toolkit` | Migrate content and configs |
-| Knowledge Graph | `python -m tools.knowledge_graph` | Build knowledge graphs |
-| Timeout Monitor | `python -m tools.monitors.timeout_monitor` | Monitor timeout events |
-| Dev Setup | `python -m tools.dev_scripts.setup_dev` | Set up development environment |
-
----
-
-## 2. Tool Reference
-
-### 2.1 timeout_manager.py
-
-**Purpose**: Manage and configure timeout settings across the application.
-
-**Features**:
-- Configure timeout levels (T1-T5)
-- Test timeout behavior
-- Generate timeout reports
-
-**Usage**:
-
-```python
-from tools.timeout_manager import TimeoutManager
-
-manager = TimeoutManager()
-manager.configure(level="T3", timeout_ms=2000)
-manager.test_timeout("loader")
 ```
-
-**CLI**:
-
-```bash
-# Configure timeout
-python -m tools.timeout_manager configure --level T3 --timeout 2000
-
-# Test timeout
-python -m tools.timeout_manager test --component loader
-
-# Generate report
-python -m tools.timeout_manager report
+tools/
+├── dev_scripts/
+│   └── setup_dev.py          # Development environment setup
+├── knowledge_graph/
+│   └── knowledge_graph_builder.py  # Knowledge graph visualization
+├── monitors/
+│   └── timeout_monitor.py    # Real-time timeout monitoring
+├── migration_toolkit.py      # Content migration utilities
+└── timeout_manager.py        # Timeout testing and tuning
 ```
 
 ---
 
-### 2.2 migration_toolkit.py
+## 2. Development Scripts
 
-**Purpose**: Migrate content, configurations, and data between versions.
+### setup_dev.py
 
-**Features**:
-- Content migration between directory structures
-- Configuration format upgrades
-- Backup and restore functionality
+Sets up the development environment with all necessary dependencies and configurations.
 
-**Usage**:
-
-```python
-from tools.migration_toolkit import MigrationToolkit
-
-toolkit = MigrationToolkit()
-toolkit.migrate_content(source="old/content", target="new/content")
-toolkit.upgrade_config(config_path="config/sage.yaml")
-```
-
-**CLI**:
-
-```bash
-# Migrate content
-python -m tools.migration_toolkit migrate --source old/ --target new/
-
-# Upgrade configuration
-python -m tools.migration_toolkit upgrade --config config/sage.yaml
-
-# Create backup
-python -m tools.migration_toolkit backup --output .backups/
-```
-
----
-
-### 2.3 knowledge_graph/knowledge_graph_builder.py
-
-**Purpose**: Build and analyze knowledge graph structures from content.
-
-**Features**:
-- Parse markdown files for relationships
-- Generate graph visualization data
-- Identify orphan nodes and missing links
-
-**Usage**:
-
-```python
-from tools.knowledge_graph import KnowledgeGraphBuilder
-
-builder = KnowledgeGraphBuilder(content_dir="content/")
-graph = builder.build()
-builder.export_json("knowledge_graph.json")
-builder.find_orphans()
-```
-
-**CLI**:
-
-```bash
-# Build graph
-python -m tools.knowledge_graph build --content content/
-
-# Export to JSON
-python -m tools.knowledge_graph export --format json --output graph.json
-
-# Find orphan nodes
-python -m tools.knowledge_graph analyze --check orphans
-```
-
----
-
-### 2.4 monitors/timeout_monitor.py
-
-**Purpose**: Monitor timeout events and performance in real-time.
-
-**Features**:
-- Real-time timeout event tracking
-- Performance metrics collection
-- Alert on threshold breaches
-
-**Usage**:
-
-```python
-from tools.monitors import TimeoutMonitor
-
-monitor = TimeoutMonitor()
-monitor.start()
-monitor.on_timeout(callback=handle_timeout)
-monitor.get_metrics()
-```
-
-**CLI**:
-
-```bash
-# Start monitoring
-python -m tools.monitors.timeout_monitor start
-
-# Get metrics
-python -m tools.monitors.timeout_monitor metrics
-
-# Set alert threshold
-python -m tools.monitors.timeout_monitor alert --threshold 100
-```
-
----
-
-### 2.5 dev_scripts/setup_dev.py
-
-**Purpose**: Set up development environment with all required dependencies and configurations.
-
-**Features**:
-- Install development dependencies
-- Configure pre-commit hooks
-- Set up local configuration files
-- Verify environment setup
-
-**Usage**:
+**Usage:**
 
 ```bash
 # Full setup
-python -m tools.dev_scripts.setup_dev
+python tools/dev_scripts/setup_dev.py
 
-# Install dependencies only
-python -m tools.dev_scripts.setup_dev --deps-only
+# Setup with options
+python tools/dev_scripts/setup_dev.py --skip-hooks  # Skip pre-commit hooks
+python tools/dev_scripts/setup_dev.py --minimal     # Minimal setup
+python tools/dev_scripts/setup_dev.py --reset       # Reset to clean state
+```
 
-# Configure hooks only
-python -m tools.dev_scripts.setup_dev --hooks-only
+**What it does:**
 
-# Verify setup
-python -m tools.dev_scripts.setup_dev --verify
+1. Creates virtual environment (if not exists)
+2. Installs all dependencies (`pip install -e ".[dev]"`)
+3. Sets up pre-commit hooks
+4. Creates necessary directories (`.logs/`, `.outputs/`, `.cache/`)
+5. Validates configuration files
+6. Runs initial test suite
+
+**Environment Variables:**
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `SAGE_DEV_VENV` | Virtual environment path | `.venv` |
+| `SAGE_DEV_SKIP_TESTS` | Skip initial tests | `false` |
+
+---
+
+## 3. Knowledge Graph
+
+### knowledge_graph_builder.py
+
+Builds and visualizes the knowledge graph from content files.
+
+**Usage:**
+
+```bash
+# Build graph from content directory
+python tools/knowledge_graph/knowledge_graph_builder.py
+
+# With options
+python tools/knowledge_graph/knowledge_graph_builder.py \
+    --source content/ \
+    --output .outputs/knowledge_graph.json \
+    --format json
+
+# Generate visualization
+python tools/knowledge_graph/knowledge_graph_builder.py \
+    --visualize \
+    --output .outputs/graph.html
+```
+
+**Features:**
+
+- **Node extraction**: Identifies knowledge nodes from markdown files
+- **Relationship mapping**: Detects cross-references and dependencies
+- **Clustering**: Groups related content by topic
+- **Export formats**: JSON, GraphML, DOT, HTML visualization
+
+**Output Formats:**
+
+| Format | File | Use Case |
+|--------|------|----------|
+| JSON | `graph.json` | API consumption |
+| GraphML | `graph.graphml` | Graph analysis tools |
+| DOT | `graph.dot` | Graphviz visualization |
+| HTML | `graph.html` | Interactive web view |
+
+**Example Output (JSON):**
+
+```json
+{
+  "nodes": [
+    {
+      "id": "core/principles",
+      "label": "Core Principles",
+      "type": "content",
+      "layer": "core",
+      "tokens": 450
+    }
+  ],
+  "edges": [
+    {
+      "source": "guidelines/python",
+      "target": "core/principles",
+      "type": "references"
+    }
+  ]
+}
 ```
 
 ---
 
-## 3. Usage Examples
+## 4. Monitors
 
-### 3.1 Setting Up Development Environment
+### timeout_monitor.py
+
+Real-time monitoring of timeout events and circuit breaker status.
+
+**Usage:**
 
 ```bash
-# Clone repository
+# Start monitoring
+python tools/monitors/timeout_monitor.py
+
+# With options
+python tools/monitors/timeout_monitor.py \
+    --interval 1000 \      # Update interval in ms
+    --level T2 \           # Filter by timeout level
+    --output .logs/timeouts.log
+
+# Dashboard mode
+python tools/monitors/timeout_monitor.py --dashboard
+```
+
+**Dashboard Output:**
+
+```
+╔══════════════════════════════════════════════════════════════╗
+║                    SAGE Timeout Monitor                       ║
+╠══════════════════════════════════════════════════════════════╣
+║ Level │ Threshold │ Current │ Avg (1m) │ Timeouts │ Status   ║
+╠═══════╪═══════════╪═════════╪══════════╪══════════╪══════════╣
+║ T1    │ 100ms     │ 45ms    │ 52ms     │ 0        │ ✓ OK     ║
+║ T2    │ 500ms     │ 230ms   │ 280ms    │ 2        │ ✓ OK     ║
+║ T3    │ 2s        │ 1.2s    │ 1.4s     │ 0        │ ✓ OK     ║
+║ T4    │ 5s        │ 3.1s    │ 3.5s     │ 1        │ ⚠ WARN   ║
+║ T5    │ 10s       │ --      │ --       │ 0        │ ✓ OK     ║
+╠══════════════════════════════════════════════════════════════╣
+║ Circuit Breaker: CLOSED │ Failures: 1/3 │ Recovery: --       ║
+╚══════════════════════════════════════════════════════════════╝
+```
+
+**Alerts:**
+
+```bash
+# Configure alerts
+python tools/monitors/timeout_monitor.py \
+    --alert-threshold 5 \    # Alert after 5 timeouts
+    --alert-email admin@example.com
+```
+
+---
+
+## 5. Migration Toolkit
+
+### migration_toolkit.py
+
+Utilities for migrating content between versions and formats.
+
+**Usage:**
+
+```bash
+# Check migration status
+python tools/migration_toolkit.py status
+
+# Migrate content structure
+python tools/migration_toolkit.py migrate \
+    --from-version 0.0.x \
+    --to-version 0.1.0
+
+# Validate migrated content
+python tools/migration_toolkit.py validate
+
+# Rollback if needed
+python tools/migration_toolkit.py rollback --to-backup backup_20251129
+```
+
+**Migration Commands:**
+
+| Command | Description |
+|---------|-------------|
+| `status` | Show current version and pending migrations |
+| `migrate` | Run migration to target version |
+| `validate` | Validate content after migration |
+| `rollback` | Revert to previous backup |
+| `backup` | Create manual backup before migration |
+
+**Example Migration:**
+
+```bash
+# Step 1: Check what needs migrating
+python tools/migration_toolkit.py status
+# Output: Current: 0.0.9, Target: 0.1.0, Pending: 3 migrations
+
+# Step 2: Create backup
+python tools/migration_toolkit.py backup --name pre-migration
+
+# Step 3: Run migration
+python tools/migration_toolkit.py migrate --to-version 0.1.0
+
+# Step 4: Validate
+python tools/migration_toolkit.py validate
+# Output: ✓ All content valid
+
+# Step 5: If issues, rollback
+python tools/migration_toolkit.py rollback --to-backup pre-migration
+```
+
+**Migration Types:**
+
+- **Structure**: Directory reorganization
+- **Format**: Markdown frontmatter changes
+- **Config**: Configuration file updates
+- **Index**: Search index rebuilding
+
+---
+
+## 6. Timeout Manager
+
+### timeout_manager.py
+
+Testing and tuning utility for timeout configurations.
+
+**Usage:**
+
+```bash
+# Run timeout tests
+python tools/timeout_manager.py test
+
+# Benchmark operations
+python tools/timeout_manager.py benchmark \
+    --operation file_read \
+    --iterations 100
+
+# Tune timeouts based on benchmarks
+python tools/timeout_manager.py tune \
+    --target-percentile 95 \
+    --output config/core/timeout.yaml
+
+# Stress test
+python tools/timeout_manager.py stress \
+    --duration 60s \
+    --concurrency 10
+```
+
+**Test Output:**
+
+```
+Timeout Level Tests
+═══════════════════════════════════════════════════════════════
+Level │ Operation      │ Threshold │ P50    │ P95    │ P99    │ Result
+──────┼────────────────┼───────────┼────────┼────────┼────────┼────────
+T1    │ cache_lookup   │ 100ms     │ 12ms   │ 45ms   │ 78ms   │ ✓ PASS
+T2    │ file_read      │ 500ms     │ 120ms  │ 340ms  │ 480ms  │ ✓ PASS
+T3    │ layer_load     │ 2000ms    │ 850ms  │ 1600ms │ 1900ms │ ✓ PASS
+T4    │ full_load      │ 5000ms    │ 2100ms │ 3800ms │ 4500ms │ ✓ PASS
+T5    │ analysis       │ 10000ms   │ 4200ms │ 7500ms │ 9200ms │ ✓ PASS
+═══════════════════════════════════════════════════════════════
+Overall: 5/5 PASSED
+```
+
+**Tuning Recommendations:**
+
+```bash
+python tools/timeout_manager.py tune --recommend
+# Output:
+# Recommended timeout adjustments:
+#   T1: 100ms → 80ms   (headroom: 22ms)
+#   T2: 500ms → 400ms  (headroom: 60ms)
+#   T3: 2000ms → 1800ms (headroom: 200ms)
+#   T4: No change recommended
+#   T5: No change recommended
+```
+
+---
+
+## Common Workflows
+
+### Setting Up Development
+
+```bash
+# 1. Clone and setup
 git clone https://github.com/HengYangDS/sage-kb.git
 cd sage-kb
+python tools/dev_scripts/setup_dev.py
 
-# Run setup script
-python -m tools.dev_scripts.setup_dev
-
-# Verify installation
-python -m tools.dev_scripts.setup_dev --verify
+# 2. Verify setup
+sage info
+pytest tests/ -v --tb=short
 ```
 
-### 3.2 Migrating Content
+### Analyzing Knowledge Structure
 
 ```bash
-# Create backup first
-python -m tools.migration_toolkit backup --output .backups/pre-migration/
+# 1. Build knowledge graph
+python tools/knowledge_graph/knowledge_graph_builder.py --visualize
 
-# Run migration
-python -m tools.migration_toolkit migrate --source old/ --target content/
-
-# Verify migration
-python -m tools.knowledge_graph analyze --check orphans
+# 2. Open visualization
+open .outputs/graph.html  # or start on Windows
 ```
 
-### 3.3 Monitoring Performance
+### Performance Tuning
 
 ```bash
-# Start timeout monitor in background
-python -m tools.monitors.timeout_monitor start --daemon
+# 1. Benchmark current performance
+python tools/timeout_manager.py benchmark --all
 
-# Run your application
-sage serve
+# 2. Start monitoring
+python tools/monitors/timeout_monitor.py --dashboard &
 
-# Check metrics
-python -m tools.monitors.timeout_monitor metrics
+# 3. Run workload
+sage get core guidelines frameworks
+
+# 4. Get tuning recommendations
+python tools/timeout_manager.py tune --recommend
 ```
 
----
-
-## 4. Development
-
-### 4.1 Adding New Tools
-
-1. Create tool module in appropriate directory
-2. Add `__init__.py` exports
-3. Update this README
-4. Add tests in `tests/tools/`
-
-### 4.2 Tool Structure
-
-```python
-"""
-Tool Name
-
-Purpose: Brief description
-Author: Your Name
-"""
-
-from typing import Optional
-
-class ToolName:
-    """Main tool class."""
-    
-    def __init__(self, config: Optional[dict] = None):
-        self.config = config or {}
-    
-    def run(self) -> None:
-        """Execute main functionality."""
-        pass
-
-def main() -> None:
-    """CLI entry point."""
-    tool = ToolName()
-    tool.run()
-
-if __name__ == "__main__":
-    main()
-```
-
-### 4.3 Testing Tools
+### Content Migration
 
 ```bash
-# Run tool tests
-pytest tests/tools/ -v
+# 1. Check status
+python tools/migration_toolkit.py status
 
-# Test specific tool
-pytest tests/tools/test_timeout_manager.py -v
+# 2. Backup
+python tools/migration_toolkit.py backup
+
+# 3. Migrate
+python tools/migration_toolkit.py migrate --to-version X.Y.Z
+
+# 4. Validate
+python tools/migration_toolkit.py validate
 ```
 
 ---
 
 ## Related
 
-- `docs/guides/quickstart.md` — Getting started guide
-- `docs/design/00-overview.md` — Architecture overview
-- `.context/configurations/` — Configuration documentation
+- `docs/guides/advanced.md` — Advanced usage guide
+- `docs/design/04-timeout-loading.md` — Timeout design
+- `config/core/timeout.yaml` — Timeout configuration
+- `tests/performance/` — Performance tests
 
 ---
 
-*Part of SAGE Knowledge Base*
+*SAGE Knowledge Base - Development Tools*

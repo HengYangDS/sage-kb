@@ -30,3 +30,129 @@ content:
     require_frontmatter: false         # Require YAML frontmatter
     max_file_size_kb: 500              # Maximum file size in KB
     encoding: "utf-8"                  # File encoding
+
+  # ===========================================================================
+  # Content Versioning
+  # ===========================================================================
+  versioning:
+    enabled: false                     # Enable content versioning
+    strategy: timestamp                # timestamp | hash | semantic
+    max_versions: 5                    # Maximum versions to keep per file
+
+    # Version storage
+    storage:
+      location: ".versions"            # Version storage directory
+      compress_old: true               # Compress old versions
+
+    # Tracking
+    track_changes: true                # Track content changes
+    track_author: false                # Track who made changes
+    track_timestamp: true              # Track when changes were made
+
+  # ===========================================================================
+  # Content Compression
+  # ===========================================================================
+  compression:
+    enabled: false                     # Enable content compression
+    algorithm: gzip                    # gzip | lz4 | zstd
+    level: 6                           # Compression level (1-9)
+
+    # Compression thresholds
+    min_size_bytes: 1024               # Don't compress files smaller than 1KB
+    max_size_bytes: 10485760           # Don't compress files larger than 10MB
+
+    # File type exclusions
+    exclude_types:
+      - ".jpg"
+      - ".png"
+      - ".gif"
+      - ".zip"
+
+  # ===========================================================================
+  # Content Preprocessing
+  # ===========================================================================
+  preprocessing:
+    enabled: true                      # Enable preprocessing
+
+    # Text normalization
+    normalize_whitespace: true         # Normalize whitespace
+    trim_trailing_whitespace: true     # Remove trailing whitespace
+    ensure_final_newline: true         # Ensure file ends with newline
+    normalize_line_endings: true       # Normalize to LF
+
+    # Markdown processing
+    markdown:
+      strip_html_comments: true        # Remove HTML comments
+      resolve_includes: true           # Resolve @include directives
+      expand_references: true          # Expand @file: references
+      normalize_headers: false         # Normalize header levels
+
+    # Link processing
+    links:
+      validate_internal: true          # Validate internal links
+      resolve_relative: true           # Resolve relative paths
+      check_external: false            # Check external links (slow)
+
+  # ===========================================================================
+  # Content Indexing
+  # ===========================================================================
+  indexing:
+    enabled: true                      # Enable content indexing
+    rebuild_on_change: true            # Rebuild index on content change
+
+    # Index configuration
+    index:
+      type: inverted                   # inverted | vector | hybrid
+      storage: memory                  # memory | file | database
+
+    # Tokenization
+    tokenization:
+      lowercase: true                  # Convert to lowercase
+      remove_punctuation: true         # Remove punctuation
+      min_token_length: 2              # Minimum token length
+      max_token_length: 50             # Maximum token length
+
+    # Stop words
+    stop_words:
+      enabled: true
+      languages:
+        - en
+        - zh
+
+  # ===========================================================================
+  # Content Transformation
+  # ===========================================================================
+  transformation:
+    enabled: false                     # Enable content transformation
+
+    # Template expansion
+    templates:
+      enabled: true
+      syntax: jinja2                   # jinja2 | mustache
+      strict_undefined: false          # Error on undefined variables
+
+    # Variable substitution
+    variables:
+      enabled: true
+      prefix: "${"                     # Variable prefix
+      suffix: "}"                      # Variable suffix
+      env_prefix: "SAGE_"              # Environment variable prefix
+
+  # ===========================================================================
+  # Content Metadata
+  # ===========================================================================
+  metadata:
+    # Extract metadata from content
+    extract:
+      frontmatter: true                # Extract YAML frontmatter
+      headers: true                    # Extract headers as structure
+      links: true                      # Extract links
+      code_blocks: true                # Extract code blocks
+
+    # Required metadata fields
+    required_fields: []                # e.g., ["title", "description"]
+
+    # Default metadata values
+    defaults:
+      author: "SAGE"
+      version: "1.0"

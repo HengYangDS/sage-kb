@@ -44,3 +44,162 @@ autonomy:
       upgrade: 0.95                    # Success rate > 95% to upgrade
       maintain_min: 0.85               # Success rate 85-95% to maintain
       downgrade: 0.70                  # Success rate < 70% to downgrade
+
+  # ===========================================================================
+  # Risk Assessment Configuration
+  # ===========================================================================
+  risk_assessment:
+    enabled: true                      # Enable risk assessment
+
+    # High-risk actions requiring confirmation
+    high_risk_actions:
+      - file_delete                    # Deleting files
+      - file_overwrite                 # Overwriting existing files
+      - config_change                  # Modifying configuration
+      - dependency_add                 # Adding new dependencies
+      - dependency_remove              # Removing dependencies
+      - database_modify                # Database modifications
+      - api_call_external              # External API calls
+      - permission_change              # Changing permissions
+
+    # Medium-risk actions (logged, may require confirmation at lower levels)
+    medium_risk_actions:
+      - file_create                    # Creating new files
+      - file_rename                    # Renaming files
+      - code_refactor                  # Code refactoring
+      - test_modify                    # Modifying tests
+
+    # Low-risk actions (proceed without confirmation)
+    low_risk_actions:
+      - file_read                      # Reading files
+      - search                         # Searching content
+      - format                         # Formatting code
+      - comment                        # Adding comments
+
+    # Risk thresholds by autonomy level
+    thresholds:
+      L1:
+        require_confirmation: all      # All actions require confirmation
+      L2:
+        require_confirmation: high_medium  # High and medium risk
+      L3:
+        require_confirmation: high     # Only high risk
+      L4:
+        require_confirmation: critical # Only critical (subset of high)
+      L5:
+        require_confirmation: none     # No confirmation needed
+      L6:
+        require_confirmation: none
+
+    # Critical actions (always require confirmation regardless of level)
+    critical_actions:
+      - production_deploy              # Production deployment
+      - security_config_change         # Security configuration changes
+      - data_migration                 # Data migration
+      - bulk_delete                    # Bulk delete operations
+
+  # ===========================================================================
+  # Audit Logging Configuration
+  # ===========================================================================
+  audit:
+    enabled: true                      # Enable audit logging
+
+    # What to log
+    log_decisions: true                # Log autonomy decisions
+    log_overrides: true                # Log when user overrides AI decision
+    log_escalations: true              # Log when AI escalates to user
+    log_actions: true                  # Log all actions taken
+
+    # Retention
+    retention_days: 90                 # Keep audit logs for 90 days
+
+    # Storage
+    storage:
+      backend: file                    # file | database | external
+      path: ".logs/audit"              # Audit log directory
+      format: jsonl                    # json | jsonl | csv
+
+    # Log detail level
+    detail_level: standard             # minimal | standard | verbose
+
+    # Fields to include
+    include_fields:
+      - timestamp
+      - action_type
+      - risk_level
+      - autonomy_level
+      - decision
+      - outcome
+      - user_override
+      - context_summary
+
+    # Sensitive field handling
+    redact_sensitive: true             # Redact sensitive information
+    sensitive_fields:
+      - password
+      - token
+      - secret
+      - api_key
+
+  # ===========================================================================
+  # Feedback Loop Configuration
+  # ===========================================================================
+  feedback:
+    enabled: true                      # Enable feedback collection
+
+    # Automatic feedback
+    auto_collect: true                 # Automatically collect outcome feedback
+    success_indicators:                # How to determine success
+      - task_completed
+      - no_errors
+      - user_accepted
+
+    # User feedback
+    prompt_for_feedback: false         # Prompt user for feedback
+    feedback_options:
+      - correct
+      - partially_correct
+      - incorrect
+      - skipped
+
+    # Learning from feedback
+    learning:
+      enabled: true                    # Enable learning from feedback
+      min_samples: 10                  # Minimum samples before adjusting
+      adjustment_weight: 0.1           # Weight of new feedback
+
+  # ===========================================================================
+  # Guardrails Configuration
+  # ===========================================================================
+  guardrails:
+    enabled: true                      # Enable guardrails
+
+    # Action limits
+    limits:
+      max_files_per_operation: 10      # Max files to modify in one operation
+      max_lines_changed: 500           # Max lines to change
+      max_deletions: 100               # Max lines to delete
+
+    # Scope restrictions
+    scope:
+      allowed_directories:             # Empty = all allowed
+        - "src/"
+        - "tests/"
+        - "docs/"
+        - "config/"
+      forbidden_directories:
+        - ".git/"
+        - "node_modules/"
+        - "__pycache__/"
+      forbidden_files:
+        - ".env"
+        - "secrets.yaml"
+        - "credentials.json"
+
+    # Time-based restrictions
+    time_restrictions:
+      enabled: false
+      quiet_hours:                     # Require confirmation during these hours
+        start: "22:00"
+        end: "06:00"
+        timezone: "local"

@@ -25,3 +25,132 @@ logging:
     sage.services: INFO
     sage.plugins: WARNING
     sage.capabilities: INFO
+
+  # ===========================================================================
+  # Log Sampling (for high-traffic scenarios)
+  # ===========================================================================
+  sampling:
+    enabled: false                     # Enable log sampling
+    rate: 0.1                          # Sample 10% of logs at sampled levels
+    sampled_levels:                    # Levels to apply sampling to
+      - DEBUG
+      - TRACE
+    # Never sample these levels
+    never_sample:
+      - ERROR
+      - CRITICAL
+      - WARNING
+
+  # ===========================================================================
+  # Sensitive Data Redaction
+  # ===========================================================================
+  redaction:
+    enabled: true                      # Enable sensitive data redaction
+    replacement: "[REDACTED]"          # Replacement string
+    # Patterns to redact (case-insensitive)
+    patterns:
+      - password
+      - passwd
+      - secret
+      - token
+      - api_key
+      - apikey
+      - auth
+      - credential
+      - private_key
+    # Additional regex patterns
+    regex_patterns:
+      - "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}\\b"  # Email
+      - "\\b\\d{4}[- ]?\\d{4}[- ]?\\d{4}[- ]?\\d{4}\\b"           # Credit card
+    # Fields to always redact
+    redact_fields:
+      - password
+      - secret
+      - token
+      - authorization
+
+  # ===========================================================================
+  # Log Aggregation (external log services)
+  # ===========================================================================
+  aggregation:
+    enabled: false                     # Enable log aggregation
+
+    # Elasticsearch configuration
+    elasticsearch:
+      enabled: false
+      hosts:
+        - "http://localhost:9200"
+      index_prefix: "sage-logs"
+      index_pattern: "daily"           # daily | weekly | monthly
+      bulk_size: 100                   # Batch size for bulk indexing
+      flush_interval_seconds: 5
+
+    # Loki configuration (Grafana)
+    loki:
+      enabled: false
+      url: "http://localhost:3100/loki/api/v1/push"
+      tenant_id: ""
+      batch_size: 100
+      flush_interval_seconds: 1
+      labels:
+        app: sage-kb
+        environment: development
+
+    # Splunk configuration
+    splunk:
+      enabled: false
+      hec_url: ""                      # HTTP Event Collector URL
+      token_env: "SPLUNK_HEC_TOKEN"    # Environment variable for token
+      index: "sage"
+      source: "sage-kb"
+      sourcetype: "_json"
+
+    # AWS CloudWatch Logs
+    cloudwatch:
+      enabled: false
+      region: "us-east-1"
+      log_group: "/sage/logs"
+      log_stream_prefix: "sage-kb-"
+      batch_size: 100
+
+  # ===========================================================================
+  # Log Enrichment
+  # ===========================================================================
+  enrichment:
+    enabled: true
+    # Add these fields to all log records
+    static_fields:
+      service: sage-kb
+      version: "0.1.0"
+    # Dynamic fields (computed at runtime)
+    dynamic_fields:
+      hostname: true                   # Add hostname
+      process_id: true                 # Add process ID
+      thread_name: false               # Add thread name
+
+  # ===========================================================================
+  # Log Filtering
+  # ===========================================================================
+  filtering:
+    enabled: false
+    # Exclude logs matching these patterns
+    exclude_patterns:
+      - "health check"
+      - "ping"
+      - "metrics"
+    # Exclude logs from these loggers
+    exclude_loggers:
+      - "urllib3.connectionpool"
+      - "asyncio"
+
+  # ===========================================================================
+  # Performance Logging
+  # ===========================================================================
+  performance:
+    enabled: true
+    # Log slow operations
+    slow_threshold_ms: 1000            # Log operations slower than 1s
+    # Include timing information
+    include_timing: true
+    # Log memory usage
+    include_memory: false

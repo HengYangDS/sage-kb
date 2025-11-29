@@ -51,3 +51,90 @@ plugins:
       max_results: 20                  # Maximum search results
       score_threshold: 0.1             # Minimum relevance score
       use_stemming: false              # Enable basic stemming
+
+  # ===========================================================================
+  # Plugin Sandbox Configuration
+  # ===========================================================================
+  sandbox:
+    enabled: true                      # Enable plugin sandboxing
+    timeout_ms: 5000                   # Plugin execution timeout
+    max_memory_mb: 128                 # Maximum memory per plugin
+
+    # Allowed imports for plugins
+    allowed_imports:
+      - typing
+      - dataclasses
+      - pathlib
+      - collections
+      - functools
+      - itertools
+      - re
+      - json
+      - datetime
+      - enum
+      - abc
+
+    # Blocked operations
+    blocked_operations:
+      - file_write                     # Block file writes
+      - network_access                 # Block network access
+      - subprocess                     # Block subprocess execution
+      - eval                           # Block eval/exec
+
+    # Resource limits
+    limits:
+      max_cpu_time_seconds: 5          # CPU time limit
+      max_file_descriptors: 10         # Open file limit
+      max_threads: 4                   # Thread limit
+
+  # ===========================================================================
+  # Plugin Health Check Configuration
+  # ===========================================================================
+  health_check:
+    enabled: true                      # Enable plugin health checks
+    interval_seconds: 60               # Check interval
+    timeout_ms: 2000                   # Health check timeout
+    failure_threshold: 3               # Failures before marking unhealthy
+    recovery_threshold: 2              # Successes before marking healthy
+
+    # Actions on unhealthy plugins
+    on_unhealthy:
+      disable_plugin: true             # Disable unhealthy plugins
+      notify: true                     # Send notification
+      auto_restart: true               # Attempt auto-restart
+      max_restart_attempts: 3          # Maximum restart attempts
+
+  # ===========================================================================
+  # Plugin Priority Configuration
+  # ===========================================================================
+  priority:
+    # Lower number = higher priority (executed first)
+    content_cache: 1                   # Cache should run first
+    semantic_search: 2                 # Search after cache
+    # Default priority for unlisted plugins
+    default: 10
+
+  # ===========================================================================
+  # Plugin Lifecycle Configuration
+  # ===========================================================================
+  lifecycle:
+    # Startup behavior
+    startup:
+      parallel: true                   # Load plugins in parallel
+      timeout_ms: 10000                # Total startup timeout
+      fail_fast: false                 # Stop on first failure
+
+    # Shutdown behavior
+    shutdown:
+      timeout_ms: 5000                 # Graceful shutdown timeout
+      order: reverse_priority          # Shutdown in reverse priority order
+
+  # ===========================================================================
+  # Plugin Metrics Configuration
+  # ===========================================================================
+  metrics:
+    enabled: true                      # Enable plugin metrics
+    track_execution_time: true         # Track execution time
+    track_memory_usage: true           # Track memory usage
+    track_error_rate: true             # Track error rate
+    track_call_count: true             # Track call count

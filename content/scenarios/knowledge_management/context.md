@@ -1,12 +1,12 @@
 # Knowledge Management Scenario Context
 
-> Pre-configured context for building knowledge management systems
+> Pre-configured context for knowledge management system development
 
 ---
 
 ## Table of Contents
 
-[1. Scenario Profile](#1-scenario-profile) · [2. Relevant Knowledge](#2-relevant-knowledge) · [3. Project Structure](#3-project-structure) · [4. Knowledge Architecture](#4-knowledge-architecture) · [5. Content Patterns](#5-content-patterns) · [6. Search & Retrieval](#6-search--retrieval) · [7. Common Tasks](#7-common-tasks) · [8. Autonomy Calibration](#8-autonomy-calibration)
+[1. Scenario Profile](#1-scenario-profile) · [2. Relevant Knowledge](#2-relevant-knowledge) · [3. Project Structure](#3-project-structure) · [4. Knowledge Architecture](#4-knowledge-architecture) · [5. Content Patterns](#5-content-patterns) · [6. Common Tasks](#6-common-tasks) · [7. Autonomy Calibration](#7-autonomy-calibration) · [8. Quick Commands](#8-quick-commands)
 
 ---
 
@@ -14,9 +14,9 @@
 
 ```yaml
 scenario: knowledge_management
-languages: [ python, markdown, yaml ]
-tools: [ sage, fastapi, elasticsearch, vector-db ]
-focus: [ knowledge-organization, search, retrieval, taxonomy ]
+languages: [ markdown, yaml, python ]
+tools: [ sage, mkdocs, sphinx, obsidian ]
+focus: [ content-organization, taxonomy, search, ai-integration ]
 autonomy_default: L3
 ```
 
@@ -24,24 +24,24 @@ autonomy_default: L3
 
 ## 2. Relevant Knowledge
 
-| Priority | Files |
-|----------|-------|
-| **Auto-Load** | `core/principles.md` · `practices/documentation/knowledge_organization.md` · `frameworks/cognitive/knowledge_layers.md` |
-| **On-Demand** | `practices/documentation/standards.md` · `practices/ai_collaboration/knowledge_extraction.md` |
+| Priority      | Files                                                                                               |
+|---------------|-----------------------------------------------------------------------------------------------------|
+| **Auto-Load** | `core/principles.md` · `practices/documentation/knowledge_organization.md` · `frameworks/design/` |
+| **On-Demand** | `practices/documentation/standards.md` · `practices/ai_collaboration/knowledge_extraction.md`      |
 
 ---
 
 ## 3. Project Structure
 
-| Directory | Purpose |
-|-----------|---------|
-| `content/` | Knowledge content repository |
-| `config/knowledge/` | Knowledge loading configuration |
-| `src/knowledge/` | Knowledge processing logic |
-| `src/search/` | Search and retrieval services |
-| `src/indexing/` | Content indexing |
-| `taxonomies/` | Category and tag definitions |
-| `schemas/` | Content schemas and validation |
+| Directory      | Purpose                          |
+|----------------|----------------------------------|
+| `content/`     | Generic, reusable knowledge      |
+| `.context/`    | Project-specific knowledge       |
+| `docs/`        | User-facing documentation        |
+| `config/`      | Configuration files              |
+| `.history/`    | Session history and handoffs     |
+| `templates/`   | Document templates               |
+| `schemas/`     | Content validation schemas       |
 
 ---
 
@@ -50,57 +50,47 @@ autonomy_default: L3
 ### 4.1 Layer Model
 
 ```
-┌─────────────────────────────────────────┐
-│              Presentation               │
-│    (CLI, API, MCP, Web Interface)       │
-├─────────────────────────────────────────┤
-│              Services                   │
-│   (Search, Retrieval, Transformation)   │
-├─────────────────────────────────────────┤
-│              Core                       │
-│   (Loading, Indexing, Caching)          │
-├─────────────────────────────────────────┤
-│              Storage                    │
-│   (Files, Database, Vector Store)       │
-└─────────────────────────────────────────┘
+┌─────────────────────────────────────┐
+│           Core Layer                │  ← Fundamental concepts
+│    (Principles, Concepts)           │     Always loaded first
+├─────────────────────────────────────┤
+│         Guidelines Layer            │  ← Standards & rules
+│    (Standards, Conventions)         │     High priority
+├─────────────────────────────────────┤
+│        Frameworks Layer             │  ← Patterns & structures
+│    (Patterns, Architectures)        │     Medium priority
+├─────────────────────────────────────┤
+│         Practices Layer             │  ← Implementation guides
+│    (How-tos, Workflows)             │     On-demand loading
+└─────────────────────────────────────┘
 ```
 
-### 4.2 Content Hierarchy
+### 4.2 Content Types
 
-```
-knowledge_base/
-├── core/              # Foundational concepts (highest priority)
-│   ├── principles.md
-│   └── concepts.md
-├── guidelines/        # Standards and conventions
-│   ├── writing.md
-│   └── formatting.md
-├── frameworks/        # Reusable structures
-│   ├── taxonomy/
-│   └── templates/
-├── practices/         # Implementation guides
-│   ├── workflows/
-│   └── processes/
-└── reference/         # Reference materials
-    ├── glossary.md
-    └── index.md
-```
+| Type | Purpose | Format |
+|------|---------|--------|
+| **Principle** | Fundamental truth or belief | Declarative statement |
+| **Concept** | Abstract idea or notion | Definition + examples |
+| **Guideline** | Recommended practice | Rule + rationale |
+| **Pattern** | Reusable solution | Problem → Solution → Consequences |
+| **Practice** | Step-by-step guide | Procedure + tips |
+| **Reference** | Lookup information | Tables, lists |
 
 ### 4.3 Metadata Schema
 
 ```yaml
-# Document metadata structure
-metadata:
-  title: string           # Document title
-  description: string     # Brief description
-  layer: enum             # core|guidelines|frameworks|practices|reference
-  tags: list[string]      # Searchable tags
-  priority: int           # Loading priority (1-5)
-  auto_load: bool         # Load on startup
-  tokens: int             # Estimated token count
-  updated: date           # Last modification date
-  author: string          # Content author
-  version: string         # Content version
+# Standard frontmatter
+---
+title: Document Title
+layer: core | guidelines | frameworks | practices
+tags: [ tag1, tag2, tag3 ]
+priority: 1-5
+auto_load: true | false
+tokens: ~500
+created: YYYY-MM-DD
+updated: YYYY-MM-DD
+author: Name or AI
+---
 ```
 
 ---
@@ -110,9 +100,9 @@ metadata:
 ### 5.1 Document Template
 
 ```markdown
-# Document Title
+# Title
 
-> Brief one-line description
+> One-line description
 
 ---
 
@@ -126,221 +116,190 @@ metadata:
 
 ### 1.1 Subsection
 
-Content with structure...
+Content...
 
 ---
 
 ## Related
 
-- Related document links
+- Related doc 1
+- Related doc 2
 
 ---
 
-*Part of Knowledge Base - Category*
+*Part of [Knowledge Base Name]*
 ```
 
-### 5.2 Knowledge Extraction Pattern
+### 5.2 Index Pattern
 
-```python
-from dataclasses import dataclass
-from typing import List, Optional
+```markdown
+# Category Index
 
-@dataclass
-class KnowledgeItem:
-    """Extracted knowledge item."""
-    id: str
-    title: str
-    content: str
-    layer: str
-    tags: List[str]
-    metadata: dict
-    embeddings: Optional[List[float]] = None
+> Navigation for [category] knowledge
 
-class KnowledgeExtractor:
-    """Extract structured knowledge from documents."""
-    
-    async def extract(self, path: str) -> KnowledgeItem:
-        content = await self.load_content(path)
-        metadata = self.parse_frontmatter(content)
-        
-        return KnowledgeItem(
-            id=self.generate_id(path),
-            title=metadata.get("title", self.extract_title(content)),
-            content=self.clean_content(content),
-            layer=metadata.get("layer", "practices"),
-            tags=metadata.get("tags", []),
-            metadata=metadata
-        )
+---
+
+## Quick Links
+
+| Document | Purpose | Tokens |
+|----------|---------|--------|
+| [Doc 1](doc1.md) | Description | ~200 |
+| [Doc 2](doc2.md) | Description | ~300 |
+
+---
+
+## By Topic
+
+### Topic A
+- Document 1
+- Document 2
+
+### Topic B
+- Document 3
+
+---
+
+*Index for [Knowledge Base Name]*
 ```
 
-### 5.3 Indexing Pattern
+### 5.3 Cross-Reference Pattern
 
-```python
-from typing import Protocol, List
+```markdown
+## References
 
-class IndexProtocol(Protocol):
-    """Knowledge index protocol."""
-    
-    async def add(self, item: KnowledgeItem) -> None:
-        """Add item to index."""
-        ...
-    
-    async def search(self, query: str, limit: int = 10) -> List[KnowledgeItem]:
-        """Search index."""
-        ...
-    
-    async def get_by_layer(self, layer: str) -> List[KnowledgeItem]:
-        """Get all items in layer."""
-        ...
+### Internal
+- `content/core/principles.md` — Core principles
+- `content/practices/workflow.md` — Implementation guide
 
-class InMemoryIndex:
-    """Simple in-memory index implementation."""
-    
-    def __init__(self):
-        self._items: dict[str, KnowledgeItem] = {}
-        self._by_layer: dict[str, list[str]] = {}
-    
-    async def add(self, item: KnowledgeItem) -> None:
-        self._items[item.id] = item
-        self._by_layer.setdefault(item.layer, []).append(item.id)
-    
-    async def search(self, query: str, limit: int = 10) -> List[KnowledgeItem]:
-        query_lower = query.lower()
-        results = [
-            item for item in self._items.values()
-            if query_lower in item.title.lower() 
-            or query_lower in item.content.lower()
-        ]
-        return results[:limit]
+### External
+- [External Resource](https://example.com) — Description
+
+### Related Decisions
+- ADR-0001: Architecture decision
 ```
 
 ---
 
-## 6. Search & Retrieval
+## 6. Common Tasks
 
-### 6.1 Search Strategies
+| Task                        | Steps                                                           |
+|-----------------------------|-----------------------------------------------------------------|
+| **Add knowledge content**   | Choose layer → Create file → Add metadata → Link in index       |
+| **Reorganize structure**    | Analyze current → Plan changes → Update links → Verify          |
+| **Create taxonomy**         | Identify concepts → Define hierarchy → Apply tags → Document    |
+| **Improve discoverability** | Add metadata → Create indexes → Enhance cross-refs              |
+| **Integrate with AI**       | Define context → Configure loading → Test retrieval             |
+| **Quality audit**           | Check completeness → Verify links → Validate format             |
 
-| Strategy | Use Case | Implementation |
-|----------|----------|----------------|
-| **Keyword** | Exact matches | Full-text search |
-| **Semantic** | Conceptual similarity | Vector embeddings |
-| **Hybrid** | Best of both | Combined scoring |
-| **Faceted** | Filtered browsing | Metadata filters |
+### 6.1 Adding New Knowledge
 
-### 6.2 Vector Search Integration
+```bash
+# 1. Create content file
+touch content/practices/new_topic/guide.md
 
-```python
-from typing import List
-import numpy as np
+# 2. Add content with metadata
+# (Use standard template)
 
-class VectorSearch:
-    """Vector-based semantic search."""
-    
-    def __init__(self, embedding_model):
-        self.model = embedding_model
-        self.vectors: List[np.ndarray] = []
-        self.items: List[KnowledgeItem] = []
-    
-    async def add(self, item: KnowledgeItem) -> None:
-        embedding = await self.model.embed(item.content)
-        self.vectors.append(embedding)
-        self.items.append(item)
-    
-    async def search(self, query: str, k: int = 5) -> List[KnowledgeItem]:
-        query_vec = await self.model.embed(query)
-        similarities = [
-            np.dot(query_vec, vec) / (np.linalg.norm(query_vec) * np.linalg.norm(vec))
-            for vec in self.vectors
-        ]
-        top_indices = np.argsort(similarities)[-k:][::-1]
-        return [self.items[i] for i in top_indices]
+# 3. Update layer index
+# Edit content/practices/index.md
+
+# 4. Verify integration
+sage search "new topic"
 ```
 
-### 6.3 Query Processing
+### 6.2 Knowledge Extraction Workflow
 
-```python
-from dataclasses import dataclass
-from typing import List, Optional
+```
+1. Source Identification
+   └── Identify knowledge source (docs, code, conversations)
 
-@dataclass
-class SearchQuery:
-    """Structured search query."""
-    text: str
-    layers: Optional[List[str]] = None
-    tags: Optional[List[str]] = None
-    limit: int = 10
-    offset: int = 0
+2. Content Extraction
+   └── Extract key information
+   └── Identify patterns and principles
 
-class QueryProcessor:
-    """Process and optimize search queries."""
-    
-    def parse(self, raw_query: str) -> SearchQuery:
-        """Parse raw query string into structured query."""
-        # Extract layer filters: layer:core
-        layers = self._extract_filter(raw_query, "layer")
-        
-        # Extract tag filters: tag:python
-        tags = self._extract_filter(raw_query, "tag")
-        
-        # Clean query text
-        text = self._clean_query(raw_query)
-        
-        return SearchQuery(text=text, layers=layers, tags=tags)
-    
-    def _extract_filter(self, query: str, prefix: str) -> List[str]:
-        import re
-        pattern = f"{prefix}:(\\w+)"
-        return re.findall(pattern, query)
+3. Structuring
+   └── Choose appropriate layer
+   └── Apply document template
+   └── Add metadata
+
+4. Integration
+   └── Link to related content
+   └── Update indexes
+   └── Verify searchability
+
+5. Validation
+   └── Review for accuracy
+   └── Check for completeness
+   └── Test AI retrieval
 ```
 
 ---
 
-## 7. Common Tasks
+## 7. Autonomy Calibration
 
-| Task | Steps |
-|------|-------|
-| **Add knowledge** | Create document → Add metadata → Index → Verify search |
-| **Update taxonomy** | Define categories → Update schemas → Reindex → Test |
-| **Build search** | Choose strategy → Implement index → Add ranking → Optimize |
-| **Export knowledge** | Select scope → Transform format → Validate → Package |
-| **Migrate content** | Map structure → Transform → Validate → Import |
-
----
-
-## 8. Autonomy Calibration
-
-| Task Type | Level | Notes |
-|-----------|-------|-------|
-| Add new document | L4 | Follow templates |
-| Update metadata | L5 | Low risk |
-| Modify taxonomy | L2 | Affects organization |
-| Change search algorithm | L2 | Affects retrieval quality |
-| Update templates | L3 | Verify consistency |
-| Bulk import | L2 | Review before commit |
-| Schema changes | L1-L2 | Breaking change potential |
+| Task Type                    | Level | Notes                              |
+|------------------------------|-------|-------------------------------------|
+| Fix typos in content         | L5    | Low risk, routine                   |
+| Add new content file         | L3-L4 | Follow templates                    |
+| Reorganize structure         | L2-L3 | May affect navigation               |
+| Change taxonomy              | L2    | Cross-cutting impact                |
+| Modify metadata schema       | L1-L2 | Affects all content                 |
+| Update core principles       | L1    | Fundamental changes                 |
+| Create new layer             | L1    | Architecture decision               |
 
 ---
 
-## 9. Quality Checklist
+## 8. Quick Commands
 
-| Area | Check |
-|------|-------|
-| **Structure** | Consistent hierarchy, clear navigation |
-| **Metadata** | Complete, accurate, up-to-date |
-| **Content** | Clear, concise, actionable |
-| **Links** | Valid references, no broken links |
-| **Search** | Relevant results, good ranking |
-| **Performance** | Fast loading, efficient indexing |
+| Category      | Commands                                                     |
+|---------------|--------------------------------------------------------------|
+| **Search**    | `sage search "query"` · `grep -r "pattern" content/`         |
+| **Validate**  | `sage validate --all` · `markdownlint content/`              |
+| **Index**     | `sage index --rebuild` · `find content -name "*.md"`         |
+| **Statistics**| `sage info --layers` · `wc -l content/**/*.md`               |
+
+---
+
+## Best Practices
+
+### Content Organization
+
+| Practice | Description |
+|----------|-------------|
+| **Single Responsibility** | Each document covers one topic |
+| **Appropriate Granularity** | Not too broad, not too narrow |
+| **Consistent Naming** | Follow naming conventions |
+| **Rich Metadata** | Enable discovery and filtering |
+| **Cross-References** | Connect related content |
+
+### Knowledge Quality
+
+| Dimension | Criteria |
+|-----------|----------|
+| **Accuracy** | Factually correct, up-to-date |
+| **Completeness** | Covers topic adequately |
+| **Clarity** | Easy to understand |
+| **Consistency** | Follows standards |
+| **Discoverability** | Easy to find |
+
+### AI Integration
+
+| Aspect | Consideration |
+|--------|---------------|
+| **Token Budget** | Estimate and document token count |
+| **Loading Priority** | Set appropriate auto_load flags |
+| **Context Relevance** | Tag content for scenario-based loading |
+| **Chunking** | Structure for partial retrieval |
 
 ---
 
 ## Related
 
-- `practices/documentation/knowledge_organization.md` — Organization principles
+- `practices/documentation/knowledge_organization.md` — Organization patterns
 - `practices/documentation/standards.md` — Documentation standards
-- `frameworks/cognitive/knowledge_layers.md` — Layer definitions
-- `templates/` — Document templates
+- `practices/ai_collaboration/knowledge_extraction.md` — Extraction techniques
+- `frameworks/design/` — Design patterns
 
 ---
 
-*Part of SAGE Knowledge Base - Scenarios*
+*Part of SAGE Knowledge Base*

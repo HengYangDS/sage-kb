@@ -53,3 +53,118 @@ timeout:
     network_error:
       action: use_cache
       description: "Use cached content"
+
+  # ===========================================================================
+  # Retry Configuration
+  # ===========================================================================
+  retry:
+    enabled: true                      # Enable automatic retries
+    max_attempts: 3                    # Maximum retry attempts
+    initial_delay_ms: 100              # Initial delay before first retry
+    max_delay_ms: 2000                 # Maximum delay between retries
+    exponential_backoff: true          # Use exponential backoff
+    backoff_multiplier: 2.0            # Multiply delay by this factor
+    jitter: true                       # Add randomness to prevent thundering herd
+    jitter_factor: 0.1                 # ±10% jitter
+
+    # Retryable conditions
+    retry_on:
+      - timeout                        # Retry on timeout
+      - connection_error               # Retry on connection errors
+      - rate_limited                   # Retry when rate limited (with backoff)
+
+    # Non-retryable conditions
+    no_retry_on:
+      - validation_error               # Don't retry validation errors
+      - not_found                      # Don't retry 404s
+      - authentication_error           # Don't retry auth errors
+
+    # Per-operation retry overrides
+    operations:
+      cache_lookup:
+        enabled: false                 # Don't retry cache lookups
+      file_read:
+        max_attempts: 2
+        initial_delay_ms: 50
+      layer_load:
+        max_attempts: 3
+        initial_delay_ms: 200
+      analysis:
+        max_attempts: 2
+        initial_delay_ms: 500
+
+  # ===========================================================================
+  # Graceful Degradation Levels
+  # ===========================================================================
+  degradation:
+    enabled: true                      # Enable graceful degradation
+    auto_detect: true                  # Auto-detect degradation triggers
+
+    # Degradation levels (from healthy to critical)
+    levels:
+      - name: normal
+        timeout_multiplier: 1.0
+        description: "Full functionality"
+        disable_features: []
+
+      - name: degraded
+        timeout_multiplier: 0.5        # Reduce timeouts by 50%
+        description: "Reduced functionality for stability"
+        disable_features:
+          - semantic_search
+          - full_analysis
+          - content_expansion
+
+      - name: limited
+        timeout_multiplier: 0.3        # Reduce timeouts by 70%
+        description: "Core functionality only"
+        disable_features:
+          - semantic_search
+          - full_analysis
+          - content_expansion
+          - plugin_execution
+          - cross_references
+
+      - name: emergency
+        timeout_multiplier: 0.2        # Reduce timeouts by 80%
+        description: "Emergency mode - minimal operations"
+        disable_features:
+          - semantic_search
+          - full_analysis
+          - content_expansion
+          - plugin_execution
+          - cross_references
+          - caching
+          - event_publishing
+
+    # Triggers for automatic degradation
+    triggers:
+      error_rate:
+        threshold: 0.1                 # 10% error rate
+        window_seconds: 60
+        target_level: degraded
+
+      timeout_rate:
+        threshold: 0.05                # 5% timeout rate
+        window_seconds: 60
+        target_level: degraded
+
+      latency_p99:
+        threshold_ms: 5000             # 5s p99 latency
+        window_seconds: 60
+        target_level: degraded
+
+      memory_usage:
+        threshold_percent: 90
+        target_level: limited
+
+      circuit_breaker_open:
+        count: 2                       # 2 open circuit breakers
+        target_level: limited
+
+    # Recovery configuration
+    recovery:
+      auto_recover: true               # Automatically recover when healthy
+      check_interval_seconds: 30       # Check for recovery every 30s
+      required_healthy_checks: 3       # Require 3 healthy checks to recover
+      recovery_step: true              # Recover one level at a time

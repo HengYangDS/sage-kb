@@ -6,7 +6,7 @@
 
 ## Table of Contents
 
-[1. Configuration](#1-configuration) · [2. CLI Advanced](#2-cli-advanced) · [3. MCP Advanced](#3-mcp-advanced) · [4. Python API Advanced](#4-python-api-advanced) · [5. Plugin Development](#5-plugin-development) · [6. Performance Tuning](#6-performance-tuning)
+[1. Configuration](#1-configuration) · [2. CLI Advanced](#2-cli-advanced) · [3. MCP Integration](#3-mcp-integration) · [4. Python API](#4-python-api) · [5. Plugin Development](#5-plugin-development) · [6. Performance Tuning](#6-performance-tuning)
 
 ---
 
@@ -19,44 +19,45 @@ SAGE uses a modular configuration system:
 ```
 config/
 ├── sage.yaml           # Main configuration
-├── core/               # Core layer settings
+├── core/               # Core layer configs
 │   ├── di.yaml         # Dependency injection
-│   ├── logging.yaml    # Logging configuration
+│   ├── logging.yaml    # Logging settings
 │   ├── memory.yaml     # Memory/persistence
 │   ├── security.yaml   # Security settings
-│   └── timeout.yaml    # Timeout hierarchy
-├── services/           # Service layer settings
-│   ├── api.yaml        # REST API config
-│   ├── cli.yaml        # CLI config
-│   └── mcp.yaml        # MCP server config
-├── knowledge/          # Knowledge management
+│   └── timeout.yaml    # Timeout levels
+├── services/           # Service configs
+│   ├── api.yaml        # REST API
+│   ├── cli.yaml        # CLI settings
+│   └── mcp.yaml        # MCP server
+├── knowledge/          # Knowledge configs
 │   ├── content.yaml    # Content paths
 │   ├── loading.yaml    # Loading strategies
 │   ├── triggers.yaml   # Auto-load triggers
 │   └── token_budget.yaml
-└── capabilities/       # Capability settings
+└── capabilities/       # Capability configs
     ├── autonomy.yaml
     ├── plugins.yaml
     └── quality.yaml
 ```
 
-### 1.2 Environment Variable Overrides
+### 1.2 Environment Overrides
 
-Override any configuration with environment variables:
+Override any config value via environment variables:
 
 ```bash
 # Pattern: SAGE_<SECTION>_<KEY>=value
 export SAGE_TIMEOUT_CACHE_LOOKUP=200ms
 export SAGE_LOGGING_LEVEL=DEBUG
+export SAGE_MCP_HOST=0.0.0.0
 export SAGE_MCP_PORT=8080
 ```
 
 ### 1.3 Custom Configuration
 
-Create a custom configuration file:
+Create a custom config file:
 
 ```yaml
-# my-sage.yaml
+# my-config.yaml
 extends: config/sage.yaml
 
 timeout:
@@ -71,7 +72,7 @@ logging:
 Load with:
 
 ```bash
-sage --config my-sage.yaml get core
+sage --config my-config.yaml get core
 ```
 
 ---
@@ -81,62 +82,49 @@ sage --config my-sage.yaml get core
 ### 2.1 Output Formats
 
 ```bash
-# JSON output
-sage get core --format json
+# JSON output for scripting
+sage get core --format json | jq '.content'
 
-# YAML output
-sage get core --format yaml
+# Markdown output
+sage get core --format markdown
 
-# Minimal output (content only)
-sage get core --format minimal
+# Plain text (default)
+sage get core --format text
 
-# Rich formatted (default)
-sage get core --format rich
+# Compact mode (minimal output)
+sage get core --compact
 ```
 
 ### 2.2 Filtering and Selection
 
 ```bash
 # Get specific layer
-sage get --layer guidelines
+sage get --layer frameworks
 
-# Get by topic
-sage get --topic timeout
+# Get with token budget
+sage get core --budget 500
 
-# Combine filters
-sage get --layer practices --topic testing
+# Search with filters
+sage search "timeout" --layer core --max-results 10
+
+# Search with context
+sage search "pattern" --context 3
 ```
 
-### 2.3 Search Options
+### 2.3 Batch Operations
 
 ```bash
-# Case-insensitive search (default)
-sage search "timeout"
+# Load multiple layers
+sage get core guidelines frameworks
 
-# Regex search
-sage search --regex "timeout|circuit"
+# Export knowledge to file
+sage export --output knowledge.md --layers core,guidelines
 
-# Search in specific layer
-sage search "pattern" --layer frameworks
-
-# Limit results
-sage search "api" --limit 10
+# Validate all content
+sage validate --all
 ```
 
-### 2.4 Batch Operations
-
-```bash
-# Export all knowledge
-sage export --output ./export/
-
-# Export specific layers
-sage export --layers core,guidelines --output ./export/
-
-# Import knowledge
-sage import ./external-knowledge/
-```
-
-### 2.5 Shell Completion
+### 2.4 Shell Completion
 
 ```bash
 # Bash
@@ -147,154 +135,168 @@ sage --install-completion zsh
 
 # Fish
 sage --install-completion fish
+
+# PowerShell
+sage --install-completion powershell
 ```
 
 ---
 
-## 3. MCP Advanced
+## 3. MCP Integration
 
 ### 3.1 Server Configuration
 
 ```yaml
 # config/services/mcp.yaml
 mcp:
-  host: "0.0.0.0"
-  port: 8765
+  host: localhost
+  port: 3000
+  transport: stdio  # or sse, websocket
   
-  # Connection settings
-  max_connections: 100
-  connection_timeout: 30s
-  
-  # Security
-  require_auth: false
-  allowed_origins:
-    - "localhost"
-    - "127.0.0.1"
-  
-  # Tools exposure
   tools:
-    enabled:
-      - get_knowledge
-      - search_knowledge
-      - kb_info
-      - get_framework
-      - analyze_code
-      - check_quality
-    disabled:
-      - admin_tools
+    - get_knowledge
+    - search_knowledge
+    - kb_info
+    - get_framework
+    - analyze_code
+    - check_quality
+    
+  resources:
+    expose_content: true
+    max_resource_size: 100000
 ```
 
-### 3.2 Multi-Client Support
+### 3.2 Multi-Client Setup
 
-```python
-# Server with multiple client handling
-from sage.services.mcp import create_mcp_server
+```bash
+# Start MCP server for multiple clients
+sage serve --transport sse --port 3000
 
-server = create_mcp_server(
-    max_clients=50,
-    client_timeout=300,  # 5 minutes
-    rate_limit=100,      # requests per minute
-)
+# Or via stdio for single client
+sage serve --transport stdio
 ```
 
 ### 3.3 Custom Tools
 
+Register custom MCP tools:
+
 ```python
 from sage.services.mcp import MCPServer
-from mcp.server.fastmcp import FastMCP
 
-mcp = FastMCP("sage-custom")
+server = MCPServer()
 
-@mcp.tool()
+@server.tool()
 async def my_custom_tool(query: str) -> str:
     """Custom tool description."""
-    # Your implementation
+    # Implementation
     return result
 
-# Register with SAGE
-server = MCPServer()
-server.register_custom_tool(my_custom_tool)
+# Or via configuration
+# config/services/mcp.yaml
+mcp:
+  custom_tools:
+    - module: mypackage.tools
+      function: my_custom_tool
 ```
 
-### 3.4 Prompts and Resources
+### 3.4 Client Configuration Examples
 
-```python
-# Custom prompt
-@mcp.prompt()
-def code_review_prompt(code: str, language: str) -> str:
-    """Generate code review prompt."""
-    return f"""
-    Review the following {language} code:
-    
-    ```{language}
-    {code}
-    ```
-    
-    Consider: readability, performance, security.
-    """
+**Claude Desktop (`claude_desktop_config.json`):**
 
-# Custom resource
-@mcp.resource("sage://custom/{path}")
-async def custom_resource(path: str) -> str:
-    """Serve custom resource."""
-    return await load_custom_content(path)
+```json
+{
+  "mcpServers": {
+    "sage": {
+      "command": "sage",
+      "args": ["serve"],
+      "env": {
+        "SAGE_LOG_LEVEL": "INFO"
+      }
+    }
+  }
+}
+```
+
+**Cursor (`.cursor/mcp.json`):**
+
+```json
+{
+  "servers": {
+    "sage": {
+      "command": "sage",
+      "args": ["serve", "--transport", "stdio"]
+    }
+  }
+}
 ```
 
 ---
 
-## 4. Python API Advanced
+## 4. Python API
 
-### 4.1 Async Operations
+### 4.1 Async Patterns
 
 ```python
 import asyncio
 from sage.core.loader import KnowledgeLoader
+from sage.core.timeout import TimeoutManager
 
-async def load_multiple():
+async def load_with_custom_timeout():
     loader = KnowledgeLoader()
+    timeout_mgr = TimeoutManager()
     
-    # Concurrent loading
-    results = await asyncio.gather(
-        loader.load_core(timeout_ms=2000),
-        loader.load_guidelines(timeout_ms=2000),
-        loader.load_frameworks(timeout_ms=3000),
-    )
+    # Load with specific timeout level
+    async with timeout_mgr.timeout(level="T3"):  # 2s
+        result = await loader.load_layer("frameworks")
     
-    return results
+    return result
 
-# Run
-results = asyncio.run(load_multiple())
+# Run async
+result = asyncio.run(load_with_custom_timeout())
 ```
 
-### 4.2 Custom Loader
+### 4.2 Batch Loading
+
+```python
+from sage.core.loader import KnowledgeLoader
+
+async def batch_load():
+    loader = KnowledgeLoader()
+    
+    # Load multiple layers concurrently
+    layers = ["core", "guidelines", "frameworks"]
+    results = await loader.load_batch(layers, timeout_ms=5000)
+    
+    # Process results
+    for layer, content in results.items():
+        print(f"{layer}: {len(content)} chars")
+
+asyncio.run(batch_load())
+```
+
+### 4.3 Custom Loader
 
 ```python
 from sage.core.protocols import LoaderProtocol
-from sage.core.models import LoadResult
+from sage.core.di import Container
 
 class CustomLoader(LoaderProtocol):
     """Custom knowledge loader."""
     
-    async def load(
-        self,
-        path: str,
-        timeout_ms: int = 2000,
-    ) -> LoadResult:
+    async def load(self, path: str, timeout_ms: int = 2000) -> str:
         # Custom loading logic
-        content = await self._fetch_content(path)
-        
-        return LoadResult(
-            content=content,
-            metadata={"source": "custom"},
-            tokens=self._count_tokens(content),
-        )
-    
-    async def _fetch_content(self, path: str) -> str:
-        # Your implementation
         pass
+    
+    async def search(self, query: str, **kwargs) -> list:
+        # Custom search logic
+        pass
+
+# Register with DI container
+container = Container()
+container.register(LoaderProtocol, CustomLoader, lifetime="singleton")
 ```
 
-### 4.3 Event Handling
+### 4.4 Event Handling
 
 ```python
 from sage.core.events import EventBus
@@ -304,54 +306,13 @@ bus = EventBus()
 # Subscribe to events
 @bus.subscribe("knowledge.loaded")
 async def on_knowledge_loaded(event):
-    print(f"Loaded: {event.data['path']}")
-    print(f"Tokens: {event.data['tokens']}")
+    print(f"Loaded: {event.layer} in {event.duration_ms}ms")
 
-@bus.subscribe("timeout.exceeded")
+@bus.subscribe("timeout.triggered")
 async def on_timeout(event):
-    print(f"Timeout at level {event.data['level']}")
+    print(f"Timeout at level {event.level}: {event.operation}")
 
-# Publish events
-await bus.publish("custom.event", {"key": "value"})
-```
-
-### 4.4 Token Budget Management
-
-```python
-from sage.core.memory import TokenBudget
-
-budget = TokenBudget(max_tokens=8000)
-
-# Allocate tokens
-budget.allocate("core", 2000)
-budget.allocate("guidelines", 1500)
-
-# Check availability
-if budget.available >= 1000:
-    budget.allocate("frameworks", 1000)
-
-# Get usage report
-report = budget.get_report()
-print(f"Used: {report.used}/{report.total}")
-```
-
-### 4.5 Circuit Breaker
-
-```python
-from sage.core.timeout import CircuitBreaker
-
-breaker = CircuitBreaker(
-    failure_threshold=5,
-    recovery_timeout=30,
-)
-
-async def protected_operation():
-    async with breaker:
-        return await risky_operation()
-
-# Check state
-if breaker.is_open:
-    print("Circuit is open, using fallback")
+# Events are automatically published by core components
 ```
 
 ---
@@ -364,9 +325,9 @@ if breaker.is_open:
 my_plugin/
 ├── __init__.py
 ├── plugin.py          # Main plugin class
-├── tools.py           # MCP tools
-├── config.yaml        # Plugin configuration
-└── README.md
+├── tools.py           # MCP tools (optional)
+├── analyzers.py       # Analyzers (optional)
+└── config.yaml        # Plugin config
 ```
 
 ### 5.2 Basic Plugin
@@ -383,58 +344,57 @@ class MyPlugin(PluginBase):
     
     @hookimpl
     def on_load(self, context):
-        """Called when plugin loads."""
-        self.logger.info("Plugin loaded")
+        """Called when plugin is loaded."""
+        self.logger.info("Plugin loaded!")
     
     @hookimpl
-    def on_knowledge_request(self, request):
-        """Intercept knowledge requests."""
-        # Modify or enhance request
-        return request
+    def on_knowledge_request(self, layer: str, query: str):
+        """Hook into knowledge requests."""
+        # Modify or extend behavior
+        pass
     
     @hookimpl
-    def on_knowledge_response(self, response):
-        """Process knowledge responses."""
-        # Add custom processing
-        return response
+    def register_tools(self, registry):
+        """Register custom MCP tools."""
+        registry.add_tool(self.my_tool)
+    
+    async def my_tool(self, param: str) -> str:
+        """Custom tool implementation."""
+        return f"Result: {param}"
 ```
 
 ### 5.3 Plugin Configuration
 
 ```yaml
 # my_plugin/config.yaml
-name: my-plugin
-version: 1.0.0
-description: My custom SAGE plugin
-
-settings:
-  feature_enabled: true
-  custom_path: ./data/
-
-hooks:
-  - on_load
-  - on_knowledge_request
-  - on_knowledge_response
-
-dependencies:
-  - sage>=0.1.0
-```
-
-### 5.4 Register Plugin
-
-```yaml
-# config/capabilities/plugins.yaml
-plugins:
-  enabled:
-    - my-plugin
-  
-  paths:
-    - ./plugins/
-    - ~/.sage/plugins/
+plugin:
+  name: my-plugin
+  enabled: true
   
   settings:
-    my-plugin:
-      feature_enabled: true
+    custom_option: value
+    
+  hooks:
+    - on_load
+    - on_knowledge_request
+    - register_tools
+```
+
+### 5.4 Installing Plugins
+
+```bash
+# Install from directory
+sage plugin install ./my_plugin
+
+# Install from package
+pip install sage-plugin-myplugin
+
+# Enable/disable
+sage plugin enable my-plugin
+sage plugin disable my-plugin
+
+# List plugins
+sage plugin list
 ```
 
 ---
@@ -444,86 +404,102 @@ plugins:
 ### 6.1 Timeout Optimization
 
 ```yaml
-# Aggressive timeouts for fast responses
+# config/core/timeout.yaml
 timeout:
   operations:
-    cache_lookup: 50ms    # Reduce from 100ms
-    file_read: 300ms      # Reduce from 500ms
-    layer_load: 1500ms    # Reduce from 2s
+    # Adjust based on your environment
+    cache_lookup: 50ms    # Reduce for fast storage
+    file_read: 300ms      # Reduce for SSD
+    layer_load: 1500ms    # Adjust for content size
+    full_load: 4000ms     # Total budget
+    analysis: 8000ms      # Complex operations
+    
+  circuit_breaker:
+    failure_threshold: 3
+    recovery_time: 30s
+    half_open_requests: 1
 ```
 
 ### 6.2 Caching Strategy
 
 ```yaml
 # config/core/memory.yaml
-cache:
-  enabled: true
-  backend: memory  # or: redis, filesystem
-  
-  ttl:
-    core: 3600        # 1 hour
-    guidelines: 1800  # 30 minutes
-    search: 300       # 5 minutes
-  
-  max_size: 100MB
-  eviction: lru
+memory:
+  cache:
+    enabled: true
+    max_size: 100MB
+    ttl: 3600s           # 1 hour
+    strategy: lru        # lru, lfu, fifo
+    
+  persistence:
+    enabled: true
+    path: .cache/sage
+    sync_interval: 60s
 ```
 
-### 6.3 Loading Optimization
+### 6.3 Token Budget Management
 
 ```yaml
-# config/knowledge/loading.yaml
-loading:
-  strategy: lazy  # eager | lazy | on-demand
+# config/knowledge/token_budget.yaml
+token_budget:
+  default: 4000
   
-  preload:
-    - core/principles.md
-    - core/defaults.md
-  
-  parallel:
+  # Per-layer budgets
+  layers:
+    core: 500
+    guidelines: 1000
+    frameworks: 1500
+    practices: 1000
+    
+  # Compression settings
+  compression:
     enabled: true
-    max_workers: 4
+    threshold: 0.8       # Compress when >80% budget
+    strategy: summarize  # summarize, truncate, prioritize
 ```
 
-### 6.4 Memory Management
+### 6.4 Logging for Performance Analysis
 
-```python
-from sage.core.memory import MemoryManager
-
-manager = MemoryManager(
-    max_memory_mb=512,
-    gc_threshold=0.8,
-)
-
-# Monitor memory
-stats = manager.get_stats()
-print(f"Memory: {stats.used_mb}/{stats.max_mb} MB")
-
-# Force cleanup
-manager.cleanup()
+```yaml
+# config/core/logging.yaml
+logging:
+  level: INFO
+  
+  # Enable performance logging
+  performance:
+    enabled: true
+    slow_threshold: 500ms
+    
+  handlers:
+    - type: file
+      path: .logs/performance.log
+      format: json
+      filter: performance
 ```
 
 ### 6.5 Profiling
 
 ```bash
-# Enable profiling
-export SAGE_PROFILING=true
-
 # Run with profiling
-sage get core --profile
+sage --profile get core
 
-# Output: timing breakdown for each operation
+# Generate performance report
+sage diagnose --performance
+
+# Benchmark operations
+sage benchmark --iterations 100
 ```
 
 ---
 
 ## Related
 
-- [Quick Start](quickstart.md) — Basic usage guide
+- [Quick Start](quickstart.md) — Basic setup and usage
 - [Troubleshooting](troubleshooting.md) — Common issues and solutions
-- `docs/design/` — Design documents
 - `docs/api/` — API reference
+- `docs/design/` — Architecture documentation
+- `content/practices/engineering/` — Engineering best practices
 
 ---
 
-*Part of SAGE Knowledge Base - Advanced Usage Guide*
+*SAGE Knowledge Base - Advanced Usage Guide*

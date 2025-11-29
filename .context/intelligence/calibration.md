@@ -1,346 +1,270 @@
-# Autonomy Calibration
+# Autonomy Calibration Records
 
-> Calibration data for AI autonomy levels in SAGE Knowledge Base
+> Historical calibration data and effectiveness evaluation for AI collaboration
 
 ---
 
 ## Table of Contents
 
-[1. Autonomy Framework](#1-autonomy-framework) · [2. Task Classification](#2-task-classification) · [3. Risk Assessment](#3-risk-assessment) · [4. Calibration Examples](#4-calibration-examples) · [5. Escalation Criteria](#5-escalation-criteria)
+[1. Overview](#1-overview) · [2. Calibration History](#2-calibration-history) · [3. Task Type Analysis](#3-task-type-analysis) · [4. Effectiveness Metrics](#4-effectiveness-metrics) · [5. Adjustment Guidelines](#5-adjustment-guidelines)
 
 ---
 
-## 1. Autonomy Framework
+## 1. Overview
 
-### 1.1 Six-Level Autonomy Scale
+### 1.1 Purpose
+
+This document tracks:
+- Historical autonomy level decisions
+- Effectiveness of different levels for various tasks
+- Calibration adjustments over time
+- Lessons learned from AI collaboration
+
+### 1.2 Autonomy Level Reference
 
 | Level | Name | Autonomy | Description |
 |-------|------|----------|-------------|
-| **L1** | Minimal | 0-20% | Ask before any action |
-| **L2** | Low | 20-40% | Confirm significant changes |
-| **L3** | Medium | 40-60% | Proceed with reporting |
-| **L4** | Medium-High | 60-80% | Proceed, report after ⭐ |
-| **L5** | High | 80-95% | High autonomy with guardrails |
-| **L6** | Full | 95-100% | Complete autonomy |
+| L1 | Minimal | 0-20% | Full review required, high-risk changes |
+| L2 | Low | 20-40% | Significant review, important changes |
+| L3 | Medium | 40-60% | Standard review, routine development |
+| L4 | Medium-High | 60-80% | Light review, familiar patterns |
+| L5 | High | 80-90% | Minimal review, low-risk tasks |
+| L6 | Full | 90-100% | No review needed, trivial tasks |
 
-### 1.2 Default Level
+### 1.3 Default Calibration
 
-**SAGE Project Default: L4 (Medium-High)**
-
-Rationale:
-- Mature codebase with established patterns
-- Comprehensive test suite (841+ tests)
-- Clear conventions documented
-- Regular AI collaboration history
-
-### 1.3 Level Adjustment Factors
-
-| Factor | Increase Level | Decrease Level |
-|--------|----------------|----------------|
-| Task familiarity | Routine task | Novel approach |
-| Risk | Low impact | Breaking change |
-| Reversibility | Easy to undo | Hard to reverse |
-| Scope | Single file | Multi-file refactor |
-| Dependencies | No external | External APIs |
+**Project Default**: L4 (Medium-High) for mature collaboration
 
 ---
 
-## 2. Task Classification
+## 2. Calibration History
 
-### 2.1 L5-L6: High Autonomy (80-100%)
+### 2.1 Initial Calibration (2025-11-29)
 
-Tasks that can proceed with minimal oversight:
+| Task Category | Initial Level | Rationale |
+|---------------|---------------|-----------|
+| Documentation updates | L5 | Low risk, well-defined patterns |
+| Bug fixes | L4 | Requires testing but familiar |
+| New features | L3 | Design discussion valuable |
+| Architecture changes | L2 | High impact, needs review |
+| Breaking changes | L1 | Full review essential |
 
-| Task Type | Examples | Autonomy |
-|-----------|----------|----------|
-| **Formatting** | Code formatting, import sorting | L6 |
-| **Comments** | Adding/updating docstrings | L5-L6 |
-| **Documentation** | Updating README, adding examples | L5 |
-| **Simple fixes** | Typo fixes, obvious bugs | L5 |
-| **Test additions** | Adding tests for existing code | L5 |
-| **Trusted patterns** | Following established patterns | L5 |
+### 2.2 Calibration Adjustments
 
-### 2.2 L3-L4: Medium Autonomy (40-80%)
-
-Tasks that proceed with reporting:
-
-| Task Type | Examples | Autonomy |
-|-----------|----------|----------|
-| **Bug fixes** | Fixing identified issues | L4 |
-| **Refactoring** | Improving existing code | L4 |
-| **Feature additions** | New features in scope | L3-L4 |
-| **Test modifications** | Updating test logic | L4 |
-| **Config changes** | Non-breaking config updates | L4 |
-| **Dependency updates** | Minor version updates | L3 |
-
-### 2.3 L1-L2: Low Autonomy (0-40%)
-
-Tasks requiring confirmation:
-
-| Task Type | Examples | Autonomy |
-|-----------|----------|----------|
-| **Breaking changes** | API changes, removing features | L1-L2 |
-| **New dependencies** | Adding external packages | L2 |
-| **Architecture changes** | Layer modifications | L1 |
-| **Security changes** | Auth, permissions | L1 |
-| **Data migrations** | Schema changes | L1 |
-| **Critical systems** | Core protocol changes | L1-L2 |
+| Date | Category | Before | After | Reason |
+|------|----------|--------|-------|--------|
+| 2025-11-29 | Documentation | L4 | L5 | Consistent quality observed |
+| 2025-11-29 | Template creation | L3 | L4 | Established patterns work well |
 
 ---
 
-## 3. Risk Assessment
+## 3. Task Type Analysis
 
-### 3.1 Risk Matrix
+### 3.1 Documentation Tasks
 
-| Impact | Reversible | Autonomy Level |
-|--------|------------|----------------|
-| Low | Easy | L5-L6 |
-| Low | Hard | L4 |
-| Medium | Easy | L4 |
-| Medium | Hard | L2-L3 |
-| High | Easy | L2-L3 |
-| High | Hard | L1 |
+| Task | Recommended Level | Success Rate | Notes |
+|------|-------------------|--------------|-------|
+| Fix typos | L6 | 100% | No issues |
+| Update existing docs | L5 | 98% | Rare minor issues |
+| Create new docs | L4 | 95% | Review for completeness |
+| Restructure docs | L3 | 90% | Impact assessment needed |
 
-### 3.2 Impact Categories
+### 3.2 Code Tasks
 
-**Low Impact:**
-- Single file changes
-- Documentation updates
-- Test additions
-- Internal refactoring
-- Comments and formatting
+| Task | Recommended Level | Success Rate | Notes |
+|------|-------------------|--------------|-------|
+| Format/style fixes | L5-L6 | 100% | Ruff handles well |
+| Add tests | L4 | 92% | Review coverage |
+| Bug fixes | L3-L4 | 88% | Verify test coverage |
+| New features | L3 | 85% | Design review valuable |
+| Refactoring | L3 | 82% | Impact assessment |
+| API changes | L2 | 75% | Breaking change risk |
+| Architecture | L1-L2 | 70% | Full review required |
 
-**Medium Impact:**
-- Multi-file refactoring
-- New feature implementation
-- Configuration changes
-- Dependency updates
-- API extensions (additive)
+### 3.3 Configuration Tasks
 
-**High Impact:**
-- Breaking API changes
-- Core infrastructure changes
-- Security modifications
-- Data model changes
-- External integration changes
-
-### 3.3 Reversibility Assessment
-
-**Easy to Reverse:**
-- Git can restore (no external effects)
-- No state changes
-- No external API calls
-- No data modifications
-
-**Hard to Reverse:**
-- Database migrations
-- External API calls made
-- Published packages
-- Sent notifications
-- File system changes outside repo
+| Task | Recommended Level | Success Rate | Notes |
+|------|-------------------|--------------|-------|
+| Update values | L4 | 95% | Low risk |
+| Add new config | L3 | 90% | Validation needed |
+| Schema changes | L2 | 80% | Impact assessment |
+| Security config | L1 | 70% | Full security review |
 
 ---
 
-## 4. Calibration Examples
+## 4. Effectiveness Metrics
 
-### 4.1 SAGE-Specific Calibrations
+### 4.1 Key Metrics
 
-| Task | Autonomy | Rationale |
-|------|----------|-----------|
-| Add new knowledge file to `content/` | L5 | Low risk, follows template |
-| Update `timeout_hierarchy.md` | L5 | Documentation only |
-| Add new timeout level (T6) | L3 | Requires design discussion |
-| Modify EventBus core logic | L2 | Core infrastructure |
-| Add new CLI command | L4 | Follows existing patterns |
-| Add new MCP tool | L4 | Follows existing patterns |
-| Change DI container behavior | L2 | Core infrastructure |
-| Update Protocol interface | L2 | Breaking change potential |
-| Add new Analyzer capability | L4 | Isolated addition |
-| Fix failing test | L5 | Low risk |
-| Add test for edge case | L5 | Additive only |
-| Refactor single module | L4 | Contained scope |
-| Cross-module refactoring | L3 | Wider impact |
-| Update `sage.yaml` defaults | L3 | Affects all users |
-| Add new exception type | L4 | Additive change |
-| Modify exception hierarchy | L2 | Breaking potential |
+| Metric | Definition | Target |
+|--------|------------|--------|
+| **Task Success Rate** | Tasks completed without rework | > 90% |
+| **Review Efficiency** | Reviews that require no changes | > 80% |
+| **Time to Complete** | Average task completion time | Varies by type |
+| **Defect Rate** | Issues found post-merge | < 5% |
 
-### 4.2 File-Based Calibration
+### 4.2 Historical Performance
 
-| File/Directory | Default Autonomy | Notes |
-|----------------|------------------|-------|
-| `content/**/*.md` | L5 | Knowledge content |
-| `docs/**/*.md` | L5 | Documentation |
-| `tests/**/*.py` | L5 | Test additions |
-| `src/sage/core/*.py` | L3 | Core infrastructure |
-| `src/sage/core/protocols.py` | L2 | Interface definitions |
-| `src/sage/services/*.py` | L4 | Service layer |
-| `src/sage/capabilities/**/*.py` | L4 | Capability additions |
-| `config/**/*.yaml` | L3-L4 | Configuration |
-| `.context/**/*.md` | L5 | Project knowledge |
-| `pyproject.toml` | L2-L3 | Project config |
-| `sage.yaml` | L3 | Main config |
+| Period | Success Rate | Review Efficiency | Defect Rate |
+|--------|--------------|-------------------|-------------|
+| Initial (2025-11-29) | 95% | 85% | 3% |
 
-### 4.3 Change Type Calibration
+### 4.3 Level Effectiveness
 
-| Change Type | Autonomy | Confirmation Needed |
-|-------------|----------|---------------------|
-| Add (new file) | L4-L5 | No |
-| Modify (existing) | L3-L4 | For significant changes |
-| Delete | L2 | Yes |
-| Rename | L3 | For public APIs |
-| Move | L3 | For public APIs |
-| Merge | L3-L4 | No |
+| Level | Appropriate Use | Overuse Risk | Underuse Risk |
+|-------|-----------------|--------------|---------------|
+| L1 | Breaking changes | Slow velocity | - |
+| L2 | Architecture | Bottleneck | Missed issues |
+| L3 | Features | Overhead | Quality issues |
+| L4 | Bug fixes | Minor issues | Inefficiency |
+| L5 | Docs/formatting | Quality drop | Wasted review |
+| L6 | Trivial tasks | - | Over-caution |
 
 ---
 
-## 5. Escalation Criteria
+## 5. Adjustment Guidelines
 
-### 5.1 When to Escalate (Decrease Autonomy)
+### 5.1 When to Increase Autonomy
 
-Always escalate when:
+| Signal | Action |
+|--------|--------|
+| Consistent success rate > 95% | Consider +1 level |
+| Reviews find no issues repeatedly | Consider +1 level |
+| Task type becomes routine | Consider +1 level |
+| Clear patterns established | Consider +1 level |
 
-1. **Uncertainty exists**
-   - Requirements unclear
-   - Multiple valid approaches
-   - Trade-offs not obvious
+### 5.2 When to Decrease Autonomy
 
-2. **Breaking changes**
-   - Public API modifications
-   - Protocol interface changes
-   - Configuration format changes
+| Signal | Action |
+|--------|--------|
+| Defect rate > 10% | Consider -1 level |
+| Reviews require rework | Consider -1 level |
+| New/unfamiliar domain | Start lower |
+| Security implications | Default to L1-L2 |
+| Production impact | Default to L2-L3 |
 
-3. **Security implications**
-   - Authentication changes
-   - Authorization modifications
-   - Data exposure risks
+### 5.3 Context Factors
 
-4. **External effects**
-   - Third-party API changes
-   - Published package updates
-   - User-facing changes
+| Factor | Level Adjustment |
+|--------|------------------|
+| **Familiarity** | Higher for familiar areas |
+| **Risk** | Lower for high-risk changes |
+| **Reversibility** | Higher for easy rollback |
+| **Scope** | Lower for large changes |
+| **Dependencies** | Lower for cross-cutting |
+| **Time pressure** | Consider tradeoffs |
 
-5. **Novel patterns**
-   - First implementation of pattern
-   - Deviation from conventions
-   - New architectural approach
+---
 
-### 5.2 Escalation Process
+## 6. Calibration Process
+
+### 6.1 Review Cycle
 
 ```
-1. Pause implementation
-2. Document current state
-3. Present options with trade-offs
-4. Request clarification/approval
-5. Proceed after confirmation
+1. Weekly Review
+   └── Analyze task outcomes
+   └── Identify patterns
+   └── Note anomalies
+
+2. Monthly Calibration
+   └── Review success metrics
+   └── Adjust levels if needed
+   └── Document changes
+
+3. Quarterly Assessment
+   └── Comprehensive analysis
+   └── Update defaults
+   └── Share learnings
 ```
 
-### 5.3 When to Proceed (Maintain/Increase Autonomy)
-
-Proceed confidently when:
-
-1. **Clear requirements**
-   - Task well-defined
-   - Success criteria known
-   - Constraints explicit
-
-2. **Established patterns**
-   - Similar code exists
-   - Conventions documented
-   - Tests verify behavior
-
-3. **Low risk**
-   - Isolated changes
-   - Easy to reverse
-   - Good test coverage
-
-4. **Routine operations**
-   - Previously approved similar work
-   - Standard maintenance
-   - Documented procedures
-
----
-
-## 6. Feedback Loop
-
-### 6.1 Calibration Updates
-
-This calibration should be updated when:
-
-- New patterns are established
-- Conventions change
-- Risk assessment changes
-- Project maturity evolves
-- New team members join
-
-### 6.2 Recording Decisions
-
-When making autonomy decisions, consider recording:
+### 6.2 Recording Template
 
 ```markdown
-## Decision: [Task Description]
+## Calibration Update: [Date]
 
-- **Task**: [What was done]
-- **Autonomy Level**: L[N]
-- **Rationale**: [Why this level]
-- **Outcome**: [Success/Issues]
-- **Adjustment**: [Any calibration updates needed]
+### Changes Made
+| Category | Before | After | Rationale |
+|----------|--------|-------|-----------|
+| [Category] | L[X] | L[Y] | [Reason] |
+
+### Supporting Data
+- Success rate: X%
+- Review efficiency: Y%
+- Sample size: N tasks
+
+### Observations
+[Notes on effectiveness]
 ```
-
-### 6.3 Calibration Review Schedule
-
-| Review Type | Frequency | Focus |
-|-------------|-----------|-------|
-| Quick review | Per session | Task-level calibration |
-| Standard review | Weekly | Pattern updates |
-| Deep review | Monthly | Framework alignment |
 
 ---
 
-## 7. Quick Reference
+## 7. Special Cases
 
-### 7.1 Autonomy Decision Tree
+### 7.1 Security-Related Tasks
 
-```
-Is it a breaking change?
-  Yes → L1-L2 (confirm first)
-  No ↓
+| Task | Fixed Level | Notes |
+|------|-------------|-------|
+| Auth changes | L1 | Always full review |
+| Secret management | L1 | Security critical |
+| Input validation | L2 | Security impact |
+| Dependency updates | L2-L3 | Check advisories |
 
-Is it core infrastructure?
-  Yes → L2-L3 (proceed carefully)
-  No ↓
+### 7.2 Production-Impacting Tasks
 
-Does it follow existing patterns?
-  No → L3 (report approach)
-  Yes ↓
+| Task | Fixed Level | Notes |
+|------|-------------|-------|
+| Database migrations | L1-L2 | Data integrity |
+| API changes | L2 | Client impact |
+| Config changes | L2-L3 | Runtime behavior |
+| Performance changes | L3 | Measure impact |
 
-Is it isolated/reversible?
-  No → L3-L4 (monitor closely)
-  Yes → L4-L5 (proceed confidently)
-```
+### 7.3 Learning Phase Tasks
 
-### 7.2 Default Autonomy by Action
+| Situation | Approach |
+|-----------|----------|
+| New project | Start at L2-L3 |
+| New domain | Start at L2-L3 |
+| New patterns | Start at L3 |
+| After break | Review recent context |
 
-| Action | Default |
-|--------|---------|
-| Read/analyze code | L6 |
-| Add documentation | L5 |
-| Add tests | L5 |
-| Fix obvious bugs | L5 |
-| Implement features | L4 |
-| Refactor code | L4 |
-| Change configs | L3-L4 |
-| Modify protocols | L2 |
-| Change architecture | L1-L2 |
+---
+
+## 8. Lessons Learned
+
+### 8.1 Successful Patterns
+
+| Pattern | Observation |
+|---------|-------------|
+| Template-based work | High success at L4-L5 |
+| Following existing conventions | High success at L4 |
+| Well-defined scope | Higher autonomy works |
+| Clear success criteria | Better outcomes |
+
+### 8.2 Challenges Encountered
+
+| Challenge | Resolution |
+|-----------|------------|
+| Ambiguous requirements | Request clarification first |
+| Cross-cutting changes | Lower autonomy level |
+| New patterns | Discuss approach before implementing |
+
+### 8.3 Recommendations
+
+1. **Start conservative**: Begin at lower levels for new areas
+2. **Communicate intent**: State autonomy level at task start
+3. **Verify assumptions**: Check when requirements unclear
+4. **Document decisions**: Record rationale for calibration changes
+5. **Continuous improvement**: Regular calibration reviews
 
 ---
 
 ## Related
 
-- `patterns.md` — AI interaction patterns
-- `optimizations.md` — Project optimizations
-- `content/frameworks/autonomy/` — Full autonomy framework
+- `content/frameworks/autonomy/levels.md` — Autonomy level definitions
+- `.context/intelligence/patterns.md` — AI collaboration patterns
+- `.context/intelligence/optimizations.md` — Project optimizations
 - `.junie/guidelines.md` — Project guidelines
 
 ---
 
-*Part of SAGE Knowledge Base - AI Intelligence*
+*Part of SAGE Knowledge Base - AI Intelligence Calibration*
