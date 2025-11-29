@@ -3,13 +3,27 @@ title: SAGE Knowledge Base - Services Design
 version: "0.1.0"
 last_updated: "2025-11-30"
 status: production-ready
-tokens: ~5000
-note: "TODO: Split into 3 documents (cli, mcp, api) - see docs improvement plan"
+tokens: ~2000
 ---
 
 # Services Design
 
 > **Multi-channel service layer: CLI, MCP, and HTTP API**
+
+---
+
+## Document Series
+
+This document is part of the Services Design series:
+
+| Document | Content |
+|----------|---------|
+| **03-services.md** (this) | Overview, error handling, testing |
+| `03a-cli-service.md` | CLI service with Typer + Rich |
+| `03b-mcp-service.md` | MCP service with FastMCP |
+| `03c-api-service.md` | HTTP API with FastAPI |
+
+---
 
 ## Service Overview
 

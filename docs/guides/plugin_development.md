@@ -1,3 +1,10 @@
+﻿---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~500
+---
+
 # Plugin Development Guide
 
 > How to create and publish plugins for SAGE Knowledge Base

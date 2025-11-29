@@ -1,3 +1,10 @@
+﻿---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~500
+---
+
 # Design Documents Navigation
 
 > Architecture and design decisions for SAGE Knowledge Base

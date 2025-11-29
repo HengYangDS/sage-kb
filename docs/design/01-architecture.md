@@ -3,13 +3,27 @@ title: SAGE Knowledge Base - Architecture Design
 version: "0.1.0"
 last_updated: "2025-11-30"
 status: production-ready
-tokens: ~5000
-note: "TODO: Split into 5 documents (overview, structure, infrastructure, config, usage) - see docs improvement plan"
+tokens: ~2500
 ---
 
 # Architecture Design
 
 > **Core-Services-Capabilities Modular Architecture with Dev Tools Isolation**
+
+---
+
+## Document Series
+
+This document is part of the Architecture Design series:
+
+| Document | Content |
+|----------|---------|
+| **01-architecture.md** (this) | Core architecture, layers, directory structure |
+| `01a-infrastructure.md` | Logging, toolchain, packaging, platform support |
+| `01b-configuration.md` | Configuration hierarchy, timeout, YAML DSL |
+| `01c-usage.md` | Bootstrap, quick start, exceptions, AI scenarios |
+
+---
 
 > ⚠️ **Document Type: Design Specification (Target Architecture)**
 >

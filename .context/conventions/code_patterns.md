@@ -1,3 +1,9 @@
+﻿---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~500
+---
 # SAGE Code Patterns
 
 > Project-specific code patterns and idioms for SAGE Knowledge Base

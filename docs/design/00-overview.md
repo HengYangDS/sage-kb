@@ -1,3 +1,10 @@
+﻿---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~500
+---
+
 # SAGE Knowledge Base - Design Overview
 
 > Production-grade knowledge management system for AI-human collaboration

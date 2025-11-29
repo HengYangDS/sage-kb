@@ -1,3 +1,9 @@
+﻿---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~500
+---
 # Task Handoff: History Directory Enhancement
 
 > **Handoff ID**: 2025-11-29-history-enhancement-handoff

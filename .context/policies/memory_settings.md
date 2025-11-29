@@ -1,3 +1,9 @@
+﻿---
+version: "1.0"
+last_updated: "2025-11-30"
+status: published
+tokens: ~500
+---
 # Memory and Persistence Configuration
 
 > Configuration reference for caching, memory management, and data persistence
