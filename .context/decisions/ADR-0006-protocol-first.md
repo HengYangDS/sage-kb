@@ -1,4 +1,4 @@
-﻿# ADR-0006: Protocol-First Interface Design
+# ADR-0006: Protocol-First Interface Design
 
 > Architecture Decision Record for SAGE Knowledge Base
 
@@ -68,7 +68,7 @@ class SourceProtocol(Protocol):
 ### Key Characteristics
 
 | Feature              | Protocol | ABC             |
-|:----------------------|:----------|:-----------------|
+|:---------------------|:---------|:----------------|
 | Inheritance required | No       | Yes             |
 | Runtime checkable    | Optional | Always          |
 | Structural subtyping | Yes      | No              |

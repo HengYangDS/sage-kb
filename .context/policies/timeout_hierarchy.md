@@ -1,4 +1,4 @@
-﻿# SAGE Timeout Hierarchy
+# SAGE Timeout Hierarchy
 
 > SAGE Knowledge Base specific timeout configuration (T1-T5 levels)
 >
@@ -20,7 +20,7 @@
 ## 1. Five-Level Hierarchy
 
 | Level  | Name    | Timeout | Scope        | Fallback        |
-|:--------|:---------|:---------|:--------------|:-----------------|
+|:-------|:--------|:--------|:-------------|:----------------|
 | **T1** | Cache   | 100ms   | Cache lookup | Skip cache      |
 | **T2** | File    | 500ms   | Single file  | Use fallback    |
 | **T3** | Layer   | 2s      | Full layer   | Partial load    |
@@ -63,7 +63,7 @@ Request
 ## 3. Fallback Strategies
 
 | Situation        | Action                 |
-|:------------------|:------------------------|
+|:-----------------|:-----------------------|
 | Cache miss       | Proceed to file        |
 | File timeout     | Use embedded fallback  |
 | Layer timeout    | Return loaded portion  |
@@ -93,7 +93,7 @@ timeout:
 ## 5. Implementation Guidelines
 
 | Guideline            | Application           |
-|:----------------------|:-----------------------|
+|:---------------------|:----------------------|
 | Always set timeouts  | Every external call   |
 | Use appropriate tier | Match operation scope |
 | Implement fallbacks  | Every timeout path    |
@@ -105,7 +105,7 @@ timeout:
 ## 6. Related
 
 | Document           | Location                                               | Description                               |
-|:--------------------|:--------------------------------------------------------|:-------------------------------------------|
+|:-------------------|:-------------------------------------------------------|:------------------------------------------|
 | Timeout Patterns   | `.knowledge/frameworks/resilience/timeout_patterns.md` | Universal timeout and resilience patterns |
 | Main Configuration | `sage.yaml`                                            | Runtime timeout settings                  |
 | Defaults           | `.knowledge/core/defaults.md`                          | Default timeout values reference          |

@@ -1,4 +1,4 @@
-﻿# Plugin System Configuration
+# Plugin System Configuration
 
 > Configuration reference for the SAGE plugin system
 
@@ -36,7 +36,7 @@
 ### 1.2 Plugin Types
 
 | Type         | Location                    | Use Case           |
-|:--------------|:-----------------------------|:--------------------|
+|:-------------|:----------------------------|:-------------------|
 | **Bundled**  | `src/sage/plugins/bundled/` | Core functionality |
 | **External** | PyPI packages               | Community plugins  |
 | **Custom**   | User directory              | Project-specific   |
@@ -162,7 +162,7 @@ export SAGE_PLUGIN_ANALYZER_MAX_DEPTH=10
 ### 4.1 Available Bundled Plugins
 
 | Plugin              | Purpose                   | Default  |
-|:---------------------|:---------------------------|:----------|
+|:--------------------|:--------------------------|:---------|
 | `knowledge_loader`  | Load knowledge content    | Enabled  |
 | `content_analyzer`  | Analyze content structure | Enabled  |
 | `search_indexer`    | Index for search          | Enabled  |
@@ -311,7 +311,7 @@ plugins:
 ### 6.2 Permission Levels
 
 | Level          | File Read | File Write | Network | Subprocess |
-|:----------------|:-----------|:------------|:---------|:------------|
+|:---------------|:----------|:-----------|:--------|:-----------|
 | **Restricted** | ✗         | ✗          | ✗       | ✗          |
 | **Read-Only**  | ✓         | ✗          | ✗       | ✗          |
 | **Standard**   | ✓         | Limited    | ✗       | ✗          |

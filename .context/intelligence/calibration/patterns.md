@@ -1,4 +1,4 @@
-﻿# AI Collaboration Patterns - SAGE Project Reference
+# AI Collaboration Patterns - SAGE Project Reference
 
 > Project-specific calibration and patterns for SAGE Knowledge Base
 
@@ -34,7 +34,7 @@ This includes:
 Current calibration for SAGE project:
 
 | Task Type             | Recommended Level | Notes                      |
-|:-----------------------|:-------------------|:----------------------------|
+|:----------------------|:------------------|:---------------------------|
 | Documentation updates | L5 (High)         | Well-established patterns  |
 | Code formatting       | L5 (High)         | Ruff handles automatically |
 | Bug fixes             | L4 (Medium-High)  | Verify with tests          |
@@ -45,7 +45,7 @@ Current calibration for SAGE project:
 ### Response Time Expectations
 
 | Operation           | Expected Time | Timeout Level |
-|:---------------------|:---------------|:---------------|
+|:--------------------|:--------------|:--------------|
 | Simple query        | < 100ms       | T1            |
 | Single file read    | < 500ms       | T2            |
 | Multi-file analysis | < 2s          | T3            |
@@ -55,7 +55,7 @@ Current calibration for SAGE project:
 ### Quality Thresholds
 
 | Metric        | Target | Action if Below        |
-|:---------------|:--------|:------------------------|
+|:--------------|:-------|:-----------------------|
 | Test coverage | > 80%  | Add tests before merge |
 | Type coverage | > 90%  | Add type hints         |
 | Doc coverage  | > 70%  | Add docstrings         |

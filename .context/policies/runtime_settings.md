@@ -1,4 +1,4 @@
-﻿# SAGE Runtime Settings
+# SAGE Runtime Settings
 
 > Runtime configuration, logging, and environment settings
 
@@ -19,7 +19,7 @@
 ### 1.1 Core Environment Variables
 
 | Variable           | Default       | Description                          |
-|:--------------------|:---------------|:--------------------------------------|
+|:-------------------|:--------------|:-------------------------------------|
 | `SAGE_CONFIG_PATH` | `./sage.yaml` | Path to main config file             |
 | `SAGE_ENV`         | `production`  | Environment (development/production) |
 | `SAGE_DEBUG`       | `false`       | Enable debug mode                    |
@@ -66,7 +66,7 @@ export SAGE__LOADING__HYBRID__EAGER_LAYERS=core,frameworks
 ### 2.1 Logging Levels
 
 | Level      | Value | Use Case                        |
-|:------------|:-------|:---------------------------------|
+|:-----------|:------|:--------------------------------|
 | `DEBUG`    | 10    | Detailed debugging information  |
 | `INFO`     | 20    | General operational information |
 | `WARNING`  | 30    | Warning messages                |

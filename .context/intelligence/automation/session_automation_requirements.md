@@ -1,4 +1,4 @@
-﻿# Session History Automation Requirements
+# Session History Automation Requirements
 
 > Long-term automation plan for AI session history management in SAGE Knowledge Base
 
@@ -67,7 +67,7 @@ class SessionHooks:
 Add MCP tools for session management:
 
 | Tool                   | Purpose                     | Parameters                              |
-|:------------------------|:-----------------------------|:-----------------------------------------|
+|:-----------------------|:----------------------------|:----------------------------------------|
 | `sage_start_session`   | Initialize session tracking | `task_type`, `description`              |
 | `sage_end_session`     | Finalize and create records | `summary`, `next_steps`                 |
 | `sage_record_decision` | Log significant decision    | `decision`, `rationale`, `alternatives` |
@@ -235,7 +235,7 @@ session_history:
 ## 4. Success Metrics
 
 | Metric                       | Target                       | Measurement                            |
-|:------------------------------|:------------------------------|:----------------------------------------|
+|:-----------------------------|:-----------------------------|:---------------------------------------|
 | Session record creation rate | >80% of significant sessions | Records created / significant sessions |
 | Handoff completion rate      | >90%                         | Handoffs that led to task completion   |
 | Context recovery time        | <2 min                       | Time to resume from handoff            |

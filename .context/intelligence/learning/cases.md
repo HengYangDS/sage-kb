@@ -1,4 +1,4 @@
-﻿# Technical Cases Repository
+# Technical Cases Repository
 
 > Collection of problem-solving cases and lessons learned
 
@@ -23,7 +23,7 @@ This document records technical cases encountered during project development. Ea
 ## Case Index
 
 | ID                  | Title                                 | Category      | Date       | Status     |
-|:---------------------|:---------------------------------------|:---------------|:------------|:------------|
+|:--------------------|:--------------------------------------|:--------------|:-----------|:-----------|
 | CASE-2025-11-30-001 | Root directory output file prevention | Convention    | 2025-11-30 | Resolved   |
 | CASE-2025-11-29-001 | Output files in wrong directory       | Bug Fix       | 2025-11-29 | Resolved   |
 | CASE-2025-11-29-002 | Knowledge consolidation initiative    | Documentation | 2025-11-29 | Resolved   |
@@ -38,7 +38,7 @@ This document records technical cases encountered during project development. Ea
 ### Summary
 
 | Field          | Value                                   |
-|:----------------|:-----------------------------------------|
+|:---------------|:----------------------------------------|
 | **Case ID**    | CASE-2025-11-29-001                     |
 | **Title**      | Output files created in wrong directory |
 | **Date**       | 2025-11-29                              |
@@ -95,7 +95,7 @@ if output_file:
 ### Lessons Learned
 
 | Takeaway                            | Action                                   |
-|:-------------------------------------|:------------------------------------------|
+|:------------------------------------|:-----------------------------------------|
 | Output paths should be normalized   | Always use designated output directories |
 | Create directories programmatically | Use `mkdir(parents=True, exist_ok=True)` |
 | Document output locations           | Update docstrings with file locations    |
@@ -111,7 +111,7 @@ if output_file:
 ### Summary
 
 | Field          | Value                              |
-|:----------------|:------------------------------------|
+|:---------------|:-----------------------------------|
 | **Case ID**    | CASE-2025-11-29-002                |
 | **Title**      | Knowledge consolidation initiative |
 | **Date**       | 2025-11-29                         |
@@ -131,7 +131,7 @@ User requested analysis of knowledge gaps in the SAGE Knowledge Base and impleme
 After analyzing the project structure, identified the following areas for improvement:
 
 | Category        | Gap                                  | Priority |
-|:-----------------|:--------------------------------------|:----------|
+|:----------------|:-------------------------------------|:---------|
 | Troubleshooting | No dedicated troubleshooting guide   | High     |
 | Integration     | No integration patterns document     | High     |
 | Security        | No security practices document       | Medium   |
@@ -147,7 +147,7 @@ After analyzing the project structure, identified the following areas for improv
 Created 10 new documentation files:
 
 | File                                                  | Lines     | Purpose               |
-|:-------------------------------------------------------|:-----------|:-----------------------|
+|:------------------------------------------------------|:----------|:----------------------|
 | `.knowledge/practices/engineering/troubleshooting.md` | 451       | Troubleshooting guide |
 | `.knowledge/frameworks/patterns/integration.md`       | 574       | Integration patterns  |
 | `.knowledge/practices/engineering/security.md`        | 592       | Security practices    |
@@ -164,7 +164,7 @@ Created 10 new documentation files:
 ### Lessons Learned
 
 | Takeaway                                     | Action                                         |
-|:----------------------------------------------|:------------------------------------------------|
+|:---------------------------------------------|:-----------------------------------------------|
 | Regular knowledge audits are valuable        | Schedule periodic KB reviews                   |
 | Documentation gaps accumulate                | Address gaps proactively                       |
 | Templates accelerate documentation           | Create templates for common doc types          |
@@ -179,7 +179,7 @@ Created 10 new documentation files:
 ## Case Categories Reference
 
 | Category      | Description               |
-|:---------------|:---------------------------|
+|:--------------|:--------------------------|
 | Bug Fix       | Fixing incorrect behavior |
 | Performance   | Optimization issues       |
 | Architecture  | Design-level issues       |
@@ -195,7 +195,7 @@ Created 10 new documentation files:
 ### Summary
 
 | Field          | Value                             |
-|:----------------|:-----------------------------------|
+|:---------------|:----------------------------------|
 | **Case ID**    | CASE-2025-11-29-003               |
 | **Title**      | Layer terminology standardization |
 | **Date**       | 2025-11-29                        |
@@ -230,7 +230,7 @@ Updated `.junie/guidelines.md` Architecture Rules section:
 ### Lessons Learned
 
 | Takeaway                             | Action                                      |
-|:--------------------------------------|:---------------------------------------------|
+|:-------------------------------------|:--------------------------------------------|
 | Terminology drift occurs naturally   | Periodic terminology audits needed          |
 | Single source of truth               | Code structure should drive doc terminology |
 | Expert committee reviews catch drift | Use Level 5 reviews for consistency         |
@@ -246,7 +246,7 @@ Updated `.junie/guidelines.md` Architecture Rules section:
 ### Summary
 
 | Field          | Value                             |
-|:----------------|:-----------------------------------|
+|:---------------|:----------------------------------|
 | **Case ID**    | CASE-2025-11-29-004               |
 | **Title**      | Configuration context refactoring |
 | **Date**       | 2025-11-29                        |
@@ -288,7 +288,7 @@ Original naming didn't distinguish between "policy/governance" and "runtime sett
 ### Lessons Learned
 
 | Takeaway                             | Action                                              |
-|:--------------------------------------|:-----------------------------------------------------|
+|:-------------------------------------|:----------------------------------------------------|
 | Names should reflect purpose         | Use "policies" for governance, "config" for runtime |
 | Refactoring requires thorough search | Use grep to find all references before renaming     |
 | Document the distinction             | Add clear descriptions in index files               |
@@ -304,7 +304,7 @@ Original naming didn't distinguish between "policy/governance" and "runtime sett
 ### Summary
 
 | Field          | Value                      |
-|:----------------|:----------------------------|
+|:---------------|:---------------------------|
 | **Case ID**    | CASE-2025-11-29-005        |
 | **Title**      | Test coverage gap analysis |
 | **Date**       | 2025-11-29                 |
@@ -320,7 +320,7 @@ Level 5 Expert Committee identified significant asymmetry between source code im
 ### Analysis
 
 | Source Module             | Implementation Files | Test Files | Gap    |
-|:---------------------------|:----------------------|:------------|:--------|
+|:--------------------------|:---------------------|:-----------|:-------|
 | `capabilities/analyzers/` | 3                    | 0          | 3      |
 | `capabilities/checkers/`  | 1                    | 0          | 1      |
 | `capabilities/monitors/`  | 1                    | 0          | 1      |
@@ -358,7 +358,7 @@ Identified and documented. Implementation planned as Phase 4 of optimization ini
 ### Summary
 
 | Field          | Value                                 |
-|:----------------|:---------------------------------------|
+|:---------------|:--------------------------------------|
 | **Case ID**    | CASE-2025-11-30-001                   |
 | **Title**      | Root directory output file prevention |
 | **Date**       | 2025-11-30                            |
@@ -419,7 +419,7 @@ output.txt
 ### Lessons Learned
 
 | Takeaway                     | Action                                                      |
-|:------------------------------|:-------------------------------------------------------------|
+|:-----------------------------|:------------------------------------------------------------|
 | External tools need guidance | Document output conventions explicitly                      |
 | Defense in depth             | Use .gitignore as safety net + documentation                |
 | Systematic prevention        | Don't just fix, establish conventions to prevent recurrence |

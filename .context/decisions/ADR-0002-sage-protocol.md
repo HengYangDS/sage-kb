@@ -1,4 +1,4 @@
-﻿# ADR-0002: SAGE Protocol Design
+# ADR-0002: SAGE Protocol Design
 
 > Architecture Decision Record for SAGE Knowledge Base
 
@@ -54,7 +54,7 @@ Adopt the **SAGE Protocol** — a four-phase processing model:
 ### Phase Definitions
 
 | Phase        | Purpose                 | Input           | Output           |
-|:--------------|:-------------------------|:-----------------|:------------------|
+|:-------------|:------------------------|:----------------|:-----------------|
 | **Source**   | Knowledge acquisition   | Paths, queries  | Raw content      |
 | **Analyze**  | Processing & enrichment | Raw content     | Structured data  |
 | **Generate** | Multi-channel output    | Structured data | Formatted output |
@@ -205,8 +205,8 @@ output = await generator.format(content, "json")
 
 ## Related
 
-- `ADR-0001-architecture.md` — Three-layer architecture
-- `ADR-0006-protocol-first.md` — Protocol-first design
+- `.context/decisions/ADR-0001-architecture.md` — Three-layer architecture
+- `.context/decisions/ADR-0006-protocol-first.md` — Protocol-first design
 - `docs/design/02-sage-protocol.md` — Full protocol documentation
 
 ---

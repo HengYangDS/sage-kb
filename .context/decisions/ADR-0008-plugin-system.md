@@ -1,4 +1,4 @@
-﻿# ADR-0008: Plugin System Design
+# ADR-0008: Plugin System Design
 
 > Architecture Decision Record for SAGE Knowledge Base
 
@@ -70,7 +70,7 @@ Implement a **Protocol-Based Plugin System** with bundled and external plugin su
 ### Plugin Types
 
 | Type      | Protocol          | Purpose                          |
-|:-----------|:-------------------|:----------------------------------|
+|:----------|:------------------|:---------------------------------|
 | Analyzer  | `AnalyzerPlugin`  | Code/content analysis            |
 | Checker   | `CheckerPlugin`   | Validation and health checks     |
 | Monitor   | `MonitorPlugin`   | Performance and usage monitoring |

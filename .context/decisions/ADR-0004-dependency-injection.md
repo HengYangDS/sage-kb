@@ -1,4 +1,4 @@
-﻿# ADR-0004: Dependency Injection Container
+# ADR-0004: Dependency Injection Container
 
 > Architecture Decision Record for SAGE Knowledge Base
 
@@ -68,7 +68,7 @@ class DIContainer:
 ### Lifetime Modes
 
 | Lifetime      | Behavior                            | Use Case                          |
-|:---------------|:-------------------------------------|:-----------------------------------|
+|:--------------|:------------------------------------|:----------------------------------|
 | **SINGLETON** | One instance for container lifetime | Config, EventBus, shared state    |
 | **TRANSIENT** | New instance per resolution         | Stateless services, validators    |
 | **SCOPED**    | One instance per scope              | Request handlers, session context |
@@ -219,8 +219,8 @@ except CircularDependencyError as e:
 
 ## Related
 
-- `ADR-0001-architecture.md` — Layer architecture
-- `ADR-0006-protocol-first.md` — Protocol-based interfaces
+- `.context/decisions/ADR-0001-architecture.md` — Layer architecture
+- `.context/decisions/ADR-0006-protocol-first.md` — Protocol-based interfaces
 - `.context/conventions/code_patterns.md` — DI usage patterns
 - `src/sage/core/di/` — Implementation
 

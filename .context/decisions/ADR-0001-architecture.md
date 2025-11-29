@@ -1,4 +1,4 @@
-﻿# ADR-0001: Three-Layer Architecture
+# ADR-0001: Three-Layer Architecture
 
 > Architecture Decision Record for SAGE Knowledge Base
 
@@ -77,7 +77,7 @@ Adopt a **Core-Services-Capabilities** three-layer architecture with dev tools i
 ### Layer Responsibilities
 
 | Layer            | Responsibility                         | Dependencies      |
-|:------------------|:----------------------------------------|:-------------------|
+|:-----------------|:---------------------------------------|:------------------|
 | **Core**         | Infrastructure, protocols, DI, events  | None (standalone) |
 | **Services**     | User interfaces (CLI, MCP, API)        | Core              |
 | **Capabilities** | Runtime features (analyzers, checkers) | Core              |
@@ -189,8 +189,8 @@ analyzer = container.resolve(AnalyzerProtocol)
 
 ## Related
 
-- `ADR-0004-dependency-injection.md` — DI container design
-- `ADR-0005-event-bus.md` — Event communication
+- `.context/decisions/ADR-0004-dependency-injection.md` — DI container design
+- `.context/decisions/ADR-0005-event-bus.md` — Event communication
 - `docs/design/01-architecture.md` — Full architecture documentation
 
 ---

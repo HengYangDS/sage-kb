@@ -1,4 +1,4 @@
-﻿# SAGE Project Optimizations
+# SAGE Project Optimizations
 
 > SAGE-specific optimizations, shortcuts, and code patterns
 
@@ -9,7 +9,7 @@
 For comprehensive guides on general development practices, see:
 
 | Topic                | Reference                                                      |
-|:----------------------|:----------------------------------------------------------------|
+|:---------------------|:---------------------------------------------------------------|
 | **Code Patterns**    | `.knowledge/practices/engineering/patterns.md`                 |
 | **Testing Strategy** | `.knowledge/practices/engineering/testing_strategy.md`         |
 | **Documentation**    | `.knowledge/practices/documentation/`                          |
@@ -56,7 +56,7 @@ if TYPE_CHECKING:
 ### 1.2 Test Coverage Goals
 
 | Layer        | Target    | Focus                            |
-|:--------------|:-----------|:----------------------------------|
+|:-------------|:----------|:---------------------------------|
 | Core         | 90%+      | All public APIs, error paths     |
 | Services     | 80%+      | Integration points, CLI commands |
 | Capabilities | 80%+      | Analyzer logic, edge cases       |
@@ -69,7 +69,7 @@ if TYPE_CHECKING:
 ### 2.1 Loading Optimizations
 
 | Optimization        | Implementation                        | Impact         |
-|:---------------------|:---------------------------------------|:----------------|
+|:--------------------|:--------------------------------------|:---------------|
 | Parallel loading    | `asyncio.gather()` for multiple files | 3-5x faster    |
 | Lazy initialization | Load on first access                  | Faster startup |
 | Content caching     | LRU cache with TTL                    | Reduced IO     |
@@ -160,7 +160,7 @@ class FileLoader:
 ### 4.1 Common File Locations
 
 | Need              | Location                           |
-|:-------------------|:------------------------------------|
+|:------------------|:-----------------------------------|
 | Add timeout level | `src/sage/core/timeout.py`         |
 | Add event type    | `src/sage/core/events/events.py`   |
 | Add protocol      | `src/sage/core/protocols.py`       |
