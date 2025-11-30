@@ -33,27 +33,23 @@ The Analyze protocol (A in SAGE) processes normalized knowledge to extract struc
 
 ### 3.2 Parsing Flow
 
-```
-NormalizedKnowledge
-        │
-        ▼
-┌───────────────────────────────────────┐
-│            Parser                      │
-├───────────────────────────────────────┤
-│  ┌─────────────┐  ┌─────────────┐    │
-│  │  Structure  │  │   Content   │    │
-│  │   Parser    │  │   Parser    │    │
-│  └──────┬──────┘  └──────┬──────┘    │
-│         │                │           │
-│  ┌──────▼──────┐  ┌──────▼──────┐    │
-│  │  Metadata   │  │  Reference  │    │
-│  │   Parser    │  │   Parser    │    │
-│  └──────┬──────┘  └──────┬──────┘    │
-│         └────────┬───────┘           │
-└──────────────────┼───────────────────┘
-                   │
-                   ▼
-            ParsedKnowledge
+```mermaid
+graph TD
+    NK[NormalizedKnowledge]
+    subgraph Parser
+        SP[Structure Parser]
+        CP[Content Parser]
+        MP[Metadata Parser]
+        RP[Reference Parser]
+        SP --> MP
+        CP --> RP
+    end
+    PK[ParsedKnowledge]
+    
+    NK --> SP
+    NK --> CP
+    MP --> PK
+    RP --> PK
 ```
 
 ### 3.3 Parsed Knowledge Structure
@@ -84,28 +80,24 @@ class ParsedKnowledge:
 
 ### 4.2 Classification Flow
 
-```
-ParsedKnowledge
-       │
-       ▼
-┌──────────────────────────────────────┐
-│           Classifier                  │
-├──────────────────────────────────────┤
-│                                      │
-│  ┌────────┐  ┌────────┐  ┌────────┐ │
-│  │  Type  │  │ Topic  │  │ Level  │ │
-│  └───┬────┘  └───┬────┘  └───┬────┘ │
-│      │           │           │       │
-│      └───────────┼───────────┘       │
-│                  │                   │
-│           ┌──────▼──────┐           │
-│           │   Scorer    │           │
-│           └──────┬──────┘           │
-│                  │                   │
-└──────────────────┼───────────────────┘
-                   │
-                   ▼
-         ClassifiedKnowledge
+```mermaid
+graph TD
+    PK[ParsedKnowledge]
+    subgraph Classifier
+        Type[Type]
+        Topic[Topic]
+        Level[Level]
+        Scorer[Scorer]
+        Type --> Scorer
+        Topic --> Scorer
+        Level --> Scorer
+    end
+    CK[ClassifiedKnowledge]
+    
+    PK --> Type
+    PK --> Topic
+    PK --> Level
+    Scorer --> CK
 ```
 
 ### 4.3 Classification Result
@@ -136,31 +128,21 @@ class ClassifiedKnowledge:
 
 ### 5.2 Relation Flow
 
-```
-ClassifiedKnowledge[]
-         │
-         ▼
-┌───────────────────────────────────────┐
-│         Relation Builder              │
-├───────────────────────────────────────┤
-│                                       │
-│  ┌──────────────┐  ┌──────────────┐  │
-│  │   Extract    │  │    Infer     │  │
-│  │   Explicit   │  │   Implicit   │  │
-│  │   Relations  │  │   Relations  │  │
-│  └──────┬───────┘  └──────┬───────┘  │
-│         │                 │          │
-│         └────────┬────────┘          │
-│                  │                   │
-│           ┌──────▼──────┐           │
-│           │    Merge    │           │
-│           │   & Dedupe  │           │
-│           └──────┬──────┘           │
-│                  │                   │
-└──────────────────┼───────────────────┘
-                   │
-                   ▼
-            KnowledgeGraph
+```mermaid
+graph TD
+    CK["ClassifiedKnowledge[]"]
+    subgraph RelationBuilder["Relation Builder"]
+        Explicit[Extract Explicit Relations]
+        Implicit[Infer Implicit Relations]
+        Merge[Merge & Dedupe]
+        Explicit --> Merge
+        Implicit --> Merge
+    end
+    KG[KnowledgeGraph]
+    
+    CK --> Explicit
+    CK --> Implicit
+    Merge --> KG
 ```
 
 ### 5.3 Knowledge Graph Structure
@@ -188,26 +170,15 @@ class KnowledgeEdge:
 
 ## 6. Analysis Pipeline
 
-```
-NormalizedKnowledge
-        │
-        ▼
-    ┌───────┐
-    │ Parse │ ─── Extract structure, content, refs
-    └───┬───┘
-        │
-        ▼
-   ┌──────────┐
-   │ Classify │ ─── Categorize by type, topic, level
-   └────┬─────┘
-        │
-        ▼
-   ┌─────────┐
-   │ Relate  │ ─── Build knowledge graph
-   └────┬────┘
-        │
-        ▼
-  KnowledgeGraph
+```mermaid
+graph TD
+    NK[NormalizedKnowledge]
+    Parse["Parse<br/>Extract structure, content, refs"]
+    Classify["Classify<br/>Categorize by type, topic, level"]
+    Relate["Relate<br/>Build knowledge graph"]
+    KG[KnowledgeGraph]
+    
+    NK --> Parse --> Classify --> Relate --> KG
 ```
 
 ---

@@ -12,6 +12,7 @@
 - [4. Writing](#4-writing)
 - [5. Organization](#5-organization)
 - [6. Quality](#6-quality)
+- [7. Diagrams](#7-diagrams)
 
 ---
 
@@ -102,8 +103,7 @@
 
 ### 2.4 Path Format Standard
 
-**Rule**: All paths in Related sections and cross-references MUST use **project-root-relative paths** (starting with
-`.`).
+**Rule**: All paths in Related sections and cross-references MUST use **project-root-relative paths** (starting with `.`).
 
 #### Path Format Examples
 
@@ -208,7 +208,7 @@ print(greet("World"))  # Output: Hello, World
 | Type     | Convention                | Example                        |
 |----------|---------------------------|--------------------------------|
 | Markdown | `UPPER_SNAKE_CASE.md`     | `DOCUMENTATION_STANDARDS.md`   |
-| ADR      | `ADR-NNNN-TITLE.md`       | `ADR-0001-FASTMCP-CHOICE.md`   |
+| ADR      | `ADR_NNNN_TITLE.md`       | `ADR_0001_FASTMCP_CHOICE.md`   |
 | Session  | `YYYYMMDD-TOPIC.md`       | `20251129-TIMEOUT.md`          |
 | Handoff  | `YYYYMMDD-HANDOFF.md`     | `20251129-API-HANDOFF.md`      |
 | Index    | `INDEX.md`                | `INDEX.md`                     |
@@ -333,8 +333,48 @@ print(greet("World"))  # Output: Hello, World
 
 ---
 
+## 7. Diagrams
+
+> **Rule**: All diagrams MUST use Mermaid syntax.
+>
+> **Full Standards**: See `.knowledge/practices/documentation/DIAGRAM_STANDARDS.md`
+
+### 7.1 Quick Reference
+
+| Rule | Requirement |
+|------|-------------|
+| **Tool** | Must use Mermaid |
+| **Design Philosophy** | 信达雅 (Xin-Da-Ya): Faithfulness → Clarity → Elegance |
+| **Node Limit** | Max 15 nodes per diagram |
+| **Nesting Limit** | Max 2 levels deep |
+
+### 7.2 Diagram Types (21 Total)
+
+| Priority | Types |
+|----------|-------|
+| ⭐ **Primary** | Flowchart, Sequence |
+| **Common** | Class, State, ER, User Journey, Timeline, C4 |
+| **Occasional** | Gantt, Pie, Quadrant, XY Chart, Block, Architecture |
+| **Rare** | Mindmap, Git Graph, Requirement, Sankey, Kanban, Packet, Radar |
+
+### 7.3 Selection Guide
+
+| Scenario | Recommended Type |
+|----------|------------------|
+| Process/workflow | Flowchart |
+| API interactions | Sequence diagram |
+| Data models | Class diagram |
+| State machines | State diagram |
+| Database schemas | ER diagram |
+| User experience | User Journey |
+| Version history | Timeline |
+| Software architecture | C4 diagram |
+
+---
+
 ## Related
 
+- `.knowledge/practices/documentation/DIAGRAM_STANDARDS.md` — Diagram creation standards (SSOT)
 - `.knowledge/practices/documentation/KNOWLEDGE_ORGANIZATION.md` — Layer architecture details
 - `.knowledge/practices/documentation/OPTIMIZATION_WORKFLOW.md` — Full optimization process
 - `.knowledge/practices/documentation/PROJECT_DIRECTORY_STRUCTURE.md` — Directory conventions details

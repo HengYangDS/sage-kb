@@ -67,8 +67,8 @@ If your project includes `.junie/` configuration:
 1. Open `Settings | Tools | Junie | Action Allowlist`
 2. Click "Add" to add Terminal rules
 3. Copy rules from:
-    - [Windows Rules](../reference/rules-windows.md)
-    - [macOS/Linux Rules](../reference/rules-unix.md)
+    - [Windows Rules](../reference/RULES_WINDOWS.md)
+    - [macOS/Linux Rules](../reference/RULES_UNIX.md)
 
 ### Method C: Quick Copy-Paste
 
@@ -163,7 +163,7 @@ In Junie chat, try:
 
 1. Check rule syntax in `Settings | Tools | Junie | Action Allowlist`
 2. Verify regex patterns match your commands
-3. See [Action Allowlist Guide](action-allowlist.md) for detailed patterns
+3. See [Action Allowlist Guide](ACTION_ALLOWLIST.md) for detailed patterns
 
 ### MCP Servers Not Connecting
 
@@ -177,18 +177,18 @@ In Junie chat, try:
 
 | Goal                        | Document                                          |
 |:----------------------------|:--------------------------------------------------|
-| Configure all 87 rules      | [Action Allowlist](action-allowlist.md)           |
-| Setup advanced MCP features | [MCP Overview](../mcp/overview.md)                |
-| Track efficiency metrics    | [Metrics](../operations/metrics.md)               |
-| Learn about future features | [Future Protocols](../vision/future-protocols.md) |
+| Configure all 87 rules      | [Action Allowlist](ACTION_ALLOWLIST.md)           |
+| Setup advanced MCP features | [MCP Overview](../mcp/OVERVIEW.md)                |
+| Track efficiency metrics    | [Metrics](../operations/METRICS.md)               |
+| Learn about future features | [Future Protocols](../vision/FUTURE_PROTOCOLS.md) |
 
 ---
 
 ## 9. Related
 
-- [Action Allowlist](action-allowlist.md) — Complete Terminal rules guide
-- [MCP Configuration](../mcp/configuration.md) — MCP server setup
-- [Glossary](../reference/glossary.md) — Terminology reference
+- [Action Allowlist](ACTION_ALLOWLIST.md) — Complete Terminal rules guide
+- [MCP Configuration](../mcp/CONFIGURATION.md) — MCP server setup
+- [Glossary](../reference/GLOSSARY.md) — Terminology reference
 
 ---
 

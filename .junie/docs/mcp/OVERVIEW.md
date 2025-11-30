@@ -1,13 +1,9 @@
----
-version: "1.0"
-last_updated: "2025-11-30"
-status: published
-tokens: ~500
----
-
 # MCP Overview
 
 > Model Context Protocol architecture and concepts (~15 min read)
+>
+> **Scope**: This document covers MCP **client configuration** for Junie AI.
+> For SAGE **MCP server API**, see `docs/api/MCP*.md`.
 
 ---
 
@@ -29,7 +25,7 @@ tokens: ~500
 **Model Context Protocol (MCP)** is an open protocol developed by Anthropic that establishes standardized connections
 between AI applications and external data sources and tools.
 
-### Official Resources
+### 1.1 Official Resources
 
 - 📘 **MCP Specification**: https://modelcontextprotocol.io/specification
 - 🌐 **MCP Official Site**: https://modelcontextprotocol.io/
@@ -81,7 +77,7 @@ between AI applications and external data sources and tools.
 +------------------------------------------------------------------+
 ```
 
-### Architecture Components
+### 2.1 Architecture Components
 
 | Layer              | Component          | Function                                              |
 |:-------------------|:-------------------|:------------------------------------------------------|
@@ -90,7 +86,7 @@ between AI applications and external data sources and tools.
 | **Server Layer**   | MCP Servers        | Filesystem, Memory, Fetch operations via tools        |
 | **Resource Layer** | External Resources | Project files, knowledge storage, external APIs       |
 
-### Data Flow
+### 2.2 Data Flow
 
 1. **Request**: Junie sends tool request via MCP Client
 2. **Route**: MCP Client routes to appropriate server via stdio
@@ -114,7 +110,7 @@ between AI applications and external data sources and tools.
 
 ## 4. MCP Servers
 
-### Priority Levels
+### 4.1 Priority Levels
 
 | Priority | Name      | Description                          | Examples                           |
 |:---------|:----------|:-------------------------------------|:-----------------------------------|
@@ -231,4 +227,4 @@ MCP servers provide:
 
 ---
 
-*Part of the Junie Configuration Template System*
+*AI Collaboration Knowledge Base*

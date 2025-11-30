@@ -22,20 +22,16 @@ This directory documents how SAGE manages state, sessions, and cross-task memory
 
 ## 3. State Architecture
 
-```
-┌─────────────────────────────────────────────────┐
-│              Session Manager                     │
-├─────────────────────────────────────────────────┤
-│  ┌──────────────┐  ┌──────────────┐            │
-│  │ Session State│  │ Task Memory  │            │
-│  └──────┬───────┘  └──────┬───────┘            │
-│         │                  │                    │
-│         ▼                  ▼                    │
-│  ┌─────────────────────────────────────────┐   │
-│  │         Persistence Layer               │   │
-│  │    (File, Database, Cache)             │   │
-│  └─────────────────────────────────────────┘   │
-└─────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    subgraph SessionManager["Session Manager"]
+        SessionState[Session State]
+        TaskMemory[Task Memory]
+        Persistence["Persistence Layer<br/>(File, Database, Cache)"]
+        
+        SessionState --> Persistence
+        TaskMemory --> Persistence
+    end
 ```
 
 ---

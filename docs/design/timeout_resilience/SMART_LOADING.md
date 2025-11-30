@@ -23,24 +23,20 @@ Smart loading optimizes knowledge delivery by choosing the right loading strateg
 
 ## 3. Strategy Selection
 
-```
-Request arrives
-      │
-      ▼
-┌─────────────────────┐
-│ Assess Context      │
-│ - Token budget      │
-│ - Priority level    │
-│ - Cache status      │
-└──────────┬──────────┘
-           │
-     ┌─────┴─────┬─────────┬──────────┐
-     ▼           ▼         ▼          ▼
-  Eager       Lazy    Deferred   Progressive
-     │           │         │          │
-     ▼           ▼         ▼          ▼
-  Load all   Load on   Background  Priority
-  at start   access     queue      order
+```mermaid
+graph TD
+    Request[Request arrives]
+    Assess["Assess Context<br/>- Token budget<br/>- Priority level<br/>- Cache status"]
+    Eager["Eager<br/>Load all at start"]
+    Lazy["Lazy<br/>Load on access"]
+    Deferred["Deferred<br/>Background queue"]
+    Progressive["Progressive<br/>Priority order"]
+    
+    Request --> Assess
+    Assess --> Eager
+    Assess --> Lazy
+    Assess --> Deferred
+    Assess --> Progressive
 ```
 
 ---
@@ -246,23 +242,16 @@ class BudgetAwareLoader:
 
 ### 9.1 Cache Layers
 
-```
-Request
-   │
-   ▼
-┌──────────────┐
-│ Memory Cache │ ─── T1 (50ms)
-└──────┬───────┘
-       │ miss
-       ▼
-┌──────────────┐
-│ Disk Cache   │ ─── T2 (200ms)
-└──────┬───────┘
-       │ miss
-       ▼
-┌──────────────┐
-│ Source Load  │ ─── T2-T3
-└──────────────┘
+```mermaid
+graph TD
+    Request[Request]
+    Memory["Memory Cache<br/>T1 (50ms)"]
+    Disk["Disk Cache<br/>T2 (200ms)"]
+    Source["Source Load<br/>T2-T3"]
+    
+    Request --> Memory
+    Memory -->|miss| Disk
+    Disk -->|miss| Source
 ```
 
 ### 9.2 Cache Keys

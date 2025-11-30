@@ -1,4 +1,4 @@
----
+﻿---
 version: "1.0"
 last_updated: "2025-11-30"
 status: published
@@ -497,7 +497,7 @@ sage config --show --section memory.cache
 - `.context/policies/timeout_hierarchy.md` — Timeout configuration
 - `.context/policies/service_settings.md` — Service configuration
 - `.context/policies/runtime_settings.md` — Runtime settings
-- `.context/decisions/ADR-0003-timeout-hierarchy.md` — Timeout ADR
+- `.context/decisions/ADR_0003_TIMEOUT_HIERARCHY.md` — Timeout ADR
 
 ---
 

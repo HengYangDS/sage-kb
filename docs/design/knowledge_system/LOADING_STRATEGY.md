@@ -23,32 +23,16 @@ Loading strategy defines how knowledge content is loaded into AI context based o
 
 ## 3. Loading Pipeline
 
-```
-Session Start
-     │
-     ▼
-┌─────────────────┐
-│  Load Core      │  (~500 tokens)
-│  .knowledge/core│
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│ Context Analysis│  Analyze task/query
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│ Selective Load  │  Based on relevance
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│ Budget Check    │  Enforce token limits
-└────────┬────────┘
-         │
-         ▼
-  Context Ready
+```mermaid
+graph TD
+    Start[Session Start]
+    Core["Load Core<br/>.knowledge/core<br/>500 tokens"]
+    Analysis["Context Analysis<br/>Analyze task/query"]
+    Selective["Selective Load<br/>Based on relevance"]
+    Budget["Budget Check<br/>Enforce token limits"]
+    Ready[Context Ready]
+    
+    Start --> Core --> Analysis --> Selective --> Budget --> Ready
 ```
 
 ---

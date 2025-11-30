@@ -34,24 +34,19 @@ The Generate protocol (G in SAGE) transforms analyzed knowledge into user-facing
 
 ### 3.2 Formatting Flow
 
-```
-KnowledgeGraph
-      │
-      ▼
-┌─────────────────────────────────────┐
-│           Formatter                  │
-├─────────────────────────────────────┤
-│                                     │
-│  Query ───► Select ───► Transform   │
-│    │          │            │        │
-│    ▼          ▼            ▼        │
-│  What?     Which?       How?        │
-│  (intent)  (nodes)     (format)     │
-│                                     │
-└─────────────────────────────────────┘
-      │
-      ▼
-FormattedContent
+```mermaid
+graph TD
+    KG[KnowledgeGraph]
+    subgraph Formatter
+        Query["Query<br/>What? (intent)"]
+        Select["Select<br/>Which? (nodes)"]
+        Transform["Transform<br/>How? (format)"]
+        Query --> Select --> Transform
+    end
+    FC[FormattedContent]
+    
+    KG --> Query
+    Transform --> FC
 ```
 
 ### 3.3 Formatted Content Structure
@@ -81,30 +76,21 @@ class FormattedContent:
 
 ### 4.2 Rendering Flow
 
-```
-FormattedContent
-       │
-       ▼
-┌──────────────────────────────────────┐
-│            Renderer                   │
-├──────────────────────────────────────┤
-│                                      │
-│  ┌────────────┐  ┌────────────┐     │
-│  │  Template  │  │   Context  │     │
-│  │  Loader    │  │  Builder   │     │
-│  └─────┬──────┘  └─────┬──────┘     │
-│        │               │            │
-│        └───────┬───────┘            │
-│                │                    │
-│         ┌──────▼──────┐            │
-│         │   Engine    │            │
-│         │  (Jinja2)   │            │
-│         └──────┬──────┘            │
-│                │                    │
-└────────────────┼────────────────────┘
-                 │
-                 ▼
-         RenderedContent
+```mermaid
+graph TD
+    FC[FormattedContent]
+    subgraph Renderer
+        TL[Template Loader]
+        CB[Context Builder]
+        Engine["Engine (Jinja2)"]
+        TL --> Engine
+        CB --> Engine
+    end
+    RC[RenderedContent]
+    
+    FC --> TL
+    FC --> CB
+    Engine --> RC
 ```
 
 ### 4.3 Rendered Content Structure
@@ -136,34 +122,29 @@ class RenderedContent:
 
 ### 5.2 Delivery Flow
 
-```
-RenderedContent
-       │
-       ▼
-┌──────────────────────────────────────┐
-│           Deliverer                   │
-├──────────────────────────────────────┤
-│                                      │
-│  ┌─────────┐                        │
-│  │ Channel │                        │
-│  │ Router  │                        │
-│  └────┬────┘                        │
-│       │                             │
-│  ┌────┴────┬────────┬────────┐     │
-│  ▼         ▼        ▼        ▼     │
-│ CLI       MCP      API     File    │
-│  │         │        │        │     │
-│  └─────────┴────────┴────────┘     │
-│             │                       │
-│      ┌──────▼──────┐               │
-│      │   Result    │               │
-│      │  Collector  │               │
-│      └─────────────┘               │
-│                                     │
-└─────────────────────────────────────┘
-       │
-       ▼
-DeliveryResult
+```mermaid
+graph TD
+    RC[RenderedContent]
+    subgraph Deliverer
+        Router[Channel Router]
+        CLI[CLI]
+        MCP[MCP]
+        API[API]
+        File[File]
+        Collector[Result Collector]
+        Router --> CLI
+        Router --> MCP
+        Router --> API
+        Router --> File
+        CLI --> Collector
+        MCP --> Collector
+        API --> Collector
+        File --> Collector
+    end
+    DR[DeliveryResult]
+    
+    RC --> Router
+    Collector --> DR
 ```
 
 ### 5.3 Delivery Result Structure
@@ -183,26 +164,15 @@ class DeliveryResult:
 
 ## 6. Generation Pipeline
 
-```
-KnowledgeGraph
-       │
-       ▼
-   ┌────────┐
-   │ Format │ ─── Structure for target channel
-   └───┬────┘
-       │
-       ▼
-   ┌────────┐
-   │ Render │ ─── Apply templates and styles
-   └───┬────┘
-       │
-       ▼
-   ┌─────────┐
-   │ Deliver │ ─── Send to CLI/MCP/API/File
-   └────┬────┘
-       │
-       ▼
- DeliveryResult
+```mermaid
+graph TD
+    KG[KnowledgeGraph]
+    Format["Format<br/>Structure for target channel"]
+    Render["Render<br/>Apply templates and styles"]
+    Deliver["Deliver<br/>Send to CLI/MCP/API/File"]
+    DR[DeliveryResult]
+    
+    KG --> Format --> Render --> Deliver --> DR
 ```
 
 ---

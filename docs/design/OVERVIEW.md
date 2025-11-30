@@ -27,16 +27,14 @@ SAGE (Source, Analyze, Generate, Evolve) is an intelligent knowledge management 
 
 ## 3. Architecture Layers
 
-```
-┌─────────────────────────────────────┐
-│ Services (CLI, MCP, API)            │
-├─────────────────────────────────────┤
-│ Capabilities (5 families)           │
-├─────────────────────────────────────┤
-│ Core Engine (DI, Events, Models)    │
-├─────────────────────────────────────┤
-│ Plugins (Extension mechanisms)      │
-└─────────────────────────────────────┘
+```mermaid
+graph TD
+    Services["Services (CLI, MCP, API)"]
+    Capabilities["Capabilities (5 families)"]
+    Core["Core Engine (DI, Events, Models)"]
+    Plugins["Plugins (Extension mechanisms)"]
+    
+    Services --> Capabilities --> Core --> Plugins
 ```
 
 ---

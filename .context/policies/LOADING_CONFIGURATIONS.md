@@ -1,4 +1,4 @@
----
+﻿---
 version: "1.0"
 last_updated: "2025-11-30"
 status: published
@@ -369,7 +369,7 @@ export SAGE__CACHE__ENABLED=false
 
 - `.context/policies/timeout_hierarchy.md` — Timeout configuration
 - `.context/policies/runtime_settings.md` — Runtime settings
-- `.context/decisions/ADR-0003-timeout-hierarchy.md` — Timeout design decision
+- `.context/decisions/ADR_0003_TIMEOUT_HIERARCHY.md` — Timeout design decision
 - `docs/design/04-timeout-loading.md` — Full loading design
 
 ---

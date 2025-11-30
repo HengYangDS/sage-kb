@@ -257,13 +257,13 @@ Is this an intermediate/generated file?
 | Type           | Convention                  | Example                        |
 |----------------|-----------------------------|--------------------------------|
 | Markdown       | `UPPER_SNAKE_CASE.md`       | `DIRECTORY_STRUCTURE.md`       |
-| ADR            | `ADR-NNNN-TITLE.md`         | `ADR-0001-FASTMCP-CHOICE.md`   |
-| Session        | `YYYYMMDD-TOPIC.md`         | `20251129-TIMEOUT.md`          |
-| Handoff        | `YYYYMMDD-HANDOFF.md`       | `20251129-API-HANDOFF.md`      |
+| ADR            | `ADR_NNNN_TITLE.md`         | `ADR_0001_FASTMCP_CHOICE.md`   |
+| Session        | `YYYYMMDD_TOPIC.md`         | `20251129_TIMEOUT.md`          |
+| Handoff        | `YYYYMMDD_HANDOFF.md`       | `20251129_API_HANDOFF.md`      |
 | Index          | `INDEX.md`                  | `INDEX.md`                     |
 | Special        | `UPPERCASE.md`              | `README.md`, `CHANGELOG.md`    |
 | Archive folder | `YYYYMM/`                   | `202511/`                      |
-| Backup folder  | `YYYYMMDD-DESCRIPTION/`     | `20251129-PRE-REFACTOR/`       |
+| Backup folder  | `YYYYMMDD_DESCRIPTION/`     | `20251129_PRE_REFACTOR/`       |
 
 **Rationale**: Uppercase naming provides clear visual distinction for documentation files.
 

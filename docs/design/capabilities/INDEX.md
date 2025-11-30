@@ -38,18 +38,18 @@ Capabilities are organized into 5 MECE families that define what SAGE can do.
 
 ## 4. Classification Decision Tree
 
-```
-New capability arrives
-    │
-    ├── Does it analyze/diagnose? ──────► analyzers/
-    │
-    ├── Does it validate/check? ────────► checkers/
-    │
-    ├── Does it monitor/observe? ───────► monitors/
-    │
-    ├── Does it convert/transform? ─────► converters/
-    │
-    └── Does it generate/create? ───────► generators/
+```mermaid
+graph TD
+    Start[New capability arrives]
+    Start --> Q1{Analyze/diagnose?}
+    Q1 -->|Yes| A[analyzers]
+    Q1 -->|No| Q2{Validate/check?}
+    Q2 -->|Yes| C[checkers]
+    Q2 -->|No| Q3{Monitor/observe?}
+    Q3 -->|Yes| M[monitors]
+    Q3 -->|No| Q4{Convert/transform?}
+    Q4 -->|Yes| Co[converters]
+    Q4 -->|No| G[generators]
 ```
 
 ---

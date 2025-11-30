@@ -196,36 +196,17 @@ class EventTracker(Capability[EventStream, EventLog]):
 
 ## 8. Monitoring Pipeline
 
-```
-System State
-     │
-     ▼
-┌─────────────────┐
-│ health_checker  │
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│metric_collector │
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│timeout_watcher  │
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│resource_monitor │
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│ event_tracker   │
-└─────────────────┘
-         │
-         ▼
-  Monitoring Dashboard
+```mermaid
+flowchart TD
+    A1[System State]
+    A2[health_checker]
+    A3[metric_collector]
+    A4[timeout_watcher]
+    A5[resource_monitor]
+    A6[event_tracker]
+    A7[Monitoring Dashboard]
+    
+    A1 --> A2 --> A3 --> A4 --> A5 --> A6 --> A7
 ```
 
 ---
@@ -270,10 +251,10 @@ class CustomMonitor(Capability[MyInput, MyOutput]):
 
 ## Related
 
-- `CAPABILITY_MODEL.md` — Capability system
-- `ANALYZERS.md` — Analysis capabilities
-- `../timeout_resilience/INDEX.md` — Timeout patterns
+- `docs/design/capabilities/CAPABILITY_MODEL.md` — Capability system
+- `docs/design/capabilities/ANALYZERS.md` — Analysis capabilities
+- `docs/design/timeout_resilience/INDEX.md` — Timeout patterns
 
 ---
 
-*Part of SAGE Knowledge Base*
+*AI Collaboration Knowledge Base*

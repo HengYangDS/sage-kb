@@ -24,37 +24,18 @@ Graceful degradation ensures SAGE continues providing value even when components
 
 ## 3. Degradation Flow
 
-```
-Normal Operation (L0)
-        │
-        │ Component failure
-        ▼
-┌───────────────────┐
-│ Detect Failure    │
-└─────────┬─────────┘
-          │
-          ▼
-┌───────────────────┐
-│ Assess Impact     │ ─── Which features affected?
-└─────────┬─────────┘
-          │
-          ▼
-┌───────────────────┐
-│ Select Level      │ ─── L1, L2, L3, or L4?
-└─────────┬─────────┘
-          │
-          ▼
-┌───────────────────┐
-│ Apply Fallbacks   │ ─── Activate alternatives
-└─────────┬─────────┘
-          │
-          ▼
-┌───────────────────┐
-│ Notify Users      │ ─── Communicate status
-└─────────┬─────────┘
-          │
-          ▼
-   Degraded Operation
+```mermaid
+graph TD
+    L0[Normal Operation - L0]
+    Detect[Detect Failure]
+    Assess["Assess Impact<br/>Which features affected?"]
+    Select["Select Level<br/>L1, L2, L3, or L4?"]
+    Apply["Apply Fallbacks<br/>Activate alternatives"]
+    Notify["Notify Users<br/>Communicate status"]
+    Degraded[Degraded Operation]
+    
+    L0 -->|Component failure| Detect
+    Detect --> Assess --> Select --> Apply --> Notify --> Degraded
 ```
 
 ---
@@ -206,11 +187,12 @@ class HealthChecker:
 
 ### 7.2 Progressive Recovery
 
-```
-L4 ──► L3 ──► L2 ──► L1 ──► L0
-        │      │      │      │
-     Cache   Core  Extended Full
-     works  works   works  works
+```mermaid
+graph LR
+    L4["L4"] -->|Cache works| L3["L3"]
+    L3 -->|Core works| L2["L2"]
+    L2 -->|Extended works| L1["L1"]
+    L1 -->|Full works| L0["L0"]
 ```
 
 ---

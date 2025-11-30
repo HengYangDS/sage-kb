@@ -160,8 +160,8 @@ Project-specific timeout hierarchy for SAGE operations.
 
 ## 8. Related
 
-- [Quick Start](../guides/QUICK-START.md) — Get started guide
-- [Action Allowlist](../guides/ACTION-ALLOWLIST.md) — Terminal rules
+- [Quick Start](../guides/QUICK_START.md) — Get started guide
+- [Action Allowlist](../guides/ACTION_ALLOWLIST.md) — Terminal rules
 - [MCP Overview](../mcp/OVERVIEW.md) — MCP architecture
 - [Regex Reference](REGEX.md) — Regex patterns
 

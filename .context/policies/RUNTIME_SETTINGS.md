@@ -1,4 +1,4 @@
----
+﻿---
 version: "1.0"
 last_updated: "2025-11-30"
 status: published
@@ -468,7 +468,7 @@ debug:
 
 - `.context/policies/timeout_hierarchy.md` — Timeout configuration
 - `.context/policies/loading_configurations.md` — Loading configuration
-- `.context/decisions/ADR-0007-configuration.md` — Configuration design decision
+- `.context/decisions/ADR_0007_CONFIGURATION.md` — Configuration design decision
 - `docs/design/09-configuration.md` — Full configuration design
 
 ---

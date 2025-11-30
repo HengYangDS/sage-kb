@@ -1,4 +1,4 @@
----
+﻿---
 version: "1.0"
 last_updated: "2025-11-30"
 status: published
@@ -287,9 +287,9 @@ Should NOT MATCH:
 
 ## 11. Related
 
-- [Action Allowlist](../guides/action-allowlist.md) — Configuration guide
-- [Windows Rules](rules-windows.md) — Complete Windows rule list
-- [Unix Rules](rules-unix.md) — Complete macOS/Linux rule list
+- [Action Allowlist](../guides/ACTION_ALLOWLIST.md) — Configuration guide
+- [Windows Rules](RULES_WINDOWS.md) — Complete Windows rule list
+- [Unix Rules](RULES_UNIX.md) — Complete macOS/Linux rule list
 - [Glossary](glossary.md) — Terminology
 
 ---

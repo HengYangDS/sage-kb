@@ -1,4 +1,4 @@
-# Plugin Development Scenario Context
+﻿# Plugin Development Scenario Context
 
 > Pre-configured context for SAGE plugin development
 
@@ -34,7 +34,7 @@ autonomy_default: L3
 | Priority      | Files                                                                                                                            |
 |---------------|----------------------------------------------------------------------------------------------------------------------------------|
 | **Auto-Load** | `core/principles.md` · `docs/api/plugin_quick_ref.md` · `.knowledge/practices/engineering/patterns.md`                                      |
-| **On-Demand** | `.knowledge/practices/engineering/testing_strategy.md` · `.context/decisions/ADR-0008-plugin-system.md` · `docs/design/05-plugin-memory.md` |
+| **On-Demand** | `.knowledge/practices/engineering/testing_strategy.md` · `.context/decisions/ADR_0008_PLUGIN_SYSTEM.md` · `docs/design/05-plugin-memory.md` |
 
 ---
 
@@ -436,7 +436,7 @@ class MyPlugin(PluginBase):
 ## Related
 
 - `docs/design/05-plugin-memory.md` — Plugin system design
-- `.context/decisions/ADR-0008-plugin-system.md` — Architecture decision
+- `.context/decisions/ADR_0008_PLUGIN_SYSTEM.md` — Architecture decision
 - `.knowledge/practices/engineering/patterns.md` — Design patterns
 - `.knowledge/practices/engineering/testing_strategy.md` — Testing guide
 

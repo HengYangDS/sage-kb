@@ -12,13 +12,14 @@ Session management handles the lifecycle of user sessions, maintaining context a
 
 ## 2. Session Lifecycle
 
-```
-┌─────────┐     ┌─────────┐     ┌─────────┐     ┌─────────┐
-│  Init   │ ──► │ Active  │ ──► │ Idle    │ ──► │  End    │
-└─────────┘     └─────────┘     └─────────┘     └─────────┘
-                    │               │
-                    └───────────────┘
-                      (resume)
+```mermaid
+stateDiagram-v2
+    [*] --> Init
+    Init --> Active
+    Active --> Idle
+    Idle --> Active: resume
+    Idle --> End
+    End --> [*]
 ```
 
 ### 2.1 States

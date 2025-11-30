@@ -80,23 +80,25 @@ class Capability(ABC, Generic[TInput, TOutput]):
 
 ## 5. Classification Decision Tree
 
-```
-New capability arrives
-        │
-        ├── Does it analyze/diagnose/understand?
-        │   └── YES ──────────────────────► analyzers/
-        │
-        ├── Does it validate/check/verify?
-        │   └── YES ──────────────────────► checkers/
-        │
-        ├── Does it monitor/observe/alert?
-        │   └── YES ──────────────────────► monitors/
-        │
-        ├── Does it convert/transform/migrate?
-        │   └── YES ──────────────────────► converters/
-        │
-        └── Does it generate/create/build?
-            └── YES ──────────────────────► generators/
+```mermaid
+graph TD
+    Start[New capability arrives]
+    Q1{Analyze/diagnose/understand?}
+    Q2{Validate/check/verify?}
+    Q3{Monitor/observe/alert?}
+    Q4{Convert/transform/migrate?}
+    Q5{Generate/create/build?}
+    
+    Start --> Q1
+    Q1 -->|YES| Analyzers[analyzers]
+    Q1 -->|NO| Q2
+    Q2 -->|YES| Checkers[checkers]
+    Q2 -->|NO| Q3
+    Q3 -->|YES| Monitors[monitors]
+    Q3 -->|NO| Q4
+    Q4 -->|YES| Converters[converters]
+    Q4 -->|NO| Q5
+    Q5 -->|YES| Generators[generators]
 ```
 
 ---

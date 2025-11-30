@@ -217,36 +217,17 @@ class ProtocolTranslator(Capability[ProtocolInput, ProtocolOutput]):
 
 ## 8. Conversion Pipeline
 
-```
-Source Content
-     │
-     ▼
-┌─────────────────┐
-│ format_converter│
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│ schema_migrator │
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│ content_adapter │
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│encoding_converter│
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│protocol_translator│
-└─────────────────┘
-         │
-         ▼
-  Target Content
+```mermaid
+graph TD
+    Source[Source Content]
+    FC[format_converter]
+    SM[schema_migrator]
+    CA[content_adapter]
+    EC[encoding_converter]
+    PT[protocol_translator]
+    Target[Target Content]
+    
+    Source --> FC --> SM --> CA --> EC --> PT --> Target
 ```
 
 ---

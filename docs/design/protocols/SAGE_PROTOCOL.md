@@ -19,22 +19,16 @@ SAGE is an acronym representing the four-phase protocol for knowledge operations
 
 ## 2. Protocol Flow
 
-```
-┌──────────────────────────────────────────────────────────────┐
-│                      SAGE Protocol                            │
-├──────────────────────────────────────────────────────────────┤
-│                                                              │
-│  ┌─────────┐    ┌─────────┐    ┌──────────┐    ┌─────────┐  │
-│  │ SOURCE  │───►│ ANALYZE │───►│ GENERATE │───►│ EVOLVE  │  │
-│  │   (S)   │    │   (A)   │    │    (G)   │    │   (E)   │  │
-│  └─────────┘    └─────────┘    └──────────┘    └─────────┘  │
-│       │              │               │              │        │
-│       ▼              ▼               ▼              ▼        │
-│   Collect        Process         Output         Improve      │
-│   Validate       Structure       Format         Measure      │
-│   Normalize      Relate          Deliver        Learn        │
-│                                                              │
-└──────────────────────────────────────────────────────────────┘
+```mermaid
+graph LR
+    subgraph SAGE["SAGE Protocol"]
+        S["SOURCE (S)<br/>Collect<br/>Validate<br/>Normalize"]
+        A["ANALYZE (A)<br/>Process<br/>Structure<br/>Relate"]
+        G["GENERATE (G)<br/>Output<br/>Format<br/>Deliver"]
+        E["EVOLVE (E)<br/>Improve<br/>Measure<br/>Learn"]
+        
+        S --> A --> G --> E
+    end
 ```
 
 ---

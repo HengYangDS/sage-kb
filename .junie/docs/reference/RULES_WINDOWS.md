@@ -1,4 +1,4 @@
----
+﻿---
 version: "1.0"
 last_updated: "2025-11-30"
 status: published
@@ -235,9 +235,9 @@ Copy this entire block for quick setup:
 
 ## 6. Related
 
-- [Unix Rules](rules-unix.md) — macOS/Linux rules
+- [Unix Rules](RULES_UNIX.md) — macOS/Linux rules
 - [Regex Reference](regex.md) — Pattern syntax
-- [Action Allowlist](../guides/action-allowlist.md) — Configuration guide
+- [Action Allowlist](../guides/ACTION_ALLOWLIST.md) — Configuration guide
 
 ---
 

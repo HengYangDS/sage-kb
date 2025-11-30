@@ -29,26 +29,17 @@ SAGE uses a five-tier timeout hierarchy (T1-T5) to classify operations by expect
 
 ## 3. Timeout Diagram
 
-```
-Timeout Duration (log scale)
-    │
-    │                                    ████████ T5 (10s)
-    │                                    Complex Analysis
-    │
-    │                           ████ T4 (5s)
-    │                           Full KB Load
-    │
-    │                 ██ T3 (2s)
-    │                 Layer Load
-    │
-    │           █ T2 (500ms)
-    │           File I/O
-    │
-    │         █ T1 (100ms)
-    │         Cache
-    │
-    └─────────────────────────────────────────────────►
-              Operation Type
+```mermaid
+graph LR
+    subgraph Timeouts["Timeout Duration"]
+        T1["T1 Cache<br/>100ms"]
+        T2["T2 File I/O<br/>500ms"]
+        T3["T3 Layer Load<br/>2s"]
+        T4["T4 Full KB<br/>5s"]
+        T5["T5 Complex Analysis<br/>10s"]
+    end
+    
+    T1 --> T2 --> T3 --> T4 --> T5
 ```
 
 ---

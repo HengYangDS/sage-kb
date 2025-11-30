@@ -21,9 +21,9 @@ timeouts, and degraded conditions while maintaining useful functionality.
 
 ## 2. Documents
 
-| Document              | Description                              |
-|-----------------------|------------------------------------------|
-| `timeout_patterns.md` | Timeout handling and fallback strategies |
+| Document                | Description                              |
+|-------------------------|------------------------------------------|
+| `TIMEOUT_PATTERNS.md`   | Timeout handling and fallback strategies |
 
 ---
 
@@ -50,8 +50,8 @@ timeouts, and degraded conditions while maintaining useful functionality.
 
 ## Related
 
-- `.context/policies/timeout_hierarchy.md` — Timeout configuration
-- `.context/decisions/ADR-0003-timeout-hierarchy.md` — Timeout ADR
+- `.context/policies/TIMEOUT_HIERARCHY.md` — Timeout configuration
+- `.context/decisions/ADR_0003_TIMEOUT_HIERARCHY.md` — Timeout ADR
 - `config/core/timeout.yaml` — Timeout settings
 
 ---

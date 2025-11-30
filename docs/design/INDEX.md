@@ -55,7 +55,7 @@
 
 | Directory | Purpose | Key Documents |
 |-----------|---------|---------------|
-| `evolution/` | Roadmap & planning | ROADMAP, MILESTONES, EVALUATION_CRITERIA |
+| `evolution/` | Roadmap & planning | ROADMAP, MILESTONES, REFACTOR_PLAN |
 
 ---
 

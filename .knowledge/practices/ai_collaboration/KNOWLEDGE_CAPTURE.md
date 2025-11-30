@@ -241,7 +241,7 @@ How to fix or avoid it?
 Is this knowledge...
 
 ├─ A significant technical decision?
-│  └─ YES → .context/decisions/ADR-NNNN-*.md
+│  └─ YES → .context/decisions/ADR_NNNN_*.md
 │
 ├─ A coding pattern or standard?
 │  └─ YES → .context/conventions/*.md
@@ -318,13 +318,13 @@ Before committing knowledge documents:
 
 ```bash
 # Create new ADR
-touch .context/decisions/ADR-NNNN-TITLE.md
+touch .context/decisions/ADR_NNNN_TITLE.md
 
 # Add to conventions
-touch .context/conventions/NEW-CONVENTION.md
+touch .context/conventions/NEW_CONVENTION.md
 
 # Record conversation insight
-touch .history/conversations/$(date +%Y-%m-%d)-TOPIC.md
+touch .history/conversations/$(date +%Y%m%d)_TOPIC.md
 ```
 
 ### Capture Checklist

@@ -12,23 +12,20 @@ The service layer provides three channels for knowledge access: CLI, MCP, and HT
 
 ## 2. Architecture
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                     Services Layer                          │
-├───────────────┬───────────────┬───────────────┬─────────────┤
-│  CLI Service  │  MCP Service  │  API Service  │   Shared    │
-│   (Typer)     │  (FastMCP)    │  (FastAPI)    │  Components │
-├───────────────┼───────────────┼───────────────┼─────────────┤
-│ • sage get    │ • get_knowledge│ GET /knowledge│ • Loader   │
-│ • sage search │ • search      │ GET /search   │ • Search    │
-│ • sage info   │ • kb_info     │ GET /health   │ • Timeout   │
-└───────────────┴───────────────┴───────────────┴─────────────┘
-                              │
-                              ▼
-                    ┌─────────────────┐
-                    │   Core Layer    │
-                    │ (Protocols, DI) │
-                    └─────────────────┘
+```mermaid
+graph TD
+    subgraph Services["Services Layer"]
+        CLI["CLI Service<br/>(Typer)<br/>sage get/search/info"]
+        MCP["MCP Service<br/>(FastMCP)<br/>get_knowledge/search"]
+        API["API Service<br/>(FastAPI)<br/>GET /knowledge"]
+        Shared["Shared Components<br/>Loader/Search/Timeout"]
+    end
+    Core["Core Layer<br/>(Protocols, DI)"]
+    
+    CLI --> Core
+    MCP --> Core
+    API --> Core
+    Shared --> Core
 ```
 
 ---
@@ -121,15 +118,16 @@ result = loader.source(request)
 
 ### 7.1 Test Pyramid
 
+```mermaid
+graph TD
+    E2E["E2E (5%)"]
+    Integration["Integration (15%)"]
+    Unit["Unit Tests (80%)"]
+    
+    E2E --> Integration --> Unit
 ```
-                ╱╲
-               ╱E2E╲           5% - End-to-end
-              ╱──────╲
-             ╱Integration╲     15% - Integration
-            ╱────────────╲
-           ╱  Unit Tests  ╲    80% - Unit tests
-          ╱────────────────╲
-```
+
+*Pyramid: Unit (80%) → Integration (15%) → E2E (5%)*
 
 ### 7.2 Coverage Targets
 

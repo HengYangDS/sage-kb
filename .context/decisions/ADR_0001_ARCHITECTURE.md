@@ -1,4 +1,4 @@
----
+﻿---
 version: "1.0"
 last_updated: "2025-11-30"
 status: published
@@ -195,8 +195,8 @@ analyzer = container.resolve(AnalyzerProtocol)
 
 ## Related
 
-- `.context/decisions/ADR-0004-dependency-injection.md` — DI container design
-- `.context/decisions/ADR-0005-event-bus.md` — Event communication
+- `.context/decisions/ADR_0004_DEPENDENCY_INJECTION.md` — DI container design
+- `.context/decisions/ADR_0005_EVENT_BUS.md` — Event communication
 - `docs/design/01-architecture.md` — Full architecture documentation
 
 ---

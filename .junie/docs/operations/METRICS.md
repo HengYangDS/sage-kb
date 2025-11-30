@@ -1,4 +1,4 @@
----
+﻿---
 version: "1.0"
 last_updated: "2025-11-30"
 status: published
@@ -351,7 +351,7 @@ Start with achievable targets:
 
 - [Maintenance](maintenance.md) — Daily operations
 - [Migration](migration.md) — Version updates
-- [Action Allowlist](../guides/action-allowlist.md) — Improve auto-approval
+- [Action Allowlist](../guides/ACTION_ALLOWLIST.md) — Improve auto-approval
 
 ---
 

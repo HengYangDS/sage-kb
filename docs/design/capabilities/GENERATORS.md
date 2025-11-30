@@ -246,36 +246,17 @@ class ScaffoldGenerator(Capability[ScaffoldInput, ScaffoldOutput]):
 
 ## 8. Generation Pipeline
 
-```
-Input Specification
-     │
-     ▼
-┌─────────────────┐
-│scaffold_generator│
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│template_generator│
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│ config_generator│
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│  doc_generator  │
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│ index_generator │
-└─────────────────┘
-         │
-         ▼
-  Complete Output
+```mermaid
+flowchart TD
+    A1[Input Specification]
+    A2[scaffold_generator]
+    A3[template_generator]
+    A4[config_generator]
+    A5[doc_generator]
+    A6[index_generator]
+    A7[Complete Output]
+    
+    A1 --> A2 --> A3 --> A4 --> A5 --> A6 --> A7
 ```
 
 ---
@@ -320,10 +301,10 @@ class CustomGenerator(Capability[MyInput, MyOutput]):
 
 ## Related
 
-- `CAPABILITY_MODEL.md` — Capability system
-- `CONVERTERS.md` — Conversion capabilities
-- `../plugins/EXTENSION_POINTS.md` — Extension points
+- `docs/design/capabilities/CAPABILITY_MODEL.md` — Capability system
+- `docs/design/capabilities/CONVERTERS.md` — Conversion capabilities
+- `docs/design/plugins/EXTENSION_POINTS.md` — Extension points
 
 ---
 
-*Part of SAGE Knowledge Base*
+*AI Collaboration Knowledge Base*

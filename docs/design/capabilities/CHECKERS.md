@@ -214,20 +214,24 @@ class StructureChecker(Capability[ParsedContent, StructureResult]):
 
 ## 8. Validation Pipeline
 
-```
-Content
-   │
-   ├──► format_checker ──► Format errors
-   │
-   ├──► link_checker ────► Broken links
-   │
-   ├──► naming_checker ──► Naming violations
-   │
-   └──► structure_checker► Structure issues
-   
-   │
-   ▼
-ValidationReport
+```mermaid
+graph TD
+    Content[Content]
+    FC[format_checker]
+    LC[link_checker]
+    NC[naming_checker]
+    SC[structure_checker]
+    Report[ValidationReport]
+    
+    Content --> FC --> FE[Format errors]
+    Content --> LC --> BL[Broken links]
+    Content --> NC --> NV[Naming violations]
+    Content --> SC --> SI[Structure issues]
+    
+    FE --> Report
+    BL --> Report
+    NV --> Report
+    SI --> Report
 ```
 
 ---

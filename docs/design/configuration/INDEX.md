@@ -22,20 +22,17 @@ The configuration system provides flexible, hierarchical configuration managemen
 
 ## 3. Configuration Hierarchy
 
-```
 Priority (highest to lowest):
 
-┌─────────────────────────────────────────────────┐
-│ 1. Command-line arguments                       │
-├─────────────────────────────────────────────────┤
-│ 2. Environment variables (SAGE_*)               │
-├─────────────────────────────────────────────────┤
-│ 3. User config (~/.sage/config.yaml)            │
-├─────────────────────────────────────────────────┤
-│ 4. Project config (./sage.yaml)                 │
-├─────────────────────────────────────────────────┤
-│ 5. Default values (built-in)                    │
-└─────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    CLI["1. Command-line arguments"]
+    ENV["2. Environment variables (SAGE_*)"]
+    USER["3. User config (~/.sage/config.yaml)"]
+    PROJECT["4. Project config (./sage.yaml)"]
+    DEFAULT["5. Default values (built-in)"]
+    
+    CLI --> ENV --> USER --> PROJECT --> DEFAULT
 ```
 
 ---

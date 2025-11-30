@@ -1,279 +1,745 @@
----
-version: "1.0"
-last_updated: "2025-11-30"
-status: published
-tokens: ~600
----
+# Diagram Standards (SSOT)
 
-# Diagram 画图规范
-
-> 文档中图表绘制的统一规范和最佳实践 (~10 min reference)
+> Single source of truth for diagram creation standards using Mermaid
 
 ---
 
 ## Table of Contents
 
-1. [Overview](#1-overview)
-2. [推荐工具](#2-推荐工具)
-3. [Mermaid 规范](#3-mermaid-规范)
-4. [PlantUML 规范](#4-plantuml-规范)
-5. [布局最佳实践](#5-布局最佳实践)
-6. [IDE 配置](#6-ide-配置)
-7. [常见问题](#7-常见问题)
-8. [Related](#8-related)
+- [1. Overview](#1-overview)
+- [2. Design Principles](#2-design-principles)
+- [3. Diagram Types](#3-diagram-types)
+- [4. Primary Diagrams](#4-primary-diagrams)
+- [5. Common Diagrams](#5-common-diagrams)
+- [6. Occasional Diagrams](#6-occasional-diagrams)
+- [7. Rare Diagrams](#7-rare-diagrams)
+- [8. Naming Conventions](#8-naming-conventions)
+- [9. Layout Best Practices](#9-layout-best-practices)
+- [10. IDE Configuration](#10-ide-configuration)
+- [11. Troubleshooting](#11-troubleshooting)
 
 ---
 
 ## 1. Overview
 
-本规范定义了在项目文档中绘制图表的统一标准，确保图表在不同 IDE 和 Markdown 渲染器中的一致性和可读性。
-
-### 核心原则
-
-| 原则 | 说明 |
-|:-----|:-----|
-| **简洁性** | 图表应简洁明了，避免过度复杂的样式 |
-| **一致性** | 同一项目中使用统一的图表工具和风格 |
-| **可维护性** | 代码易于阅读和修改 |
-| **兼容性** | 优先选择 IDE 原生支持的工具 |
+| Rule | Requirement |
+|------|-------------|
+| **Tool** | Must use Mermaid |
+| **Simplicity** | Clear, minimal styling |
+| **Consistency** | Uniform style across project |
+| **Compatibility** | GitHub/GitLab native support |
 
 ---
 
-## 2. 推荐工具
+## 2. Design Principles
 
-### 工具选择优先级
+Apply 信达雅 (Xin-Da-Ya) philosophy to create effective diagrams.
 
-| 优先级 | 工具 | 适用场景 | IDE 支持 |
-|:-------|:-----|:---------|:---------|
-| **P1** | Mermaid | 流程图、序列图、类图 | VS Code 原生, PyCharm 需插件 |
-| **P2** | PlantUML | 复杂 UML 图、活动图 | PyCharm 原生支持 |
-| **P3** | ASCII Art | 简单示意图、兼容性要求高 | 所有编辑器 |
+**Priority**: 信 → 达 → 雅 (Faithfulness → Clarity → Elegance)
 
-### 选择建议
+### 2.1 信 (Faithfulness) — Accurate Representation
 
-- **默认使用 Mermaid**：语法简洁，GitHub/GitLab 原生支持
-- **PyCharm 用户**：如 Mermaid 渲染失败，可使用 PlantUML
-- **极简场景**：使用 ASCII Art 确保最大兼容性
+| Checkpoint | Requirement |
+|------------|-------------|
+| **Completeness** | All essential steps/components included |
+| **Accuracy** | Flow direction matches actual process |
+| **Consistency** | Node types match their semantic meaning |
+| **Traceability** | Diagram matches source documentation |
+
+**Anti-patterns**:
+- ❌ Omitting error paths or edge cases
+- ❌ Misleading arrow directions
+- ❌ Using wrong node shapes (e.g., decision diamond for a process)
+
+### 2.2 达 (Clarity) — Clear Communication
+
+| Checkpoint | Requirement |
+|------------|-------------|
+| **Readability** | Labels concise yet descriptive |
+| **Structure** | Logical grouping with subgraphs |
+| **Flow** | Single, clear direction (TD or LR) |
+| **Density** | Max 15 nodes, max 2 nesting levels |
+
+**Anti-patterns**:
+- ❌ Cryptic abbreviations without context
+- ❌ Crossing lines that confuse flow
+- ❌ Mixing multiple directions in one diagram
+
+### 2.3 雅 (Elegance) — Refined Simplicity
+
+| Checkpoint | Requirement |
+|------------|-------------|
+| **Minimalism** | No redundant nodes or connections |
+| **Balance** | Visual symmetry where possible |
+| **Consistency** | Uniform naming and styling |
+| **Whitespace** | Adequate spacing for readability |
+
+**Anti-patterns**:
+- ❌ Excessive styling or colors
+- ❌ Duplicate information in labels
+- ❌ Inconsistent node ID patterns
+
+### 2.4 Design Checklist
+
+Before finalizing any diagram:
+
+1. **信**: Does this accurately represent the system/process?
+2. **达**: Can a newcomer understand this in 30 seconds?
+3. **雅**: Is every element necessary? Can anything be simplified?
 
 ---
 
-## 3. Mermaid 规范
+## 3. Diagram Types
 
-### 3.1 流程图 (Flowchart)
+Mermaid supports 21 diagram types, organized by recommended usage frequency.
 
-**推荐布局方向：**
+| Priority | Types | Count |
+|----------|-------|-------|
+| ⭐ **Primary** | Flowchart, Sequence | 2 |
+| **Common** | Class, State, ER, User Journey, Timeline, C4 | 6 |
+| **Occasional** | Gantt, Pie, Quadrant, XY Chart, Block, Architecture | 6 |
+| **Rare** | Mindmap, Git Graph, Requirement, Sankey, Kanban, Packet, Radar | 7 |
 
-| 方向 | 代码 | 适用场景 |
-|:-----|:-----|:---------|
-| 从上到下 | `flowchart TD` | 垂直流程，步骤较多 |
-| 从左到右 | `flowchart LR` | 水平流程，阶段展示 |
+### 3.1 Complete Type Reference
 
-**示例 - 水平分阶段流程图：**
+| Type | Syntax | Use Case | Priority |
+|------|--------|----------|----------|
+| Flowchart | `flowchart TD/LR` | Process flows, workflows, decision trees | ⭐ Primary |
+| Sequence | `sequenceDiagram` | API calls, system interactions | ⭐ Primary |
+| Class | `classDiagram` | Data models, OOP structures | Common |
+| State | `stateDiagram-v2` | State machines, lifecycle | Common |
+| ER | `erDiagram` | Database schemas, entity relationships | Common |
+| User Journey | `journey` | User experience, customer journey | Common |
+| Timeline | `timeline` | Historical events, version history | Common |
+| C4 | `C4Context` | Software architecture (C4 model) | Common |
+| Gantt | `gantt` | Project timelines, schedules | Occasional |
+| Pie | `pie` | Proportions, distributions | Occasional |
+| Quadrant | `quadrantChart` | Priority matrix, SWOT analysis | Occasional |
+| XY Chart | `xychart-beta` | Line/bar charts, data visualization | Occasional |
+| Block | `block-beta` | System components, module relationships | Occasional |
+| Architecture | `architecture-beta` | Cloud architecture, infrastructure | Occasional |
+| Mindmap | `mindmap` | Brainstorming, concept mapping | Rare |
+| Git Graph | `gitGraph` | Branch strategies, commit flows | Rare |
+| Requirement | `requirementDiagram` | Requirement tracking, specs | Rare |
+| Sankey | `sankey-beta` | Flow analysis, energy/resource flow | Rare |
+| Kanban | `kanban` | Task boards, workflow status | Rare |
+| Packet | `packet-beta` | Network protocols, packet structure | Rare |
+| Radar | `radar-beta` | Multi-dimensional comparison | Rare |
+
+### 3.2 Selection Guide
+
+| Scenario | Recommended Type |
+|----------|------------------|
+| Bootstrap/startup process | Flowchart (LR with subgraphs) |
+| API request/response | Sequence diagram |
+| Domain model | Class diagram |
+| Object lifecycle | State diagram |
+| Database design | ER diagram |
+| User experience flow | User Journey |
+| Version/release history | Timeline |
+| Software architecture | C4 diagram |
+| Project roadmap | Gantt chart |
+| Data distribution | Pie chart |
+| Priority/risk matrix | Quadrant chart |
+| Metrics over time | XY Chart |
+| System modules | Block diagram |
+| Cloud infrastructure | Architecture diagram |
+
+---
+
+## 4. Primary Diagrams
+
+### 4.1 Flowchart
+
+> **Priority**: ⭐ Primary — Most common diagram type
+
+#### Layout Direction
+
+| Direction | Code | Use Case |
+|-----------|------|----------|
+| Top-down | `flowchart TD` | Vertical flow, many steps |
+| Left-right | `flowchart LR` | Horizontal flow, phases |
+
+#### Node Styles
+
+| Style | Syntax | Purpose |
+|-------|--------|---------|
+| Rectangle | `[text]` | Normal step |
+| Rounded | `(text)` | Process/operation |
+| Stadium | `(["text"])` | Start/end node |
+| Diamond | `{text}` | Decision |
+| Hexagon | `{{text}}` | Condition |
+
+#### Connection Styles
+
+| Style | Syntax | Purpose |
+|-------|--------|---------|
+| Solid arrow | `-->` | Main flow |
+| Dotted line | `-.-` | Annotation |
+| With text | `--text-->` | Conditional branch |
+
+#### Subgraph Grouping
 
 ```mermaid
 flowchart LR
-    subgraph PHASE1 [Phase 1: 初始化]
-        A1["配置加载"]
+    subgraph PHASE1 [Phase 1: Init]
+        A1["Load Config"]
     end
     
-    subgraph PHASE2 [Phase 2: 处理]
-        B1["数据处理"]
+    subgraph PHASE2 [Phase 2: Process]
+        B1["Process Data"]
     end
     
-    START(["开始"]) --> PHASE1
+    START(["Start"]) --> PHASE1
     PHASE1 --> PHASE2
-    PHASE2 --> END(["结束"])
+    PHASE2 --> END(["End"])
 ```
 
-**示例 - 垂直流程图：**
+**Best Practices**:
+- Use `subgraph` to group related nodes
+- ID in English, display name can use other languages
+- Keep 2-5 nodes per subgraph
+
+### 4.2 Sequence Diagram
+
+> **Priority**: ⭐ Primary — For system interactions and API flows
+
+#### Basic Syntax
 
 ```mermaid
-flowchart TD
-    A[Step 1] --> B[Step 2]
-    B --> C[Step 3]
-    C --> D[Step 4]
+sequenceDiagram
+    participant C as Client
+    participant S as Server
+    participant D as Database
     
-    B -.- B1["说明文字"]
+    C->>S: HTTP Request
+    S->>D: Query
+    D-->>S: Result
+    S-->>C: HTTP Response
 ```
 
-### 3.2 节点样式
+#### Message Types
 
-| 样式 | 语法 | 用途 |
-|:-----|:-----|:-----|
-| 矩形 | `[text]` | 普通步骤 |
-| 圆角矩形 | `(text)` | 过程/操作 |
-| 体育场形 | `(["text"])` | 开始/结束节点 |
-| 菱形 | `{text}` | 判断/决策 |
-| 六边形 | `{{text}}` | 准备/条件 |
+| Syntax | Meaning | Use Case |
+|--------|---------|----------|
+| `->>` | Solid line, filled arrow | Synchronous call |
+| `-->>` | Dotted line, filled arrow | Response/return |
+| `--)` | Solid line, open arrow | Async message |
+| `-x` | Solid line with X | Failed/cancelled |
 
-### 3.3 连接线样式
-
-| 样式 | 语法 | 用途 |
-|:-----|:-----|:-----|
-| 实线箭头 | `-->` | 主流程 |
-| 虚线 | `-.-` | 注释/说明连接 |
-| 带文字 | `--text-->` | 条件分支 |
-
-### 3.4 分组 (Subgraph)
+#### Participant Aliases
 
 ```mermaid
-flowchart LR
-    subgraph GroupName [显示名称]
-        A["内容"]
+sequenceDiagram
+    participant A as API Gateway
+    participant B as Backend Service
+```
+
+#### Advanced Features
+
+| Feature | Syntax | Purpose |
+|---------|--------|---------|
+| Activation | `activate A` / `deactivate A` | Show processing time |
+| Notes | `Note over A,B: text` | Add explanations |
+| Loops | `loop Description` | Repeated actions |
+| Alt/Else | `alt condition` | Conditional flows |
+
+---
+
+## 5. Common Diagrams
+
+### 5.1 Class Diagram
+
+> **Priority**: Common — For data models and OOP structures
+
+#### Basic Syntax
+
+```mermaid
+classDiagram
+    class User {
+        +String id
+        +String name
+        +login() bool
+    }
+    
+    class Order {
+        +String id
+        +Date created
+        +calculate() float
+    }
+    
+    User "1" --> "*" Order : places
+```
+
+#### Visibility Modifiers
+
+| Symbol | Meaning |
+|--------|---------|
+| `+` | Public |
+| `-` | Private |
+| `#` | Protected |
+| `~` | Package/Internal |
+
+#### Relationships
+
+| Syntax | Meaning | Example |
+|--------|---------|---------|
+| `<\|--` | Inheritance | `Animal <\|-- Dog` |
+| `*--` | Composition | `Car *-- Engine` |
+| `o--` | Aggregation | `Team o-- Player` |
+| `-->` | Association | `User --> Order` |
+| `..>` | Dependency | `Service ..> Config` |
+
+#### Cardinality
+
+| Syntax | Meaning |
+|--------|---------|
+| `"1"` | Exactly one |
+| `"*"` | Many |
+| `"1..*"` | One or more |
+| `"0..1"` | Zero or one |
+
+### 5.2 State Diagram
+
+> **Priority**: Common — For state machines and lifecycles
+
+#### Basic Syntax
+
+```mermaid
+stateDiagram-v2
+    [*] --> Idle
+    Idle --> Processing : start
+    Processing --> Completed : success
+    Processing --> Failed : error
+    Completed --> [*]
+    Failed --> Idle : retry
+```
+
+#### Special States
+
+| Syntax | Meaning |
+|--------|---------|
+| `[*]` | Start/End state |
+| `state "Name" as s1` | State with alias |
+
+#### Composite States
+
+```mermaid
+stateDiagram-v2
+    state Processing {
+        [*] --> Validating
+        Validating --> Executing
+        Executing --> [*]
+    }
+```
+
+#### Transitions
+
+| Element | Syntax |
+|---------|--------|
+| Basic | `A --> B` |
+| With label | `A --> B : event` |
+| With guard | `A --> B : [condition]` |
+
+### 5.3 Entity Relationship Diagram
+
+> **Priority**: Common — For database schemas
+
+#### Basic Syntax
+
+```mermaid
+erDiagram
+    USER ||--o{ ORDER : places
+    ORDER ||--|{ LINE_ITEM : contains
+    PRODUCT ||--o{ LINE_ITEM : "ordered in"
+```
+
+#### Relationship Symbols
+
+| Left | Right | Meaning |
+|------|-------|---------|
+| `\|\|` | `\|\|` | Exactly one |
+| `o\|` | `\|o` | Zero or one |
+| `}o` | `o{` | Zero or more |
+| `}\|` | `\|{` | One or more |
+
+#### Entity Attributes
+
+```mermaid
+erDiagram
+    USER {
+        string id PK
+        string email UK
+        string name
+        date created_at
+    }
+```
+
+| Marker | Meaning |
+|--------|---------|
+| `PK` | Primary Key |
+| `FK` | Foreign Key |
+| `UK` | Unique Key |
+
+### 5.4 User Journey Diagram
+
+> **Priority**: Common — For user experience flows
+
+#### Basic Syntax
+
+```mermaid
+journey
+    title My Working Day
+    section Go to work
+        Make tea: 5: Me
+        Go upstairs: 3: Me
+        Do work: 1: Me, Cat
+    section Go home
+        Go downstairs: 5: Me
+        Sit down: 5: Me
+```
+
+#### Elements
+
+| Element | Format | Description |
+|---------|--------|-------------|
+| Title | `title Text` | Journey title |
+| Section | `section Name` | Group of tasks |
+| Task | `Task name: score: actors` | Individual task |
+
+#### Score Scale
+
+| Score | Meaning |
+|-------|---------|
+| 1 | Very negative |
+| 3 | Neutral |
+| 5 | Very positive |
+
+### 5.5 Timeline Diagram
+
+> **Priority**: Common — For historical events and version history
+
+#### Basic Syntax
+
+```mermaid
+timeline
+    title Project History
+    2024-01 : v1.0 Release
+           : Initial launch
+    2024-06 : v2.0 Release
+           : Major update
+    2024-12 : v3.0 Planned
+```
+
+#### Elements
+
+| Element | Description |
+|---------|-------------|
+| `title` | Timeline title |
+| Date | Time period (flexible format) |
+| Events | Multiple events per date supported |
+
+### 5.6 C4 Diagram
+
+> **Priority**: Common — For software architecture (C4 model)
+
+#### Context Diagram
+
+```mermaid
+C4Context
+    title System Context Diagram
+    Person(user, "User", "A user of the system")
+    System(system, "System", "The main system")
+    System_Ext(external, "External System", "External dependency")
+    
+    Rel(user, system, "Uses")
+    Rel(system, external, "Calls")
+```
+
+#### Container Diagram
+
+```mermaid
+C4Container
+    title Container Diagram
+    Person(user, "User")
+    
+    Container_Boundary(system, "System") {
+        Container(web, "Web App", "React")
+        Container(api, "API", "Python")
+        ContainerDb(db, "Database", "PostgreSQL")
+    }
+    
+    Rel(user, web, "Uses")
+    Rel(web, api, "Calls")
+    Rel(api, db, "Reads/Writes")
+```
+
+#### C4 Elements
+
+| Element | Syntax | Use |
+|---------|--------|-----|
+| Person | `Person(id, name, desc)` | User/actor |
+| System | `System(id, name, desc)` | Internal system |
+| System_Ext | `System_Ext(id, name, desc)` | External system |
+| Container | `Container(id, name, tech)` | Application component |
+| ContainerDb | `ContainerDb(id, name, tech)` | Database |
+| Rel | `Rel(from, to, desc)` | Relationship |
+
+---
+
+## 6. Occasional Diagrams
+
+### 6.1 Gantt Chart
+
+```mermaid
+gantt
+    title Project Timeline
+    dateFormat YYYY-MM-DD
+    section Phase 1
+        Task A :a1, 2024-01-01, 30d
+        Task B :after a1, 20d
+    section Phase 2
+        Task C :2024-02-15, 25d
+```
+
+### 6.2 Pie Chart
+
+```mermaid
+pie title Distribution
+    "Category A" : 40
+    "Category B" : 30
+    "Category C" : 30
+```
+
+### 6.3 Quadrant Chart
+
+```mermaid
+quadrantChart
+    title Priority Matrix
+    x-axis Low Effort --> High Effort
+    y-axis Low Impact --> High Impact
+    quadrant-1 Do First
+    quadrant-2 Schedule
+    quadrant-3 Delegate
+    quadrant-4 Eliminate
+    Task A: [0.8, 0.9]
+    Task B: [0.3, 0.7]
+    Task C: [0.6, 0.3]
+```
+
+### 6.4 XY Chart
+
+```mermaid
+xychart-beta
+    title "Sales Revenue"
+    x-axis [Jan, Feb, Mar, Apr, May]
+    y-axis "Revenue (in $)" 0 --> 5000
+    bar [1000, 2000, 1500, 3000, 4500]
+    line [1000, 1800, 2200, 2800, 3500]
+```
+
+### 6.5 Block Diagram
+
+```mermaid
+block-beta
+    columns 3
+    
+    block:input
+        A["Input"]
     end
+    
+    block:process
+        B["Process"]
+    end
+    
+    block:output
+        C["Output"]
+    end
+    
+    A --> B --> C
 ```
 
-**最佳实践：**
-- 使用 `subgraph` 分组相关节点
-- 组名使用英文标识符，显示名称可使用中文
-- 每个 subgraph 内保持 2-5 个节点
+### 6.6 Architecture Diagram
 
----
-
-## 4. PlantUML 规范
-
-### 4.1 活动图 (Activity Diagram)
-
-**简洁模板：**
-
-```plantuml
-@startuml
-skinparam shadowing false
-skinparam defaultFontSize 14
-
-start
-:Step 1;
-:Step 2;
-note right: 说明文字
-:Step 3;
-stop
-@enduml
+```mermaid
+architecture-beta
+    group cloud(cloud)[Cloud]
+    
+    service api(server)[API] in cloud
+    service db(database)[Database] in cloud
+    service cache(disk)[Cache] in cloud
+    
+    api:R --> L:db
+    api:B --> T:cache
 ```
 
-### 4.2 推荐的 skinparam 设置
+---
 
-```plantuml
-@startuml
-' 清晰度优化设置
-skinparam shadowing false
-skinparam defaultFontSize 14
-skinparam backgroundColor transparent
+## 7. Rare Diagrams
 
-' 可选：简化样式
-skinparam activityShape rectangle
-@enduml
+### 7.1 Mindmap
+
+```mermaid
+mindmap
+    root((Central Topic))
+        Branch A
+            Leaf 1
+            Leaf 2
+        Branch B
+            Leaf 3
 ```
 
-### 4.3 注意事项
+### 7.2 Git Graph
 
-| 问题 | 解决方案 |
-|:-----|:---------|
-| 渲染模糊 | 减少复杂样式，使用 `skinparam shadowing false` |
-| 字体不清晰 | 增大 `defaultFontSize` (建议 14-16) |
-| 颜色失真 | 避免使用自定义颜色，使用默认配色 |
+```mermaid
+gitGraph
+    commit
+    branch feature
+    checkout feature
+    commit
+    checkout main
+    merge feature
+```
 
----
+### 7.3 Requirement Diagram
 
-## 5. 布局最佳实践
+```mermaid
+requirementDiagram
+    requirement test_req {
+        id: 1
+        text: The system shall do X
+        risk: high
+        verifymethod: test
+    }
+    
+    element test_entity {
+        type: simulation
+    }
+    
+    test_entity - satisfies -> test_req
+```
 
-### 5.1 流程图布局原则
+### 7.4 Sankey Diagram
 
-| 原则 | 说明 |
-|:-----|:-----|
-| **阶段分组** | 使用 subgraph 将流程分为逻辑阶段 |
-| **方向一致** | 整个图表保持统一的流向 |
-| **节点数量** | 单个图表不超过 15 个节点 |
-| **层级控制** | 嵌套层级不超过 2 层 |
+```mermaid
+sankey-beta
+    Source A,Target X,100
+    Source A,Target Y,50
+    Source B,Target Y,75
+    Source B,Target Z,25
+```
 
-### 5.2 命名规范
+### 7.5 Kanban Board
 
-| 元素 | 规范 | 示例 |
-|:-----|:-----|:-----|
-| 节点 ID | 大写字母 + 数字 | `A1`, `B2`, `PHASE1` |
-| 显示文本 | 简洁描述 | `["配置加载"]` |
-| Subgraph ID | 大写英文 | `PHASE1`, `INIT` |
-| Subgraph 显示名 | 可用中文 | `[Phase 1: 初始化]` |
+```mermaid
+kanban
+    column1[To Do]
+        task1[Task 1]
+        task2[Task 2]
+    column2[In Progress]
+        task3[Task 3]
+    column3[Done]
+        task4[Task 4]
+```
 
-### 5.3 复杂流程处理
+### 7.6 Packet Diagram
 
-当流程过于复杂时：
-1. **拆分图表**：将大流程拆分为多个小图表
-2. **层级展示**：先展示概览图，再展示详细图
-3. **使用表格**：流程步骤较多时，考虑用表格代替图表
+```mermaid
+packet-beta
+    0-15: "Source Port"
+    16-31: "Destination Port"
+    32-63: "Sequence Number"
+    64-95: "Acknowledgment Number"
+```
 
----
+### 7.7 Radar Chart
 
-## 6. IDE 配置
-
-### 6.1 PyCharm
-
-**Mermaid 支持：**
-
-1. 进入 `File` → `Settings` → `Languages & Frameworks` → `Markdown`
-2. 在 "Markdown Extensions" 中勾选 `Mermaid`（如有）
-3. 确保 Preview browser 设置为 `JCEF`
-
-**PlantUML 支持：**
-
-1. 进入 `File` → `Settings` → `Languages & Frameworks` → `Markdown`
-2. 在 "Markdown Extensions" 中勾选 `PlantUML`
-3. PlantUML 通常原生支持，无需额外配置
-
-### 6.2 VS Code
-
-**Mermaid 支持：**
-- 内置支持，无需额外配置
-- 推荐安装 "Markdown Preview Mermaid Support" 扩展
-
-**PlantUML 支持：**
-- 安装 "PlantUML" 扩展
-- 需要本地安装 Java 和 Graphviz
-
-### 6.3 GitHub/GitLab
-
-| 平台 | Mermaid | PlantUML |
-|:-----|:--------|:---------|
-| GitHub | ✅ 原生支持 | ❌ 不支持 |
-| GitLab | ✅ 原生支持 | ✅ 需配置 |
-
----
-
-## 7. 常见问题
-
-### Q1: Mermaid 在 IDE 中显示原始代码？
-
-**解决方案：**
-1. 检查 IDE 的 Markdown Extensions 设置
-2. 确认是否启用了 Mermaid 扩展
-3. 尝试重启 IDE
-4. 如仍不可用，改用 PlantUML
-
-### Q2: PlantUML 渲染清晰度差？
-
-**解决方案：**
-1. 减少自定义样式
-2. 添加 `skinparam shadowing false`
-3. 增大字体 `skinparam defaultFontSize 14`
-4. 避免复杂的颜色配置
-
-### Q3: 图表在不同平台显示不一致？
-
-**解决方案：**
-1. 使用最简单的语法
-2. 避免平台特定的扩展语法
-3. 测试目标平台的渲染效果
-4. 必要时导出为图片
+```mermaid
+radar-beta
+    title Skills Assessment
+    axis Performance, Quality, Speed, Reliability, Scalability
+    curve a[Team A]: 4, 3, 5, 4, 3
+    curve b[Team B]: 3, 4, 4, 5, 4
+```
 
 ---
 
-## 8. Related
+## 8. Naming Conventions
 
-- [BOOTSTRAP.md](../../../docs/design/core_engine/BOOTSTRAP.md) — 流程图示例
-- [DOCUMENTATION_STANDARDS.md](DOCUMENTATION_STANDARDS.md) — 文档编写规范 (SSOT)
-- [ASCII_ART_FORMATTING.md](ASCII_ART_FORMATTING.md) — ASCII 艺术格式规范
-- [Mermaid 官方文档](https://mermaid.js.org/syntax/flowchart.html) — Mermaid 语法参考
-- [PlantUML 官方文档](https://plantuml.com/) — PlantUML 语法参考
+| Element | Convention | Example |
+|---------|------------|---------|
+| Node ID | UPPER + number | `A1`, `B2`, `PHASE1` |
+| Display text | Concise description | `["Load Config"]` |
+| Subgraph ID | UPPER English | `PHASE1`, `INIT` |
+| Participant ID | Short uppercase | `C`, `S`, `DB` |
+| Class name | PascalCase | `UserService` |
+| State name | PascalCase or UPPER | `Processing`, `IDLE` |
 
 ---
 
-*Part of SAGE Knowledge Base*
+## 9. Layout Best Practices
+
+| Principle | Description |
+|-----------|-------------|
+| Phase grouping | Use subgraph for logical phases |
+| Consistent direction | Maintain uniform flow direction |
+| Node limit | Max 15 nodes per diagram |
+| Nesting limit | Max 2 levels deep |
+| Participant limit | Max 6-8 participants in sequence diagrams |
+
+### 9.1 Complex Diagram Handling
+
+When diagram is too complex:
+
+1. **Split diagrams**: Break into multiple smaller diagrams
+2. **Hierarchical view**: Show overview first, then details
+3. **Use tables**: Consider tables when steps exceed limits
+4. **Focus on key paths**: Omit edge cases in overview diagrams
+
+---
+
+## 10. IDE Configuration
+
+### 10.1 PyCharm
+
+**Mermaid support**:
+1. `File` → `Settings` → `Languages & Frameworks` → `Markdown`
+2. Check `Mermaid` in "Markdown Extensions" (if available)
+3. Set Preview browser to `JCEF`
+
+**Alternative**: Install Mermaid plugin from JetBrains Marketplace
+
+### 10.2 VS Code
+
+- Built-in Mermaid support
+- Recommended: "Markdown Preview Mermaid Support" extension
+
+### 10.3 Platform Support
+
+| Platform | Mermaid |
+|----------|---------|
+| GitHub | ✅ Native |
+| GitLab | ✅ Native |
+
+---
+
+## 11. Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| Shows raw code | Check IDE Markdown Extensions settings |
+| Rendering issues | Use simplest syntax, avoid complex styling |
+| Inconsistent display | Test on target platform |
+| Beta feature not working | Check Mermaid version compatibility |
+
+---
+
+## Related
+
+- `.knowledge/guidelines/DOCUMENTATION.md` — Documentation guidelines
+- `.knowledge/practices/documentation/DOCUMENTATION_STANDARDS.md` — Documentation standards
+- `docs/design/core_engine/BOOTSTRAP.md` — Example: Flowchart usage
+
+---
+
+*AI Collaboration Knowledge Base*

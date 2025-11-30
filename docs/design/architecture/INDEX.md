@@ -23,18 +23,13 @@ This directory documents the architectural foundations of SAGE, including layer 
 
 ## 3. Architecture Overview
 
-```
-┌─────────────────────────────────────────────────┐
-│              Services Layer                      │
-│         (CLI, MCP, API interfaces)              │
-├─────────────────────────────────────────────────┤
-│            Capabilities Layer                    │
-│  (analyzers, checkers, monitors, converters,    │
-│              generators)                         │
-├─────────────────────────────────────────────────┤
-│              Core Layer                          │
-│    (DI, Events, Models, Plugins, Config)        │
-└─────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    Services["Services Layer<br/>(CLI, MCP, API interfaces)"]
+    Capabilities["Capabilities Layer<br/>(analyzers, checkers, monitors,<br/>converters, generators)"]
+    Core["Core Layer<br/>(DI, Events, Models, Plugins, Config)"]
+    
+    Services --> Capabilities --> Core
 ```
 
 ---

@@ -606,7 +606,7 @@ SAGE_EXTERNAL_URL=https://api.example.com
 
 - `.knowledge/frameworks/patterns/collaboration.md` — Collaboration patterns
 - `.knowledge/practices/engineering/api_design.md` — API design guidelines
-- `.context/decisions/ADR-0008-plugin-system.md` — Plugin architecture
+- `.context/decisions/ADR_0008_PLUGIN_SYSTEM.md` — Plugin architecture
 - `docs/api/mcp.md` — MCP API reference
 
 ---

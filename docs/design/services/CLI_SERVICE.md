@@ -23,14 +23,15 @@ The CLI service provides interactive terminal access to SAGE knowledge base usin
 
 ## 3. Command Structure
 
-```
-sage
-├── get          # Get knowledge content
-├── search       # Search knowledge base
-├── info         # System information
-├── serve        # Start MCP/API server
-├── check        # Run validation checks
-└── config       # Configuration management
+```mermaid
+graph TD
+    sage[sage]
+    sage --> get[get - Get knowledge content]
+    sage --> search[search - Search knowledge base]
+    sage --> info[info - System information]
+    sage --> serve[serve - Start MCP/API server]
+    sage --> check[check - Run validation checks]
+    sage --> config[config - Configuration management]
 ```
 
 ---

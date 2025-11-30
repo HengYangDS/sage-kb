@@ -1,10 +1,4 @@
----
-version: "1.0"
-last_updated: "2025-11-30"
-status: published
-tokens: ~500
----
-# SAGE File Structure Conventions
+﻿# SAGE File Structure Conventions
 
 > Project-specific file organization standards for SAGE Knowledge Base
 
@@ -141,7 +135,7 @@ project.
 | AI calibration data for SAGE         | Content meant for distribution |
 | Internal optimization notes          | User-facing documentation      |
 
-**Example**: `.context/decisions/ADR-0001-architecture.md` — SAGE-specific architecture decisions.
+**Example**: `.context/decisions/ADR_0001_ARCHITECTURE.md` — SAGE-specific architecture decisions.
 
 ### 2.4 Documentation Directory (`docs/`)
 
@@ -479,7 +473,7 @@ docs/
 │   ├── code_patterns.md
 │   └── file_structure.md
 ├── decisions/           # Architecture Decision Records
-│   ├── ADR-0001-architecture.md
+│   ├── ADR_0001_ARCHITECTURE.md
 │   └── ...
 └── intelligence/        # AI collaboration patterns
     ├── patterns.md
@@ -661,11 +655,11 @@ def _helper_function() -> None:
 
 ## Related
 
-- `.context/conventions/naming.md` — Naming conventions
-- `.context/conventions/code_patterns.md` — Code patterns
-- `docs/design/01-architecture.md` — Architecture
-- `.knowledge/practices/documentation/project_directory_structure.md` — General directory practices
+- `.context/conventions/NAMING.md` — Naming conventions
+- `.context/conventions/CODE_PATTERNS.md` — Code patterns
+- `docs/design/architecture/INDEX.md` — Architecture
+- `.knowledge/practices/documentation/PROJECT_DIRECTORY_STRUCTURE.md` — General directory practices
 
 ---
 
-*Part of SAGE Knowledge Base - Project Conventions*
+*AI Collaboration Knowledge Base*

@@ -12,27 +12,34 @@ SAGE organizes knowledge into hierarchical layers with defined priorities, token
 
 ## 2. Layer Structure
 
-```
-Priority: .knowledge/ → .context/ → .junie/ → docs/
+Priority: `.knowledge/` → `.context/` → `.junie/` → `docs/`
 
-Layer 1: .knowledge/     (Universal knowledge, cross-project)
-         ├── core/       Always loaded (~500 tokens)
-         ├── guidelines/ On-demand (~1,200 tokens)
-         ├── frameworks/ On-demand (~2,000 tokens)
-         └── practices/  On-demand (~1,500 tokens)
-
-Layer 2: .context/       (Project-specific knowledge)
-         ├── conventions/ Project conventions
-         ├── decisions/   ADRs
-         └── policies/    Runtime policies
-
-Layer 3: .junie/         (AI assistant configuration)
-         └── guidelines.md
-
-Layer 4: docs/           (User documentation)
-         ├── design/     Design documents
-         ├── guides/     User guides
-         └── api/        API documentation
+```mermaid
+graph TD
+    subgraph L1[".knowledge/ - Universal"]
+        L1C["core/ 500 tokens"]
+        L1G["guidelines/ 1200 tokens"]
+        L1F["frameworks/ 2000 tokens"]
+        L1P["practices/ 1500 tokens"]
+    end
+    
+    subgraph L2[".context/ - Project"]
+        L2C[conventions]
+        L2D[decisions]
+        L2P[policies]
+    end
+    
+    subgraph L3[".junie/ - AI Config"]
+        L3G[guidelines.md]
+    end
+    
+    subgraph L4["docs/ - Users"]
+        L4D[design]
+        L4G[guides]
+        L4A[api]
+    end
+    
+    L1 --> L2 --> L3 --> L4
 ```
 
 ---

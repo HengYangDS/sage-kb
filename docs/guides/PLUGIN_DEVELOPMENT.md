@@ -1,4 +1,4 @@
----
+﻿---
 version: "1.0"
 last_updated: "2025-11-30"
 status: published
@@ -319,7 +319,7 @@ self.logger.debug("Debug message", extra={"data": data})
 
 - [Advanced Usage](advanced.md) — Plugin configuration
 - `docs/design/05-plugin-memory.md` — Plugin architecture
-- `.context/decisions/ADR-0008-plugin-system.md` — Plugin design decisions
+- `.context/decisions/ADR_0008_PLUGIN_SYSTEM.md` — Plugin design decisions
 
 ---
 

@@ -1,11 +1,4 @@
----
-version: "1.0"
-last_updated: "2025-11-30"
-status: published
-tokens: ~500
----
-
-# .junie Configuration
+﻿# .junie Configuration
 
 > JetBrains Junie AI collaboration configuration directory
 
@@ -41,8 +34,8 @@ tokens: ~500
 ├── docs/                   # 🔄 Junie documentation
 │   ├── README.md           # Documentation index
 │   ├── guides/             # User guides
-│   │   ├── QUICK-START.md
-│   │   └── ACTION-ALLOWLIST.md
+│   │   ├── QUICK_START.md
+│   │   └── ACTION_ALLOWLIST.md
 │   ├── mcp/                # MCP integration
 │   │   ├── OVERVIEW.md
 │   │   ├── CONFIGURATION.md
@@ -57,10 +50,10 @@ tokens: ~500
 │   ├── reference/          # Reference materials
 │   │   ├── GLOSSARY.md
 │   │   ├── REGEX.md
-│   │   ├── RULES-WINDOWS.md
-│   │   └── RULES-UNIX.md
+│   │   ├── RULES_WINDOWS.md
+│   │   └── RULES_UNIX.md
 │   └── vision/             # Future vision
-│       └── FUTURE-PROTOCOLS.md
+│       └── FUTURE_PROTOCOLS.md
 │
 └── project/                # 📌 Project-specific files (must customize)
     ├── config.yaml         # Project variables definition
@@ -143,4 +136,4 @@ tokens: ~500
 
 ---
 
-*Part of the Junie Configuration Template System*
+*AI Collaboration Knowledge Base*

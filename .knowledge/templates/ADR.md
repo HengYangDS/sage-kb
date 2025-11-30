@@ -152,10 +152,10 @@ Use sequential 4-digit numbers: `ADR-0001`, `ADR-0002`, etc.
 ### 4. File Naming
 
 ```
-.context/decisions/ADR-NNNN-SHORT-TITLE.md
+.context/decisions/ADR_NNNN_SHORT_TITLE.md
 ```
 
-Example: `ADR-0001-FASTMCP-CHOICE.md`
+Example: `ADR_0001_FASTMCP_CHOICE.md`
 
 ---
 

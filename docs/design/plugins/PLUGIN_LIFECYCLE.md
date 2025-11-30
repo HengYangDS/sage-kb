@@ -26,36 +26,21 @@ Plugins go through a defined lifecycle from discovery to unload, with clear stat
 
 ## 3. State Diagram
 
-```
-                    ┌──────────────┐
-                    │  Discovered  │
-                    └──────┬───────┘
-                           │ validate
-                           ▼
-                    ┌──────────────┐
-         ┌─────────│  Registered  │─────────┐
-         │         └──────┬───────┘         │
-         │                │ load            │ error
-         │                ▼                 │
-         │         ┌──────────────┐         │
-         │         │   Loading    │─────────┤
-         │         └──────┬───────┘         │
-         │                │ complete        │
-         │                ▼                 │
-         │         ┌──────────────┐         │
-         │    ┌───►│    Active    │◄───┐    │
-         │    │    └──────┬───────┘    │    │
-         │    │           │            │    │
-         │    │  disable  │   enable   │    │
-         │    │           ▼            │    │
-         │    │    ┌──────────────┐    │    │
-         │    └────│   Disabled   │────┘    │
-         │         └──────┬───────┘         │
-         │                │ unload          │
-         │                ▼                 ▼
-         │         ┌──────────────┐  ┌──────────────┐
-         └────────►│  Unloading   │  │    Error     │
-                   └──────────────┘  └──────────────┘
+```mermaid
+stateDiagram-v2
+    [*] --> Discovered
+    Discovered --> Registered: validate
+    Registered --> Loading: load
+    Registered --> Error: error
+    Loading --> Active: complete
+    Loading --> Error: error
+    Active --> Disabled: disable
+    Disabled --> Active: enable
+    Disabled --> Unloading: unload
+    Active --> Unloading: unload
+    Registered --> Unloading: unload
+    Unloading --> [*]
+    Error --> [*]
 ```
 
 ---
@@ -157,33 +142,17 @@ class PluginLifecycleManager:
 
 ## 7. Loading Process
 
-```
-┌─────────────────────────────────────────────────────────┐
-│                    Loading Process                       │
-├─────────────────────────────────────────────────────────┤
-│                                                         │
-│  1. Check dependencies                                  │
-│     └─► Load dependencies first (recursive)            │
-│                                                         │
-│  2. Validate compatibility                              │
-│     └─► Check SAGE version, Python version             │
-│                                                         │
-│  3. Import plugin module                                │
-│     └─► Load entry_point from manifest                 │
-│                                                         │
-│  4. Instantiate plugin                                  │
-│     └─► Create Plugin instance                         │
-│                                                         │
-│  5. Call on_load()                                      │
-│     └─► Plugin initialization                          │
-│                                                         │
-│  6. Register components                                 │
-│     └─► Call plugin.register(container)                │
-│                                                         │
-│  7. Call on_activate()                                  │
-│     └─► Plugin is now active                           │
-│                                                         │
-└─────────────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    S1["1. Check dependencies<br/>Load dependencies first"]
+    S2["2. Validate compatibility<br/>Check SAGE/Python version"]
+    S3["3. Import plugin module<br/>Load entry_point"]
+    S4["4. Instantiate plugin<br/>Create Plugin instance"]
+    S5["5. Call on_load<br/>Plugin initialization"]
+    S6["6. Register components<br/>Call plugin.register"]
+    S7["7. Call on_activate<br/>Plugin is now active"]
+    
+    S1 --> S2 --> S3 --> S4 --> S5 --> S6 --> S7
 ```
 
 ---

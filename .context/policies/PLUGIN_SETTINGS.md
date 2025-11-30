@@ -1,10 +1,4 @@
----
-version: "1.0"
-last_updated: "2025-11-30"
-status: published
-tokens: ~500
----
-# Plugin System Configuration
+﻿# Plugin System Configuration
 
 > Configuration reference for the SAGE plugin system
 
@@ -344,9 +338,9 @@ plugins:
 
 ---
 
-## Quick Reference
+## 7. Quick Reference
 
-### Plugin Commands
+### 7.1 Plugin Commands
 
 ```bash
 # List plugins
@@ -370,7 +364,7 @@ sage plugin reload
 sage plugin reload <plugin_name>
 ```
 
-### Plugin Development
+### 7.2 Plugin Development
 
 ```python
 # plugins/my_plugin/plugin.py
@@ -396,7 +390,7 @@ class MyPlugin(Plugin):
         return self.process(content)
 ```
 
-### Configuration Validation
+### 7.3 Configuration Validation
 
 ```bash
 # Validate plugin configuration
@@ -411,11 +405,11 @@ sage plugin config <plugin_name>
 
 ## Related
 
-- `.context/policies/service_settings.md` — Service configuration
-- `.context/policies/memory_settings.md` — Memory/persistence settings
-- `.context/decisions/ADR-0008-plugin-system.md` — Plugin system ADR
+- `.context/policies/SERVICE_SETTINGS.md` — Service configuration
+- `.context/policies/MEMORY_SETTINGS.md` — Memory/persistence settings
+- `.context/decisions/ADR_0008_PLUGIN_SYSTEM.md` — Plugin system ADR
 - `.knowledge/scenarios/plugin_development/` — Plugin development guide
 
 ---
 
-*Part of SAGE Knowledge Base - Configuration Reference*
+*AI Collaboration Knowledge Base*

@@ -33,16 +33,12 @@ The Evolve protocol (E in SAGE) closes the feedback loop by measuring performanc
 
 ### 3.2 Metric Collection Flow
 
-```
-Operations
-    │
-    ├── Source ───► SourceMetrics ──────┐
-    │                                    │
-    ├── Analyze ──► AnalyzeMetrics ─────┼──► MetricStore
-    │                                    │
-    ├── Generate ─► GenerateMetrics ────┤
-    │                                    │
-    └── System ───► SystemMetrics ──────┘
+```mermaid
+graph LR
+    Source --> SM[SourceMetrics] --> MS[MetricStore]
+    Analyze --> AM[AnalyzeMetrics] --> MS
+    Generate --> GM[GenerateMetrics] --> MS
+    System --> SYM[SystemMetrics] --> MS
 ```
 
 ### 3.3 Metrics Structure
@@ -79,35 +75,25 @@ class MetricStore:
 
 ### 4.2 Learning Flow
 
-```
-MetricStore
-     │
-     ▼
-┌──────────────────────────────────────┐
-│            Learner                    │
-├──────────────────────────────────────┤
-│                                      │
-│  ┌──────────┐  ┌──────────┐        │
-│  │ Pattern  │  │ Anomaly  │        │
-│  │ Detector │  │ Detector │        │
-│  └────┬─────┘  └────┬─────┘        │
-│       │             │              │
-│  ┌────▼─────┐  ┌────▼─────┐       │
-│  │  Trend   │  │ Correlate│       │
-│  │ Analyzer │  │  Engine  │       │
-│  └────┬─────┘  └────┬─────┘       │
-│       │             │              │
-│       └──────┬──────┘              │
-│              │                     │
-│       ┌──────▼──────┐             │
-│       │   Insight   │             │
-│       │  Generator  │             │
-│       └─────────────┘             │
-│                                    │
-└────────────────────────────────────┘
-     │
-     ▼
-  Insights
+```mermaid
+graph TD
+    MS[MetricStore]
+    subgraph Learner
+        PD[Pattern Detector]
+        AD[Anomaly Detector]
+        TA[Trend Analyzer]
+        CE[Correlate Engine]
+        IG[Insight Generator]
+        PD --> TA
+        AD --> CE
+        TA --> IG
+        CE --> IG
+    end
+    Insights[Insights]
+    
+    MS --> PD
+    MS --> AD
+    IG --> Insights
 ```
 
 ### 4.3 Insights Structure
@@ -144,35 +130,20 @@ class Insights:
 
 ### 5.2 Optimization Flow
 
-```
-Insights
-    │
-    ▼
-┌──────────────────────────────────────┐
-│           Optimizer                   │
-├──────────────────────────────────────┤
-│                                      │
-│  ┌────────────────────────────────┐ │
-│  │      Recommendation Engine      │ │
-│  └──────────────┬─────────────────┘ │
-│                 │                    │
-│  ┌──────────────▼─────────────────┐ │
-│  │       Impact Analyzer          │ │
-│  └──────────────┬─────────────────┘ │
-│                 │                    │
-│  ┌──────────────▼─────────────────┐ │
-│  │        Safety Check            │ │
-│  └──────────────┬─────────────────┘ │
-│                 │                    │
-│  ┌──────────────▼─────────────────┐ │
-│  │         Applier                │ │
-│  │    (auto or manual)            │ │
-│  └────────────────────────────────┘ │
-│                                      │
-└──────────────────────────────────────┘
-    │
-    ▼
-Improvements
+```mermaid
+graph TD
+    Insights[Insights]
+    subgraph Optimizer
+        RE[Recommendation Engine]
+        IA[Impact Analyzer]
+        SC[Safety Check]
+        AP["Applier<br/>(auto or manual)"]
+        RE --> IA --> SC --> AP
+    end
+    Improvements[Improvements]
+    
+    Insights --> RE
+    AP --> Improvements
 ```
 
 ### 5.3 Improvement Structure
@@ -200,27 +171,16 @@ class Improvements:
 
 ## 6. Evolution Pipeline
 
+```mermaid
+graph TD
+    Measure["Measure<br/>Collect metrics"]
+    Learn["Learn<br/>Identify patterns"]
+    Optimize["Optimize<br/>Apply improvements"]
+    
+    Measure --> Learn --> Optimize --> Measure
 ```
-   ┌───────────────────────────────────────┐
-   │                                       │
-   ▼                                       │
-┌─────────┐                               │
-│ Measure │ ─── Collect metrics           │
-└────┬────┘                               │
-     │                                     │
-     ▼                                     │
-┌─────────┐                               │
-│  Learn  │ ─── Identify patterns         │
-└────┬────┘                               │
-     │                                     │
-     ▼                                     │
-┌──────────┐                              │
-│ Optimize │ ─── Apply improvements       │
-└────┬─────┘                              │
-     │                                     │
-     └─────────────────────────────────────┘
-              Continuous Loop
-```
+
+*Continuous Loop*
 
 ---
 

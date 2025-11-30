@@ -1,4 +1,4 @@
----
+﻿---
 version: "1.0"
 last_updated: "2025-11-30"
 status: published
@@ -211,8 +211,8 @@ output = await generator.format(content, "json")
 
 ## Related
 
-- `.context/decisions/ADR-0001-architecture.md` — Three-layer architecture
-- `.context/decisions/ADR-0006-protocol-first.md` — Protocol-first design
+- `.context/decisions/ADR_0001_ARCHITECTURE.md` — Three-layer architecture
+- `.context/decisions/ADR_0006_PROTOCOL_FIRST.md` — Protocol-first design
 - `docs/design/02-sage-protocol.md` — Full protocol documentation
 
 ---

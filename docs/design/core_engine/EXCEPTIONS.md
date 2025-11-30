@@ -12,29 +12,34 @@ SAGE uses a structured exception hierarchy to provide clear error categorization
 
 ## 2. Exception Hierarchy
 
-```
-Exception (Python built-in)
-└── SAGEError (base)
-    ├── ConfigurationError
-    │   ├── ConfigNotFoundError
-    │   ├── ConfigValidationError
-    │   └── ConfigParseError
-    ├── KnowledgeError
-    │   ├── AssetNotFoundError
-    │   ├── AssetLoadError
-    │   └── AssetValidationError
-    ├── OperationError
-    │   ├── TimeoutError
-    │   ├── CircuitBreakerError
-    │   └── RateLimitError
-    ├── ServiceError
-    │   ├── CLIError
-    │   ├── MCPError
-    │   └── APIError
-    └── PluginError
-        ├── PluginLoadError
-        ├── PluginConfigError
-        └── PluginExecutionError
+```mermaid
+classDiagram
+    Exception <|-- SAGEError
+    SAGEError <|-- ConfigurationError
+    SAGEError <|-- KnowledgeError
+    SAGEError <|-- OperationError
+    SAGEError <|-- ServiceError
+    SAGEError <|-- PluginError
+    
+    ConfigurationError <|-- ConfigNotFoundError
+    ConfigurationError <|-- ConfigValidationError
+    ConfigurationError <|-- ConfigParseError
+    
+    KnowledgeError <|-- AssetNotFoundError
+    KnowledgeError <|-- AssetLoadError
+    KnowledgeError <|-- AssetValidationError
+    
+    OperationError <|-- TimeoutError
+    OperationError <|-- CircuitBreakerError
+    OperationError <|-- RateLimitError
+    
+    ServiceError <|-- CLIError
+    ServiceError <|-- MCPError
+    ServiceError <|-- APIError
+    
+    PluginError <|-- PluginLoadError
+    PluginError <|-- PluginConfigError
+    PluginError <|-- PluginExecutionError
 ```
 
 ---

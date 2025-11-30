@@ -18,6 +18,7 @@ This directory tracks SAGE's evolution, including roadmap, milestones, and evalu
 | `MILESTONES.md` | Milestone definitions | Planned |
 | `EVALUATION_CRITERIA.md` | Success metrics | Planned |
 | `CHANGELOG.md` | Design changelog | Planned |
+| `REFACTOR_PLAN.md` | Documentation refactor plan | Completed |
 
 ---
 

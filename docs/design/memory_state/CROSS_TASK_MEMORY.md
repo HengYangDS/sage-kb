@@ -23,23 +23,18 @@ Cross-task memory enables SAGE to retain and utilize learned patterns, user pref
 
 ## 3. Architecture
 
-```
-┌─────────────────────────────────────────┐
-│           Cross-Task Memory             │
-├─────────────┬─────────────┬─────────────┤
-│   User      │   Project   │   Global    │
-│   Memory    │   Memory    │   Memory    │
-├─────────────┼─────────────┼─────────────┤
-│ Preferences │ Conventions │ Insights    │
-│ Habits      │ ADRs        │ Patterns    │
-│ History     │ Context     │ Feedback    │
-└─────────────┴─────────────┴─────────────┘
-                    │
-                    ▼
-            ┌───────────────┐
-            │  Persistence  │
-            │     Layer     │
-            └───────────────┘
+```mermaid
+graph TD
+    subgraph CTM["Cross-Task Memory"]
+        User["User Memory<br/>Preferences, Habits, History"]
+        Project["Project Memory<br/>Conventions, ADRs, Context"]
+        Global["Global Memory<br/>Insights, Patterns, Feedback"]
+    end
+    Persistence[Persistence Layer]
+    
+    User --> Persistence
+    Project --> Persistence
+    Global --> Persistence
 ```
 
 ---

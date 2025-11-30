@@ -1,11 +1,4 @@
----
-version: "1.0"
-last_updated: "2025-11-30"
-status: published
-tokens: ~500
----
-
-# Junie Documentation
+﻿# Junie Documentation
 
 > Comprehensive documentation for JetBrains Junie AI Assistant configuration
 
@@ -33,7 +26,7 @@ This documentation covers everything you need to configure and optimize Junie AI
 - **Operations**: Maintenance, migration, metrics, and error recovery
 - **Future Vision**: Prepare for A2A multi-agent collaboration (2026+)
 
-### Quality Principles — 信达雅 (Xin-Da-Ya)
+### 1.1 Quality Principles — 信达雅 (Xin-Da-Ya)
 
 | Principle        | Description           | Application                             |
 |:-----------------|:----------------------|:----------------------------------------|
@@ -49,8 +42,8 @@ This documentation covers everything you need to configure and optimize Junie AI
 docs/
 ├── README.md                 # This file - main index
 ├── guides/                   # 📘 User Guides
-│   ├── quick-start.md        # First-time setup (~10 min)
-│   └── action-allowlist.md   # Terminal rules configuration (~30 min)
+│   ├── QUICK_START.md        # First-time setup (~10 min)
+│   └── ACTION_ALLOWLIST.md   # Terminal rules configuration (~30 min)
 ├── mcp/                      # 🔌 MCP Integration
 │   ├── overview.md           # Architecture and concepts (~15 min)
 │   ├── configuration.md      # Setup and configuration (~30 min)
@@ -65,10 +58,10 @@ docs/
 ├── reference/                # 📚 Reference Materials
 │   ├── glossary.md           # Terminology (~5 min)
 │   ├── regex.md              # Regex patterns (~10 min)
-│   ├── rules-windows.md      # Windows rules (copy-paste)
-│   └── rules-unix.md         # macOS/Linux rules (copy-paste)
+│   ├── RULES_WINDOWS.md      # Windows rules (copy-paste)
+│   └── RULES_UNIX.md         # macOS/Linux rules (copy-paste)
 └── vision/                   # 🔮 Future Vision
-    └── future-protocols.md   # Protocol roadmap (~30 min)
+    └── FUTURE_PROTOCOLS.md   # Protocol roadmap (~30 min)
 ```
 
 ---
@@ -77,7 +70,7 @@ docs/
 
 Some documentation files exceed the recommended 300-line limit. This is an **intentional design decision**.
 
-### Policy Rationale
+### 3.1 Policy Rationale
 
 | Principle              | Explanation                                                   |
 |:-----------------------|:--------------------------------------------------------------|
@@ -86,7 +79,7 @@ Some documentation files exceed the recommended 300-line limit. This is an **int
 | **Reduced Navigation** | Users find complete information without jumping between files |
 | **Search Efficiency**  | Full-text search works better with consolidated content       |
 
-### Files Exceeding 300 Lines
+### 3.2 Files Exceeding 300 Lines
 
 | File                         | Lines | Justification                                       |
 |:-----------------------------|:------|:----------------------------------------------------|
@@ -95,9 +88,9 @@ Some documentation files exceed the recommended 300-line limit. This is an **int
 | `mcp/troubleshooting.md`     | ~437  | Comprehensive problem-solving guide                 |
 | `mcp/memory.md`              | ~386  | Complete memory patterns and examples               |
 | `operations/recovery.md`     | ~398  | All recovery procedures in one place                |
-| `guides/action-allowlist.md` | ~325  | Complete rule configuration guide                   |
+| `guides/ACTION_ALLOWLIST.md` | ~325  | Complete rule configuration guide                   |
 
-### When to Split vs. Keep Together
+### 3.3 When to Split vs. Keep Together
 
 | Keep Together When                   | Split When                        |
 |:-------------------------------------|:----------------------------------|
@@ -110,18 +103,18 @@ Some documentation files exceed the recommended 300-line limit. This is an **int
 
 ## 4. Quick Navigation
 
-### By Goal
+### 4.1 By Goal
 
 | Your Goal                       | Go To                                                                   | Time      |
 |:--------------------------------|:------------------------------------------------------------------------|:----------|
-| 🚀 **First-time setup**         | [Quick Start](guides/quick-start.md)                                    | 10 min    |
-| 📘 **Configure Terminal rules** | [Action Allowlist](guides/action-allowlist.md)                          | 30 min    |
+| 🚀 **First-time setup**         | [Quick Start](guides/QUICK_START.md)                                    | 10 min    |
+| 📘 **Configure Terminal rules** | [Action Allowlist](guides/ACTION_ALLOWLIST.md)                          | 30 min    |
 | 🔌 **Setup MCP servers**        | [MCP Configuration](mcp/configuration.md)                               | 30 min    |
-| 📋 **Copy all rules**           | [Windows](reference/rules-windows.md) / [Unix](reference/rules-unix.md) | 5 min     |
+| 📋 **Copy all rules**           | [Windows](reference/RULES_WINDOWS.md) / [Unix](reference/RULES_UNIX.md) | 5 min     |
 | 🐛 **Fix issues**               | [MCP Troubleshooting](mcp/troubleshooting.md)                           | 10-20 min |
-| 🔮 **Learn future protocols**   | [Future Protocols](vision/future-protocols.md)                          | 30 min    |
+| 🔮 **Learn future protocols**   | [Future Protocols](vision/FUTURE_PROTOCOLS.md)                          | 30 min    |
 
-### By Role
+### 4.2 By Role
 
 | Role              | Recommended Path                              |
 |:------------------|:----------------------------------------------|
@@ -173,4 +166,4 @@ Some documentation files exceed the recommended 300-line limit. This is an **int
 
 ---
 
-*Part of the Junie Configuration Template System*
+*AI Collaboration Knowledge Base*

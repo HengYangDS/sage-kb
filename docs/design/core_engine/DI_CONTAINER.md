@@ -125,35 +125,22 @@ analyzer = container.resolve(AnalyzerProtocol)
 
 ### 6.2 Resolution Flow
 
-```
-resolve(AnalyzerProtocol)
-        │
-        ▼
-┌───────────────────┐
-│ Find registration │
-└─────────┬─────────┘
-          │
-          ▼
-┌───────────────────┐
-│ Check lifecycle   │
-│ (cached?)         │
-└─────────┬─────────┘
-          │
-    ┌─────┴─────┐
-    │           │
-    ▼           ▼
- Cached      Create
- Instance    New Instance
-    │           │
-    │     ┌─────▼─────┐
-    │     │ Resolve   │
-    │     │ Dependencies│
-    │     └─────┬─────┘
-    │           │
-    └─────┬─────┘
-          │
-          ▼
-    Return Instance
+```mermaid
+graph TD
+    Start["resolve(AnalyzerProtocol)"]
+    Find[Find registration]
+    Check[Check lifecycle - cached?]
+    Cached[Cached Instance]
+    Create[Create New Instance]
+    Resolve[Resolve Dependencies]
+    Return[Return Instance]
+    
+    Start --> Find --> Check
+    Check -->|Yes| Cached
+    Check -->|No| Create
+    Create --> Resolve
+    Cached --> Return
+    Resolve --> Return
 ```
 
 ---

@@ -63,27 +63,18 @@ Token budget management ensures efficient use of limited AI context window by al
 
 ### 4.1 Enforcement Strategy
 
-```
-Content Request
-     │
-     ▼
-┌─────────────────┐
-│ Calculate Tokens│
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│ Check Budget    │
-└────────┬────────┘
-         │
-    ┌────┴────┐
-    ▼         ▼
- Within    Exceeds
- Budget    Budget
-    │         │
-    ▼         ▼
-  Load     Truncate/
-           Prioritize
+```mermaid
+graph TD
+    Request[Content Request]
+    Calc[Calculate Tokens]
+    Check[Check Budget]
+    Within{Within Budget?}
+    Load[Load Content]
+    Truncate[Truncate/Prioritize]
+    
+    Request --> Calc --> Check --> Within
+    Within -->|Yes| Load
+    Within -->|No| Truncate
 ```
 
 ### 4.2 Implementation

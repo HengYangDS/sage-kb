@@ -1,6 +1,8 @@
 # Knowledge Base Navigation
 
 > Entry point for AI collaboration knowledge content
+>
+> **Layer Hierarchy Design**: `docs/design/knowledge_system/LAYER_HIERARCHY.md`
 
 ---
 

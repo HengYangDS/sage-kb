@@ -23,18 +23,20 @@ Persistence layer manages durable storage of state, session data, and learned pa
 
 ## 3. Architecture
 
-```
-┌─────────────────────────────────────────┐
-│            Application Layer            │
-└────────────────────┬────────────────────┘
-                     │
-                     ▼
-┌─────────────────────────────────────────┐
-│           Persistence Manager           │
-├─────────┬─────────┬─────────┬───────────┤
-│ Memory  │  Cache  │Database │   File    │
-│ Store   │  Store  │  Store  │   Store   │
-└─────────┴─────────┴─────────┴───────────┘
+```mermaid
+graph TD
+    App[Application Layer]
+    PM[Persistence Manager]
+    Memory[Memory Store]
+    Cache[Cache Store]
+    DB[Database Store]
+    File[File Store]
+    
+    App --> PM
+    PM --> Memory
+    PM --> Cache
+    PM --> DB
+    PM --> File
 ```
 
 ---

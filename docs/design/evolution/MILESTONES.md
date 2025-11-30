@@ -190,17 +190,12 @@ This document defines the milestones for SAGE development, tracking progress and
 
 ## 10. Timeline
 
-```
-2024 Q4          2025 Q1          2025 Q2
-   │                │                │
-   M1 ─────────► M2 ─────────► M3 ──┤
-   Foundation    Core          Services
-                                    │
-                               M4 ──┤
-                           Capabilities
-                                    │
-                               M5 ──┘
-                           Production
+```mermaid
+graph LR
+    M1["M1 Foundation<br/>2024 Q4"] --> M2["M2 Core<br/>2025 Q1"]
+    M2 --> M3["M3 Services<br/>2025 Q2"]
+    M3 --> M4["M4 Capabilities"]
+    M4 --> M5["M5 Production"]
 ```
 
 ---

@@ -23,18 +23,16 @@ The knowledge system manages how knowledge is organized, loaded, and delivered w
 
 ## 3. Knowledge Layers
 
-```
-Priority: .knowledge/ → .context/ → .junie/ → docs/
+Priority: `.knowledge/` → `.context/` → `.junie/` → `docs/`
 
-┌─────────────────────────────────────────────────┐
-│ .knowledge/     Universal (cross-project)       │
-├─────────────────────────────────────────────────┤
-│ .context/       Project-specific                │
-├─────────────────────────────────────────────────┤
-│ .junie/         AI assistant config             │
-├─────────────────────────────────────────────────┤
-│ docs/           User documentation              │
-└─────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    K[".knowledge/<br/>Universal (cross-project)"]
+    C[".context/<br/>Project-specific"]
+    J[".junie/<br/>AI assistant config"]
+    D["docs/<br/>User documentation"]
+    
+    K --> C --> J --> D
 ```
 
 ---

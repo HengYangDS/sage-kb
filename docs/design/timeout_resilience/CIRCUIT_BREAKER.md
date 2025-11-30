@@ -22,34 +22,17 @@ The circuit breaker pattern prevents cascading failures by detecting repeated fa
 
 ## 3. State Diagram
 
-```
-                    ┌─────────────────┐
-                    │     CLOSED      │
-                    │ (Normal)        │
-                    └────────┬────────┘
-                             │
-                    Failure threshold
-                        exceeded
-                             │
-                             ▼
-                    ┌─────────────────┐
-         ┌─────────│      OPEN       │
-         │         │ (Failing fast)  │
-         │         └────────┬────────┘
-         │                  │
-    Failure          Reset timeout
-    detected             expires
-         │                  │
-         │                  ▼
-         │         ┌─────────────────┐
-         └─────────│   HALF-OPEN     │
-                   │ (Testing)       │
-                   └────────┬────────┘
-                            │
-                      Success
-                            │
-                            ▼
-                   Back to CLOSED
+```mermaid
+stateDiagram-v2
+    [*] --> CLOSED
+    CLOSED --> OPEN: Failure threshold exceeded
+    OPEN --> HALF_OPEN: Reset timeout expires
+    HALF_OPEN --> CLOSED: Success threshold reached
+    HALF_OPEN --> OPEN: Failure detected
+    
+    CLOSED: Normal operation
+    OPEN: Failing fast
+    HALF_OPEN: Testing recovery
 ```
 
 ---

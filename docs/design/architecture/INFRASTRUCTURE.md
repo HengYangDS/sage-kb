@@ -103,26 +103,18 @@ docker run -p 8000:8000 sage-kb
 
 ### 5.1 Service Modes
 
-```
-┌─────────────────────────────────────────────────────────┐
-│                    SAGE Runtime                          │
-├─────────────────────────────────────────────────────────┤
-│                                                         │
-│  Mode: CLI          Mode: Server       Mode: Embedded   │
-│  ┌─────────┐       ┌─────────────┐    ┌─────────────┐  │
-│  │  sage   │       │   uvicorn   │    │  import     │  │
-│  │  [cmd]  │       │   + FastAPI │    │  sage       │  │
-│  └─────────┘       │   + MCP     │    └─────────────┘  │
-│       │            └──────┬──────┘          │          │
-│       │                   │                 │          │
-│       └───────────────────┼─────────────────┘          │
-│                           │                            │
-│                    ┌──────▼──────┐                     │
-│                    │    Core     │                     │
-│                    │   Engine    │                     │
-│                    └─────────────┘                     │
-│                                                         │
-└─────────────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    subgraph Runtime["SAGE Runtime"]
+        CLI["Mode: CLI<br/>sage cmd"]
+        Server["Mode: Server<br/>uvicorn + FastAPI + MCP"]
+        Embedded["Mode: Embedded<br/>import sage"]
+        Core[Core Engine]
+        
+        CLI --> Core
+        Server --> Core
+        Embedded --> Core
+    end
 ```
 
 ### 5.2 Port Assignments
@@ -253,24 +245,20 @@ sage verify --all
 
 ### 10.1 Horizontal Scaling
 
-```
-                    ┌─────────────┐
-                    │   Load      │
-                    │   Balancer  │
-                    └──────┬──────┘
-                           │
-         ┌─────────────────┼─────────────────┐
-         │                 │                 │
-    ┌────▼────┐       ┌────▼────┐       ┌────▼────┐
-    │ SAGE 1  │       │ SAGE 2  │       │ SAGE 3  │
-    └────┬────┘       └────┬────┘       └────┬────┘
-         │                 │                 │
-         └─────────────────┼─────────────────┘
-                           │
-                    ┌──────▼──────┐
-                    │   Shared    │
-                    │   Storage   │
-                    └─────────────┘
+```mermaid
+graph TD
+    LB[Load Balancer]
+    S1[SAGE 1]
+    S2[SAGE 2]
+    S3[SAGE 3]
+    Storage[Shared Storage]
+    
+    LB --> S1
+    LB --> S2
+    LB --> S3
+    S1 --> Storage
+    S2 --> Storage
+    S3 --> Storage
 ```
 
 ### 10.2 Resource Limits

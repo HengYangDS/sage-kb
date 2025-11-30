@@ -34,16 +34,12 @@ The Source protocol (S in SAGE) handles all knowledge input operations, ensuring
 
 ### 3.2 Collection Flow
 
-```
-Sources
-   │
-   ├── Files ──────► FileCollector ─────┐
-   │                                     │
-   ├── Directories ► DirectoryScanner ──┼──► RawKnowledge
-   │                                     │
-   ├── URLs ───────► URLFetcher ────────┤
-   │                                     │
-   └── APIs ───────► APIClient ─────────┘
+```mermaid
+graph LR
+    Files --> FileCollector --> RK[RawKnowledge]
+    Directories --> DirectoryScanner --> RK
+    URLs --> URLFetcher --> RK
+    APIs --> APIClient --> RK
 ```
 
 ### 3.3 Collection Interface
@@ -74,22 +70,21 @@ class Collector(Protocol):
 
 ### 4.2 Validation Flow
 
-```
-RawKnowledge
-     │
-     ▼
-┌─────────────┐    ┌─────────────┐    ┌─────────────┐
-│   Format    │───►│   Schema    │───►│   Content   │
-│  Validator  │    │  Validator  │    │  Validator  │
-└─────────────┘    └─────────────┘    └─────────────┘
-     │                   │                   │
-     ▼                   ▼                   ▼
-  Errors            Errors              Warnings
-     │                   │                   │
-     └───────────────────┴───────────────────┘
-                         │
-                         ▼
-                 ValidationResult
+```mermaid
+graph TD
+    RK[RawKnowledge]
+    FV[Format Validator]
+    SV[Schema Validator]
+    CV[Content Validator]
+    VR[ValidationResult]
+    
+    RK --> FV --> SV --> CV
+    FV --> E1[Errors]
+    SV --> E2[Errors]
+    CV --> W[Warnings]
+    E1 --> VR
+    E2 --> VR
+    W --> VR
 ```
 
 ### 4.3 Validation Result
@@ -118,23 +113,22 @@ class ValidationResult:
 
 ### 5.2 Normalization Flow
 
-```
-RawKnowledge
-     │
-     ▼
-┌──────────────────────────────────────┐
-│           Normalizer                  │
-├──────────────────────────────────────┤
-│  1. Detect encoding                  │
-│  2. Convert to UTF-8                 │
-│  3. Normalize line endings           │
-│  4. Parse structure                  │
-│  5. Extract metadata                 │
-│  6. Generate fingerprint             │
-└──────────────────────────────────────┘
-     │
-     ▼
-NormalizedKnowledge
+```mermaid
+graph TD
+    RK[RawKnowledge]
+    subgraph Normalizer
+        N1[1. Detect encoding]
+        N2[2. Convert to UTF-8]
+        N3[3. Normalize line endings]
+        N4[4. Parse structure]
+        N5[5. Extract metadata]
+        N6[6. Generate fingerprint]
+        N1 --> N2 --> N3 --> N4 --> N5 --> N6
+    end
+    NK[NormalizedKnowledge]
+    
+    RK --> N1
+    N6 --> NK
 ```
 
 ### 5.3 Normalized Knowledge Structure

@@ -1,10 +1,4 @@
----
-version: "1.0"
-last_updated: "2025-11-30"
-status: published
-tokens: ~500
----
-# SAGE Project Overview
+﻿# SAGE Project Overview
 
 > Quick introduction to SAGE Knowledge Base for new contributors and AI assistants
 
@@ -25,7 +19,7 @@ tokens: ~500
 **SAGE** (Source, Analyze, Generate, Evolve) is a production-grade knowledge management system designed for AI-human
 collaboration.
 
-### Design Philosophy — 信达雅 (Xin-Da-Ya)
+### 1.1 Design Philosophy — 信达雅 (Xin-Da-Ya)
 
 | Principle        | Chinese | Description                     |
 |:-----------------|:--------|:--------------------------------|
@@ -33,7 +27,7 @@ collaboration.
 | **Clarity**      | 达 (Da)  | Clear, maintainable, structured |
 | **Elegance**     | 雅 (Ya)  | Refined, balanced, sustainable  |
 
-### Project Status
+### 1.2 Project Status
 
 | Attribute    | Value         |
 |:-------------|:--------------|
@@ -66,7 +60,7 @@ SAGE uses a **Core-Services-Capabilities** three-layer architecture:
 └─────────────────────────────────────────────────────────┘
 ```
 
-### Layer Responsibilities
+### 2.1 Layer Responsibilities
 
 | Layer            | Purpose                               | Dependencies |
 |:-----------------|:--------------------------------------|:-------------|
@@ -78,7 +72,7 @@ SAGE uses a **Core-Services-Capabilities** three-layer architecture:
 
 ## 3. Key Concepts
 
-### SAGE Protocol
+### 3.1 SAGE Protocol
 
 The four-phase processing model:
 
@@ -89,7 +83,7 @@ The four-phase processing model:
 | **G**enerate | Output      | Format for different channels |
 | **E**volve   | Improvement | Track metrics and optimize    |
 
-### Timeout Hierarchy (T1-T5)
+### 3.2 Timeout Hierarchy (T1-T5)
 
 | Level | Duration | Use Case         |
 |:------|:---------|:-----------------|
@@ -99,7 +93,7 @@ The four-phase processing model:
 | T4    | 5s       | Full system      |
 | T5    | 10s      | Complex analysis |
 
-### Autonomy Levels (L1-L6)
+### 3.3 Autonomy Levels (L1-L6)
 
 | Level | Autonomy | AI Behavior             |
 |:------|:---------|:------------------------|
@@ -111,20 +105,20 @@ The four-phase processing model:
 
 ## 4. Getting Started
 
-### For New Contributors
+### 4.1 For New Contributors
 
-1. Read `conventions/naming.md` and `conventions/file_structure.md`
+1. Read `conventions/NAMING.md` and `conventions/FILE_STRUCTURE.md`
 2. Review ADR-0001 (architecture) and ADR-0002 (SAGE protocol)
-3. Check `intelligence/calibration/patterns.md` for collaboration patterns
+3. Check `intelligence/calibration/PATTERNS.md` for collaboration patterns
 
-### For AI Assistants
+### 4.2 For AI Assistants
 
-1. Check `intelligence/calibration/calibration.md` for autonomy levels
-2. Follow patterns in `intelligence/calibration/patterns.md`
+1. Check `intelligence/calibration/CALIBRATION.md` for autonomy levels
+2. Follow patterns in `intelligence/calibration/PATTERNS.md`
 3. Use optimizations from `intelligence/optimization/`
 4. Reference conventions when generating code
 
-### Key Directories
+### 4.3 Key Directories
 
 | Directory     | Purpose                        |
 |:--------------|:-------------------------------|
@@ -137,14 +131,14 @@ The four-phase processing model:
 
 ---
 
-## 5. Related
+## Related
 
-- `../index.md` — Full project context navigation
-- `../decisions/ADR-0001-architecture.md` — Architecture decision
-- `../decisions/ADR-0002-sage-protocol.md` — SAGE protocol design
-- `../intelligence/calibration/calibration.md` — AI autonomy calibration
+- `.context/INDEX.md` — Full project context navigation
+- `.context/decisions/ADR_0001_ARCHITECTURE.md` — Architecture decision
+- `.context/decisions/ADR_0002_SAGE_PROTOCOL.md` — SAGE protocol design
+- `.context/intelligence/calibration/CALIBRATION.md` — AI autonomy calibration
 - `.junie/guidelines.md` — AI collaboration guidelines
 
 ---
 
-*Part of SAGE Knowledge Base - Project Context*
+*AI Collaboration Knowledge Base*

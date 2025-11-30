@@ -44,6 +44,9 @@ SAGE provides three interface layers for accessing knowledge:
 
 ### 2.2 MCP Detailed References
 
+> **Scope**: These documents cover SAGE as an **MCP server**.
+> For Junie **MCP client configuration**, see `.junie/docs/mcp/`.
+
 | Document                                  | Description                    |
 |-------------------------------------------|--------------------------------|
 | [MCP Tools Reference](mcp_tools_ref.md)   | Detailed tool schemas          |

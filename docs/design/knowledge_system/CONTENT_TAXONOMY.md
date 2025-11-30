@@ -132,23 +132,14 @@ Content taxonomy defines how knowledge is classified, tagged, and organized for 
 
 ## 7. Content Lifecycle
 
-```
-Draft → Review → Published → Deprecated → Archived
-
-Status Flow:
-┌─────────┐     ┌─────────┐     ┌───────────┐
-│  Draft  │ ──► │ Review  │ ──► │ Published │
-└─────────┘     └─────────┘     └─────┬─────┘
-                                      │
-                                      ▼
-                               ┌────────────┐
-                               │ Deprecated │
-                               └─────┬──────┘
-                                     │
-                                     ▼
-                               ┌──────────┐
-                               │ Archived │
-                               └──────────┘
+```mermaid
+stateDiagram-v2
+    [*] --> Draft
+    Draft --> Review
+    Review --> Published
+    Published --> Deprecated
+    Deprecated --> Archived
+    Archived --> [*]
 ```
 
 ### 7.1 Status Definitions

@@ -1,10 +1,3 @@
----
-version: "1.3"
-last_updated: "2025-11-30"
-status: published
-tokens: ~320
----
-
 # Junie Guidelines
 
 > Primary entry point for JetBrains Junie AI collaboration
@@ -29,7 +22,7 @@ tokens: ~320
 This file contains **generic Junie AI collaboration rules**.
 For project-specific rules, refer to `project/GUIDELINES.md`.
 
-### Knowledge Sources (SSOT)
+### 1.1 Knowledge Sources (SSOT)
 
 > All knowledge is maintained in `.knowledge/` as the Single Source of Truth.
 > This section lists key references — see [7. References](#7-references) for the complete list.
@@ -45,9 +38,11 @@ For project-specific rules, refer to `project/GUIDELINES.md`.
 
 ## 2. AI Reading Order
 
+> **Layer Hierarchy Design**: `docs/design/knowledge_system/LAYER_HIERARCHY.md`
+
 When starting a new session, load files in this priority order:
 
-### Priority 1: Essential (Always Load)
+### 2.1 Priority 1: Essential (Always Load)
 
 | File | Purpose |
 |:-----|:--------|
@@ -55,7 +50,7 @@ When starting a new session, load files in this priority order:
 | `project/config.yaml` | Project identity |
 | `project/GUIDELINES.md` | Project-specific AI rules and patterns |
 
-### Priority 2: Context (Load as Needed)
+### 2.2 Priority 2: Context (Load as Needed)
 
 | File | Purpose | When |
 |:-----|:--------|:-----|
@@ -63,7 +58,7 @@ When starting a new session, load files in this priority order:
 | `mcp/mcp.json` | MCP configuration | MCP operations |
 | `.knowledge/frameworks/autonomy/LEVELS.md` | Autonomy details | Autonomy decisions |
 
-### Priority 3: Reference (On Demand)
+### 2.3 Priority 3: Reference (On Demand)
 
 | File | Purpose | When |
 |:-----|:--------|:-----|
@@ -71,7 +66,7 @@ When starting a new session, load files in this priority order:
 | `docs/guides/*` | How-to guides | Specific guidance |
 | `.knowledge/guidelines/*` | Detailed standards | Deep reference |
 
-### Loading Strategy
+### 2.4 Loading Strategy
 
 ```
 Session Start
@@ -95,7 +90,7 @@ Session Start
 
 > **Project-specific rules**: See `project/GUIDELINES.md`
 
-### Autonomy Levels
+### 3.1 Autonomy Levels
 
 > **Full Definition**: `.knowledge/frameworks/autonomy/LEVELS.md`
 
@@ -123,7 +118,7 @@ Session Start
 > **Project-specific standards**: See `project/GUIDELINES.md`
 > **Full Standards**: `.knowledge/guidelines/CODE_STYLE.md`
 
-### General Principles
+### 4.1 General Principles
 
 | Aspect | Guideline |
 |:-------|:----------|
@@ -140,7 +135,7 @@ Session Start
 
 Optimize token usage for better AI performance.
 
-### Token Budget by Priority
+### 5.1 Token Budget by Priority
 
 | Priority | Files | Budget | Strategy |
 |:---------|:------|:-------|:---------|
@@ -148,7 +143,7 @@ Optimize token usage for better AI performance.
 | P2 | `QUICKREF.md` files | ~500 each | Load for complex |
 | P3 | `docs/*`, `.knowledge/*` | ~1000 | On demand |
 
-### Efficiency Patterns
+### 5.2 Efficiency Patterns
 
 | Pattern | Savings | Use Case |
 |:--------|:--------|:---------|
@@ -156,7 +151,7 @@ Optimize token usage for better AI performance.
 | Cross-references | ~70% | Repeated content |
 | Layered loading | ~50% | Large documentation |
 
-### Anti-Patterns
+### 5.3 Anti-Patterns
 
 - ❌ Loading entire directories at once
 - ❌ Repeating content instead of cross-referencing
@@ -166,7 +161,7 @@ Optimize token usage for better AI performance.
 
 ## 6. Configuration Validation
 
-### Validation Checklist
+### 6.1 Validation Checklist
 
 | Component | Method | Frequency |
 |:----------|:-------|:----------|
@@ -175,7 +170,7 @@ Optimize token usage for better AI performance.
 | Schema match | JSON Schema validation | Every change |
 | MCP servers | Settings → Tools → Junie | After config |
 
-### Quick Validation
+### 6.2 Quick Validation
 
 ```bash
 # YAML
@@ -185,7 +180,7 @@ python -c "import yaml; yaml.safe_load(open('.junie/generic/config.yaml'))"
 python -c "import json; json.load(open('.junie/mcp/mcp.json'))"
 ```
 
-### Common Issues
+### 6.3 Common Issues
 
 | Issue | Fix |
 |:------|:----|
@@ -193,7 +188,7 @@ python -c "import json; json.load(open('.junie/mcp/mcp.json'))"
 | Invalid JSON | Check trailing commas, quotes |
 | MCP won't start | Verify Node.js v18+ |
 
-### Emergency Fallbacks
+### 6.4 Emergency Fallbacks
 
 | Failure | Action |
 |:--------|:-------|
@@ -205,7 +200,7 @@ python -c "import json; json.load(open('.junie/mcp/mcp.json'))"
 
 ## 7. References
 
-### Knowledge Sources (SSOT)
+### 7.1 Knowledge Sources (SSOT)
 
 | Topic | Authoritative Source |
 |:------|:---------------------|
@@ -215,7 +210,7 @@ python -c "import json; json.load(open('.junie/mcp/mcp.json'))"
 | Code Style | `.knowledge/guidelines/CODE_STYLE.md` |
 | AI Collaboration | `.knowledge/guidelines/AI_COLLABORATION.md` |
 
-### Configuration Files
+### 7.2 Configuration Files
 
 | File | Purpose | Priority |
 |:-----|:--------|:---------|
@@ -225,15 +220,15 @@ python -c "import json; json.load(open('.junie/mcp/mcp.json'))"
 | `generic/config.yaml` | Generic settings | P2 |
 | `generic/QUICKREF.md` | Quick lookup card | P2 |
 
-### Key Documentation
+### 7.3 Key Documentation
 
 | Document | Purpose |
 |:---------|:--------|
 | `docs/README.md` | Documentation index |
-| `docs/guides/QUICK-START.md` | First-time setup |
+| `docs/guides/QUICKSTART.md` | First-time setup |
 | `docs/mcp/CONFIGURATION.md` | MCP setup |
 
-### Version Compatibility
+### 7.4 Version Compatibility
 
 | Component | Minimum | Recommended |
 |:----------|:--------|:------------|
@@ -247,7 +242,7 @@ python -c "import json; json.load(open('.junie/mcp/mcp.json'))"
 
 This `.junie/` configuration follows the **Thin Layer** principle:
 
-### Directory Structure
+### 8.1 Directory Structure
 
 | Directory | Type | Purpose |
 |:----------|:-----|:--------|
@@ -257,7 +252,7 @@ This `.junie/` configuration follows the **Thin Layer** principle:
 | `schema/` | 🔄 Generic | JSON Schema files |
 | `docs/` | 🔄 Generic | Junie documentation |
 
-### Customization
+### 8.2 Customization
 
 - **Customize**: Files in `project/` — edit freely
 - **Override**: Copy generic files to `project/` to override
@@ -265,4 +260,4 @@ This `.junie/` configuration follows the **Thin Layer** principle:
 
 ---
 
-*Part of the Junie Configuration Template System*
+*AI Collaboration Knowledge Base*

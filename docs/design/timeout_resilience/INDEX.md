@@ -23,12 +23,13 @@ This directory documents SAGE's approach to handling timeouts, failures, and gra
 
 ## 3. Timeout Hierarchy
 
-```
-T1 (50ms)   ─► Cache lookup, memory access
-T2 (200ms)  ─► File read, local I/O
-T3 (1s)     ─► Complex processing
-T4 (5s)     ─► External API calls
-T5 (30s)    ─► Batch operations
+```mermaid
+flowchart LR
+    T1["T1 (50ms)"] --> T1U[Cache lookup, memory access]
+    T2["T2 (200ms)"] --> T2U[File read, local I/O]
+    T3["T3 (1s)"] --> T3U[Complex processing]
+    T4["T4 (5s)"] --> T4U[External API calls]
+    T5["T5 (30s)"] --> T5U[Batch operations]
 ```
 
 ---
@@ -55,10 +56,10 @@ T5 (30s)    ─► Batch operations
 
 ## Related
 
-- `../core_engine/INDEX.md` — Core engine
-- `../services/INDEX.md` — Service layer
+- `docs/design/core_engine/INDEX.md` — Core engine
+- `docs/design/services/INDEX.md` — Service layer
 - `.context/decisions/ADR_0003_TIMEOUT_HIERARCHY.md` — Timeout ADR
 
 ---
 
-*Part of SAGE Knowledge Base*
+*AI Collaboration Knowledge Base*

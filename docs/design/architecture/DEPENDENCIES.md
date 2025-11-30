@@ -29,27 +29,16 @@ testability.
 
 ### 2.2 Visual Representation
 
-```
-                    ┌──────────────────┐
-                    │    External      │
-                    │  (HTTP, CLI, DB) │
-                    └────────┬─────────┘
-                             │ ✅
-                             ▼
-┌─────────────────────────────────────────────────────────┐
-│                      Services                           │
-│                         │ ✅                            │
-│                         ▼                               │
-│  ┌───────────────────────────────────────────────────┐  │
-│  │                 Capabilities                      │  │
-│  │                      │ ✅                         │  │
-│  │                      ▼                            │  │
-│  │  ┌─────────────────────────────────────────────┐  │  │
-│  │  │                    Core                     │  │  │
-│  │  │              (No dependencies)              │  │  │
-│  │  └─────────────────────────────────────────────┘  │  │
-│  └───────────────────────────────────────────────────┘  │
-└─────────────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    External["External<br/>(HTTP, CLI, DB)"]
+    Services[Services]
+    Capabilities[Capabilities]
+    Core["Core<br/>(No dependencies)"]
+    
+    External -->|allowed| Services
+    Services -->|allowed| Capabilities
+    Capabilities -->|allowed| Core
 ```
 
 ---

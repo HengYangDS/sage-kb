@@ -171,30 +171,15 @@ plugins:
 
 ## 8. Plugin Dependencies
 
-```
-┌─────────────────┐
-│ metrics-collector│
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│  core-generator │
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│  core-analyzer  │
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│  core-validator │
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│   core-loader   │ (no dependencies)
-└─────────────────┘
+```mermaid
+graph TD
+    MC[metrics-collector]
+    CG[core-generator]
+    CA[core-analyzer]
+    CV[core-validator]
+    CL["core-loader<br/>(no dependencies)"]
+    
+    MC --> CG --> CA --> CV --> CL
 ```
 
 ---

@@ -12,36 +12,26 @@ The plugin architecture enables extending SAGE functionality without modifying c
 
 ## 2. Architecture Diagram
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                      SAGE Core                               │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  ┌─────────────────────────────────────────────────────┐   │
-│  │              Plugin Manager                          │   │
-│  ├─────────────────────────────────────────────────────┤   │
-│  │  ┌───────────┐  ┌───────────┐  ┌───────────┐       │   │
-│  │  │ Discovery │  │ Registry  │  │ Lifecycle │       │   │
-│  │  └───────────┘  └───────────┘  └───────────┘       │   │
-│  └─────────────────────────────────────────────────────┘   │
-│                           │                                 │
-│                           ▼                                 │
-│  ┌─────────────────────────────────────────────────────┐   │
-│  │              Extension Points                        │   │
-│  │  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌────────┐ │   │
-│  │  │Capability│ │  Hook    │ │  Event   │ │ Config │ │   │
-│  │  └──────────┘ └──────────┘ └──────────┘ └────────┘ │   │
-│  └─────────────────────────────────────────────────────┘   │
-│                           │                                 │
-└───────────────────────────┼─────────────────────────────────┘
-                            │
-            ┌───────────────┼───────────────┐
-            │               │               │
-            ▼               ▼               ▼
-       ┌─────────┐    ┌─────────┐    ┌─────────┐
-       │Plugin A │    │Plugin B │    │Plugin C │
-       │(builtin)│    │(builtin)│    │ (user)  │
-       └─────────┘    └─────────┘    └─────────┘
+```mermaid
+graph TD
+    subgraph Core["SAGE Core"]
+        subgraph PM["Plugin Manager"]
+            Discovery[Discovery]
+            Registry[Registry]
+            Lifecycle[Lifecycle]
+        end
+        subgraph EP["Extension Points"]
+            Capability[Capability]
+            Hook[Hook]
+            Event[Event]
+            Config[Config]
+        end
+        PM --> EP
+    end
+    
+    EP --> PluginA["Plugin A<br/>(builtin)"]
+    EP --> PluginB["Plugin B<br/>(builtin)"]
+    EP --> PluginC["Plugin C<br/>(user)"]
 ```
 
 ---

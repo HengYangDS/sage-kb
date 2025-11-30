@@ -107,11 +107,11 @@ Detect and report errors as early as possible.
 
 Continue operating with reduced functionality when possible.
 
-```
-Full Service → Partial Service → Cached Response → Error Message
-      ↓              ↓                 ↓               ↓
-   100%           ~70%              ~30%            0%
-   capability     capability        capability      (informative)
+```mermaid
+graph LR
+    Full["Full Service<br/>100%"] --> Partial["Partial Service<br/>~70%"]
+    Partial --> Cached["Cached Response<br/>~30%"]
+    Cached --> Error["Error Message<br/>0% informative"]
 ```
 
 ---
@@ -157,30 +157,22 @@ Build security into the foundation.
 
 When facing design decisions, apply axioms in order:
 
-```
-1. Does it maintain SIMPLICITY?
-   │
-   ├─ No → Can we simplify? → Simplify first
-   │
-   └─ Yes ↓
-
-2. Is behavior EXPLICIT?
-   │
-   ├─ No → Make it explicit → Document and clarify
-   │
-   └─ Yes ↓
-
-3. Does it favor COMPOSITION?
-   │
-   ├─ No → Can we compose? → Refactor to composition
-   │
-   └─ Yes ↓
-
-4. Does it follow CONVENTIONS?
-   │
-   ├─ No → Is deviation justified? → Document why
-   │
-   └─ Yes → ✅ Proceed
+```mermaid
+graph TD
+    Q1{1. SIMPLICITY?}
+    Q2{2. EXPLICIT?}
+    Q3{3. COMPOSITION?}
+    Q4{4. CONVENTIONS?}
+    Proceed[Proceed]
+    
+    Q1 -->|No| S1[Simplify first]
+    Q1 -->|Yes| Q2
+    Q2 -->|No| S2[Document and clarify]
+    Q2 -->|Yes| Q3
+    Q3 -->|No| S3[Refactor to composition]
+    Q3 -->|Yes| Q4
+    Q4 -->|No| S4[Document why]
+    Q4 -->|Yes| Proceed
 ```
 
 ---

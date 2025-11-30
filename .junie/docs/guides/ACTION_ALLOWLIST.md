@@ -1,4 +1,4 @@
----
+﻿---
 version: "1.0"
 last_updated: "2025-11-30"
 status: published
@@ -313,15 +313,15 @@ Target: ≥90%
 
 For copy-paste ready rule lists:
 
-- [Windows Rules (68)](../reference/RULES-WINDOWS.md)
-- [macOS/Linux Rules (76)](../reference/RULES-UNIX.md)
+- [Windows Rules (68)](../reference/RULES_WINDOWS.md)
+- [macOS/Linux Rules (76)](../reference/RULES_UNIX.md)
 - [Regex Reference](../reference/REGEX.md)
 
 ---
 
 ## 10. Related
 
-- [Quick Start](QUICK-START.md) — First-time setup
+- [Quick Start](QUICK_START.md) — First-time setup
 - [MCP Configuration](../mcp/CONFIGURATION.md) — MCP server setup
 - [Efficiency Metrics](../operations/METRICS.md) — Track auto-approval rate
 - [Glossary](../reference/GLOSSARY.md) — Terminology

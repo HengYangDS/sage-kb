@@ -1,10 +1,3 @@
----
-version: "1.1"
-last_updated: "2025-11-30"
-status: published
-tokens: ~600
----
-
 # SAGE Project - AI Collaboration Guidelines
 
 > Project-specific AI collaboration rules and quick reference for SAGE Knowledge Base
@@ -33,7 +26,7 @@ tokens: ~600
 AI-human collaboration. It provides structured knowledge via CLI, MCP, and API services with built-in timeout protection
 and smart loading.
 
-### Design Philosophy
+### 1.1 Design Philosophy
 
 **信达雅 (Xin-Da-Ya)**:
 
@@ -74,7 +67,7 @@ sage-kb/
 └── tests/           # Test suite
 ```
 
-### Key Directories
+### 3.1 Key Directories
 
 | Directory     | Purpose                                        | Visibility |
 |---------------|------------------------------------------------|------------|
@@ -108,7 +101,7 @@ SAGE project-specific behaviors for AI collaboration:
 
 > **Full Reference**: `.knowledge/guidelines/CODE_STYLE.md`, `.knowledge/guidelines/PYTHON.md`
 
-### Quick Summary
+### 5.1 Quick Summary
 
 | Aspect | Standard |
 |:-------|:---------|
@@ -122,7 +115,7 @@ SAGE project-specific behaviors for AI collaboration:
 | Naming | See `.context/conventions/NAMING.md` |
 | Patterns | See `.context/conventions/CODE_PATTERNS.md` |
 
-### Architecture Layers
+### 5.2 Architecture Layers
 
 ```
 src/sage/
@@ -135,7 +128,7 @@ src/sage/
 
 ## 6. Session Management
 
-### Session History
+### 6.1 Session History
 
 At session end, create records in `.history/`:
 
@@ -145,7 +138,7 @@ At session end, create records in `.history/`:
 | `handoffs/` | Task continuation context | `YYYYMMDD-TASK-HANDOFF.md` |
 | `current/` | Active work state | `current-state.md` |
 
-### Record Content
+### 6.2 Record Content
 
 **Conversation Records** should include:
 - Session date and duration
@@ -159,7 +152,7 @@ At session end, create records in `.history/`:
 - Blocking issues
 - Context for continuation
 
-### Session Automation
+### 6.3 Session Automation
 
 Use MCP tools for session management:
 
@@ -182,7 +175,7 @@ For complex SAGE decisions, simulate **Level 5 Expert Committee** review:
 | **AI Collaboration** | Junie integration, MCP patterns |
 | **Engineering Practice** | Python best practices, testing |
 
-### When to Use
+### 7.1 When to Use
 
 - Architecture changes affecting multiple layers
 - New capability or plugin design
@@ -245,7 +238,7 @@ mypy src/                           # Type check
 
 ## 11. References
 
-### Project-Specific
+### 11.1 Project-Specific
 
 | Topic | Location |
 |:------|:---------|
@@ -253,11 +246,11 @@ mypy src/                           # Type check
 | Code Patterns | `.context/conventions/CODE_PATTERNS.md` |
 | Naming Conventions | `.context/conventions/NAMING.md` |
 | Project Calibration | `.context/intelligence/calibration/CALIBRATION.md` |
-| Session Checklist | `.history/_session-end-checklist.md` |
+| Session Checklist | `.history/_SESSION-END-CHECKLIST.md` |
 | Project Variables | `config.yaml` |
-| Design Documents | `docs/design/00-overview.md` |
+| Design Documents | `docs/design/OVERVIEW.md` |
 
-### Generic Knowledge
+### 11.2 Generic Knowledge
 
 | Topic | Location |
 |:------|:---------|
@@ -269,4 +262,4 @@ mypy src/                           # Type check
 
 ---
 
-*Part of the Junie Configuration — SAGE Project-Specific Guidelines*
+*AI Collaboration Knowledge Base*

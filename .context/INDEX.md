@@ -1,10 +1,4 @@
----
-version: "1.0"
-last_updated: "2025-11-30"
-status: published
-tokens: ~500
----
-# Project Context Navigation
+﻿# Project Context Navigation
 
 > Project-specific knowledge base for SAGE Knowledge Base
 
@@ -33,7 +27,7 @@ tokens: ~500
 
 ## 2. Content Categories
 
-### 2.0 Overview
+### 2.1 Overview
 
 Quick introduction to the project:
 
@@ -41,7 +35,7 @@ Quick introduction to the project:
 |:----------------------|:-------------------------------------------------|
 | `PROJECT_OVERVIEW.md` | Project introduction, architecture, key concepts |
 
-### 2.1 Policies
+### 2.2 Policies
 
 Project-specific policy documentation:
 
@@ -54,7 +48,7 @@ Project-specific policy documentation:
 | `PLUGIN_SETTINGS.md`        | Plugin system settings and extension points   |
 | `SERVICE_SETTINGS.md`       | Service layer configuration (CLI, MCP, API)   |
 
-### 2.2 Conventions
+### 2.3 Conventions
 
 Project-specific rules and standards:
 
@@ -64,7 +58,7 @@ Project-specific rules and standards:
 | `CODE_PATTERNS.md`  | DI, EventBus, timeout, async patterns    |
 | `FILE_STRUCTURE.md` | Directory layout, module organization    |
 
-### 2.3 Decisions
+### 2.4 Decisions
 
 Architecture Decision Records (ADRs) documenting significant technical decisions.
 
@@ -87,7 +81,7 @@ decision rationale and traceability.
 | ADR-0007 | Configuration Management        | Accepted |
 | ADR-0008 | Plugin System Design            | Accepted |
 
-### 2.4 Intelligence
+### 2.5 Intelligence
 
 AI collaboration patterns, learned behaviors, and project-specific calibration data.
 
@@ -146,10 +140,10 @@ AI collaboration patterns, learned behaviors, and project-specific calibration d
 | Topic                | Documents                                                                         |
 |:---------------------|:----------------------------------------------------------------------------------|
 | **Getting Started**  | `overview/PROJECT_OVERVIEW.md`, `conventions/NAMING.md`                           |
-| **Architecture**     | `decisions/ADR-0001-ARCHITECTURE.md`, `decisions/ADR-0002-SAGE-PROTOCOL.md`       |
+| **Architecture**     | `decisions/ADR_0001_ARCHITECTURE.md`, `decisions/ADR_0002_SAGE_PROTOCOL.md`       |
 | **Configuration**    | `policies/RUNTIME_SETTINGS.md`, `policies/LOADING_CONFIGURATIONS.md`              |
-| **Timeouts**         | `policies/TIMEOUT_HIERARCHY.md`, `decisions/ADR-0003-TIMEOUT-HIERARCHY.md`        |
-| **DI & Events**      | `decisions/ADR-0004-DEPENDENCY-INJECTION.md`, `decisions/ADR-0005-EVENT-BUS.md`   |
+| **Timeouts**         | `policies/TIMEOUT_HIERARCHY.md`, `decisions/ADR_0003_TIMEOUT_HIERARCHY.md`        |
+| **DI & Events**      | `decisions/ADR_0004_DEPENDENCY_INJECTION.md`, `decisions/ADR_0005_EVENT_BUS.md`   |
 | **AI Collaboration** | `intelligence/calibration/CALIBRATION.md`, `intelligence/calibration/PATTERNS.md` |
 
 ### 3.2 All Documents
@@ -175,14 +169,14 @@ AI collaboration patterns, learned behaviors, and project-specific calibration d
 
 #### Decisions (ADRs)
 
-- `decisions/ADR-0001-ARCHITECTURE.md` — Three-layer architecture
-- `decisions/ADR-0002-SAGE-PROTOCOL.md` — SAGE protocol design
-- `decisions/ADR-0003-TIMEOUT-HIERARCHY.md` — Timeout hierarchy
-- `decisions/ADR-0004-DEPENDENCY-INJECTION.md` — DI container
-- `decisions/ADR-0005-EVENT-BUS.md` — Event bus
-- `decisions/ADR-0006-PROTOCOL-FIRST.md` — Protocol-first design
-- `decisions/ADR-0007-CONFIGURATION.md` — Configuration management
-- `decisions/ADR-0008-PLUGIN-SYSTEM.md` — Plugin system
+- `decisions/ADR_0001_ARCHITECTURE.md` — Three-layer architecture
+- `decisions/ADR_0002_SAGE_PROTOCOL.md` — SAGE protocol design
+- `decisions/ADR_0003_TIMEOUT_HIERARCHY.md` — Timeout hierarchy
+- `decisions/ADR_0004_DEPENDENCY_INJECTION.md` — DI container
+- `decisions/ADR_0005_EVENT_BUS.md` — Event bus
+- `decisions/ADR_0006_PROTOCOL_FIRST.md` — Protocol-first design
+- `decisions/ADR_0007_CONFIGURATION.md` — Configuration management
+- `decisions/ADR_0008_PLUGIN_SYSTEM.md` — Plugin system
 
 #### Intelligence
 
@@ -234,10 +228,10 @@ AI collaboration patterns, learned behaviors, and project-specific calibration d
 ## Related
 
 - `.knowledge/` — Generic, reusable knowledge
-- `.junie/GUIDELINES.md` — AI collaboration guidelines
+- `.junie/guidelines.md` — AI collaboration guidelines
 - `docs/design/` — Design documents
 - `README.md` — Project overview
 
 ---
 
-*Part of SAGE Knowledge Base - Project Context*
+*AI Collaboration Knowledge Base*

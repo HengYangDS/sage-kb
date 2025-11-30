@@ -27,26 +27,26 @@ The bootstrap process initializes SAGE, loading configuration, registering compo
 ```mermaid
 flowchart LR
     subgraph PHASE1 [Phase 1: Config]
-        B1["sage.yaml + env vars"]
+        A1["sage.yaml + env vars"]
     end
     
     subgraph PHASE2 [Phase 2: Core]
-        C1["DI Container + EventBus"]
+        B1["DI Container + EventBus"]
     end
     
     subgraph PHASE3 [Phase 3: Plugins]
-        D1["Discover - Validate - Register"]
+        C1["Discover - Validate - Register"]
     end
     
     subgraph PHASE4 [Phase 4: Services]
-        E1["CLI | MCP | API"]
+        D1["CLI | MCP | API"]
     end
 
     START(["Application Start"]) --> PHASE1
     PHASE1 --> PHASE2
     PHASE2 --> PHASE3
     PHASE3 --> PHASE4
-    PHASE4 --> READY(["System Ready"])
+    PHASE4 --> END(["System Ready"])
 ```
 
 ---

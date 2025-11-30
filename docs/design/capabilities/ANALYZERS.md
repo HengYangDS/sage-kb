@@ -194,36 +194,17 @@ class KnowledgeGraphBuilder(Capability[AnalysisInput, KnowledgeGraph]):
 
 ## 8. Analysis Pipeline
 
-```
-Raw Content
-     │
-     ▼
-┌─────────────────┐
-│ content_parser  │
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│structure_analyzer│
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│   classifier    │
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│ relation_finder │
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│ knowledge_graph │
-└─────────────────┘
-         │
-         ▼
-  KnowledgeGraph
+```mermaid
+graph TD
+    Raw[Raw Content]
+    Parser[content_parser]
+    Structure[structure_analyzer]
+    Classifier[classifier]
+    Relations[relation_finder]
+    Graph[knowledge_graph]
+    Output[KnowledgeGraph]
+    
+    Raw --> Parser --> Structure --> Classifier --> Relations --> Graph --> Output
 ```
 
 ---

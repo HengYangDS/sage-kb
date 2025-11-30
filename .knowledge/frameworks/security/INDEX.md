@@ -26,18 +26,18 @@ This framework provides security guidelines and patterns for:
 
 ## 2. Contents
 
-| Document                                                                      | Purpose                        | When to Use                        |
-|-------------------------------------------------------------------------------|--------------------------------|------------------------------------|
-| [Authentication](.knowledge/frameworks/security/authentication.md)            | Identity verification patterns | Implementing login, tokens, SSO    |
-| [Authorization](.knowledge/frameworks/security/authorization.md)              | Access control strategies      | Role-based, attribute-based access |
-| [Secrets Management](.knowledge/frameworks/security/secrets_management.md)    | Secure data handling           | API keys, passwords, certificates  |
-| [Security Checklist](.knowledge/frameworks/security/security_checklist.md)    | Security review guide          | Code review, deployment, audit     |
+| Document                 | Purpose                        | When to Use                        |
+|--------------------------|--------------------------------|------------------------------------|
+| `AUTHENTICATION.md`      | Identity verification patterns | Implementing login, tokens, SSO    |
+| `AUTHORIZATION.md`       | Access control strategies      | Role-based, attribute-based access |
+| `SECRETS_MANAGEMENT.md`  | Secure data handling           | API keys, passwords, certificates  |
+| `SECURITY_CHECKLIST.md`  | Security review guide          | Code review, deployment, audit     |
 
 ---
 
 ## 3. Security Principles
 
-### Defense in Depth
+### 3.1 Defense in Depth
 
 ```
 ┌─────────────────────────────────────────────────┐
@@ -54,7 +54,7 @@ This framework provides security guidelines and patterns for:
 └─────────────────────────────────────────────────┘
 ```
 
-### Core Principles
+### 3.2 Core Principles
 
 | Principle                | Description                         |
 |--------------------------|-------------------------------------|
@@ -64,7 +64,7 @@ This framework provides security guidelines and patterns for:
 | **Zero Trust**           | Verify everything, trust nothing    |
 | **Separation of Duties** | Distribute critical functions       |
 
-### STRIDE Threat Model
+### 3.3 STRIDE Threat Model
 
 | Threat                     | Mitigation                         |
 |----------------------------|------------------------------------|
@@ -79,7 +79,7 @@ This framework provides security guidelines and patterns for:
 
 ## 4. Quick Reference
 
-### Authentication Quick Check
+### 4.1 Authentication Quick Check
 
 - [ ] Strong password policy enforced
 - [ ] Multi-factor authentication available
@@ -87,7 +87,7 @@ This framework provides security guidelines and patterns for:
 - [ ] Token expiration configured
 - [ ] Brute force protection enabled
 
-### Authorization Quick Check
+### 4.2 Authorization Quick Check
 
 - [ ] Role-based access control implemented
 - [ ] Permissions validated server-side
@@ -95,7 +95,7 @@ This framework provides security guidelines and patterns for:
 - [ ] Admin functions protected
 - [ ] API endpoints authorized
 
-### Data Security Quick Check
+### 4.3 Data Security Quick Check
 
 - [ ] Sensitive data encrypted at rest
 - [ ] TLS for data in transit
@@ -107,11 +107,11 @@ This framework provides security guidelines and patterns for:
 
 ## Related
 
-- `.knowledge/practices/engineering/error_handling.md` — Secure error handling
-- `.knowledge/practices/engineering/logging.md` — Security logging
+- `.knowledge/practices/engineering/ERROR_HANDLING.md` — Secure error handling
+- `.knowledge/practices/engineering/LOGGING.md` — Security logging
 - `config/core/security.yaml` — Security configuration
-- `.context/decisions/ADR-0001-architecture.md` — Security architecture decisions
+- `.context/decisions/ADR_0001_ARCHITECTURE.md` — Security architecture decisions
 
 ---
 
-*Part of AI Collaboration Knowledge Base - Security Framework*
+*AI Collaboration Knowledge Base*
