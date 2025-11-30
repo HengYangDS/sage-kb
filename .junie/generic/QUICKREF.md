@@ -75,7 +75,7 @@ tokens: ~500
 
 | Document                 | Purpose                     |
 |--------------------------|-----------------------------|
-| `../GUIDELINES.md`       | Full AI collaboration rules |
+| `../guidelines.md`       | Full AI collaboration rules |
 | `config.yaml`            | Junie settings              |
 | `../project/config.yaml` | Project variables           |
 | `../project/QUICKREF.md` | Project-specific info       |

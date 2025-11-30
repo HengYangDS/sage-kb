@@ -24,7 +24,7 @@ tokens: ~500
 
 ```
 .junie/
-├── GUIDELINES.md           # 🔄 Main entry point (generic AI rules)
+├── guidelines.md           # 🔄 Main entry point (generic AI rules)
 ├── README.md               # 🔄 This file - directory documentation
 │
 ├── generic/                # 🔄 Generic settings (reusable)
@@ -81,7 +81,7 @@ tokens: ~500
 1. **Copy the entire `.junie/` directory** to your project
 
 2. **Keep generic files unchanged**:
-    - `GUIDELINES.md` (root)
+    - `guidelines.md` (root)
     - `generic/` directory
     - `mcp/` directory
     - `docs/` directory
@@ -98,7 +98,7 @@ tokens: ~500
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
 │  ┌──────────────────┐                                       │
-│  │  GUIDELINES.md   │  ◄── Main entry point                 │
+│  │  guidelines.md   │  ◄── Main entry point                 │
 │  │  (Generic Rules) │                                       │
 │  └────────┬─────────┘                                       │
 │           │                                                 │
@@ -128,7 +128,7 @@ tokens: ~500
 
 | Directory/File         | When to Modify                                       |
 |------------------------|------------------------------------------------------|
-| `GUIDELINES.md` (root) | Only when changing generic AI collaboration patterns |
+| `guidelines.md` (root) | Only when changing generic AI collaboration patterns |
 | `generic/*`            | Only when adding new generic features                |
 | `mcp/*`                | Only when changing MCP server configuration          |
 | `docs/*`               | Only when updating documentation                     |

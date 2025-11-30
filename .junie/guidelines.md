@@ -52,7 +52,7 @@ When starting a new session, load files in this priority order:
 
 | File                  | Purpose                        | When          |
 |:----------------------|:-------------------------------|:--------------|
-| `GUIDELINES.md`       | Core AI rules, autonomy levels | Every session |
+| `guidelines.md`       | Core AI rules, autonomy levels | Every session |
 | `project/config.yaml` | Project identity, tech stack   | Every session |
 
 ### Priority 2: Context (Load as Needed)
@@ -77,7 +77,7 @@ When starting a new session, load files in this priority order:
 ```
 Session Start
     │
-    ├─► Load GUIDELINES.md (this file)
+    ├─► Load guidelines.md (this file)
     │
     ├─► Load project/config.yaml
     │
@@ -304,7 +304,7 @@ Optimize token usage for better AI performance and cost efficiency.
 
 | Priority | Files                             | Budget    | Load Strategy    |
 |:---------|:----------------------------------|:----------|:-----------------|
-| P1       | `GUIDELINES.md`, `project/config` | ~2000     | Always load      |
+| P1       | `guidelines.md`, `project/config` | ~2000     | Always load      |
 | P2       | `QUICKREF.md` files               | ~500 each | Load for complex |
 | P3       | `docs/*`                          | ~1000     | Load on demand   |
 
@@ -440,7 +440,7 @@ This `.junie/` configuration follows the **Thin Layer** principle with clear sep
 | File            | Purpose                                    |
 |:----------------|:-------------------------------------------|
 | `README.md`     | Directory documentation                    |
-| `GUIDELINES.md` | Generic AI collaboration rules (this file) |
+| `guidelines.md` | Generic AI collaboration rules (this file) |
 
 ### Root Directories
 

@@ -36,7 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - README.md Python API example now uses proper async/await syntax
 - Root `INDEX.md` project structure now includes `.backups/` and `config/environments/`
-- `.junie/GUIDELINES.md` project structure now complete with all directories
+- `.junie/guidelines.md` project structure now complete with all directories
 
 ## [0.1.0] - 2025-11-29
 
@@ -81,7 +81,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Design documents (`docs/design/00-09`)
 - Code conventions (`.context/conventions/`)
 - Document templates (`.knowledge/templates/`)
-- AI collaboration guidelines (`.junie/GUIDELINES.md`)
+- AI collaboration guidelines (`.junie/guidelines.md`)
 
 #### Development Tools
 

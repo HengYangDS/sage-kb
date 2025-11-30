@@ -107,7 +107,7 @@ sage-kb/
 | `config/sage.yaml`              | Main configuration (timeouts, triggers, loading) |
 | `.knowledge/core/PRINCIPLES.md` | Core philosophy (信达雅)                            |
 | `.context/INDEX.md`             | Project-specific context navigation              |
-| `.junie/GUIDELINES.md`          | AI collaboration guidelines                      |
+| `.junie/guidelines.md`          | AI collaboration guidelines                      |
 | `docs/design/00-OVERVIEW.md`    | Design overview                                  |
 
 ---

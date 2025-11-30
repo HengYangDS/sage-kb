@@ -250,7 +250,7 @@ tokens: ~500
         "Architecture decision analysis",
         "Planning complex refactoring"
       ],
-      "fallback": "Use Expert Committee Pattern in GUIDELINES.md"
+      "fallback": "Use Expert Committee Pattern in guidelines.md"
     }
   }
 }

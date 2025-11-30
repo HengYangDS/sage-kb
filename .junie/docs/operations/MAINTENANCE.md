@@ -42,7 +42,7 @@ tokens: ~500
 ├── mcp/mcp.json          # MCP servers (requires server restart)
 ├── generic/config.yaml   # Generic settings (requires IDE restart)
 ├── project/config.yaml   # Project settings (requires IDE restart)
-└── GUIDELINES.md         # AI guidelines (next session)
+└── guidelines.md         # AI guidelines (next session)
 ```
 
 ---

@@ -166,7 +166,7 @@ Some documentation files exceed the recommended 300-line limit. This is an **int
 
 ## 8. Related
 
-- `../GUIDELINES.md` — AI collaboration rules (main entry point)
+- `../guidelines.md` — AI collaboration rules (main entry point)
 - `../generic/config.yaml` — Generic Junie settings
 - `../project/config.yaml` — Project-specific settings
 - `../mcp/mcp.json` — MCP server configuration
