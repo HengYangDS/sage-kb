@@ -42,12 +42,27 @@ enabling multi-perspective analysis.
 
 ## 2. Documents
 
+### 2.1 Main Documents
+
 | Document                 | Description                             | SSOT For         |
 |--------------------------|-----------------------------------------|------------------|
 | `EXPERT_COMMITTEE.md`    | Framework integration, levels, process  | Committee Levels |
 | `ROLE_PERSONA.md`        | 23 expert roles in 6 domains            | Expert Roles     |
 | `CONFLICT_RESOLUTION.md` | Conflict resolution, weights, deadlocks | Weights          |
 | `INFORMATION_DENSITY.md` | Information density optimization        | -                |
+
+### 2.2 Module Files (Expert Committee)
+
+| Module | Description |
+|--------|-------------|
+| `EXPERT_COMMITTEE_MATH.md` | Aggregation formulas, uncertainty quantification |
+| `EXPERT_COMMITTEE_CALIBRATION.md` | Bias correction, weight learning, effectiveness tracking |
+
+### 2.3 Related Practices
+
+| Practice | Location |
+|----------|----------|
+| No-Calculator Method | `.knowledge/practices/decisions/EXPERT_COMMITTEE_SIMPLIFIED.md` |
 
 **External SSOT**:
 

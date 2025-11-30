@@ -125,179 +125,51 @@ class ContextSync:
 
 ## 3. IDE Integration
 
-### 3.1 JetBrains IDE Integration
+> **Full configuration details**: See `.knowledge/practices/engineering/workflow/IDE_INTEGRATION.md`
 
-**Setup via .junie/guidelines.md**:
+### 3.1 Supported IDEs
 
-```markdown
-# Project Guidelines
-## Knowledge Base
-- Use `sage get` for context loading
-- Follow timeout hierarchy (T1-T5)
-- Reference `.context/` for project-specific knowledge
-## Autonomy Level
-Default: L4 (Medium-High)
-```
+| IDE | Integration Method | Configuration |
+|-----|-------------------|---------------|
+| JetBrains (IntelliJ, PyCharm, etc.) | .junie/guidelines.md + File Watcher | See practices |
+| VS Code | Extension settings + Tasks | See practices |
+| Other editors | EditorBridge API | See practices |
 
-**File Watcher Integration**:
-
-```yaml
-# .idea/sage-watcher.xml
-<component name="SageWatcher">
-<watch path=".context/" />
-<watch path=".knowledge/" />
-<on-change action="sage rebuild --incremental" />
-</component>
-```
-### 3.2 VS Code Integration
-
-**Extension Settings** (`.vscode/settings.json`):
-
-```json
-{
-  "sage.enable": true,
-  "sage.configPath": "./config/app.yaml",
-  "sage.autoLoad": true,
-  "sage.timeout": 5000,
-  "sage.layers": [
-    "core",
-    "guidelines"
-  ]
-}
-```
-**Tasks** (`.vscode/tasks.json`):
-
-```json
-{
-  "version": "2.0.0",
-  "tasks": [
-    {
-      "label": "SAGE: Reload Knowledge",
-      "type": "shell",
-      "command": "sage",
-      "args": [
-        "reload"
-      ],
-      "problemMatcher": []
-    },
-    {
-      "label": "SAGE: Check Links",
-      "type": "shell",
-      "command": "sage",
-      "args": [
-        "check",
-        "--links"
-      ],
-      "problemMatcher": []
-    }
-  ]
-}
-```
-### 3.3 Editor-Agnostic Pattern
+### 3.2 Integration Pattern
 
 ```python
 class EditorBridge:
-    """Bridge between SAGE and any editor."""
-    def __init__(self, editor_type: str):
-        self.editor = self._detect_editor(editor_type)
     async def provide_context(self, file_path: str) -> dict:
         """Provide context for current file."""
         return {
-            "file_context"      : await self.get_file_context(file_path),
-            "project_context"   : await self.get_project_context(),
+            "file_context": await self.get_file_context(file_path),
+            "project_context": await self.get_project_context(),
             "relevant_knowledge": await self.search_relevant(file_path)
         }
-    async def on_file_save(self, file_path: str):
-        """Hook for file save events."""
-        if self._is_knowledge_file(file_path):
-            await self.trigger_rebuild()
 ```
+
 ---
 
 ## 4. CI/CD Integration
 
-### 4.1 GitHub Actions
+> **Configuration templates**: See `.knowledge/templates/CI_CD_KNOWLEDGE_CHECK.yaml`
 
-```yaml
-# .github/workflows/knowledge-check.yml
-name: Knowledge Base Validation
-on:
-  push:
-    paths:
-      - '.knowledge/**'
-      - '.context/**'
-      - 'docs/**'
-jobs:
-  validate:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - name: Install SAGE
-        run: pip install -e .
-      - name: Check Structure
-        run: sage check --structure
-      - name: Check Links
-        run: sage check --links
-      - name: Validate Content
-        run: sage check --content
-```
-### 4.2 GitLab CI
+### 4.1 Supported Systems
 
-```yaml
-# .gitlab-ci.yml
-stages:
-  - validate
-  - build
-  - deploy
-knowledge-validation:
-  stage: validate
-  image: python:3.12
-  script:
-    - pip install -e .
-    - sage check --all
-  rules:
-    - changes:
-        - .knowledge/**
-        - .context/**
-knowledge-build:
-  stage: build
-  script:
-    - sage build --output dist/
-  artifacts:
-    paths:
-      - dist/
-```
-### 4.3 Pre-commit Hooks
+| System | Template Available | Key Features |
+|--------|-------------------|--------------|
+| GitHub Actions | ✓ | Path-based triggers, validation steps |
+| GitLab CI | ✓ | Multi-stage pipeline, artifacts |
+| Pre-commit | ✓ | Local validation hooks |
 
-```yaml
-# .pre-commit-config.yaml
-repos:
-  - repo: local
-    hooks:
-      - id: sage-check-links
-        name: Check Knowledge Links
-        entry: sage check --links --quick
-        language: system
-        files: '\.md$'
-        pass_filenames: false
-      - id: sage-validate-structure
-        name: Validate Structure
-        entry: sage check --structure
-        language: system
-        pass_filenames: false
-```
-### 4.4 Pipeline Patterns
+### 4.2 Pipeline Stages
 
-| Stage        | Action                        | On Failure   |
-|--------------|-------------------------------|--------------|
-| **Lint**     | Check formatting, links       | Block merge  |
-| **Validate** | Structure, content validation | Block merge  |
-| **Build**    | Generate outputs              | Block deploy |
-| **Deploy**   | Update production KB          | Rollback     |
+| Stage | Action | On Failure |
+|-------|--------|------------|
+| **Lint** | Check formatting, links | Block merge |
+| **Validate** | Structure, content validation | Block merge |
+| **Build** | Generate outputs | Block deploy |
+| **Deploy** | Update production KB | Rollback |
 
 ---
 

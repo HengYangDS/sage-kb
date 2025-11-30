@@ -1,0 +1,135 @@
+# CI/CD Knowledge Base Validation Templates
+# 
+# Copy and adapt these templates for your CI/CD system.
+# Source: .knowledge/frameworks/patterns/INTEGRATION.md
+#
+# Available templates:
+# 1. GitHub Actions
+# 2. GitLab CI
+# 3. Pre-commit Hooks
+# 4. Pipeline Pattern Reference
+
+---
+# =============================================================================
+# 1. GITHUB ACTIONS
+# =============================================================================
+# File: .github/workflows/knowledge-check.yml
+
+github_actions: |
+  name: Knowledge Base Validation
+  
+  on:
+    push:
+      paths:
+        - '.knowledge/**'
+        - '.context/**'
+        - 'docs/**'
+    pull_request:
+      paths:
+        - '.knowledge/**'
+        - '.context/**'
+        - 'docs/**'
+  
+  jobs:
+    validate:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v4
+        
+        - name: Setup Python
+          uses: actions/setup-python@v5
+          with:
+            python-version: '3.12'
+        
+        - name: Install SAGE
+          run: pip install -e .
+        
+        - name: Check Structure
+          run: sage check --structure
+        
+        - name: Check Links
+          run: sage check --links
+        
+        - name: Validate Content
+          run: sage check --content
+
+---
+# =============================================================================
+# 2. GITLAB CI
+# =============================================================================
+# File: .gitlab-ci.yml
+
+gitlab_ci: |
+  stages:
+    - validate
+    - build
+    - deploy
+  
+  knowledge-validation:
+    stage: validate
+    image: python:3.12
+    script:
+      - pip install -e .
+      - sage check --all
+    rules:
+      - changes:
+          - .knowledge/**
+          - .context/**
+  
+  knowledge-build:
+    stage: build
+    script:
+      - sage build --output dist/
+    artifacts:
+      paths:
+        - dist/
+
+---
+# =============================================================================
+# 3. PRE-COMMIT HOOKS
+# =============================================================================
+# File: .pre-commit-config.yaml
+
+pre_commit: |
+  repos:
+    - repo: local
+      hooks:
+        - id: sage-check-links
+          name: Check Knowledge Links
+          entry: sage check --links --quick
+          language: system
+          files: '\.md$'
+          pass_filenames: false
+        
+        - id: sage-validate-structure
+          name: Validate Structure
+          entry: sage check --structure
+          language: system
+          pass_filenames: false
+
+---
+# =============================================================================
+# 4. PIPELINE PATTERN REFERENCE
+# =============================================================================
+
+pipeline_stages:
+  - stage: Lint
+    action: Check formatting, links
+    on_failure: Block merge
+    
+  - stage: Validate
+    action: Structure, content validation
+    on_failure: Block merge
+    
+  - stage: Build
+    action: Generate outputs
+    on_failure: Block deploy
+    
+  - stage: Deploy
+    action: Update production KB
+    on_failure: Rollback
+
+---
+# Related:
+# - .knowledge/frameworks/patterns/INTEGRATION.md — Full integration patterns
+# - .knowledge/practices/engineering/operations/CI_CD.md — CI/CD practices

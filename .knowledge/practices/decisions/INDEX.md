@@ -8,7 +8,8 @@
 
 | Document | Description |
 |:---------|:------------|
-| [Autonomy Decision Cases](AUTONOMY_CASES.md) | Autonomy Decision Cases |
+| [Autonomy Decision Cases](AUTONOMY_CASES.md) | Concrete examples for autonomy level decisions |
+| [Expert Committee Simplified](EXPERT_COMMITTEE_SIMPLIFIED.md) | No-calculator method for quick expert committee decisions |
 
 ---
 
