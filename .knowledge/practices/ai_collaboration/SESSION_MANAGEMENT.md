@@ -175,7 +175,7 @@ To continue: [specific next action]
 ### 5.2 Handoff Document Structure
 
 Location: `.history/handoffs/YYYY-MM-DD-TASK-HANDOFF.md`
-`````markdown
+````markdown
 # Task Handoff: [Task Name]
 > **From**: Session session-20251129-2230
 > **Date**: 2025-11-29
@@ -199,7 +199,7 @@ Brief description of what was accomplished and what remains.
 ## Recommended Next Steps
 1. Immediate next action
 2. Following action
-```
+````
 ### 5.3 Handoff Best Practices
 
 - Write for someone with no prior context
@@ -227,14 +227,14 @@ When resuming after interruption:
 
 When context is lost mid-session:
 
-`````markdown
+````markdown
 ## Recovery Checklist
 1. [ ] Check .history/current/ for session state
 2. [ ] Review git log for recent commits
 3. [ ] Check git diff for uncommitted changes
 4. [ ] Search for TODO/FIXME comments added
 5. [ ] Review test files for hints about work
-```
+````
 ### 6.3 Conflict Resolution
 
 When multiple sessions conflict:

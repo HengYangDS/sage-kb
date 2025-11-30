@@ -13,6 +13,8 @@
 - [5. Implementation Patterns](#5-implementation-patterns)
 - [6. API Authorization](#6-api-authorization)
 
+> **Code Implementations**: See `.knowledge/practices/engineering/security/AUTHORIZATION_IMPLEMENTATION.md`
+
 ---
 
 ## 1. Overview
@@ -31,6 +33,7 @@ sequenceDiagram
     DP->>R: If PERMIT
     R-->>S: Response
 ```
+
 ### Key Concepts
 
 | Concept      | Description            | Example                |
@@ -67,14 +70,13 @@ flowchart LR
     Q3 -->|N| Q4{Relationships?}
     Q4 -->|Y| ReBAC([ReBAC])
     Q4 -->|N| PBAC([PBAC])
-    classDef q fill:#2d2d2d,stroke:#555,color:#fff
-    classDef a fill:#1a1a1a,stroke:#444,color:#fff
-    class Q1,Q2,Q3,Q4 q
-    class ACL,RBAC,ABAC,ReBAC,PBAC a
 ```
+
 ---
 
 ## 3. RBAC
+
+> **Code examples**: See `AUTHORIZATION_IMPLEMENTATION.md` §1
 
 ### Role-Based Access Control
 
@@ -99,100 +101,31 @@ flowchart LR
     Bob --> Editor --> P2
     Carol --> Viewer --> P3
 ```
-### RBAC Implementation
 
-```python
-from enum import Enum
-from typing import Set, Dict
-from dataclasses import dataclass
-class Permission(Enum):
-    """Available permissions."""
-    USERS_CREATE = "users:create"
-    USERS_READ = "users:read"
-    USERS_UPDATE = "users:update"
-    USERS_DELETE = "users:delete"
-    CONTENT_CREATE = "content:create"
-    CONTENT_READ = "content:read"
-    CONTENT_UPDATE = "content:update"
-    CONTENT_DELETE = "content:delete"
-@dataclass
-class Role:
-    """Role with permissions."""
-    name: str
-    permissions: Set[Permission]
-# Define roles
-ROLES: Dict[str, Role] = {
-    "admin": Role(
-        name="admin",
-        permissions={p for p in Permission}  # All permissions
-    ),
-    "editor": Role(
-        name="editor",
-        permissions={
-            Permission.CONTENT_CREATE,
-            Permission.CONTENT_READ,
-            Permission.CONTENT_UPDATE,
-        }
-    ),
-    "viewer": Role(
-        name="viewer",
-        permissions={
-            Permission.CONTENT_READ,
-        }
-    ),
-}
-class RBACAuthorizer:
-    """Role-based access control."""
-    
-    def __init__(self, roles: Dict[str, Role]):
-        self.roles = roles
-    
-    def has_permission(
-        self,
-        user_roles: Set[str],
-        required_permission: Permission
-    ) -> bool:
-        """Check if user has required permission."""
-        for role_name in user_roles:
-            role = self.roles.get(role_name)
-            if role and required_permission in role.permissions:
-                return True
-        return False
-    
-    def get_permissions(self, user_roles: Set[str]) -> Set[Permission]:
-        """Get all permissions for user's roles."""
-        permissions = set()
-        for role_name in user_roles:
-            role = self.roles.get(role_name)
-            if role:
-                permissions.update(role.permissions)
-        return permissions
-```
+### RBAC Components
+
+| Component | Description | Example |
+|-----------|-------------|---------|
+| **User** | Identity | alice@example.com |
+| **Role** | Named collection of permissions | admin, editor, viewer |
+| **Permission** | Allowed action on resource | users:create, content:read |
+| **Assignment** | User-to-role mapping | Alice → Admin |
+
 ### Role Hierarchy
 
-```python
-class HierarchicalRBAC:
-    """RBAC with role inheritance."""
-    
-    def __init__(self):
-        self.role_hierarchy = {
-            "super_admin": ["admin"],
-            "admin": ["editor", "moderator"],
-            "editor": ["viewer"],
-            "moderator": ["viewer"],
-            "viewer": [],
-        }
-    
-    def get_effective_roles(self, role: str) -> Set[str]:
-        """Get role and all inherited roles."""
-        effective = {role}
-        for inherited in self.role_hierarchy.get(role, []):
-            effective.update(self.get_effective_roles(inherited))
-        return effective
-```
+| Level | Role | Inherits From |
+|-------|------|---------------|
+| 1 | super_admin | admin |
+| 2 | admin | editor, moderator |
+| 3 | editor | viewer |
+| 3 | moderator | viewer |
+| 4 | viewer | (base) |
+
 ---
 
 ## 4. ABAC
+
+> **Code examples**: See `AUTHORIZATION_IMPLEMENTATION.md` §2
 
 ### Attribute-Based Access Control
 
@@ -208,257 +141,81 @@ flowchart TB
     E --> PE
     PE --> D["PERMIT / DENY"]
 ```
-### ABAC Policy Examples
 
-```python
-from dataclasses import dataclass
-from typing import Any, Dict, Callable
-from datetime import datetime, time
-@dataclass
-class AccessContext:
-    """Context for access decision."""
-    subject: Dict[str, Any]    # User attributes
-    resource: Dict[str, Any]   # Resource attributes
-    action: str                # Requested action
-    environment: Dict[str, Any]  # Environmental attributes
-class ABACPolicy:
-    """ABAC policy definition."""
-    
-    def __init__(self, name: str, condition: Callable[[AccessContext], bool]):
-        self.name = name
-        self.condition = condition
-    
-    def evaluate(self, context: AccessContext) -> bool:
-        return self.condition(context)
-# Policy examples
-policies = [
-    # Users can read their own documents
-    ABACPolicy(
-        name="owner_read",
-        condition=lambda ctx: (
-            ctx.action == "read" and
-            ctx.subject.get("user_id") == ctx.resource.get("owner_id")
-        )
-    ),
-    
-    # Managers can access their department's documents
-    ABACPolicy(
-        name="department_access",
-        condition=lambda ctx: (
-            ctx.subject.get("role") == "manager" and
-            ctx.subject.get("department") == ctx.resource.get("department")
-        )
-    ),
-    
-    # Sensitive documents only during business hours
-    ABACPolicy(
-        name="sensitive_business_hours",
-        condition=lambda ctx: (
-            ctx.resource.get("sensitivity") != "high" or
-            time(9, 0) <= datetime.now().time() <= time(18, 0)
-        )
-    ),
-    
-    # High clearance users can access classified
-    ABACPolicy(
-        name="clearance_access",
-        condition=lambda ctx: (
-            ctx.resource.get("classification", 0) <=
-            ctx.subject.get("clearance_level", 0)
-        )
-    ),
-]
-class ABACAuthorizer:
-    """ABAC authorization engine."""
-    
-    def __init__(self, policies: list[ABACPolicy]):
-        self.policies = policies
-    
-    def authorize(self, context: AccessContext) -> bool:
-        """Evaluate all policies (any match = permit)."""
-        return any(policy.evaluate(context) for policy in self.policies)
-```
+### ABAC Policy Components
+
+| Attribute Type | Examples | Use Case |
+|----------------|----------|----------|
+| **Subject** | role, department, clearance_level | Who is requesting |
+| **Resource** | owner_id, sensitivity, classification | What is being accessed |
+| **Action** | read, write, delete, execute | What operation |
+| **Environment** | time, location, ip_address, device | Context of request |
+
+### Common Policy Patterns
+
+| Pattern | Description | Example |
+|---------|-------------|---------|
+| Owner access | Users can access their own resources | owner_id == user_id |
+| Department scope | Access within department | user.dept == resource.dept |
+| Time-based | Restrict by time window | 9:00 <= time <= 18:00 |
+| Clearance level | Hierarchical access | user.clearance >= resource.level |
+
 ---
 
 ## 5. Implementation Patterns
 
+> **Code examples**: See `AUTHORIZATION_IMPLEMENTATION.md` §3
+
 ### Decorator Pattern
 
-```python
-from functools import wraps
-from typing import Callable, Set
-def require_permissions(*permissions: Permission):
-    """Decorator to require specific permissions."""
-    def decorator(func: Callable) -> Callable:
-        @wraps(func)
-        async def wrapper(request, *args, **kwargs):
-            user_permissions = request.state.permissions
-            
-            for permission in permissions:
-                if permission not in user_permissions:
-                    raise ForbiddenError(
-                        f"Missing permission: {permission.value}"
-                    )
-            
-            return await func(request, *args, **kwargs)
-        return wrapper
-    return decorator
-# Usage
-@require_permissions(Permission.CONTENT_CREATE)
-async def create_content(request, content: ContentCreate):
-    return await content_service.create(content)
-```
+| Benefit | Description |
+|---------|-------------|
+| Clean separation | Authorization logic separate from business logic |
+| Reusable | Apply to any function/endpoint |
+| Declarative | Permissions declared at definition |
+
 ### Resource-Level Authorization
 
-```python
-class ResourceAuthorizer:
-    """Authorize access to specific resources."""
-    
-    async def can_access(
-        self,
-        user_id: str,
-        resource_id: str,
-        action: str
-    ) -> bool:
-        """Check if user can perform action on resource."""
-        resource = await self.get_resource(resource_id)
-        
-        # Owner check
-        if resource.owner_id == user_id:
-            return True
-        
-        # Check explicit permissions
-        permission = await self.get_resource_permission(
-            resource_id, user_id
-        )
-        if permission and action in permission.allowed_actions:
-            return True
-        
-        # Check group permissions
-        user_groups = await self.get_user_groups(user_id)
-        for group_id in user_groups:
-            group_perm = await self.get_resource_permission(
-                resource_id, group_id, is_group=True
-            )
-            if group_perm and action in group_perm.allowed_actions:
-                return True
-        
-        return False
-```
-### Policy Enforcement Point
+| Check | Order | Description |
+|-------|-------|-------------|
+| Owner | 1 | Is user the resource owner? |
+| Direct | 2 | Does user have explicit permission? |
+| Group | 3 | Does user's group have permission? |
+| Default | 4 | Apply default deny |
 
-```python
-class PolicyEnforcementPoint:
-    """Central authorization enforcement."""
-    
-    def __init__(self, policy_decision_point):
-        self.pdp = policy_decision_point
-    
-    async def enforce(
-        self,
-        subject: str,
-        resource: str,
-        action: str,
-        context: dict = None
-    ) -> None:
-        """Enforce authorization policy."""
-        decision = await self.pdp.decide(
-            subject=subject,
-            resource=resource,
-            action=action,
-            context=context or {}
-        )
-        
-        if not decision.permitted:
-            self.audit_log.record(
-                "access_denied",
-                subject=subject,
-                resource=resource,
-                action=action,
-                reason=decision.reason
-            )
-            raise ForbiddenError(decision.reason)
-        
-        self.audit_log.record(
-            "access_granted",
-            subject=subject,
-            resource=resource,
-            action=action
-        )
-```
+### Policy Enforcement Point (PEP)
+
+| Component | Role |
+|-----------|------|
+| **PEP** | Intercepts requests, enforces decisions |
+| **PDP** | Makes authorization decisions |
+| **PAP** | Manages policies |
+| **PIP** | Provides attribute data |
+
 ---
 
 ## 6. API Authorization
 
-### Endpoint Protection
+> **Code examples**: See `AUTHORIZATION_IMPLEMENTATION.md` §4
 
-```python
-from fastapi import APIRouter, Depends, HTTPException
-router = APIRouter()
-async def get_current_user(token: str = Depends(oauth2_scheme)):
-    """Extract and validate current user."""
-    return await validate_token(token)
-async def require_role(required_roles: Set[str]):
-    """Dependency for role-based protection."""
-    async def dependency(user = Depends(get_current_user)):
-        if not user.roles.intersection(required_roles):
-            raise HTTPException(status_code=403, detail="Insufficient role")
-        return user
-    return dependency
-# Protected endpoints
-@router.get("/admin/users")
-async def list_users(user = Depends(require_role({"admin"}))):
-    return await user_service.list_all()
-@router.post("/content")
-async def create_content(
-    content: ContentCreate,
-    user = Depends(require_role({"admin", "editor"}))
-):
-    return await content_service.create(content, user.id)
-```
-### Scope-Based Authorization (OAuth2)
+### Endpoint Protection Strategies
 
-```python
-from fastapi.security import OAuth2PasswordBearer, SecurityScopes
-oauth2_scheme = OAuth2PasswordBearer(
-    tokenUrl="token",
-    scopes={
-        "read:content": "Read content",
-        "write:content": "Create and update content",
-        "delete:content": "Delete content",
-        "admin": "Full administrative access",
-    }
-)
-async def get_current_user(
-    security_scopes: SecurityScopes,
-    token: str = Depends(oauth2_scheme)
-):
-    """Validate token and check scopes."""
-    credentials_exception = HTTPException(
-        status_code=401,
-        detail="Could not validate credentials",
-        headers={"WWW-Authenticate": authenticate_value},
-    )
-    
-    payload = decode_token(token)
-    token_scopes = payload.get("scopes", [])
-    
-    for scope in security_scopes.scopes:
-        if scope not in token_scopes:
-            raise HTTPException(
-                status_code=403,
-                detail=f"Missing scope: {scope}"
-            )
-    
-    return payload
-# Usage with scopes
-@router.get("/content", dependencies=[Security(get_current_user, scopes=["read:content"])])
-async def read_content():
-    return await content_service.list()
-@router.delete("/.knowledge/{id}", dependencies=[Security(get_current_user, scopes=["delete:content"])])
-async def delete_content(id: str):
-    return await content_service.delete(id)
-```
+| Strategy | Use Case | Granularity |
+|----------|----------|-------------|
+| Role-based | Simple applications | Coarse |
+| Permission-based | Fine control | Medium |
+| Scope-based (OAuth2) | API access | Fine |
+| Resource-based | Per-object | Very fine |
+
+### OAuth2 Scopes
+
+| Scope | Description | Access Level |
+|-------|-------------|--------------|
+| `read:content` | Read content | Read-only |
+| `write:content` | Create/update content | Read-write |
+| `delete:content` | Delete content | Destructive |
+| `admin` | Full access | Administrative |
+
 ---
 
 ## Quick Reference
@@ -485,6 +242,7 @@ async def delete_content(id: str):
 
 ## Related
 
+- `.knowledge/practices/engineering/security/AUTHORIZATION_IMPLEMENTATION.md` — **Code implementations (full details)**
 - `.knowledge/frameworks/security/AUTHENTICATION.md` — Identity verification
 - `.knowledge/frameworks/security/SECRETS_MANAGEMENT.md` — Credential handling
 - `.knowledge/frameworks/security/SECURITY_CHECKLIST.md` — Implementation checklist

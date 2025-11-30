@@ -60,23 +60,23 @@
 
 ### 3.1 New Session
 
-`````markdown
+````markdown
 ## Context
 - Previous: [summary of last session]
 - Goal: [today's objective]
 - Autonomy: L[X]
 ## Constraints
 - [List any constraints]
-```
+````
 ### 3.2 Session Handoff
 
-`````markdown
+````markdown
 ## Session Summary
 - Completed: [what was done]
 - Decisions: [key choices]
 - Pending: [what's next]
 - Issues: [any blockers]
-```
+````
 ---
 
 ## 4. Communication Patterns

@@ -53,7 +53,7 @@
 
 ### 3.1 Pattern Template
 
-`````markdown
+````markdown
 ## Pattern: [Name]
 ### Problem
 [What problem it solves]
@@ -63,7 +63,7 @@
 [Code or usage example]
 ### When to Use
 [Applicability criteria]
-```
+````
 ### 3.2 Quality Criteria
 
 | Criterion | Description               |
@@ -79,7 +79,7 @@
 
 ### 4.1 ADR Template
 
-`````markdown
+````markdown
 ## Decision: [Title]
 ### Status
 [Proposed | Accepted | Deprecated]
@@ -90,7 +90,7 @@
 ### Consequences
 [+] Benefits
 [-] Drawbacks
-```
+````
 ### 4.2 Capture Triggers
 
 | Trigger              | Action             |

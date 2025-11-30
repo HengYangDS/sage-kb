@@ -125,7 +125,7 @@ Add comprehensive documentation for:
 
 ### 3.1 PR Checklist
 
-`````markdown
+````markdown
 ## Description
 [Describe what this PR does]
 ## Type of Change
@@ -142,7 +142,7 @@ Add comprehensive documentation for:
 - [ ] No new warnings
 ## Related Issues
 Closes #[issue number]
-```
+````
 ### 3.2 PR Workflow
 
 ```text
@@ -213,7 +213,7 @@ git branch -d release/v1.2.0
 ```
 ### 4.3 Changelog Format
 
-`````markdown
+````markdown
 ## [1.2.0] - 2025-11-29
 ### Added
 - New feature X
@@ -229,7 +229,7 @@ git branch -d release/v1.2.0
 - Legacy feature C
 ### Security
 - Fixed vulnerability in D
-```
+````
 ---
 
 ## 5. Best Practices

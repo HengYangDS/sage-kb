@@ -96,22 +96,22 @@
 
 ### 5.1 Task Start
 
-`````markdown
+````markdown
 ## Context
 - **Goal**: [What to achieve]
 - **Constraints**: [Limits to respect]
 - **Files**: [Relevant files]
 ## Background
 [Brief context if needed]
-```
+````
 ### 5.2 Session Summary
 
-`````markdown
+````markdown
 ## Session Summary
 - **Completed**: [What was done]
 - **Decisions**: [Key choices made]
 - **Next**: [What's pending]
-```
+````
 ---
 
 ## 6. Best Practices

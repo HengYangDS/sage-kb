@@ -29,7 +29,7 @@
 
 ### Manual Checklist
 
-`````markdown
+````markdown
 ## Session Start: [DATE TIME]
 ### Context Loaded
 - [ ] Core principles reviewed
@@ -43,7 +43,7 @@
 - Project: [name]
 - Branch: [current branch]
 - Key files: [list]
-```
+````
 ### Quick Start Command
 
 ```bash
@@ -66,7 +66,7 @@ ls -la .knowledge/
 
 ### Checkpoint Template
 
-`````markdown
+````markdown
 ## Checkpoint: [TIME]
 ### Progress
 - Completed: [list]
@@ -76,14 +76,14 @@ ls -la .knowledge/
 - [Decision 1]: [rationale]
 ### Modified Files
 - [file1]: [change summary]
-```
+````
 ---
 
 ## 4. Session End Fallback
 
 ### Handoff Template
 
-`````markdown
+````markdown
 ## Session Handoff: [DATE]
 ### Summary
 [1-2 sentence overview]
@@ -97,7 +97,7 @@ ls -la .knowledge/
 2. [Second priority]
 ### Context Files
 - `.history/sessions/[date].md`
-```
+````
 ---
 
 ## 5. Recovery Procedures
