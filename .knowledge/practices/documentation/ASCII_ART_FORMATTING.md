@@ -9,8 +9,7 @@
 - [1. Problem](#1-problem)
 - [2. Root Cause](#2-root-cause)
 - [3. Solution](#3-solution)
-- [4. Patterns](#4-patterns)
-- [5. Checklist](#5-checklist)
+- [4. Checklist](#4-checklist)
 
 ---
 
@@ -42,15 +41,8 @@ The right border `│` appears misaligned because emojis and special Unicode cha
 
 ### 2.2 Environment Differences
 
-Different environments render character widths differently:
-
-| Environment          | Emoji Width Behavior |
-|:---------------------|:---------------------|
-| Terminal (monospace) | Often 2 columns      |
-| IDE editor           | Varies by font       |
-| Markdown preview     | Varies by renderer   |
-| GitHub               | Usually 2 columns    |
-| Web browser          | Font-dependent       |
+Emoji display width varies by environment (terminal, IDE, Markdown preview, GitHub, browser) — making consistent
+alignment impossible.
 
 ---
 
@@ -85,33 +77,7 @@ Replace emojis and special Unicode with ASCII equivalents:
 
 ---
 
-## 4. Patterns
-
-### 4.1 Recommended Pattern
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│ Title: Description                                          │
-│ ├── Item one: [OK] Status                                   │
-│ ├── Item two: [X] Failed                                    │
-│ └── Item three: [!] Warning                                 │
-└─────────────────────────────────────────────────────────────┘
-```
-
-### 4.2 Anti-Pattern
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│ Title: Description                                          │
-│ ├── Item one: ✅ Status                                     │  ← Unpredictable
-│ ├── Item two: ❌ Failed                                     │  ← Unpredictable
-│ └── Item three: ⚠️ Warning                                  │  ← Unpredictable
-└─────────────────────────────────────────────────────────────┘
-```
-
----
-
-## 5. Checklist
+## 4. Checklist
 
 When creating ASCII art boxes or diagrams:
 
@@ -125,8 +91,9 @@ When creating ASCII art boxes or diagrams:
 
 ## Related
 
-- `.knowledge/practices/documentation/DOCUMENTATION_STANDARDS.md` — General documentation formatting
-- `.knowledge/references/unicode/CHARACTER_WIDTH.md` — Unicode width reference (if exists)
+- `.knowledge/practices/documentation/INDEX.md` — Documentation practices index
+- `.knowledge/practices/documentation/DOCUMENTATION_STANDARDS.md` — Document format standards
+- `.knowledge/practices/documentation/CODE_BLOCK_STANDARDS.md` — Code block standards
 
 ---
 
