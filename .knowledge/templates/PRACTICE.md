@@ -61,9 +61,11 @@ Avoid these common mistakes:
 
 ## Related
 
-<!-- Add links to related practices, patterns, or documents -->
+<!-- Replace placeholders with actual paths relevant to your practice -->
 
-- [Related Practice](#) <!-- Replace with actual practice path -->
+- `.knowledge/templates/INDEX.md` — Templates index
+- `.knowledge/guidelines/DOCUMENTATION.md` — Documentation standards
+- `.knowledge/practices/INDEX.md` — Practices index
 
 ---
 

@@ -6,21 +6,21 @@
 
 ## Table of Contents
 
-- [Overview](#overview)
-- [Case Index](#case-index)
-- [Case Categories Reference](#case-categories-reference)
-- [How to Add New Cases](#how-to-add-new-cases)
+- [1. Overview](#1-overview)
+- [2. Case Index](#2-case-index)
+- [3. Case Categories Reference](#3-case-categories-reference)
+- [4. How to Add New Cases](#4-how-to-add-new-cases)
 
 ---
 
-## Overview
+## 1. Overview
 
 This document records technical cases encountered during project development. Each case follows the structure defined in
 `.knowledge/templates/CASE_STUDY.md`.
 
 ---
 
-## Case Index
+## 2. Case Index
 
 | ID                  | Title                                 | Category      | Date       | Status     |
 |:--------------------|:--------------------------------------|:--------------|:-----------|:-----------|
@@ -170,7 +170,7 @@ Created 10 new documentation files:
 `documentation` `knowledge-management` `knowledge-gaps` `best-practices`
 ---
 
-## Case Categories Reference
+## 3. Case Categories Reference
 
 | Category      | Description               |
 |:--------------|:--------------------------|
@@ -427,7 +427,7 @@ For future development:
 `convention` `file-structure` `output-files` `prevention` `documentation`
 ---
 
-## How to Add New Cases
+## 4. How to Add New Cases
 
 1. Copy the case template structure from this file or `.knowledge/templates/CASE_STUDY.md`
 2. Fill in all sections with details

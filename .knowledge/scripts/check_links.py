@@ -204,7 +204,7 @@ def main():
             print(f"    Suggestion: Use `.knowledge/` prefix for absolute paths")
     
     if not broken and not format_issues:
-        print("✓ All links are valid!")
+        print("[OK] All links are valid!")
     
     sys.exit(1 if broken else 0)
 
