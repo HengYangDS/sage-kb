@@ -8,9 +8,8 @@
 
 - [1. Optimization Process](#1-optimization-process)
 - [2. Quality Checklist](#2-quality-checklist)
-- [3. Token Efficiency Patterns](#3-token-efficiency-patterns)
-- [4. Quality Metrics](#4-quality-metrics)
-- [5. Common Issues](#5-common-issues)
+- [3. Token Efficiency & Quality Metrics](#3-token-efficiency--quality-metrics)
+- [4. Common Issues](#4-common-issues)
 
 ---
 
@@ -62,7 +61,7 @@
 ### 2.2 Structure Check
 
 - [ ] TOC present if > 60 lines or > 3 H2 headings
-- [ ] TOC uses inline `·` separator format
+- [ ] TOC uses vertical list format `- [Section](#anchor)`
 - [ ] H2 sections numbered (1., 2., 3.)
 - [ ] H3 subsections use decimal (1.1, 1.2)
 - [ ] Nesting depth ≤ 3 levels
@@ -89,51 +88,11 @@
 
 ---
 
-## 3. Token Efficiency Patterns
+## 3. Token Efficiency & Quality Metrics
 
-### 3.1 High-Impact Patterns
+> **Full Reference**: See `DOCUMENTATION_STANDARDS.md` Section 3 (Token Efficiency) for patterns, compression techniques, anti-patterns, and target metrics.
 
-| Pattern              | Token Savings | Application            |
-|----------------------|---------------|------------------------|
-| Tables vs paragraphs | ~40%          | Structured comparisons |
-| Lists vs paragraphs  | ~30%          | Enumerations, steps    |
-| Inline TOC vs list   | ~50%          | Document navigation    |
-| References vs repeat | ~70%          | Cross-document content |
-| Single-line header   | ~60%          | Document headers       |
-
-### 3.2 Compression Techniques
-
-| Before                         | After             | Savings |
-|--------------------------------|-------------------|---------|
-| "In order to"                  | "To"              | 75%     |
-| "It is important to note that" | "Note:"           | 80%     |
-| Multi-line metadata            | Single blockquote | 60%     |
-| Verbose explanations           | Tables            | 40%     |
-
-### 3.3 Anti-Patterns to Fix
-
-| Anti-Pattern     | Problem         | Fix                   |
-|------------------|-----------------|-----------------------|
-| Long paragraphs  | High token cost | Convert to table/list |
-| Repeated content | Waste           | Add cross-reference   |
-| Verbose headers  | Overhead        | Single-line format    |
-| Deep nesting     | Complexity      | Flatten structure     |
-
----
-
-## 4. Quality Metrics
-
-### 4.1 Target Values
-
-| Metric               | Target | Rationale                 |
-|----------------------|--------|---------------------------|
-| Tokens per section   | < 500  | Manageable context chunks |
-| Lines per file       | < 300  | Quick to scan             |
-| H2 headings per file | 5-15   | Clear but not fragmented  |
-| Nesting depth        | ≤ 3    | Avoid complexity          |
-| Related links        | 3-5    | Sufficient navigation     |
-
-### 4.2 Measurement
+### 3.1 Quick Measurement Commands
 
 | What to Count   | How                                   |
 |-----------------|---------------------------------------|
@@ -144,9 +103,9 @@
 
 ---
 
-## 5. Common Issues
+## 4. Common Issues
 
-### 5.1 Issue Patterns
+### 4.1 Issue Patterns
 
 | Issue               | Frequency | Fix                     |
 |---------------------|-----------|-------------------------|
@@ -156,7 +115,7 @@
 | Non-standard footer | Medium    | Replace with standard   |
 | Verbose headers     | Low       | Compress to single line |
 
-### 5.2 Prevention
+### 4.2 Prevention
 
 | Practice              | Benefit                      |
 |-----------------------|------------------------------|
@@ -169,7 +128,7 @@
 
 ## Related
 
-- `.knowledge/practices/documentation/DOCUMENTATION_STANDARDS.md` — Documentation format standards (SSOT)
+- `.knowledge/practices/documentation/DOCUMENTATION_STANDARDS.md` — Documentation format standards
 - `.knowledge/practices/documentation/KNOWLEDGE_ORGANIZATION.md` — Knowledge hierarchy patterns
 - `.knowledge/guidelines/DOCUMENTATION.md` — Documentation guidelines
 

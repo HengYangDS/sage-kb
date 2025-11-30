@@ -602,7 +602,7 @@ def process_data(
 
 - `.knowledge/guidelines/documentation.md` — Documentation guidelines
 
-- `.knowledge/practices/documentation/documentation_standards.md` — Documentation standards (SSOT)
+- `.knowledge/practices/documentation/documentation_standards.md` — Documentation standards
 
 - `.knowledge/practices/documentation/knowledge_organization.md` — Knowledge organization
 

@@ -1,4 +1,4 @@
-# Diagram Standards (SSOT)
+# Diagram Standards
 
 > Single source of truth for diagram creation standards using Mermaid
 
@@ -81,8 +81,8 @@ Mermaid supports 21 diagram types, organized by recommended usage frequency.
 | Priority | Types | Count |
 |----------|-------|-------|
 | ⭐ **Primary** | Flowchart, Sequence | 2 |
-| **Common** | Class, State, ER, User Journey, Timeline, C4 | 6 |
-| **Occasional** | Gantt, Pie, Quadrant, XY Chart, Block, Architecture | 6 |
+| **Common** | Class, State, ER, User Journey, Timeline | 5 |
+| **Occasional** | Gantt, Pie, Quadrant, XY Chart, Block, Architecture, C4 | 7 |
 | **Rare** | Mindmap, Git Graph, Requirement, Sankey, Kanban, Packet, Radar | 7 |
 
 ### 3.1 Complete Type Reference
@@ -96,7 +96,7 @@ Mermaid supports 21 diagram types, organized by recommended usage frequency.
 | ER | `erDiagram` | Database schemas, entity relationships | Common |
 | User Journey | `journey` | User experience, customer journey | Common |
 | Timeline | `timeline` | Historical events, version history | Common |
-| C4 | `C4Context` | Software architecture (C4 model) | Common |
+| C4 | `C4Context` | Software architecture (C4 model) | Occasional |
 | Gantt | `gantt` | Project timelines, schedules | Occasional |
 | Pie | `pie` | Proportions, distributions | Occasional |
 | Quadrant | `quadrantChart` | Priority matrix, SWOT analysis | Occasional |
@@ -415,7 +415,7 @@ xychart-beta
 
 ### 6.3 Other Occasional Types
 
-For Pie, Quadrant, Block, and Architecture diagrams, see [Section 3.1 Complete Type Reference](#31-complete-type-reference) and [Mermaid Official Documentation](https://mermaid.js.org/intro/).
+For Pie, Quadrant, Block, Architecture, and C4 diagrams, see [Section 3.1 Complete Type Reference](#31-complete-type-reference) and [Mermaid Official Documentation](https://mermaid.js.org/intro/).
 
 ---
 
@@ -517,9 +517,9 @@ When diagram is too complex:
 ## Related
 
 - `.knowledge/practices/documentation/INDEX.md` — Documentation practices index
-- `.knowledge/practices/documentation/DOCUMENTATION_STANDARDS.md` — Documentation standards (SSOT)
-- `.knowledge/practices/documentation/TABLE_STANDARDS.md` — Table standards (SSOT)
-- `.knowledge/practices/documentation/CODE_BLOCK_STANDARDS.md` — Code block standards (SSOT)
+- `.knowledge/practices/documentation/DOCUMENTATION_STANDARDS.md` — Documentation standards
+- `.knowledge/practices/documentation/TABLE_STANDARDS.md` — Table standards
+- `.knowledge/practices/documentation/CODE_BLOCK_STANDARDS.md` — Code block standards
 - `.knowledge/guidelines/DOCUMENTATION.md` — Documentation guidelines
 - `docs/design/core_engine/BOOTSTRAP.md` — Example: Flowchart usage
 

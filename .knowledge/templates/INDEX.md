@@ -248,7 +248,7 @@ All templates follow this structure:
 
 ## Related
 
-- `.knowledge/practices/documentation/DOCUMENTATION_STANDARDS.md` — Documentation standards (SSOT)
+- `.knowledge/practices/documentation/DOCUMENTATION_STANDARDS.md` — Documentation standards
 - `.knowledge/frameworks/cognitive/EXPERT_COMMITTEE.md` — Expert committee framework
 - `.knowledge/guidelines/DOCUMENTATION.md` — Documentation guidelines
 

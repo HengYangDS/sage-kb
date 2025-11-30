@@ -624,7 +624,7 @@ sage search "new topic"
 
 - `.knowledge/practices/documentation/knowledge_organization.md` — Organization patterns
 
-- `.knowledge/practices/documentation/documentation_standards.md` — Documentation standards (SSOT)
+- `.knowledge/practices/documentation/documentation_standards.md` — Documentation standards
 
 - `.knowledge/practices/ai_collaboration/knowledge_capture.md` — Extraction techniques
 

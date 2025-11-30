@@ -217,7 +217,7 @@ Each layer has an `INDEX.md` with:
 ## Related
 
 - `.knowledge/practices/documentation/PROJECT_DIRECTORY_STRUCTURE.md` — Project directory organization patterns
-- `.knowledge/practices/documentation/DOCUMENTATION_STANDARDS.md` — Documentation format standards (SSOT)
+- `.knowledge/practices/documentation/DOCUMENTATION_STANDARDS.md` — Documentation format standards
 - `.knowledge/practices/documentation/OPTIMIZATION_WORKFLOW.md` — Batch optimization process
 - `.knowledge/frameworks/design/AXIOMS.md` — Design principles (MECE, SSOT)
 - `.knowledge/core/INDEX.md` — Core layer example

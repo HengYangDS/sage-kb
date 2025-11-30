@@ -89,9 +89,10 @@ Before any task, ask:
 
 ## Related
 
-- `.knowledge/core/quick_reference.md` — Quick reference card
-- `.knowledge/core/defaults.md` — Default behaviors
-- `.knowledge/guidelines/success.md` — Success principles
+- `.knowledge/core/QUICK_REFERENCE.md` — Quick reference card
+- `.knowledge/core/DEFAULTS.md` — Default behaviors
+- `.knowledge/guidelines/SUCCESS.md` — Success principles
+- `.knowledge/guidelines/DOCUMENTATION.md` — Documentation guidelines
 
 ---
 

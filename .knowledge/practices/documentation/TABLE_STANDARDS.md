@@ -400,9 +400,9 @@ Use `[text](url)` links to connect to detailed documentation:
 ## Related
 
 - `.knowledge/practices/documentation/INDEX.md` — Documentation practices index
-- `.knowledge/practices/documentation/DOCUMENTATION_STANDARDS.md` — Documentation standards (SSOT)
-- `.knowledge/practices/documentation/DIAGRAM_STANDARDS.md` — Diagram standards (SSOT)
-- `.knowledge/practices/documentation/CODE_BLOCK_STANDARDS.md` — Code block standards (SSOT)
+- `.knowledge/practices/documentation/DOCUMENTATION_STANDARDS.md` — Documentation standards
+- `.knowledge/practices/documentation/DIAGRAM_STANDARDS.md` — Diagram standards
+- `.knowledge/practices/documentation/CODE_BLOCK_STANDARDS.md` — Code block standards
 - `.knowledge/guidelines/DOCUMENTATION.md` — Documentation guidelines
 
 ---

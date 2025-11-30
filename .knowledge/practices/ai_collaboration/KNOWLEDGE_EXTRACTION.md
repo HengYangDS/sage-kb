@@ -156,7 +156,7 @@
 ## Related
 
 - `.knowledge/practices/ai_collaboration/CONTEXT_MANAGEMENT.md` — Managing context
-- `.knowledge/practices/documentation/DOCUMENTATION_STANDARDS.md` — Documentation standards (SSOT)
+- `.knowledge/practices/documentation/DOCUMENTATION_STANDARDS.md` — Documentation standards
 
 ---
 

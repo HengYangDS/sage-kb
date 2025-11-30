@@ -40,7 +40,7 @@
 | File                                           | Purpose                                |
 |------------------------------------------------|----------------------------------------|
 | `documentation/ASCII_ART_FORMATTING.md`        | ASCII art box alignment best practices |
-| `documentation/DOCUMENTATION_STANDARDS.md`     | Documentation format standards (SSOT)  |
+| `documentation/DOCUMENTATION_STANDARDS.md`     | Documentation format standards          |
 | `documentation/KNOWLEDGE_MAINTENANCE_SOP.md`   | Knowledge base maintenance procedures  |
 | `documentation/KNOWLEDGE_ORGANIZATION.md`      | Knowledge hierarchy patterns           |
 | `documentation/OPTIMIZATION_WORKFLOW.md`       | Batch optimization process             |

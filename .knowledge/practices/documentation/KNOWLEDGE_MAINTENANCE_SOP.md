@@ -32,7 +32,6 @@
 | Content audit | Review 5-10 random documents for accuracy |
 | Token check | Verify files stay under limits |
 | Index sync | Ensure INDEX.md files match actual content |
-| Metadata update | Update `last_updated` for changed files |
 
 ---
 
@@ -68,7 +67,6 @@
 | Issue | Resolution |
 |:------|:-----------|
 | Broken link | Update path or remove reference |
-| Missing metadata | Add YAML front matter |
 | Oversized file | Split into multiple documents |
 | Stale content | Update or archive |
 | Duplicate content | Merge and redirect |
