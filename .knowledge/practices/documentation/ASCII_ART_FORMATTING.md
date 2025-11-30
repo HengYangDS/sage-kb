@@ -1,4 +1,4 @@
-# ASCII Art Formatting Best Practices
+﻿# ASCII Art Formatting Best Practices
 
 > Guidelines for consistent rendering of ASCII art boxes and diagrams
 

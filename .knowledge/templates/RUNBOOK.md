@@ -1,4 +1,4 @@
-# Operational Runbook Template
+﻿# Operational Runbook Template
 
 > **Purpose**: Document operational procedures for system maintenance and incident response
 > **Use When**: Creating standard operating procedures, on-call guides, or maintenance documentation
@@ -89,17 +89,14 @@ curl -s https://service.example.com/health | jq
    ```bash
    [command]
    ```
-
 2. [Step 2]
    ```bash
    [command]
    ```
-
 3. **Verify**:
    ```bash
    [verification command]
    ```
-
 **Rollback**: [How to undo if needed]
 
 ---

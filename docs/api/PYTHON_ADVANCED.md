@@ -1,4 +1,4 @@
-
+﻿
 # Python API Advanced Reference
 
 > Search, events, enums, exceptions, and usage examples for SAGE Python API
@@ -27,7 +27,6 @@ from sage.core.search import KnowledgeSearcher
 
 searcher = KnowledgeSearcher()
 ```
-
 #### search
 
 Search for content.
@@ -40,7 +39,6 @@ async def search(
     timeout_ms: int = 2000
 ) -> SearchResult
 ```
-
 **Parameters:**
 
 | Parameter    | Type  | Default  | Description     |
@@ -51,7 +49,6 @@ async def search(
 | `timeout_ms` | `int` | `2000`   | Timeout in ms   |
 
 **Returns:** `SearchResult`
-
 ### 1.2 SearchResult
 
 Search result object.
@@ -63,7 +60,6 @@ class SearchResult:
     total: int
     query_time_ms: int
 ```
-
 ### 1.3 SearchHit
 
 Individual search hit.
@@ -76,7 +72,6 @@ class SearchHit:
     snippet: str
     score: float
 ```
-
 ---
 
 ## 2. Events
@@ -101,7 +96,6 @@ await bus.publish(Event(
     data={"layer": "core"}
 ))
 ```
-
 ---
 
 ## 3. Enums
@@ -120,7 +114,6 @@ class TaskType(Enum):
     PLANNING = "planning"
     DOCUMENTING = "documenting"
 ```
-
 ### 3.2 TimeoutLevel
 
 Timeout levels for operations.
@@ -135,7 +128,6 @@ class TimeoutLevel(Enum):
     T4 = 5000   # Full KB
     T5 = 10000  # Complex analysis
 ```
-
 ---
 
 ## 4. Exceptions
@@ -152,7 +144,6 @@ try:
 except SAGEError as e:
     print(f"Error: {e}")
 ```
-
 ### 4.2 TimeoutError
 
 Raised when operation exceeds timeout.
@@ -167,7 +158,6 @@ except TimeoutError as e:
     # Use fallback content
     print(e.partial_result)
 ```
-
 ### 4.3 NotFoundError
 
 Raised when content is not found.
@@ -180,7 +170,6 @@ try:
 except NotFoundError as e:
     print(f"Not found: {e.path}")
 ```
-
 ---
 
 ## 5. Context Managers
@@ -198,7 +187,6 @@ async with timeout_context(TimeoutLevel.T3) as ctx:
         # Running low on time
         return partial_result
 ```
-
 ---
 
 ## 6. Usage Examples
@@ -218,7 +206,6 @@ frameworks = await loader.load("frameworks")
 # Load specific topic
 python_guide = await loader.load("guidelines", topic="python")
 ```
-
 ### 6.2 Task-Based Loading
 
 ```python
@@ -235,7 +222,6 @@ context = await loader.load_for_task(
 
 print(f"Loaded {context.metadata.token_count} tokens")
 ```
-
 ### 6.3 Search with Filters
 
 ```python
@@ -256,7 +242,6 @@ results = await searcher.search(
 for hit in results.results:
     print(f"{hit.title}: {hit.snippet}")
 ```
-
 ### 6.4 Event-Driven Architecture
 
 ```python
@@ -277,7 +262,6 @@ async def handle_error(event: Event):
 # Loading will trigger events
 result = await loader.load("core")
 ```
-
 ---
 
 ## Related

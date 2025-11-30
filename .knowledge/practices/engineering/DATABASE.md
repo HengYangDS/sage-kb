@@ -1,4 +1,4 @@
-# Database Best Practices
+﻿# Database Best Practices
 
 > Guidelines for effective database design and usage
 

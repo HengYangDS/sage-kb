@@ -1,4 +1,4 @@
-# Directory Layout
+﻿# Directory Layout
 
 > Canonical project structure for SAGE Knowledge Base
 
@@ -7,6 +7,21 @@
 ## 1. Overview
 
 SAGE follows a consistent directory layout that reflects the three-layer architecture and supports the MECE principle.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Root Structure](#2-root-structure)
+- [3. Source Code Structure](#3-source-code-structure)
+- [4. Tools Structure](#4-tools-structure)
+- [5. Scripts Structure](#5-scripts-structure)
+- [6. Documentation Structure](#6-documentation-structure)
+- [7. Knowledge Structure](#7-knowledge-structure)
+- [8. Tests Structure](#8-tests-structure)
+- [9. Naming Conventions](#9-naming-conventions)
+- [10. File Placement Guide](#10-file-placement-guide)
+- [Related](#related)
 
 ---
 
@@ -28,7 +43,6 @@ sage-kb/
 ├── CHANGELOG.md         # Change history
 └── CONTRIBUTING.md      # Contribution guide
 ```
-
 ---
 
 ## 3. Source Code Structure
@@ -61,7 +75,6 @@ src/
         ├── cli/                 # Command-line service
         └── mcp/                 # MCP protocol service
 ```
-
 ---
 
 ## 4. Tools Structure
@@ -96,7 +109,6 @@ tools/
     ├── timeout_manager.py
     └── health_monitor.py
 ```
-
 **Rules:**
 - ❌ No top-level `.py` files (except `__init__.py`)
 - ✅ Organized by MECE capability families
@@ -126,7 +138,6 @@ scripts/
     ├── test.py
     └── release.py
 ```
-
 **Categories:**
 - `dev/` — Development setup and utilities
 - `check/` — Validation and verification
@@ -163,7 +174,6 @@ docs/
     ├── INDEX.md
     └── REFERENCE.md
 ```
-
 ---
 
 ## 7. Knowledge Structure
@@ -182,7 +192,6 @@ docs/
 ├── scenarios/               # Use case scenarios
 └── templates/               # Document templates
 ```
-
 ### 7.2 Project Knowledge (.context/)
 
 ```text
@@ -194,7 +203,6 @@ docs/
 ├── overview/                # Project overview
 └── policies/                # Runtime policies
 ```
-
 ---
 
 ## 8. Tests Structure
@@ -213,7 +221,6 @@ tests/
 └── e2e/                     # End-to-end tests
     └── test_cli.py
 ```
-
 ---
 
 ## 9. Naming Conventions

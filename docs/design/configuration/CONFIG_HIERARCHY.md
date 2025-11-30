@@ -1,4 +1,4 @@
-# Configuration Hierarchy
+﻿# Configuration Hierarchy
 
 > Multi-level configuration system for SAGE
 
@@ -7,6 +7,22 @@
 ## 1. Overview
 
 SAGE uses a hierarchical configuration system where settings cascade from defaults through environment-specific overrides to runtime values.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Hierarchy Levels](#2-hierarchy-levels)
+- [3. Configuration Sources](#3-configuration-sources)
+- [4. Resolution Algorithm](#4-resolution-algorithm)
+- [5. Configuration Files](#5-configuration-files)
+- [6. Environment Variables](#6-environment-variables)
+- [7. CLI Arguments](#7-cli-arguments)
+- [8. Merge Strategy](#8-merge-strategy)
+- [9. Validation](#9-validation)
+- [10. Configuration API](#10-configuration-api)
+- [11. Configuration](#11-configuration)
+- [Related](#related)
 
 ---
 
@@ -21,7 +37,6 @@ Priority (highest to lowest):
 4. Environment  → config/{env}.yaml
 5. Default      → Built-in defaults
 ```
-
 ---
 
 ## 3. Configuration Sources
@@ -57,7 +72,6 @@ class ConfigResolver:
         
         return None
 ```
-
 ---
 
 ## 5. Configuration Files
@@ -89,7 +103,6 @@ sage:
     api:
       port: 8080
 ```
-
 ### 5.2 Environment Configuration
 
 ```yaml
@@ -106,7 +119,6 @@ sage:
   logging:
     level: warning
 ```
-
 ### 5.3 Project Configuration
 
 ```yaml
@@ -118,7 +130,6 @@ sage:
   scenarios:
     default: python_backend
 ```
-
 ### 5.4 User Configuration
 
 ```yaml
@@ -131,7 +142,6 @@ sage:
   preferences:
     theme: dark
 ```
-
 ---
 
 ## 6. Environment Variables
@@ -146,7 +156,6 @@ SAGE_TIMEOUT_DEFAULT_MS=10000
 SAGE_SERVICES_API_PORT=8080
 SAGE_KNOWLEDGE_TOKEN_BUDGET=6000
 ```
-
 ### 6.2 Type Conversion
 
 | Type | Format | Example |
@@ -168,7 +177,6 @@ sage get --timeout 5000 --format json --layer 2
 # services.cli.format = json
 # knowledge.default_layer = 2
 ```
-
 ---
 
 ## 8. Merge Strategy
@@ -187,7 +195,6 @@ def deep_merge(base: dict, override: dict) -> dict:
     
     return result
 ```
-
 ### 8.2 Merge Example
 
 ```yaml
@@ -208,7 +215,6 @@ services:
     port: 8080    # From base
     workers: 4    # From override
 ```
-
 ---
 
 ## 9. Validation
@@ -228,7 +234,6 @@ class TimeoutConfig(BaseModel):
             raise ValueError('default_ms must be 100-60000')
         return v
 ```
-
 ### 9.2 Validation Errors
 
 ```python
@@ -248,7 +253,6 @@ class ConfigValidator:
         
         return errors
 ```
-
 ---
 
 ## 10. Configuration API
@@ -269,7 +273,6 @@ port = config.require("services.api.port")
 # Get section
 services = config.section("services")
 ```
-
 ### 10.2 Runtime Updates
 
 ```python
@@ -279,7 +282,6 @@ with config.override({"timeout.default_ms": 10000}):
     result = do_operation()
 # Original value restored
 ```
-
 ---
 
 ## 11. Configuration
@@ -307,7 +309,6 @@ config:
     enabled: true
     ttl_seconds: 300
 ```
-
 ---
 
 ## Related

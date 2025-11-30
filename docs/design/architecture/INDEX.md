@@ -1,4 +1,4 @@
-# Architecture
+﻿# Architecture
 
 > System architecture and structural design for SAGE
 
@@ -8,6 +8,15 @@
 
 This directory documents the architectural foundations of SAGE, including layer structure, dependencies, and infrastructure.
 
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Documents](#2-documents)
+- [3. Architecture Overview](#3-architecture-overview)
+- [4. Key Principles](#4-key-principles)
+
+---
 ---
 
 ## 2. Documents
@@ -31,7 +40,6 @@ graph TD
     
     Services --> Capabilities --> Core
 ```
-
 ---
 
 ## 4. Key Principles

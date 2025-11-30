@@ -1,4 +1,4 @@
-# Roadmap
+﻿# Roadmap
 
 > SAGE development roadmap and feature planning
 
@@ -7,6 +7,21 @@
 ## 1. Overview
 
 This document outlines the strategic roadmap for SAGE Knowledge Base development, including planned features, timelines, and priorities.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Vision](#2-vision)
+- [3. Release Schedule](#3-release-schedule)
+- [4. Version 1.0.0 — Production Ready](#4-version-100-production-ready)
+- [5. Version 1.1.0 — Enhanced Capabilities](#5-version-110-enhanced-capabilities)
+- [6. Version 2.0.0 — Advanced Features](#6-version-200-advanced-features)
+- [7. Feature Backlog](#7-feature-backlog)
+- [8. Technical Debt](#8-technical-debt)
+- [9. Community Roadmap](#9-community-roadmap)
+- [10. Success Metrics](#10-success-metrics)
+- [Related](#related)
 
 ---
 

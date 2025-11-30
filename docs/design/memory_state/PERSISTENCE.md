@@ -1,4 +1,4 @@
-# Persistence
+﻿# Persistence
 
 > State persistence mechanisms for SAGE
 
@@ -7,6 +7,21 @@
 ## 1. Overview
 
 Persistence layer manages durable storage of state, session data, and learned patterns across system restarts and sessions.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Persistence Layers](#2-persistence-layers)
+- [3. Architecture](#3-architecture)
+- [4. Data Categories](#4-data-categories)
+- [5. Storage Backends](#5-storage-backends)
+- [6. Persistence Interface](#6-persistence-interface)
+- [7. Data Models](#7-data-models)
+- [8. Serialization](#8-serialization)
+- [9. Transactions](#9-transactions)
+- [10. Configuration](#10-configuration)
+- [Related](#related)
 
 ---
 
@@ -38,7 +53,6 @@ graph TD
     PM --> DB
     PM --> File
 ```
-
 ---
 
 ## 4. Data Categories
@@ -84,7 +98,6 @@ store.save("session:123", session_data)
 # Load state
 data = store.load("session:123")
 ```
-
 ### 5.2 Redis (Production)
 
 ```python
@@ -95,7 +108,6 @@ store = RedisStore(url="redis://localhost:6379")
 # With TTL
 store.save("cache:key", data, ttl=3600)
 ```
-
 ### 5.3 File Store
 
 ```python
@@ -106,7 +118,6 @@ store = FileStore(base_path="~/.sage/data")
 # Save as JSON
 store.save("config/settings", config_data)
 ```
-
 ---
 
 ## 6. Persistence Interface
@@ -138,7 +149,6 @@ class PersistenceStore(ABC):
         """Check if key exists."""
         pass
 ```
-
 ### 6.2 Persistence Manager
 
 ```python
@@ -157,7 +167,6 @@ class PersistenceManager:
     def load(self, key: str, store: str = "database"):
         return self.stores[store].load(key)
 ```
-
 ---
 
 ## 7. Data Models
@@ -174,7 +183,6 @@ class SessionState:
     preferences: dict
     history: list[str]
 ```
-
 ### 7.2 Knowledge Cache
 
 ```python
@@ -186,7 +194,6 @@ class KnowledgeCache:
     loaded_at: datetime
     access_count: int
 ```
-
 ---
 
 ## 8. Serialization
@@ -220,7 +227,6 @@ class Serializer:
         elif format == "msgpack":
             return msgpack.unpackb(data)
 ```
-
 ---
 
 ## 9. Transactions
@@ -238,7 +244,6 @@ with store.transaction() as tx:
     tx.save("key2", value2)
     # Commits on exit, rolls back on exception
 ```
-
 ---
 
 ## 10. Configuration
@@ -263,7 +268,6 @@ persistence:
     interval: daily
     retention: 7
 ```
-
 ---
 
 ## Related

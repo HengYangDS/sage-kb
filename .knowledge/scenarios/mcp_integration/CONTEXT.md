@@ -1,4 +1,4 @@
-# MCP Integration Scenario Context
+﻿# MCP Integration Scenario Context
 
 > Pre-configured context for Model Context Protocol integration development
 
@@ -27,7 +27,6 @@
 ## 1. Scenario Profile
 
 ```yaml
-
 scenario: mcp_integration
 
 languages: [ python, typescript, json ]
@@ -116,7 +115,6 @@ sequenceDiagram
 ### 5.1 Basic Server Setup
 
 ```python
-
 from mcp.server.fastmcp import FastMCP
 
 # Initialize server
@@ -179,7 +177,6 @@ async def sage_search(query: str, limit: int = 10) -> str:
 ### 5.2 Resource Definition
 
 ```python
-
 @mcp.resource("sage://core/principles")
 
 async def get_principles() -> str:
@@ -200,7 +197,6 @@ async def get_layer(layer: str) -> str:
 ### 5.3 Prompt Templates
 
 ```python
-
 @mcp.prompt()
 
 async def code_review(code: str, language: str = "python") -> str:
@@ -244,7 +240,6 @@ Provide feedback on:
 ### 5.4 Error Handling
 
 ```python
-
 from mcp.server.fastmcp import FastMCP
 
 from mcp.types import McpError, ErrorCode
@@ -301,7 +296,6 @@ async def sage_get(layer: str) -> str:
 ### 5.5 Timeout Integration
 
 ```python
-
 import asyncio
 
 from sage.core.timeout import TimeoutLevel
@@ -352,7 +346,6 @@ async def sage_search(query: str) -> str:
 ### 6.1 Adding a New Tool
 
 ```python
-
 # 1. Define the tool function
 
 @mcp.tool()
@@ -399,7 +392,6 @@ async def test_my_new_tool():
 ### 6.2 Testing MCP Server
 
 ```python
-
 import pytest
 
 from mcp.client import Client
@@ -470,7 +462,6 @@ async def test_mcp_server():
 ### Server Configuration
 
 ```yaml
-
 # config/services/mcp.yaml
 
 mcp:
@@ -527,7 +518,6 @@ mcp:
 ### Client Configuration
 
 ```json
-
 {
 
   "mcpServers": {

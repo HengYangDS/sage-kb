@@ -1,4 +1,4 @@
-
+﻿
 # CLI Reference
 
 > SAGE Command-Line Interface Documentation
@@ -13,6 +13,15 @@ experience.
 ```bash
 sage [OPTIONS] COMMAND [ARGS]
 ```
+## Table of Contents
+
+- [Overview](#overview)
+- [Commands](#commands)
+- [Global Options](#global-options)
+- [Exit Codes](#exit-codes)
+- [Environment Variables](#environment-variables)
+- [Configuration](#configuration)
+- [Related](#related)
 
 ---
 
@@ -25,7 +34,6 @@ Load knowledge by layer or topic.
 ```bash
 sage get [LAYER] [OPTIONS]
 ```
-
 **Arguments:**
 
 | Argument | Description             | Default |
@@ -52,7 +60,6 @@ sage get guidelines --timeout 5000
 # Load frameworks as JSON
 sage get frameworks --format json
 ```
-
 **Layers:**
 
 | Layer        | Description                         |
@@ -72,7 +79,6 @@ Search the knowledge base.
 ```bash
 sage search QUERY [OPTIONS]
 ```
-
 **Arguments:**
 
 | Argument | Description         |
@@ -99,7 +105,6 @@ sage search "autonomy" --limit 5
 # Search specific layer
 sage search "pattern" --layer frameworks
 ```
-
 ---
 
 ### sage serve
@@ -109,7 +114,6 @@ Start the MCP server.
 ```bash
 sage serve [OPTIONS]
 ```
-
 **Options:**
 
 | Option         | Description        | Default     |
@@ -130,7 +134,6 @@ sage serve --host 0.0.0.0 --port 9000
 # Development mode with reload
 sage serve --reload
 ```
-
 ---
 
 ### sage info
@@ -140,7 +143,6 @@ Display system information.
 ```bash
 sage info [OPTIONS]
 ```
-
 **Options:**
 
 | Option   | Description    | Default |
@@ -164,7 +166,6 @@ sage info
 # JSON output for scripting
 sage info --json
 ```
-
 ---
 
 ### sage config
@@ -174,7 +175,6 @@ Manage configuration.
 ```bash
 sage config [SUBCOMMAND] [OPTIONS]
 ```
-
 **Subcommands:**
 
 | Command         | Description                   |
@@ -196,7 +196,6 @@ sage config get timeout.t3
 # Set value
 sage config set mcp.port 9000
 ```
-
 ---
 
 ## Global Options
@@ -247,7 +246,6 @@ cli:
   pager: true
   colors: true
 ```
-
 ---
 
 ## Related

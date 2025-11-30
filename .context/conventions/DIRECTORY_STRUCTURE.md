@@ -1,4 +1,4 @@
-# Directory Structure
+﻿# Directory Structure
 
 > Canonical directory layout for SAGE Knowledge Base
 
@@ -23,7 +23,6 @@ sage-kb/
 ├── CHANGELOG.md
 └── CONTRIBUTING.md
 ```
-
 ---
 
 ## 2. docs/design/ Structure
@@ -106,7 +105,6 @@ docs/design/                        # 12 subdirectories + 57 files
     ├── EVALUATION_CRITERIA.md
     └── CHANGELOG.md
 ```
-
 ---
 
 ## 3. tools/ Structure
@@ -141,12 +139,10 @@ tools/
     ├── index_generator.py
     └── template_generator.py
 ```
-
 **Rules:**
 - ❌ No top-level `.py` files (except `__init__.py`)
 - ✅ All tools organized by capability family
 - ✅ Each family has `INDEX.md` and `__init__.py`
-
 ---
 
 ## 4. scripts/ Structure
@@ -173,7 +169,6 @@ scripts/
     ├── test.py
     └── release.py
 ```
-
 **Rules:**
 - ✅ 4 categories: dev, check, hooks, ci
 - ✅ Each category is a subdirectory

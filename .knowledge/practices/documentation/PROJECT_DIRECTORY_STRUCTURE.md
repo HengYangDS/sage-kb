@@ -1,4 +1,4 @@
-# Project Directory Structure Patterns
+﻿# Project Directory Structure Patterns
 
 > Universal directory organization patterns for AI-collaborative projects
 

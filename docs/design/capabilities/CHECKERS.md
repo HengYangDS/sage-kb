@@ -1,4 +1,4 @@
-# Checkers
+﻿# Checkers
 
 > Validation, verification, and compliance capabilities
 
@@ -7,6 +7,21 @@
 ## 1. Overview
 
 Checkers validate correctness, compliance, and integrity. They answer the question: "Is it correct?"
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Checker Capabilities](#2-checker-capabilities)
+- [3. format_checker](#3-formatchecker)
+- [4. link_checker](#4-linkchecker)
+- [5. schema_validator](#5-schemavalidator)
+- [6. naming_checker](#6-namingchecker)
+- [7. structure_checker](#7-structurechecker)
+- [8. Validation Pipeline](#8-validation-pipeline)
+- [9. Configuration](#9-configuration)
+- [10. Validation Result](#10-validation-result)
+- [Related](#related)
 
 ---
 
@@ -55,7 +70,6 @@ class FormatChecker(Capability[str, FormatResult]):
             warnings=warnings
         )
 ```
-
 ### 3.3 Format Rules
 
 | Rule | Requirement | Severity |
@@ -102,7 +116,6 @@ class LinkChecker(Capability[ParsedContent, LinkResult]):
             broken=broken
         )
 ```
-
 ### 4.3 Link Types
 
 | Type | Check Method | Timeout |
@@ -138,7 +151,6 @@ class SchemaValidator(Capability[dict, SchemaResult]):
             errors=errors
         )
 ```
-
 ---
 
 ## 6. naming_checker
@@ -172,7 +184,6 @@ class NamingChecker(Capability[Path, NamingResult]):
         
         return NamingResult(valid=len(errors) == 0, errors=errors)
 ```
-
 ### 6.3 Naming Rules
 
 | Element | Convention | Example |
@@ -209,7 +220,6 @@ class StructureChecker(Capability[ParsedContent, StructureResult]):
         
         return StructureResult(valid=len(errors) == 0, errors=errors)
 ```
-
 ---
 
 ## 8. Validation Pipeline
@@ -233,7 +243,6 @@ graph TD
     NV --> Report
     SI --> Report
 ```
-
 ---
 
 ## 9. Configuration
@@ -255,7 +264,6 @@ capabilities:
       enforce_upper_snake: true
       allow_numeric_prefix: false
 ```
-
 ---
 
 ## 10. Validation Result
@@ -272,7 +280,6 @@ class ValidationReport:
     def summary(self) -> str:
         return f"{len(self.errors)} errors, {len(self.warnings)} warnings"
 ```
-
 ---
 
 ## Related

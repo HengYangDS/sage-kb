@@ -1,4 +1,4 @@
-# Service Layer Configuration
+﻿# Service Layer Configuration
 
 > Configuration reference for CLI, MCP, and API services
 
@@ -32,7 +32,6 @@
                     │  Core Layer │
                     └─────────────┘
 ```
-
 ### 1.2 Configuration Locations
 
 | Service | Config Key     | Environment Variable |
@@ -74,7 +73,6 @@ services:
       s: search
       i: info
 ```
-
 ### 2.2 Output Formats
 
 | Format  | Use Case             | Example                   |
@@ -95,7 +93,6 @@ export SAGE_CLI_WIDTH=120
 export SAGE_CLI_HISTORY_ENABLED=false
 export SAGE_CLI_HISTORY_PATH=/custom/path
 ```
-
 ---
 
 ## 3. MCP Service
@@ -137,7 +134,6 @@ services:
       enabled: true
       custom_prompts_path: config/prompts/
 ```
-
 ### 3.2 Transport Types
 
 | Transport   | Use Case          | Configuration       |
@@ -163,7 +159,6 @@ services:
         timeout: 10000
         max_results: 50
 ```
-
 ### 3.4 Environment Variables
 
 ```bash
@@ -175,7 +170,6 @@ export SAGE_MCP_PORT=8080
 # Tools
 export SAGE_MCP_TOOLS_ENABLED=get_knowledge,search_content
 ```
-
 ---
 
 ## 4. API Service
@@ -220,7 +214,6 @@ services:
       path: /docs
       redoc_path: /redoc
 ```
-
 ### 4.2 Uvicorn Settings
 
 ```yaml
@@ -233,7 +226,6 @@ services:
       limit_concurrency: 100
       limit_max_requests: 10000
 ```
-
 ### 4.3 Environment Variables
 
 ```bash
@@ -250,7 +242,6 @@ export SAGE_API_KEY=your-secret-key
 # Rate limiting
 export SAGE_API_RATE_LIMIT=60
 ```
-
 ---
 
 ## 5. Common Settings
@@ -270,7 +261,6 @@ services:
       backup_count: 5
       rotation: daily
 ```
-
 ### 5.2 Metrics Configuration
 
 ```yaml
@@ -284,7 +274,6 @@ services:
       - error_rate
       - cache_hits
 ```
-
 ### 5.3 Health Check Configuration
 
 ```yaml
@@ -300,7 +289,6 @@ services:
         type: file_valid
         path: config/sage.yaml
 ```
-
 ---
 
 ## Quick Reference
@@ -319,7 +307,6 @@ sage serve --port 8080 --transport sse
 sage api --host 0.0.0.0 --port 8000
 sage api --workers 4 --reload
 ```
-
 ### Configuration Priority
 
 ```text
@@ -328,7 +315,6 @@ sage api --workers 4 --reload
 3. Config file (config/sage.yaml)
 4. Defaults (lowest)
 ```
-
 ### Validation
 
 ```bash
@@ -338,7 +324,6 @@ sage config --validate --section services
 # Show service configuration
 sage config --show --section services.mcp
 ```
-
 ---
 
 ## Related

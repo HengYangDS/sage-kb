@@ -1,4 +1,4 @@
-# Content Taxonomy
+﻿# Content Taxonomy
 
 > Classification system for knowledge content
 
@@ -7,6 +7,19 @@
 ## 1. Overview
 
 Content taxonomy defines how knowledge is classified, tagged, and organized for efficient retrieval and context management.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Content Types](#2-content-types)
+- [3. Classification Dimensions](#3-classification-dimensions)
+- [4. Tagging System](#4-tagging-system)
+- [5. Document Structure](#5-document-structure)
+- [6. Naming Conventions](#6-naming-conventions)
+- [7. Content Lifecycle](#7-content-lifecycle)
+- [8. Search and Discovery](#8-search-and-discovery)
+- [Related](#related)
 
 ---
 
@@ -141,7 +154,6 @@ stateDiagram-v2
     Deprecated --> Archived
     Archived --> [*]
 ```
-
 ### 7.1 Status Definitions
 
 | Status | Description | Action |

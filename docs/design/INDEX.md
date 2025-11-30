@@ -1,4 +1,4 @@
-# Design Documents Index
+﻿# Design Documents Index
 
 > Navigation hub for SAGE Knowledge Base design documentation
 
@@ -10,6 +10,18 @@
 |----------|-------------|
 | `OVERVIEW.md` | Design overview and reading guide |
 
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Foundation (★★★★★)](#2-foundation-)
+- [3. Core Systems (★★★★☆)](#3-core-systems-)
+- [4. Implementation (★★★☆☆)](#4-implementation-)
+- [5. Knowledge & State (★★★☆☆)](#5-knowledge-state-)
+- [6. Evolution (★★☆☆☆)](#6-evolution-)
+- [7. Directory Structure](#7-directory-structure)
+
+---
 ---
 
 ## 2. Foundation (★★★★★)
@@ -78,7 +90,6 @@ docs/design/
 ├── configuration/
 └── evolution/
 ```
-
 ---
 
 ## Related

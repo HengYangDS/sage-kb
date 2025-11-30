@@ -1,4 +1,4 @@
-# Memory & State
+﻿# Memory & State
 
 > State persistence and session management for SAGE
 
@@ -8,6 +8,16 @@
 
 This directory documents how SAGE manages state, sessions, and cross-task memory.
 
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Documents](#2-documents)
+- [3. State Architecture](#3-state-architecture)
+- [4. State Types](#4-state-types)
+- [5. Memory Management](#5-memory-management)
+
+---
 ---
 
 ## 2. Documents
@@ -33,7 +43,6 @@ graph TD
         TaskMemory --> Persistence
     end
 ```
-
 ---
 
 ## 4. State Types

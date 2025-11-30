@@ -1,4 +1,4 @@
-# Bundled Plugins
+﻿# Bundled Plugins
 
 > Built-in plugins shipped with SAGE
 
@@ -7,6 +7,21 @@
 ## 1. Overview
 
 SAGE includes several bundled plugins that provide core functionality. These plugins are automatically loaded and can be disabled if needed.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Bundled Plugin List](#2-bundled-plugin-list)
+- [3. core-loader](#3-core-loader)
+- [4. core-analyzer](#4-core-analyzer)
+- [5. core-validator](#5-core-validator)
+- [6. core-generator](#6-core-generator)
+- [7. metrics-collector](#7-metrics-collector)
+- [8. Plugin Dependencies](#8-plugin-dependencies)
+- [9. Disabling Bundled Plugins](#9-disabling-bundled-plugins)
+- [10. Extending Bundled Plugins](#10-extending-bundled-plugins)
+- [Related](#related)
 
 ---
 
@@ -49,7 +64,6 @@ plugins:
       enabled: true
       ttl_seconds: 3600
 ```
-
 ---
 
 ## 4. core-analyzer
@@ -78,7 +92,6 @@ plugins:
     classification:
       auto_tag: true
 ```
-
 ---
 
 ## 5. core-validator
@@ -109,7 +122,6 @@ plugins:
     ignore_patterns:
       - "*.draft.md"
 ```
-
 ---
 
 ## 6. core-generator
@@ -138,7 +150,6 @@ plugins:
       format: markdown
       line_limit: 300
 ```
-
 ---
 
 ## 7. metrics-collector
@@ -166,7 +177,6 @@ plugins:
       - type: prometheus
         port: 9000
 ```
-
 ---
 
 ## 8. Plugin Dependencies
@@ -181,7 +191,6 @@ graph TD
     
     MC --> CG --> CA --> CV --> CL
 ```
-
 ---
 
 ## 9. Disabling Bundled Plugins
@@ -191,7 +200,6 @@ plugins:
   disabled:
     - metrics-collector  # Disable metrics
 ```
-
 **Note:** Core plugins (`core-loader`, `core-analyzer`) cannot be disabled as they provide essential functionality.
 
 ---
@@ -213,7 +221,6 @@ class MyExtension(Plugin):
         # Enhance the result
         return result.with_extra_metadata(...)
 ```
-
 ---
 
 ## Related

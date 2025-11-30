@@ -1,4 +1,4 @@
-# Performance Framework
+﻿# Performance Framework
 
 > Optimization patterns and best practices for high-performance systems
 

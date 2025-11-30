@@ -1,4 +1,4 @@
-# Document Template
+﻿# Document Template
 
 > Standard template for all Markdown documents in SAGE Knowledge Base
 
@@ -39,7 +39,6 @@ More content.
 
 *Part of SAGE Knowledge Base*
 ```
-
 ---
 
 ## 2. Rules
@@ -66,7 +65,6 @@ More content.
 
 ## Section Title
 ```
-
 - Use `---` (horizontal rule) before each H2 section
 - No separator before the first H1 title
 
@@ -93,7 +91,6 @@ More content.
 
 *Part of SAGE Knowledge Base*
 ```
-
 - Always present
 - Consistent across all documents
 
@@ -127,7 +124,6 @@ More content.
 |----------|----------|
 | Cell 1   | Cell 2   |
 ```
-
 - Use for structured data
 - Align pipes for readability
 - Keep tables concise (≤ 10 rows ideal)
@@ -140,7 +136,6 @@ def example():
     pass
 \`\`\`
 ```
-
 - Always specify language
 - Keep blocks focused (< 30 lines)
 

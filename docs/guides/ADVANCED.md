@@ -1,4 +1,4 @@
-
+﻿
 # Advanced Usage Guide
 
 > Deep dive into SAGE Knowledge Base advanced features
@@ -28,7 +28,6 @@ config/
 ├── knowledge/          # Knowledge: content, loading, triggers
 └── capabilities/       # Capabilities: autonomy, plugins, quality
 ```
-
 ### 1.2 Environment Overrides
 
 | Pattern | Example |
@@ -48,9 +47,7 @@ timeout:
 logging:
   level: DEBUG
 ```
-
 Load: `sage --config my-config.yaml get core`
-
 ---
 
 ## 2. CLI Advanced
@@ -70,14 +67,12 @@ sage get core --topics "principles,defaults"  # Select topics
 sage search "timeout" --layer frameworks      # Layer filter
 sage get guidelines --exclude "python"        # Exclude topics
 ```
-
 ### 2.3 Batch Operations
 
 ```bash
 sage get core guidelines frameworks --merge   # Load multiple
 sage search "pattern" --output results.json   # Save results
 ```
-
 ### 2.4 Debug Mode
 
 ```bash
@@ -85,7 +80,6 @@ sage --debug get core              # Verbose logging
 sage --trace search "query"        # Trace execution
 sage get core --timing             # Show timing info
 ```
-
 ---
 
 ## 3. MCP Integration
@@ -100,7 +94,6 @@ mcp:
   transport: stdio  # or: sse, websocket
   timeout_ms: 5000
 ```
-
 ### 3.2 Claude Desktop Integration
 
 ```json
@@ -113,7 +106,6 @@ mcp:
   }
 }
 ```
-
 ### 3.3 Available Tools
 
 | Tool | Purpose | Parameters |
@@ -133,7 +125,6 @@ async def my_custom_tool(param: str) -> dict:
     """Custom tool description."""
     return {"result": process(param)}
 ```
-
 ---
 
 ## 4. Python API
@@ -147,7 +138,6 @@ loader = KnowledgeLoader()
 result = await loader.load("core", timeout_ms=2000)
 print(result.content, result.metadata)
 ```
-
 ### 4.2 Search API
 
 ```python
@@ -158,7 +148,6 @@ results = await searcher.search("timeout", limit=5)
 for hit in results:
     print(f"{hit.path}: {hit.score}")
 ```
-
 ### 4.3 Event System
 
 ```python
@@ -172,7 +161,6 @@ async def on_load(event: Event):
 
 await bus.publish(Event(type="knowledge.loaded", data={"layer": "core"}))
 ```
-
 ### 4.4 Context Manager
 
 ```python
@@ -183,7 +171,6 @@ async with timeout_context(TimeoutLevel.T3) as ctx:
     if ctx.remaining_ms < 100:
         return partial_result
 ```
-
 ---
 
 ## 5. Plugin Development
@@ -196,7 +183,6 @@ my_plugin/
 ├── plugin.yaml      # Plugin metadata
 └── handlers.py      # Event handlers
 ```
-
 ### 5.2 Basic Plugin
 
 ```python
@@ -212,7 +198,6 @@ class MyPlugin(Plugin):
         # Modify or observe loading
         pass
 ```
-
 ### 5.3 Plugin Configuration
 
 ```yaml
@@ -227,7 +212,6 @@ settings:
   enabled: true
   custom_option: value
 ```
-
 ### 5.4 Available Hooks
 
 | Hook | Timing | Use Case |
@@ -260,7 +244,6 @@ cache:
   ttl: 300         # seconds
   max_size: 1000   # entries
 ```
-
 ### 6.3 Memory Management
 
 | Setting | Default | Description |
@@ -278,7 +261,6 @@ loading:
   preload: ["core"]         # Always preload
   max_files_per_layer: 50   # Limit per layer
 ```
-
 ### 6.5 Monitoring
 
 ```bash
@@ -286,7 +268,6 @@ sage info --metrics                    # Show metrics
 sage get core --timing                 # Load timing
 SAGE_LOGGING_LEVEL=DEBUG sage serve    # Debug logs
 ```
-
 ---
 
 ## Related

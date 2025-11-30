@@ -1,4 +1,4 @@
-# Knowledge Organization Patterns
+﻿# Knowledge Organization Patterns
 
 > Hierarchical patterns for organizing AI-collaborative knowledge bases
 

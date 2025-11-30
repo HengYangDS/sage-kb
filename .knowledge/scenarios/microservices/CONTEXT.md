@@ -1,4 +1,4 @@
-# Microservices Scenario Context
+﻿# Microservices Scenario Context
 
 > Pre-configured context for microservices architecture development
 
@@ -27,7 +27,6 @@
 ## 1. Scenario Profile
 
 ```yaml
-
 scenario: microservices
 
 languages: [ python, typescript, go, java ]
@@ -135,7 +134,6 @@ service-name/
 ### 4.2 API Design
 
 ```python
-
 # FastAPI service example
 
 from fastapi import FastAPI, HTTPException
@@ -188,7 +186,6 @@ async def create_order(order: Order):
 ### 4.3 Health Checks
 
 ```python
-
 @app.get("/health")
 
 async def health_check():
@@ -243,7 +240,6 @@ async def readiness_check():
 ### 5.3 Event Example
 
 ```python
-
 # Publishing events
 
 class OrderCreatedEvent(BaseModel):
@@ -288,7 +284,6 @@ async def handle_order_created(event: OrderCreatedEvent):
 ### 5.4 Circuit Breaker
 
 ```python
-
 from circuitbreaker import circuit
 
 @circuit(failure_threshold=5, recovery_timeout=30)

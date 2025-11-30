@@ -1,4 +1,4 @@
-# API Service
+﻿# API Service
 
 > HTTP REST API service using FastAPI
 
@@ -7,6 +7,20 @@
 ## 1. Overview
 
 The API service provides HTTP REST access to SAGE knowledge base for web applications and external system integration using FastAPI framework.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Technology Stack](#2-technology-stack)
+- [3. Endpoints](#3-endpoints)
+- [4. Implementation](#4-implementation)
+- [5. Authentication](#5-authentication)
+- [6. Error Handling](#6-error-handling)
+- [7. Configuration](#7-configuration)
+- [8. Middleware](#8-middleware)
+- [9. Testing](#9-testing)
+- [Related](#related)
 
 ---
 
@@ -62,7 +76,6 @@ class SearchResponse(BaseModel):
     total: int
     took_ms: int
 ```
-
 ---
 
 ## 4. Implementation
@@ -88,7 +101,6 @@ app = FastAPI(
     lifespan=lifespan
 )
 ```
-
 ### 4.2 Endpoints Implementation
 
 ```python
@@ -128,7 +140,6 @@ async def search_knowledge(
         took_ms=took_ms
     )
 ```
-
 ### 4.3 Health Check
 
 ```python
@@ -140,7 +151,6 @@ async def health_check():
         "timestamp": datetime.utcnow().isoformat()
     }
 ```
-
 ---
 
 ## 5. Authentication
@@ -167,7 +177,6 @@ async def get_knowledge(
 ):
     ...
 ```
-
 ### 5.2 API Key Auth
 
 ```python
@@ -178,7 +187,6 @@ async def verify_api_key(x_api_key: str = Header(...)):
         raise HTTPException(status_code=401, detail="Invalid API key")
     return x_api_key
 ```
-
 ---
 
 ## 6. Error Handling
@@ -211,7 +219,6 @@ async def not_found_handler(request: Request, exc: NotFoundError):
         }
     )
 ```
-
 ### 6.2 HTTP Status Codes
 
 | Code | Meaning | When |
@@ -240,7 +247,6 @@ services:
       enabled: true
       type: bearer
 ```
-
 ---
 
 ## 8. Middleware
@@ -257,7 +263,6 @@ app.add_middleware(
     allow_headers=["*"]
 )
 ```
-
 ### 8.2 Request Logging
 
 ```python
@@ -273,7 +278,6 @@ async def log_requests(request: Request, call_next):
     )
     return response
 ```
-
 ---
 
 ## 9. Testing
@@ -302,7 +306,6 @@ def test_health():
     assert response.status_code == 200
     assert response.json()["status"] == "healthy"
 ```
-
 ---
 
 ## Related

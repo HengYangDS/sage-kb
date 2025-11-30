@@ -1,4 +1,4 @@
-# Monorepo Scenario Context
+﻿# Monorepo Scenario Context
 
 > Pre-configured context for monorepo project management
 
@@ -27,7 +27,6 @@
 ## 1. Scenario Profile
 
 ```yaml
-
 scenario: monorepo
 
 languages: [ typescript, python, go ]
@@ -146,7 +145,6 @@ monorepo/
 ### 4.2 Turborepo Configuration
 
 ```json
-
 {
 
   "$schema": "https://turbo.build/schema.json",
@@ -219,7 +217,6 @@ monorepo/
 ### 4.3 pnpm Workspace
 
 ```yaml
-
 # pnpm-workspace.yaml
 
 packages:
@@ -234,7 +231,6 @@ packages:
 ### 4.4 Nx Configuration
 
 ```json
-
 {
 
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
@@ -301,7 +297,6 @@ packages:
 ### 5.1 Internal Dependencies
 
 ```json
-
 {
 
   "name": "@acme/web",
@@ -322,7 +317,6 @@ packages:
 ### 5.2 Shared Configuration
 
 ```typescript
-
 // packages/config-eslint/index.js
 
 module.exports = {
@@ -355,7 +349,6 @@ module.exports = {
 ### 5.3 TypeScript Project References
 
 ```json
-
 {
 
   "compilerOptions": {
@@ -394,7 +387,6 @@ module.exports = {
 ### 6.1 Affected-Only Builds
 
 ```yaml
-
 # GitHub Actions with Nx
 
 name: CI
@@ -435,7 +427,6 @@ jobs:
 ### 6.2 Turborepo with Remote Cache
 
 ```yaml
-
 name: CI
 
 on: [ push, pull_request ]
@@ -474,7 +465,6 @@ jobs:
 ### 6.3 Selective Deployment
 
 ```yaml
-
 deploy-web:
 
   needs: build
@@ -519,7 +509,6 @@ deploy-web:
 ### 7.1 Creating New Package
 
 ```bash
-
 # Create package directory
 
 mkdir -p packages/new-lib/src

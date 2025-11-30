@@ -1,4 +1,4 @@
-
+﻿
 # Python API Reference
 
 > SAGE Knowledge Base Python Library Documentation
@@ -31,7 +31,6 @@ pip install sage-kb
 # With all dependencies
 pip install sage-kb[all]
 ```
-
 ---
 
 ## 3. Quick Start
@@ -56,7 +55,6 @@ async def main():
 
 asyncio.run(main())
 ```
-
 ---
 
 ## 4. Core Classes
@@ -70,7 +68,6 @@ from sage.core.loader import KnowledgeLoader
 
 loader = KnowledgeLoader(config=None)
 ```
-
 **Parameters:**
 
 | Parameter | Type         | Description                   |
@@ -88,7 +85,6 @@ async def load(
     timeout_ms: int = 2000
 ) -> LoadResult
 ```
-
 **Parameters:**
 
 | Parameter    | Type  | Default  | Description     |
@@ -98,7 +94,6 @@ async def load(
 | `timeout_ms` | `int` | `2000`   | Timeout in ms   |
 
 **Returns:** `LoadResult`
-
 #### load_sync
 
 Synchronous wrapper for `load`.
@@ -110,7 +105,6 @@ def load_sync(
     timeout_ms: int = 2000
 ) -> LoadResult
 ```
-
 #### load_core
 
 Load core knowledge layer.
@@ -118,7 +112,6 @@ Load core knowledge layer.
 ```python
 async def load_core(timeout_ms: int = 2000) -> LoadResult
 ```
-
 #### load_for_task
 
 Load context optimized for a specific task type.
@@ -129,7 +122,6 @@ async def load_for_task(
     token_budget: int = 4000
 ) -> LoadResult
 ```
-
 ### 4.2 LoadResult
 
 Result object from loading operations.
@@ -140,7 +132,6 @@ class LoadResult:
     content: str
     metadata: LoadMetadata
 ```
-
 ### 4.3 LoadMetadata
 
 Metadata about load operation.
@@ -154,7 +145,6 @@ class LoadMetadata:
     token_count: int
     from_cache: bool
 ```
-
 ---
 
 ## 5. Configuration
@@ -172,7 +162,6 @@ config = get_config()
 # Load from custom path
 config = SAGEConfig.from_file("custom/config.yaml")
 ```
-
 **Key Attributes:**
 
 | Attribute             | Type   | Default | Description     |

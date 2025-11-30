@@ -1,4 +1,4 @@
-
+﻿
 # Quick Start Guide
 
 > Get up and running with SAGE Knowledge Base in 5 minutes
@@ -34,7 +34,6 @@ conda activate sage-kb
 # source .venv/bin/activate  # Linux/macOS
 # .venv\Scripts\activate     # Windows
 ```
-
 ### 1.3 Install from PyPI
 
 ```bash
@@ -47,7 +46,6 @@ pip install sage-kb[mcp]
 # With all optional features
 pip install sage-kb[all]
 ```
-
 ### 1.4 Install from Source
 
 ```bash
@@ -62,7 +60,6 @@ conda activate sage-kb
 # Install in development mode
 pip install -e ".[dev]"
 ```
-
 ### 1.5 Verify Installation
 
 ```bash
@@ -72,7 +69,6 @@ sage --version
 # View help
 sage --help
 ```
-
 ---
 
 ## 2. CLI Basics
@@ -91,7 +87,6 @@ sage get --topic timeout
 # Get with filtering
 sage get --layer practices --format json
 ```
-
 ### 2.2 Search Knowledge
 
 Search across the knowledge base:
@@ -106,7 +101,6 @@ sage search "timeout" --layer core
 # Limit results
 sage search "pattern" --limit 5
 ```
-
 ### 2.3 View Information
 
 Display system information:
@@ -121,7 +115,6 @@ sage info --layers
 # Show configuration
 sage info --config
 ```
-
 ### 2.4 Common Options
 
 | Option      | Short | Description                    |
@@ -153,7 +146,6 @@ sage serve --port 8080
 # Start with verbose logging
 sage serve --verbose
 ```
-
 ### 3.3 Configure AI Client
 
 Add SAGE to your AI client's MCP configuration:
@@ -171,7 +163,6 @@ Add SAGE to your AI client's MCP configuration:
   }
 }
 ```
-
 ### 3.4 Test Connection
 
 Once configured, your AI assistant can use SAGE tools:
@@ -190,7 +181,6 @@ Once configured, your AI assistant can use SAGE tools:
 from sage import get_knowledge, search_knowledge
 from sage.core.config import get_config
 ```
-
 ### 4.2 Get Knowledge
 
 ```python
@@ -201,7 +191,6 @@ print(knowledge.content)
 # Get specific topic
 timeout_info = get_knowledge(topic="timeout")
 ```
-
 ### 4.3 Search Knowledge
 
 ```python
@@ -211,7 +200,6 @@ results = search_knowledge("error handling")
 for result in results:
     print(f"{result.path}: {result.title}")
 ```
-
 ### 4.4 Async Usage
 
 ```python
@@ -226,7 +214,6 @@ async def main():
 
 asyncio.run(main())
 ```
-
 ---
 
 ## 5. Next Steps
@@ -286,7 +273,6 @@ sage get --help
 # Report issues
 # https://github.com/HengYangDS/sage-kb/issues
 ```
-
 ---
 
 ## Related

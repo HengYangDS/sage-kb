@@ -1,4 +1,4 @@
-# Token Optimization Principles
+﻿# Token Optimization Principles
 
 > Maximize knowledge density per token in AI collaboration
 
@@ -94,7 +94,6 @@
 | 5    | Validate completeness     |
 
 > **详细格式规范**: 参见 `.knowledge/practices/documentation/DOCUMENTATION_STANDARDS.md`
-
 ---
 
 ## 6. Tiered Loading

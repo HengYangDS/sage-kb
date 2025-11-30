@@ -1,4 +1,4 @@
-
+﻿
 # MCP Resources and Advanced Features
 
 > Resources, prompts, error handling, and client integration for SAGE MCP server
@@ -22,7 +22,6 @@
 Core principles and philosophy.
 
 **URI Pattern:** `knowledge://core/{topic?}`
-
 **Examples:**
 
 - `knowledge://core` — All core content
@@ -34,7 +33,6 @@ Core principles and philosophy.
 Coding and collaboration guidelines.
 
 **URI Pattern:** `knowledge://guidelines/{category?}`
-
 **Examples:**
 
 - `knowledge://guidelines` — All guidelines
@@ -46,7 +44,6 @@ Coding and collaboration guidelines.
 Conceptual frameworks and patterns.
 
 **URI Pattern:** `knowledge://frameworks/{framework?}`
-
 **Examples:**
 
 - `knowledge://frameworks` — All frameworks
@@ -58,7 +55,6 @@ Conceptual frameworks and patterns.
 Best practices and engineering patterns.
 
 **URI Pattern:** `knowledge://practices/{category?}`
-
 **Examples:**
 
 - `knowledge://practices` — All practices
@@ -96,7 +92,6 @@ Available knowledge layers:
 - guidelines: Coding standards
 - practices: Best practices
 ```
-
 ---
 
 ## 3. Error Handling
@@ -128,7 +123,6 @@ Available knowledge layers:
   }
 }
 ```
-
 ---
 
 ## 4. Timeout Behavior
@@ -173,7 +167,6 @@ Add to `claude_desktop_config.json`:
   }
 }
 ```
-
 ### 5.2 Generic MCP Client
 
 ```python
@@ -192,7 +185,6 @@ async with Client("localhost", 8000) as client:
         {"query": "timeout", "limit": 5}
     )
 ```
-
 ---
 
 ## Related

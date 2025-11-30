@@ -1,4 +1,4 @@
-# Evolve Protocol
+﻿# Evolve Protocol
 
 > Measurement, learning, and continuous optimization
 
@@ -7,6 +7,19 @@
 ## 1. Overview
 
 The Evolve protocol (E in SAGE) closes the feedback loop by measuring performance, learning from patterns, and applying optimizations.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Responsibilities](#2-responsibilities)
+- [3. Measurement](#3-measurement)
+- [4. Learning](#4-learning)
+- [5. Optimization](#5-optimization)
+- [6. Evolution Pipeline](#6-evolution-pipeline)
+- [7. Auto-Optimization Rules](#7-auto-optimization-rules)
+- [8. Configuration](#8-configuration)
+- [Related](#related)
 
 ---
 
@@ -40,7 +53,6 @@ graph LR
     Generate --> GM[GenerateMetrics] --> MS
     System --> SYM[SystemMetrics] --> MS
 ```
-
 ### 3.3 Metrics Structure
 
 ```python
@@ -59,7 +71,6 @@ class MetricStore:
     aggregations: dict[str, Aggregation]
     time_range: tuple[datetime, datetime]
 ```
-
 ---
 
 ## 4. Learning
@@ -95,7 +106,6 @@ graph TD
     MS --> AD
     IG --> Insights
 ```
-
 ### 4.3 Insights Structure
 
 ```python
@@ -114,7 +124,6 @@ class Insights:
     generated_at: datetime
     data_range: tuple[datetime, datetime]
 ```
-
 ---
 
 ## 5. Optimization
@@ -145,7 +154,6 @@ graph TD
     Insights --> RE
     AP --> Improvements
 ```
-
 ### 5.3 Improvement Structure
 
 ```python
@@ -166,7 +174,6 @@ class Improvements:
     total_impact: str
     requires_approval: list[str]
 ```
-
 ---
 
 ## 6. Evolution Pipeline
@@ -179,7 +186,6 @@ graph TD
     
     Measure --> Learn --> Optimize --> Measure
 ```
-
 *Continuous Loop*
 
 ---
@@ -225,7 +231,6 @@ evolve:
       - config_change
       - index_rebuild
 ```
-
 ---
 
 ## Related

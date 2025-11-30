@@ -1,4 +1,4 @@
-# Converters
+﻿# Converters
 
 > Conversion, migration, and adaptation capabilities
 
@@ -7,6 +7,21 @@
 ## 1. Overview
 
 Converters transform data between formats, migrate content between versions, and adapt interfaces. They answer the question: "How to transform?"
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Converter Capabilities](#2-converter-capabilities)
+- [3. format_converter](#3-formatconverter)
+- [4. schema_migrator](#4-schemamigrator)
+- [5. content_adapter](#5-contentadapter)
+- [6. encoding_converter](#6-encodingconverter)
+- [7. protocol_translator](#7-protocoltranslator)
+- [8. Conversion Pipeline](#8-conversion-pipeline)
+- [9. Configuration](#9-configuration)
+- [10. Extending Converters](#10-extending-converters)
+- [Related](#related)
 
 ---
 
@@ -52,7 +67,6 @@ class FormatConverter(Capability[ConversionInput, ConversionOutput]):
             metadata=self._extract_metadata(converted)
         )
 ```
-
 ### 3.3 Supported Formats
 
 | Category | Formats |
@@ -93,7 +107,6 @@ class SchemaMigrator(Capability[MigrationInput, MigrationOutput]):
             target_version=input.target_version
         )
 ```
-
 ### 4.3 Migration Strategy
 
 | Strategy | Use Case | Risk |
@@ -133,7 +146,6 @@ class ContentAdapter(Capability[AdaptInput, AdaptOutput]):
             unmapped_fields=self._find_unmapped(mapping)
         )
 ```
-
 ### 5.3 Adaptation Modes
 
 | Mode | Description | Example |
@@ -171,7 +183,6 @@ class EncodingConverter(Capability[EncodingInput, EncodingOutput]):
             bytes_changed=self._count_changes(input.content, converted)
         )
 ```
-
 ---
 
 ## 7. protocol_translator
@@ -203,7 +214,6 @@ class ProtocolTranslator(Capability[ProtocolInput, ProtocolOutput]):
             target_protocol=input.target_protocol
         )
 ```
-
 ### 7.3 Supported Protocols
 
 | Protocol | Direction | Use Case |
@@ -229,7 +239,6 @@ graph TD
     
     Source --> FC --> SM --> CA --> EC --> PT --> Target
 ```
-
 ---
 
 ## 9. Configuration
@@ -253,7 +262,6 @@ capabilities:
       default_encoding: utf-8
       detect_encoding: true
 ```
-
 ---
 
 ## 10. Extending Converters
@@ -267,7 +275,6 @@ class CustomConverter(Capability[MyInput, MyOutput]):
         # Custom conversion logic
         ...
 ```
-
 ---
 
 ## Related

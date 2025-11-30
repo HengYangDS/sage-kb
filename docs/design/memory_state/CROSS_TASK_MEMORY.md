@@ -1,4 +1,4 @@
-# Cross-Task Memory
+﻿# Cross-Task Memory
 
 > Persistent memory across sessions and tasks
 
@@ -7,6 +7,21 @@
 ## 1. Overview
 
 Cross-task memory enables SAGE to retain and utilize learned patterns, user preferences, and optimization insights across multiple sessions and tasks.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Memory Types](#2-memory-types)
+- [3. Architecture](#3-architecture)
+- [4. User Memory](#4-user-memory)
+- [5. Project Memory](#5-project-memory)
+- [6. Global Insights](#6-global-insights)
+- [7. Memory Operations](#7-memory-operations)
+- [8. Memory Recall](#8-memory-recall)
+- [9. Memory Maintenance](#9-memory-maintenance)
+- [10. Configuration](#10-configuration)
+- [Related](#related)
 
 ---
 
@@ -36,7 +51,6 @@ graph TD
     Project --> Persistence
     Global --> Persistence
 ```
-
 ---
 
 ## 4. User Memory
@@ -53,7 +67,6 @@ class UserPreferences:
     custom_shortcuts: dict
     ui_settings: dict
 ```
-
 ### 4.2 Usage Patterns
 
 ```python
@@ -65,7 +78,6 @@ class UsagePatterns:
     typical_session_length: int
     peak_usage_hours: list[int]
 ```
-
 ### 4.3 Learning User Patterns
 
 ```python
@@ -83,7 +95,6 @@ class UserPatternLearner:
         
         self._save_patterns(user_id, patterns)
 ```
-
 ---
 
 ## 5. Project Memory
@@ -99,7 +110,6 @@ class ProjectMemory:
     custom_rules: list[str]
     last_updated: datetime
 ```
-
 ### 5.2 Convention Tracking
 
 ```python
@@ -114,7 +124,6 @@ class ConventionTracker:
         memory = self._load_project(project_id)
         return memory.conventions
 ```
-
 ---
 
 ## 6. Global Insights
@@ -131,7 +140,6 @@ class Optimization:
     confidence: float
     learned_from: int  # Number of observations
 ```
-
 ### 6.2 Pattern Recognition
 
 ```python
@@ -150,7 +158,6 @@ class InsightLearner:
         
         return optimizations
 ```
-
 ---
 
 ## 7. Memory Operations
@@ -167,7 +174,6 @@ class CrossTaskMemory:
             "version": self.version,
         })
 ```
-
 ### 7.2 Retrieve Memory
 
 ```python
@@ -179,7 +185,6 @@ def retrieve(self, key: str, scope: str = "user") -> Any | None:
         return data["value"]
     return None
 ```
-
 ### 7.3 Merge Memories
 
 ```python
@@ -195,7 +200,6 @@ def merge(self, old: dict, new: dict, strategy: str = "newer_wins") -> dict:
                 result[key] = value
         return result
 ```
-
 ---
 
 ## 8. Memory Recall
@@ -220,7 +224,6 @@ class MemoryRecaller:
             insights=insights
         )
 ```
-
 ### 8.2 Predictive Loading
 
 ```python
@@ -235,7 +238,6 @@ def predict_needs(self, user_id: str, context: str) -> list[str]:
     
     return predictions[:10]  # Top 10 predictions
 ```
-
 ---
 
 ## 9. Memory Maintenance
@@ -268,7 +270,6 @@ class MemoryMaintenance:
         
         return CleanupReport(deleted=len(expired), archived=len(inactive))
 ```
-
 ---
 
 ## 10. Configuration
@@ -294,7 +295,6 @@ cross_task_memory:
     schedule: daily
     batch_size: 100
 ```
-
 ---
 
 ## Related

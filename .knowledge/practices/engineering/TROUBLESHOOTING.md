@@ -1,4 +1,4 @@
-# Troubleshooting Guide
+﻿# Troubleshooting Guide
 
 > Common issues, debugging techniques, and solutions for AI Collaboration Knowledge Base
 
@@ -29,7 +29,6 @@
 ### 1.1 Health Check Commands
 
 ```bash
-
 # Check system health
 
 sage info
@@ -68,7 +67,6 @@ sage check --all
 ### 2.1 Import Errors
 
 **Symptom**: `ModuleNotFoundError: No module named 'sage'`
-
 **Causes & Solutions**:
 
 | Cause                    | Solution                           |
@@ -84,7 +82,6 @@ sage check --all
 **Debug Steps**:
 
 ```python
-
 import sys
 
 print(sys.path)  # Check if src/ is in path
@@ -93,7 +90,6 @@ print(sys.path)  # Check if src/ is in path
 ### 2.2 Configuration Errors
 
 **Symptom**: `ConfigurationError: Invalid configuration`
-
 **Common Issues**:
 
 | Issue                  | Solution                                  |
@@ -109,7 +105,6 @@ print(sys.path)  # Check if src/ is in path
 **Debug Example**:
 
 ```python
-
 import yaml
 
 with open("config/app.yaml") as f:
@@ -126,7 +121,6 @@ with open("config/app.yaml") as f:
 ### 2.3 Timeout Errors
 
 **Symptom**: `TimeoutError: Operation timed out`
-
 **Timeout Levels Reference**:
 
 | Level | Timeout | Typical Cause     |
@@ -156,7 +150,6 @@ with open("config/app.yaml") as f:
 ### 2.4 MCP Connection Errors
 
 **Symptom**: `ConnectionError: Failed to connect to MCP server`
-
 **Solutions**:
 
 | Issue              | Solution                 |
@@ -178,7 +171,6 @@ with open("config/app.yaml") as f:
 ### 3.1 Enable Debug Logging
 
 ```python
-
 # In code
 
 import logging
@@ -201,7 +193,6 @@ default_level: DEBUG
 ### 3.2 Interactive Debugging
 
 ```python
-
 # Add breakpoint
 
 import pdb;
@@ -222,7 +213,6 @@ breakpoint()
 ### 3.3 Trace Execution
 
 ```python
-
 # Trace function calls
 
 import sys
@@ -241,7 +231,6 @@ sys.settrace(trace_calls)
 ### 3.4 Memory Profiling
 
 ```python
-
 # Install: pip install memory-profiler
 
 from memory_profiler import profile
@@ -288,7 +277,6 @@ def memory_intensive_function():
 **Parsing Logs**:
 
 ```bash
-
 # Find errors
 
 grep "\[ERROR\]" .logs/sage.log
@@ -309,7 +297,6 @@ tail -f .logs/sage.log
 ### 4.3 Structured Log Query
 
 ```python
-
 import json
 
 def parse_structured_log(log_file):
@@ -340,7 +327,6 @@ def parse_structured_log(log_file):
 **Diagnosis**:
 
 ```python
-
 import time
 
 start = time.perf_counter()
@@ -371,7 +357,6 @@ print(f"Elapsed: {elapsed:.3f}s")
 **Diagnosis**:
 
 ```python
-
 import tracemalloc
 
 tracemalloc.start()
@@ -402,7 +387,6 @@ for stat in top_stats[:10]:
 **Diagnosis**:
 
 ```python
-
 import cProfile
 
 import pstats
@@ -429,7 +413,6 @@ stats.print_stats(10)
 ### 6.1 Validate Configuration
 
 ```python
-
 from sage.core.config import load_config, validate_config
 
 try:
@@ -462,7 +445,6 @@ except Exception as e:
 ### 6.3 Environment Override Issues
 
 ```bash
-
 # Check environment variables
 
 env | grep SAGE_
@@ -485,13 +467,9 @@ SAGE_TIMEOUT_DEFAULT=5000
 **Checklist**:
 
 1. Check if port is available: `lsof -i :8080`
-
 2. Verify MCP package installed: `pip show mcp`
-
 3. Check config: `config/services/mcp.yaml`
-
 4. Review logs: `.logs/mcp.log`
-
 ### 7.2 Tool Registration Failures
 
 **Symptom**: Tools not appearing in MCP client
@@ -499,7 +477,6 @@ SAGE_TIMEOUT_DEFAULT=5000
 **Debug**:
 
 ```python
-
 from sage.services.mcp_server import create_app
 
 app = create_app()
@@ -512,7 +489,6 @@ print(f"Registered tools: {list(app.tools.keys())}")
 **Enable request logging**:
 
 ```yaml
-
 # config/services/mcp.yaml
 
 logging:
@@ -531,7 +507,6 @@ logging:
 ### 8.1 Corrupted Configuration
 
 ```bash
-
 # Backup current config
 
 cp config/app.yaml config/app.yaml.bak
@@ -548,7 +523,6 @@ cp config/app.yaml.backup config/app.yaml
 ### 8.2 Database/Cache Corruption
 
 ```bash
-
 # Clear cache
 
 rm -rf .cache/*
@@ -565,7 +539,6 @@ sage check --integrity
 ### 8.3 Failed Migration Recovery
 
 ```bash
-
 # List available backups
 
 sage backup list
@@ -616,7 +589,6 @@ sage check --all
 ### Debug Environment Variables
 
 ```bash
-
 export SAGE_DEBUG=1
 
 export SAGE_LOG_LEVEL=DEBUG

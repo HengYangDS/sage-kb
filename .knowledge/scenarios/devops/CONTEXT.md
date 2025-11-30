@@ -1,4 +1,4 @@
-# DevOps Scenario Context
+﻿# DevOps Scenario Context
 
 > Pre-configured context for CI/CD, infrastructure, and operations
 
@@ -29,7 +29,6 @@
 ## 1. Scenario Profile
 
 ```yaml
-
 scenario: devops
 
 languages: [ yaml, bash, python, hcl ]
@@ -84,7 +83,6 @@ autonomy_default: L2
 ### 4.1 GitHub Actions Workflow
 
 ```yaml
-
 name: CI/CD Pipeline
 
 on:
@@ -199,7 +197,6 @@ jobs:
 ### 4.2 GitLab CI Pipeline
 
 ```yaml
-
 stages:
 
   - test
@@ -282,7 +279,6 @@ deploy:
 ### 4.3 Multi-Stage Dockerfile
 
 ```dockerfile
-
 # Build stage
 
 FROM python:3.12-slim AS builder
@@ -333,7 +329,6 @@ CMD ["python", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0"]
 ### 5.1 Terraform Module Structure
 
 ```hcl
-
 # modules/app/main.tf
 
 terraform {
@@ -398,7 +393,6 @@ output "instance_id" {
 ### 5.2 Kubernetes Deployment
 
 ```yaml
-
 apiVersion: apps/v1
 
 kind: Deployment
@@ -551,7 +545,6 @@ spec:
 ### 6.3 Prometheus Alert Example
 
 ```yaml
-
 groups:
 
   - name: app-alerts

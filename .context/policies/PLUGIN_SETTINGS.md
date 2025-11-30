@@ -1,4 +1,4 @@
-# Plugin System Configuration
+﻿# Plugin System Configuration
 
 > Configuration reference for the SAGE plugin system
 
@@ -32,7 +32,6 @@
 │ Plugins  │ │ Packages │ │  Local   │ │    Settings       │
 └──────────┘ └──────────┘ └──────────┘ └───────────────────┘
 ```
-
 ### 1.2 Plugin Types
 
 | Type         | Location                    | Use Case           |
@@ -68,7 +67,6 @@ plugins:
     # Auto-discovery on startup
     auto_discover: true
 ```
-
 ### 2.2 Discovery Process
 
 ```text
@@ -78,7 +76,6 @@ plugins:
 4. Validate plugin manifests
 5. Register valid plugins
 ```
-
 ### 2.3 Entry Point Configuration
 
 For external plugins (in plugin's `pyproject.toml`):
@@ -87,7 +84,6 @@ For external plugins (in plugin's `pyproject.toml`):
 [project.entry-points."sage.plugins"]
 my_plugin = "my_package.plugin:MyPlugin"
 ```
-
 ---
 
 ## 3. Plugin Configuration
@@ -117,7 +113,6 @@ plugins:
     log_level: INFO
     timeout: 10000
 ```
-
 ### 3.2 Per-Plugin Configuration
 
 ```yaml
@@ -142,7 +137,6 @@ plugins:
     export_plugin:
       enabled: false  # Disabled
 ```
-
 ### 3.3 Environment Variables
 
 ```bash
@@ -154,7 +148,6 @@ export SAGE_PLUGINS_PATH=/custom/plugins
 export SAGE_PLUGIN_ANALYZER_ENABLED=true
 export SAGE_PLUGIN_ANALYZER_MAX_DEPTH=10
 ```
-
 ---
 
 ## 4. Bundled Plugins
@@ -207,7 +200,6 @@ plugins:
         ttl: 3600
         max_size: 1000
 ```
-
 ---
 
 ## 5. Custom Plugins
@@ -222,7 +214,6 @@ plugins/
     ├── config.yaml        # Plugin config schema
     └── README.md          # Documentation
 ```
-
 ### 5.2 Plugin Manifest
 
 ```yaml
@@ -253,7 +244,6 @@ config_schema:
       type: integer
       default: 10
 ```
-
 ### 5.3 Plugin Registration
 
 ```yaml
@@ -275,7 +265,6 @@ plugins:
       settings:
         api_key: ${PLUGIN_API_KEY}
 ```
-
 ---
 
 ## 6. Security
@@ -307,7 +296,6 @@ plugins:
     blocklist:
       - untrusted_plugin
 ```
-
 ### 6.2 Permission Levels
 
 | Level          | File Read | File Write | Network | Subprocess |
@@ -335,7 +323,6 @@ plugins:
     verify_hash: true
     hash_algorithm: sha256
 ```
-
 ---
 
 ## 7. Quick Reference
@@ -363,7 +350,6 @@ sage plugin uninstall <package_name>
 sage plugin reload
 sage plugin reload <plugin_name>
 ```
-
 ### 7.2 Plugin Development
 
 ```python
@@ -389,7 +375,6 @@ class MyPlugin(Plugin):
         """Hook into content loading."""
         return self.process(content)
 ```
-
 ### 7.3 Configuration Validation
 
 ```bash
@@ -400,7 +385,6 @@ sage plugin validate <plugin_name>
 # Show plugin configuration
 sage plugin config <plugin_name>
 ```
-
 ---
 
 ## Related

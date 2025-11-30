@@ -1,4 +1,4 @@
-# Optimization Strategies
+﻿# Optimization Strategies
 
 > Systematic approaches to improving system performance
 

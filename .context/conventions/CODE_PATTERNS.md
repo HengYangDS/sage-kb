@@ -1,4 +1,4 @@
-# SAGE Code Patterns
+﻿# SAGE Code Patterns
 
 > Project-specific code patterns and idioms for SAGE Knowledge Base
 
@@ -26,7 +26,6 @@ from sage.core.di import get_container, DIContainer, Lifetime
 # Get global container instance
 container = get_container()
 ```
-
 ### 1.2 Service Registration
 
 ```python
@@ -47,7 +46,6 @@ container.register_factory(
     lifetime=Lifetime.TRANSIENT
 )
 ```
-
 ### 1.3 Lifetime Selection
 
 | Lifetime    | Use Case                         | Example                            |
@@ -69,7 +67,6 @@ analyzer = container.try_resolve(AnalyzerProtocol)
 with container.create_scope("request-123") as scope:
     handler = scope.resolve(RequestHandler)
 ```
-
 ### 1.5 Configuration-Driven Registration
 
 ```yaml
@@ -80,7 +77,6 @@ services:
     lifetime: singleton
     config_key: loader
 ```
-
 ---
 
 ## 2. Event Bus
@@ -93,7 +89,6 @@ from sage.core.events import get_event_bus, Event, EventType
 # Get global event bus instance
 bus = get_event_bus()
 ```
-
 ### 2.2 Publishing Events
 
 ```python
@@ -109,7 +104,6 @@ await bus.publish(event)
 # Or use string type
 event = Event(type="knowledge.loaded", data={...})
 ```
-
 ### 2.3 Subscribing to Events
 
 ```python
@@ -129,14 +123,12 @@ subscription = bus.subscribe(
 # Wildcard subscription
 bus.subscribe("knowledge.*", handle_all_knowledge_events)
 ```
-
 ### 2.4 Unsubscribing
 
 ```python
 # Unsubscribe by ID
 bus.unsubscribe(subscription.id)
 ```
-
 ### 2.5 Event Patterns
 
 | Pattern            | Matches                                 |
@@ -164,7 +156,6 @@ result = await manager.execute_with_timeout(
     fallback=partial_knowledge
 )
 ```
-
 ### 3.2 Timeout Levels
 
 ```python
@@ -177,7 +168,6 @@ TimeoutLevel.T3_LAYER  # 2s    - Full layer
 TimeoutLevel.T4_FULL  # 5s    - Complete KB
 TimeoutLevel.T5_COMPLEX  # 10s   - Analysis
 ```
-
 ### 3.3 Timeout Decorator Pattern
 
 ```python
@@ -189,7 +179,6 @@ async def load_file(path: str) -> str:
     async with aiofiles.open(path) as f:
         return await f.read()
 ```
-
 ### 3.4 Fallback Strategy
 
 ```python
@@ -204,7 +193,6 @@ async def load_with_fallback() -> Knowledge:
     except TimeoutError:
         return await load_core_only()  # Emergency fallback
 ```
-
 ---
 
 ## 4. Error Handling
@@ -220,7 +208,6 @@ from sage.core.exceptions import (
     ValidationError,  # Input validation errors
 )
 ```
-
 ### 4.2 Error Handling Pattern
 
 ```python
@@ -240,7 +227,6 @@ async def safe_operation() -> Result:
         logger.exception(f"Unexpected error: {e}")
         raise SAGEError(f"Operation failed: {e}") from e
 ```
-
 ### 4.3 Error Context Pattern
 
 ```python
@@ -252,7 +238,6 @@ except Exception as e:
         f"Failed to process {data.name}"
     ) from e
 ```
-
 ### 4.4 Result Pattern (Optional)
 
 ```python
@@ -271,7 +256,6 @@ class Result(Generic[T]):
     def is_success(self) -> bool:
         return self.error is None
 ```
-
 ---
 
 ## 5. Protocol Implementation
@@ -294,7 +278,6 @@ class SourceProtocol(Protocol):
         """Search for knowledge."""
         ...
 ```
-
 ### 5.2 Implementing Protocols
 
 ```python
@@ -313,7 +296,6 @@ class FileSource:
 # Type checking verifies protocol compliance
 source: SourceProtocol = FileSource()
 ```
-
 ### 5.3 Protocol Composition
 
 ```python
@@ -321,7 +303,6 @@ class FullSourceProtocol(SourceProtocol, CacheableProtocol):
     """Combined protocol for full-featured sources."""
     pass
 ```
-
 ---
 
 ## 6. Configuration
@@ -338,7 +319,6 @@ config = get_config()
 timeout = config.timeout.cache_lookup
 layers = config.knowledge.layers
 ```
-
 ### 6.2 Environment Override
 
 ```python
@@ -348,7 +328,6 @@ layers = config.knowledge.layers
 # YAML: timeout.cache_lookup: 100
 # Env:  SAGE__TIMEOUT__CACHE_LOOKUP=200
 ```
-
 ### 6.3 Config Validation
 
 ```python
@@ -365,7 +344,6 @@ class TimeoutConfig(BaseModel):
             raise ValueError("cache_lookup must be >= 10ms")
         return v
 ```
-
 ---
 
 ## 7. Async Patterns
@@ -386,7 +364,6 @@ class AsyncResource:
 async with AsyncResource() as resource:
     await resource.process()
 ```
-
 ### 7.2 Concurrent Operations
 
 ```python
@@ -401,7 +378,6 @@ async def load_all_layers() -> list[Knowledge]:
     ]
     return await asyncio.gather(*tasks, return_exceptions=True)
 ```
-
 ### 7.3 Semaphore for Rate Limiting
 
 ```python
@@ -412,7 +388,6 @@ async def rate_limited_load(path: str) -> Knowledge:
     async with semaphore:
         return await load_file(path)
 ```
-
 ### 7.4 Async Generator
 
 ```python
@@ -425,7 +400,6 @@ async def stream_knowledge() -> AsyncGenerator[Knowledge, None]:
 async for knowledge in stream_knowledge():
     process(knowledge)
 ```
-
 ---
 
 ## 8. Logging Patterns
@@ -445,7 +419,6 @@ logger.info(
     duration_ms=150
 )
 ```
-
 ### 8.2 Context Binding
 
 ```python
@@ -454,7 +427,6 @@ logger = logger.bind(request_id="abc-123")
 logger.info("processing_started")  # Includes request_id
 logger.info("processing_completed")  # Includes request_id
 ```
-
 ---
 
 ## 9. Testing Patterns
@@ -472,7 +444,6 @@ def container():
     yield container
     container.clear()
 ```
-
 ### 9.2 Mock Event Bus
 
 ```python
@@ -482,7 +453,6 @@ def mock_bus():
     yield bus
     bus.clear()
 ```
-
 ### 9.3 Async Test
 
 ```python
@@ -494,7 +464,6 @@ async def test_async_load():
     result = await load_knowledge("test.md")
     assert result is not None
 ```
-
 ---
 
 ## Related

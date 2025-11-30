@@ -1,4 +1,4 @@
-# Generators
+﻿# Generators
 
 > Generation, building, and creation capabilities
 
@@ -7,6 +7,23 @@
 ## 1. Overview
 
 Generators produce new content, build artifacts, and create resources. They answer the question: "How to produce?"
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Generator Capabilities](#2-generator-capabilities)
+- [3. index_generator](#3-indexgenerator)
+- [Documents](#documents)
+- [Related](#related)
+- [4. template_generator](#4-templategenerator)
+- [5. doc_generator](#5-docgenerator)
+- [6. config_generator](#6-configgenerator)
+- [7. scaffold_generator](#7-scaffoldgenerator)
+- [8. Generation Pipeline](#8-generation-pipeline)
+- [9. Configuration](#9-configuration)
+- [10. Extending Generators](#10-extending-generators)
+- [Related](#related)
 
 ---
 
@@ -55,7 +72,6 @@ class IndexGenerator(Capability[DirectoryInput, IndexOutput]):
             entries_count=len(entries)
         )
 ```
-
 ### 3.3 Index Structure
 
 ```markdown
@@ -77,7 +93,6 @@ class IndexGenerator(Capability[DirectoryInput, IndexOutput]):
 
 - Links to related directories
 ```
-
 ---
 
 ## 4. template_generator
@@ -109,7 +124,6 @@ class TemplateGenerator(Capability[TemplateInput, RenderedOutput]):
             variables_bound=list(input.data.keys())
         )
 ```
-
 ### 4.3 Template Types
 
 | Type | Extension | Use Case |
@@ -152,7 +166,6 @@ class DocGenerator(Capability[SourceInput, DocOutput]):
             functions_documented=len(functions)
         )
 ```
-
 ### 5.3 Documentation Formats
 
 | Format | Output | Tool |
@@ -192,7 +205,6 @@ class ConfigGenerator(Capability[SchemaInput, ConfigOutput]):
             schema_version=schema.version
         )
 ```
-
 ### 6.3 Config Formats
 
 | Format | Extension | Features |
@@ -232,7 +244,6 @@ class ScaffoldGenerator(Capability[ScaffoldInput, ScaffoldOutput]):
             output_path=input.output_path
         )
 ```
-
 ### 7.3 Scaffold Types
 
 | Type | Creates | Use Case |
@@ -258,7 +269,6 @@ flowchart TD
     
     A1 --> A2 --> A3 --> A4 --> A5 --> A6 --> A7
 ```
-
 ---
 
 ## 9. Configuration
@@ -282,7 +292,6 @@ capabilities:
       include_comments: true
       validate_output: true
 ```
-
 ---
 
 ## 10. Extending Generators
@@ -296,7 +305,6 @@ class CustomGenerator(Capability[MyInput, MyOutput]):
         # Custom generation logic
         ...
 ```
-
 ---
 
 ## Related

@@ -1,4 +1,4 @@
-# Three-Layer Architecture
+﻿# Three-Layer Architecture
 
 > Core, Services, and Capabilities — the foundation of SAGE
 
@@ -13,6 +13,19 @@ SAGE uses a three-layer architecture that separates concerns and enables modular
 | **Core** | Foundation and infrastructure | ★★★★★ |
 | **Services** | User-facing interfaces | ★★★★☆ |
 | **Capabilities** | Functional operations | ★★★☆☆ |
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Architecture Diagram](#2-architecture-diagram)
+- [3. Core Layer](#3-core-layer)
+- [4. Services Layer](#4-services-layer)
+- [5. Capabilities Layer](#5-capabilities-layer)
+- [6. Layer Communication](#6-layer-communication)
+- [7. Benefits](#7-benefits)
+- [8. Anti-Patterns](#8-anti-patterns)
+- [Related](#related)
 
 ---
 
@@ -64,7 +77,6 @@ graph TD
     Converters --> Core
     Generators --> Core
 ```
-
 ---
 
 ## 3. Core Layer
@@ -129,7 +141,6 @@ src/sage/services/
     ├── __init__.py
     └── service.py
 ```
-
 ---
 
 ## 5. Capabilities Layer
@@ -165,7 +176,6 @@ src/sage/capabilities/
 ├── converters/
 └── generators/
 ```
-
 ---
 
 ## 6. Layer Communication
@@ -178,7 +188,6 @@ graph LR
     Capabilities -->|Uses| Core
     Core -->|Uses| Nothing[Nothing]
 ```
-
 ### 6.2 Forbidden Dependencies
 
 | From | To | Reason |

@@ -1,4 +1,4 @@
-# Dependency Rules
+﻿# Dependency Rules
 
 > Strict dependency boundaries for maintainable architecture
 
@@ -8,6 +8,21 @@
 
 SAGE enforces strict dependency rules to maintain clean architecture, prevent circular dependencies, and ensure
 testability.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Dependency Matrix](#2-dependency-matrix)
+- [3. Core Layer Rules](#3-core-layer-rules)
+- [4. Capabilities Layer Rules](#4-capabilities-layer-rules)
+- [5. Services Layer Rules](#5-services-layer-rules)
+- [6. Import Conventions](#6-import-conventions)
+- [7. Dependency Injection](#7-dependency-injection)
+- [8. Violation Detection](#8-violation-detection)
+- [9. Common Violations](#9-common-violations)
+- [10. Enforcement Checklist](#10-enforcement-checklist)
+- [Related](#related)
 
 ---
 
@@ -40,7 +55,6 @@ graph TD
     Services -->|allowed| Capabilities
     Capabilities -->|allowed| Core
 ```
-
 ---
 
 ## 3. Core Layer Rules
@@ -56,7 +70,6 @@ from dataclasses import dataclass
 from sage.core.models import KnowledgeAsset
 from sage.core.events import EventBus
 ```
-
 ### 3.2 Forbidden
 
 ```python
@@ -69,7 +82,6 @@ from sage.services.cli import CLIService  # FORBIDDEN
 # ❌ Core cannot import external libraries (except approved list)
 import requests  # FORBIDDEN in core
 ```
-
 ### 3.3 Approved External Dependencies
 
 | Package             | Purpose         | Justification    |
@@ -95,14 +107,12 @@ from sage.capabilities.checkers import ValidationResult
 # ✅ Limited external dependencies
 import yaml  # For parsing
 ```
-
 ### 4.2 Forbidden
 
 ```python
 # ❌ Capabilities cannot import from Services
 from sage.services.mcp import MCPService  # FORBIDDEN
 ```
-
 ### 4.3 External Dependency Guidelines
 
 | Category     | Examples               | Policy                           |
@@ -129,7 +139,6 @@ from sage.capabilities.analyzers import analyze
 from fastapi import FastAPI  # For API service
 import click  # For CLI service
 ```
-
 ### 5.2 Guidelines
 
 | Guideline                  | Description                        |
@@ -151,7 +160,6 @@ from sage.core.models import KnowledgeAsset
 # ❌ Avoid relative imports across layers
 from ...core.models import KnowledgeAsset  # AVOID
 ```
-
 ### 6.2 Import Order
 
 ```python
@@ -173,7 +181,6 @@ from sage.capabilities.analyzers import analyze
 # 5. Local module
 from .helpers import format_output
 ```
-
 ---
 
 ## 7. Dependency Injection
@@ -200,7 +207,6 @@ class CLIService:
     def __init__(self, analyzer: AnalyzerProtocol):
         self.analyzer = analyzer
 ```
-
 ---
 
 ## 8. Violation Detection
@@ -214,7 +220,6 @@ python -m scripts.check.check_architecture
 # Check specific module
 python -m scripts.check.check_architecture --module sage.core
 ```
-
 ### 8.2 CI Integration
 
 ```yaml
@@ -222,7 +227,6 @@ python -m scripts.check.check_architecture --module sage.core
 - name: Check Dependencies
   run: python -m scripts.check.check_architecture --strict
 ```
-
 ---
 
 ## 9. Common Violations

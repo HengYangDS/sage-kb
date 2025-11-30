@@ -1,4 +1,4 @@
-# AI Collaboration Patterns - SAGE Project Reference
+﻿# AI Collaboration Patterns - SAGE Project Reference
 
 > Project-specific calibration and patterns for SAGE Knowledge Base
 
@@ -82,7 +82,6 @@ When working with SAGE knowledge layers:
 2. Guidelines load by task type
 3. Frameworks load on-demand
 4. Use smart triggers from `config/knowledge/triggers.yaml`
-
 ### Timeout-Aware Operations
 
 For all I/O operations in SAGE:

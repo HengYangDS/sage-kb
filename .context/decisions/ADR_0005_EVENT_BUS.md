@@ -1,4 +1,4 @@
-# ADR-0005: Event Bus Architecture
+﻿# ADR-0005: Event Bus Architecture
 
 > Architecture Decision Record for SAGE Knowledge Base
 
@@ -58,7 +58,6 @@ class EventBus:
 
     async def publish(self, event): ...
 ```
-
 ### Event Structure
 
 ```python
@@ -69,7 +68,6 @@ class Event:
     timestamp: float  # When event occurred
     source: str | None  # Origin identifier
 ```
-
 ### Pattern Matching
 
 | Pattern            | Matches                                       |
@@ -150,7 +148,6 @@ event = Event(
 )
 await bus.publish(event)
 ```
-
 ### Subscribing to Events
 
 ```python
@@ -172,7 +169,6 @@ bus.subscribe(
 # Wildcard subscription
 bus.subscribe("*", audit_logger, priority=1000)
 ```
-
 ### Handler Priority
 
 ```
@@ -182,7 +178,6 @@ Priority 100: Default handlers (default)
 Priority 500: Logging/auditing
 Priority 1000: Cleanup
 ```
-
 Lower priority number = earlier execution.
 
 ### Error Handling
@@ -200,7 +195,6 @@ def on_handler_error(error, event, subscription):
 
 bus = EventBus(error_handler=on_handler_error)
 ```
-
 ### SAGE Protocol Events
 
 ```python
@@ -226,7 +220,6 @@ class EventType(str, Enum):
     KNOWLEDGE_LOADED = "knowledge.loaded"
     KNOWLEDGE_UPDATED = "knowledge.updated"
 ```
-
 ### Testing with EventBus
 
 ```python
@@ -248,7 +241,6 @@ async def test_event_publishing(event_bus):
 
     assert len(received) == 1
 ```
-
 ---
 
 ## Related

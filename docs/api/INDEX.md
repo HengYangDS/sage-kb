@@ -1,4 +1,4 @@
-
+﻿
 # API Reference
 
 > SAGE Knowledge Base API Documentation
@@ -84,7 +84,6 @@ search "timeout", search "autonomy"
 # By task type
 coding, debugging, reviewing, planning
 ```
-
 ### 4.2 Timeout Behavior
 
 All interfaces respect the 5-level timeout hierarchy (T1-T5).
@@ -96,7 +95,7 @@ All interfaces respect the 5-level timeout hierarchy (T1-T5).
 ## Related
 
 - `docs/guides/` — User guides and tutorials
-- `docs/design/03-services.md` — Service layer design
+- `docs/design/services/SERVICE_LAYER.md` — Service layer design
 - `config/services/` — Service configuration
 
 ---

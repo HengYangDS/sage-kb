@@ -1,4 +1,4 @@
-# SAGE Protocol
+﻿# SAGE Protocol
 
 > Source, Analyze, Generate, Evolve — the core operational pattern
 
@@ -15,6 +15,18 @@ SAGE is an acronym representing the four-phase protocol for knowledge operations
 | **G** | Generate | Produce multi-channel outputs |
 | **E** | Evolve | Measure, learn, and improve |
 
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Protocol Flow](#2-protocol-flow)
+- [3. Phase Summaries](#3-phase-summaries)
+- [4. Protocol Interfaces](#4-protocol-interfaces)
+- [5. Data Flow](#5-data-flow)
+- [6. Error Handling](#6-error-handling)
+- [7. Extension Points](#7-extension-points)
+- [Related](#related)
+
 ---
 
 ## 2. Protocol Flow
@@ -30,7 +42,6 @@ graph LR
         S --> A --> G --> E
     end
 ```
-
 ---
 
 ## 3. Phase Summaries
@@ -106,7 +117,6 @@ class EvolveProtocol(Protocol):
     def learn(self, metrics: Metrics) -> Insights: ...
     def optimize(self, insights: Insights) -> Improvements: ...
 ```
-
 ---
 
 ## 5. Data Flow

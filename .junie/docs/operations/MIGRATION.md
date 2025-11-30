@@ -1,4 +1,4 @@
-
+﻿
 # Version Migration Guide
 
 > Version migration strategies and breaking change handling (~10 min read)
@@ -23,6 +23,7 @@
 ### Schema Version Format
 
 ```
+
 MAJOR.MINOR.PATCH
   │     │     └── Bug fixes, documentation updates
   │     └──────── New features, backward compatible
@@ -59,6 +60,7 @@ MAJOR.MINOR.PATCH
 ### Staged Migration Process
 
 ```
+
 Phase 1: Preparation
     │
     ├── Backup current configuration

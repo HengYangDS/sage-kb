@@ -1,4 +1,4 @@
-
+﻿
 # Regex Reference
 
 > Regular expression patterns for Terminal rules (~10 min reference)
@@ -59,7 +59,6 @@
 ## 4. Security Pattern
 
 ### `[^\s;&|<>@$]*`
-
 This is the **critical security pattern** used in all Terminal rules. It matches any character EXCEPT dangerous ones.
 
 **Characters Excluded**:
@@ -95,7 +94,6 @@ Matches command with no arguments:
 
 **Matches**: `git status` (exactly)
 **Does NOT match**: `git status -s`, `git statusx`
-
 ### Command with Safe Arguments
 
 Allows arguments but excludes dangerous characters:
@@ -106,7 +104,6 @@ Allows arguments but excludes dangerous characters:
 
 **Matches**: `python test.py`, `python -m pytest`
 **Does NOT match**: `python; rm -rf /`, `python | cat`
-
 ### Command with Any Arguments
 
 Allows any arguments (use with caution):
@@ -127,7 +124,6 @@ Allows command with optional parts:
 ```
 
 **Matches**: `git status`, `git diff`, `git log --oneline`
-
 ---
 
 ## 6. Pattern Templates
@@ -231,6 +227,7 @@ Use for: Commands with specific allowed subcommands
 ### Test Cases Template
 
 ```
+
 Pattern: ^\Qgit add\E [^\s;&|<>@$]*$
 
 Should MATCH:

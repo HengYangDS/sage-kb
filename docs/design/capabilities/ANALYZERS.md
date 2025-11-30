@@ -1,4 +1,4 @@
-# Analyzers
+﻿# Analyzers
 
 > Analysis, diagnosis, and understanding capabilities
 
@@ -7,6 +7,21 @@
 ## 1. Overview
 
 Analyzers extract meaning, structure, and relationships from content. They answer the question: "What is it?"
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Analyzer Capabilities](#2-analyzer-capabilities)
+- [3. content_parser](#3-contentparser)
+- [4. structure_analyzer](#4-structureanalyzer)
+- [5. classifier](#5-classifier)
+- [6. relation_finder](#6-relationfinder)
+- [7. knowledge_graph](#7-knowledgegraph)
+- [8. Analysis Pipeline](#8-analysis-pipeline)
+- [9. Configuration](#9-configuration)
+- [10. Extending Analyzers](#10-extending-analyzers)
+- [Related](#related)
 
 ---
 
@@ -49,7 +64,6 @@ class ContentParser(Capability[str, ParsedContent]):
             tables=tables
         )
 ```
-
 ### 3.3 Output Structure
 
 ```python
@@ -62,7 +76,6 @@ class ParsedContent:
     links: list[Link]
     metadata: dict[str, Any]
 ```
-
 ---
 
 ## 4. structure_analyzer
@@ -85,7 +98,6 @@ class StructureAnalyzer(Capability[ParsedContent, StructureMap]):
             sections=self._analyze_sections(parsed.sections)
         )
 ```
-
 ---
 
 ## 5. classifier
@@ -110,7 +122,6 @@ class Classifier(Capability[ParsedContent, Classifications]):
             confidence=self._calculate_confidence()
         )
 ```
-
 ### 5.3 Classification Types
 
 | Type | Values |
@@ -148,7 +159,6 @@ class RelationFinder(Capability[list[ParsedContent], list[Relation]]):
         
         return relations
 ```
-
 ### 6.3 Relation Types
 
 | Type | Description | Example |
@@ -189,7 +199,6 @@ class KnowledgeGraphBuilder(Capability[AnalysisInput, KnowledgeGraph]):
             metadata=metadata
         )
 ```
-
 ---
 
 ## 8. Analysis Pipeline
@@ -206,7 +215,6 @@ graph TD
     
     Raw --> Parser --> Structure --> Classifier --> Relations --> Graph --> Output
 ```
-
 ---
 
 ## 9. Configuration
@@ -227,7 +235,6 @@ capabilities:
       find_implicit: true
       similarity_threshold: 0.8
 ```
-
 ---
 
 ## 10. Extending Analyzers
@@ -241,7 +248,6 @@ class CustomAnalyzer(Capability[MyInput, MyOutput]):
         # Custom analysis logic
         ...
 ```
-
 ---
 
 ## Related

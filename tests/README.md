@@ -1,4 +1,4 @@
-# SAGE Test Suite
+﻿# SAGE Test Suite
 
 > Comprehensive testing guide for SAGE Knowledge Base
 
@@ -34,7 +34,6 @@ tests/
 ├── integration/    # ~30 tests
 └── performance/    # ~15 benchmarks
 ```
-
 ---
 
 ## 2. Running Tests
@@ -59,7 +58,6 @@ pytest tests/unit/core/test_loader.py
 # Run specific test
 pytest tests/unit/core/test_loader.py::test_load_core_success
 ```
-
 ### Common Options
 
 ```bash
@@ -82,7 +80,6 @@ pytest tests/ -n auto
 pytest tests/ -m "not slow"
 pytest tests/ -m "integration"
 ```
-
 ### Test Markers
 
 | Marker                     | Description       | Usage                   |
@@ -145,7 +142,6 @@ tests/
     ├── test_timeout_stress.py
     └── test_token_efficiency.py
 ```
-
 ### Naming Conventions
 
 | Element        | Convention  | Example                         |
@@ -197,7 +193,6 @@ class TestKnowledgeLoader:
         
         assert result.content is not None
 ```
-
 ### Integration Test Example
 
 ```python
@@ -232,7 +227,6 @@ class TestCLIEndToEnd:
         assert result.exit_code == 0
         assert "version" in result.stdout.lower()
 ```
-
 ### Async Test Example
 
 ```python
@@ -275,7 +269,6 @@ class TestTimeoutManager:
                 level=TimeoutLevel.T1  # 100ms
             )
 ```
-
 ---
 
 ## 5. Fixtures
@@ -323,7 +316,6 @@ def mock_config():
         }
     }
 ```
-
 ### Fixture Files
 
 **Test Configuration (`fixtures/configs/test_sage.yaml`):**
@@ -342,7 +334,6 @@ logging:
 knowledge:
   content_path: tests/fixtures/sample_content
 ```
-
 **Sample Content (`fixtures/sample_.knowledge/core/test_principles.md`):**
 
 ```markdown
@@ -354,7 +345,6 @@ knowledge:
 
 Test principle content.
 ```
-
 ### Using Fixtures
 
 ```python
@@ -376,7 +366,6 @@ def test_all_layers(layer_name, loader):
     result = loader.load_sync(layer_name)
     assert result is not None
 ```
-
 ---
 
 ## 6. Performance Tests
@@ -411,7 +400,6 @@ class TestLoadPerformance:
         # Assert P95 < 5s (T4 timeout)
         assert benchmark.stats["mean"] < 5.0
 ```
-
 ### Running Benchmarks
 
 ```bash
@@ -427,7 +415,6 @@ pytest tests/performance/ --benchmark-compare=baseline.json
 # Save new baseline
 pytest tests/performance/ --benchmark-save=baseline
 ```
-
 ### Stress Tests
 
 ```python
@@ -475,7 +462,6 @@ class TestTimeoutStress:
         # Circuit breaker should prevent cascade
         assert successes > failures
 ```
-
 ---
 
 ## 7. CI Integration
@@ -512,7 +498,6 @@ jobs:
       - name: Upload coverage
         uses: codecov/codecov-action@v4
 ```
-
 ### Coverage Requirements
 
 | Module              | Minimum Coverage |
@@ -536,7 +521,6 @@ repos:
         pass_filenames: false
         always_run: true
 ```
-
 ---
 
 ## Quick Reference

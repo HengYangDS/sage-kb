@@ -1,4 +1,4 @@
-# Exceptions
+﻿# Exceptions
 
 > Exception hierarchy and error handling for SAGE
 
@@ -7,6 +7,21 @@
 ## 1. Overview
 
 SAGE uses a structured exception hierarchy to provide clear error categorization, consistent handling, and useful debugging information.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Exception Hierarchy](#2-exception-hierarchy)
+- [3. Base Exception](#3-base-exception)
+- [4. Exception Categories](#4-exception-categories)
+- [5. Error Handling Patterns](#5-error-handling-patterns)
+- [6. Error Codes](#6-error-codes)
+- [7. Logging Integration](#7-logging-integration)
+- [8. API Error Responses](#8-api-error-responses)
+- [9. Best Practices](#9-best-practices)
+- [10. Anti-Patterns](#10-anti-patterns)
+- [Related](#related)
 
 ---
 
@@ -41,7 +56,6 @@ classDiagram
     PluginError <|-- PluginConfigError
     PluginError <|-- PluginExecutionError
 ```
-
 ---
 
 ## 3. Base Exception
@@ -70,7 +84,6 @@ class SAGEError(Exception):
             "details": self.details
         }
 ```
-
 ---
 
 ## 4. Exception Categories
@@ -94,7 +107,6 @@ class ConfigValidationError(ConfigurationError):
         super().__init__(f"Invalid configuration: {len(errors)} errors")
         self.details["errors"] = errors
 ```
-
 ### 4.2 Knowledge Errors
 
 ```python
@@ -115,7 +127,6 @@ class AssetLoadError(KnowledgeError):
         self.details["path"] = path
         self.details["reason"] = reason
 ```
-
 ### 4.3 Operation Errors
 
 ```python
@@ -136,7 +147,6 @@ class CircuitBreakerError(OperationError):
         super().__init__(f"Circuit breaker open for {service}")
         self.details["service"] = service
 ```
-
 ### 4.4 Service Errors
 
 ```python
@@ -156,7 +166,6 @@ class APIError(ServiceError):
     """API service error."""
     status_code: int = 500
 ```
-
 ---
 
 ## 5. Error Handling Patterns
@@ -176,7 +185,6 @@ except SAGEError as e:
     logger.error(f"SAGE error: {e.code} - {e.message}")
     raise
 ```
-
 ### 5.2 Result Pattern
 
 ```python
@@ -187,7 +195,6 @@ def safe_load(asset_id: str) -> Result[KnowledgeAsset]:
     except SAGEError as e:
         return Result.fail(str(e))
 ```
-
 ### 5.3 Context Manager
 
 ```python
@@ -203,7 +210,6 @@ def handle_errors(operation: str):
             cause=e
         )
 ```
-
 ---
 
 ## 6. Error Codes
@@ -235,7 +241,6 @@ class SAGEError(Exception):
             }
         )
 ```
-
 ---
 
 ## 8. API Error Responses
@@ -250,7 +255,6 @@ async def sage_error_handler(request: Request, exc: SAGEError):
         content=exc.to_dict()
     )
 ```
-
 ```json
 {
     "error": "AssetNotFoundError",
@@ -260,7 +264,6 @@ async def sage_error_handler(request: Request, exc: SAGEError):
     }
 }
 ```
-
 ---
 
 ## 9. Best Practices

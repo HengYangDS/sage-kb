@@ -1,4 +1,4 @@
-# Junie Guidelines
+﻿# Junie Guidelines
 
 > Primary entry point for JetBrains Junie AI collaboration
 
@@ -39,7 +39,6 @@ For project-specific rules, refer to `project/GUIDELINES.md`.
 ## 2. AI Reading Order
 
 > **Layer Hierarchy Design**: `docs/design/knowledge_system/LAYER_HIERARCHY.md`
-
 When starting a new session, load files in this priority order:
 
 ### 2.1 Priority 1: Essential (Always Load)
@@ -69,6 +68,7 @@ When starting a new session, load files in this priority order:
 ### 2.4 Loading Strategy
 
 ```
+
 Session Start
     │
     ├─► Load guidelines.md (this file)
@@ -89,11 +89,9 @@ Session Start
 ## 3. AI Collaboration Rules
 
 > **Project-specific rules**: See `project/GUIDELINES.md`
-
 ### 3.1 Autonomy Levels
 
 > **Full Definition**: `.knowledge/frameworks/autonomy/LEVELS.md`
-
 | Level | Autonomy | Typical Use |
 |:------|:---------|:------------|
 | L1-L2 | 0-40% | Breaking changes, critical systems |
@@ -117,7 +115,6 @@ Session Start
 
 > **Project-specific standards**: See `project/GUIDELINES.md`
 > **Full Standards**: `.knowledge/guidelines/CODE_STYLE.md`
-
 ### 4.1 General Principles
 
 | Aspect | Guideline |

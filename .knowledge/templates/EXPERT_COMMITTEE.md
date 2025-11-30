@@ -1,4 +1,4 @@
-# Expert Committee Decision Templates
+﻿# Expert Committee Decision Templates
 
 > Ready-to-use decision prompts for multi-perspective analysis
 

@@ -1,4 +1,4 @@
-# SAGE Design Overview
+﻿# SAGE Design Overview
 
 > Comprehensive design documentation for SAGE Knowledge Base system
 
@@ -13,6 +13,17 @@ SAGE (Source, Analyze, Generate, Evolve) is an intelligent knowledge management 
 - **Generates** multi-channel outputs
 - **Evolves** through continuous improvement
 
+
+## Table of Contents
+
+- [1. What is SAGE?](#1-what-is-sage)
+- [2. Design Principles](#2-design-principles)
+- [3. Architecture Layers](#3-architecture-layers)
+- [4. Documentation Structure](#4-documentation-structure)
+- [5. Quick Navigation](#5-quick-navigation)
+- [6. Reading Order](#6-reading-order)
+
+---
 ---
 
 ## 2. Design Principles
@@ -36,7 +47,6 @@ flowchart TD
     
     A1 --> A2 --> A3 --> A4
 ```
-
 ---
 
 ## 4. Documentation Structure

@@ -1,4 +1,4 @@
-# Extending Capabilities
+﻿# Extending Capabilities
 
 > Guide to creating and registering custom capabilities
 
@@ -7,6 +7,20 @@
 ## 1. Overview
 
 This guide explains how to extend SAGE with custom capabilities following the established patterns and conventions.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Capability Architecture](#2-capability-architecture)
+- [3. Creating a Custom Capability](#3-creating-a-custom-capability)
+- [4. Registration](#4-registration)
+- [5. Configuration](#5-configuration)
+- [6. Error Handling](#6-error-handling)
+- [7. Testing](#7-testing)
+- [8. Best Practices](#8-best-practices)
+- [9. Family-Specific Guidelines](#9-family-specific-guidelines)
+- [Related](#related)
 
 ---
 
@@ -41,7 +55,6 @@ class Capability(ABC, Generic[TInput, TOutput]):
         """Handle execution errors."""
         raise error
 ```
-
 ### 2.2 Context Object
 
 ```python
@@ -55,7 +68,6 @@ class Context:
     timeout: Timeout            # Timeout settings
     metadata: dict[str, Any]    # Additional metadata
 ```
-
 ---
 
 ## 3. Creating a Custom Capability
@@ -114,7 +126,6 @@ class SentimentAnalyzer(Capability[SentimentInput, SentimentOutput]):
         # Determine overall sentiment
         ...
 ```
-
 ---
 
 ## 4. Registration
@@ -131,7 +142,6 @@ class SentimentAnalyzer(Capability[SentimentInput, SentimentOutput]):
     family = "analyzers"
     ...
 ```
-
 ### 4.2 Manual Registration
 
 ```python
@@ -142,7 +152,6 @@ from .sentiment_analyzer import SentimentAnalyzer
 def register(registry: CapabilityRegistry):
     registry.register(SentimentAnalyzer())
 ```
-
 ### 4.3 Plugin-Based Registration
 
 ```python
@@ -155,7 +164,6 @@ capabilities:
     class: my_plugin.analyzers.SentimentAnalyzer
     family: analyzers
 ```
-
 ---
 
 ## 5. Configuration
@@ -172,7 +180,6 @@ capabilities:
       confidence_threshold: 0.7
       cache_results: true
 ```
-
 ### 5.2 Accessing Configuration
 
 ```python
@@ -185,7 +192,6 @@ class SentimentAnalyzer(Capability[SentimentInput, SentimentOutput]):
         )
         ...
 ```
-
 ---
 
 ## 6. Error Handling
@@ -220,7 +226,6 @@ class SentimentAnalyzer(Capability[SentimentInput, SentimentOutput]):
             )
         raise error
 ```
-
 ---
 
 ## 7. Testing
@@ -249,7 +254,6 @@ class TestSentimentAnalyzer:
         with pytest.raises(ValidationError):
             self.analyzer.execute(input, self.context)
 ```
-
 ---
 
 ## 8. Best Practices

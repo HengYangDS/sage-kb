@@ -1,4 +1,4 @@
-# Session Management
+﻿# Session Management
 
 > Session lifecycle and state management
 
@@ -7,6 +7,21 @@
 ## 1. Overview
 
 Session management handles the lifecycle of user sessions, maintaining context and state throughout interactions with SAGE.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Session Lifecycle](#2-session-lifecycle)
+- [3. Session Model](#3-session-model)
+- [4. Session Operations](#4-session-operations)
+- [5. Context Management](#5-context-management)
+- [6. Query History](#6-query-history)
+- [7. Session Timeout](#7-session-timeout)
+- [8. Session Resume](#8-session-resume)
+- [9. Multi-Session Support](#9-multi-session-support)
+- [10. Configuration](#10-configuration)
+- [Related](#related)
 
 ---
 
@@ -21,7 +36,6 @@ stateDiagram-v2
     Idle --> End
     End --> [*]
 ```
-
 ### 2.1 States
 
 | State | Description | Duration |
@@ -49,7 +63,6 @@ class Session:
     preferences: dict
     metadata: dict
 ```
-
 ### 3.2 Session Context
 
 ```python
@@ -61,7 +74,6 @@ class SessionContext:
     active_scenario: str | None
     custom_data: dict
 ```
-
 ---
 
 ## 4. Session Operations
@@ -89,7 +101,6 @@ class SessionManager:
         self._persist(session)
         return session
 ```
-
 ### 4.2 Update Session
 
 ```python
@@ -104,7 +115,6 @@ def update(self, session_id: str, updates: dict) -> Session:
     self._persist(session)
     return session
 ```
-
 ### 4.3 End Session
 
 ```python
@@ -118,7 +128,6 @@ def end(self, session_id: str, save_state: bool = True) -> None:
     self._cleanup(session)
     self._persist(session)
 ```
-
 ---
 
 ## 5. Context Management
@@ -136,7 +145,6 @@ def load_context(self, session: Session, query: str) -> None:
             session.context.loaded_knowledge.append(content.path)
             session.context.token_usage += content.tokens
 ```
-
 ### 5.2 Context Switching
 
 ```python
@@ -151,7 +159,6 @@ def switch_scenario(self, session: Session, scenario: str) -> None:
     
     session.context.active_scenario = scenario
 ```
-
 ---
 
 ## 6. Query History
@@ -174,7 +181,6 @@ def record_query(self, session: Session, query: Query) -> None:
     if len(session.context.query_history) > max_history:
         session.context.query_history = session.context.query_history[-max_history:]
 ```
-
 ### 6.2 History Analysis
 
 ```python
@@ -186,7 +192,6 @@ def analyze_history(self, session: Session) -> dict:
         "most_used_knowledge": self._rank_knowledge(session),
     }
 ```
-
 ---
 
 ## 7. Session Timeout
@@ -215,7 +220,6 @@ class TimeoutHandler:
         
         return TimeoutStatus.ACTIVE
 ```
-
 ---
 
 ## 8. Session Resume
@@ -232,7 +236,6 @@ def _save_for_resume(self, session: Session) -> None:
     }
     self.persistence.save(f"resume:{session.user_id}", resume_data)
 ```
-
 ### 8.2 Resume Session
 
 ```python
@@ -249,7 +252,6 @@ def resume(self, user_id: str) -> Session | None:
     
     return session
 ```
-
 ---
 
 ## 9. Multi-Session Support
@@ -271,7 +273,6 @@ class MultiSessionManager:
             oldest = min(sessions, key=lambda s: s.last_activity)
             self.end(oldest.id)
 ```
-
 ---
 
 ## 10. Configuration
@@ -296,7 +297,6 @@ session:
     store: database
     auto_save_interval: 60
 ```
-
 ---
 
 ## Related

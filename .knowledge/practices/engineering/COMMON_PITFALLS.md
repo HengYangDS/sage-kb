@@ -1,4 +1,4 @@
-# Common Pitfalls
+﻿# Common Pitfalls
 
 > Known pitfalls and how to avoid them in software development
 

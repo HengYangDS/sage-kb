@@ -1,4 +1,4 @@
-# Incremental Improvement Practices
+﻿# Incremental Improvement Practices
 
 > Systematic approach to continuous, low-risk enhancement
 

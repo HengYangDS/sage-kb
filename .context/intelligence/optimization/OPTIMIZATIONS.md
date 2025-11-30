@@ -1,4 +1,4 @@
-# SAGE Project Optimizations
+﻿# SAGE Project Optimizations
 
 > SAGE-specific optimizations, shortcuts, and code patterns
 
@@ -52,7 +52,6 @@ from sage.core.exceptions import SAGEError
 if TYPE_CHECKING:
     from sage.core.protocols import SourceProtocol
 ```
-
 ### 1.2 Test Coverage Goals
 
 | Layer        | Target    | Focus                            |
@@ -85,7 +84,6 @@ async def search(query: str, layer: str | None = None) -> list[Knowledge]:
     # Then apply text search (slower)
     return [k for k in candidates if query.lower() in k.content.lower()]
 ```
-
 ---
 
 ## 3. Common Patterns
@@ -110,7 +108,6 @@ def reset_event_bus() -> None:
     global _instance
     _instance = None
 ```
-
 ### 3.2 Configuration Access
 
 ```python
@@ -122,7 +119,6 @@ def __init__(self):
 
 # Avoid: Repeated get_config() calls
 ```
-
 ### 3.3 Event Publishing
 
 ```python
@@ -137,7 +133,6 @@ async def load_layer(self, layer: str) -> list[Knowledge]:
         await bus.publish(Event(type="knowledge.load.failed", data={"layer": layer, "error": str(e)}))
         raise
 ```
-
 ### 3.4 Protocol Implementation
 
 ```python
@@ -152,7 +147,6 @@ class FileLoader:
     async def exists(self, path: str) -> bool:
         return Path(path).exists()
 ```
-
 ---
 
 ## 4. Project Shortcuts
@@ -188,7 +182,6 @@ mypy src/sage
 ruff check src/sage
 ruff format src/sage
 ```
-
 ---
 
 ## Related

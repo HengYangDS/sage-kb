@@ -1,4 +1,4 @@
-# SAGE Project Overview
+﻿# SAGE Project Overview
 
 > Quick introduction to SAGE Knowledge Base for new contributors and AI assistants
 
@@ -59,7 +59,6 @@ SAGE uses a **Core-Services-Capabilities** three-layer architecture:
 │           (Analyzers, Checkers, Monitors)               │
 └─────────────────────────────────────────────────────────┘
 ```
-
 ### 2.1 Layer Responsibilities
 
 | Layer            | Purpose                               | Dependencies |

@@ -1,4 +1,4 @@
-# MCP Service
+﻿# MCP Service
 
 > Model Context Protocol service for AI assistant integration
 
@@ -7,6 +7,20 @@
 ## 1. Overview
 
 The MCP service enables AI assistants (Claude, Cursor, etc.) to access SAGE knowledge base through the Model Context Protocol using FastMCP framework.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Technology Stack](#2-technology-stack)
+- [3. Tools](#3-tools)
+- [4. Implementation](#4-implementation)
+- [5. Transport Configuration](#5-transport-configuration)
+- [6. Error Handling](#6-error-handling)
+- [7. Timeout Integration](#7-timeout-integration)
+- [8. Configuration](#8-configuration)
+- [9. Testing](#9-testing)
+- [Related](#related)
 
 ---
 
@@ -73,7 +87,6 @@ def search_knowledge(
     """
     ...
 ```
-
 ---
 
 ## 4. Implementation
@@ -109,7 +122,6 @@ def get_knowledge(query: str, layer: int = None) -> dict:
 if __name__ == "__main__":
     mcp.run()
 ```
-
 ### 4.2 Resources
 
 ```python
@@ -124,7 +136,6 @@ def get_resource(path: str) -> Resource:
         text=content
     )
 ```
-
 ### 4.3 Prompts
 
 ```python
@@ -138,7 +149,6 @@ def knowledge_query(topic: str) -> list[Message]:
         )
     ]
 ```
-
 ---
 
 ## 5. Transport Configuration
@@ -158,7 +168,6 @@ def knowledge_query(topic: str) -> list[Message]:
   }
 }
 ```
-
 ### 5.2 SSE Transport
 
 ```json
@@ -171,7 +180,6 @@ def knowledge_query(topic: str) -> list[Message]:
   }
 }
 ```
-
 ---
 
 ## 6. Error Handling
@@ -198,7 +206,6 @@ def get_knowledge(query: str) -> dict:
             message=f"Content not found: {query}"
         )
 ```
-
 ### 6.2 Error Codes
 
 | Code | Description | Recovery |
@@ -221,7 +228,6 @@ def get_knowledge(query: str, timeout_ms: int = 5000) -> dict:
         result = loader.source(request)
         return result.to_dict()
 ```
-
 ### 7.2 Graceful Degradation
 
 ```python
@@ -233,7 +239,6 @@ def get_knowledge(query: str) -> dict:
         # Return cached or partial content
         return loader.source_cached(request)
 ```
-
 ---
 
 ## 8. Configuration
@@ -248,7 +253,6 @@ services:
     enable_prompts: true
     log_level: info
 ```
-
 ---
 
 ## 9. Testing
@@ -274,7 +278,6 @@ def test_search_knowledge():
     })
     assert len(results) <= 5
 ```
-
 ---
 
 ## Related

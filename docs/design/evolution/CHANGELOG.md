@@ -1,4 +1,4 @@
-# Changelog
+﻿# Changelog
 
 > All notable changes to SAGE Knowledge Base
 
@@ -15,6 +15,20 @@ Types of changes:
 - **Removed** — Removed features
 - **Fixed** — Bug fixes
 - **Security** — Vulnerability fixes
+
+
+## Table of Contents
+
+- [Format](#format)
+- [[Unreleased]](#unreleased)
+- [[0.4.0] - 2025-11-30](#040-2025-11-30)
+- [[0.3.0] - 2025-11-15](#030-2025-11-15)
+- [[0.2.0] - 2025-10-30](#020-2025-10-30)
+- [[0.1.0] - 2025-10-15](#010-2025-10-15)
+- [Version History Summary](#version-history-summary)
+- [Migration Guides](#migration-guides)
+- [Deprecation Notices](#deprecation-notices)
+- [Related](#related)
 
 ---
 
@@ -134,7 +148,6 @@ from sage.capabilities import analyzer
 from sage.core.registry import get_capability
 analyzer = get_capability("analyzer")
 ```
-
 ### 0.2.x → 0.3.x
 
 ```python
@@ -145,7 +158,6 @@ cli = CLIService()
 container = get_container()
 cli = container.resolve(CLIService)
 ```
-
 ---
 
 ## Deprecation Notices

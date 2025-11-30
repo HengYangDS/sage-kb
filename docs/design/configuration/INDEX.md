@@ -1,4 +1,4 @@
-# Configuration
+﻿# Configuration
 
 > Configuration system design for SAGE
 
@@ -8,6 +8,16 @@
 
 The configuration system provides flexible, hierarchical configuration management for SAGE.
 
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Documents](#2-documents)
+- [3. Configuration Hierarchy](#3-configuration-hierarchy)
+- [4. Configuration Categories](#4-configuration-categories)
+- [5. Environment Variables](#5-environment-variables)
+
+---
 ---
 
 ## 2. Documents
@@ -34,7 +44,6 @@ graph TD
     
     CLI --> ENV --> USER --> PROJECT --> DEFAULT
 ```
-
 ---
 
 ## 4. Configuration Categories

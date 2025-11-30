@@ -1,4 +1,4 @@
-# Integration Patterns
+﻿# Integration Patterns
 
 > Patterns for integrating SAGE with AI tools, IDEs, and CI/CD systems
 
@@ -132,7 +132,7 @@ class ContextSync:
 
 ### 3.1 JetBrains IDE Integration
 
-**Setup via .junie/GUIDELINES.md**:
+**Setup via .junie/guidelines.md**:
 
 ```markdown
 # Project Guidelines

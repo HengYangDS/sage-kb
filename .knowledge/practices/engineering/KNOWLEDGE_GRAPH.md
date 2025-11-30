@@ -1,4 +1,4 @@
-# Knowledge Graph Guide
+﻿# Knowledge Graph Guide
 
 > Building and using knowledge graphs for content analysis and visualization
 

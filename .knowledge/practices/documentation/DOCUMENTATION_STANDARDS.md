@@ -1,4 +1,4 @@
-# Documentation Standards
+﻿# Documentation Standards
 
 > Single source of truth for document format and structure standards
 
@@ -189,7 +189,6 @@ def greet(name: str) -> str:
 print(greet("World"))  # Output: Hello, World
 ```
 > **Full Standards**: See `CODE_BLOCK_STANDARDS.md`
-
 ---
 
 ## 5. Organization
@@ -270,7 +269,6 @@ print(greet("World"))  # Output: Hello, World
 **Footer**:
 - [ ] Horizontal rule before
 - [ ] `*AI Collaboration Knowledge Base*`
-
 ### 6.2 Update Triggers
 
 | Event | Action |
@@ -292,7 +290,6 @@ print(greet("World"))  # Output: Hello, World
 4. Verify consistency
 ```
 > **Full Workflow**: See `OPTIMIZATION_WORKFLOW.md`
-
 ---
 
 ## Related

@@ -1,4 +1,4 @@
-# Authorization Patterns
+﻿# Authorization Patterns
 
 > Access control strategies and permission management
 
@@ -59,14 +59,20 @@ sequenceDiagram
 ### Decision Matrix
 
 ```mermaid
-flowchart TD
-    Q1{"Simple permissions?"} -->|Yes| ACL["ACL or Basic RBAC"]
-    Q1 -->|No| Q2{"Role-based access sufficient?"}
-    Q2 -->|Yes| RBAC["RBAC"]
-    Q2 -->|No| Q3{"Need dynamic, contextual rules?"}
-    Q3 -->|Yes| ABAC["ABAC"]
-    Q3 -->|No| Q4{"Relationship-based access?"}
-    Q4 -->|Yes| ReBAC["ReBAC (Google Zanzibar)"]
+flowchart LR
+    Q1{Simple?} -->|Y| ACL([ACL])
+    Q1 -->|N| Q2{Role-based?}
+    Q2 -->|Y| RBAC([RBAC])
+    Q2 -->|N| Q3{Dynamic rules?}
+    Q3 -->|Y| ABAC([ABAC])
+    Q3 -->|N| Q4{Relationships?}
+    Q4 -->|Y| ReBAC([ReBAC])
+    Q4 -->|N| PBAC([PBAC])
+
+    classDef q fill:#2d2d2d,stroke:#555,color:#fff
+    classDef a fill:#1a1a1a,stroke:#444,color:#fff
+    class Q1,Q2,Q3,Q4 q
+    class ACL,RBAC,ABAC,ReBAC,PBAC a
 ```
 ---
 

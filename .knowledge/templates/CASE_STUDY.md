@@ -1,4 +1,4 @@
-# Case Study Template
+﻿# Case Study Template
 
 > Template for documenting problem-solving cases and lessons learned
 
@@ -172,7 +172,6 @@
 ### 5.3 Tags
 
 `tag1` `tag2` `tag3`
-
 ---
 
 ## Quick Reference: Case Categories
@@ -219,7 +218,6 @@ Modified `mcp_server.py` to:
 1. Create `.outputs/` directory if it doesn't exist
 2. Extract only the filename from user-provided path
 3. Construct output path as `.outputs/{filename}`
-
 ```python
 # Before
 builder.export_to_json(Path(output_file))

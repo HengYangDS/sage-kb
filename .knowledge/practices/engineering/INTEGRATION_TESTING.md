@@ -1,4 +1,4 @@
-# Integration Testing
+﻿# Integration Testing
 
 > Best practices for testing component interactions and system integration
 
@@ -75,7 +75,6 @@ flowchart TB
 ### 3.1 Test Database Setup
 
 ```python
-
 import pytest
 
 from sqlalchemy import create_engine
@@ -112,7 +111,6 @@ def db_session(test_engine):
 ### 3.2 Database Fixtures
 
 ```python
-
 @pytest.fixture
 def sample_users(db_session):
 
@@ -148,7 +146,6 @@ def test_get_all_users(db_session, sample_users):
 ### 3.3 Transaction Rollback
 
 ```python
-
 @pytest.fixture
 def db_session(test_engine):
 
@@ -174,7 +171,6 @@ def db_session(test_engine):
 ### 3.4 Test Data Management
 
 ```python
-
 class TestDataBuilder:
 
     """Builder for creating test data."""
@@ -228,7 +224,6 @@ class TestDataBuilder:
 ### 4.1 FastAPI Testing
 
 ```python
-
 import pytest
 
 from fastapi.testclient import TestClient
@@ -279,7 +274,6 @@ async def test_create_user(async_client):
 ### 4.2 Request/Response Testing
 
 ```python
-
 class TestUserAPI:
 
     """Integration tests for User API."""
@@ -324,7 +318,6 @@ class TestUserAPI:
 ### 4.3 Authentication Testing
 
 ```python
-
 @pytest.fixture
 def auth_headers(client):
 
@@ -362,7 +355,6 @@ def test_protected_endpoint_without_auth(client):
 ### 5.1 Service Layer Testing
 
 ```python
-
 class TestOrderService:
 
     """Integration tests for OrderService."""
@@ -398,7 +390,6 @@ class TestOrderService:
 ### 5.2 External Service Mocking
 
 ```python
-
 import responses
 
 import httpx
@@ -435,7 +426,6 @@ def test_process_payment(order_service, mock_payment_service):
 ### 5.3 Event/Message Testing
 
 ```python
-
 @pytest.fixture
 def event_bus():
 
@@ -467,7 +457,6 @@ def test_order_created_event(order_service, event_bus, sample_users):
 ### 6.1 Database Isolation
 
 ```python
-
 @pytest.fixture(autouse=True)
 def reset_database(db_session):
 
@@ -487,7 +476,6 @@ def reset_database(db_session):
 ### 6.2 Test Containers
 
 ```python
-
 import pytest
 
 from testcontainers.postgres import PostgresContainer
@@ -511,7 +499,6 @@ def db_url(postgres):
 ### 6.3 Environment Isolation
 
 ```python
-
 @pytest.fixture
 def test_env(monkeypatch):
 

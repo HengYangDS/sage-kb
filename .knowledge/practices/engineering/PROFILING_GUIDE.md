@@ -1,4 +1,4 @@
-# Profiling Guide
+﻿# Profiling Guide
 
 > Performance measurement and bottleneck identification
 
@@ -317,7 +317,6 @@ ms_print massif.out.*
 # Python memory with pympler
 pip install pympler
 ```
-
 ```python
 from pympler import asizeof, tracker
 

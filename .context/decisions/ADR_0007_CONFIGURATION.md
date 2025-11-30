@@ -1,4 +1,4 @@
-# ADR-0007: Configuration Management
+﻿# ADR-0007: Configuration Management
 
 > Architecture Decision Record for SAGE Knowledge Base
 
@@ -61,7 +61,6 @@ Implement a **YAML + Environment Variable** configuration system with Pydantic v
 │ 5. Default Values in Code               [Lowest Priority]│
 └─────────────────────────────────────────────────────────┘
 ```
-
 Higher priority sources override lower priority sources.
 
 ### Configuration Files
@@ -79,7 +78,6 @@ project/
     └── knowledge/
         └── layers.yaml    # Knowledge layer config
 ```
-
 ---
 
 ## Alternatives Considered
@@ -188,7 +186,6 @@ features:
   enable_caching: true
   enable_metrics: true
 ```
-
 ### Pydantic Configuration Model
 
 ```python
@@ -212,7 +209,6 @@ class SAGEConfig(BaseSettings):
         env_prefix = "SAGE__"
         env_nested_delimiter = "__"
 ```
-
 ### Environment Variable Override
 
 ```bash
@@ -225,7 +221,6 @@ export SAGE__LOGGING__LEVEL=DEBUG
 # Override feature flag
 export SAGE__FEATURES__ENABLE_CACHING=false
 ```
-
 ### Configuration Access
 
 ```python
@@ -238,7 +233,6 @@ config = get_config()
 timeout = config.timeout.cache_lookup
 layers = config.knowledge.layers
 ```
-
 ### Configuration Loading
 
 ```python
@@ -255,7 +249,6 @@ def load_config(config_path: str | None = None) -> SAGEConfig:
     # 3. Environment variables applied by Pydantic
     return SAGEConfig(**config_dict)
 ```
-
 ### Validation Errors
 
 ```python
@@ -267,7 +260,6 @@ except ValidationError as e:
     for error in e.errors():
         print(f"Config error: {error['loc']} - {error['msg']}")
 ```
-
 ### Runtime Configuration
 
 ```python
@@ -278,7 +270,6 @@ if config.features.enable_caching:
 # Dynamic timeout selection
 level = TimeoutLevel(config.timeout.cache_lookup)
 ```
-
 ---
 
 ## Related

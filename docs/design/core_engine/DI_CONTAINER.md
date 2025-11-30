@@ -1,4 +1,4 @@
-# Dependency Injection Container
+﻿# Dependency Injection Container
 
 > Centralized dependency management for SAGE
 
@@ -7,6 +7,21 @@
 ## 1. Overview
 
 The DI Container manages object creation, lifecycle, and dependency resolution, enabling loose coupling and testability.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Core Concepts](#2-core-concepts)
+- [3. Container Interface](#3-container-interface)
+- [4. Lifecycle Management](#4-lifecycle-management)
+- [5. Registration Patterns](#5-registration-patterns)
+- [6. Dependency Resolution](#6-dependency-resolution)
+- [7. Module System](#7-module-system)
+- [8. Testing Support](#8-testing-support)
+- [9. Best Practices](#9-best-practices)
+- [10. Anti-Patterns](#10-anti-patterns)
+- [Related](#related)
 
 ---
 
@@ -46,7 +61,6 @@ class Container(Protocol):
         """Register a pre-created instance."""
         ...
 ```
-
 ---
 
 ## 4. Lifecycle Management
@@ -74,7 +88,6 @@ h1 = container.resolve(Handler)
 h2 = container.resolve(Handler)
 assert h1 is not h2  # True
 ```
-
 ---
 
 ## 5. Registration Patterns
@@ -86,7 +99,6 @@ assert h1 is not h2  # True
 container.register(AnalyzerProtocol, ContentAnalyzer)
 container.register(CheckerProtocol, FormatChecker)
 ```
-
 ### 5.2 Factory Registration
 
 ```python
@@ -97,7 +109,6 @@ def create_analyzer(container: Container) -> AnalyzerProtocol:
 
 container.register_factory(AnalyzerProtocol, create_analyzer)
 ```
-
 ### 5.3 Instance Registration
 
 ```python
@@ -105,7 +116,6 @@ container.register_factory(AnalyzerProtocol, create_analyzer)
 config = Config.load("sage.yaml")
 container.register_instance(Config, config)
 ```
-
 ---
 
 ## 6. Dependency Resolution
@@ -122,7 +132,6 @@ class ContentAnalyzer:
 container.register(AnalyzerProtocol, ContentAnalyzer)
 analyzer = container.resolve(AnalyzerProtocol)
 ```
-
 ### 6.2 Resolution Flow
 
 ```mermaid
@@ -142,7 +151,6 @@ graph TD
     Cached --> Return
     Resolve --> Return
 ```
-
 ---
 
 ## 7. Module System
@@ -162,7 +170,6 @@ class CapabilitiesModule:
         container.register(AnalyzerProtocol, ContentAnalyzer)
         container.register(CheckerProtocol, FormatChecker)
 ```
-
 ### 7.2 Module Loading
 
 ```python
@@ -172,7 +179,6 @@ CoreModule.register(container)
 CapabilitiesModule.register(container)
 ServicesModule.register(container)
 ```
-
 ---
 
 ## 8. Testing Support
@@ -184,7 +190,6 @@ ServicesModule.register(container)
 container.register_instance(AnalyzerProtocol, MockAnalyzer())
 container.register_instance(Config, test_config)
 ```
-
 ### 8.2 Test Container
 
 ```python
@@ -196,7 +201,6 @@ def container():
     c.register_instance(Logger, NullLogger())
     return c
 ```
-
 ---
 
 ## 9. Best Practices

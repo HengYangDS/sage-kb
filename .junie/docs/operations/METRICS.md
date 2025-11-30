@@ -1,4 +1,4 @@
-
+﻿
 # Collaboration Efficiency Metrics
 
 > Track and optimize AI collaboration effectiveness (~10 min read)
@@ -33,6 +33,7 @@
 ### Metric Categories
 
 ```
+
 Efficiency Metrics
     │
     ├── Command Execution
@@ -58,6 +59,7 @@ Efficiency Metrics
 ### Calculation Formula
 
 ```
+
 Auto-Approval Rate = (Auto-Approved Commands / Total Commands) × 100%
 
 Where:
@@ -116,6 +118,7 @@ Where:
 ### Calculation
 
 ```
+
 Token Efficiency = (Baseline Tokens - Actual Tokens) / Baseline Tokens × 100%
 
 Where:
@@ -225,6 +228,7 @@ Use templates above for:
 ### Analysis Approach
 
 ```
+
 Weekly:
 1. Review auto-approval rate
 2. Identify new command patterns

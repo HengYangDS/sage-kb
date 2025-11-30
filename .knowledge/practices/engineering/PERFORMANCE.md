@@ -1,4 +1,4 @@
-# Performance Optimization
+﻿# Performance Optimization
 
 > Performance best practices and optimization strategies for Python applications
 
@@ -73,7 +73,6 @@
 ### 2.2 cProfile Usage
 
 ```python
-
 import cProfile
 
 import pstats
@@ -114,7 +113,6 @@ def profile_function(func, *args, **kwargs):
 ### 2.3 Line Profiler
 
 ```python
-
 # Install: pip install line_profiler
 
 # Add decorator to functions to profile
@@ -133,7 +131,6 @@ def slow_function():
 ### 2.4 Benchmarking
 
 ```python
-
 import timeit
 
 from functools import wraps
@@ -190,7 +187,6 @@ def benchmark_snippet():
 | Delete    | O(n)  | O(1) | O(1) |
 
 ```python
-
 # Slow: O(n) lookup
 
 if item in large_list:
@@ -209,7 +205,6 @@ if item in item_set:
 ### 3.2 Comprehensions vs Loops
 
 ```python
-
 # Slower
 
 result = []
@@ -230,7 +225,6 @@ result = (i * 2 for i in range(1000))
 ### 3.3 String Operations
 
 ```python
-
 # Slow: String concatenation in loop
 
 result = ""
@@ -253,7 +247,6 @@ message = f"Welcome to {name}"
 ### 3.4 Built-in Functions
 
 ```python
-
 # Use built-ins - they're implemented in C
 
 # Slow
@@ -282,7 +275,6 @@ all(conditions)
 ### 3.5 Local Variables
 
 ```python
-
 # Slower: Global lookup
 
 import math
@@ -307,7 +299,6 @@ def fast_function(values):
 ### 4.1 File Reading
 
 ```python
-
 from pathlib import Path
 
 # Slow: Read entire file into memory
@@ -340,7 +331,6 @@ def mmap_read(path: Path):
 ### 4.2 Async I/O
 
 ```python
-
 import asyncio
 
 import aiofiles
@@ -371,7 +361,6 @@ contents = asyncio.run(read_multiple_files(file_paths))
 ### 4.3 Batch Operations
 
 ```python
-
 # Slow: Multiple small writes
 
 for item in items:
@@ -394,7 +383,6 @@ file.writelines(f"{item}\n" for item in items)
 ### 5.1 Memory Profiling
 
 ```python
-
 # Install: pip install memory_profiler
 
 from memory_profiler import profile
@@ -413,7 +401,6 @@ def memory_intensive_function():
 ### 5.2 Generators for Large Data
 
 ```python
-
 # Memory heavy: List stores all items
 
 def get_all_items() -> list:
@@ -432,7 +419,6 @@ def get_all_items() -> Iterator:
 ### 5.3 __slots__ for Classes
 
 ```python
-
 # Regular class: Uses dict for attributes
 
 class RegularPoint:
@@ -461,7 +447,6 @@ class SlotPoint:
 ### 5.4 Weak References
 
 ```python
-
 import weakref
 
 class Cache:
@@ -488,7 +473,6 @@ class Cache:
 ### 6.1 Function Caching
 
 ```python
-
 from functools import lru_cache, cache
 
 # LRU cache with size limit
@@ -517,7 +501,6 @@ expensive_computation.cache_clear()
 ### 6.2 Time-Based Caching
 
 ```python
-
 import time
 
 from functools import wraps
@@ -568,7 +551,6 @@ def fetch_data(key: str) -> dict:
 ### 6.3 Multi-Level Cache
 
 ```python
-
 from typing import Optional, Any
 
 class MultiLevelCache:
@@ -629,7 +611,6 @@ class MultiLevelCache:
 ### Profiling Commands
 
 ```bash
-
 # CPU profiling
 
 python -m cProfile -s cumulative script.py

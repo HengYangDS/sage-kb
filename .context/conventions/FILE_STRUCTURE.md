@@ -1,4 +1,4 @@
-# SAGE File Structure Conventions
+﻿# SAGE File Structure Conventions
 
 > Project-specific file organization standards for SAGE Knowledge Base
 
@@ -37,7 +37,6 @@ sage-kb/
 ├── tests/               # Test suite
 └── tools/               # Development utilities
 ```
-
 ### 1.2 Directory Visibility
 
 | Prefix    | Visibility | Purpose               |
@@ -58,7 +57,6 @@ __pycache__/
 dist/
 *.egg-info/
 ```
-
 ### 1.4 Output File Convention
 
 **All temporary and intermediate output files MUST be placed in `.outputs/` directory.**
@@ -89,7 +87,6 @@ command > .outputs/output.txt
 command > output.txt
 command > .output.txt
 ```
-
 **Note**: Files like `.output.txt`, `output.txt`, `*.output.txt` in root are git-ignored as a safety measure, but should
 still be avoided.
 
@@ -163,7 +160,6 @@ project.
 | Lessons learned        | Generic knowledge           |
 
 **Example**: `.history/conversations/2025-11-30-knowledge-reorganization.md`
-
 ### 2.6 Migration Decision Rules
 
 When deciding where content belongs, apply these rules in order:
@@ -185,7 +181,6 @@ When deciding where content belongs, apply these rules in order:
    YES → .knowledge/ (frameworks, practices, guidelines)
    NO  → Ask: Does this need to exist?
 ```
-
 ---
 
 ## 3. Source Code Organization
@@ -204,7 +199,6 @@ src/sage/
 ├── plugins/             # Plugin system
 └── data/                # Static data files
 ```
-
 ### 3.2 Core Layer (`core/`)
 
 ```
@@ -236,7 +230,6 @@ core/
     ├── store.py         # Memory store
     └── token_budget.py  # Token budget
 ```
-
 ### 3.3 Services Layer (`services/`)
 
 ```
@@ -246,7 +239,6 @@ services/
 ├── mcp.py               # MCP service (FastMCP)
 └── api.py               # API service (FastAPI)
 ```
-
 ### 3.4 Capabilities Layer (`capabilities/`)
 
 ```
@@ -265,7 +257,6 @@ capabilities/
     ├── performance.py   # Performance monitor
     └── usage.py         # Usage monitor
 ```
-
 ---
 
 ## 4. Test Organization
@@ -288,7 +279,6 @@ tests/
 └── performance/         # Performance benchmarks
     └── benchmarks/
 ```
-
 ### 4.2 Test File Naming
 
 | Source File                     | Test File                              |
@@ -337,7 +327,6 @@ class TestGetConfig:
         """Test singleton pattern."""
         ...
 ```
-
 ---
 
 ## 5. Configuration Files
@@ -373,7 +362,6 @@ config/
     ├── quality.yaml       # Quality thresholds
     └── documentation.yaml # Documentation standards
 ```
-
 ### 5.2 Main Config Location
 
 The main `sage.yaml` is located inside the `config/` directory:
@@ -388,7 +376,6 @@ sage-kb/
 │   └── capabilities/      # Capability configs
 └── src/
 ```
-
 The `sage.yaml` file includes references to all modular config files via the `includes:` directive.
 
 ### 5.3 Config Precedence
@@ -410,7 +397,6 @@ includes:
   - config/services/cli.yaml
   # ... etc.
 ```
-
 This pattern enables:
 
 - **Separation of concerns**: Each functional area has its own config
@@ -434,7 +420,6 @@ docs/
 ├── guides/              # User guides
 └── examples/            # Example usage
 ```
-
 ### 6.2 Knowledge Content Structure
 
 ```text
@@ -458,7 +443,6 @@ docs/
 │   └── python_backend/
 └── templates/           # Document templates
 ```
-
 ### 6.3 Context Directory Structure
 
 ```text
@@ -479,7 +463,6 @@ docs/
     ├── patterns.md
     └── calibration.md
 ```
-
 ---
 
 ## 7. Source Code Packages
@@ -505,14 +488,12 @@ The `src/sage/` directory contains several packages with distinct responsibiliti
 - Dataclasses and enums representing business concepts
 - No dependencies on infrastructure (no I/O, no external services)
 - Examples: `KnowledgeAsset`, `CollaborationSession`, `AutonomyLevel`
-
 **Core Package** (`core/`):
 
 - Infrastructure components with actual logic
 - Handles I/O, configuration, timing, events
 - Implements the SAGE protocol behaviors
 - Examples: `KnowledgeLoader`, `TimeoutManager`, `EventBus`, `DIContainer`
-
 ```
 domain/                     core/
 ├── knowledge.py            ├── loader.py      (uses domain models)
@@ -524,7 +505,6 @@ domain/                     core/
     └── SessionContext      ├── logging/       (infrastructure)
     └── HandoffPackage      └── memory/        (infrastructure)
 ```
-
 ### 7.3 Interfaces Package
 
 The `interfaces/` package provides a convenience layer for importing protocols and models:
@@ -537,7 +517,6 @@ from sage.core.models import LoadResult, SearchResult
 # Use single import:
 from sage.interfaces import SourceProtocol, AnalyzeProtocol, LoadResult, SearchResult
 ```
-
 This supports the **Protocol-First** design principle (ADR-0006).
 
 ---
@@ -566,7 +545,6 @@ __all__ = [
     "TimeoutManager",
 ]
 ```
-
 ### 8.2 Module File Order
 
 Within each module directory, files should be organized:
@@ -626,7 +604,6 @@ def _helper_function() -> None:
     """Private helper."""
     ...
 ```
-
 ---
 
 ## 9. Special Files

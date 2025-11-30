@@ -1,4 +1,4 @@
-# Knowledge System
+﻿# Knowledge System
 
 > Knowledge management and organization for SAGE
 
@@ -8,6 +8,16 @@
 
 The knowledge system manages how knowledge is organized, loaded, and delivered within SAGE.
 
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Documents](#2-documents)
+- [3. Knowledge Layers](#3-knowledge-layers)
+- [4. Layer Responsibilities](#4-layer-responsibilities)
+- [5. Loading Strategy](#5-loading-strategy)
+
+---
 ---
 
 ## 2. Documents
@@ -24,7 +34,6 @@ The knowledge system manages how knowledge is organized, loaded, and delivered w
 ## 3. Knowledge Layers
 
 Priority: `.knowledge/` → `.context/` → `.junie/` → `docs/`
-
 ```mermaid
 graph TD
     K[".knowledge/<br/>Universal (cross-project)"]
@@ -34,7 +43,6 @@ graph TD
     
     K --> C --> J --> D
 ```
-
 ---
 
 ## 4. Layer Responsibilities

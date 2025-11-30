@@ -1,4 +1,4 @@
-# Conversation Record Template
+﻿# Conversation Record Template
 
 > **Purpose**: Document AI collaboration sessions with key decisions and learnings
 > **Use When**: Recording significant conversations, design discussions, or problem-solving sessions

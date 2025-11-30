@@ -1,4 +1,4 @@
-# Configuration Reference
+﻿# Configuration Reference
 
 > Complete reference for all SAGE configuration options
 
@@ -7,6 +7,23 @@
 ## 1. Overview
 
 This document provides a comprehensive reference for all configuration options available in SAGE.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Knowledge Configuration](#2-knowledge-configuration)
+- [3. Timeout Configuration](#3-timeout-configuration)
+- [4. Services Configuration](#4-services-configuration)
+- [5. Plugin Configuration](#5-plugin-configuration)
+- [6. Logging Configuration](#6-logging-configuration)
+- [7. Session Configuration](#7-session-configuration)
+- [8. Persistence Configuration](#8-persistence-configuration)
+- [9. Capabilities Configuration](#9-capabilities-configuration)
+- [10. Scenarios Configuration](#10-scenarios-configuration)
+- [11. Environment Variables](#11-environment-variables)
+- [12. Quick Reference](#12-quick-reference)
+- [Related](#related)
 
 ---
 
@@ -33,7 +50,6 @@ sage:
     default_layer: 1
     cache_enabled: true
 ```
-
 ---
 
 ## 3. Timeout Configuration
@@ -58,7 +74,6 @@ sage:
       failure_threshold: 5
       reset_timeout_ms: 60000
 ```
-
 ---
 
 ## 4. Services Configuration
@@ -79,7 +94,6 @@ sage:
       color: true
       pager: true
 ```
-
 ### 4.2 sage.services.mcp
 
 | Key | Type | Default | Description |
@@ -96,7 +110,6 @@ sage:
       timeout_ms: 5000
       max_results: 100
 ```
-
 ### 4.3 sage.services.api
 
 | Key | Type | Default | Description |
@@ -116,7 +129,6 @@ sage:
       cors_origins:
         - "http://localhost:3000"
 ```
-
 ---
 
 ## 5. Plugin Configuration
@@ -140,7 +152,6 @@ sage:
     disabled:
       - plugin_name
 ```
-
 ---
 
 ## 6. Logging Configuration
@@ -163,7 +174,6 @@ sage:
       max_size_mb: 10
       backup_count: 5
 ```
-
 ---
 
 ## 7. Session Configuration
@@ -184,7 +194,6 @@ sage:
     resume_enabled: true
     max_per_user: 3
 ```
-
 ---
 
 ## 8. Persistence Configuration
@@ -207,7 +216,6 @@ sage:
       enabled: true
       interval: daily
 ```
-
 ---
 
 ## 9. Capabilities Configuration
@@ -232,7 +240,6 @@ sage:
       link_checker:
         timeout_ms: 3000
 ```
-
 ---
 
 ## 10. Scenarios Configuration
@@ -255,7 +262,6 @@ sage:
         - .knowledge/guidelines/PYTHON.md
       token_budget: 2000
 ```
-
 ---
 
 ## 11. Environment Variables
@@ -294,7 +300,6 @@ sage:
   logging:
     level: warning
 ```
-
 ---
 
 ## Related

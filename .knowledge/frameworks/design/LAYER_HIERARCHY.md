@@ -1,4 +1,4 @@
-# Layer Hierarchy
+﻿# Layer Hierarchy
 
 > Knowledge layer structure and priority system for AI context management
 
@@ -74,7 +74,6 @@ flowchart LR
     end
 ```
 **Override Rule**: `.knowledge/` > `.context/` > `docs/`
-
 ### 3.1 Layer Definitions
 
 | Layer | Directory | Scope | Priority | Token Budget |

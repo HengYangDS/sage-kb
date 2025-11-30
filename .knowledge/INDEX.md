@@ -1,4 +1,4 @@
-# Knowledge Base Navigation
+﻿# Knowledge Base Navigation
 
 > Entry point for AI collaboration knowledge content
 
@@ -19,13 +19,13 @@
 |----------------|---------------|-------------------------------------------|-------|
 | **Core**       | `core/`       | Principles, defaults, quick reference     | 4     |
 | **Guidelines** | `guidelines/` | Code style, engineering, AI collaboration | 15    |
-| **Frameworks** | `frameworks/` | Autonomy, timeout, cognitive patterns     | 24    |
+| **Frameworks** | `frameworks/` | Autonomy, timeout, cognitive patterns     | 25    |
 | **Practices**  | `practices/`  | Documentation, engineering, decisions     | 54    |
 | **References** | `references/` | Quick reference guides and checklists     | 4     |
 | **Scenarios**  | `scenarios/`  | Context-specific guides                   | 34    |
 | **Templates**  | `templates/`  | Reusable document templates               | 17    |
 
-**Total**: ~152 knowledge files
+**Total**: 155 knowledge files
 
 ---
 

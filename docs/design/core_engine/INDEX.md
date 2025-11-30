@@ -1,4 +1,4 @@
-# Core Engine
+﻿# Core Engine
 
 > Core components and infrastructure for SAGE
 
@@ -8,6 +8,15 @@
 
 The core engine provides foundational infrastructure including dependency injection, event bus, data models, and bootstrap process.
 
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Documents](#2-documents)
+- [3. Component Overview](#3-component-overview)
+- [4. Key Responsibilities](#4-key-responsibilities)
+
+---
 ---
 
 ## 2. Documents
@@ -35,7 +44,6 @@ graph TD
         Config[Config]
     end
 ```
-
 ---
 
 ## 4. Key Responsibilities

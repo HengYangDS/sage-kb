@@ -1,4 +1,4 @@
-# SAGE Runtime Settings
+﻿# SAGE Runtime Settings
 
 > Runtime configuration, logging, and environment settings
 
@@ -41,7 +41,6 @@ export SAGE__LOGGING__LEVEL=DEBUG
 # Override knowledge.base_path
 export SAGE__KNOWLEDGE__BASE_PATH=/custom/path
 ```
-
 ### 1.3 Boolean Values
 
 ```bash
@@ -51,14 +50,12 @@ export SAGE__FEATURES__ENABLE_CACHING=true
 # False values: false, 0, no, off
 export SAGE__FEATURES__ENABLE_METRICS=false
 ```
-
 ### 1.4 List Values
 
 ```bash
 # Comma-separated for simple lists
 export SAGE__LOADING__HYBRID__EAGER_LAYERS=core,frameworks
 ```
-
 ---
 
 ## 2. Logging Configuration
@@ -102,7 +99,6 @@ logging:
     sage.services: INFO
     sage.capabilities: INFO
 ```
-
 ### 2.3 Log Format Examples
 
 **JSON Format** (default for production):
@@ -118,19 +114,16 @@ logging:
   "duration_ms": 150
 }
 ```
-
 **Text Format** (development):
 
 ```text
 2025-11-29 10:30:00.123 INFO  [sage.core.loader] Knowledge loaded layer=core count=42 duration_ms=150
 ```
-
 **Rich Format** (CLI development):
 
 ```text
 10:30:00 │ INFO  │ Knowledge loaded                    │ layer=core count=42
 ```
-
 ### 2.4 Environment Override
 
 ```bash
@@ -144,7 +137,6 @@ export SAGE__LOGGING__FORMAT=text
 export SAGE__LOGGING__OUTPUT=file
 export SAGE__LOGGING__FILE__PATH=/var/log/sage.log
 ```
-
 ---
 
 ## 3. Service Settings
@@ -165,7 +157,6 @@ cli:
     max_width: 120
     truncate_long: true
 ```
-
 ### 3.2 MCP Service
 
 ```yaml
@@ -193,7 +184,6 @@ mcp:
     max_tokens: 4000
     include_sources: true
 ```
-
 ### 3.3 API Service
 
 ```yaml
@@ -223,7 +213,6 @@ api:
     pretty_json: false
     include_timing: true
 ```
-
 ### 3.4 Service Environment Variables
 
 ```bash
@@ -237,7 +226,6 @@ export SAGE__MCP__SERVER__NAME=custom-kb
 export SAGE__API__PORT=9000
 export SAGE__API__HOST=127.0.0.1
 ```
-
 ---
 
 ## 4. Feature Flags
@@ -265,7 +253,6 @@ features:
     hot_reload: false
     mock_services: false
 ```
-
 ### 4.2 Feature Flag Usage
 
 ```python
@@ -281,7 +268,6 @@ if config.features.enable_caching:
 else:
     result = await compute(key)
 ```
-
 ### 4.3 Environment Override
 
 ```bash
@@ -291,7 +277,6 @@ export SAGE__FEATURES__ENABLE_CACHING=false
 # Enable experimental feature
 export SAGE__FEATURES__EXPERIMENTAL__AI_SUGGESTIONS=true
 ```
-
 ---
 
 ## 5. Debug Settings
@@ -320,7 +305,6 @@ debug:
     enabled: false
     sample_rate: 0.1        # 10% of requests
 ```
-
 ### 5.2 Development Mode
 
 ```yaml
@@ -342,7 +326,6 @@ debug:
     services:
       - external_api
 ```
-
 ### 5.3 Debug Environment Variables
 
 ```bash
@@ -356,7 +339,6 @@ export SAGE__DEBUG__VERBOSE__EVENT_BUS=true
 # Enable profiling
 export SAGE__DEBUG__PROFILING__ENABLED=true
 ```
-
 ---
 
 ## 6. Performance Tuning
@@ -376,7 +358,6 @@ performance:
     max_size: 50
     timeout_ms: 5000
 ```
-
 ### 6.2 Concurrency Settings
 
 ```yaml
@@ -387,7 +368,6 @@ performance:
     thread_pool_size: 10
     async_pool_size: 100
 ```
-
 ### 6.3 Environment Override
 
 ```bash
@@ -397,7 +377,6 @@ export SAGE__PERFORMANCE__MEMORY__MAX_HEAP_MB=1024
 # Concurrency
 export SAGE__PERFORMANCE__CONCURRENCY__MAX_WORKERS=8
 ```
-
 ---
 
 ## 7. Quick Reference
@@ -416,7 +395,6 @@ export SAGE__TIMEOUT__CACHE_LOOKUP=200
 export SAGE__FEATURES__ENABLE_CACHING=true
 export SAGE__LOGGING__FORMAT=text
 ```
-
 ### 7.2 Production Recommendations
 
 ```yaml
@@ -437,7 +415,6 @@ performance:
   concurrency:
     max_workers: 8
 ```
-
 ### 7.3 Development Recommendations
 
 ```yaml
@@ -455,7 +432,6 @@ debug:
   hot_reload:
     enabled: true
 ```
-
 ---
 
 ## Related

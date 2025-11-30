@@ -1,4 +1,4 @@
-# Knowledge Standards Summary
+﻿# Knowledge Standards Summary
 
 > Session record: Documentation and Configuration Standards extracted from .knowledge/
 
@@ -91,7 +91,6 @@ This file stores key knowledge about documentation writing standards and configu
 ├── scenarios/      # Context presets (by trigger, ~500 tokens)
 └── templates/      # Ready-to-use templates (direct use, ~300 tokens)
 ```
-
 ### 2.2 Layer Principles
 
 | Layer      | Key Principle                                              |
@@ -173,7 +172,6 @@ This file stores key knowledge about documentation writing standards and configu
 
 key: value              # Inline comment (aligned)
 ```
-
 ### 4.4 Quick Checklist
 
 | ✓ Do                   | ✗ Don't                  |

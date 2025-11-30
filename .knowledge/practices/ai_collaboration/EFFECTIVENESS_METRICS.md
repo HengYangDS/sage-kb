@@ -1,4 +1,4 @@
-# AI Collaboration Effectiveness Metrics
+﻿# AI Collaboration Effectiveness Metrics
 
 > Measuring and improving human-AI collaboration quality
 

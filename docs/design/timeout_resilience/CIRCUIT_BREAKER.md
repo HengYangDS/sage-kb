@@ -1,4 +1,4 @@
-# Circuit Breaker
+﻿# Circuit Breaker
 
 > Fail-fast pattern for handling repeated failures
 
@@ -7,6 +7,21 @@
 ## 1. Overview
 
 The circuit breaker pattern prevents cascading failures by detecting repeated failures and temporarily blocking requests to failing services.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Circuit States](#2-circuit-states)
+- [3. State Diagram](#3-state-diagram)
+- [4. Configuration](#4-configuration)
+- [5. Implementation](#5-implementation)
+- [6. Usage Patterns](#6-usage-patterns)
+- [7. Registry](#7-registry)
+- [8. Fallback Strategies](#8-fallback-strategies)
+- [9. Monitoring](#9-monitoring)
+- [10. Best Practices](#10-best-practices)
+- [Related](#related)
 
 ---
 
@@ -34,7 +49,6 @@ stateDiagram-v2
     OPEN: Failing fast
     HALF_OPEN: Testing recovery
 ```
-
 ---
 
 ## 4. Configuration
@@ -47,7 +61,6 @@ class CircuitBreakerConfig:
     reset_timeout_ms: int = 30000   # Time before half-open
     half_open_max_calls: int = 3    # Max calls in half-open
 ```
-
 ---
 
 ## 5. Implementation
@@ -102,7 +115,6 @@ class CircuitBreaker:
         elif self.failure_count >= self.config.failure_threshold:
             self._transition_to_open()
 ```
-
 ---
 
 ## 6. Usage Patterns
@@ -135,7 +147,6 @@ def circuit_breaker(name: str):
 def call_external_api(url: str) -> Response:
     ...
 ```
-
 ### 6.2 Context Manager
 
 ```python
@@ -159,7 +170,6 @@ class CircuitBreakerContext:
 with CircuitBreakerContext(breaker):
     result = external_call()
 ```
-
 ---
 
 ## 7. Registry
@@ -183,7 +193,6 @@ class CircuitBreakerRegistry:
             for name, breaker in self._breakers.items()
         }
 ```
-
 ---
 
 ## 8. Fallback Strategies
@@ -200,7 +209,6 @@ class CircuitBreakerRegistry:
 def get_data() -> Data:
     return api.fetch_data()
 ```
-
 ---
 
 ## 9. Monitoring
@@ -228,7 +236,6 @@ event_bus.publish(Event(
     }
 ))
 ```
-
 ---
 
 ## 10. Best Practices

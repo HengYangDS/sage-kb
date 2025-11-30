@@ -1,4 +1,4 @@
-# Data Models
+﻿# Data Models
 
 > Core data structures and types for SAGE
 
@@ -7,6 +7,21 @@
 ## 1. Overview
 
 Data models define the core types and structures used throughout SAGE, ensuring consistent data representation across all layers.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Model Categories](#2-model-categories)
+- [3. Knowledge Models](#3-knowledge-models)
+- [4. Operation Models](#4-operation-models)
+- [5. Configuration Models](#5-configuration-models)
+- [6. Session Models](#6-session-models)
+- [7. Protocol Types](#7-protocol-types)
+- [8. Type Aliases](#8-type-aliases)
+- [9. Validation](#9-validation)
+- [10. Best Practices](#10-best-practices)
+- [Related](#related)
 
 ---
 
@@ -49,7 +64,6 @@ class KnowledgeAsset:
     def tags(self) -> set[str]:
         return set(self.metadata.get("tags", []))
 ```
-
 ### 3.2 KnowledgeLayer
 
 ```python
@@ -67,7 +81,6 @@ class KnowledgeLayer:
     ASSISTANT = "junie"       # .junie/
     DOCS = "docs"             # docs/
 ```
-
 ### 3.3 KnowledgeGraph
 
 ```python
@@ -96,7 +109,6 @@ class KnowledgeGraph:
         """Get nodes related to a given node."""
         ...
 ```
-
 ---
 
 ## 4. Operation Models
@@ -124,7 +136,6 @@ class Result(Generic[T]):
     def fail(cls, error: str, duration_ms: float = 0) -> "Result[T]":
         return cls(False, None, error, duration_ms)
 ```
-
 ### 4.2 ValidationResult
 
 ```python
@@ -144,7 +155,6 @@ class ValidationResult:
     checked_count: int
     duration_ms: float
 ```
-
 ### 4.3 OperationContext
 
 ```python
@@ -157,7 +167,6 @@ class OperationContext:
     correlation_id: str | None
     metadata: dict[str, Any]
 ```
-
 ---
 
 ## 5. Configuration Models
@@ -187,7 +196,6 @@ class Config:
     loading: LoadingConfig
     plugins: dict[str, Any]
 ```
-
 ---
 
 ## 6. Session Models
@@ -211,7 +219,6 @@ class SessionContext:
     operation_history: list[str]
     preferences: dict[str, Any]
 ```
-
 ---
 
 ## 7. Protocol Types
@@ -264,7 +271,6 @@ class RenderedContent:
     byte_size: int
     token_count: int | None
 ```
-
 ---
 
 ## 8. Type Aliases
@@ -283,7 +289,6 @@ Assets: TypeAlias = list[KnowledgeAsset]
 Nodes: TypeAlias = dict[NodeId, KnowledgeNode]
 Edges: TypeAlias = list[KnowledgeEdge]
 ```
-
 ---
 
 ## 9. Validation
@@ -302,7 +307,6 @@ class KnowledgeAssetModel(BaseModel):
     class Config:
         frozen = True
 ```
-
 ---
 
 ## 10. Best Practices

@@ -1,10 +1,9 @@
-
+﻿
 # Plugin API Reference
 
 ## Core Classes
 
 ### `PluginMetadata`
-
 ```python
 @dataclass
 class PluginMetadata:
@@ -15,9 +14,7 @@ class PluginMetadata:
     hooks: List[str]
     priority: int = 100  # Lower = higher priority
 ```
-
 ### `PluginBase`
-
 ```python
 class PluginBase(ABC):
     @property
@@ -27,16 +24,13 @@ class PluginBase(ABC):
     def on_load(self, context: Dict[str, Any]) -> None: pass
     def on_unload(self) -> None: pass
 ```
-
 ### `LoaderPlugin`
-
 ```python
 class LoaderPlugin(PluginBase):
     def pre_load(self, layer: str, path: str) -> Optional[str]: pass
     def post_load(self, layer: str, content: str) -> str: pass
     def on_timeout(self, layer: str, elapsed_ms: int) -> Optional[str]: pass
 ```
-
 ## Hooks Reference
 
 | Hook            | Plugin Type     | Phase           | Use Case                          |
@@ -56,6 +50,21 @@ class LoaderPlugin(PluginBase):
 | `on_error`      | ErrorPlugin     | Error occurred  | Error handling, recovery          |
 | `on_cache_hit`  | CachePlugin     | Cache hit       | Cache metrics, value modification |
 | `on_cache_miss` | CachePlugin     | Cache miss      | Cache metrics, prefetching        |
+
+---
+
+## Related
+
+- `docs/guides/PLUGIN_DEVELOPMENT.md` — Plugin development guide
+- `docs/design/plugins/PLUGIN_ARCHITECTURE.md` — Plugin architecture design
+- `.context/decisions/ADR_0008_PLUGIN_SYSTEM.md` — Plugin system ADR
+
+
+## Table of Contents
+
+- [Core Classes](#core-classes)
+- [Hooks Reference](#hooks-reference)
+- [Related](#related)
 
 ---
 

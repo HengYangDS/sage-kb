@@ -1,4 +1,4 @@
-# Junie Template System Optimization
+﻿# Junie Template System Optimization
 
 > **Date**: 2025-11-30
 > **Type**: Optimization & Knowledge Capture
@@ -31,7 +31,6 @@ clean separation between generic (reusable) and project-specific content.
 └── mcp/
     └── mcp.json     (hardcoded paths)
 ```
-
 ### Phase 2: Content Extraction & Generalization
 
 **Actions**:
@@ -53,7 +52,6 @@ clean separation between generic (reusable) and project-specific content.
 └── mcp/
     └── mcp.json
 ```
-
 ### Phase 3: Directory Reorganization (Final)
 
 **Goal**: Clear physical separation of generic vs project-specific files.
@@ -84,7 +82,6 @@ clean separation between generic (reusable) and project-specific content.
     ├── config.yaml         # Project variables
     └── QUICKREF.md         # Project quick reference
 ```
-
 ---
 
 ## Key Decisions

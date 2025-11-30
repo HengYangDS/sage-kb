@@ -1,4 +1,4 @@
-# Session History Automation Requirements
+﻿# Session History Automation Requirements
 
 > Long-term automation plan for AI session history management in SAGE Knowledge Base
 
@@ -61,7 +61,6 @@ class SessionHooks:
         # Queue for conversation record
         pass
 ```
-
 #### 1.2 MCP Tool Integration
 
 Add MCP tools for session management:
@@ -82,7 +81,6 @@ sage session end --summary "Completed API endpoints"
 sage session handoff --to "next-session"
 sage session list --status active
 ```
-
 ---
 
 ### Phase 2: Intelligent Automation (Medium-term)
@@ -115,7 +113,6 @@ class SessionAnalyzer:
         }
         return mapping.get(session_type, RecordType.NONE)
 ```
-
 #### 2.2 Automatic Summary Generation
 
 Generate session summaries from activity:
@@ -132,7 +129,6 @@ class SummaryGenerator:
             pending_items=self._extract_pending(session),
         )
 ```
-
 #### 2.3 Smart Handoff Generation
 
 Automatically create handoff documents when sessions end with incomplete work:
@@ -175,7 +171,6 @@ class RetentionManager:
         # Compress and archive handoffs after task completion
         pass
 ```
-
 ---
 
 ## 3. Implementation Considerations
@@ -193,7 +188,6 @@ class SessionEvents:
     TASK_COMPLETED = "session.task.completed"
     HANDOFF_CREATED = "session.handoff.created"
 ```
-
 ### Plugin Architecture
 
 Implement as optional plugin for flexibility:
@@ -213,7 +207,6 @@ class SessionHistoryPlugin(PluginBase):
     def on_shutdown(self, context):
         self._finalize_session()
 ```
-
 ### Configuration
 
 ```yaml
@@ -229,7 +222,6 @@ session_history:
     enabled: false
     metrics_endpoint: null
 ```
-
 ---
 
 ## 4. Success Metrics

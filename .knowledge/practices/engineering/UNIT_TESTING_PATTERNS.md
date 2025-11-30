@@ -1,4 +1,4 @@
-# Unit Testing Patterns
+﻿# Unit Testing Patterns
 
 > Best practices and patterns for writing effective unit tests
 
@@ -67,7 +67,6 @@
 ### 2.1 Arrange-Act-Assert (AAA)
 
 ```python
-
 def test_user_can_be_created():
 
     # Arrange - Set up test data and conditions
@@ -92,7 +91,6 @@ def test_user_can_be_created():
 ### 2.2 Given-When-Then (BDD Style)
 
 ```python
-
 def test_user_registration():
 
     # Given a new user with valid data
@@ -115,7 +113,6 @@ def test_user_registration():
 ### 2.3 Test Class Organization
 
 ```python
-
 class TestUserService:
 
     """Tests for UserService."""
@@ -158,7 +155,6 @@ class TestUserService:
 ### 3.2 Good vs Bad Names
 
 ```python
-
 # ❌ Bad - Unclear what's being tested
 
 def test_user():
@@ -195,7 +191,6 @@ def test_get_user_returns_none_when_not_found():
 ### 4.1 Basic Fixtures
 
 ```python
-
 import pytest
 
 @pytest.fixture
@@ -224,7 +219,6 @@ def test_get_user(user_service, user):
 ### 4.2 Fixture Scopes
 
 ```python
-
 @pytest.fixture(scope="function")  # Default - new for each test
 
 def user():
@@ -253,7 +247,6 @@ def app():
 ### 4.3 Factory Fixtures
 
 ```python
-
 @pytest.fixture
 
 def user_factory():
@@ -286,7 +279,6 @@ def test_user_with_custom_name(user_factory):
 ### 4.4 Temporary Resources
 
 ```python
-
 @pytest.fixture
 
 def temp_config_file(tmp_path):
@@ -313,7 +305,6 @@ def test_load_config(temp_config_file):
 ### 5.1 Basic Mocking
 
 ```python
-
 from unittest.mock import Mock, MagicMock
 
 def test_service_calls_repository():
@@ -342,7 +333,6 @@ def test_service_calls_repository():
 ### 5.2 Patching
 
 ```python
-
 from unittest.mock import patch
 
 def test_send_email():
@@ -373,7 +363,6 @@ def test_send_email(mock_send):
 ### 5.3 Mock Side Effects
 
 ```python
-
 def test_retry_on_failure():
 
     mock_service = Mock()
@@ -398,7 +387,6 @@ def test_retry_on_failure():
 ### 5.4 Pytest-Mock
 
 ```python
-
 def test_with_mocker(mocker):
 
     # mocker is a pytest-mock fixture
@@ -421,7 +409,6 @@ def test_with_mocker(mocker):
 ### 6.1 Basic Assertions
 
 ```python
-
 # Equality
 
 assert result == expected
@@ -450,7 +437,6 @@ assert key in dictionary
 ### 6.2 Exception Testing
 
 ```python
-
 import pytest
 
 def test_raises_value_error():
@@ -471,7 +457,6 @@ def test_raises_with_match():
 ### 6.3 Approximate Comparisons
 
 ```python
-
 import pytest
 
 from math import isclose
@@ -488,7 +473,6 @@ assert isclose(result, 3.14159, rel_tol=1e-5)
 ### 6.4 Collection Assertions
 
 ```python
-
 # List equality
 
 assert result == [1, 2, 3]
@@ -515,7 +499,6 @@ assert len(result) == 3
 ### 7.1 Pytest-Asyncio
 
 ```python
-
 import pytest
 
 @pytest.mark.asyncio
@@ -538,7 +521,6 @@ async def test_async_with_fixture(async_client):
 ### 7.2 Async Fixtures
 
 ```python
-
 import pytest
 
 @pytest.fixture
@@ -567,7 +549,6 @@ async def database():
 ### 7.3 Mocking Async Functions
 
 ```python
-
 from unittest.mock import AsyncMock
 
 @pytest.mark.asyncio
@@ -592,7 +573,6 @@ async def test_async_service():
 ### 8.1 Basic Parameterization
 
 ```python
-
 import pytest
 
 @pytest.mark.parametrize(
@@ -617,7 +597,6 @@ def test_uppercase(input, expected):
 ### 8.2 Multiple Parameters
 
 ```python
-
 @pytest.mark.parametrize(
 
     "a,b,expected", [
@@ -642,7 +621,6 @@ def test_add(a, b, expected):
 ### 8.3 Named Test Cases
 
 ```python
-
 @pytest.mark.parametrize(
 
     "email,valid", [
@@ -667,7 +645,6 @@ def test_validate_email(email, valid):
 ### 8.4 Combining Parameterization
 
 ```python
-
 @pytest.mark.parametrize("method", ["GET", "POST"])
 
 @pytest.mark.parametrize("path", ["/users", "/items"])

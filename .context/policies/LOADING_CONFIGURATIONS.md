@@ -1,4 +1,4 @@
-# SAGE Loading Configurations
+﻿# SAGE Loading Configurations
 
 > Knowledge Base loading strategies and layer configuration
 
@@ -41,7 +41,6 @@ loading:
       - practices
       - scenarios
 ```
-
 ### 1.3 Strategy Comparison
 
 | Aspect       | Eager | Lazy   | On-Demand | Hybrid |
@@ -77,7 +76,6 @@ SAGE organizes knowledge into hierarchical layers:
 │              Document templates                         │
 └─────────────────────────────────────────────────────────┘
 ```
-
 ### 2.2 Layer Configuration
 
 ```yaml
@@ -123,7 +121,6 @@ knowledge:
       priority: 5
       load_strategy: on-demand
 ```
-
 ### 2.3 Priority Rules
 
 1. Lower priority number = higher importance
@@ -167,7 +164,6 @@ loading:
       layers:
         - core
 ```
-
 ### 3.3 Context-Based Loading
 
 ```yaml
@@ -186,7 +182,6 @@ loading:
       layers:
         - practices/decisions
 ```
-
 ---
 
 ## 4. Smart Loading
@@ -208,7 +203,6 @@ loading:
     popular_threshold: 10     # Access count to mark as popular
     preload_popular: true
 ```
-
 ### 4.2 Cache Configuration
 
 ```yaml
@@ -230,7 +224,6 @@ cache:
     on_file_change: true
     check_interval: 60       # seconds
 ```
-
 ### 4.3 Preloading Patterns
 
 ```yaml
@@ -252,7 +245,6 @@ loading:
       enabled: true
       predict_depth: 2
 ```
-
 ---
 
 ## 5. Configuration Reference
@@ -333,7 +325,6 @@ cache:
   size:
     max_items: 1000
 ```
-
 ### 5.2 Environment Variable Overrides
 
 ```bash
@@ -346,7 +337,6 @@ export SAGE__CACHE__TTL__DEFAULT=3600
 # Disable cache
 export SAGE__CACHE__ENABLED=false
 ```
-
 ### 5.3 Default Values
 
 | Setting                       | Default   | Description          |

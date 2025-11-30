@@ -1,4 +1,4 @@
-# YAML DSL
+﻿# YAML DSL
 
 > Domain-specific language for SAGE configuration
 
@@ -7,6 +7,21 @@
 ## 1. Overview
 
 SAGE uses YAML as its configuration DSL with custom extensions for expressions, references, and conditional logic.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Basic Syntax](#2-basic-syntax)
+- [3. DSL Extensions](#3-dsl-extensions)
+- [4. Conditional Logic](#4-conditional-logic)
+- [5. Expressions](#5-expressions)
+- [6. Type Coercion](#6-type-coercion)
+- [7. Validation Rules](#7-validation-rules)
+- [8. Secrets Handling](#8-secrets-handling)
+- [9. Profiles](#9-profiles)
+- [10. Examples](#10-examples)
+- [Related](#related)
 
 ---
 
@@ -31,7 +46,6 @@ debug: false
 # Null
 optional_value: null
 ```
-
 ### 2.2 Collections
 
 ```yaml
@@ -48,7 +62,6 @@ services:
   api:
     port: 8080
 ```
-
 ---
 
 ## 3. DSL Extensions
@@ -69,7 +82,6 @@ timeout:
 retries:
   count: ${max_retries}
 ```
-
 ### 3.2 Environment References
 
 ```yaml
@@ -79,7 +91,6 @@ database:
   port: ${env:DB_PORT:5432}  # With default
   password: ${env:DB_PASSWORD}
 ```
-
 ### 3.3 File Includes
 
 ```yaml
@@ -92,7 +103,6 @@ _include:
 services:
   _include: services/*.yaml
 ```
-
 ---
 
 ## 4. Conditional Logic
@@ -112,7 +122,6 @@ services:
         workers: 4
         ssl: true
 ```
-
 ### 4.2 If-Else
 
 ```yaml
@@ -127,7 +136,6 @@ logging:
   _else:
     level: info
 ```
-
 ---
 
 ## 5. Expressions
@@ -141,7 +149,6 @@ timeout:
   reduced_ms: ${base_ms / 2}
   with_buffer: ${base_ms + 1000}
 ```
-
 ### 5.2 String Operations
 
 ```yaml
@@ -153,7 +160,6 @@ paths:
 names:
   full: ${first_name} ${last_name}
 ```
-
 ### 5.3 Built-in Functions
 
 ```yaml
@@ -170,7 +176,6 @@ computed:
   # Default
   value: ${default(optional, "fallback")}
 ```
-
 ---
 
 ## 6. Type Coercion
@@ -185,7 +190,6 @@ settings:
   ratio: !float "0.75"
   items: !list "a,b,c"
 ```
-
 ### 6.2 Auto-detection
 
 | Pattern | Detected Type |
@@ -212,7 +216,6 @@ timeout:
     _default: 5000
     _description: "Default timeout in milliseconds"
 ```
-
 ### 7.2 Required Fields
 
 ```yaml
@@ -225,7 +228,6 @@ database:
     _required: false
     _default: 5432
 ```
-
 ### 7.3 Pattern Validation
 
 ```yaml
@@ -235,7 +237,6 @@ naming:
     _pattern: "^[A-Z_]+\\.md$"
     _description: "Must be UPPER_SNAKE_CASE.md"
 ```
-
 ---
 
 ## 8. Secrets Handling
@@ -250,7 +251,6 @@ database:
 api:
   key: ${secret:api_key}
 ```
-
 ### 8.2 Vault Integration
 
 ```yaml
@@ -262,7 +262,6 @@ secrets:
   provider: file
   path: ~/.sage/secrets.yaml
 ```
-
 ---
 
 ## 9. Profiles
@@ -284,7 +283,6 @@ _profiles:
 # Active profile
 _active_profile: ${env:SAGE_PROFILE:development}
 ```
-
 ### 9.2 Profile Inheritance
 
 ```yaml
@@ -296,7 +294,6 @@ _profiles:
     _extends: base
     timeout_ms: 10000
 ```
-
 ---
 
 ## 10. Examples
@@ -329,7 +326,6 @@ sage:
         _then:
           port: 443
 ```
-
 ---
 
 ## Related

@@ -1,4 +1,4 @@
-# Context Management Practices
+﻿# Context Management Practices
 
 > Strategies for building and managing shared context in AI collaboration
 

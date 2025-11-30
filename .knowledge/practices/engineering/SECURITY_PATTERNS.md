@@ -1,4 +1,4 @@
-# Security Implementation Patterns
+﻿# Security Implementation Patterns
 
 > Code patterns and examples for implementing security controls
 

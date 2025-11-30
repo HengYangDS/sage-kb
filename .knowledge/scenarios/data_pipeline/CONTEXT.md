@@ -1,4 +1,4 @@
-# Data Pipeline Scenario Context
+﻿# Data Pipeline Scenario Context
 
 > Pre-configured context for data processing and ETL workflows
 
@@ -29,7 +29,6 @@
 ## 1. Scenario Profile
 
 ```yaml
-
 scenario: data_pipeline
 
 languages: [ python, sql ]
@@ -88,7 +87,6 @@ autonomy_default: L2
 ### 4.1 Extractor Pattern
 
 ```python
-
 from abc import ABC, abstractmethod
 
 from typing import Iterator
@@ -141,7 +139,6 @@ class DatabaseExtractor(BaseExtractor):
 ### 4.2 Transformer Pattern
 
 ```python
-
 from typing import Callable
 
 import pandas as pd
@@ -194,7 +191,6 @@ result = transformer.apply(raw_data)
 ### 4.3 Loader Pattern
 
 ```python
-
 from enum import Enum
 
 import pandas as pd
@@ -249,7 +245,6 @@ class DataLoader:
 ### 4.4 Pipeline Pattern
 
 ```python
-
 from dataclasses import dataclass
 
 from typing import Optional
@@ -330,7 +325,6 @@ class Pipeline:
 ### 5.1 Transformer Testing
 
 ```python
-
 import pytest
 
 import pandas as pd
@@ -385,7 +379,6 @@ def test_normalize_dates(sample_data):
 ### 5.2 Pipeline Integration Testing
 
 ```python
-
 import pytest
 
 from unittest.mock import Mock, patch
@@ -444,7 +437,6 @@ def test_pipeline_success():
 ### 6.2 Validation Framework
 
 ```python
-
 from dataclasses import dataclass
 
 from typing import Callable

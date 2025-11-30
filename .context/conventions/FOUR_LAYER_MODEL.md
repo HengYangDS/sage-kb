@@ -1,4 +1,4 @@
-# Four Layer Model
+﻿# Four Layer Model
 
 > Architecture layers defining extension, capability, tool, and script boundaries
 
@@ -41,7 +41,6 @@ Concrete   ┌──────────────────────
            │ · scripts/README.md                     │
            └─────────────────────────────────────────┘
 ```
-
 ---
 
 ## 2. Layer Definitions
@@ -73,7 +72,6 @@ Concrete   ┌──────────────────────
 ```
 scripts → tools → capabilities → plugins
 ```
-
 - Scripts may depend on tools
 - Tools may depend on capabilities
 - Capabilities may depend on plugins
@@ -84,7 +82,6 @@ scripts → tools → capabilities → plugins
 ```
 plugins ✗→ capabilities ✗→ tools ✗→ scripts
 ```
-
 - Plugins must NOT depend on capabilities
 - Capabilities must NOT depend on tools
 - Tools must NOT depend on scripts

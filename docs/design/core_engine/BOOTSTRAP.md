@@ -1,4 +1,4 @@
-# Bootstrap
+﻿# Bootstrap
 
 > Application startup and initialization process
 
@@ -7,6 +7,21 @@
 ## 1. Overview
 
 The bootstrap process initializes SAGE, loading configuration, registering components, and preparing the system for operation.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Bootstrap Phases](#2-bootstrap-phases)
+- [3. Bootstrap Flow](#3-bootstrap-flow)
+- [4. Configuration Loading](#4-configuration-loading)
+- [5. Core Initialization](#5-core-initialization)
+- [6. Plugin Loading](#6-plugin-loading)
+- [7. Service Startup](#7-service-startup)
+- [8. Complete Bootstrap](#8-complete-bootstrap)
+- [9. Shutdown](#9-shutdown)
+- [10. Error Handling](#10-error-handling)
+- [Related](#related)
 
 ---
 
@@ -48,7 +63,6 @@ flowchart LR
     PHASE3 --> PHASE4
     PHASE4 --> END(["System Ready"])
 ```
-
 ---
 
 ## 4. Configuration Loading
@@ -62,7 +76,6 @@ flowchart LR
 4. Project config (./sage.yaml)
 5. Default values            (lowest)
 ```
-
 ### 4.2 Config Loading Code
 
 ```python
@@ -84,7 +97,6 @@ def load_config() -> Config:
     
     return config
 ```
-
 ---
 
 ## 5. Core Initialization
@@ -109,7 +121,6 @@ def init_core(config: Config) -> Container:
     
     return container
 ```
-
 ### 5.2 Event Bus Setup
 
 ```python
@@ -120,7 +131,6 @@ def setup_event_bus(container: Container) -> None:
     event_bus.subscribe("system.*", system_event_handler)
     event_bus.subscribe("*", metrics_collector)
 ```
-
 ---
 
 ## 6. Plugin Loading
@@ -140,7 +150,6 @@ def discover_plugins(config: Config) -> list[PluginInfo]:
     
     return plugins
 ```
-
 ### 6.2 Plugin Registration
 
 ```python
@@ -156,7 +165,6 @@ def register_plugins(container: Container, plugins: list[PluginInfo]) -> None:
         
         logger.info(f"Loaded plugin: {plugin.name} v{plugin.version}")
 ```
-
 ---
 
 ## 7. Service Startup
@@ -176,7 +184,6 @@ def start_services(container: Container, mode: str) -> None:
         api_service.start()
         mcp_service.start()
 ```
-
 ### 7.2 Ready Signal
 
 ```python
@@ -195,7 +202,6 @@ def signal_ready(container: Container) -> None:
         source="bootstrap"
     ))
 ```
-
 ---
 
 ## 8. Complete Bootstrap
@@ -222,7 +228,6 @@ def bootstrap(args: Args) -> Application:
     
     return Application(container)
 ```
-
 ---
 
 ## 9. Shutdown
@@ -253,7 +258,6 @@ def shutdown(app: Application) -> None:
     # Cleanup
     container.dispose()
 ```
-
 ---
 
 ## 10. Error Handling

@@ -1,4 +1,4 @@
-# Quick Reference Card
+﻿# Quick Reference Card
 
 > Critical questions and autonomy levels at a glance
 

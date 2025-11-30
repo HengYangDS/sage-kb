@@ -1,4 +1,4 @@
-
+﻿
 # Action Allowlist Configuration
 
 > Configure 87 Terminal rules for 90%+ automatic command approval (~30 min)
@@ -83,7 +83,6 @@ All Terminal rules follow this secure pattern:
 | `$`       | End of command                      |
 
 ### Security Pattern: `[^\s;&|<>@$]*`
-
 This pattern **excludes** dangerous characters:
 
 | Character | Risk                | Example Attack         |
@@ -253,6 +252,7 @@ docker ps            # Docker commands
 Track your auto-approval rate weekly:
 
 ```
+
 Auto-Approval Rate = (Auto-Approved / Total Commands) × 100%
 Target: ≥90%
 ```

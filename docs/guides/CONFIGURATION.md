@@ -1,4 +1,4 @@
-
+﻿
 # Configuration Guide
 
 > Complete reference for SAGE Knowledge Base configuration options
@@ -35,14 +35,13 @@ Priority (highest to lowest):
 2. config/*.yaml files
 3. Built-in defaults
 ```
-
 ### 1.3 Detailed Documentation
 
-| Document                          | Content                              |
-|-----------------------------------|--------------------------------------|
-| `docs/design/01b-configuration.md`| Configuration design and YAML DSL    |
-| `docs/design/04-timeout-loading.md`| Timeout configuration details       |
-| `docs/design/09-configuration.md` | Full configuration reference         |
+| Document                                           | Content                              |
+|----------------------------------------------------|--------------------------------------|
+| `docs/design/configuration/CONFIG_HIERARCHY.md`    | Configuration design and YAML DSL    |
+| `docs/design/timeout_resilience/TIMEOUT_HIERARCHY.md` | Timeout configuration details     |
+| `docs/design/configuration/CONFIG_REFERENCE.md`    | Full configuration reference         |
 
 ---
 
@@ -70,7 +69,6 @@ config/
     ├── testing.yaml
     └── production.yaml
 ```
-
 ### 2.2 Main Configuration (sage.yaml)
 
 ```yaml
@@ -91,7 +89,6 @@ timeout:
 knowledge:
   content_path: "./.knowledge"
 ```
-
 ---
 
 ## 3. Core Settings
@@ -114,7 +111,6 @@ timeout:
     full_load: 5s          # T4 - Full
     analysis: 10s          # T5 - Complex
 ```
-
 ### 3.2 Logging Configuration
 
 ```yaml
@@ -126,7 +122,6 @@ logging:
     - console
     - file: .logs/sage.log
 ```
-
 ### 3.3 Circuit Breaker
 
 ```yaml
@@ -137,7 +132,6 @@ circuit_breaker:
   reset_timeout: 30s
   half_open_requests: 1
 ```
-
 ---
 
 ## 4. Knowledge Settings
@@ -156,7 +150,6 @@ loading:
   cache_enabled: true
   cache_ttl: 300s
 ```
-
 ### 4.2 Smart Loading Triggers
 
 ```yaml
@@ -173,12 +166,11 @@ triggers:
   architecture:
     keywords: [architecture, design, system, pattern]
     load:
-      - .knowledge/guidelines/planning_design.md
-      - .knowledge/frameworks/decision/
+      - .knowledge/guidelines/PLANNING.md
+      - .knowledge/frameworks/patterns/DECISION.md
     timeout_ms: 3000
     priority: 2
 ```
-
 ### 4.3 Token Budget
 
 ```yaml
@@ -193,7 +185,6 @@ token_budget:
     context: 1000          # Conversation
     memory: 500            # Cross-task
 ```
-
 ---
 
 ## 5. Environment Variables
@@ -224,7 +215,6 @@ export SAGE_LOG_FORMAT=json
 export SAGE_LOADING_MAX_TOKENS=10000
 export SAGE_CACHE_ENABLED=false
 ```
-
 ---
 
 ## 6. Quick Reference
@@ -262,10 +252,10 @@ export SAGE_CACHE_ENABLED=false
 
 ## Related
 
-- `docs/design/01b-configuration.md` — Configuration design
-- `docs/design/04-timeout-loading.md` — Timeout patterns
-- `docs/design/09-configuration.md` — Full configuration reference
-- `docs/guides/quickstart.md` — Getting started guide
+- `docs/design/configuration/CONFIG_HIERARCHY.md` — Configuration design
+- `docs/design/timeout_resilience/TIMEOUT_HIERARCHY.md` — Timeout patterns
+- `docs/design/configuration/CONFIG_REFERENCE.md` — Full configuration reference
+- `docs/guides/QUICKSTART.md` — Getting started guide
 - `config/sage.yaml` — Main configuration file
 
 ---

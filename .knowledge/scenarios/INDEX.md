@@ -1,4 +1,4 @@
-# Scenario Presets
+﻿# Scenario Presets
 
 > Context-specific knowledge presets for common development scenarios
 
@@ -43,7 +43,6 @@ scenarios/[name]/
 ├── CONTEXT.md      # Main scenario context
 └── CHECKLIST.md    # Task checklist
 ```
-
 ### Context File Format
 
 ```markdown
@@ -67,7 +66,6 @@ scenarios/[name]/
 
 [Common mistakes to avoid]
 ```
-
 ---
 
 ## 3. Creating New Scenarios

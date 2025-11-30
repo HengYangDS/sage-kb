@@ -1,4 +1,4 @@
-# Session State Template
+﻿# Session State Template
 
 > **Purpose**: Capture current session context for continuity and recovery
 > **Use When**: Starting complex tasks, before breaks, or when session may be interrupted

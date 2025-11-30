@@ -1,4 +1,4 @@
-
+﻿
 # Configuration Maintenance
 
 > Daily operations and hot reload procedures (~10 min read)
@@ -88,7 +88,6 @@ For changes to:
 - `generic/config.yaml`
 - `project/config.yaml`
 - Structural changes to `mcp.json`
-
 **Procedure**:
 
 ```text
@@ -269,6 +268,7 @@ pytest tests/tools/test_junie_config.py -v
 Track weekly:
 
 ```
+
 Auto-Approval Rate = (Auto-Approved Commands / Total Commands) × 100%
 Target: ≥90%
 ```

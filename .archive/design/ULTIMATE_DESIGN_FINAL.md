@@ -1,4 +1,4 @@
-
+﻿
 # SAGE Knowledge Base - Design Document
 
 ## 🏆 Level 5 Expert Committee Consolidated Design
@@ -33,7 +33,6 @@
 # Use the migration script to split this document
 python tools/migration/split_design_doc.py ULTIMATE_DESIGN_FINAL.MD --output docs/design/
 ```
-
 ---
 
 ## 📦 Source Documents (Now Archived)
@@ -191,7 +190,6 @@ Zero Cross Import: All layers communicate via EventBus
 Pluggable: Every feature is an independent plugin
 On-Demand: Config file controls loading
 ```
-
 **Dependency Rules:**
 
 - ✅ Services → Core (allowed)
@@ -401,7 +399,6 @@ sage/                          # Project root directory
         ├── UNIFIED_FINAL_DESIGN.md
         └── UNIFIED_ULTIMATE_DESIGN.md
 ```
-
 ### 2.1.1 Directory Statistics
 
 | Directory              | Files    | Subdirs | Primary Function                            |
@@ -470,7 +467,6 @@ src/sage/core/logging/
 ├── processors.py        # structlog processors (timestamp, level, etc.)
 └── context.py           # Context management (request_id binding)
 ```
-
 #### 2.3.3 Core Implementation
 
 ```python
@@ -498,7 +494,6 @@ def get_logger(name: str = None) -> structlog.stdlib.BoundLogger:
     """Get a structured logger instance."""
     return structlog.get_logger(name)
 ```
-
 ```python
 # src/sage/core/logging/config.py
 """Logging configuration with structlog + stdlib."""
@@ -555,7 +550,6 @@ def configure_logging(
     root_logger.addHandler(handler)
     root_logger.setLevel(getattr(logging, level))
 ```
-
 ```python
 # src/sage/core/logging/context.py
 """Context management for structured logging."""
@@ -578,7 +572,6 @@ def get_context() -> dict:
     """Get current logging context."""
     return structlog.contextvars.get_contextvars()
 ```
-
 #### 2.3.4 Usage Examples
 
 ```python
@@ -600,7 +593,6 @@ try:
 except Exception as e:
     logger.exception("operation failed", error=str(e))
 ```
-
 #### 2.3.5 Output Formats
 
 **Development (console format):**
@@ -608,7 +600,6 @@ except Exception as e:
 ```text
 2025-11-28T14:30:00+08:00 [info     ] loading layer              layer=core request_id=req-123 tokens=500
 ```
-
 **Production (JSON format):**
 
 ```json
@@ -621,7 +612,6 @@ except Exception as e:
   "request_id": "req-123"
 }
 ```
-
 ### 2.4 Development Toolchain
 
 #### 2.4.1 Makefile Commands
@@ -637,7 +627,6 @@ make format        # Format code with ruff
 make serve         # Start MCP server
 make clean         # Clean build artifacts
 ```
-
 #### 2.4.2 Pre-commit Hooks
 
 ```yaml
@@ -650,7 +639,6 @@ repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     hooks: [ trailing-whitespace, end-of-file-fixer, check-yaml ]
 ```
-
 ### 2.5 Package Distribution (Modern Approach)
 
 > **Added**: 2025-11-28 by Level 5 Expert Committee
@@ -685,7 +673,6 @@ include = [
 packages = ["src/sage"]
 only-include = ["src/sage"]
 ```
-
 #### 2.5.3 Benefits of Modern Packaging
 
 | Benefit                    | Description                        |
@@ -730,7 +717,6 @@ def get_data_path() -> Path:
     """Get platform-specific data directory."""
     return Path(user_data_dir("sage", ensure_exists=True))
 ```
-
 #### 2.6.2 Cross-Platform Task Runner (justfile)
 
 Since `Makefile` uses bash syntax (not Windows-compatible), we provide a cross-platform `justfile`:
@@ -773,7 +759,6 @@ serve:
 clean:
     rm -rf build/ dist/ *.egg-info .pytest_cache .coverage htmlcov/
 ```
-
 #### 2.6.3 Path Handling Best Practices
 
 ```python
@@ -786,7 +771,6 @@ config_file = Path("../../content") / "core" / "PRINCIPLES.MD"
 config_file = "../../.knowledge/core/PRINCIPLES.MD"  # Fails on Windows
 config_file = "../../.knowledge/core/PRINCIPLES.MD"  # Fails on Unix
 ```
-
 ### 2.7 Configuration Hierarchy (Zero Coupling)
 
 > **Added**: 2025-11-28 by Level 5 Expert Committee
@@ -806,7 +790,6 @@ Priority (highest to lowest):
 │ 4. Package Defaults (built-in)                      │ ← Lowest
 └─────────────────────────────────────────────────────┘
 ```
-
 #### 2.7.2 Implementation with pydantic-settings
 
 ```python
@@ -853,7 +836,6 @@ class SageSettings(BaseSettings):
             return cls(**yaml_config)
         return cls()
 ```
-
 #### 2.7.3 Environment Variable Examples
 
 ```bash
@@ -869,7 +851,6 @@ export SAGE_LOG_FORMAT=json
 export SAGE_LOADING_MAX_TOKENS=8000
 export SAGE_LOADING_CACHE_ENABLED=false
 ```
-
 #### 2.7.4 Updated Dependencies
 
 ```toml
@@ -898,7 +879,6 @@ dependencies = [
     "uvicorn>=0.23.0",
 ]
 ```
-
 ### 2.8 SAGE Protocol Design (Source-Analyze-Generate-Evolve)
 
 > **Added**: 2025-11-28 by Level 5 Expert Committee (Deep Integration)
@@ -1108,7 +1088,6 @@ class EvolveProtocol(Protocol):
         """Create session checkpoint, return checkpoint ID."""
         ...
 ```
-
 #### 2.8.3 Protocol Benefits
 
 | Benefit           | Description                                         |
@@ -1343,7 +1322,6 @@ def start_api_server(host: str = "0.0.0.0", port: int = 8080):
     app = create_api_app()
     uvicorn.run(app, host=host, port=port)
 ```
-
 #### 2.9.3 API Configuration
 
 ```yaml
@@ -1363,7 +1341,6 @@ services:
       enabled: false
       requests_per_minute: 60
 ```
-
 #### 2.9.4 API Usage Examples
 
 ```bash
@@ -1384,7 +1361,6 @@ curl "http://localhost:8080/search?q=autonomy&limit=5"
 # Get framework
 curl http://localhost:8080/frameworks/autonomy
 ```
-
 ### 2.10 Dependency Injection Container
 
 > **Added**: 2025-11-28 by Level 5 Expert Committee (Deep Integration)
@@ -1601,7 +1577,6 @@ def get_container() -> DIContainer:
     """Get the global DI container instance."""
     return DIContainer.get_instance()
 ```
-
 #### 2.10.3 DI Configuration
 
 ```yaml
@@ -1631,7 +1606,6 @@ di:
       lifetime: singleton
       implementation: MetricsCollector
 ```
-
 #### 2.10.4 Usage Examples
 
 ```python
@@ -1653,7 +1627,6 @@ knowledge = container.resolve(KnowledgeProtocol)
 result = await loader.load(LoadRequest(layers=["core"]))
 results = await knowledge.search("autonomy")
 ```
-
 ### 2.11 Application Bootstrap
 
 > **Added**: 2025-11-28 by Level 5 Expert Committee (Deep Integration)
@@ -1792,7 +1765,6 @@ def _setup_event_subscriptions(event_bus: EventBus, config: Dict) -> None:
             logger.debug("subscribing handler", event=event_pattern, handler=handler_name)
             # Handler registration would be implemented based on handler registry
 ```
-
 #### 2.11.2 Entry Point Integration
 
 ```python
@@ -1861,7 +1833,6 @@ async def main():
 if __name__ == '__main__':
     sys.exit(asyncio.run(main()))
 ```
-
 ### 2.12 AI Collaboration Directory Structure (Project-Level)
 
 > **Added**: 2025-11-28 by Level 5 Expert Committee
@@ -1917,7 +1888,6 @@ project-root/
 └── .knowledge/                     # 📚 Generic Knowledge (Distributable)
     └── ... (package content)
 ```
-
 #### 2.12.2 Directory Purpose & Differentiation
 
 | Directory     | Purpose                                        | Hidden | Git Track | Scope           |
@@ -1971,7 +1941,6 @@ project-root/
 │                                                                 │
 └─────────────────────────────────────────────────────────────────┘
 ```
-
 #### 2.12.4 `.junie/GUIDELINES.MD` Entry Point
 
 The `.junie/GUIDELINES.MD` file is the **primary entry point** for JetBrains Junie AI collaboration. It should contain:
@@ -2003,7 +1972,6 @@ The `.junie/GUIDELINES.MD` file is the **primary entry point** for JetBrains Jun
 
 [@file references to other important files]
 ```
-
 #### 2.12.5 Relationship to MemoryStore
 
 | Storage       | Location                      | Scope            | Purpose                       |
@@ -2044,7 +2012,6 @@ Both systems work together:
 │  Status: APPROVED FOR IMPLEMENTATION                            │
 └─────────────────────────────────────────────────────────────────┘
 ```
-
 ### 2.12 Error Handling Design
 
 > **Added**: 2025-11-28 by Level 5 Expert Committee
@@ -2220,7 +2187,6 @@ class InvalidQueryError(SearchError):
             recoverable=False
         )
 ```
-
 #### 2.12.2 Error Code Reference
 
 | Code Range | Category      | Description                            |
@@ -2275,7 +2241,6 @@ async def load_knowledge_safely(layers: list[str]) -> LoadResult:
             recoverable=False
         ) from e
 ```
-
 #### 2.12.4 API Error Response Format
 
 ```json
@@ -2292,7 +2257,6 @@ async def load_knowledge_safely(layers: list[str]) -> LoadResult:
   }
 }
 ```
-
 ### 2.13 Testing Strategy
 
 > **Added**: 2025-11-28 by Level 5 Expert Committee
@@ -2315,7 +2279,6 @@ async def load_knowledge_safely(layers: list[str]) -> LoadResult:
 
 Target Coverage: 90%+ for core/, 80%+ for services/
 ```
-
 #### 2.13.2 Test Categories & Boundaries
 
 | Category        | Scope                 | Dependencies    | Speed    | Location             |
@@ -2411,7 +2374,6 @@ Use Real (Isolated):
   - Actual async event loop
 """
 ```
-
 #### 2.13.4 Integration Test Boundaries
 
 ```python
@@ -2460,7 +2422,6 @@ async def test_loader_timeout_triggers_fallback(temp_content_dir: Path):
     assert result.status in ("fallback", "partial")
     assert result.content  # Should never be empty
 ```
-
 #### 2.13.5 Test Naming Convention
 
 ```
@@ -2472,7 +2433,6 @@ Examples:
 - test_search_empty_query_raises_error
 - test_config_missing_file_uses_defaults
 ```
-
 #### 2.13.6 CI Test Commands
 
 ```yaml
@@ -2494,7 +2454,6 @@ jobs:
         if: github.event_name == 'schedule'
         run: pytest tests/performance/ -v --benchmark-json=benchmark.json
 ```
-
 ---
 
 ## ⏱️ Part 3: Timeout Mechanism (Critical Innovation)
@@ -2515,7 +2474,6 @@ timeout:
     - name: "Configurable"
       description: "Allow timeout adjustment per context"
 ```
-
 ### 3.2 Five-Level Timeout Hierarchy
 
 | Level  | Timeout | Scope            | Action on Timeout      |
@@ -2555,7 +2513,6 @@ timeout:
     failure_threshold: 3
     reset_timeout: 30s
 ```
-
 ### 3.4 Graceful Degradation Strategy
 
 ```
@@ -2577,7 +2534,6 @@ Degradation Levels:
 │ Emergency (hardcoded principles)                    │ ← Last resort
 └─────────────────────────────────────────────────────┘
 ```
-
 ### 3.5 Timeout-Aware Loader Implementation (Modern Approach)
 
 > **Updated**: 2025-11-28 by Level 5 Expert Committee
@@ -2612,7 +2568,6 @@ fallback:
     # Emergency Fallback
     Be accurate. Be clear. Be elegant.
 ```
-
 #### 3.5.2 Modern Loader Implementation
 
 ```python
@@ -2776,7 +2731,6 @@ class TimeoutLoader:
         # Actual implementation would read from .knowledge/ directory
         raise NotImplementedError("Implement based on layer structure")
 ```
-
 #### 3.5.3 Package Data Structure
 
 ```
@@ -2789,7 +2743,6 @@ src/sage/
 │   └── ...
 └── ...
 ```
-
 #### 3.5.4 Benefits of External Configuration
 
 | Aspect              | Old (Embedded)      | New (External YAML)        |
@@ -3040,7 +2993,6 @@ optimization:
   lazy_expansion: true         # Headers-only with expand-on-demand
   context_pruning: true        # Auto-remove irrelevant sections
 ```
-
 ### 4.4 Enhanced Loading Features
 
 ```python
@@ -3081,7 +3033,6 @@ class EnhancedLoader(TimeoutLoader):
         """Extract only headers for lazy loading."""
         return '\n'.join(line for line in content.split('\n') if line.startswith('#'))
 ```
-
 ---
 
 ## 🔌 Part 5: Plugin Architecture
@@ -3139,7 +3090,6 @@ class LoaderPlugin(PluginBase):
         """Hook on timeout - return fallback content or None."""
         return None
 ```
-
 ### 5.2 Extension Points (7 Hooks)
 
 | Hook          | Phase          | Use Case                          |
@@ -3207,7 +3157,6 @@ class PluginRegistry:
                 print(f"Failed to load plugin {py_file}: {e}")
         return count
 ```
-
 ### 5.4 Event-Driven Plugin Architecture (Protocol + EventBus)
 
 > **Added**: 2025-11-28 by Level 5 Expert Committee
@@ -3237,7 +3186,6 @@ The event-driven architecture provides async decoupling between components:
 │ FormatHandler │                     │  SearchEvent  │
 └───────────────┘                     └───────────────┘
 ```
-
 **Key Benefits:**
 
 | Aspect          | Old (ABC)              | New (Protocol + EventBus)     |
@@ -3331,7 +3279,6 @@ class TimeoutEvent(Event):
     timeout_ms: int = 0
     fallback_content: Optional[str] = None
 ```
-
 #### 5.4.3 Protocol Interfaces
 
 ```python
@@ -3364,7 +3311,6 @@ class SearchHandler(Protocol):
 
     async def handle_post_search(self, event: SearchEvent) -> SearchEvent: ...
 ```
-
 #### 5.4.4 EventBus Implementation
 
 ```python
@@ -3508,7 +3454,6 @@ def get_event_bus() -> EventBus:
     """Get the global event bus instance."""
     return EventBus.get_instance()
 ```
-
 #### 5.4.5 Backward Compatibility Adapter
 
 ```python
@@ -3577,7 +3522,6 @@ class PluginAdapter:
             self.bus.unsubscribe(sub_id)
         self._subscriptions.clear()
 ```
-
 ### 5.5 Cross-Task Memory Persistence
 
 > **Added**: 2025-11-28 by Level 5 Expert Committee
@@ -3606,7 +3550,6 @@ class PluginAdapter:
 │                    └───────────┘                           │
 └─────────────────────────────────────────────────────────────┘
 ```
-
 #### 5.5.2 Memory Types and Priority
 
 ```python
@@ -3633,7 +3576,6 @@ class MemoryPriority(int, Enum):
     CRITICAL = 90  # Must be retained
     PERMANENT = 100  # Never discard
 ```
-
 #### 5.5.3 Memory Entry Structure
 
 ```python
@@ -3656,7 +3598,6 @@ class MemoryEntry:
     is_summarized: bool = False
     summary_of: list[str] = field(default_factory=list)
 ```
-
 #### 5.5.4 Token Budget Management
 
 ```python
@@ -3683,7 +3624,6 @@ class TokenBudgetConfig:
     auto_summarize: bool = True
     auto_prune: bool = True
 ```
-
 **Token Warning Levels:**
 
 | Level    | Threshold | Action                                         |
@@ -3756,7 +3696,6 @@ class HandoffPackage:
 Progress: {self.session_state.progress_percentage:.0f}% complete
 """
 ```
-
 #### 5.5.6 Storage Structure
 
 ```text
@@ -3770,7 +3709,6 @@ Progress: {self.session_state.progress_percentage:.0f}% complete
 └── checkpoints/
     └── {checkpoint_id}.json        # Recovery checkpoints
 ```
-
 #### 5.5.7 Usage Example
 
 ```python
@@ -3814,7 +3752,6 @@ new_session = continuity.start_session(
     resume_from=checkpoint_id
 )
 ```
-
 #### 5.5.8 EventBus Integration
 
 ```python
@@ -3833,7 +3770,6 @@ async def setup_memory_events(bus: EventBus, continuity: SessionContinuity):
     bus.subscribe("decision.made", on_decision, priority=10)
     bus.subscribe("memory.warning", on_token_warning, priority=1)
 ```
-
 ---
 
 ## 🛠️ Part 6: MCP Tools & CLI
@@ -3928,7 +3864,6 @@ async def get_template(name: str) -> str:
     """Get template (project_guidelines, session_log, delivery_report, etc.)."""
     pass
 ```
-
 ### 6.2 Rich CLI with Modern UX
 
 ```python
@@ -4036,7 +3971,6 @@ def serve(
 if __name__ == "__main__":
     app()
 ```
-
 ### 6.3 CLI Commands Summary
 
 ```bash
@@ -4054,7 +3988,6 @@ sage get --format syntax       # Different format
 sage validate --fix            # Validate and fix
 sage --install-completion      # Install shell completion
 ```
-
 ---
 
 ## 🗺️ Part 7: Implementation Roadmap
@@ -4093,7 +4026,6 @@ Parallelizable:
 - Phase F (Enhancement) can run parallel to Phase E
 - Documentation can be continuous throughout
 ```
-
 #### 7.0.3 Risk Factors
 
 | Risk                          | Probability | Impact | Mitigation                    |
@@ -4144,7 +4076,6 @@ Risk Buffer: 4-6 days (30%) for:
 Total Duration: 18-21 days (3-4 weeks)
 Target: Production-ready MVP
 ```
-
 **Timeline Scenarios**:
 
 | Scenario         | Duration | Team    | Notes                               |
@@ -4298,7 +4229,6 @@ src/sage/core/events/
 ├── protocols.py         # Protocol interfaces
 └── adapter.py           # PluginAdapter for migration
 ```
-
 ### 7.10 Phase H: Cross-Task Memory Persistence (Day 11-13) 🆕
 
 > **Added**: 2025-11-28 by Level 5 Expert Committee
@@ -4332,7 +4262,6 @@ src/sage/core/memory/
 ├── token_budget.py      # TokenBudget, TokenWarningLevel, TokenBudgetConfig
 └── session.py           # SessionContinuity, SessionState, HandoffPackage
 ```
-
 **Storage Location** (platformdirs):
 
 ```text
@@ -4340,7 +4269,6 @@ src/sage/core/memory/
 ~/Library/Application Support/sage/memory/    # macOS
 C:\Users\<user>\AppData\Local\sage\memory\    # Windows
 ```
-
 ### 7.11 Key Performance Indicators (KPIs)
 
 | Metric                 | Before | Phase B | Phase D | Phase F | Phase G | Phase H     | Target |
@@ -4441,7 +4369,6 @@ C:\Users\<user>\AppData\Local\sage\memory\    # Windows
 │                                                                 │
 └─────────────────────────────────────────────────────────────────┘
 ```
-
 **Docker Compose Example**:
 
 ```yaml
@@ -4468,7 +4395,6 @@ services:
 volumes:
   sage-memory:
 ```
-
 #### 7.13.2 API Versioning Strategy
 
 | Aspect               | Strategy              | Example                                 |
@@ -4501,7 +4427,6 @@ v2_router = APIRouter(prefix="/v2", tags=["v2"])
 app.include_router(v1_router)
 # app.include_router(v2_router)  # When ready
 ```
-
 #### 7.13.3 Observability & Monitoring
 
 **Metrics (Prometheus-compatible)**:
@@ -4543,7 +4468,6 @@ MEMORY_USAGE_BYTES = Gauge(
     "Memory store usage in bytes"
 )
 ```
-
 **Key Metrics to Monitor**:
 
 | Metric                                | Type      | Alert Threshold |
@@ -4572,7 +4496,6 @@ MEMORY_USAGE_BYTES = Gauge(
   "tokens": 1200
 }
 ```
-
 ### 7.14 Actionable Cross-Platform Commands
 
 > **Added**: 2025-11-28 by Level 5 Expert Committee
@@ -4596,7 +4519,6 @@ MEMORY_USAGE_BYTES = Gauge(
 # Verify directory structure
 python -c "from pathlib import Path; assert Path('src/sage/core').is_dir(); assert Path('src/sage/services').is_dir(); print('✅ Structure verified')"
 ```
-
 **Rollback Commands:**
 
 ```bash
@@ -4606,7 +4528,6 @@ git checkout -- .
 # Windows (PowerShell)
 git checkout -- .
 ```
-
 #### 7.14.2 Phase B Commands (Core Migration)
 
 | Task                       | macOS/Linux (Bash)                                     | Windows (PowerShell)                                          |
@@ -4665,7 +4586,6 @@ pytest tests/ -v
 
 echo "✅ Development environment ready!"
 ```
-
 **For Windows (`scripts/setup_dev.ps1`):**
 
 ```powershell
@@ -4689,7 +4609,6 @@ pytest tests/ -v
 
 Write-Host "✅ Development environment ready!" -ForegroundColor Green
 ```
-
 #### 7.11.6 Cross-Platform Best Practices
 
 | Practice                  | Recommendation                                     |
@@ -4758,7 +4677,6 @@ sage Design:       99.00/100  (+6.50)
 ULTIMATE_99 Design:       100.00/100  (+1.00)
 UNIFIED Design:           100.00/100  (consolidated) ✅
 ```
-
 ### 8.4 Key Innovations Summary
 
 | Innovation                          | Source      | Impact                 |
@@ -5013,7 +4931,6 @@ Configuration Priority (highest to lowest):
 │ 4. Package Defaults (built-in)                      │ ← Fallback
 └─────────────────────────────────────────────────────┘
 ```
-
 #### 8.7.7 Score Maintained
 
 | Dimension                | Before     | After      | Status                            |
@@ -5050,7 +4967,6 @@ Configuration Priority (highest to lowest):
 │  Recommendation: APPROVED FOR IMPLEMENTATION                │
 └─────────────────────────────────────────────────────────────┘
 ```
-
 ### 8.8 Event-Driven Plugin & Memory Persistence Evaluation (2025-11-28) 🆕
 
 > **Enhancement Purpose**: Add Protocol + EventBus async decoupling and cross-task memory persistence
@@ -5174,7 +5090,6 @@ Configuration Priority (highest to lowest):
 │  Recommendation: APPROVED FOR IMPLEMENTATION                │
 └─────────────────────────────────────────────────────────────┘
 ```
-
 ### 8.9 Deep Integration Optimization Evaluation (2025-11-28) 🆕
 
 > **Enhancement Purpose**: Implement YAML + DSL + Protocol + EventBus loosely-coupled architecture
@@ -5310,7 +5225,6 @@ Configuration Priority (highest to lowest):
 │  └─────────────┘ └─────────────┘ └─────────────────────────┘│
 └─────────────────────────────────────────────────────────────┘
 ```
-
 **Implementation**:
 
 ```
@@ -5328,7 +5242,6 @@ src/sage/
 │   ├── session.py           # CollaborationSession entity
 │   └── learning_cycle.py    # LearningCycle entity
 ```
-
 #### 8.10.3 Issue 2: File Naming Optimization
 
 **Problem**: 00_XXX.MD numbered naming creates insertion problems and cognitive overhead.
@@ -5356,7 +5269,6 @@ metadata:
     tokens: ~60
     priority: 1
 ```
-
 **Benefits**:
 
 - Semantic filenames (cognitive improvement)
@@ -5379,7 +5291,6 @@ features:
   api_service: false  # Can disable during refactoring
   legacy_loader: false  # Deprecated, will remove
 ```
-
 #### 8.10.5 Issue 4: Navigation Standards
 
 **5-Level Navigation Hierarchy**:
@@ -5400,7 +5311,6 @@ L3: .knowledge/guidelines/*.md (On-Demand, ~100-200/file)
 L4: .knowledge/frameworks/*.md (Deep Dive, ~300-500/file)
     └── Loaded for complex decision tasks
 ```
-
 **Decision Matrix**:
 
 | Content Type      | Location               | Rationale           |
@@ -5441,7 +5351,6 @@ L4: .knowledge/frameworks/*.md (Deep Dive, ~300-500/file)
 
 - @file:.context/INDEX.MD - Project-specific knowledge
 ```
-
 **Additional**: Create `.junie/loading_rules.yaml` for smart loading configuration.
 
 #### 8.10.7 Issue 6: Comprehensive Fallback Architecture
@@ -5493,7 +5402,6 @@ fallback:
       action: clarify
       threshold: 0.3  # Confidence < 70%
 ```
-
 **Key Insight**: Fallback = "how to maintain value delivery when optimal path is unavailable"
 
 #### 8.10.8 Issue 7: Project Knowledge Lifecycle
@@ -5511,7 +5419,6 @@ fallback:
 │  sessions/      decisions/     (generic)    design_history/   │
 └─────────────────────────────────────────────────────────────────┘
 ```
-
 | Phase   | Location    | Trigger               | Action                            |
 |---------|-------------|-----------------------|-----------------------------------|
 | CAPTURE | .history/   | Every session         | Auto-save conversations, handoffs |
@@ -5534,7 +5441,6 @@ fallback:
 │  or PR          (Level 4-5)     directory    (semver)          │
 └─────────────────────────────────────────────────────────────────┘
 ```
-
 **Update Frequency by Layer**:
 
 | Layer | Directory              | Frequency        | Governance       |
@@ -5610,7 +5516,6 @@ sage/
 ├── features.yaml                    # 🆕 Feature flags
 └── ...
 ```
-
 #### 8.10.12 Implementation Roadmap
 
 | Phase | Days  | Priority | Focus                                                   |
@@ -5682,7 +5587,6 @@ sage/
 │  RECOMMENDATION: APPROVED FOR IMPLEMENTATION                    │
 └─────────────────────────────────────────────────────────────────┘
 ```
-
 ---
 
 ### 8.11 Comprehensive Modernization Enhancement (2025-11-28) 🆕
@@ -5773,7 +5677,6 @@ class CustomLoader(BaseLoader):
     async def load(self, layers: list[str]) -> LoadResult:
         ...
 ```
-
 #### 8.11.3 Allure Test Integration
 
 ##### Dependencies
@@ -5791,7 +5694,6 @@ dev = [
     "mypy>=1.11",
 ]
 ```
-
 ##### pytest Configuration
 
 ```toml
@@ -5811,7 +5713,6 @@ markers = [
     "slow: Slow running tests",
 ]
 ```
-
 ##### Allure Test Hierarchy
 
 ```
@@ -5841,7 +5742,6 @@ Epic: AI Collaboration Knowledge Base
     ├── Story: Token Budget Management
     └── Story: Handoff Packages
 ```
-
 ##### Test Example with Allure
 
 ```python
@@ -5885,7 +5785,6 @@ class TestTimeoutLoader:
             assert result.status in ["fallback", "partial"]
             assert "Core Principles" in result.content
 ```
-
 ##### conftest.py Enhancements
 
 ```python
@@ -5919,7 +5818,6 @@ def pytest_runtest_makereport(item, call):
             allure.attachment_type.TEXT
         )
 ```
-
 #### 8.11.4 Updated Package Stack v3.1
 
 ##### Core Dependencies
@@ -6002,7 +5900,6 @@ python_version = "3.12"
 strict = true
 enable_incomplete_feature = ["NewGenericSyntax"]  # 🆕 PEP 695
 ```
-
 #### 8.11.5 Task Runner Commands
 
 ##### Makefile (Unix/macOS)
@@ -6029,7 +5926,6 @@ lint:
 format:
 	ruff format src/ tests/
 ```
-
 ##### justfile (Cross-Platform)
 
 ```just
@@ -6055,7 +5951,6 @@ lint:
 format:
     ruff format src/ tests/
 ```
-
 #### 8.11.6 Implementation Roadmap (12 Days)
 
 | Phase | Days  | Focus         | Tasks                                          |
@@ -6111,7 +6006,6 @@ format:
 │  RECOMMENDATION: APPROVED FOR IMPLEMENTATION                    │
 └─────────────────────────────────────────────────────────────────┘
 ```
-
 ---
 
 ## ✅ Conclusion

@@ -1,4 +1,4 @@
-
+﻿
 # MCP Servers Reference
 
 > Detailed documentation for each MCP server (~20 min read)
@@ -33,7 +33,6 @@
 **Purpose**: File system operations within project scope
 
 **Package**: `@modelcontextprotocol/server-filesystem`
-
 **Configuration**:
 
 ```json
@@ -76,7 +75,6 @@
 - Add directories as additional args
 - Use relative paths from project root
 - Example: `[".", ".junie", "docs", "src"]`
-
 ---
 
 ### Memory Server
@@ -84,7 +82,6 @@
 **Purpose**: Cross-session knowledge persistence via knowledge graph
 
 **Package**: `@modelcontextprotocol/server-memory`
-
 **Configuration**:
 
 ```json
@@ -174,7 +171,6 @@
 **Purpose**: GitHub API integration for issues, PRs, and repository data
 
 **Package**: `@modelcontextprotocol/server-github`
-
 **Configuration**:
 
 ```json
@@ -216,7 +212,6 @@
 
 1. Create GitHub Personal Access Token at https://github.com/settings/tokens
 2. Set environment variable `GITHUB_PERSONAL_ACCESS_TOKEN`
-
 ---
 
 ### Sequential Thinking Server
@@ -224,7 +219,6 @@
 **Purpose**: Step-by-step problem decomposition for complex reasoning
 
 **Package**: `@modelcontextprotocol/server-sequential-thinking`
-
 **Configuration**:
 
 ```json
@@ -266,7 +260,6 @@
 **Purpose**: Headless browser automation for web scraping and UI testing
 
 **Package**: `@modelcontextprotocol/server-puppeteer`
-
 **Configuration**:
 
 ```json
@@ -308,7 +301,6 @@
 **Purpose**: Docker container management
 
 **Package**: `mcp-server-docker`
-
 **Configuration**:
 
 ```json
@@ -350,7 +342,6 @@
 **Purpose**: System-wide fast file search using Everything search engine
 
 **Package**: `mcp-server-everything`
-
 **Configuration**:
 
 ```json
@@ -387,7 +378,6 @@
 **Purpose**: Desktop automation and system command execution
 
 **Package**: `@wonderwhy-er/desktop-commander`
-
 **Configuration**:
 
 ```json

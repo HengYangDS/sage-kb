@@ -1,4 +1,4 @@
-# Infrastructure
+﻿# Infrastructure
 
 > Deployment, operations, and runtime infrastructure for SAGE
 
@@ -7,6 +7,21 @@
 ## 1. Overview
 
 This document covers the infrastructure requirements, deployment options, and operational considerations for SAGE.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Runtime Requirements](#2-runtime-requirements)
+- [3. Deployment Options](#3-deployment-options)
+- [4. Configuration](#4-configuration)
+- [5. Service Architecture](#5-service-architecture)
+- [6. Monitoring](#6-monitoring)
+- [7. Security](#7-security)
+- [8. Performance](#8-performance)
+- [9. Disaster Recovery](#9-disaster-recovery)
+- [10. Scaling](#10-scaling)
+- [Related](#related)
 
 ---
 
@@ -45,7 +60,6 @@ sage --help
 # Run tests
 pytest
 ```
-
 ### 3.2 Production Installation
 
 ```bash
@@ -55,7 +69,6 @@ pip install sage-kb
 # Or with extras
 pip install "sage-kb[api,mcp]"
 ```
-
 ### 3.3 Docker Deployment
 
 ```dockerfile
@@ -69,13 +82,11 @@ RUN pip install --no-cache-dir .
 EXPOSE 8000
 CMD ["sage", "serve", "--port", "8000"]
 ```
-
 ```bash
 # Build and run
 docker build -t sage-kb .
 docker run -p 8000:8000 sage-kb
 ```
-
 ---
 
 ## 4. Configuration
@@ -116,7 +127,6 @@ graph TD
         Embedded --> Core
     end
 ```
-
 ### 5.2 Port Assignments
 
 | Service | Default Port | Environment Variable |
@@ -144,7 +154,6 @@ graph TD
     }
 }
 ```
-
 ### 6.2 Metrics
 
 | Metric | Type | Description |
@@ -163,7 +172,6 @@ sage health
 # API health endpoint
 curl http://localhost:8000/health
 ```
-
 ```json
 {
     "status": "healthy",
@@ -175,7 +183,6 @@ curl http://localhost:8000/health
     }
 }
 ```
-
 ---
 
 ## 7. Security
@@ -238,7 +245,6 @@ sage restore --backup /path/to/backup
 # Verify integrity
 sage verify --all
 ```
-
 ---
 
 ## 10. Scaling
@@ -260,7 +266,6 @@ graph TD
     S2 --> Storage
     S3 --> Storage
 ```
-
 ### 10.2 Resource Limits
 
 | Resource | Per Instance | Cluster |

@@ -1,4 +1,4 @@
-# ADR-0006: Protocol-First Interface Design
+﻿# ADR-0006: Protocol-First Interface Design
 
 > Architecture Decision Record for SAGE Knowledge Base
 
@@ -64,7 +64,6 @@ class SourceProtocol(Protocol):
         """Search for knowledge."""
         ...
 ```
-
 ### Key Characteristics
 
 | Feature              | Protocol | ABC             |
@@ -149,7 +148,6 @@ class LoaderProtocol(Protocol):
         """Check if path exists."""
         ...
 ```
-
 ### Implementing Protocols
 
 ```python
@@ -168,7 +166,6 @@ class FileLoader:
 # Type checker verifies compliance
 loader: LoaderProtocol = FileLoader()  # OK
 ```
-
 ### Runtime Checking
 
 ```python
@@ -186,7 +183,6 @@ def register_plugin(plugin: Any) -> None:
     elif isinstance(plugin, AnalyzeProtocol):
         register_analyzer(plugin)
 ```
-
 ### Protocol Composition
 
 ```python
@@ -202,7 +198,6 @@ class CacheableLoaderProtocol(LoaderProtocol, CacheableProtocol):
     """Combined protocol for cacheable loaders."""
     pass
 ```
-
 ### Generic Protocols
 
 ```python
@@ -220,7 +215,6 @@ class RepositoryProtocol(Protocol[T]):
 
     def delete(self, id: str) -> bool: ...
 ```
-
 ### SAGE Core Protocols
 
 ```python
@@ -255,7 +249,6 @@ class EvolveProtocol(Protocol):
 
     async def track(self, event: str, data: dict) -> None: ...
 ```
-
 ### Testing with Protocols
 
 ```python
@@ -278,7 +271,6 @@ def test_processor():
     result = processor.process()
     assert result == "processed: test content"
 ```
-
 ---
 
 ## Related

@@ -1,4 +1,4 @@
-
+﻿
 # MCP API Quick Reference
 
 > Essential MCP tools and resources for SAGE integration
@@ -14,6 +14,17 @@
 | `sage_get_context`   | Task-specific context | `task_type`     |
 | `sage_info`          | System status         | (none)          |
 
+
+## Table of Contents
+
+- [Tools](#tools)
+- [Tool Parameters](#tool-parameters)
+- [Resources](#resources)
+- [Timeout Levels](#timeout-levels)
+- [Error Codes](#error-codes)
+- [Quick Start](#quick-start)
+- [Related](#related)
+
 ---
 
 ## Tool Parameters
@@ -23,19 +34,16 @@
 ```json
 { "layer": "core|guidelines|frameworks|practices|all", "topic": "optional", "timeout_ms": 2000 }
 ```
-
 ### sage_search
 
 ```json
 { "query": "search text", "limit": 10, "layer": "all" }
 ```
-
 ### sage_get_context
 
 ```json
 { "task_type": "coding|debugging|reviewing|planning|documenting", "language": "python", "token_budget": 4000 }
 ```
-
 ---
 
 ## Resources
@@ -78,16 +86,19 @@
 # Start server
 sage serve --host localhost --port 8000
 ```
-
 ```python
 # Client usage
 result = await client.call_tool("sage_get_knowledge", {"layer": "core"})
 results = await client.call_tool("sage_search", {"query": "timeout"})
 ```
-
 ---
 
-**Full Reference**: `docs/api/mcp.md`
+## Related
+
+- `docs/api/MCP.md` — Full MCP protocol reference
+- `docs/api/MCP_TOOLS_REF.md` — Detailed tool schemas
+- `docs/api/MCP_RESOURCES.md` — Resources and prompts
+- `docs/design/services/MCP_SERVICE.md` — MCP service design
 
 ---
 

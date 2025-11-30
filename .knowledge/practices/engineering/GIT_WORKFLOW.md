@@ -1,4 +1,4 @@
-# Git Workflow
+﻿# Git Workflow
 
 > Git branching strategy, commit conventions, and collaboration practices
 
@@ -135,7 +135,6 @@ feature/b ───────────────●─────┘
 ### 2.4 Good Commit Examples
 
 ```bash
-
 # Feature commit
 
 feat(mcp): add sage_search tool with pagination
@@ -198,7 +197,6 @@ Add comprehensive documentation for:
 ### 3.1 PR Checklist
 
 ```markdown
-
 ## Description
 
 [Describe what this PR does]
@@ -309,7 +307,6 @@ Example: 1.2.3
 ### 4.2 Release Process
 
 ```bash
-
 # 1. Create release branch
 
 git checkout -b release/v1.2.0 develop
@@ -348,7 +345,6 @@ git branch -d release/v1.2.0
 ### 4.3 Changelog Format
 
 ```markdown
-
 ## [1.2.0] - 2025-11-29
 
 ### Added
@@ -387,7 +383,6 @@ git branch -d release/v1.2.0
 ### 5.1 Daily Workflow
 
 ```bash
-
 # Start of day: Update local branches
 
 git checkout develop
@@ -418,7 +413,6 @@ git push origin feature/my-feature
 ### 5.2 Handling Conflicts
 
 ```bash
-
 # During rebase
 
 git rebase origin/develop
@@ -443,7 +437,6 @@ git rebase --abort
 ### 5.3 Useful Aliases
 
 ```bash
-
 # Add to ~/.gitconfig
 
 [alias]
@@ -494,7 +487,6 @@ git rebase --abort
 ### 5.5 Pre-commit Hook
 
 ```bash
-
 #!/bin/sh
 
 # .git/hooks/pre-commit
@@ -515,7 +507,6 @@ pytest tests/unit/ -q
 ### 5.6 Commit-msg Hook
 
 ```bash
-
 #!/bin/sh
 
 # .git/hooks/commit-msg

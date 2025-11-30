@@ -1,4 +1,4 @@
-# TypeScript Guidelines
+﻿# TypeScript Guidelines
 
 > TypeScript and JavaScript development standards
 

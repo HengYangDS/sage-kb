@@ -1,4 +1,4 @@
-# Plugin Lifecycle
+﻿# Plugin Lifecycle
 
 > Plugin states and lifecycle management
 
@@ -7,6 +7,21 @@
 ## 1. Overview
 
 Plugins go through a defined lifecycle from discovery to unload, with clear states and transitions managed by the Plugin Manager.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Lifecycle States](#2-lifecycle-states)
+- [3. State Diagram](#3-state-diagram)
+- [4. Lifecycle Events](#4-lifecycle-events)
+- [5. Lifecycle Hooks](#5-lifecycle-hooks)
+- [6. State Management](#6-state-management)
+- [7. Loading Process](#7-loading-process)
+- [8. Unloading Process](#8-unloading-process)
+- [9. Error Handling](#9-error-handling)
+- [10. Configuration](#10-configuration)
+- [Related](#related)
 
 ---
 
@@ -42,7 +57,6 @@ stateDiagram-v2
     Unloading --> [*]
     Error --> [*]
 ```
-
 ---
 
 ## 4. Lifecycle Events
@@ -97,7 +111,6 @@ class Plugin(ABC):
         """Called when plugin encounters an error."""
         pass
 ```
-
 ---
 
 ## 6. State Management
@@ -137,7 +150,6 @@ class PluginLifecycleManager:
         }
         return to_state in valid_transitions.get(from_state, [])
 ```
-
 ---
 
 ## 7. Loading Process
@@ -154,7 +166,6 @@ graph TD
     
     S1 --> S2 --> S3 --> S4 --> S5 --> S6 --> S7
 ```
-
 ---
 
 ## 8. Unloading Process
@@ -183,7 +194,6 @@ async def unload_plugin(self, plugin_name: str) -> None:
     # 5. Remove from loaded
     del self.loaded[plugin_name]
 ```
-
 ---
 
 ## 9. Error Handling
@@ -214,7 +224,6 @@ def handle_plugin_error(self, plugin_name: str, error: Exception) -> None:
         payload={"name": plugin_name, "error": str(error)}
     ))
 ```
-
 ---
 
 ## 10. Configuration
@@ -233,7 +242,6 @@ plugins:
     # Unload timeout
     unload_timeout_ms: 5000
 ```
-
 ---
 
 ## Related

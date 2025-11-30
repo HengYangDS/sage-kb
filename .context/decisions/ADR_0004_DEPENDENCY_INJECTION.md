@@ -1,4 +1,4 @@
-# ADR-0004: Dependency Injection Container
+﻿# ADR-0004: Dependency Injection Container
 
 > Architecture Decision Record for SAGE Knowledge Base
 
@@ -64,7 +64,6 @@ class DIContainer:
 
     def create_scope(self, scope_id): ...
 ```
-
 ### Lifetime Modes
 
 | Lifetime      | Behavior                            | Use Case                          |
@@ -85,7 +84,6 @@ container.register(SourceProtocol, FileSource, Lifetime.SINGLETON)
 # Resolution
 source = container.resolve(SourceProtocol)
 ```
-
 ---
 
 ## Alternatives Considered
@@ -162,7 +160,6 @@ container.register_factory(
     lifetime=Lifetime.TRANSIENT
 )
 ```
-
 ### Scoped Resolution
 
 ```python
@@ -172,7 +169,6 @@ with container.create_scope("request-123") as scope:
     # handler is scoped to this request
 # Scope disposed, scoped instances cleaned up
 ```
-
 ### YAML Configuration
 
 ```yaml
@@ -187,7 +183,6 @@ services:
     class: sage.capabilities.analyzers.CodeAnalyzer
     lifetime: transient
 ```
-
 ### Auto-Wiring
 
 ```python
@@ -201,7 +196,6 @@ container.register(ServiceA, ServiceA, Lifetime.SINGLETON)
 container.register(ServiceB, ServiceB, Lifetime.SINGLETON)
 service_a = container.resolve(ServiceA)  # dep auto-injected
 ```
-
 ### Error Handling
 
 ```python
@@ -214,7 +208,6 @@ except ServiceNotFoundError as e:
 except CircularDependencyError as e:
     logger.error(f"Circular dependency detected: {e}")
 ```
-
 ---
 
 ## Related

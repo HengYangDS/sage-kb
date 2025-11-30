@@ -1,4 +1,4 @@
-# Diagram Standards
+﻿# Diagram Standards
 
 > Single source of truth for diagram creation standards using Mermaid
 
@@ -472,7 +472,6 @@ When diagram is too complex:
 1. `File` → `Settings` → `Languages & Frameworks` → `Markdown`
 2. Check `Mermaid` in "Markdown Extensions" (if available)
 3. Set Preview browser to `JCEF`
-
 **Alternative**: Install Mermaid plugin from JetBrains Marketplace
 
 ### 10.2 VS Code

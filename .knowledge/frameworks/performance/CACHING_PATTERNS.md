@@ -1,4 +1,4 @@
-# Caching Patterns
+﻿# Caching Patterns
 
 > Data caching strategies for performance optimization
 
@@ -61,7 +61,6 @@ sequenceDiagram
     DB-->>C: 4. Result
     C->>Ca: 5. Populate
 ```
-
 ```python
 class CacheAsidePattern:
     """Cache-aside (lazy loading) pattern."""

@@ -1,4 +1,4 @@
-# Session Management Manual Fallback
+﻿# Session Management Manual Fallback
 
 > Manual procedures when automated session tools are unavailable
 

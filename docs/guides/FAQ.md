@@ -1,4 +1,4 @@
-
+﻿
 # Frequently Asked Questions
 
 > Common questions and answers about SAGE Knowledge Base
@@ -60,7 +60,6 @@ pip install sage-kb[mcp]
 # Development installation
 pip install -e ".[dev]"
 ```
-
 ### Why can't I find the `sage` command?
 
 Ensure the installation directory is in your PATH:
@@ -72,7 +71,6 @@ pip show sage-kb | grep Location
 # Add to PATH if needed
 export PATH="$PATH:$(python -m site --user-base)/bin"
 ```
-
 ---
 
 ## CLI Usage
@@ -89,7 +87,6 @@ sage get --layer guidelines
 # Search knowledge
 sage search "timeout"
 ```
-
 ### What layers are available?
 
 | Layer        | Content                      |
@@ -105,7 +102,6 @@ sage search "timeout"
 sage info
 sage info --verbose
 ```
-
 ---
 
 ## MCP Integration
@@ -119,7 +115,6 @@ sage serve
 # Start with specific transport
 sage serve --transport sse --port 3000
 ```
-
 ### How do I configure Claude Desktop?
 
 Add to `claude_desktop_config.json`:
@@ -136,7 +131,6 @@ Add to `claude_desktop_config.json`:
   }
 }
 ```
-
 ### What MCP tools are available?
 
 | Tool               | Description                 |
@@ -171,7 +165,6 @@ export SAGE_LOGGING_LEVEL=DEBUG
 # Custom config file
 sage --config custom.yaml get core
 ```
-
 ### What are the timeout levels?
 
 | Level | Timeout | Scope            |
@@ -194,7 +187,6 @@ Try these optimizations:
 2. Reduce preloaded layers
 3. Check disk I/O performance
 4. Profile with `sage --profile info`
-
 ### How do I improve response times?
 
 1. Use appropriate timeout levels
@@ -213,7 +205,6 @@ token_budget:
     core: 500
     guidelines: 1000
 ```
-
 ---
 
 ## Development
@@ -230,7 +221,6 @@ pytest tests/ --cov=sage
 # Specific category
 pytest tests/unit/
 ```
-
 ### How do I create a plugin?
 
 See the [Plugin Development Guide](plugin_development.md) for detailed instructions.
@@ -248,7 +238,6 @@ class MyPlugin(PluginBase):
     def register_tools(self, registry):
         registry.add_tool(self.my_tool)
 ```
-
 ### How do I contribute?
 
 1. Fork the repository
@@ -291,7 +280,6 @@ sage --debug get core
 # With timing information
 sage --debug --timing get core
 ```
-
 ---
 
 ## Related

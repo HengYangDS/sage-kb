@@ -1,4 +1,4 @@
-# Source Protocol
+﻿# Source Protocol
 
 > Knowledge collection, validation, and normalization
 
@@ -7,6 +7,18 @@
 ## 1. Overview
 
 The Source protocol (S in SAGE) handles all knowledge input operations, ensuring data is properly collected, validated, and normalized before processing.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Responsibilities](#2-responsibilities)
+- [3. Collection](#3-collection)
+- [4. Validation](#4-validation)
+- [5. Normalization](#5-normalization)
+- [6. Error Handling](#6-error-handling)
+- [7. Configuration](#7-configuration)
+- [Related](#related)
 
 ---
 
@@ -41,7 +53,6 @@ graph LR
     URLs --> URLFetcher --> RK
     APIs --> APIClient --> RK
 ```
-
 ### 3.3 Collection Interface
 
 ```python
@@ -54,7 +65,6 @@ class Collector(Protocol):
         """Check if collector supports this source type."""
         ...
 ```
-
 ---
 
 ## 4. Validation
@@ -86,7 +96,6 @@ graph TD
     E2 --> VR
     W --> VR
 ```
-
 ### 4.3 Validation Result
 
 ```python
@@ -97,7 +106,6 @@ class ValidationResult:
     warnings: list[ValidationWarning]
     metadata: dict[str, Any]
 ```
-
 ---
 
 ## 5. Normalization
@@ -130,7 +138,6 @@ graph TD
     RK --> N1
     N6 --> NK
 ```
-
 ### 5.3 Normalized Knowledge Structure
 
 ```python
@@ -143,7 +150,6 @@ class NormalizedKnowledge:
     fingerprint: str           # Content hash
     collected_at: datetime     # Collection timestamp
 ```
-
 ---
 
 ## 6. Error Handling
@@ -181,7 +187,6 @@ source:
     encoding: "utf-8"
     line_endings: "lf"
 ```
-
 ---
 
 ## Related

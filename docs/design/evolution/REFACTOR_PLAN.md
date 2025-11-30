@@ -1,4 +1,4 @@
-# docs/design 深度重构战略规划方案（最终版 v9.0）
+﻿# docs/design 深度重构战略规划方案（最终版 v9.0）
 
 > Level-5 专家委员会全票通过的终局重构方案
 
@@ -13,6 +13,26 @@
 | **版本** | v9.0 |
 | **评审** | Level-5 专家委员会全票通过 (6/6) |
 | **预计工时** | 33-40 小时 |
+
+
+## Table of Contents
+
+- [1. 方案概述](#1)
+- [2. 知识沉淀架构](#2)
+- [3. 全局命名规范](#3)
+- [4. 四层架构模型](#4)
+- [5. MECE 结构设计](#5-mece)
+- [6. docs/design 终局结构](#6-docsdesign)
+- [7. 文档模板](#7)
+- [1. First Section](#1-first-section)
+- [2. Second Section](#2-second-section)
+- [Related](#related)
+- [8. 执行路线图](#8)
+- [9. 快速参考卡](#9)
+- [10. 风险与回滚](#10)
+- [11. 验收清单](#11)
+- [12. 专家委员会签署](#12)
+- [Related](#related)
 
 ---
 
@@ -36,7 +56,6 @@
 
 docs/design/                   用户文档（本次重构目标）
 ```
-
 ---
 
 ## 3. 全局命名规范
@@ -97,7 +116,6 @@ docs/design/                   用户文档（本次重构目标）
        │ · scripts/README.md                     │
        └─────────────────────────────────────────┘
 ```
-
 ### 4.2 边界定义
 
 | 维度 | plugins | capabilities | tools | scripts |
@@ -113,7 +131,6 @@ docs/design/                   用户文档（本次重构目标）
 允许: scripts → tools → capabilities → plugins
 禁止: plugins → capabilities → tools → scripts
 ```
-
 ---
 
 ## 5. MECE 结构设计
@@ -160,7 +177,6 @@ tools/
     ├── index_generator.py
     └── template_generator.py
 ```
-
 ### 5.3 scripts/ 终局结构
 
 ```
@@ -185,7 +201,6 @@ scripts/
     ├── test.py
     └── release.py
 ```
-
 ---
 
 ## 6. docs/design 终局结构
@@ -268,7 +283,6 @@ docs/design/                        # 12 子目录 + 57 文件
     ├── EVALUATION_CRITERIA.md
     └── CHANGELOG.md
 ```
-
 ---
 
 ## 7. 文档模板
@@ -306,7 +320,6 @@ More content.
 
 *Part of SAGE Knowledge Base*
 ```
-
 **规范要点**:
 - 无 Frontmatter
 - TOC 可选（>100 行或 >5 H2）
@@ -361,7 +374,6 @@ Markdown: UPPER_SNAKE_CASE.md  (禁止数字前缀)
 Python:   lower_snake_case.py
 类名:     PascalCase
 ```
-
 ### 四层架构速查
 ```
 plugins      → 如何扩展?   → src/sage/core/plugins/
@@ -369,7 +381,6 @@ capabilities → 能做什么?   → src/sage/capabilities/
 tools        → 怎么用?     → tools/{5族}/
 scripts      → 怎么开发?   → scripts/{4类}/
 ```
-
 ### 能力族速查
 ```
 analyzers   → 分析/诊断/图谱
@@ -378,7 +389,6 @@ monitors    → 监控/观测/告警
 converters  → 转换/迁移/适配
 generators  → 生成/构建/创建
 ```
-
 ---
 
 ## 10. 风险与回滚
@@ -388,7 +398,6 @@ generators  → 生成/构建/创建
 git checkout backup/pre-refactor-20251130
 git branch -D refactor/docs-design-v9
 ```
-
 ---
 
 ## 11. 验收清单

@@ -1,4 +1,4 @@
-
+﻿
 # Troubleshooting Guide
 
 > Common issues and solutions for SAGE Knowledge Base
@@ -26,7 +26,6 @@ sage info                              # Check installation
 sage config --validate                 # Verify configuration
 sage get --layer core --timeout 5000   # Test knowledge access
 ```
-
 ### 1.2 Common Symptoms
 
 | Symptom               | Likely Cause         | Solution Section |
@@ -44,7 +43,6 @@ sage get --layer core --timeout 5000   # Test knowledge access
 ### 2.1 Command Not Found
 
 **Symptom**: `sage: command not found`
-
 | Solution | Command |
 |----------|---------|
 | Verify installation | `pip show sage-kb` |
@@ -55,7 +53,6 @@ sage get --layer core --timeout 5000   # Test knowledge access
 ### 2.2 Import Errors
 
 **Symptom**: `ModuleNotFoundError` or `ImportError`
-
 | Solution | Command |
 |----------|---------|
 | Check Python version | `python --version` (requires 3.12+) |
@@ -72,7 +69,6 @@ conda create -n sage-kb python=3.12
 conda activate sage-kb
 pip install sage-kb
 ```
-
 ---
 
 ## 3. CLI Issues
@@ -98,7 +94,6 @@ pip install sage-kb
 ### 3.3 Encoding Issues
 
 **Symptom**: `UnicodeDecodeError`
-
 ```bash
 # Linux/macOS
 export LANG=en_US.UTF-8
@@ -106,7 +101,6 @@ export LANG=en_US.UTF-8
 # Windows PowerShell
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 ```
-
 ---
 
 ## 4. MCP Server Issues
@@ -114,7 +108,6 @@ export LANG=en_US.UTF-8
 ### 4.1 Connection Refused
 
 **Symptom**: `Cannot connect to MCP server`
-
 | Check | Command |
 |-------|---------|
 | Server running? | `ps aux | grep sage` (Linux) or `tasklist | findstr sage` (Windows) |
@@ -149,7 +142,6 @@ loading:
 timeouts:
   mcp_request: 10000  # 10 seconds
 ```
-
 ---
 
 ## 5. Configuration Issues
@@ -226,7 +218,6 @@ sage config --show > sage_config.txt
 python --version
 pip show sage-kb
 ```
-
 ### 7.2 Support Channels
 
 | Channel | Use For |

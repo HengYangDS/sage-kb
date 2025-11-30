@@ -1,4 +1,4 @@
-# Plugin Architecture
+﻿# Plugin Architecture
 
 > Extensible plugin system design for SAGE
 
@@ -7,6 +7,21 @@
 ## 1. Overview
 
 The plugin architecture enables extending SAGE functionality without modifying core code, supporting custom capabilities, integrations, and behaviors.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Architecture Diagram](#2-architecture-diagram)
+- [3. Core Components](#3-core-components)
+- [4. Plugin Interface](#4-plugin-interface)
+- [5. Plugin Manifest](#5-plugin-manifest)
+- [6. Plugin Manager](#6-plugin-manager)
+- [7. Plugin Discovery](#7-plugin-discovery)
+- [8. Dependency Resolution](#8-dependency-resolution)
+- [9. Plugin Isolation](#9-plugin-isolation)
+- [10. Configuration](#10-configuration)
+- [Related](#related)
 
 ---
 
@@ -33,7 +48,6 @@ graph TD
     EP --> PluginB["Plugin B<br/>(builtin)"]
     EP --> PluginC["Plugin C<br/>(user)"]
 ```
-
 ---
 
 ## 3. Core Components
@@ -87,7 +101,6 @@ class Plugin(ABC):
         """Called when plugin is unloaded."""
         pass
 ```
-
 ---
 
 ## 5. Plugin Manifest
@@ -121,7 +134,6 @@ config:
       type: integer
       default: 100
 ```
-
 ---
 
 ## 6. Plugin Manager
@@ -164,7 +176,6 @@ class PluginManager:
         plugin = self.loaded.pop(plugin_name)
         plugin.on_unload()
 ```
-
 ---
 
 ## 7. Plugin Discovery
@@ -186,7 +197,6 @@ class PluginManager:
 4. Check version compatibility
 5. Register in plugin registry
 ```
-
 ---
 
 ## 8. Dependency Resolution
@@ -214,7 +224,6 @@ class DependencyResolver:
         
         return resolved
 ```
-
 ---
 
 ## 9. Plugin Isolation
@@ -225,7 +234,6 @@ class DependencyResolver:
 # Each plugin gets its own namespace
 plugin_namespace = f"sage.plugins.{plugin.name}"
 ```
-
 ### 9.2 Resource Limits
 
 | Resource | Limit | Configurable |
@@ -259,7 +267,6 @@ plugins:
     custom-checker:
       strict_mode: true
 ```
-
 ---
 
 ## Related

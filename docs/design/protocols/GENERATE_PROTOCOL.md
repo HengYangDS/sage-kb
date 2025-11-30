@@ -1,4 +1,4 @@
-# Generate Protocol
+﻿# Generate Protocol
 
 > Output formatting, rendering, and multi-channel delivery
 
@@ -7,6 +7,19 @@
 ## 1. Overview
 
 The Generate protocol (G in SAGE) transforms analyzed knowledge into user-facing outputs across multiple delivery channels.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Responsibilities](#2-responsibilities)
+- [3. Formatting](#3-formatting)
+- [4. Rendering](#4-rendering)
+- [5. Delivery](#5-delivery)
+- [6. Generation Pipeline](#6-generation-pipeline)
+- [7. Channel Adapters](#7-channel-adapters)
+- [8. Configuration](#8-configuration)
+- [Related](#related)
 
 ---
 
@@ -48,7 +61,6 @@ graph TD
     KG --> Query
     Transform --> FC
 ```
-
 ### 3.3 Formatted Content Structure
 
 ```python
@@ -60,7 +72,6 @@ class FormattedContent:
     metadata: dict[str, Any]
     source_nodes: list[str]
 ```
-
 ---
 
 ## 4. Rendering
@@ -92,7 +103,6 @@ graph TD
     FC --> CB
     Engine --> RC
 ```
-
 ### 4.3 Rendered Content Structure
 
 ```python
@@ -105,7 +115,6 @@ class RenderedContent:
     token_count: int | None
     render_time_ms: float
 ```
-
 ---
 
 ## 5. Delivery
@@ -146,7 +155,6 @@ graph TD
     RC --> Router
     Collector --> DR
 ```
-
 ### 5.3 Delivery Result Structure
 
 ```python
@@ -159,7 +167,6 @@ class DeliveryResult:
     duration_ms: float
     error: str | None
 ```
-
 ---
 
 ## 6. Generation Pipeline
@@ -174,7 +181,6 @@ graph TD
     
     KG --> Format --> Render --> Deliver --> DR
 ```
-
 ---
 
 ## 7. Channel Adapters
@@ -189,7 +195,6 @@ class CLIAdapter:
         # Manage pagination
         ...
 ```
-
 ### 7.2 MCP Adapter
 
 ```python
@@ -200,7 +205,6 @@ class MCPAdapter:
         # Include metadata
         ...
 ```
-
 ### 7.3 API Adapter
 
 ```python
@@ -211,7 +215,6 @@ class APIAdapter:
         # Manage caching
         ...
 ```
-
 ---
 
 ## 8. Configuration
@@ -235,7 +238,6 @@ generate:
     api:
       compression: gzip
 ```
-
 ---
 
 ## Related

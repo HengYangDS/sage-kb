@@ -1,4 +1,4 @@
-# Junie Configuration Template System
+﻿# Junie Configuration Template System
 
 > A reusable template system for JetBrains Junie AI collaboration configuration.
 

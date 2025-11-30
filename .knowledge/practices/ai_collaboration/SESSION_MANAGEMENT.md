@@ -1,4 +1,4 @@
-# Session Management
+﻿# Session Management
 
 > Best practices for managing AI collaboration sessions effectively
 
@@ -119,7 +119,6 @@ Priority Order:
 ### 4.1 Session State Document
 
 Location: `.history/current/session-YYYYMMDD-HHMM.md`
-
 ```markdown
 # Session State: [Task Name]
 
@@ -191,7 +190,6 @@ To continue: [specific next action]
 ### 5.2 Handoff Document Structure
 
 Location: `.history/handoffs/YYYY-MM-DD-TASK-HANDOFF.md`
-
 ```markdown
 # Task Handoff: [Task Name]
 

@@ -1,4 +1,4 @@
-# Legacy Modernization Scenario Context
+﻿# Legacy Modernization Scenario Context
 
 > Pre-configured context for modernizing legacy systems
 
@@ -27,7 +27,6 @@
 ## 1. Scenario Profile
 
 ```yaml
-
 scenario: legacy_modernization
 
 languages: [ python, java, csharp, cobol ]
@@ -138,7 +137,6 @@ flowchart LR
 ### 4.3 Risk Assessment
 
 ```markdown
-
 ## Risk Assessment Template
 
 ### System: [Name]
@@ -203,7 +201,6 @@ flowchart LR
 ### 5.3 Database Migration
 
 ```python
-
 # Example: Dual-write pattern
 
 class UserRepository:
@@ -246,7 +243,6 @@ class UserRepository:
 ### 5.4 Feature Flag Migration
 
 ```python
-
 from feature_flags import FeatureFlags
 
 def get_user(user_id: str):
@@ -295,7 +291,6 @@ def get_user(user_id: str):
 ### 6.3 Monitoring During Migration
 
 ```yaml
-
 # Key metrics to watch
 
 metrics:

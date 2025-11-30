@@ -1,4 +1,4 @@
-# Secrets Implementation Patterns
+﻿# Secrets Implementation Patterns
 
 > Code patterns for implementing secrets management
 

@@ -1,4 +1,4 @@
-# Evaluation Criteria
+﻿# Evaluation Criteria
 
 > Quality and success criteria for SAGE
 
@@ -7,6 +7,21 @@
 ## 1. Overview
 
 This document defines the evaluation criteria used to assess SAGE quality, performance, and success across multiple dimensions.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Quality Dimensions](#2-quality-dimensions)
+- [3. Functionality Criteria](#3-functionality-criteria)
+- [4. Reliability Criteria](#4-reliability-criteria)
+- [5. Performance Criteria](#5-performance-criteria)
+- [6. Usability Criteria](#6-usability-criteria)
+- [7. Maintainability Criteria](#7-maintainability-criteria)
+- [8. Security Criteria](#8-security-criteria)
+- [9. Evaluation Process](#9-evaluation-process)
+- [10. Success Thresholds](#10-success-thresholds)
+- [Related](#related)
 
 ---
 
@@ -179,7 +194,6 @@ Where:
 - Capped at 100%
 - Minimum passing: 70%
 ```
-
 ---
 
 ## 10. Success Thresholds

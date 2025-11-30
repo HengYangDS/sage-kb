@@ -1,4 +1,4 @@
-
+﻿
 # Glossary
 
 > Unified terminology definitions for Junie configuration (~5 min reference)
@@ -45,7 +45,6 @@ The guiding design philosophy for this configuration system, derived from Chines
 **Usage**: Always reference as "信达雅 (Xin-Da-Ya)" for consistency across documents.
 
 > **Full Definition**: `.knowledge/core/PRINCIPLES.md`
-
 ---
 
 ## 3. MCP Terminology
@@ -103,7 +102,6 @@ AI collaboration autonomy spectrum from supervised to fully autonomous.
 | L6    | Full        | Full autonomy (documentation, formatting)   |
 
 > **Full Definition**: `.knowledge/frameworks/autonomy/LEVELS.md`
-
 ### Session Management
 
 | Term              | Definition                                                         |
@@ -126,7 +124,6 @@ Project-specific timeout hierarchy for SAGE operations.
 
 > **Full Definition**: `.context/policies/TIMEOUT_HIERARCHY.md`  
 > **Generic Patterns**: `.knowledge/frameworks/resilience/TIMEOUT_PATTERNS.md`
-
 ---
 
 ## 6. Regex Terminology

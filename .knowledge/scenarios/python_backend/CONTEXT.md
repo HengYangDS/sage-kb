@@ -1,4 +1,4 @@
-# Python Backend Scenario Context
+﻿# Python Backend Scenario Context
 
 > Pre-configured context for Python backend development
 
@@ -29,7 +29,6 @@
 ## 1. Scenario Profile
 
 ```yaml
-
 scenario: python_backend
 
 languages: [ python ]
@@ -88,7 +87,6 @@ autonomy_default: L2
 ### 4.1 Endpoint Pattern
 
 ```python
-
 @router.get("/{id}", response_model=UserResponse)
 
 async def get_user(id: str, service: UserService = Depends(get_service)) -> UserResponse:
@@ -105,7 +103,6 @@ async def get_user(id: str, service: UserService = Depends(get_service)) -> User
 ### 4.2 Service Layer
 
 ```python
-
 class UserService:
 
     def __init__(self, repository: UserRepository):
@@ -124,7 +121,6 @@ class UserService:
 ### 4.3 Repository
 
 ```python
-
 class UserRepository:
 
     def __init__(self, session: AsyncSession):
@@ -145,7 +141,6 @@ class UserRepository:
 ### 5.1 Fixtures
 
 ```python
-
 @pytest.fixture
 
 async def client(app) -> AsyncClient:
@@ -164,7 +159,6 @@ def user_factory():
 ### 5.2 API Test
 
 ```python
-
 @pytest.mark.asyncio
 
 async def test_create_user(client: AsyncClient):
@@ -181,7 +175,6 @@ async def test_create_user(client: AsyncClient):
 ## 6. Configuration
 
 ```python
-
 class Settings(BaseSettings):
 
     app_name: str = "My API"

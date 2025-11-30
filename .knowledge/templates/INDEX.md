@@ -1,4 +1,4 @@
-# Document Templates
+﻿# Document Templates
 
 > Reusable templates for common documents
 
@@ -76,7 +76,6 @@
 ## 2. Expert Committee Template
 
 **File**: `EXPERT_COMMITTEE.md`
-
 ### When to Use
 
 - Complex architectural decisions
@@ -111,7 +110,6 @@
 ## 3. Project Setup Template
 
 **File**: `PROJECT_SETUP.md`
-
 ### When to Use
 
 - Starting new projects
@@ -131,7 +129,6 @@
 ## 4. Conversation Record Template
 
 **File**: `CONVERSATION_RECORD.md`
-
 ### When to Use
 
 - Recording significant AI collaboration sessions
@@ -150,13 +147,11 @@
 ### Location
 
 Store in `.history/conversations/` with naming: `YYYY-MM-DD-TOPIC.md`
-
 ---
 
 ## 5. Session State Template
 
 **File**: `SESSION_STATE.md`
-
 ### When to Use
 
 - Starting complex multi-step tasks
@@ -174,13 +169,11 @@ Store in `.history/conversations/` with naming: `YYYY-MM-DD-TOPIC.md`
 ### Location
 
 Store in `.history/current/` with naming: `session-YYYYMMDD-HHMM.md`
-
 ---
 
 ## 6. Task Handoff Template
 
 **File**: `TASK_HANDOFF.md`
-
 ### When to Use
 
 - Ending session with incomplete work
@@ -198,7 +191,6 @@ Store in `.history/current/` with naming: `session-YYYYMMDD-HHMM.md`
 ### Location
 
 Store in `.history/handoffs/` with naming: `YYYY-MM-DD-TASK-HANDOFF.md`
-
 ---
 
 ## 7. Template Format Standard

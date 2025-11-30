@@ -1,4 +1,4 @@
-# Memory and Persistence Configuration
+﻿# Memory and Persistence Configuration
 
 > Configuration reference for caching, memory management, and data persistence
 
@@ -31,7 +31,6 @@
     Hot Data          Warm Data             Cold Data
     (< 100ms)         (< 500ms)             (< 2s)
 ```
-
 ### 1.2 Storage Hierarchy
 
 | Layer           | Storage    | TTL       | Use Case            |
@@ -66,7 +65,6 @@ memory:
     # Eviction policy
     eviction: lru           # lru | lfu | fifo | ttl
 ```
-
 ### 2.2 Multi-Level Cache
 
 ```yaml
@@ -96,7 +94,6 @@ memory:
         url: redis://localhost:6379/0
         ttl: 86400            # 24 hours
 ```
-
 ### 2.3 Cache Key Configuration
 
 ```yaml
@@ -117,7 +114,6 @@ memory:
         search: "{namespace}:search:{query_hash}"
         metadata: "{namespace}:meta:{file_hash}"
 ```
-
 ### 2.4 Cache Backends
 
 #### Memory Backend
@@ -131,7 +127,6 @@ memory:
         thread_safe: true
         copy_on_read: false
 ```
-
 #### File Backend
 
 ```yaml
@@ -144,7 +139,6 @@ memory:
         compression: gzip      # none | gzip | lz4
         sync_writes: false
 ```
-
 #### Redis Backend
 
 ```yaml
@@ -160,7 +154,6 @@ memory:
           attempts: 3
           delay: 100
 ```
-
 ---
 
 ## 3. Memory Management
@@ -184,7 +177,6 @@ memory:
     warning_threshold: 80%    # Warn at 80% usage
     critical_threshold: 95%   # Take action at 95%
 ```
-
 ### 3.2 Memory Monitoring
 
 ```yaml
@@ -209,7 +201,6 @@ memory:
         threshold: 95%
         action: evict
 ```
-
 ### 3.3 Garbage Collection
 
 ```yaml
@@ -229,7 +220,6 @@ memory:
     trigger_threshold: 70%    # Start cleanup at 70%
     target_threshold: 50%     # Cleanup until 50%
 ```
-
 ---
 
 ## 4. Persistence
@@ -255,7 +245,6 @@ memory:
     # Persistence mode
     mode: async              # sync | async | scheduled
 ```
-
 ### 4.2 Snapshot Configuration
 
 ```yaml
@@ -279,7 +268,6 @@ memory:
       max_snapshots: 24       # Keep last 24
       retention_days: 7
 ```
-
 ### 4.3 Recovery Configuration
 
 ```yaml
@@ -301,7 +289,6 @@ memory:
         skip_corrupted: true
         log_recovery: true
 ```
-
 ---
 
 ## 5. Session State
@@ -332,7 +319,6 @@ memory:
       interval: 60           # Every minute
       on_change: true
 ```
-
 ### 5.2 Context Preservation
 
 ```yaml
@@ -353,7 +339,6 @@ memory:
       # Expiration
       history_ttl: 86400     # 24 hours
 ```
-
 ### 5.3 Session Persistence
 
 ```yaml
@@ -372,7 +357,6 @@ memory:
       # Recovery
       restore_on_start: true
 ```
-
 ---
 
 ## 6. Performance Tuning
@@ -399,7 +383,6 @@ memory:
       warm_cache_on_start: true
       warm_cache_timeout: 5000
 ```
-
 ### 6.2 Memory Optimization
 
 ```yaml
@@ -418,7 +401,6 @@ memory:
       # Deduplication
       deduplicate: true
 ```
-
 ### 6.3 Timeout Configuration
 
 Reference to timeout hierarchy:
@@ -454,7 +436,6 @@ export SAGE_PERSISTENCE_PATH=.data/
 # Memory limits
 export SAGE_MEMORY_MAX_TOTAL=500MB
 ```
-
 ### Cache Commands
 
 ```bash
@@ -473,7 +454,6 @@ sage snapshot create
 sage snapshot list
 sage snapshot restore <id>
 ```
-
 ### Configuration Validation
 
 ```bash
@@ -483,7 +463,6 @@ sage config --validate --section memory
 # Show memory configuration
 sage config --show --section memory.cache
 ```
-
 ---
 
 ## Related

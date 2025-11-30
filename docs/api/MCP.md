@@ -1,4 +1,4 @@
-
+﻿
 # MCP Protocol Reference
 
 > SAGE Model Context Protocol (MCP) Server Documentation
@@ -37,7 +37,6 @@ sage serve --host localhost --port 8000
 # Via Python
 python -m sage.services.mcp_server
 ```
-
 ### 2.2 Configuration
 
 Located in `config/services/mcp.yaml`:
@@ -53,7 +52,6 @@ mcp:
     - search
     - context_management
 ```
-
 ---
 
 ## 3. Quick Reference
@@ -96,10 +94,10 @@ MCP tools respect the 5-level timeout hierarchy (T1-T5).
 
 ## Related
 
-- `docs/api/index.md` — API overview
-- `docs/api/cli.md` — CLI reference
-- `docs/api/python.md` — Python API
-- `docs/design/02-sage-protocol.md` — Protocol design
+- `docs/api/INDEX.md` — API overview
+- `docs/api/CLI.md` — CLI reference
+- `docs/api/PYTHON.md` — Python API
+- `docs/design/protocols/SAGE_PROTOCOL.md` — Protocol design
 
 ---
 

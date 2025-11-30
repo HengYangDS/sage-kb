@@ -1,4 +1,4 @@
-# Event Bus
+﻿# Event Bus
 
 > Decoupled communication through publish-subscribe pattern
 
@@ -7,6 +7,23 @@
 ## 1. Overview
 
 The Event Bus enables loose coupling between components by allowing them to communicate through events without direct dependencies.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Core Concepts](#2-core-concepts)
+- [3. Event Structure](#3-event-structure)
+- [4. Event Bus Interface](#4-event-bus-interface)
+- [5. Topic Naming](#5-topic-naming)
+- [6. Publishing Events](#6-publishing-events)
+- [7. Subscribing to Events](#7-subscribing-to-events)
+- [8. Event Flow](#8-event-flow)
+- [9. Async Support](#9-async-support)
+- [10. Error Handling](#10-error-handling)
+- [11. Common Patterns](#11-common-patterns)
+- [12. Configuration](#12-configuration)
+- [Related](#related)
 
 ---
 
@@ -36,7 +53,6 @@ class Event:
     source: str
     correlation_id: str | None = None
 ```
-
 ---
 
 ## 4. Event Bus Interface
@@ -59,7 +75,6 @@ class EventBus(Protocol):
         """Remove a subscription."""
         ...
 ```
-
 ---
 
 ## 5. Topic Naming
@@ -69,7 +84,6 @@ class EventBus(Protocol):
 ```text
 {domain}.{entity}.{action}
 ```
-
 ### 5.2 Standard Topics
 
 | Topic | Description | Example Payload |
@@ -95,7 +109,6 @@ event_bus.publish(Event(
     source="FileCollector"
 ))
 ```
-
 ### 6.2 Event Builder
 
 ```python
@@ -112,7 +125,6 @@ class EventBuilder:
 # Usage
 event_bus.publish(EventBuilder.source_completed(10, 150))
 ```
-
 ---
 
 ## 7. Subscribing to Events
@@ -126,7 +138,6 @@ def on_source_completed(event: Event) -> None:
 
 subscription = event_bus.subscribe("source.completed", on_source_completed)
 ```
-
 ### 7.2 Class Handler
 
 ```python
@@ -141,7 +152,6 @@ class MetricsCollector:
     def on_analyze_event(self, event: Event) -> None:
         self.record_metric("analyze", event)
 ```
-
 ### 7.3 Wildcard Subscriptions
 
 ```python
@@ -151,7 +161,6 @@ event_bus.subscribe("source.*", handler)
 # Subscribe to all events
 event_bus.subscribe("*", audit_handler)
 ```
-
 ---
 
 ## 8. Event Flow
@@ -168,7 +177,6 @@ sequenceDiagram
     EventBus->>Subscribers: dispatch to handler 2
     EventBus->>Subscribers: dispatch to handler 3
 ```
-
 ---
 
 ## 9. Async Support
@@ -185,7 +193,6 @@ class AsyncEventBus(Protocol):
         """Subscribe with async handler."""
         ...
 ```
-
 ---
 
 ## 10. Error Handling
@@ -202,14 +209,12 @@ def safe_dispatch(handlers, event):
             logger.error(f"Handler error: {e}")
             # Continue with other handlers
 ```
-
 ### 10.2 Dead Letter Queue
 
 ```python
 # Events that fail all handlers go to dead letter
 event_bus.subscribe("__dead_letter__", handle_failed_events)
 ```
-
 ---
 
 ## 11. Common Patterns
@@ -233,7 +238,6 @@ event_bus.publish(Event(
 ))
 await response_received.wait()
 ```
-
 ### 11.2 Event Sourcing
 
 ```python
@@ -242,7 +246,6 @@ class EventStore:
     def append(self, event: Event) -> None: ...
     def replay(self, from_time: datetime) -> Iterator[Event]: ...
 ```
-
 ---
 
 ## 12. Configuration
@@ -254,7 +257,6 @@ event_bus:
   dead_letter_enabled: true
   metrics_enabled: true
 ```
-
 ---
 
 ## Related

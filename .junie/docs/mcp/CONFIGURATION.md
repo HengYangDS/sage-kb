@@ -1,4 +1,4 @@
-
+﻿
 # MCP Configuration
 
 > Setup and configure MCP servers for Junie (~30 min)
@@ -46,6 +46,7 @@ npx --version    # Should show version number
 Place `mcp.json` in your project's `.junie/mcp/` directory:
 
 ```
+
 your-project/
 └── .junie/
     └── mcp/
@@ -200,7 +201,6 @@ Configure via `Settings | Tools | Junie | MCP Servers`:
 
 1. Create GitHub Personal Access Token
 2. Set environment variable: `GITHUB_PERSONAL_ACCESS_TOKEN`
-
 ---
 
 ## 5. Complete Configuration Example

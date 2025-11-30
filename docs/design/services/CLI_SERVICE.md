@@ -1,4 +1,4 @@
-# CLI Service
+﻿# CLI Service
 
 > Command-line interface service using Typer and Rich
 
@@ -7,6 +7,20 @@
 ## 1. Overview
 
 The CLI service provides interactive terminal access to SAGE knowledge base using Typer for command parsing and Rich for beautiful output formatting.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Technology Stack](#2-technology-stack)
+- [3. Command Structure](#3-command-structure)
+- [4. Commands](#4-commands)
+- [5. Implementation](#5-implementation)
+- [6. Error Handling](#6-error-handling)
+- [7. Progress and Feedback](#7-progress-and-feedback)
+- [8. Configuration](#8-configuration)
+- [9. Testing](#9-testing)
+- [Related](#related)
 
 ---
 
@@ -33,7 +47,6 @@ graph TD
     sage --> check[check - Run validation checks]
     sage --> config[config - Configuration management]
 ```
-
 ---
 
 ## 4. Commands
@@ -50,7 +63,6 @@ Options:
   --timeout INTEGER      Timeout in milliseconds
   --no-cache            Disable caching
 ```
-
 ### 4.2 sage search
 
 ```bash
@@ -62,7 +74,6 @@ Options:
   --fuzzy               Enable fuzzy matching
   --regex               Use regex pattern
 ```
-
 ### 4.3 sage info
 
 ```bash
@@ -74,7 +85,6 @@ Options:
   --config              Show configuration
   -v, --verbose         Verbose output
 ```
-
 ### 4.4 sage serve
 
 ```bash
@@ -86,7 +96,6 @@ Options:
   --port INTEGER        Server port
   --host TEXT           Server host
 ```
-
 ---
 
 ## 5. Implementation
@@ -124,7 +133,6 @@ def get(
     
     _output(result, format)
 ```
-
 ### 5.2 Output Formatting
 
 ```python
@@ -148,7 +156,6 @@ def _rich_output(result: KnowledgeResult):
     console.print(table)
     console.print(Panel(result.content, title="Content"))
 ```
-
 ---
 
 ## 6. Error Handling
@@ -169,7 +176,6 @@ def get(query: str):
         console.print(f"[red]Invalid input:[/red] {e.message}")
         raise typer.Exit(2)
 ```
-
 ### 6.2 Exit Codes
 
 | Code | Meaning |
@@ -198,7 +204,6 @@ with Progress(
     task = progress.add_task("Loading...", total=None)
     result = loader.source(request)
 ```
-
 ### 7.2 Status Messages
 
 ```python
@@ -207,7 +212,6 @@ with console.status("[bold green]Searching knowledge base..."):
 
 console.print(f"[green]✓[/green] Found {len(results)} results")
 ```
-
 ---
 
 ## 8. Configuration
@@ -221,7 +225,6 @@ services:
     show_progress: true
     pager_threshold: 100
 ```
-
 ---
 
 ## 9. Testing
@@ -242,7 +245,6 @@ def test_get_with_timeout():
     result = runner.invoke(app, ["get", "--timeout", "100", "query"])
     assert result.exit_code in [0, 1]
 ```
-
 ---
 
 ## Related

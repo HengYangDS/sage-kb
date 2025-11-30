@@ -1,4 +1,4 @@
-# Project Context Navigation
+﻿# Project Context Navigation
 
 > Project-specific knowledge base for SAGE Knowledge Base
 
@@ -222,7 +222,6 @@ AI collaboration patterns, learned behaviors, and project-specific calibration d
 1. Timeout settings: `policies/TIMEOUT_HIERARCHY.md`
 2. Loading behavior: `policies/LOADING_CONFIGURATIONS.md`
 3. Runtime/environment: `policies/RUNTIME_SETTINGS.md`
-
 ---
 
 ## Related

@@ -1,4 +1,4 @@
-
+﻿
 # Quick Start Guide
 
 > Get Junie configured in 10 minutes for maximum productivity
@@ -71,6 +71,7 @@ For immediate setup, copy the essential rules:
 **Cross-Platform Essentials (works everywhere)**:
 
 ```
+
 # Git commands
 ^\Qgit status\E$
 ^\Qgit diff\E.*$

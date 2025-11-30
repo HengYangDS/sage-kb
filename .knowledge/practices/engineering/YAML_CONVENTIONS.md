@@ -1,4 +1,4 @@
-# YAML Configuration Conventions
+﻿# YAML Configuration Conventions
 
 > Universal standards for writing YAML configuration files
 

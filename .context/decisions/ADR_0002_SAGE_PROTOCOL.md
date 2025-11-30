@@ -1,4 +1,4 @@
-# ADR-0002: SAGE Protocol Design
+﻿# ADR-0002: SAGE Protocol Design
 
 > Architecture Decision Record for SAGE Knowledge Base
 
@@ -50,7 +50,6 @@ Adopt the **SAGE Protocol** — a four-phase processing model:
 │   (S)   │    │   (A)   │    │    (G)   │    │   (E)  │
 └─────────┘    └─────────┘    └──────────┘    └────────┘
 ```
-
 ### Phase Definitions
 
 | Phase        | Purpose                 | Input           | Output           |
@@ -106,7 +105,6 @@ class EvolveProtocol(Protocol):
 
     async def report(self) -> MetricsReport: ...
 ```
-
 ---
 
 ## Alternatives Considered
@@ -172,7 +170,6 @@ Arbitrary stages without semantic meaning.
 "generate.started"  → "generate.completed" | "generate.failed"
 "evolve.started"    → "evolve.completed" | "evolve.failed"
 ```
-
 ### Usage Example
 
 ```python
@@ -192,7 +189,6 @@ async def process_knowledge(query: str) -> str:
 
     return output
 ```
-
 ### Phase Skipping
 
 ```python
@@ -200,7 +196,6 @@ async def process_knowledge(query: str) -> str:
 content = await source.load("path/to/file.md")
 output = await generator.format(content, "json")
 ```
-
 ---
 
 ## Related

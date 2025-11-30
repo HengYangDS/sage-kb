@@ -1,4 +1,4 @@
-# Meeting Notes Template
+﻿# Meeting Notes Template
 
 > **Purpose**: Template for documenting meetings and discussions
 > **Use When**: Recording decisions, action items, and discussions from meetings

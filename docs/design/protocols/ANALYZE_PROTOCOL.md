@@ -1,4 +1,4 @@
-# Analyze Protocol
+﻿# Analyze Protocol
 
 > Knowledge parsing, classification, and relation building
 
@@ -7,6 +7,18 @@
 ## 1. Overview
 
 The Analyze protocol (A in SAGE) processes normalized knowledge to extract structure, classify content, and build relationships in the knowledge graph.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Responsibilities](#2-responsibilities)
+- [3. Parsing](#3-parsing)
+- [4. Classification](#4-classification)
+- [5. Relation Building](#5-relation-building)
+- [6. Analysis Pipeline](#6-analysis-pipeline)
+- [7. Configuration](#7-configuration)
+- [Related](#related)
 
 ---
 
@@ -51,7 +63,6 @@ graph TD
     MP --> PK
     RP --> PK
 ```
-
 ### 3.3 Parsed Knowledge Structure
 
 ```python
@@ -64,7 +75,6 @@ class ParsedKnowledge:
     metadata: ExtractedMetadata
     references: list[Reference]
 ```
-
 ---
 
 ## 4. Classification
@@ -99,7 +109,6 @@ graph TD
     PK --> Level
     Scorer --> CK
 ```
-
 ### 4.3 Classification Result
 
 ```python
@@ -111,7 +120,6 @@ class ClassifiedKnowledge:
     confidence: float
     tags: set[str]
 ```
-
 ---
 
 ## 5. Relation Building
@@ -144,7 +152,6 @@ graph TD
     CK --> Implicit
     Merge --> KG
 ```
-
 ### 5.3 Knowledge Graph Structure
 
 ```python
@@ -165,7 +172,6 @@ class KnowledgeEdge:
     relation_type: str
     weight: float
 ```
-
 ---
 
 ## 6. Analysis Pipeline
@@ -180,7 +186,6 @@ graph TD
     
     NK --> Parse --> Classify --> Relate --> KG
 ```
-
 ---
 
 ## 7. Configuration
@@ -200,7 +205,6 @@ analyze:
     infer_similarity: true
     similarity_threshold: 0.8
 ```
-
 ---
 
 ## Related

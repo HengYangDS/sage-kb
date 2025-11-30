@@ -1,4 +1,4 @@
-# Autonomy Calibration Records
+﻿# Autonomy Calibration Records
 
 > Historical calibration data and effectiveness evaluation for AI collaboration in SAGE project
 
@@ -30,7 +30,6 @@ This document tracks **project-specific calibration data**:
 ### 1.2 Autonomy Level Reference
 
 > **Full Definition**: `.knowledge/frameworks/autonomy/LEVELS.md`
-
 | Level | Name | Range | Quick Reference |
 |:------|:-----|:------|:----------------|
 | L1 | Minimal | 0-20% | Full review required |
@@ -244,7 +243,6 @@ This document tracks **project-specific calibration data**:
    └── Update defaults
    └── Share learnings
 ```
-
 ### 8.2 Recording Template
 
 ```markdown
@@ -266,7 +264,6 @@ This document tracks **project-specific calibration data**:
 
 [Notes on effectiveness]
 ```
-
 ---
 
 ## Related

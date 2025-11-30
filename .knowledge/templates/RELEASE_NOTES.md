@@ -1,4 +1,4 @@
-# Release Notes Template
+﻿# Release Notes Template
 
 > **Purpose**: Template for documenting software releases
 > **Use When**: Publishing a new version of software or documentation
@@ -296,7 +296,6 @@ performance:
 2. **Update**: `pip install --upgrade myproject`
 3. **Migrate config**: Update configuration as shown above
 4. **Verify**: `app info`
-
 ---
 
 *Released by Team on 2025-11-29*

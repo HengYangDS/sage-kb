@@ -1,4 +1,4 @@
-# Protocols
+﻿# Protocols
 
 > SAGE protocol specifications and interfaces
 
@@ -8,6 +8,15 @@
 
 SAGE follows the **Source → Analyze → Generate → Evolve** protocol pattern for all knowledge operations.
 
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Documents](#2-documents)
+- [3. Protocol Pattern](#3-protocol-pattern)
+- [4. Protocol Responsibilities](#4-protocol-responsibilities)
+
+---
 ---
 
 ## 2. Documents
@@ -30,7 +39,6 @@ graph LR
     A --> G["GENERATE (G)<br/>Output content"]
     G --> E["EVOLVE (E)<br/>Improve metrics"]
 ```
-
 ---
 
 ## 4. Protocol Responsibilities

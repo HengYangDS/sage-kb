@@ -1,4 +1,4 @@
-# SAGE Performance Tuning
+﻿# SAGE Performance Tuning
 
 > SAGE-specific performance goals, benchmarks, and monitoring
 
@@ -82,7 +82,6 @@ pytest tests/performance/test_load_performance.py -v
 # Profile specific operation
 python -m cProfile -s cumulative -m pytest tests/performance/
 ```
-
 ---
 
 ## 3. Monitoring
@@ -116,7 +115,6 @@ def measure_time(operation: str):
         duration_ms = (time.perf_counter() - start) * 1000
         log.info("operation_complete", operation=operation, duration_ms=round(duration_ms, 2))
 ```
-
 ---
 
 ## 4. Tuning Checklist

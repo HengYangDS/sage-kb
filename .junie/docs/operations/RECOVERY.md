@@ -1,4 +1,4 @@
-
+﻿
 # Error Recovery Guide
 
 > Recovery procedures for common issues (~10 min read)
@@ -23,6 +23,7 @@
 ### Recovery Decision Tree
 
 ```
+
 Issue Detected
     │
     ├── MCP Server Issue?

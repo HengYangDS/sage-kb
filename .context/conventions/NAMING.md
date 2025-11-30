@@ -1,4 +1,4 @@
-# SAGE Naming Conventions
+﻿# SAGE Naming Conventions
 
 > Project-specific naming standards for SAGE Knowledge Base
 
@@ -33,7 +33,6 @@
 - Classes: `PascalCase` (Protocols: `*Protocol`, Exceptions: `*Error`)
 - Functions/methods: `snake_case` (private: `_snake_case`)
 - Constants: `UPPER_SNAKE_CASE`
-
 ---
 
 ## 2. SAGE-Specific Patterns
@@ -59,7 +58,6 @@ class GenerateProtocol(Protocol):
 class EvolveProtocol(Protocol):
     ...  # E - Metrics & optimization
 ```
-
 ### 2.2 Service Names
 
 | Service | Class Name   | Module            |
@@ -100,7 +98,6 @@ class Session:
 class SessionContext:
     ...  # Session state container
 ```
-
 ---
 
 ## 3. Configuration Keys
@@ -127,7 +124,6 @@ features:
   enable_caching: true
   is_debug_mode: false
 ```
-
 ### 3.2 Environment Variables
 
 | Pattern                | Example                       |
@@ -143,7 +139,6 @@ features:
 ### 4.1 Event Topics
 
 Events follow the pattern: `{domain}.{action}` or `{domain}.{entity}.{action}`
-
 ```python
 # Domain events
 "source.started"  # Source operation started
@@ -158,7 +153,6 @@ Events follow the pattern: `{domain}.{action}` or `{domain}.{entity}.{action}`
 "system.initialized"  # System startup complete
 "system.shutdown"  # System shutting down
 ```
-
 ### 4.2 Event Classes
 
 ```python
@@ -174,7 +168,6 @@ class KnowledgeLoadedEvent:
 class TimeoutOccurredEvent:
     ...
 ```
-
 ---
 
 ## 5. Files & Directories
@@ -230,7 +223,6 @@ The project version follows [Semantic Versioning](https://semver.org/):
 | Release   | `1.0.0`+ | `1.0.0` | Production ready    |
 
 **Source of Truth**: `pyproject.toml` → `[project].version`
-
 ### 6.2 Milestone Naming
 
 Internal development milestones use **M-prefix** format to avoid confusion with release versions:

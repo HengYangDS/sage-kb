@@ -1,4 +1,4 @@
-# Plugins
+﻿# Plugins
 
 > Plugin system architecture for SAGE extensibility
 
@@ -8,6 +8,16 @@
 
 The plugin system provides a standardized way to extend SAGE functionality without modifying core code.
 
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Documents](#2-documents)
+- [3. Plugin Architecture](#3-plugin-architecture)
+- [4. Plugin Lifecycle](#4-plugin-lifecycle)
+- [5. Extension Points](#5-extension-points)
+
+---
 ---
 
 ## 2. Documents
@@ -36,7 +46,6 @@ graph TD
         PluginC --> ExtPoints
     end
 ```
-
 ---
 
 ## 4. Plugin Lifecycle
@@ -46,7 +55,6 @@ graph LR
     Discover --> Register --> Enable --> Execute
     Execute --> Disable --> Cleanup
 ```
-
 ---
 
 ## 5. Extension Points

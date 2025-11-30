@@ -1,4 +1,4 @@
-# Milestones
+﻿# Milestones
 
 > Project milestones and deliverables
 
@@ -7,6 +7,21 @@
 ## 1. Overview
 
 This document defines the milestones for SAGE development, tracking progress and deliverables for each major phase.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Milestone Summary](#2-milestone-summary)
+- [3. M1: Foundation](#3-m1-foundation)
+- [4. M2: Core Engine](#4-m2-core-engine)
+- [5. M3: Services](#5-m3-services)
+- [6. M4: Capabilities](#6-m4-capabilities)
+- [7. M5: Production](#7-m5-production)
+- [8. Documentation Milestones](#8-documentation-milestones)
+- [9. Quality Gates](#9-quality-gates)
+- [10. Timeline](#10-timeline)
+- [Related](#related)
 
 ---
 
@@ -197,7 +212,6 @@ graph LR
     M3 --> M4["M4 Capabilities"]
     M4 --> M5["M5 Production"]
 ```
-
 ---
 
 ## Related

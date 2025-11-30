@@ -1,4 +1,4 @@
-# Token Budget
+﻿# Token Budget
 
 > Token allocation and management for AI context
 
@@ -7,6 +7,21 @@
 ## 1. Overview
 
 Token budget management ensures efficient use of limited AI context window by allocating tokens strategically across knowledge layers and content types.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Budget Allocation](#2-budget-allocation)
+- [3. Content Token Estimates](#3-content-token-estimates)
+- [4. Budget Enforcement](#4-budget-enforcement)
+- [5. Overflow Handling](#5-overflow-handling)
+- [6. Dynamic Adjustment](#6-dynamic-adjustment)
+- [7. Monitoring](#7-monitoring)
+- [8. Token Counting](#8-token-counting)
+- [9. Configuration](#9-configuration)
+- [10. Best Practices](#10-best-practices)
+- [Related](#related)
 
 ---
 
@@ -76,7 +91,6 @@ graph TD
     Within -->|Yes| Load
     Within -->|No| Truncate
 ```
-
 ### 4.2 Implementation
 
 ```python
@@ -99,7 +113,6 @@ class TokenBudget:
     def remaining(self) -> int:
         return self.total - self.used
 ```
-
 ---
 
 ## 5. Overflow Handling
@@ -123,7 +136,6 @@ Priority Order (highest first):
 4. Related practices
 5. Reference content
 ```
-
 ---
 
 ## 6. Dynamic Adjustment
@@ -150,7 +162,6 @@ class DynamicBudget:
         }
         return int(self.base_budget * multipliers.get(task_complexity, 1.0))
 ```
-
 ---
 
 ## 7. Monitoring
@@ -176,7 +187,6 @@ class BudgetMonitor:
             "allocations": self.budget.allocations,
         }
 ```
-
 ---
 
 ## 8. Token Counting
@@ -202,7 +212,6 @@ def estimate_tokens(text: str, method: str = "word") -> int:
     else:  # character
         return len(text) // 4
 ```
-
 ---
 
 ## 9. Configuration
@@ -228,7 +237,6 @@ token_budget:
     method: word
     cache_estimates: true
 ```
-
 ---
 
 ## 10. Best Practices

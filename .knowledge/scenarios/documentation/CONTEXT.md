@@ -1,4 +1,4 @@
-# Documentation Scenario Context
+﻿# Documentation Scenario Context
 
 > Pre-configured context for technical writing and documentation projects
 
@@ -29,7 +29,6 @@
 ## 1. Scenario Profile
 
 ```yaml
-
 scenario: documentation
 
 languages: [ markdown, restructuredtext, asciidoc ]
@@ -114,7 +113,6 @@ autonomy_default: L4
 ### 5.1 Document Structure
 
 ```markdown
-
 # [Title]
 
 > [One-line description]
@@ -187,7 +185,6 @@ autonomy_default: L4
 ### 5.4 Code Documentation
 
 ```python
-
 def process_data(
 
     input_path: str,

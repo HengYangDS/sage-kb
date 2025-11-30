@@ -1,4 +1,4 @@
-# Loading Strategy
+﻿# Loading Strategy
 
 > Smart loading patterns for efficient context management
 
@@ -7,6 +7,22 @@
 ## 1. Overview
 
 Loading strategy defines how knowledge content is loaded into AI context based on relevance, priority, and token budget constraints.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Loading Modes](#2-loading-modes)
+- [3. Loading Pipeline](#3-loading-pipeline)
+- [4. Always-Load Content](#4-always-load-content)
+- [5. On-Demand Loading](#5-on-demand-loading)
+- [6. Selective Loading](#6-selective-loading)
+- [7. Lazy Loading](#7-lazy-loading)
+- [8. Priority Resolution](#8-priority-resolution)
+- [9. Caching Strategy](#9-caching-strategy)
+- [10. Performance Optimization](#10-performance-optimization)
+- [11. Configuration](#11-configuration)
+- [Related](#related)
 
 ---
 
@@ -34,7 +50,6 @@ graph TD
     
     Start --> Core --> Analysis --> Selective --> Budget --> Ready
 ```
-
 ---
 
 ## 4. Always-Load Content
@@ -60,7 +75,6 @@ class CoreLoader:
     def load_core(self) -> list[Content]:
         return [self.load_file(f) for f in self.ALWAYS_LOAD]
 ```
-
 ---
 
 ## 5. On-Demand Loading
@@ -89,7 +103,6 @@ class DemandLoader:
         relevant = self._match_triggers(query)
         return self._load_within_budget(relevant)
 ```
-
 ---
 
 ## 6. Selective Loading
@@ -120,7 +133,6 @@ scenarios:
       - .knowledge/templates/
     token_budget: 1500
 ```
-
 ---
 
 ## 7. Lazy Loading
@@ -146,7 +158,6 @@ class LazyLoader:
             self._cache[path] = self._load(path)
         return self._cache[path]
 ```
-
 ---
 
 ## 8. Priority Resolution
@@ -160,7 +171,6 @@ class LazyLoader:
 4. Related content      → Cross-references
 5. Fallback             → Default content
 ```
-
 ### 8.2 Conflict Resolution
 
 | Conflict | Resolution |
@@ -231,7 +241,6 @@ loading:
     session_ttl: 3600
     disk_ttl: 86400
 ```
-
 ---
 
 ## Related

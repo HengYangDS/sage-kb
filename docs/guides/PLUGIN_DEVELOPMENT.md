@@ -1,4 +1,4 @@
-
+﻿
 # Plugin Development Guide
 
 > How to create and publish plugins for SAGE Knowledge Base
@@ -53,7 +53,6 @@ touch src/sage_myplugin/__init__.py
 touch src/sage_myplugin/plugin.py
 touch pyproject.toml
 ```
-
 ### Minimal Plugin
 
 ```python
@@ -88,7 +87,6 @@ class MyPlugin(PluginBase):
         """
         return f"Result for: {query}"
 ```
-
 ### pyproject.toml
 
 ```toml
@@ -106,7 +104,6 @@ dependencies = ["sage-kb>=0.1.0"]
 [project.entry-points."sage.plugins"]
 my-plugin = "sage_myplugin.plugin:MyPlugin"
 ```
-
 ---
 
 ## 3. Plugin Structure
@@ -128,7 +125,6 @@ sage-plugin-myplugin/
 ├── README.md
 └── LICENSE
 ```
-
 ### Configuration
 
 ```yaml
@@ -146,7 +142,6 @@ hooks:
   - register_tools
   - on_knowledge_request
 ```
-
 ### Loading Configuration
 
 ```python
@@ -164,7 +159,6 @@ class MyPlugin(PluginBase):
             return yaml.safe_load(config_path.read_text())
         return {}
 ```
-
 ---
 
 ## 4. Hook System
@@ -217,7 +211,6 @@ class MyPlugin(PluginBase):
             return self._enrich(content)
         return content
 ```
-
 ### Hook Priority
 
 ```python
@@ -229,7 +222,6 @@ def on_knowledge_request(self, layer, query):
 def on_knowledge_loaded(self, layer, content):
     ...
 ```
-
 ---
 
 ## 5. Publishing
@@ -247,7 +239,6 @@ sage plugin enable my-plugin
 sage plugin list
 sage info  # Should show plugin
 ```
-
 ### Publishing to PyPI
 
 ```bash
@@ -257,7 +248,6 @@ python -m build
 # Upload to PyPI
 python -m twine upload dist/*
 ```
-
 ### Plugin Guidelines
 
 **Do:**
@@ -295,7 +285,6 @@ sage plugin disable plugin-name
 # Plugin info
 sage plugin info plugin-name
 ```
-
 ### Debugging
 
 ```python
@@ -306,13 +295,12 @@ logging.getLogger("sage.plugins").setLevel(logging.DEBUG)
 # In plugin
 self.logger.debug("Debug message", extra={"data": data})
 ```
-
 ---
 
 ## Related
 
-- [Advanced Usage](advanced.md) — Plugin configuration
-- `docs/design/05-plugin-memory.md` — Plugin architecture
+- [Advanced Usage](ADVANCED.md) — Plugin configuration
+- `docs/design/plugins/PLUGIN_ARCHITECTURE.md` — Plugin architecture
 - `.context/decisions/ADR_0008_PLUGIN_SYSTEM.md` — Plugin design decisions
 
 ---

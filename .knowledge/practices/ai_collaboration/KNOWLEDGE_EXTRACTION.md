@@ -1,4 +1,4 @@
-# Knowledge Extraction Patterns
+﻿# Knowledge Extraction Patterns
 
 > Methods for extracting reusable knowledge from experience
 

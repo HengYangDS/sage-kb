@@ -1,4 +1,4 @@
-# ADR-0008: Plugin System Design
+﻿# ADR-0008: Plugin System Design
 
 > Architecture Decision Record for SAGE Knowledge Base
 
@@ -66,7 +66,6 @@ Implement a **Protocol-Based Plugin System** with bundled and external plugin su
 │    bundled/)    │ │                 │ │                 │
 └─────────────────┘ └─────────────────┘ └─────────────────┘
 ```
-
 ### Plugin Types
 
 | Type      | Protocol          | Purpose                          |
@@ -159,7 +158,6 @@ class PluginProtocol(Protocol):
         """Shutdown plugin."""
         ...
 ```
-
 ### Analyzer Plugin Example
 
 ```python
@@ -175,7 +173,6 @@ class AnalyzerPlugin(PluginProtocol, Protocol):
         """Return supported content types."""
         ...
 ```
-
 ### Plugin Implementation
 
 ```python
@@ -197,7 +194,6 @@ class CustomAnalyzer:
     def supported_types(self) -> list[str]:
         return ["python", "markdown"]
 ```
-
 ### Plugin Discovery
 
 ```python
@@ -224,7 +220,6 @@ class PluginManager:
         await plugin.initialize()
         return plugin
 ```
-
 ### Plugin Configuration
 
 ```yaml
@@ -242,7 +237,6 @@ plugins:
       model: gpt-4
       timeout: 5000
 ```
-
 ### Plugin Lifecycle
 
 ```text
@@ -255,7 +249,6 @@ plugins:
                                               │ Shutdown │
                                               └──────────┘
 ```
-
 ### Plugin Registration with DI
 
 ```python
@@ -275,7 +268,6 @@ async def register_plugin(plugin: PluginProtocol) -> None:
         data={"name": plugin.name, "version": plugin.version}
     ))
 ```
-
 ### Error Handling
 
 ```python
@@ -302,7 +294,6 @@ async def safe_plugin_call(
         ))
         raise PluginError(f"Plugin {plugin.name} failed: {e}")
 ```
-
 ### Directory Structure
 
 ```
@@ -316,7 +307,6 @@ src/sage/plugins/
     ├── health_checker.py
     └── code_analyzer.py
 ```
-
 ---
 
 ## Related

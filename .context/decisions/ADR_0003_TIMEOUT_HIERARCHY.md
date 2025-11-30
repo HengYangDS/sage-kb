@@ -1,4 +1,4 @@
-# ADR-0003: Timeout Hierarchy Design
+﻿# ADR-0003: Timeout Hierarchy Design
 
 > Architecture Decision Record for SAGE Knowledge Base
 
@@ -78,7 +78,6 @@ Request → T1 Cache → T2 File → T3 Layer → T4 Full → Result
               ↓          ↓          ↓          ↓
            Skip      Fallback   Partial    Core Only
 ```
-
 ---
 
 ## Alternatives Considered
@@ -148,7 +147,6 @@ class TimeoutLevel(Enum):
     T4_FULL = 5000  # 5s
     T5_COMPLEX = 10000  # 10s
 ```
-
 ### Usage Pattern
 
 ```python
@@ -163,7 +161,6 @@ result = await manager.execute_with_timeout(
     fallback=cached_core_content
 )
 ```
-
 ### Configuration
 
 ```yaml
@@ -180,7 +177,6 @@ timeout:
     strategy: graceful     # graceful | strict | none
     cache_stale_ms: 60000  # Use stale cache up to 60s
 ```
-
 ### Level Selection Guide
 
 | Operation Type         | Recommended Level |

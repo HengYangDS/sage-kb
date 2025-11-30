@@ -1,4 +1,4 @@
-# Timeout & Resilience
+﻿# Timeout & Resilience
 
 > Timeout hierarchy and resilience patterns for SAGE
 
@@ -8,6 +8,16 @@
 
 This directory documents SAGE's approach to handling timeouts, failures, and graceful degradation.
 
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Documents](#2-documents)
+- [3. Timeout Hierarchy](#3-timeout-hierarchy)
+- [4. Resilience Patterns](#4-resilience-patterns)
+- [5. Key Principles](#5-key-principles)
+
+---
 ---
 
 ## 2. Documents
@@ -31,7 +41,6 @@ flowchart LR
     T4["T4 (5s)"] --> T4U[External API calls]
     T5["T5 (30s)"] --> T5U[Batch operations]
 ```
-
 ---
 
 ## 4. Resilience Patterns

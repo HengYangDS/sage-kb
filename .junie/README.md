@@ -1,4 +1,4 @@
-# .junie Configuration
+﻿# .junie Configuration
 
 > JetBrains Junie AI collaboration configuration directory
 

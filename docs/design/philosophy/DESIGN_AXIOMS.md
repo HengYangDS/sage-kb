@@ -1,4 +1,4 @@
-# Design Axioms
+﻿# Design Axioms
 
 > Core design principles that guide all SAGE decisions
 
@@ -7,6 +7,17 @@
 ## 1. Overview
 
 Design axioms are fundamental principles that cannot be compromised. They serve as the foundation for all architectural and implementation decisions.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Core Axioms](#2-core-axioms)
+- [3. Architectural Axioms](#3-architectural-axioms)
+- [4. Implementation Axioms](#4-implementation-axioms)
+- [5. Decision Framework](#5-decision-framework)
+- [6. Axiom Violations](#6-axiom-violations)
+- [Related](#related)
 
 ---
 
@@ -24,7 +35,6 @@ Design axioms are fundamental principles that cannot be compromised. They serve 
 ✅ Do: Start simple, add complexity only when needed
 ❌ Don't: Build for imaginary future requirements
 ```
-
 ### 2.2 Explicit Over Implicit
 
 | Aspect | Guideline |
@@ -37,7 +47,6 @@ Design axioms are fundamental principles that cannot be compromised. They serve 
 ✅ Do: timeout_seconds=30
 ❌ Don't: t=30  # what is t?
 ```
-
 ### 2.3 Composition Over Inheritance
 
 | Aspect | Guideline |
@@ -50,7 +59,6 @@ Design axioms are fundamental principles that cannot be compromised. They serve 
 ✅ Do: class Service(HasLogger, HasMetrics)
 ❌ Don't: class Service(BaseService(AbstractService))
 ```
-
 ### 2.4 Convention Over Configuration
 
 | Aspect | Guideline |
@@ -63,7 +71,6 @@ Design axioms are fundamental principles that cannot be compromised. They serve 
 ✅ Do: Works out of the box with zero config
 ❌ Don't: Require 50 settings before first use
 ```
-
 ---
 
 ## 3. Architectural Axioms
@@ -91,7 +98,6 @@ def process(loader: LoaderProtocol) -> Result:
 def process(loader: FileLoader) -> Result:
     return loader.load()
 ```
-
 ### 3.3 Fail Fast
 
 Detect and report errors as early as possible.
@@ -113,7 +119,6 @@ graph LR
     Partial --> Cached["Cached Response<br/>~30%"]
     Cached --> Error["Error Message<br/>0% informative"]
 ```
-
 ---
 
 ## 4. Implementation Axioms
@@ -174,7 +179,6 @@ graph TD
     Q4 -->|No| S4[Document why]
     Q4 -->|Yes| Proceed
 ```
-
 ---
 
 ## 6. Axiom Violations

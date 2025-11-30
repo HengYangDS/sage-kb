@@ -1,4 +1,4 @@
-# Capabilities
+﻿# Capabilities
 
 > Capability families and extensibility model for SAGE
 
@@ -8,6 +8,16 @@
 
 Capabilities are organized into 5 MECE families that define what SAGE can do.
 
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Documents](#2-documents)
+- [3. Capability Families (MECE)](#3-capability-families-mece)
+- [4. Classification Decision Tree](#4-classification-decision-tree)
+- [5. Implementation Location](#5-implementation-location)
+
+---
 ---
 
 ## 2. Documents
@@ -51,7 +61,6 @@ graph TD
     Q4 -->|Yes| Co[converters]
     Q4 -->|No| G[generators]
 ```
-
 ---
 
 ## 5. Implementation Location

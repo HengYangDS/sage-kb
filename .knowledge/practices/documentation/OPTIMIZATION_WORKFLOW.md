@@ -1,4 +1,4 @@
-# Document Optimization Workflow
+﻿# Document Optimization Workflow
 
 > Systematic workflow for batch document optimization and quality assurance
 

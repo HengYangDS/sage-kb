@@ -1,4 +1,4 @@
-# SAGE Development Tools
+﻿# SAGE Development Tools
 
 > Utilities and scripts for SAGE Knowledge Base development
 
@@ -28,7 +28,6 @@ tools/
 ├── migration_toolkit.py      # Content migration utilities
 └── timeout_manager.py        # Timeout testing and tuning
 ```
-
 ---
 
 ## 2. Development Scripts
@@ -48,7 +47,6 @@ python tools/dev_scripts/setup_dev.py --skip-hooks  # Skip pre-commit hooks
 python tools/dev_scripts/setup_dev.py --minimal     # Minimal setup
 python tools/dev_scripts/setup_dev.py --reset       # Reset to clean state
 ```
-
 **What it does:**
 
 1. Creates virtual environment (if not exists) - conda recommended, venv as fallback
@@ -90,7 +88,6 @@ python tools/knowledge_graph/knowledge_graph_builder.py \
     --visualize \
     --output .outputs/graph.html
 ```
-
 **Features:**
 
 - **Node extraction**: Identifies knowledge nodes from markdown files
@@ -129,7 +126,6 @@ python tools/knowledge_graph/knowledge_graph_builder.py \
   ]
 }
 ```
-
 ---
 
 ## 4. Monitors
@@ -153,7 +149,6 @@ python tools/monitors/timeout_monitor.py \
 # Dashboard mode
 python tools/monitors/timeout_monitor.py --dashboard
 ```
-
 **Dashboard Output:**
 
 ```text
@@ -171,7 +166,6 @@ python tools/monitors/timeout_monitor.py --dashboard
 ║ Circuit Breaker: CLOSED │ Failures: 1/3 │ Recovery: --       ║
 ╚══════════════════════════════════════════════════════════════╝
 ```
-
 **Alerts:**
 
 ```bash
@@ -180,7 +174,6 @@ python tools/monitors/timeout_monitor.py \
     --alert-threshold 5 \    # Alert after 5 timeouts
     --alert-email admin@example.com
 ```
-
 ---
 
 ## 5. Migration Toolkit
@@ -206,7 +199,6 @@ python tools/migration_toolkit.py validate
 # Rollback if needed
 python tools/migration_toolkit.py rollback --to-backup backup_20251129
 ```
-
 **Migration Commands:**
 
 | Command    | Description                                 |
@@ -237,7 +229,6 @@ python tools/migration_toolkit.py validate
 # Step 5: If issues, rollback
 python tools/migration_toolkit.py rollback --to-backup pre-migration
 ```
-
 **Migration Types:**
 
 - **Structure**: Directory reorganization
@@ -274,7 +265,6 @@ python tools/timeout_manager.py stress \
     --duration 60s \
     --concurrency 10
 ```
-
 **Test Output:**
 
 ```
@@ -290,7 +280,6 @@ T5    │ analysis       │ 10000ms   │ 4200ms │ 7500ms │ 9200ms │ ✓ 
 ═══════════════════════════════════════════════════════════════
 Overall: 5/5 PASSED
 ```
-
 **Tuning Recommendations:**
 
 ```bash
@@ -303,7 +292,6 @@ python tools/timeout_manager.py tune --recommend
 #   T4: No change recommended
 #   T5: No change recommended
 ```
-
 ---
 
 ## Common Workflows
@@ -331,7 +319,6 @@ python tools/dev_scripts/setup_dev.py
 sage info
 pytest tests/ -v --tb=short
 ```
-
 ### Analyzing Knowledge Structure
 
 ```bash
@@ -341,7 +328,6 @@ python tools/knowledge_graph/knowledge_graph_builder.py --visualize
 # 2. Open visualization
 open .outputs/graph.html  # or start on Windows
 ```
-
 ### Performance Tuning
 
 ```bash
@@ -357,7 +343,6 @@ sage get core guidelines frameworks
 # 4. Get tuning recommendations
 python tools/timeout_manager.py tune --recommend
 ```
-
 ### Content Migration
 
 ```bash
@@ -373,7 +358,6 @@ python tools/migration_toolkit.py migrate --to-version X.Y.Z
 # 4. Validate
 python tools/migration_toolkit.py validate
 ```
-
 ---
 
 ## Related

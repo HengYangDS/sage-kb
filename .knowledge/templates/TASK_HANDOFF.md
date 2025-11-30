@@ -1,4 +1,4 @@
-# Task Handoff Template
+﻿# Task Handoff Template
 
 > **Purpose**: Enable seamless task continuation between sessions or collaborators
 > **Use When**: Ending a session with incomplete work, transferring tasks, or requesting async review

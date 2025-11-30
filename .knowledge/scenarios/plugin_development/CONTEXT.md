@@ -1,4 +1,4 @@
-# Plugin Development Scenario Context
+﻿# Plugin Development Scenario Context
 
 > Pre-configured context for SAGE plugin development
 
@@ -27,7 +27,6 @@
 ## 1. Scenario Profile
 
 ```yaml
-
 scenario: plugin_development
 
 languages: [ python ]
@@ -144,7 +143,6 @@ flowchart LR
 ### 5.1 Basic Plugin Structure
 
 ```python
-
 from sage.plugins import PluginBase, hook
 
 class MyPlugin(PluginBase):
@@ -203,7 +201,6 @@ class MyPlugin(PluginBase):
 ### 5.2 Hook Implementation
 
 ```python
-
 from sage.plugins import PluginBase, hook
 
 class ContentPlugin(PluginBase):
@@ -320,7 +317,6 @@ class ContentPlugin(PluginBase):
 ### 5.4 Plugin Configuration
 
 ```yaml
-
 # config/capabilities/plugins.yaml
 
 plugins:
@@ -373,7 +369,6 @@ plugins:
 ### 5.5 Plugin with Configuration
 
 ```python
-
 from sage.plugins import PluginBase, hook
 
 from pydantic import BaseModel
@@ -420,7 +415,6 @@ class MyPlugin(PluginBase):
 ### 5.6 Testing Plugins
 
 ```python
-
 import pytest
 
 from sage.plugins import PluginManager
@@ -505,7 +499,6 @@ class TestMyPlugin:
 ### 6.1 Creating a New Plugin
 
 ```bash
-
 # 1. Create plugin file
 
 mkdir -p src/sage/plugins/bundled/my_plugin
@@ -530,7 +523,6 @@ pytest tests/unit/plugins/test_my_plugin.py -v
 ### 6.2 Debugging Plugins
 
 ```python
-
 import logging
 
 # Enable debug logging for plugins

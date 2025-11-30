@@ -1,4 +1,4 @@
-# Lessons Learned
+﻿# Lessons Learned
 
 > Key insights and learnings from SAGE Knowledge Base development
 
@@ -95,7 +95,6 @@ config/
 ├── knowledge/         # Knowledge loading
 └── services/          # Service configs
 ```
-
 ### 3.2 Protocol-First Design
 
 **Context**: Interfaces were implicit, defined by implementation.
@@ -116,7 +115,6 @@ class LoaderProtocol(Protocol):
 class FileLoader:  # Implicitly implements LoaderProtocol
     async def load(self, path: str) -> Content: ...
 ```
-
 ### 3.3 Dependency Injection
 
 **Context**: Components created their own dependencies.
@@ -247,7 +245,6 @@ alone.
 - **No brand in generic knowledge** — Universal knowledge must be project-agnostic
 - **Audit regularly** — Review content placement during major refactoring
 - **Generalize or relocate** — Content with project references either generalize or move to `.context/`
-
 ### 5.5 Frontmatter Metadata Anti-Pattern
 
 **Context**: Added YAML frontmatter (version, tokens, last_updated) to all markdown files.
@@ -262,7 +259,6 @@ alone.
 1. Created `tools/remove_frontmatter.py` for batch removal
 2. Updated `DOCUMENTATION_STANDARDS.md` to prohibit frontmatter
 3. Added "Frontmatter Policy" section to `PROJECT_DIRECTORY_STRUCTURE.md`
-
 **Lesson**:
 - **Git is the source of truth** — Version control provides authoritative history
 - **Avoid redundant metadata** — Information that Git tracks shouldn't be duplicated

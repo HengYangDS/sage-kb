@@ -1,4 +1,4 @@
-
+﻿
 # MCP Tools Reference
 
 > Detailed reference for SAGE MCP server tools
@@ -56,7 +56,6 @@ Retrieve knowledge from the knowledge base.
   "required": ["layer"]
 }
 ```
-
 **Output:**
 
 ```json
@@ -70,7 +69,6 @@ Retrieve knowledge from the knowledge base.
   }
 }
 ```
-
 **Example:**
 
 ```json
@@ -82,7 +80,6 @@ Retrieve knowledge from the knowledge base.
   }
 }
 ```
-
 ---
 
 ## 3. sage_search
@@ -114,7 +111,6 @@ Search the knowledge base.
   "required": ["query"]
 }
 ```
-
 **Output:**
 
 ```json
@@ -131,7 +127,6 @@ Search the knowledge base.
   "query_time_ms": 45
 }
 ```
-
 ---
 
 ## 4. sage_get_context
@@ -163,7 +158,6 @@ Get task-specific context based on task type.
   "required": ["task_type"]
 }
 ```
-
 **Output:**
 
 ```json
@@ -174,7 +168,6 @@ Get task-specific context based on task type.
   "load_time_ms": 200
 }
 ```
-
 ---
 
 ## 5. sage_info
@@ -189,7 +182,6 @@ Get system information and status.
   "properties": {}
 }
 ```
-
 **Output:**
 
 ```json
@@ -207,7 +199,6 @@ Get system information and status.
   "uptime_seconds": 3600
 }
 ```
-
 ---
 
 ## Related

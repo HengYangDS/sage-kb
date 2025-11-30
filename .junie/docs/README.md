@@ -1,4 +1,4 @@
-# Junie Documentation
+﻿# Junie Documentation
 
 > Comprehensive documentation for JetBrains Junie AI Assistant configuration
 
@@ -39,6 +39,7 @@ This documentation covers everything you need to configure and optimize Junie AI
 ## 2. Documentation Structure
 
 ```
+
 docs/
 ├── README.md                 # This file - main index
 ├── guides/                   # 📘 User Guides

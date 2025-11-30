@@ -1,4 +1,4 @@
-# AI Collaboration Patterns
+﻿# AI Collaboration Patterns
 
 > Patterns for effective human-AI collaboration
 

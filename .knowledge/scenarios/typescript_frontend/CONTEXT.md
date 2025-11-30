@@ -1,4 +1,4 @@
-# TypeScript Frontend Scenario Context
+﻿# TypeScript Frontend Scenario Context
 
 > Pre-configured context for TypeScript frontend development (React/Vue)
 
@@ -29,7 +29,6 @@
 ## 1. Scenario Profile
 
 ```yaml
-
 scenario: typescript_frontend
 
 languages: [ typescript, javascript ]
@@ -88,7 +87,6 @@ autonomy_default: L3
 ### 4.1 Component Pattern
 
 ```typescript
-
 import {FC, useState, useCallback} from 'react';
 
 interface UserCardProps {
@@ -137,7 +135,6 @@ export const UserCard: FC<UserCardProps> = ({user, onSelect}) => {
 ### 4.2 Custom Hook Pattern
 
 ```typescript
-
 import {useState, useEffect} from 'react';
 
 interface UseFetchResult<T> {
@@ -196,7 +193,6 @@ export function useFetch<T>(url: string): UseFetchResult<T> {
 ### 4.3 Context Pattern
 
 ```typescript
-
 import {createContext, useContext, ReactNode, useState} from 'react';
 
 interface AuthContextType {
@@ -269,7 +265,6 @@ export const useAuth = () => {
 ### 5.1 Component Testing
 
 ```typescript
-
 import {render, screen, fireEvent} from '@testing-library/react';
 
 import {UserCard} from './UserCard';
@@ -322,7 +317,6 @@ describe('UserCard', () => {
 ### 5.2 Hook Testing
 
 ```typescript
-
 import {renderHook, waitFor} from '@testing-library/react';
 
 import {useFetch} from './useFetch';

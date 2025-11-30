@@ -1,4 +1,4 @@
-# Project Setup Templates
+﻿# Project Setup Templates
 
 > Ready-to-use templates for project initialization
 
@@ -40,7 +40,6 @@
 ## Knowledge Base
 
 Uses AI Collaboration KB v0.1.0 — Load: `kb get --scenario python_backend`
-
 ## Project-Specific
 
 - Naming: [overrides if any]
@@ -111,7 +110,6 @@ conda activate project-name
 # Install
 pip install project-name
 ```
-
 ```python
 from project_name import main_function
 
@@ -126,7 +124,6 @@ conda activate project-name
 pip install -e ".[dev]"
 ```
 **Test**: `pytest` | **Lint**: `ruff check . && mypy src/`
-
 ## Contributing
 
 Fork → Branch → Changes + Tests → PR

@@ -1,9 +1,8 @@
-# SAGE Timeout Hierarchy
+﻿# SAGE Timeout Hierarchy
 
 > SAGE Knowledge Base specific timeout configuration (T1-T5 levels)
 >
 > For universal timeout patterns, see `.knowledge/frameworks/resilience/timeout_patterns.md`
-
 ---
 
 ## Table of Contents
@@ -57,7 +56,6 @@ Request
        ▼
     Result
 ```
-
 ---
 
 ## 3. Fallback Strategies
@@ -87,7 +85,6 @@ timeout:
     strategy: graceful     # graceful | strict | none
     cache_stale_ms: 60000  # Use stale cache up to 60s
 ```
-
 ---
 
 ## 5. Implementation Guidelines
@@ -102,13 +99,11 @@ timeout:
 
 ---
 
-## 6. Related
+## Related
 
-| Document           | Location                                               | Description                               |
-|:-------------------|:-------------------------------------------------------|:------------------------------------------|
-| Timeout Patterns   | `.knowledge/frameworks/resilience/timeout_patterns.md` | Universal timeout and resilience patterns |
-| Main Configuration | `sage.yaml`                                            | Runtime timeout settings                  |
-| Defaults           | `.knowledge/core/defaults.md`                          | Default timeout values reference          |
+- `.knowledge/frameworks/resilience/TIMEOUT_PATTERNS.md` — Universal timeout and resilience patterns
+- `config/sage.yaml` — Runtime timeout settings
+- `.knowledge/core/DEFAULTS.md` — Default timeout values reference
 
 ---
 

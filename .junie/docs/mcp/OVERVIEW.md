@@ -1,4 +1,4 @@
-# MCP Overview
+﻿# MCP Overview
 
 > Model Context Protocol architecture and concepts (~15 min read)
 >
@@ -144,6 +144,7 @@ For detailed server configuration, see [Servers Reference](servers.md).
 **Tools** are specific functions exposed by MCP servers that Junie can invoke:
 
 ```
+
 filesystem.read_file(path)     → Read file content
 memory.create_entities([...])  → Store knowledge
 fetch.get(url)                 → HTTP GET request

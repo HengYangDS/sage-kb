@@ -1,4 +1,4 @@
-# Configuration Directory
+﻿# Configuration Directory
 
 > SAGE Knowledge Base runtime configuration files
 
@@ -64,7 +64,6 @@ config/
     ├── mcp.yaml        # MCP protocol (+ connection, resources)
     └── websocket.yaml  # WebSocket service (NEW)
 ```
-
 ---
 
 ## 3. Configuration Files

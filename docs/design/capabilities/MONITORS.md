@@ -1,4 +1,4 @@
-# Monitors
+﻿# Monitors
 
 > Monitoring, observation, and alerting capabilities
 
@@ -7,6 +7,21 @@
 ## 1. Overview
 
 Monitors observe system state, track metrics, and trigger alerts. They answer the question: "What's happening?"
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Monitor Capabilities](#2-monitor-capabilities)
+- [3. health_checker](#3-healthchecker)
+- [4. metric_collector](#4-metriccollector)
+- [5. timeout_watcher](#5-timeoutwatcher)
+- [6. resource_monitor](#6-resourcemonitor)
+- [7. event_tracker](#7-eventtracker)
+- [8. Monitoring Pipeline](#8-monitoring-pipeline)
+- [9. Configuration](#9-configuration)
+- [10. Extending Monitors](#10-extending-monitors)
+- [Related](#related)
 
 ---
 
@@ -48,7 +63,6 @@ class HealthChecker(Capability[SystemState, HealthStatus]):
             timestamp=datetime.now()
         )
 ```
-
 ### 3.3 Output Structure
 
 ```python
@@ -60,7 +74,6 @@ class HealthStatus:
     resources: ResourceHealth
     timestamp: datetime
 ```
-
 ---
 
 ## 4. metric_collector
@@ -84,7 +97,6 @@ class MetricCollector(Capability[RuntimeData, Metrics]):
             error_rate=self._calculate_error_rate(data)
         )
 ```
-
 ### 4.3 Metric Types
 
 | Type | Description | Unit |
@@ -121,7 +133,6 @@ class TimeoutWatcher(Capability[Operation, TimeoutEvent]):
             )
         return None
 ```
-
 ### 5.3 Timeout Actions
 
 | Action | Trigger | Response |
@@ -154,7 +165,6 @@ class ResourceMonitor(Capability[Resources, UsageStats]):
             alerts=self._check_thresholds()
         )
 ```
-
 ---
 
 ## 7. event_tracker
@@ -181,7 +191,6 @@ class EventTracker(Capability[EventStream, EventLog]):
         
         return EventLog(events=events, summary=self._summarize(events))
 ```
-
 ### 7.3 Event Severity
 
 | Level | Value | Action |
@@ -208,7 +217,6 @@ flowchart TD
     
     A1 --> A2 --> A3 --> A4 --> A5 --> A6 --> A7
 ```
-
 ---
 
 ## 9. Configuration
@@ -232,7 +240,6 @@ capabilities:
       memory_threshold: 0.9
       cpu_threshold: 0.8
 ```
-
 ---
 
 ## 10. Extending Monitors
@@ -246,7 +253,6 @@ class CustomMonitor(Capability[MyInput, MyOutput]):
         # Custom monitoring logic
         ...
 ```
-
 ---
 
 ## Related

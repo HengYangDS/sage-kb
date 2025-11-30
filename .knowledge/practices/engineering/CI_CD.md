@@ -1,4 +1,4 @@
-# CI/CD Practices
+﻿# CI/CD Practices
 
 > Continuous Integration and Continuous Deployment best practices for the projects
 
@@ -52,7 +52,6 @@ flowchart LR
 ### 2.1 Basic CI Workflow
 
 ```yaml
-
 # .github/workflows/ci.yml
 
 name: CI
@@ -143,7 +142,6 @@ jobs:
 ### 2.2 Release Workflow
 
 ```yaml
-
 # .github/workflows/release.yml
 
 name: Release
@@ -238,7 +236,6 @@ jobs:
 ### 2.3 Scheduled Jobs
 
 ```yaml
-
 # .github/workflows/scheduled.yml
 
 name: Scheduled Tasks
@@ -289,7 +286,6 @@ jobs:
 ### 3.2 Test Configuration
 
 ```yaml
-
 # pyproject.toml
 
 [ tool.pytest.ini_options ]
@@ -340,7 +336,6 @@ jobs:
 ### 3.3 Running Tests
 
 ```bash
-
 # All tests
 
 pytest
@@ -381,7 +376,6 @@ pytest -n auto
 ### 4.2 Pre-commit Hooks
 
 ```yaml
-
 # .pre-commit-config.yaml
 
 repos:
@@ -420,7 +414,6 @@ repos:
 ### 4.3 Branch Protection
 
 ```yaml
-
 # Repository settings
 
 branch_protection:
@@ -475,7 +468,6 @@ flowchart TB
 #### Rolling Update
 
 ```yaml
-
 # kubernetes deployment
 
 spec:
@@ -494,7 +486,6 @@ spec:
 ### 5.3 Rollback Procedure
 
 ```bash
-
 # Quick rollback to previous version
 
 git revert HEAD
@@ -527,7 +518,6 @@ git checkout v1.0.0
 ### 6.2 GitHub Secrets
 
 ```yaml
-
 # Access in workflow
 
 env:
@@ -560,7 +550,6 @@ env:
 ## Quick Reference
 
 ```bash
-
 # Local CI simulation
 
 pre-commit run --all-files

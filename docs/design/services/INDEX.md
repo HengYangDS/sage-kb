@@ -1,4 +1,4 @@
-# Services
+﻿# Services
 
 > Service layer design for SAGE interfaces
 
@@ -8,6 +8,16 @@
 
 The services layer provides multiple interfaces (CLI, MCP, API) for interacting with SAGE.
 
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Documents](#2-documents)
+- [3. Service Architecture](#3-service-architecture)
+- [4. Service Responsibilities](#4-service-responsibilities)
+- [5. Common Features](#5-common-features)
+
+---
 ---
 
 ## 2. Documents
@@ -38,7 +48,6 @@ graph TD
     MCP --> Core
     API --> Core
 ```
-
 ---
 
 ## 4. Service Responsibilities

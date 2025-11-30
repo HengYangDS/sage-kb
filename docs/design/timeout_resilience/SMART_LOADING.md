@@ -1,4 +1,4 @@
-# Smart Loading
+﻿# Smart Loading
 
 > Intelligent content loading strategies for optimal performance
 
@@ -7,6 +7,22 @@
 ## 1. Overview
 
 Smart loading optimizes knowledge delivery by choosing the right loading strategy based on context, token budget, and user needs.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Loading Strategies](#2-loading-strategies)
+- [3. Strategy Selection](#3-strategy-selection)
+- [4. Eager Loading](#4-eager-loading)
+- [5. Lazy Loading](#5-lazy-loading)
+- [6. Deferred Loading](#6-deferred-loading)
+- [7. Progressive Loading](#7-progressive-loading)
+- [8. Token Budget Management](#8-token-budget-management)
+- [9. Caching Integration](#9-caching-integration)
+- [10. Configuration](#10-configuration)
+- [11. Monitoring](#11-monitoring)
+- [Related](#related)
 
 ---
 
@@ -38,7 +54,6 @@ graph TD
     Assess --> Deferred
     Assess --> Progressive
 ```
-
 ---
 
 ## 4. Eager Loading
@@ -57,7 +72,6 @@ class EagerLoader:
             results[kid] = self._load_asset(kid)
         return results
 ```
-
 ### 4.3 Use Cases
 
 - System startup
@@ -107,7 +121,6 @@ class LazyLoader:
         
         return self._cache[knowledge_id]
 ```
-
 ### 5.3 Use Cases
 
 - Interactive sessions
@@ -152,7 +165,6 @@ class DeferredLoader:
             finally:
                 self._queue.task_done()
 ```
-
 ### 6.3 Use Cases
 
 - Pre-fetching related content
@@ -199,7 +211,6 @@ class ProgressiveLoader:
             self.used += asset.token_count
             yield asset
 ```
-
 ---
 
 ## 8. Token Budget Management
@@ -217,7 +228,6 @@ class TokenBudget:
     def available_for_knowledge(self) -> int:
         return self.total - self.reserved_system - self.reserved_response
 ```
-
 ### 8.2 Budget-Aware Loading
 
 ```python
@@ -235,7 +245,6 @@ class BudgetAwareLoader:
         
         return selected
 ```
-
 ---
 
 ## 9. Caching Integration
@@ -253,7 +262,6 @@ graph TD
     Memory -->|miss| Disk
     Disk -->|miss| Source
 ```
-
 ### 9.2 Cache Keys
 
 ```python
@@ -262,7 +270,6 @@ def cache_key(asset_id: str, version: str | None = None) -> str:
         return f"{asset_id}:{version}"
     return asset_id
 ```
-
 ---
 
 ## 10. Configuration
@@ -291,7 +298,6 @@ loading:
       P3: 0.2
       P4: 0.1
 ```
-
 ---
 
 ## 11. Monitoring

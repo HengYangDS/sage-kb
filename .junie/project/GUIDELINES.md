@@ -1,4 +1,4 @@
-# SAGE Project - AI Collaboration Guidelines
+﻿# SAGE Project - AI Collaboration Guidelines
 
 > Project-specific AI collaboration rules and quick reference for SAGE Knowledge Base
 
@@ -54,6 +54,7 @@ and smart loading.
 ## 3. Project Structure
 
 ```
+
 sage-kb/
 ├── .junie/          # JetBrains Junie configuration (this directory)
 ├── .context/        # Project-specific knowledge base
@@ -100,7 +101,6 @@ SAGE project-specific behaviors for AI collaboration:
 ## 5. Coding Standards
 
 > **Full Reference**: `.knowledge/guidelines/CODE_STYLE.md`, `.knowledge/guidelines/PYTHON.md`
-
 ### 5.1 Quick Summary
 
 | Aspect | Standard |
@@ -118,6 +118,7 @@ SAGE project-specific behaviors for AI collaboration:
 ### 5.2 Architecture Layers
 
 ```
+
 src/sage/
 ├── core/         # Foundation layer (loader, timeout, config)
 ├── services/     # Service layer (CLI, MCP, API)

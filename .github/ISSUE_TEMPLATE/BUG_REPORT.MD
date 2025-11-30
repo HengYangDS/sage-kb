@@ -1,4 +1,4 @@
----
+﻿---
 name: Bug Report
 about: Create a report to help us improve SAGE Knowledge Base
 title: '[BUG] '
@@ -36,7 +36,6 @@ A clear and concise description of what actually happened.
 ```
 Paste any error messages or stack traces here
 ```
-
 ## Configuration
 
 If applicable, share relevant configuration (with sensitive data redacted):
@@ -44,7 +43,6 @@ If applicable, share relevant configuration (with sensitive data redacted):
 ```yaml
 # Relevant config from sage.yaml or environment variables
 ```
-
 ## Additional Context
 
 Add any other context about the problem here.

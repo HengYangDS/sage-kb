@@ -1,4 +1,4 @@
-# Capability Model
+﻿# Capability Model
 
 > MECE capability families defining what SAGE can do
 
@@ -7,6 +7,21 @@
 ## 1. Overview
 
 Capabilities are functional units organized into 5 mutually exclusive, collectively exhaustive (MECE) families that define SAGE's operational abilities.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Capability Families](#2-capability-families)
+- [3. Family Diagram](#3-family-diagram)
+- [4. Capability Interface](#4-capability-interface)
+- [5. Classification Decision Tree](#5-classification-decision-tree)
+- [6. Family Details](#6-family-details)
+- [7. Capability Registry](#7-capability-registry)
+- [8. Capability Composition](#8-capability-composition)
+- [9. Capability Metadata](#9-capability-metadata)
+- [10. Best Practices](#10-best-practices)
+- [Related](#related)
 
 ---
 
@@ -34,7 +49,6 @@ graph TD
         Generators["GENERATORS<br/>How to produce?"]
     end
 ```
-
 ---
 
 ## 4. Capability Interface
@@ -75,7 +89,6 @@ class Capability(ABC, Generic[TInput, TOutput]):
         """Check if capability can handle this input."""
         return True
 ```
-
 ---
 
 ## 5. Classification Decision Tree
@@ -100,7 +113,6 @@ graph TD
     Q4 -->|NO| Q5
     Q5 -->|YES| Generators[generators]
 ```
-
 ---
 
 ## 6. Family Details
@@ -186,7 +198,6 @@ class CapabilityRegistry:
     def list_family(self, family: str) -> list[Capability]:
         return list(self._capabilities.get(family, {}).values())
 ```
-
 ---
 
 ## 8. Capability Composition
@@ -211,7 +222,6 @@ pipeline = ComposedCapability(
     LinkChecker()
 )
 ```
-
 ---
 
 ## 9. Capability Metadata
@@ -228,7 +238,6 @@ class CapabilityMetadata:
     timeout_level: str  # T1-T5
     tags: list[str]
 ```
-
 ---
 
 ## 10. Best Practices

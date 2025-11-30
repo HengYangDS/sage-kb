@@ -1,4 +1,4 @@
-# Knowledge Reorganization - 2025-11-30
+﻿# Knowledge Reorganization - 2025-11-30
 
 ## Context
 
@@ -20,8 +20,8 @@ User requested analysis and execution of knowledge reorganization across the pro
 
 - Created `.knowledge/practices/engineering/COMMON_PITFALLS.md` (539 lines) - generic pitfalls guide
 - Created `.knowledge/practices/ai_collaboration/INTERACTION_PATTERNS.md` (283 lines) - generic AI patterns
-- Updated `.context/intelligence/COMMON_PITFALLS.md` to slim reference (88 lines) with SAGE-specific pitfalls only
-- Updated `.context/intelligence/PATTERNS.md` to slim reference (100 lines) with SAGE-specific calibration data only
+- Updated `.context/intelligence/learning/COMMON_PITFALLS.md` to slim reference (88 lines) with SAGE-specific pitfalls only
+- Updated `.context/intelligence/calibration/PATTERNS.md` to slim reference (100 lines) with SAGE-specific calibration data only
 - Kept `OPTIMIZATIONS.md` and `PERFORMANCE_TUNING.md` in `.context/` (SAGE-specific conventions)
 
 ### Decision 2: Project-Specific Content Migration (content → docs)
@@ -31,8 +31,8 @@ content
 
 **Actions**:
 
-- Moved `.knowledge/references/MCP_API.md` → `docs/api/MCP_QUICK_REF.md`
-- Moved `.knowledge/references/PLUGIN_API.md` → `docs/api/PLUGIN_QUICK_REF.md`
+- Moved `docs/api/MCP.md` → `docs/api/MCP_QUICK_REF.md`
+- Moved `docs/api/PLUGIN_QUICK_REF.md` → `docs/api/PLUGIN_QUICK_REF.md`
 - Updated `docs/api/INDEX.md` with new Quick References section
 
 ### Decision 3: Cross-References Between Design Docs and ADRs
@@ -56,7 +56,7 @@ content
     - Session end checklist
     - Naming conventions
 - Created `.history/_SESSION-END-CHECKLIST.md` (143 lines) - detailed checklist template
-- Created `.context/intelligence/SESSION_AUTOMATION_REQUIREMENTS.md` (247 lines) - long-term automation plan
+- Created `.context/intelligence/automation/SESSION_AUTOMATION_REQUIREMENTS.md` (247 lines) - long-term automation plan
 
 ## Outcomes
 
@@ -65,13 +65,13 @@ content
 - `.knowledge/practices/engineering/COMMON_PITFALLS.md`
 - `.knowledge/practices/ai_collaboration/INTERACTION_PATTERNS.md`
 - `.history/_SESSION-END-CHECKLIST.md`
-- `.context/intelligence/SESSION_AUTOMATION_REQUIREMENTS.md`
+- `.context/intelligence/automation/SESSION_AUTOMATION_REQUIREMENTS.md`
 - `.history/conversations/2025-11-30-KNOWLEDGE-REORGANIZATION.md` (this file)
 
 ### Files Modified
 
-- `.context/intelligence/COMMON_PITFALLS.md` (reduced from 541 to 88 lines)
-- `.context/intelligence/PATTERNS.md` (reduced from 277 to 100 lines)
+- `.context/intelligence/learning/COMMON_PITFALLS.md` (reduced from 541 to 88 lines)
+- `.context/intelligence/calibration/PATTERNS.md` (reduced from 277 to 100 lines)
 - `docs/api/INDEX.md` (added Quick References section)
 - `docs/design/01-ARCHITECTURE.md` (added ADR references)
 - `docs/design/02-SAGE-PROTOCOL.md` (added ADR reference)
@@ -80,9 +80,8 @@ content
 
 ### Files Moved
 
-- `.knowledge/references/MCP_API.md` → `docs/api/MCP_QUICK_REF.md`
-- `.knowledge/references/PLUGIN_API.md` → `docs/api/PLUGIN_QUICK_REF.md`
-
+- `docs/api/MCP.md` → `docs/api/MCP_QUICK_REF.md`
+- `docs/api/PLUGIN_QUICK_REF.md` → `docs/api/PLUGIN_QUICK_REF.md`
 ## Session Continuation: Configuration Verification
 
 ### Question 5: Configuration File Adjustments
@@ -107,8 +106,8 @@ specific file paths. The `.knowledge/references/` directory still exists with `K
 
 | File                                                 | Old Reference                         | New Reference                  |
 |------------------------------------------------------|---------------------------------------|--------------------------------|
-| `.knowledge/scenarios/mcp_integration/CONTEXT.md`    | `.knowledge/references/MCP_API.md`    | `docs/api/MCP_QUICK_REF.md`    |
-| `.knowledge/scenarios/plugin_development/CONTEXT.md` | `.knowledge/references/PLUGIN_API.md` | `docs/api/PLUGIN_QUICK_REF.md` |
+| `.knowledge/scenarios/mcp_integration/CONTEXT.md`    | `docs/api/MCP.md`    | `docs/api/MCP_QUICK_REF.md`    |
+| `.knowledge/scenarios/plugin_development/CONTEXT.md` | `docs/api/PLUGIN_QUICK_REF.md` | `docs/api/PLUGIN_QUICK_REF.md` |
 
 **Ignored references (historical/temporary):**
 
@@ -134,7 +133,7 @@ specific file paths. The `.knowledge/references/` directory still exists with `K
 
 - `.junie/GUIDELINES.md` — Updated AI collaboration guidelines
 - `.history/INDEX.md` — Session history structure
-- `.context/intelligence/SESSION_AUTOMATION_REQUIREMENTS.md` — Automation roadmap
+- `.context/intelligence/automation/SESSION_AUTOMATION_REQUIREMENTS.md` — Automation roadmap
 - `.knowledge/practices/ai_collaboration/INTERACTION_PATTERNS.md` — Generic AI patterns
 
 ---
@@ -153,11 +152,11 @@ generic content mixed with SAGE-specific data.
 
 **Actions**:
 
-- Refactored `.context/intelligence/OPTIMIZATIONS.md`: 489 → 201 lines
+- Refactored `.context/intelligence/optimization/OPTIMIZATIONS.md`: 489 → 201 lines
     - Extracted generic code patterns to reference `.knowledge/practices/engineering/`
     - Kept SAGE-specific: import organization, test coverage goals, loading optimizations, common patterns (singleton,
       config, events), project shortcuts
-- Refactored `.context/intelligence/PERFORMANCE_TUNING.md`: 391 → 149 lines
+- Refactored `.context/intelligence/optimization/PERFORMANCE_TUNING.md`: 391 → 149 lines
     - Extracted generic performance patterns to reference `.knowledge/frameworks/performance/`
     - Kept SAGE-specific: performance goals with actual measurements, benchmarks (P50/P95/P99), monitoring thresholds,
       tuning checklist
@@ -183,14 +182,14 @@ generic content mixed with SAGE-specific data.
 
 **Cross-reference validation**:
 
-- All references to old paths (`.knowledge/references/MCP_API.md`, `.knowledge/references/PLUGIN_API.md`) only in
+- All references to old paths (`docs/api/MCP.md`, `docs/api/PLUGIN_QUICK_REF.md`) only in
   historical/temporary files
 - All new references in refactored files point to existing files:
     - `.knowledge/practices/engineering/PATTERNS.md` ✓
     - `.knowledge/practices/engineering/TESTING_STRATEGY.md` ✓
     - `.knowledge/frameworks/performance/OPTIMIZATION_STRATEGIES.md` ✓
     - `.knowledge/frameworks/performance/CACHING_PATTERNS.md` ✓
-    - `.knowledge/frameworks/performance/PROFILING_GUIDE.md` ✓
+    - `.knowledge/practices/engineering/PROFILING_GUIDE.md` ✓
 
 **Session history status**:
 
@@ -201,10 +200,10 @@ generic content mixed with SAGE-specific data.
 
 | File                                          | Before   | After   | Reduction |
 |-----------------------------------------------|----------|---------|-----------|
-| `.context/intelligence/COMMON_PITFALLS.md`    | 541      | 88      | 84%       |
-| `.context/intelligence/PATTERNS.md`           | 277      | 100     | 64%       |
-| `.context/intelligence/OPTIMIZATIONS.md`      | 489      | 201     | 59%       |
-| `.context/intelligence/PERFORMANCE_TUNING.md` | 391      | 149     | 62%       |
+| `.context/intelligence/learning/COMMON_PITFALLS.md`    | 541      | 88      | 84%       |
+| `.context/intelligence/calibration/PATTERNS.md`           | 277      | 100     | 64%       |
+| `.context/intelligence/optimization/OPTIMIZATIONS.md`      | 489      | 201     | 59%       |
+| `.context/intelligence/optimization/PERFORMANCE_TUNING.md` | 391      | 149     | 62%       |
 | **Total**                                     | **1698** | **538** | **68%**   |
 
 ### Learnings (Iteration 2)
@@ -287,7 +286,6 @@ User requested deep optimization focusing on:
     - Added reference to `.knowledge/frameworks/cognitive/EXPERT_COMMITTEE.md`
 - Added reference to Timeout Hierarchy section
     - Linked to `.context/policies/TIMEOUT_HIERARCHY.md`
-
 ### Decision 9: Convention File Optimization
 
 **Rationale**: `.context/conventions/NAMING.md` duplicated generic Python naming conventions.
@@ -377,7 +375,6 @@ theory.
     - Now references generic checklist in `.knowledge/`
     - References project-specific checklist in `.history/`
     - Points to templates in `.knowledge/templates/`
-
 ### Knowledge Structure Clarified
 
 | Content Type                | Location                                 | Example                                         |
@@ -442,7 +439,7 @@ all previous optimizations are complete and properly implemented.
 
 #### Cross-Reference Validation
 
-- ✓ No broken references to old paths (`.knowledge/references/MCP_API.md`, `.knowledge/references/PLUGIN_API.md`)
+- ✓ No broken references to old paths (`docs/api/MCP.md`, `docs/api/PLUGIN_QUICK_REF.md`)
 - ✓ All scenario context files updated with new paths
 - ✓ Index files accurate
 
@@ -463,7 +460,6 @@ all previous optimizations are complete and properly implemented.
     - Project-specific → `.context/`
     - User documentation → `docs/`
     - Session records → `.history/`
-
 2. **Reference Pattern** — Project-specific files reference generic standards
     - `.context/intelligence/` files reference `.knowledge/practices/`
     - `.context/policies/TIMEOUT_HIERARCHY.md` references `.knowledge/frameworks/resilience/`
@@ -496,7 +492,7 @@ automation for the session history management workflow established in previous s
 
 **Current State**:
 
-- Session automation requirements documented in `.context/intelligence/SESSION_AUTOMATION_REQUIREMENTS.md`
+- Session automation requirements documented in `.context/intelligence/automation/SESSION_AUTOMATION_REQUIREMENTS.md`
 - No MCP tools implemented for session management
 - No CLI commands for sessions
 - Manual workflow only
@@ -632,7 +628,6 @@ accepted all proposed automation recommendations.
 | NAMING-001 | File naming convention            | Info/Warning |
 
 **Classes**: `Severity`, `DocIssue`, `DocReport`, `DocumentationChecker`
-
 **Entry Point**: `python -m sage.capabilities.checkers.documentation` for pre-commit
 
 #### Phase 3: Pre-commit Hooks
@@ -671,7 +666,6 @@ python tools/index_maintainer.py validate  # Check for issues
 python tools/index_maintainer.py update    # Fix auto-fixable issues
 python tools/index_maintainer.py report    # Generate detailed report
 ```
-
 **Features**:
 
 - Validates file counts in index tables
@@ -712,7 +706,6 @@ python tools/index_maintainer.py update
 # CI/CD (automatic on push/PR)
 # Triggers on .knowledge/docs/.context changes
 ```
-
 ### Learnings (Iteration 8)
 
 1. **Capability Integration**: Existing analyzers/checkers were powerful but isolated. Integration into

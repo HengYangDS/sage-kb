@@ -1,4 +1,4 @@
-# ADR-0001: Three-Layer Architecture
+﻿# ADR-0001: Three-Layer Architecture
 
 > Architecture Decision Record for SAGE Knowledge Base
 
@@ -73,7 +73,6 @@ Adopt a **Core-Services-Capabilities** three-layer architecture with dev tools i
 │           (Analyzers, Checkers, Monitors)               │
 └─────────────────────────────────────────────────────────┘
 ```
-
 ### Layer Responsibilities
 
 | Layer            | Responsibility                         | Dependencies      |
@@ -145,7 +144,6 @@ Everything as plugins, minimal core.
 1. **Linting rules**: Enforce import restrictions
 2. **Code review**: Check for layer violations
 3. **Documentation**: Clear guidelines in `.context/conventions/`
-
 ---
 
 ## Implementation
@@ -169,7 +167,6 @@ src/sage/
     ├── checkers/
     └── monitors/
 ```
-
 ### Communication Patterns
 
 ```python
@@ -184,7 +181,6 @@ bus.publish(Event(type="knowledge.loaded", data={...}))
 # Services ↔ Capabilities: Via DI Container
 analyzer = container.resolve(AnalyzerProtocol)
 ```
-
 ---
 
 ## Related

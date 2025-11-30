@@ -1,4 +1,4 @@
-# Batch Optimization Patterns
+﻿# Batch Optimization Patterns
 
 > Efficient processing of large-scale operations
 

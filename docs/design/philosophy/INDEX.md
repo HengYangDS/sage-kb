@@ -1,4 +1,4 @@
-# Philosophy
+﻿# Philosophy
 
 > Design philosophy and foundational principles for SAGE
 
@@ -8,6 +8,14 @@
 
 This directory contains the philosophical foundations that guide all SAGE design decisions.
 
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Documents](#2-documents)
+- [3. Key Concepts](#3-key-concepts)
+
+---
 ---
 
 ## 2. Documents

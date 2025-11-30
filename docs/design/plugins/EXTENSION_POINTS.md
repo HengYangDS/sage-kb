@@ -1,4 +1,4 @@
-# Extension Points
+﻿# Extension Points
 
 > Where and how plugins can extend SAGE functionality
 
@@ -7,6 +7,21 @@
 ## 1. Overview
 
 Extension points are well-defined interfaces where plugins can inject custom behavior into SAGE's processing pipeline.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Extension Point Types](#2-extension-point-types)
+- [3. Capability Extensions](#3-capability-extensions)
+- [4. Hook Extensions](#4-hook-extensions)
+- [5. Event Extensions](#5-event-extensions)
+- [6. Config Extensions](#6-config-extensions)
+- [7. Service Extensions](#7-service-extensions)
+- [8. Extension Point Registry](#8-extension-point-registry)
+- [9. Best Practices](#9-best-practices)
+- [10. Extension Point Matrix](#10-extension-point-matrix)
+- [Related](#related)
 
 ---
 
@@ -65,7 +80,6 @@ class CustomAnalyzer(CapabilityExtension):
         # Custom analysis logic
         return AnalysisResult(...)
 ```
-
 ### 3.3 Registration
 
 ```python
@@ -73,7 +87,6 @@ class MyPlugin(Plugin):
     def register(self, container: Container) -> None:
         container.register_capability(CustomAnalyzer())
 ```
-
 ---
 
 ## 4. Hook Extensions
@@ -114,7 +127,6 @@ class Hook(Protocol):
         """Execute hook, may modify data."""
         ...
 ```
-
 ### 4.3 Hook Registration
 
 ```python
@@ -130,7 +142,6 @@ class ValidationHook(Hook):
 # Register in plugin
 container.register_hook(ValidationHook())
 ```
-
 ---
 
 ## 5. Event Extensions
@@ -164,7 +175,6 @@ class MyPlugin(Plugin):
         # Handle errors
         pass
 ```
-
 ---
 
 ## 6. Config Extensions
@@ -186,7 +196,6 @@ class MyPlugin(Plugin):
             MyPluginConfig
         )
 ```
-
 ### 6.2 Config Access
 
 ```python
@@ -196,7 +205,6 @@ def execute(self, context: Context) -> Result:
         # Use threshold
         pass
 ```
-
 ---
 
 ## 7. Service Extensions
@@ -216,7 +224,6 @@ class MyPlugin(Plugin):
     async def _status_handler(self, request: Request) -> Response:
         return {"status": "ok", "version": self.version}
 ```
-
 ### 7.2 CLI Commands
 
 ```python
@@ -229,7 +236,6 @@ class MyPlugin(Plugin):
             help="My custom command"
         )
 ```
-
 ---
 
 ## 8. Extension Point Registry
@@ -250,7 +256,6 @@ class ExtensionRegistry:
     def get_capabilities(self, family: str) -> list[CapabilityExtension]:
         return self.capabilities.get(family, [])
 ```
-
 ---
 
 ## 9. Best Practices

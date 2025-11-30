@@ -1,4 +1,4 @@
-# Technical Cases Repository
+﻿# Technical Cases Repository
 
 > Collection of problem-solving cases and lessons learned
 
@@ -66,7 +66,6 @@ the path to the `.outputs/` directory.
 if output_file:
     builder.export_to_json(Path(output_file))
 ```
-
 ### Solution
 
 Modified `src/sage/services/mcp_server.py` to:
@@ -74,7 +73,6 @@ Modified `src/sage/services/mcp_server.py` to:
 1. Create `.outputs/` directory if it doesn't exist
 2. Extract only the filename from user-provided path
 3. Construct output path as `.outputs/{filename}`
-
 ```python
 # Fixed code
 if output_file:
@@ -86,7 +84,6 @@ if output_file:
     output_path = outputs_dir / output_filename
     builder.export_to_json(output_path)
 ```
-
 ### Verification
 
 - Ran unit tests: `pytest tests/unit/services/test_mcp_server.py::TestKnowledgeGraphTool -v`
@@ -103,7 +100,6 @@ if output_file:
 ### Tags
 
 `bug-fix` `mcp-tools` `file-output` `path-normalization`
-
 ---
 
 ## CASE-2025-11-29-002
@@ -173,7 +169,6 @@ Created 10 new documentation files:
 ### Tags
 
 `documentation` `knowledge-management` `knowledge-gaps` `best-practices`
-
 ---
 
 ## Case Categories Reference
@@ -238,7 +233,6 @@ Updated `.junie/GUIDELINES.md` Architecture Rules section:
 ### Tags
 
 `architecture` `documentation` `terminology` `consistency`
-
 ---
 
 ## CASE-2025-11-29-004
@@ -296,7 +290,6 @@ Original naming didn't distinguish between "policy/governance" and "runtime sett
 ### Tags
 
 `architecture` `refactoring` `naming` `semantic-clarity`
-
 ---
 
 ## CASE-2025-11-29-005
@@ -350,7 +343,6 @@ Identified and documented. Implementation planned as Phase 4 of optimization ini
 ### Tags
 
 `testing` `coverage` `technical-debt` `engineering-practice`
-
 ---
 
 ## CASE-2025-11-30-001
@@ -397,7 +389,6 @@ Implemented a three-part systematic prevention:
 *.output.txt
 output.txt
 ```
-
 **2. Updated `.context/conventions/FILE_STRUCTURE.md`** (documentation):
 
 - Added Section 1.4 "Output File Convention"
@@ -415,7 +406,6 @@ output.txt
 - Confirmed `.gitignore` rules added
 - Confirmed documentation updated with clear conventions
 - Verified `.outputs/` directory exists with `.gitkeep`
-
 ### Lessons Learned
 
 | Takeaway                     | Action                                                      |
@@ -436,7 +426,6 @@ For future development:
 ### Tags
 
 `convention` `file-structure` `output-files` `prevention` `documentation`
-
 ---
 
 ## How to Add New Cases

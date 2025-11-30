@@ -1,9 +1,8 @@
-# Timeout Hierarchy
+﻿# Timeout Hierarchy
 
 > T1-T5 timeout levels design documentation
 >
 > **Authoritative Configuration**: `.context/policies/TIMEOUT_HIERARCHY.md`
-
 ---
 
 ## 1. Overview
@@ -12,6 +11,21 @@ SAGE uses a five-tier timeout hierarchy (T1-T5) to classify operations by expect
 
 > **Note**: For project-specific timeout values, see `.context/policies/TIMEOUT_HIERARCHY.md`.
 > This document describes the design rationale and implementation patterns.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Timeout Levels](#2-timeout-levels)
+- [3. Timeout Diagram](#3-timeout-diagram)
+- [4. T1: Cache (100ms)](#4-t1-cache-100ms)
+- [5. T2: File (500ms)](#5-t2-file-500ms)
+- [6. T3: Layer (2s)](#6-t3-layer-2s)
+- [7. T4: Full (5s)](#7-t4-full-5s)
+- [8. T5: Complex (10s)](#8-t5-complex-10s)
+- [9. Implementation](#9-implementation)
+- [10. Monitoring](#10-monitoring)
+- [Related](#related)
 
 ---
 
@@ -41,7 +55,6 @@ graph LR
     
     T1 --> T2 --> T3 --> T4 --> T5
 ```
-
 ---
 
 ## 4. T1: Cache (100ms)
@@ -67,7 +80,6 @@ if operation_time > T1_TIMEOUT:
     logger.warning("T1 cache timeout - skipping cache")
     return None  # Proceed to file read
 ```
-
 ---
 
 ## 5. T2: File (500ms)
@@ -93,7 +105,6 @@ if operation_time > T2_TIMEOUT:
     logger.warning("T2 file timeout - using fallback")
     return get_embedded_fallback(path)
 ```
-
 ---
 
 ## 6. T3: Layer (2s)
@@ -119,7 +130,6 @@ if operation_time > T3_TIMEOUT:
     logger.warning("T3 layer timeout - returning partial")
     return partial_result
 ```
-
 ---
 
 ## 7. T4: Full (5s)
@@ -145,7 +155,6 @@ if operation_time > T4_TIMEOUT:
     logger.warning("T4 full timeout - returning core only")
     return get_core_principles()
 ```
-
 ---
 
 ## 8. T5: Complex (10s)
@@ -171,7 +180,6 @@ if operation_time > T5_TIMEOUT:
     logger.error("T5 analysis timeout - returning summary")
     return generate_summary(partial_result)
 ```
-
 ---
 
 ## 9. Implementation
@@ -206,7 +214,6 @@ def with_timeout(level: str):
 async def read_file(path: str) -> str:
     ...
 ```
-
 ### 9.2 Configuration Reference
 
 See `.context/policies/TIMEOUT_HIERARCHY.md` for the authoritative configuration:
@@ -220,7 +227,6 @@ timeout:
     full_load: 5s          # T4
     analysis: 10s          # T5
 ```
-
 ---
 
 ## 10. Monitoring

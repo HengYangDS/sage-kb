@@ -1,4 +1,4 @@
-# Knowledge Management Scenario Context
+﻿# Knowledge Management Scenario Context
 
 > Pre-configured context for knowledge management system development
 
@@ -27,7 +27,6 @@
 ## 1. Scenario Profile
 
 ```yaml
-
 scenario: knowledge_management
 
 languages: [ markdown, yaml, python ]
@@ -109,7 +108,6 @@ flowchart TB
 ### 4.3 Metadata Schema
 
 ```yaml
-
 # Standard frontmatter
 
 ---
@@ -142,7 +140,6 @@ author: Name or AI
 ### 5.1 Document Template
 
 ```markdown
-
 # Title
 
 > One-line description
@@ -181,7 +178,6 @@ Content...
 <!-- Example template - replace placeholder links with actual document paths -->
 
 ```markdown
-
 # Category Index
 
 > Navigation for [category] knowledge
@@ -220,7 +216,6 @@ Content...
 ### 5.3 Cross-Reference Pattern
 
 ```markdown
-
 ## References
 
 ### Internal
@@ -261,7 +256,6 @@ Content...
 ### 6.1 Adding New Knowledge
 
 ```bash
-
 # 1. Create content file
 
 touch .knowledge/practices/new_topic/guide.md

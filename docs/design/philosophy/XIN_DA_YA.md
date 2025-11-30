@@ -1,9 +1,8 @@
-# 信达雅 (Xìn Dá Yǎ)
+﻿# 信达雅 (Xìn Dá Yǎ)
 
 > SAGE design philosophy: Faithfulness, Expressiveness, Elegance
 >
 > **Authoritative Definition**: `.knowledge/core/PRINCIPLES.md`
-
 ---
 
 ## 1. Overview
@@ -17,6 +16,16 @@
 | 信 | Xìn | Faithfulness | Accurate, truthful representation |
 | 达 | Dá | Expressiveness | Clear, effective communication |
 | 雅 | Yǎ | Elegance | Refined, maintainable design |
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Priority Order](#2-priority-order)
+- [3. SAGE-Specific Applications](#3-sage-specific-applications)
+- [4. Design Decision Examples](#4-design-decision-examples)
+- [5. Anti-Patterns](#5-anti-patterns)
+- [Related](#related)
 
 ---
 

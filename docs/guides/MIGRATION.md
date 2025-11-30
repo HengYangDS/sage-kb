@@ -1,4 +1,4 @@
-
+﻿
 # Migration Guide
 
 > Version upgrade procedures and compatibility notes
@@ -56,7 +56,6 @@ sage backup create --name "pre-migration"  # Create backup
 sage backup verify --latest                 # Verify backup
 sage backup list                            # List backups
 ```
-
 ### 2.3 Compatibility Check
 
 ```bash
@@ -64,7 +63,6 @@ python --version      # Requires 3.12+
 pip check             # Check dependencies
 sage config validate  # Validate config
 ```
-
 ---
 
 ## 3. Version Upgrade
@@ -76,7 +74,6 @@ pip install --upgrade sage-kb           # From PyPI
 pip install -e ".[all]"                 # From source
 sage --version                          # Verify
 ```
-
 ### 3.2 Major Version Upgrade
 
 ```bash
@@ -84,7 +81,6 @@ sage migrate --from 1.x --to 2.x --dry-run  # Preview
 sage migrate --from 1.x --to 2.x            # Execute
 sage migrate verify                          # Verify
 ```
-
 ### 3.3 Upgrade Path
 
 | From | To | Notes |
@@ -102,7 +98,6 @@ sage migrate verify                          # Verify
 sage config migrate --dry-run  # Preview changes
 sage config migrate            # Apply changes
 ```
-
 ### 4.2 Manual Migration
 
 | Old Format | New Format |
@@ -124,7 +119,6 @@ timeout:
 cache:
   enabled: true
 ```
-
 ---
 
 ## 5. Content Migration
@@ -144,7 +138,6 @@ sage content migrate --dry-run  # Preview
 sage content migrate            # Execute
 sage content verify             # Verify
 ```
-
 ### 5.3 Frontmatter Update
 
 ```yaml
@@ -161,7 +154,6 @@ status: published
 tokens: ~500
 ---
 ```
-
 ---
 
 ## 6. Breaking Changes
@@ -198,7 +190,6 @@ tokens: ~500
 sage backup restore --latest    # Restore latest
 pip install sage-kb==1.0.0      # Downgrade version
 ```
-
 ### 7.2 Manual Rollback
 
 ```bash
@@ -209,7 +200,6 @@ cp -r .backups/YYYYMMDD/.knowledge/ ./.knowledge/
 # Downgrade package
 pip install sage-kb==<previous-version>
 ```
-
 ### 7.3 Rollback Checklist
 
 | Step | Action |

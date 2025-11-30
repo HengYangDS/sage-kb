@@ -1,4 +1,4 @@
-# Graceful Degradation
+﻿# Graceful Degradation
 
 > Strategies for maintaining partial functionality during failures
 
@@ -7,6 +7,21 @@
 ## 1. Overview
 
 Graceful degradation ensures SAGE continues providing value even when components fail, by progressively reducing functionality rather than failing completely.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Degradation Levels](#2-degradation-levels)
+- [3. Degradation Flow](#3-degradation-flow)
+- [4. Degradation Strategies](#4-degradation-strategies)
+- [5. Component Fallbacks](#5-component-fallbacks)
+- [6. User Communication](#6-user-communication)
+- [7. Recovery](#7-recovery)
+- [8. Configuration](#8-configuration)
+- [9. Monitoring](#9-monitoring)
+- [10. Best Practices](#10-best-practices)
+- [Related](#related)
 
 ---
 
@@ -37,7 +52,6 @@ graph TD
     L0 -->|Component failure| Detect
     Detect --> Assess --> Select --> Apply --> Notify --> Degraded
 ```
-
 ---
 
 ## 4. Degradation Strategies
@@ -60,7 +74,6 @@ class DegradationManager:
         self._update_disabled_features()
         self._notify_status_change()
 ```
-
 ### 4.2 Fallback Chain
 
 ```python
@@ -88,7 +101,6 @@ chain = FallbackChain(
     ErrorMessage()
 )
 ```
-
 ---
 
 ## 5. Component Fallbacks
@@ -115,7 +127,6 @@ def load_knowledge(asset_id: str) -> KnowledgeAsset:
     # Return minimal stub
     return KnowledgeAsset.stub(asset_id)
 ```
-
 ### 5.2 External Services
 
 | Primary | Fallback 1 | Fallback 2 |
@@ -152,7 +163,6 @@ def get_status_message(level: DegradationLevel) -> str:
     }
     return messages[level]
 ```
-
 ### 6.2 Response Headers
 
 ```python
@@ -160,7 +170,6 @@ def get_status_message(level: DegradationLevel) -> str:
 response.headers["X-SAGE-Status"] = status.level.name
 response.headers["X-SAGE-Degraded-Features"] = ",".join(status.affected_features)
 ```
-
 ---
 
 ## 7. Recovery
@@ -184,7 +193,6 @@ class HealthChecker:
         elif health["knowledge_loader"]:
             degradation_manager.recover_to(L1)
 ```
-
 ### 7.2 Progressive Recovery
 
 ```mermaid
@@ -194,7 +202,6 @@ graph LR
     L2 -->|Extended works| L1["L1"]
     L1 -->|Full works| L0["L0"]
 ```
-
 ---
 
 ## 8. Configuration
@@ -218,7 +225,6 @@ degradation:
         - write_operations
         - new_sessions
 ```
-
 ---
 
 ## 9. Monitoring

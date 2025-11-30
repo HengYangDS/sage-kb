@@ -1,4 +1,4 @@
-# Service Layer
+﻿# Service Layer
 
 > Multi-channel service architecture for SAGE
 
@@ -7,6 +7,18 @@
 ## 1. Overview
 
 The service layer provides three channels for knowledge access: CLI, MCP, and HTTP API. All services share common components through dependency injection.
+
+
+## Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Architecture](#2-architecture)
+- [3. Service Comparison](#3-service-comparison)
+- [4. Command/Tool Mapping](#4-commandtool-mapping)
+- [5. Shared Components](#5-shared-components)
+- [6. Error Handling](#6-error-handling)
+- [7. Testing Strategy](#7-testing-strategy)
+- [Related](#related)
 
 ---
 
@@ -27,7 +39,6 @@ graph TD
     API --> Core
     Shared --> Core
 ```
-
 ---
 
 ## 3. Service Comparison
@@ -77,7 +88,6 @@ container = get_container()
 loader = container.resolve(SourceProtocol)
 result = loader.source(request)
 ```
-
 ---
 
 ## 6. Error Handling
@@ -103,7 +113,6 @@ result = loader.source(request)
   }
 }
 ```
-
 ### 6.3 Graceful Degradation
 
 | Timeout Level | Action |
@@ -126,7 +135,6 @@ graph TD
     
     E2E --> Integration --> Unit
 ```
-
 *Pyramid: Unit (80%) → Integration (15%) → E2E (5%)*
 
 ### 7.2 Coverage Targets

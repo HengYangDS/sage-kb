@@ -1,4 +1,4 @@
-# Session Checklist
+﻿# Session Checklist
 
 > Quick reference checklist for AI collaboration session management
 

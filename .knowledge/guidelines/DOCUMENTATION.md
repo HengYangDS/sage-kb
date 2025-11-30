@@ -1,4 +1,4 @@
-# Documentation Guidelines
+﻿# Documentation Guidelines
 
 > Clear, maintainable, useful documentation
 
@@ -87,7 +87,6 @@
 - Include H2 sections only
 
 > **Full Standards**: See `.knowledge/practices/documentation/DOCUMENTATION_STANDARDS.md`
-
 ---
 
 ## 4. Writing Style
@@ -130,7 +129,6 @@ Documentation uses four primary elements. Each has dedicated standards.
 | State machines   | State      |
 
 > **Full Standards**: See `.knowledge/practices/documentation/DIAGRAM_STANDARDS.md`
-
 ### 5.2 Tables
 
 | Rule          | Requirement                            |
@@ -141,7 +139,6 @@ Documentation uses four primary elements. Each has dedicated standards.
 | **Alignment** | Text left, numbers right, icons center |
 
 > **Full Standards**: See `.knowledge/practices/documentation/TABLE_STANDARDS.md`
-
 ### 5.3 Code Blocks
 
 | Rule            | Requirement                               |
@@ -158,7 +155,6 @@ result = process("input")
 print(result)  # Output: "processed"
 ```
 > **Full Standards**: See `.knowledge/practices/documentation/CODE_BLOCK_STANDARDS.md`
-
 ### 5.4 Quote Blocks
 
 | Type    | Syntax              | Use Case               |
