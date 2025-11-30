@@ -134,7 +134,7 @@ Before handoff, ensure:
 [Any additional context, warnings, or tips that don't fit above]
 ---
 *Task handoff from AI Collaboration Knowledge Base*
-```
+`````
 ---
 
 ## Instructions
@@ -228,7 +228,7 @@ Implement rate limiting for the API service to prevent abuse and ensure fair usa
 The Redis mock in tests occasionally fails due to timing. Consider using `freezegun` for time-dependent tests. See similar pattern in `test_timeout.py`.
 ---
 *Task handoff from AI Collaboration Knowledge Base*
-```
+`````
 ---
 
 ## Related
