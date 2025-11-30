@@ -32,14 +32,14 @@ More content.
 ### 2.1 Frontmatter
 
 | Rule | Description |
-|------|-------------|
+|:-----|:------------|
 | **No Frontmatter** | Do not use YAML frontmatter (`---` blocks at start) |
 | **Metadata in content** | If needed, use a table in the document body |
 
 ### 2.2 Table of Contents
 
 | Condition | TOC Required |
-|-----------|--------------|
+|:----------|:-------------|
 | Lines > 100 | Optional |
 | H2 sections > 5 | Optional |
 | Lines ≤ 100 AND H2 ≤ 5 | Not needed |
@@ -56,7 +56,7 @@ More content.
 ### 2.4 Line Count
 
 | Limit | Action |
-|-------|--------|
+|:------|:-------|
 | < 300 lines | ✅ Ideal |
 | 300-500 lines | ⚠️ Consider splitting |
 | > 500 lines | ❌ Must split |
@@ -64,7 +64,7 @@ More content.
 ### 2.5 Related Section
 
 | Rule | Description |
-|------|-------------|
+|:-----|:------------|
 | Position | Last section before footer |
 | Count | 2-5 links |
 | Format | `- \`path/FILE.md\` — Description` |
@@ -85,7 +85,7 @@ More content.
 ### 3.1 Hierarchy
 
 | Level | Usage | Example |
-|-------|-------|---------|
+|:------|:------|:--------|
 | H1 (`#`) | Document title only | `# SAGE Protocol` |
 | H2 (`##`) | Major sections | `## 1. Overview` |
 | H3 (`###`) | Subsections | `### 1.1 Purpose` |

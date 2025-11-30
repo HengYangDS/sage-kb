@@ -27,7 +27,7 @@ This document contains SAGE-specific directory mappings and implementation detai
 ## 1. SAGE Layer Mapping
 
 | Layer | Generic Name | SAGE Implementation | Directory |
-|-------|--------------|---------------------|-----------|
+|:------|:-------------|:--------------------|:----------|
 | **L1** | Extension | plugins | `src/sage/core/plugins/` |
 | **L2** | Interface | capabilities | `src/sage/capabilities/` |
 | **L3** | Implementation | tools | `tools/{family}/` |
@@ -55,7 +55,7 @@ flowchart TB
 ## 2. Directory Structure
 
 | Layer | Source Code | Documentation |
-|-------|-------------|---------------|
+|:------|:------------|:--------------|
 | plugins | `src/sage/core/plugins/` | `docs/design/plugins/` |
 | capabilities | `src/sage/capabilities/` | `docs/design/capabilities/` |
 | tools | `tools/{family}/` | `docs/guides/TOOLS.md` |
@@ -68,7 +68,7 @@ flowchart TB
 SAGE organizes tools by capability family (L3 layer):
 
 | Family | Responsibility | Representative Tools |
-|--------|---------------|---------------------|
+|:-------|:--------------|:--------------------|
 | **analyzers** | Analysis, diagnosis, graph | knowledge_graph |
 | **checkers** | Check, validate, verify | knowledge_validator |
 | **monitors** | Monitor, observe, alert | timeout_manager |
@@ -82,7 +82,7 @@ SAGE organizes tools by capability family (L3 layer):
 SAGE organizes scripts by category (L4 layer):
 
 | Category | Purpose | Examples |
-|----------|---------|----------|
+|:---------|:--------|:---------|
 | **dev** | Development setup | setup_dev.py, new_file.py |
 | **check** | Validation scripts | check_architecture.py |
 | **hooks** | Git hooks | pre_commit.py, pre_push.py |

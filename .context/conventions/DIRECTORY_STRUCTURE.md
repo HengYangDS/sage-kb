@@ -179,7 +179,7 @@ scripts/
 ## 5. Naming Rules Summary
 
 | Element | Convention | Example |
-|---------|------------|---------|
+|:--------|:-----------|:--------|
 | Markdown files | `UPPER_SNAKE_CASE.md` | `SAGE_PROTOCOL.md` |
 | Markdown extension | lowercase `.md` | `.md` not `.MD` |
 | Directories | `lower_snake_case/` | `core_engine/` |

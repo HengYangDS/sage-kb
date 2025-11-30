@@ -17,7 +17,7 @@
 This directory contains project-specific AI collaboration intelligence:
 
 | Subdirectory     | Purpose                              |
-|------------------|--------------------------------------|
+|:-----------------|:-------------------------------------|
 | `automation/`    | Session automation requirements      |
 | `calibration/`   | AI behavior calibration patterns     |
 | `learning/`      | Lessons learned and common pitfalls  |
@@ -30,20 +30,20 @@ This directory contains project-specific AI collaboration intelligence:
 ### 2.1 Automation
 
 | File                               | Purpose                        |
-|------------------------------------|--------------------------------|
+|:-----------------------------------|:-------------------------------|
 | `SESSION_AUTOMATION_REQUIREMENTS.md` | Session automation specs     |
 
 ### 2.2 Calibration
 
 | File              | Purpose                       |
-|-------------------|-------------------------------|
+|:------------------|:------------------------------|
 | `CALIBRATION.md`  | Calibration parameters        |
 | `PATTERNS.md`     | Calibration patterns          |
 
 ### 2.3 Learning
 
 | File                 | Purpose                     |
-|----------------------|-----------------------------|
+|:---------------------|:----------------------------|
 | `CASES.md`           | Case studies                |
 | `COMMON_PITFALLS.md` | Common mistakes to avoid    |
 | `LESSONS_LEARNED.md` | Accumulated learnings       |
@@ -51,7 +51,7 @@ This directory contains project-specific AI collaboration intelligence:
 ### 2.4 Optimization
 
 | File                    | Purpose                    |
-|-------------------------|----------------------------|
+|:------------------------|:---------------------------|
 | `OPTIMIZATIONS.md`      | Optimization strategies    |
 | `PERFORMANCE_TUNING.md` | Performance tuning guide   |
 
