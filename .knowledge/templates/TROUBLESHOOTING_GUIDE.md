@@ -109,7 +109,7 @@ Before escalating, gather:
 - [Link to configuration doc]
 ---
 *Last Updated: [DATE]*
-```
+`````
 ---
 
 ## Instructions
@@ -195,7 +195,7 @@ app serve --port 8081
 ### Prevention
 - Always stop server properly with Ctrl+C
 - Use unique ports per environment
-```
+`````
 ---
 
 ## Best Practices

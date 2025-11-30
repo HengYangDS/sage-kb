@@ -168,7 +168,7 @@ curl -s https://service.example.com/health | jq
 | YYYY-MM-DD | [Name] | Initial version |
 ---
 *Runbook from AI Collaboration Knowledge Base*
-```
+`````
 ---
 
 ## Instructions

@@ -55,7 +55,7 @@ enabling multi-perspective analysis.
 
 | Module | Description |
 |--------|-------------|
-| `EXPERT_COMMITTEE_MATH.md` | Aggregation formulas, uncertainty quantification |
+| `EXPERT_COMMITTEE_MATH.md` | Aggregation formulas, correlation-adjusted weights, uncertainty quantification |
 | `EXPERT_COMMITTEE_CALIBRATION.md` | Bias correction, weight learning, effectiveness tracking |
 
 ### 2.3 Related Practices

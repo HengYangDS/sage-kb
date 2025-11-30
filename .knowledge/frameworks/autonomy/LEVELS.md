@@ -59,8 +59,24 @@ Is the task routine AND well-understood?
          ├─ NO  → L3: Ask before proceeding
          └─ YES → Is outcome easily reversible?
                   ├─ NO  → L3: Ask before proceeding
-                  └─ YES → L4: Proceed, report after
+                  └─ YES → Does it affect shared/critical code?
+                           ├─ YES → L3: Ask before proceeding
+                           └─ NO  → Is there existing test coverage?
+                                    ├─ NO  → L3: Ask before proceeding
+                                    └─ YES → L4: Proceed, report after
 ```
+
+#### Extended Decision Matrix
+
+| Factor | L3 (Ask Novel) | L4 (Report After) |
+|--------|----------------|-------------------|
+| **Familiarity** | First time or rare | Done 3+ times successfully |
+| **Reversibility** | Hard to undo | Easy to revert |
+| **Scope** | Multiple files/modules | Single file/localized |
+| **Impact** | Affects shared code | Isolated changes |
+| **Coverage** | No/low test coverage | Good test coverage |
+| **Environment** | Production/staging | Development/sandbox |
+| **Complexity** | Novel logic/pattern | Known pattern |
 
 #### Concrete Examples
 
@@ -70,6 +86,43 @@ Is the task routine AND well-understood?
 | Config change | New service, production        | Known service, dev/staging     |
 | Documentation | New structure, API docs        | Typo fix, existing format      |
 | Testing       | New test framework             | Adding tests to existing suite |
+| Dependencies  | Major version upgrade          | Patch version update           |
+| Bug fix       | Root cause unclear             | Clear fix, known issue type    |
+| Feature       | New user-facing behavior       | Internal improvement           |
+| Database      | Schema change                  | Query optimization (read-only) |
+
+#### Boundary Cases (Gray Zone)
+
+These cases require judgment—default to L3 when uncertain:
+
+| Situation | Factors Favoring L3 | Factors Favoring L4 | Recommendation |
+|-----------|---------------------|---------------------|----------------|
+| Familiar pattern, unfamiliar codebase | New context risk | Pattern confidence | **L3** |
+| Known codebase, new pattern | Pattern unfamiliarity | Context familiarity | **L3** |
+| Minor change to critical path | Critical impact | Small change | **L3** |
+| Large change to non-critical code | Change size | Low risk area | **L4** with detailed report |
+| Refactor with good tests | Complexity | Safety net | **L4** |
+| Simple change, no tests | Low complexity | No safety net | **L3** |
+
+#### Quick Reference: L3 or L4?
+
+```
+L3 if ANY of these are true:
+□ First time doing this type of task
+□ Involves production environment
+□ Changes shared/core code
+□ No test coverage for affected area
+□ Outcome hard to reverse
+□ Uncertain about approach
+
+L4 if ALL of these are true:
+□ Done similar task 3+ times successfully
+□ Development/sandbox environment OR well-tested
+□ Changes are localized
+□ Good test coverage exists
+□ Easy to revert if needed
+□ Confident in approach
+```
 
 ### 2.3 L5-L6: High Autonomy
 
@@ -219,7 +272,7 @@ audit_log:
 │  Override Count (7d): 2                             │
 │  Last Emergency: None                               │
 ├─────────────────────────────────────────────────────┤
-│  Level Distribution    │  Calibration Trend         │
+│  Level Distribution   │  Calibration Trend          │
 │  L1: ██ 5%            │  ────────────────           │
 │  L2: ███ 10%          │       ╱‾‾‾‾‾‾               │
 │  L3: █████ 20%        │      ╱                      │
@@ -448,5 +501,6 @@ autonomy:
 
 ---
 
-*AI Autonomy Levels Framework v2.0*
+*AI Autonomy Levels Framework v2.1*
+*Updated: 2025-12-01 - Added observability specs (§7.5-7.7), L3-L4 boundary refinement*
 *Last reviewed: 2025-12-01 by Expert Committee (L3, Conditional Approve)*

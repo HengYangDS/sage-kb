@@ -18,8 +18,9 @@
 The Autonomy Framework defines 6 levels (L1-L6) of AI autonomy for human-AI collaboration, ranging from minimal
 autonomy (always ask) to full autonomy (act independently).
 
-**Version**: 2.0 (2025-12-01)
+**Version**: 2.1 (2025-12-01)
 **Last Review**: Expert Committee L3 - Conditional Approve
+**Recent Updates**: L3-L4 boundary refinement, observability specs (§7.5-7.7)
 
 ---
 
@@ -72,4 +73,4 @@ autonomy (always ask) to full autonomy (act independently).
 
 ---
 
-*AI Autonomy Framework v2.0*
+*AI Autonomy Framework v2.1*

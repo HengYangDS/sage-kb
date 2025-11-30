@@ -40,14 +40,16 @@
 
 ## 2. Timeout Defaults
 
-### 2.1 Tiered Timeout Pattern
+> **Quick Reference**: See `QUICK_REFERENCE.md` Section 4 for timeout tier summary.
 
-| Tier     | Typical Range | Operation Type                |
-|----------|---------------|-------------------------------|
-| Fast     | 50-200ms      | Cache lookup, memory access   |
-| Standard | 200-1000ms    | Single file read, local I/O   |
-| Extended | 1-5s          | Multi-file load, network call |
-| Long     | 5-30s         | Full load, complex analysis   |
+### 2.1 Default Timeout Configuration
+
+| Parameter | Default | Override |
+|-----------|---------|----------|
+| Fast tier | 100ms | Project config |
+| Standard tier | 500ms | Project config |
+| Extended tier | 2s | Project config |
+| Long tier | 10s | Project config |
 
 > **Note**: For project-specific timeout configurations, see your project's configuration files.
 
@@ -71,12 +73,13 @@
 
 ### 3.1 Calibration Thresholds
 
-| Success Rate | Action               |
-|--------------|----------------------|
-| > 95%        | Upgrade +1 (max L5)  |
-| 85-95%       | Maintain             |
-| 70-85%       | Downgrade -1         |
-| < 70%        | Downgrade -2, review |
+> **Quick Reference**: See `QUICK_REFERENCE.md` Section 2.2 for calibration thresholds.
+
+| Metric | Tracking Method |
+|--------|-----------------|
+| Success rate | Per-session accuracy |
+| Review period | Weekly or 10 tasks |
+| Upgrade cooldown | 3 successful sessions |
 
 ### 3.2 Reset Triggers
 
@@ -101,16 +104,16 @@
 
 ## 5. Response Structure
 
-```markdown
-## Summary
-[Brief outcome]
-## Changes Made
-[List of modifications]
-## Verification
-[How to verify]
-## Next Steps
-[Follow-up actions if applicable]
-```
+> **Quick Reference**: See `QUICK_REFERENCE.md` Section 3 for standard response template.
+
+### 5.1 When to Use Full Structure
+
+| Context | Structure |
+|---------|-----------|
+| Code changes | Full (Summary + Changes + Verification) |
+| Analysis only | Summary + Findings |
+| Quick question | Brief answer only |
+| Error/blocker | Summary + Issue + Suggested action |
 ---
 
 ## 6. Fallback Behavior
