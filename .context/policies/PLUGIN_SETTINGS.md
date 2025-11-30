@@ -12,6 +12,7 @@
 - [4. Bundled Plugins](#4-bundled-plugins)
 - [5. Custom Plugins](#5-custom-plugins)
 - [6. Security](#6-security)
+- [7. Quick Reference](#7-quick-reference)
 
 ---
 

@@ -11,6 +11,7 @@
 - [3. MCP Service](#3-mcp-service)
 - [4. API Service](#4-api-service)
 - [5. Common Settings](#5-common-settings)
+- [6. Quick Reference](#6-quick-reference)
 
 ---
 
@@ -287,9 +288,9 @@ services:
 ```
 ---
 
-## Quick Reference
+## 6. Quick Reference
 
-### Service Startup Commands
+### 6.1 Service Startup Commands
 
 ```bash
 # CLI (default)
@@ -301,7 +302,8 @@ sage serve --port 8080 --transport sse
 sage api --host 0.0.0.0 --port 8000
 sage api --workers 4 --reload
 ```
-### Configuration Priority
+
+### 6.2 Configuration Priority
 
 ```text
 1. Command-line arguments (highest)
@@ -309,7 +311,8 @@ sage api --workers 4 --reload
 3. Config file (config/sage.yaml)
 4. Defaults (lowest)
 ```
-### Validation
+
+### 6.3 Validation
 
 ```bash
 # Validate service configuration
@@ -321,10 +324,9 @@ sage config --show --section services.mcp
 
 ## Related
 
-- `.context/policies/runtime_settings.md` — Runtime configuration
-- `.context/policies/timeout_hierarchy.md` — Timeout configuration
-- `docs/api/` — API documentation
-- `docs/api/mcp.md` — MCP protocol reference
+- `.context/policies/RUNTIME_SETTINGS.md` — Runtime configuration
+- `.context/policies/TIMEOUT_HIERARCHY.md` — Timeout configuration
+- `.context/decisions/ADR_0006_PROTOCOL_FIRST.md` — Protocol-first design decision
 
 ---
 

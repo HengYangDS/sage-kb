@@ -12,6 +12,7 @@
 - [4. Persistence](#4-persistence)
 - [5. Session State](#5-session-state)
 - [6. Performance Tuning](#6-performance-tuning)
+- [7. Quick Reference](#7-quick-reference)
 
 ---
 
@@ -380,9 +381,9 @@ Reference to timeout hierarchy:
 
 ---
 
-## Quick Reference
+## 7. Quick Reference
 
-### Environment Variables
+### 7.1 Environment Variables
 
 ```bash
 # Cache settings
@@ -399,7 +400,8 @@ export SAGE_PERSISTENCE_PATH=.data/
 # Memory limits
 export SAGE_MEMORY_MAX_TOTAL=500MB
 ```
-### Cache Commands
+
+### 7.2 Cache Commands
 
 ```bash
 # Cache operations
@@ -415,7 +417,8 @@ sage snapshot create
 sage snapshot list
 sage snapshot restore <id>
 ```
-### Configuration Validation
+
+### 7.3 Configuration Validation
 
 ```bash
 # Validate memory configuration
@@ -427,9 +430,9 @@ sage config --show --section memory.cache
 
 ## Related
 
-- `.context/policies/timeout_hierarchy.md` — Timeout configuration
-- `.context/policies/service_settings.md` — Service configuration
-- `.context/policies/runtime_settings.md` — Runtime settings
+- `.context/policies/TIMEOUT_HIERARCHY.md` — Timeout configuration
+- `.context/policies/SERVICE_SETTINGS.md` — Service configuration
+- `.context/policies/RUNTIME_SETTINGS.md` — Runtime settings
 - `.context/decisions/ADR_0003_TIMEOUT_HIERARCHY.md` — Timeout ADR
 
 ---

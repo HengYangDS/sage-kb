@@ -18,7 +18,7 @@
 
 ## 1. Generic Python Conventions
 
-> **Reference**: See `.knowledge/guidelines/python.md` for comprehensive Python naming conventions
+> **Reference**: See `.knowledge/guidelines/PYTHON.md` for comprehensive Python naming conventions
 
 **SAGE-specific principles:**
 
@@ -247,9 +247,9 @@ format.
 ## Related
 
 - `.junie/guidelines.md` — General coding guidelines
-- `.knowledge/practices/engineering/` — Engineering practices
-- `docs/design/architecture/INDEX.md` — Architecture patterns
+- `.knowledge/guidelines/PYTHON.md` — Python naming conventions
 - `.context/conventions/DOC_TEMPLATE.md` — Document template
+- `.context/conventions/FILE_STRUCTURE.md` — File organization
 
 ---
 

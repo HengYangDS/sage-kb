@@ -17,6 +17,8 @@
 - [8. Bias Correction & Calibration](#8-bias-correction--calibration)
 - [9. Quick Reference](#9-quick-reference)
 - [10. No-Calculator Simplified Method](#10-no-calculator-simplified-method)
+- [11. Decision Rollback](#11-decision-rollback)
+- [12. Anti-Patterns](#12-anti-patterns)
 
 ### Module Files
 
@@ -592,6 +594,7 @@ S_final = S - Penalty
 
 - `.knowledge/templates/EXPERT_COMMITTEE_QUICKSTART.md` — **Quick-Start Guide (5 min)**
 - `.knowledge/templates/EXPERT_COMMITTEE.md` — Decision templates
+- `.knowledge/practices/decisions/EXPERT_COMMITTEE_CASES.md` — **Case Studies (L1-L5 examples)**
 
 ### Reference Documents
 

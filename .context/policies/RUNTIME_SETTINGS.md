@@ -11,6 +11,8 @@
 - [3. Service Settings](#3-service-settings)
 - [4. Feature Flags](#4-feature-flags)
 - [5. Debug Settings](#5-debug-settings)
+- [6. Performance Tuning](#6-performance-tuning)
+- [7. Quick Reference](#7-quick-reference)
 
 ---
 
@@ -249,14 +251,17 @@ features:
 
 ```python
 from sage.core.config import get_config
-config = get_config()
-if config.features.enable_caching:
-    result = await cache.get(key)
-    if result is None:
+
+async def get_data(key: str):
+    config = get_config()
+    if config.features.enable_caching:
+        result = await cache.get(key)
+        if result is None:
+            result = await compute(key)
+            await cache.set(key, result)
+    else:
         result = await compute(key)
-        await cache.set(key, result)
-else:
-    result = await compute(key)
+    return result
 ```
 ### 4.3 Environment Override
 
@@ -416,10 +421,9 @@ debug:
 
 ## Related
 
-- `.context/policies/timeout_hierarchy.md` — Timeout configuration
-- `.context/policies/loading_configurations.md` — Loading configuration
+- `.context/policies/TIMEOUT_HIERARCHY.md` — Timeout configuration
+- `.context/policies/LOADING_CONFIGURATIONS.md` — Loading configuration
 - `.context/decisions/ADR_0007_CONFIGURATION.md` — Configuration design decision
-- `docs/design/09-configuration.md` — Full configuration design
 
 ---
 

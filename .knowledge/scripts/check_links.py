@@ -32,24 +32,24 @@ class LinkIssue:
 
 
 def extract_links(content: str) -> List[Tuple[int, str]]:
-    """Extract all markdown links from content with line numbers."""
+    """Extract all markdown links from content with line numbers.
+    
+    Only extracts actual markdown links [text](path), not file name references
+    in backticks like `filename.md` which are just for display purposes.
+    """
     links = []
     lines = content.split('\n')
     
     for i, line in enumerate(lines, 1):
-        # Match markdown links: [text](path) or `path`
-        # Pattern 1: [text](path)
+        # Pattern 1: [text](path) - actual markdown links
         for match in re.finditer(r'\[([^\]]+)\]\(([^)]+)\)', line):
             path = match.group(2)
             if not path.startswith('http') and not path.startswith('#'):
                 links.append((i, path))
         
-        # Pattern 2: `path/to/file.md` in Related section
-        for match in re.finditer(r'`([^`]+\.md)`', line):
-            links.append((i, match.group(1)))
-        
-        # Pattern 3: `.knowledge/path/file.md` without backticks
-        for match in re.finditer(r'\.knowledge/[^\s]+\.md', line):
+        # Pattern 2: `.knowledge/path/file.md` without backticks (absolute references)
+        # Only match if NOT inside backticks (to avoid double-matching)
+        for match in re.finditer(r'(?<!`)\.knowledge/[^\s`]+\.md(?!`)', line):
             links.append((i, match.group(0)))
     
     return links

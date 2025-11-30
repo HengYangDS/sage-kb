@@ -284,6 +284,7 @@ loading:
     parallel_loads: 4        # Concurrent layer loads
     batch_size: 50           # Files per batch
     memory_limit_mb: 200     # Max memory for loading
+
 # Knowledge layers
 knowledge:
   base_path: .knowledge/
@@ -314,6 +315,7 @@ knowledge:
       path: templates/
       priority: 5
       load_strategy: on-demand
+
 # Cache settings
 cache:
   enabled: true
@@ -323,6 +325,7 @@ cache:
   size:
     max_items: 1000
 ```
+
 ### 5.2 Environment Variable Overrides
 
 ```bash
@@ -333,6 +336,7 @@ export SAGE__CACHE__TTL__DEFAULT=3600
 # Disable cache
 export SAGE__CACHE__ENABLED=false
 ```
+
 ### 5.3 Default Values
 
 | Setting                       | Default   | Description          |
@@ -347,10 +351,9 @@ export SAGE__CACHE__ENABLED=false
 
 ## Related
 
-- `.context/policies/timeout_hierarchy.md` — Timeout configuration
-- `.context/policies/runtime_settings.md` — Runtime settings
+- `.context/policies/TIMEOUT_HIERARCHY.md` — Timeout configuration
+- `.context/policies/RUNTIME_SETTINGS.md` — Runtime settings
 - `.context/decisions/ADR_0003_TIMEOUT_HIERARCHY.md` — Timeout design decision
-- `docs/design/04-timeout-loading.md` — Full loading design
 
 ---
 

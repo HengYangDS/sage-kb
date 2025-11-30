@@ -161,6 +161,6 @@ async def resilient_call(params):
 
 ---
 
-*Resilience Framework v1.0*
 *Last reviewed: 2025-12-01 by Expert Committee (L2, Strong Approve, 4.32/5)*
 
+*AI Collaboration Knowledge Base*

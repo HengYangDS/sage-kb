@@ -14,8 +14,10 @@
 ---
 
 ## Related
-
 - [Parent Index](../INDEX.md)
+- [Frameworks](../../frameworks/INDEX.md)
+- [Practices](../../practices/INDEX.md)
+- [Guidelines](../../guidelines/INDEX.md)
 
 ---
 

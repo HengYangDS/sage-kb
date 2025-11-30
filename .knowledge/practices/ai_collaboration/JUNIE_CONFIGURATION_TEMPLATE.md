@@ -425,7 +425,7 @@ mcp:
 ```
 ---
 
-## Related Documents
+## Related
 
 - `.knowledge/practices/ai_collaboration/SESSION_MANAGEMENT.md` — Session history practices
 - `.knowledge/practices/ai_collaboration/INTERACTION_PATTERNS.md` — AI interaction patterns

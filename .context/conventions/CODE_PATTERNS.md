@@ -13,6 +13,8 @@
 - [5. Protocol Implementation](#5-protocol-implementation)
 - [6. Configuration](#6-configuration)
 - [7. Async Patterns](#7-async-patterns)
+- [8. Logging Patterns](#8-logging-patterns)
+- [9. Testing Patterns](#9-testing-patterns)
 
 ---
 
@@ -417,10 +419,9 @@ async def test_async_load():
 
 ## Related
 
-- `.context/conventions/naming.md` — Naming conventions
-- `.context/conventions/file_structure.md` — File organization
-- `docs/design/01-architecture.md` — Architecture details
-- `src/sage/core/` — Core implementations
+- `.context/conventions/NAMING.md` — Naming conventions
+- `.context/conventions/FILE_STRUCTURE.md` — File organization
+- `.context/decisions/ADR_0001_ARCHITECTURE.md` — Architecture decision
 
 ---
 

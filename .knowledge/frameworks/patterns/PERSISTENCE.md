@@ -132,6 +132,6 @@ def cleanup(store: DataStore, policy: RetentionPolicy):
 
 ---
 
-*Patterns Framework v1.0*
 *Last reviewed: 2025-12-01 by Expert Committee (L2, Strong Approve, 4.42/5)*
 
+*AI Collaboration Knowledge Base*
