@@ -316,15 +316,41 @@ S = Σ(wᵢ × sᵢ) / Σwᵢ
 ### 6.2 Enhanced Formula (Required)
 
 ```
-S_enhanced = S_weighted - λ × σ_weighted
+S_enhanced = S_weighted - λ(n) × σ_corrected
 
 Where:
-- S_weighted = Σ(wᵢ × sᵢ) / Σwᵢ     (weighted mean)
-- σ_weighted = √[Σwᵢ(sᵢ - S)² / Σwᵢ]  (weighted standard deviation)
-- λ = 0.5                              (divergence penalty coefficient)
+- S_weighted = Σ(wᵢ × sᵢ) / Σwᵢ           (weighted mean)
+- σ_biased = √[Σwᵢ(sᵢ - S)² / Σwᵢ]        (biased weighted std dev)
+- σ_corrected = σ_biased × √(n/(n-1))     (Bessel correction)
+- λ(n) = lookup from table below          (dynamic penalty coefficient)
 ```
 
-### 6.3 Calculation Example
+### 6.3 Dynamic λ(n) Lookup Table
+
+| n (experts) | λ(n) | No-Calculator λ |
+|:-----------:|:----:|:---------------:|
+| 2-3 | 1.2 | 1.2 |
+| 4-5 | 0.9 | 0.9 |
+| 6-9 | 0.7 | 0.7 |
+| 10-14 | 0.6 | 0.6 |
+| 15-19 | 0.5 | 0.5 |
+| ≥20 | 0.4 | 0.4 |
+
+**Rationale**: Smaller samples have higher uncertainty; larger λ provides more conservative estimates.
+
+### 6.4 Bessel Correction Factor Table
+
+| n (experts) | Factor √(n/(n-1)) | No-Calculator |
+|:-----------:|:-----------------:|:-------------:|
+| 2-3 | 1.3 | 1.3 |
+| 4-5 | 1.15 | 1.15 |
+| 6-10 | 1.1 | 1.1 |
+| 11-15 | 1.05 | 1.05 |
+| ≥16 | 1.0 | 1.0 |
+
+**Rationale**: Corrects for bias in sample standard deviation estimation.
+
+### 6.5 Calculation Example
 
 **Scenario**: L2 decision, 4 experts
 
@@ -335,57 +361,129 @@ Where:
 | QA | 0.7 | 3 |
 | PM | 0.3 | 5 |
 
-**Original calculation**:
+**Step 1: Weighted Mean**
 ```
 S = (0.9×4 + 0.7×4 + 0.7×3 + 0.3×5) / (0.9+0.7+0.7+0.3)
   = (3.6 + 2.8 + 2.1 + 1.5) / 2.6
   = 10.0 / 2.6 = 3.85
 ```
 
-**Enhanced calculation**:
+**Step 2: Weighted StdDev with Bessel Correction**
 ```
-S_weighted = 3.85
-σ_weighted = √[(0.9×0.02 + 0.7×0.02 + 0.7×0.72 + 0.3×1.32) / 2.6]
-           = √[0.90 / 2.6] = 0.59
+σ_biased = √[(0.9×0.02 + 0.7×0.02 + 0.7×0.72 + 0.3×1.32) / 2.6]
+         = √[0.90 / 2.6] = 0.59
 
-S_enhanced = 3.85 - 0.5 × 0.59 = 3.55
+n = 4, Bessel factor = 1.15 (from table 6.4)
+σ_corrected = 0.59 × 1.15 = 0.68
 ```
 
-**Interpretation**: Divergence exists (σ=0.59), final score reduced from 3.85 to 3.55, more conservative.
+**Step 3: Enhanced Score with Dynamic λ**
+```
+n = 4, λ(4) = 0.9 (from table 6.3)
+S_enhanced = 3.85 - 0.9 × 0.68 = 3.24
+```
 
-### 6.4 Divergence Reference Table
+**Interpretation**: With corrected formulas, score is more conservative (3.24 vs 3.55 old method), better reflecting small-sample uncertainty.
 
-| Weighted StdDev σ | Interpretation | Penalty (λ=0.5) |
-|-------------------|----------------|-----------------|
-| 0 - 0.3 | High consensus | 0 - 0.15 |
-| 0.3 - 0.6 | Minor divergence | 0.15 - 0.30 |
-| 0.6 - 1.0 | Moderate divergence | 0.30 - 0.50 |
-| 1.0 - 1.5 | Significant divergence | 0.50 - 0.75 |
-| > 1.5 | Severe divergence | > 0.75 |
+### 6.6 Divergence Reference Table
+
+| Corrected σ | Interpretation | Typical Penalty Range |
+|-------------|----------------|----------------------|
+| 0 - 0.3 | High consensus | Low |
+| 0.3 - 0.6 | Minor divergence | Moderate |
+| 0.6 - 1.0 | Moderate divergence | Significant |
+| 1.0 - 1.5 | Significant divergence | High |
+| > 1.5 | Severe divergence | Very High |
+
+> **Note**: Actual penalty depends on λ(n). Use `Penalty = λ(n) × σ_corrected`.
 
 ---
 
 ## 7. Uncertainty Quantification
 
-### 7.1 Confidence Interval
+### 7.1 Confidence Interval (Corrected)
 
 **Formula**:
 ```
-CI_95% = [S_enhanced - 1.96 × SE, S_enhanced + 1.96 × SE]
+CI_95% = [S_enhanced - t(n-1) × SE_corrected, S_enhanced + t(n-1) × SE_corrected]
 
 Where:
-- SE = σ / √n  (standard error)
-- n = number of experts
+- SE_basic = σ_corrected / √n
+- SE_corrected = SE_basic × √(1 + (n-1) × ρ)   (correlation correction)
+- t(n-1) = t-distribution value for df = n-1   (replaces z=1.96)
+- ρ = estimated correlation between experts    (from domain composition)
 ```
 
-### 7.2 Calculation Example (continued)
+### 7.2 t-Distribution Lookup Table (95% CI)
+
+| n (experts) | df | t_{0.975} | No-Calculator |
+|:-----------:|:--:|:---------:|:-------------:|
+| 2 | 1 | 12.71 | 12.7 |
+| 3 | 2 | 4.30 | 4.3 |
+| 4 | 3 | 3.18 | 3.2 |
+| 5 | 4 | 2.78 | 2.8 |
+| 6 | 5 | 2.57 | 2.6 |
+| 7 | 6 | 2.45 | 2.5 |
+| 8 | 7 | 2.36 | 2.4 |
+| 10 | 9 | 2.26 | 2.3 |
+| 15 | 14 | 2.14 | 2.1 |
+| 20 | 19 | 2.09 | 2.1 |
+| ≥25 | 24+ | ~2.0 | 2.0 |
+
+**No-Calculator Simplified**:
+
+| n | Use t = |
+|---|:-------:|
+| 2-3 | 4.0 |
+| 4-5 | 3.0 |
+| 6-9 | 2.4 |
+| 10-14 | 2.2 |
+| 15-19 | 2.1 |
+| ≥20 | 2.0 |
+
+### 7.3 Correlation Estimation Table
+
+| Domain Composition | Estimated ρ | SE Multiplier √(1+(n-1)ρ) for n=10 |
+|--------------------|:-----------:|:----------------------------------:|
+| All different domains | 0.05 | 1.2 |
+| 25% same domain | 0.10 | 1.4 |
+| 50% same domain | 0.15 | 1.6 |
+| 75% same domain | 0.25 | 1.8 |
+| All same domain | 0.35 | 2.1 |
+
+**No-Calculator Simplified**:
+| Composition | SE × |
+|-------------|:----:|
+| Mixed domains | 1.3 |
+| Majority same domain | 1.7 |
+| All same domain | 2.0 |
+
+### 7.4 Calculation Example (continued from 6.5)
 
 ```
-SE = 0.59 / √4 = 0.295
-CI_95% = [3.55 - 0.58, 3.55 + 0.58] = [2.97, 4.13]
+From Section 6.5: S_enhanced = 3.24, σ_corrected = 0.68, n = 4
+
+Step 1: Basic SE
+SE_basic = 0.68 / √4 = 0.34
+
+Step 2: Correlation Correction (assume mixed domains, ρ ≈ 0.10)
+SE_corrected = 0.34 × √(1 + 3×0.10) = 0.34 × 1.14 = 0.39
+
+Step 3: t-Distribution CI (n=4, t=3.18)
+CI_95% = [3.24 - 3.18×0.39, 3.24 + 3.18×0.39]
+       = [3.24 - 1.24, 3.24 + 1.24]
+       = [2.00, 4.48]
 ```
 
-### 7.3 Enhanced Decision Rules
+**Comparison with old method**:
+| Method | CI_95% | CI Width |
+|--------|--------|:--------:|
+| Old (z=1.96, no corrections) | [2.97, 4.13] | 1.16 |
+| **New (t-dist, corrected)** | [2.00, 4.48] | 2.48 |
+
+> **Interpretation**: Corrected CI is wider, honestly reflecting small-sample uncertainty.
+
+### 7.5 Enhanced Decision Rules
 
 | Condition | Decision | Action |
 |-----------|----------|--------|
@@ -395,21 +493,25 @@ CI_95% = [3.55 - 0.58, 3.55 + 0.58] = [2.97, 4.13]
 | CI_width > 2.0 | **Need More Info** | Add experts or discuss |
 | Other | **Revise** | Re-evaluate after changes |
 
-### 7.4 Information Sufficiency (IS)
+### 7.6 Information Sufficiency (IS)
 
 ```
-IS = 1 - (CI_width / 4)
+IS = max(0, 1 - (CI_width / 4))    # Lower bound at 0
 
 IS > 0.7   → Information sufficient
 IS 0.5-0.7 → Basically sufficient
 IS < 0.5   → Insufficient, add more experts
+IS = 0     → Extreme uncertainty, defer decision
 ```
 
-**Example**:
+**Example** (continued from 7.4):
 ```
-CI_width = 4.13 - 2.97 = 1.16
-IS = 1 - (1.16 / 4) = 0.71 → Information sufficient
+CI_width = 4.48 - 2.00 = 2.48
+IS = max(0, 1 - (2.48 / 4)) = max(0, 0.38) = 0.38
+→ Insufficient information, add more experts or discuss
 ```
+
+> **Note**: With corrected formulas, small samples often yield IS < 0.5, correctly signaling need for more experts.
 
 ---
 
@@ -567,11 +669,14 @@ New experts or new domains: Use base weight, start adjusting after 5 accumulated
 
 ```markdown
 □ Independent scoring? (prevents anchoring)
-□ Calculated weighted σ? (divergence awareness)
-□ Applied divergence penalty? (S_enhanced = S - 0.5σ)
+□ Applied Bessel correction to σ? (σ_corrected = σ_biased × factor from §6.4)
+□ Used dynamic λ(n) from table §6.3? (not fixed 0.5)
+□ Applied divergence penalty? (S_enhanced = S - λ(n) × σ_corrected)
+□ Used t-distribution for CI? (not z=1.96, see §7.2)
+□ Applied correlation correction to SE? (see §7.3)
 □ Output confidence interval? (uncertainty quantification)
+□ Information sufficiency > 0.5? (IS = max(0, 1 - CI_width/4))
 □ Devil's advocate opinion? (structural debiasing)
-□ Information sufficiency > 0.5? (decision quality assurance)
 ```
 
 ---
@@ -606,13 +711,22 @@ Replace decimal weights with integer tiers:
 S = (3×sₐ + 2×sᵦ + 1×sᵧ) / (3+2+1)
 ```
 
-**Step 3**: Calculate divergence penalty
+**Step 3**: Calculate divergence penalty (with dynamic λ)
 
 ```
 Range = max(scores) - min(scores)
-Penalty = Range / 5
+λ = lookup from simplified table below
+Penalty = λ × Range / 4
 S_final = S - Penalty
 ```
+
+**Simplified λ(n) for No-Calculator**:
+| n (experts) | λ |
+|:-----------:|:-:|
+| 2-3 | 1.2 |
+| 4-5 | 0.9 |
+| 6-9 | 0.7 |
+| ≥10 | 0.5 |
 
 ### 12.3 Range-Based Divergence Table
 
@@ -627,7 +741,7 @@ S_final = S - Penalty
 ### 12.4 Quick Decision Matrix
 
 | S_final | Range ≤1 | Range = 2 | Range ≥3 |
-|:-------:|:--------:|:---------:|:--------:|
+|:--------|:---------|:----------|:---------|
 | **≥4.0** | ✅ Strong Approve | ⚠️ Conditional | 🔄 Discuss First |
 | **3.5-3.9** | ⚠️ Conditional | 🔄 Revise | 🔄 Revise |
 | **3.0-3.4** | 🔄 Revise | 🔄 Revise | ❌ Reject |
@@ -636,7 +750,7 @@ S_final = S - Penalty
 ### 12.5 Information Sufficiency Quick Check
 
 | Expert Count | Range ≤1 | Range = 2 | Range ≥3 |
-|:------------:|:--------:|:---------:|:--------:|
+|:-------------|:---------|:----------|:---------|
 | **≥5** | ✅ Sufficient | ✅ Sufficient | ⚠️ Borderline |
 | **3-4** | ✅ Sufficient | ⚠️ Borderline | ❌ Insufficient |
 | **2** | ⚠️ Borderline | ❌ Insufficient | ❌ Insufficient |
@@ -675,25 +789,28 @@ Weighted sum = 3×4 + 2×4 + 2×3 + 1×5 = 12 + 8 + 6 + 5 = 31
 S = 31 / 8 = 3.875 ≈ 3.9
 
 Range = 5 - 3 = 2
-Penalty = 2 / 5 = 0.4
-S_final = 3.9 - 0.4 = 3.5
+n = 4, λ = 0.9 (from simplified table)
+Penalty = 0.9 × 2 / 4 = 0.45
+S_final = 3.9 - 0.45 = 3.45
 
-Decision: S_final=3.5, Range=2 → "Revise" (from matrix)
+Decision: S_final=3.45, Range=2 → "Revise" (from matrix)
 Info Sufficiency: 4 experts, Range=2 → "Borderline"
 ```
 
-**Compare to full method**: S_enhanced=3.55, very close!
+**Compare to full method**: S_enhanced=3.24, reasonably close!
 
 ### 12.8 One-Page Cheat Sheet
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  NO-CALCULATOR EXPERT COMMITTEE CHEAT SHEET         │
+│  NO-CALCULATOR EXPERT COMMITTEE CHEAT SHEET v2.1    │
 ├─────────────────────────────────────────────────────┤
 │  1. WEIGHTS: High=3, Medium=2, Low=1                │
 │  2. AVERAGE: S = Σ(tier×score) / Σ(tier)            │
-│  3. PENALTY: Range/5                                │
-│  4. FINAL: S_final = S - Range/5                    │
+│  3. DYNAMIC λ: 2-3 experts→1.2, 4-5→0.9, 6-9→0.7,   │
+│                ≥10→0.5                              │
+│  4. PENALTY: λ × Range / 4                          │
+│  5. FINAL: S_final = S - Penalty                    │
 ├─────────────────────────────────────────────────────┤
 │  QUICK DECISION:                                    │
 │  • S≥4 + Range≤1 → Approve                          │
@@ -704,6 +821,10 @@ Info Sufficiency: 4 experts, Range=2 → "Borderline"
 │  • ≥5 experts + Range≤2 → Sufficient                │
 │  • 3-4 experts + Range≤1 → Sufficient               │
 │  • Otherwise → Add more experts                     │
+├─────────────────────────────────────────────────────┤
+│  CI QUICK (if needed):                              │
+│  • t-value: n≤3→4, n=4-5→3, n=6-9→2.4, n≥10→2.2     │
+│  • CI ≈ S ± t × Range / (2×√n)                      │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -720,4 +841,4 @@ Info Sufficiency: 4 experts, Range=2 → "Borderline"
 
 ---
 
-*Expert Committee Framework v2.0*
+*Expert Committee Framework v2.1*

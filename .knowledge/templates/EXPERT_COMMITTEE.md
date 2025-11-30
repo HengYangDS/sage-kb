@@ -469,44 +469,58 @@
 
 ## 8. Aggregation Calculator
 
-### 8.1 Step-by-Step Calculation
+> **SSOT**: Full formulas and lookup tables in `EXPERT_COMMITTEE.md` §6-7
+
+### 8.1 Step-by-Step Calculation (v2.1 - Corrected)
 
 ```markdown
-## Aggregation Worksheet
+## Aggregation Worksheet v2.1
 
 ### Input Data
-| Expert | Weight (w) | Score (s) |
-|--------|:----------:|:---------:|
-| | | |
-| | | |
-| **Sum** | Σw = | |
+| Expert | Weight (w) | Score (s) | Domain |
+|--------|:----------:|:---------:|--------|
+| | | | |
+| | | | |
+| **Sum** | Σw = | | n = ___ |
 
 ### Step 1: Weighted Mean
 S = Σ(w × s) / Σw = _____ / _____ = _____
 
-### Step 2: Weighted Variance
+### Step 2: Weighted Variance with Bessel Correction
 | Expert | w | s | (s - S)² | w × (s - S)² |
 |--------|:-:|:-:|:--------:|:------------:|
 | | | | | |
 | | | | | |
 | **Sum** | | | | Σ = |
 
-σ² = Σ[w × (s - S)²] / Σw = _____ / _____ = _____
-σ = √σ² = _____
+σ_biased² = Σ[w × (s - S)²] / Σw = _____ / _____ = _____
+σ_biased = √σ² = _____
 
-### Step 3: Enhanced Score
-S_enhanced = S - 0.5 × σ = _____ - 0.5 × _____ = _____
+Bessel factor (from §6.4): n=2-3→1.3, n=4-5→1.15, n=6-10→1.1, n≥11→1.05
+σ_corrected = σ_biased × _____ = _____
 
-### Step 4: Confidence Interval
-n = [number of experts] = _____
-SE = σ / √n = _____ / √_____ = _____
-CI_95% = [S_enhanced - 1.96×SE, S_enhanced + 1.96×SE]
+### Step 3: Enhanced Score with Dynamic λ
+λ(n) from §6.3: n=2-3→1.2, n=4-5→0.9, n=6-9→0.7, n=10-14→0.6, n≥15→0.5
+λ = _____
+S_enhanced = S - λ × σ_corrected = _____ - _____ × _____ = _____
+
+### Step 4: Confidence Interval (t-distribution + correlation)
+SE_basic = σ_corrected / √n = _____ / √_____ = _____
+
+Domain composition: □ Mixed  □ Majority same  □ All same
+ρ estimate (from §7.3): Mixed→0.05-0.10, Majority→0.15-0.25, Same→0.35
+SE_corrected = SE_basic × √(1 + (n-1) × ρ) = _____ × _____ = _____
+
+t-value (from §7.2): n=2-3→4.0, n=4-5→3.0, n=6-9→2.4, n=10-14→2.2, n≥15→2.1
+t = _____
+
+CI_95% = [S_enhanced - t×SE_corrected, S_enhanced + t×SE_corrected]
        = [_____ - _____, _____ + _____]
        = [_____, _____]
 
-### Step 5: Information Sufficiency
+### Step 5: Information Sufficiency (with lower bound)
 CI_width = _____ - _____ = _____
-IS = 1 - (CI_width / 4) = 1 - (_____ / 4) = _____
+IS = max(0, 1 - (CI_width / 4)) = max(0, 1 - _____) = _____
 
 ### Decision Check
 | Condition | Value | Check |
@@ -520,9 +534,42 @@ IS = 1 - (CI_width / 4) = 1 - (_____ / 4) = _____
 
 ### 8.2 Quick Reference Tables
 
+#### Dynamic λ(n) Lookup
+| n (experts) | λ |
+|:-----------:|:-:|
+| 2-3 | 1.2 |
+| 4-5 | 0.9 |
+| 6-9 | 0.7 |
+| 10-14 | 0.6 |
+| ≥15 | 0.5 |
+
+#### t-Distribution Values (95% CI)
+| n | t |
+|:-:|:-:|
+| 2-3 | 4.0 |
+| 4-5 | 3.0 |
+| 6-9 | 2.4 |
+| 10-14 | 2.2 |
+| ≥15 | 2.1 |
+
+#### Bessel Correction Factors
+| n | Factor |
+|:-:|:------:|
+| 2-3 | 1.3 |
+| 4-5 | 1.15 |
+| 6-10 | 1.1 |
+| ≥11 | 1.05 |
+
+#### Correlation SE Multiplier
+| Composition | SE × |
+|-------------|:----:|
+| Mixed domains | 1.3 |
+| Majority same | 1.7 |
+| All same | 2.0 |
+
 #### Divergence Interpretation
-| σ Range | Interpretation | Action |
-|---------|----------------|--------|
+| σ_corrected | Interpretation | Action |
+|-------------|----------------|--------|
 | 0 - 0.3 | High consensus | Proceed with confidence |
 | 0.3 - 0.6 | Minor divergence | Note concerns, proceed |
 | 0.6 - 1.0 | Moderate divergence | Discuss before deciding |
@@ -535,6 +582,7 @@ IS = 1 - (CI_width / 4) = 1 - (_____ / 4) = _____
 | > 0.7 | Sufficient | Decide confidently |
 | 0.5 - 0.7 | Basically sufficient | Decide with caution |
 | < 0.5 | Insufficient | Add experts or defer |
+| = 0 | Extreme uncertainty | Defer decision |
 
 ---
 
@@ -544,8 +592,10 @@ IS = 1 - (CI_width / 4) = 1 - (_____ / 4) = _____
 |-----|-------------|
 | **Independent First** | Always collect scores independently before any discussion |
 | **Anonymous Collection** | Show statistics before revealing who scored what |
-| **Calculate σ** | Always compute weighted standard deviation |
-| **Apply Penalty** | Use S_enhanced = S - 0.5σ, not raw average |
+| **Bessel Correction** | Apply √(n/(n-1)) factor to σ for unbiased estimate |
+| **Dynamic λ** | Use λ(n) from lookup table, not fixed 0.5 |
+| **t-Distribution** | Use t-values for CI, not z=1.96 (especially for n<15) |
+| **Correlation Correction** | Adjust SE for domain composition |
 | **Output CI** | Always report confidence interval, not just point estimate |
 | **Check IS** | Ensure Information Sufficiency > 0.5 before deciding |
 | **Devil's Advocate** | Require at least one dissenting opinion |
@@ -553,15 +603,18 @@ IS = 1 - (CI_width / 4) = 1 - (_____ / 4) = _____
 | **Start Low** | Begin at L1, escalate if complexity emerges |
 | **Time-Box** | Set strict time limits per level |
 
-### Pre-Decision Checklist
+### Pre-Decision Checklist (v2.1)
 
 ```markdown
 □ Independent scoring completed? (prevents anchoring)
-□ Calculated weighted σ? (divergence awareness)
-□ Applied divergence penalty? (S_enhanced = S - 0.5σ)
+□ Applied Bessel correction to σ? (σ_corrected = σ_biased × factor)
+□ Used dynamic λ(n) from lookup table? (not fixed 0.5)
+□ Applied divergence penalty? (S_enhanced = S - λ(n) × σ_corrected)
+□ Used t-distribution for CI? (not z=1.96)
+□ Applied correlation correction to SE? (based on domain composition)
 □ Output confidence interval? (uncertainty quantification)
+□ Information sufficiency > 0.5? (IS = max(0, 1 - CI_width/4))
 □ Devil's advocate opinion recorded? (structural debiasing)
-□ Information sufficiency > 0.5? (decision quality assurance)
 □ All dissenting opinions documented? (traceability)
 □ Risks enumerated (≥3)? (risk awareness)
 ```
@@ -578,4 +631,4 @@ IS = 1 - (CI_width / 4) = 1 - (_____ / 4) = _____
 
 ---
 
-*Expert Committee Templates v2.0*
+*Expert Committee Templates v2.1*

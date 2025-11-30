@@ -40,13 +40,14 @@
 
 ### Step 4: Calculate Final Score (1 minute)
 
-**Simple Method** (no calculator needed):
+**Simple Method v2.1** (no calculator needed):
 
 ```
 1. Assign weights: High=3, Medium=2, Low=1
 2. S = Σ(weight × score) / Σ(weight)
 3. Range = max(scores) - min(scores)
-4. S_final = S - Range/5
+4. Dynamic λ: 2-3 experts→1.2, 4-5→0.9, 6-9→0.7, ≥10→0.5
+5. S_final = S - λ × Range / 4
 ```
 
 ### Step 5: Make Decision (30 seconds)
@@ -97,7 +98,8 @@
 - Weighted sum: ___
 - S = ___ / ___ = ___
 - Range = ___ - ___ = ___
-- S_final = ___ - ___/5 = ___
+- n = ___, λ = ___ (2-3→1.2, 4-5→0.9, 6-9→0.7, ≥10→0.5)
+- S_final = ___ - ___ × ___ / 4 = ___
 
 **Decision Check**:
 - [ ] S_final > 3.5?
@@ -120,8 +122,9 @@ Level: L1
 Panel: Engineer (High=3), QA (Medium=2)
 Scores: 5, 4
 S = (3×5 + 2×4) / 5 = 23/5 = 4.6
-Range = 1, Penalty = 0.2
-S_final = 4.4 → ✅ Strong Approve
+Range = 1, n = 2, λ = 1.2
+Penalty = 1.2 × 1 / 4 = 0.3
+S_final = 4.3 → ✅ Strong Approve
 ```
 
 ### Scenario B: New Feature
@@ -131,8 +134,9 @@ Level: L2
 Panel: Architect(3), Engineer(2), QA(2), PM(1)
 Scores: 4, 4, 3, 4
 S = (12+8+6+4) / 8 = 30/8 = 3.75
-Range = 1, Penalty = 0.2
-S_final = 3.55 → ⚠️ Conditional Approve
+Range = 1, n = 4, λ = 0.9
+Penalty = 0.9 × 1 / 4 = 0.225
+S_final = 3.53 → ⚠️ Conditional Approve
 ```
 
 ### Scenario C: Architecture Change
@@ -142,8 +146,9 @@ Level: L3
 Panel: 8 experts
 Scores: 4,4,3,4,3,4,2,4
 S = 3.5 (weighted)
-Range = 2, Penalty = 0.4
-S_final = 3.1 → 🔄 Revise needed
+Range = 2, n = 8, λ = 0.7
+Penalty = 0.7 × 2 / 4 = 0.35
+S_final = 3.15 → 🔄 Revise needed
 Key concern: Security expert scored 2
 ```
 
@@ -153,7 +158,7 @@ Key concern: Security expert scored 2
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│         EXPERT COMMITTEE CHEAT SHEET                    │
+│         EXPERT COMMITTEE CHEAT SHEET v2.1               │
 ├─────────────────────────────────────────────────────────┤
 │  LEVEL SELECTION:                                       │
 │  • Easy to undo? → L1-L2                                │
@@ -166,8 +171,14 @@ Key concern: Security expert scored 2
 │  • Related expertise → Medium (2)                       │
 │  • General input → Low (1)                              │
 ├─────────────────────────────────────────────────────────┤
+│  DYNAMIC λ:                                             │
+│  • n=2-3 → λ=1.2                                        │
+│  • n=4-5 → λ=0.9                                        │
+│  • n=6-9 → λ=0.7                                        │
+│  • n≥10  → λ=0.5                                        │
+├─────────────────────────────────────────────────────────┤
 │  FORMULA:                                               │
-│  S_final = (Σ weight×score / Σ weight) - Range/5       │
+│  S_final = (Σ weight×score / Σ weight) - λ×Range/4      │
 ├─────────────────────────────────────────────────────────┤
 │  QUICK DECISION:                                        │
 │  • S≥4.0 + Range≤1 → Approve                            │
@@ -176,7 +187,8 @@ Key concern: Security expert scored 2
 ├─────────────────────────────────────────────────────────┤
 │  MUST-DO CHECKLIST:                                     │
 │  □ Independent scoring (no peeking!)                    │
-│  □ Calculate range penalty                              │
+│  □ Look up dynamic λ for your expert count              │
+│  □ Calculate penalty: λ × Range / 4                     │
 │  □ Record at least 1 dissenting opinion                 │
 │  □ Document the decision                                │
 └─────────────────────────────────────────────────────────┘
@@ -200,11 +212,11 @@ Key concern: Security expert scored 2
 
 | Topic | Reference |
 |-------|-----------|
-| Full framework | `frameworks/cognitive/EXPERT_COMMITTEE.md` |
-| Detailed templates | `templates/EXPERT_COMMITTEE.md` |
-| Weight matrices | `frameworks/cognitive/CONFLICT_RESOLUTION.md` |
-| Expert roles | `frameworks/cognitive/ROLE_PERSONA.md` |
-| Quality angles | `frameworks/patterns/DECISION.md` |
+| Full framework | `.knowledge/frameworks/cognitive/EXPERT_COMMITTEE.md` |
+| Detailed templates | `.knowledge/templates/EXPERT_COMMITTEE.md` |
+| Weight matrices | `.knowledge/frameworks/cognitive/CONFLICT_RESOLUTION.md` |
+| Expert roles | `.knowledge/frameworks/cognitive/ROLE_PERSONA.md` |
+| Quality angles | `.knowledge/frameworks/patterns/DECISION.md` |
 
 ---
 
@@ -214,7 +226,8 @@ Key concern: Security expert scored 2
 □ Committee level selected?
 □ Panel assembled (right experts)?
 □ Independent scoring completed?
-□ Range penalty calculated?
+□ Dynamic λ looked up for expert count?
+□ Penalty calculated (λ × Range / 4)?
 □ Decision matrix consulted?
 □ Dissenting opinion recorded?
 □ Next steps documented?
@@ -222,4 +235,4 @@ Key concern: Security expert scored 2
 
 ---
 
-*Expert Committee Quick-Start Guide v1.0*
+*Expert Committee Quick-Start Guide v2.1*

@@ -318,7 +318,9 @@ Each dissent record must include: Role, Domain, Position, Rationale, Risk, Mitig
 
 ## Related
 
-- `.knowledge/frameworks/cognitive/EXPERT_COMMITTEE.md` — Committee framework
+- `.knowledge/frameworks/cognitive/EXPERT_COMMITTEE.md` — Committee framework (SSOT)
+- `.knowledge/templates/EXPERT_COMMITTEE.md` — Decision templates
+- `.knowledge/templates/EXPERT_COMMITTEE_QUICKSTART.md` — Quick-start guide
 - `.knowledge/frameworks/cognitive/ROLE_PERSONA.md` — Expert personas (SSOT)
 - `.knowledge/frameworks/patterns/DECISION.md` — Quality angles (SSOT)
 - `.knowledge/frameworks/autonomy/LEVELS.md` — Autonomy levels
