@@ -157,6 +157,8 @@ This document defines the milestones for SAGE development, tracking progress and
 - Production-grade quality
 - Complete documentation
 - Performance optimization
+- **Directory structure compliance**
+- **Complete capability families**
 
 ### 7.2 Deliverables
 
@@ -167,6 +169,10 @@ This document defines the milestones for SAGE development, tracking progress and
 | Security audit | Planned |
 | Documentation complete | In Progress |
 | Release packaging | Planned |
+| **Tools MECE reorganization** | Planned |
+| **Scripts 4-category structure** | Planned |
+| **Converters capability family** | Planned |
+| **Generators capability family** | Planned |
 
 ### 7.3 Acceptance Criteria
 
@@ -175,6 +181,25 @@ This document defines the milestones for SAGE development, tracking progress and
 - [ ] Zero critical bugs
 - [ ] Documentation 100% complete
 - [ ] Security review passed
+- [ ] **`tools/` organized by MECE families (analyzers, checkers, converters, generators, monitors)**
+- [ ] **`scripts/` organized by categories (dev, check, hooks, ci)**
+- [ ] **All 5 capability families implemented in `src/sage/capabilities/`**
+- [ ] **No top-level .py files in `tools/` (except `__init__.py`)**
+
+### 7.4 Structure Remediation Tasks
+
+> See `../architecture/CURRENT_STATE.md` for detailed gap analysis.
+
+| Task | Priority | Effort |
+|------|----------|--------|
+| Create scripts/ subdirectories | High | Small |
+| Move tools/dev_scripts/ → scripts/dev/ | High | Small |
+| Move tools/hooks/ → scripts/hooks/ | High | Small |
+| Create tools/ MECE subdirectories | High | Medium |
+| Reorganize tools/*.py into families | High | Medium |
+| Implement converters capability | Medium | Large |
+| Implement generators capability | Medium | Large |
+| Update all imports and references | Medium | Medium |
 
 ---
 

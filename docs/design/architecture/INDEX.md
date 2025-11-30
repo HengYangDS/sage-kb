@@ -22,10 +22,11 @@ This directory documents the architectural foundations of SAGE, including layer 
 
 | Document | Description | Status |
 |----------|-------------|--------|
-| `THREE_LAYER.md` | Three-layer architecture (Core, Services, Capabilities) | Planned |
+| `THREE_LAYER.md` | Three-layer architecture (Core, Services, Capabilities) | Current |
 | `DEPENDENCIES.md` | Dependency rules and boundaries | Planned |
-| `DIRECTORY_LAYOUT.md` | Project directory structure | Planned |
+| `DIRECTORY_LAYOUT.md` | Project directory structure | Current |
 | `INFRASTRUCTURE.md` | Infrastructure and deployment | Planned |
+| `CURRENT_STATE.md` | Current vs vision gap analysis | Current |
 
 ---
 
