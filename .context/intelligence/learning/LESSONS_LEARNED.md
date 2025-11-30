@@ -1,8 +1,8 @@
 ﻿---
-version: "1.0"
+version: "1.1"
 last_updated: "2025-11-30"
 status: published
-tokens: ~500
+tokens: ~800
 ---
 # Lessons Learned
 
@@ -168,6 +168,35 @@ class FileLoader:  # Implicitly implements LoaderProtocol
 **Lesson**: Focus on testing behavior, not implementation. Integration tests catch more real issues than unit tests
 alone.
 
+### 4.4 Documentation Naming Convention Evolution
+
+**Context**: Project started with lowercase `snake_case.md` naming for documentation files.
+
+**Challenge**: Multiple issues emerged during project evolution:
+1. Lowercase names lacked visual distinction from code files
+2. Date format `YYYY-MM-DD` in filenames caused inconsistency
+3. External tool directories (`.junie/`) had conflicting conventions
+4. Large-scale renaming required updating hundreds of cross-references
+
+**Solution**: Implemented systematic naming convention changes:
+1. Adopted `UPPER_SNAKE_CASE.md` for all documentation (lowercase `.md` extension)
+2. Changed date format from `YYYY-MM-DD` to `YYYYMMDD` for compactness
+3. Documented explicit exceptions (e.g., `.junie/guidelines.md` for tool compatibility)
+4. Created batch processing scripts (`tools/fix_md_extension.py`) for bulk updates
+
+**Lesson**: 
+- **Plan naming conventions early** — Changing conventions late requires significant rework
+- **Document exceptions explicitly** — External tool requirements may conflict with internal standards
+- **Automate bulk changes** — Scripts reduce errors and ensure consistency across large codebases
+- **Update references atomically** — File renames must include reference updates in the same commit
+
+| Aspect | Before | After | Rationale |
+|:-------|:-------|:------|:----------|
+| Case | `snake_case.md` | `UPPER_SNAKE_CASE.md` | Visual distinction |
+| Extension | `.MD` (attempted) | `.md` | Cross-platform compatibility |
+| Date | `YYYY-MM-DD` | `YYYYMMDD` | Compact, no hyphen issues |
+| Exceptions | Implicit | Explicit in standards | Clarity and maintainability |
+
 ---
 
 ## 5. AI Collaboration Lessons
@@ -228,8 +257,9 @@ alone.
 - `.context/intelligence/calibration/PATTERNS.md` — Successful patterns
 - `.context/intelligence/learning/COMMON_PITFALLS.md` — Pitfalls to avoid
 - `.knowledge/practices/engineering/INCREMENTAL_IMPROVEMENT.md` — Incremental approach
+- `.knowledge/practices/documentation/DOCUMENTATION_STANDARDS.md` — Documentation naming conventions
 
 ---
 
-*Last updated: 2025-11-29*
+*Last updated: 2025-11-30*
 *Part of SAGE Knowledge Base*
