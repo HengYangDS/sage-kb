@@ -10,7 +10,6 @@
 - [2. Architecture](#2-architecture)
 - [3. Key Concepts](#3-key-concepts)
 - [4. Getting Started](#4-getting-started)
-- [5. Related](#5-related)
 
 ---
 
@@ -106,15 +105,15 @@ The four-phase processing model:
 
 ### 4.1 For New Contributors
 
-1. Read `conventions/NAMING.md` and `conventions/FILE_STRUCTURE.md`
+1. Read `.context/conventions/NAMING.md` and `.context/conventions/FILE_STRUCTURE.md`
 2. Review ADR-0001 (architecture) and ADR-0002 (SAGE protocol)
-3. Check `intelligence/calibration/PATTERNS.md` for collaboration patterns
+3. Check `.context/intelligence/calibration/PATTERNS.md` for collaboration patterns
 
 ### 4.2 For AI Assistants
 
-1. Check `intelligence/calibration/CALIBRATION.md` for autonomy levels
-2. Follow patterns in `intelligence/calibration/PATTERNS.md`
-3. Use optimizations from `intelligence/optimization/`
+1. Check `.context/intelligence/calibration/CALIBRATION.md` for autonomy levels
+2. Follow patterns in `.context/intelligence/calibration/PATTERNS.md`
+3. Use optimizations from `.context/intelligence/optimization/`
 4. Reference conventions when generating code
 
 ### 4.3 Key Directories

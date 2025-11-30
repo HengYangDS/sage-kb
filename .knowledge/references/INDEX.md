@@ -27,6 +27,7 @@ References are designed for:
 
 - `.knowledge/guidelines/INDEX.md` — Standards and rules
 - `.knowledge/practices/INDEX.md` — How-to guides
+- `.knowledge/core/QUICK_REFERENCE.md` — Core quick reference
 
 ---
 

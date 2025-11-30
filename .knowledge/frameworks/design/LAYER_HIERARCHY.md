@@ -194,4 +194,4 @@ Example:
 
 ---
 
-*AI Collaboration Knowledge Base*
+*Layer Hierarchy Framework v1.0*

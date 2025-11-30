@@ -557,4 +557,4 @@ Strategy ──► Product ──► Build ──► Run
 
 ---
 
-*AI Collaboration Knowledge Base*
+*Role Persona Framework v1.0*

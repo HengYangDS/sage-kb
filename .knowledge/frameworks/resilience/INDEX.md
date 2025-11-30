@@ -56,4 +56,4 @@ timeouts, and degraded conditions while maintaining useful functionality.
 
 ---
 
-*AI Collaboration Knowledge Base*
+*Resilience Framework Index v1.0*

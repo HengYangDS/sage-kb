@@ -68,11 +68,10 @@ This convention is enforced by:
 
 ## Related
 
-<!-- Add links to related conventions, patterns, or documents -->
-
-- [Related Convention](#) <!-- Replace with actual convention path -->
-- [Code Patterns](#) <!-- Replace with actual patterns path -->
+- `.knowledge/guidelines/CODE_STYLE.md` — Code style guidelines
+- `.knowledge/practices/documentation/DOCUMENTATION_STANDARDS.md` — Documentation standards
+- `.knowledge/templates/INDEX.md` — Templates index
 
 ---
 
-*AI Collaboration Knowledge Base*
+*Convention Template v1.0*

@@ -242,4 +242,5 @@ sequenceDiagram
 
 ---
 
-*AI Collaboration Knowledge Base*
+*Caching Patterns v1.0*
+

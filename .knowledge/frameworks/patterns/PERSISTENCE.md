@@ -132,4 +132,4 @@ def cleanup(store: DataStore, policy: RetentionPolicy):
 
 ---
 
-*AI Collaboration Knowledge Base*
+*Persistence Patterns v1.0*

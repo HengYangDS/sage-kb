@@ -45,4 +45,4 @@ implementation decisions in AI Collaboration Knowledge Base.
 
 ---
 
-*AI Collaboration Knowledge Base*
+*Design Framework Index v1.0*

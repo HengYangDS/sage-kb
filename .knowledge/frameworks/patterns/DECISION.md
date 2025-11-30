@@ -319,4 +319,4 @@ Legend: ● Primary (0.9) | ○ Secondary (0.6) | · Minimal (0.2)
 
 ---
 
-*AI Collaboration Knowledge Base*
+*Decision Patterns v1.0*

@@ -67,4 +67,4 @@ Avoid these common mistakes:
 
 ---
 
-*AI Collaboration Knowledge Base*
+*Practice Template v1.0*

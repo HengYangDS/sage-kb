@@ -89,4 +89,4 @@
 
 ---
 
-*AI Collaboration Knowledge Base*
+*Frameworks Index v1.0*

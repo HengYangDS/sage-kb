@@ -407,4 +407,4 @@ SAGE_EXTERNAL_URL=https://api.example.com
 
 ---
 
-*AI Collaboration Knowledge Base*
+*Integration Patterns v1.0*

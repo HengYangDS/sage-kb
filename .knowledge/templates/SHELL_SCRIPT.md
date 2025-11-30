@@ -169,4 +169,4 @@ main "$@"
 
 ---
 
-*AI Collaboration Knowledge Base*
+*Shell Script Template v1.0*

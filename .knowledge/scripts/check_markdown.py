@@ -30,7 +30,12 @@ class Issue:
 
 
 def check_code_blocks(content: str, filepath: str) -> List[Issue]:
-    """Check for mismatched code block backticks."""
+    """Check for mismatched code block backticks.
+    
+    Handles nested code blocks correctly:
+    - When inside a code block with N backticks, lines with <N backticks are content
+    - Only lines with exactly N backticks close the block
+    """
     issues = []
     lines = content.split('\n')
     stack = []  # Stack of (line_num, backtick_count)
@@ -47,16 +52,14 @@ def check_code_blocks(content: str, filepath: str) -> List[Issue]:
                 # Closing the code block with matching backticks
                 stack.pop()
             elif backticks > stack[-1][1]:
-                # Nested code block
-                stack.append((i, backticks))
+                # More backticks than current block - this is a nested block opener
+                # But we're inside a code block, so this is just content
+                # Only track if it could be a valid nested block
+                pass  # Ignore - it's content inside the outer block
             else:
-                # Mismatched backticks
-                issues.append(Issue(
-                    file=filepath,
-                    line=i,
-                    severity="ERROR",
-                    message=f"Mismatched backticks: expected {stack[-1][1]}, got {backticks} (opened at line {stack[-1][0]})"
-                ))
+                # Fewer backticks than current block - this is content, not a closer
+                # This is valid nested code block syntax (e.g., ``` inside `````)
+                pass  # Ignore - it's content inside the outer block
     
     # Check for unclosed code blocks
     for line_num, backticks in stack:

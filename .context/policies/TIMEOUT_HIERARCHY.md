@@ -2,7 +2,8 @@
 
 > SAGE Knowledge Base specific timeout configuration (T1-T5 levels)
 >
-> For universal timeout patterns, see `.knowledge/frameworks/resilience/timeout_patterns.md`
+> For universal timeout patterns, see `.knowledge/frameworks/resilience/TIMEOUT_PATTERNS.md`
+
 ---
 
 ## Table of Contents
@@ -12,7 +13,6 @@
 - [3. Fallback Strategies](#3-fallback-strategies)
 - [4. Configuration](#4-configuration)
 - [5. Implementation Guidelines](#5-implementation-guidelines)
-- [6. Related Patterns](#6-related-patterns)
 
 ---
 
@@ -30,7 +30,7 @@
 
 ## 2. Timeout Flow
 
-```
+```text
 Request
     │
     ▼

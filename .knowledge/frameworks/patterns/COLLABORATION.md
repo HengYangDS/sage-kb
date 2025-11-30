@@ -135,4 +135,4 @@ Attempt → Uncertain? → Escalate → Guidance → Continue
 
 ---
 
-*AI Collaboration Knowledge Base*
+*Collaboration Patterns v1.0*

@@ -243,4 +243,4 @@ builder.export_to_json(output_path)
 
 ---
 
-*AI Collaboration Knowledge Base*
+*Case Study Template v1.0*

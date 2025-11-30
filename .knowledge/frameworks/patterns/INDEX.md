@@ -66,4 +66,4 @@ persistence in AI-human collaborative systems.
 
 ---
 
-*AI Collaboration Knowledge Base*
+*Patterns Framework Index v1.0*

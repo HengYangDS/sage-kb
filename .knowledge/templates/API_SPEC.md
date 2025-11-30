@@ -215,4 +215,4 @@ Rate limit headers:
 *Template from AI Collaboration Knowledge Base*
 ---
 
-*AI Collaboration Knowledge Base*
+*API Specification Template v1.0*

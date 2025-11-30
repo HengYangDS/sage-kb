@@ -19,7 +19,7 @@
 |:----------------|:-------------------------------------|:---------|
 | `overview/`     | Project introduction and quick start | 1 file   |
 | `policies/`     | Project-specific policies            | 6 files  |
-| `conventions/`  | Project-specific coding conventions  | 3 files  |
+| `conventions/`  | Project-specific coding conventions  | 6 files  |
 | `decisions/`    | Architecture Decision Records (ADRs) | 8 files  |
 | `intelligence/` | AI collaboration (4 subdirectories)  | 8 files  |
 
@@ -52,11 +52,14 @@ Project-specific policy documentation:
 
 Project-specific rules and standards:
 
-| Document            | Description                              |
-|:--------------------|:-----------------------------------------|
-| `NAMING.md`         | Naming conventions for all code elements |
-| `CODE_PATTERNS.md`  | DI, EventBus, timeout, async patterns    |
-| `FILE_STRUCTURE.md` | Directory layout, module organization    |
+| Document                 | Description                              |
+|:-------------------------|:-----------------------------------------|
+| `NAMING.md`              | Naming conventions for all code elements |
+| `CODE_PATTERNS.md`       | DI, EventBus, timeout, async patterns    |
+| `FILE_STRUCTURE.md`      | Directory layout, module organization    |
+| `DIRECTORY_STRUCTURE.md` | Project directory structure overview     |
+| `DOC_TEMPLATE.md`        | Document template for project docs       |
+| `FOUR_LAYER_MODEL.md`    | Four-layer architecture model            |
 
 ### 2.4 Decisions
 
@@ -166,6 +169,9 @@ AI collaboration patterns, learned behaviors, and project-specific calibration d
 - `conventions/NAMING.md` — Naming conventions
 - `conventions/CODE_PATTERNS.md` — Code patterns (DI, EventBus, etc.)
 - `conventions/FILE_STRUCTURE.md` — File and directory organization
+- `conventions/DIRECTORY_STRUCTURE.md` — Project directory structure
+- `conventions/DOC_TEMPLATE.md` — Document template
+- `conventions/FOUR_LAYER_MODEL.md` — Four-layer architecture model
 
 #### Decisions (ADRs)
 

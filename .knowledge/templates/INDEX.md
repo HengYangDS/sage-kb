@@ -259,4 +259,4 @@ Use inline during expert committee analysis or store in `.history/decisions/`.
 
 ---
 
-*AI Collaboration Knowledge Base*
+*Templates Index v1.0*

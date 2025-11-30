@@ -129,4 +129,4 @@ Components → EventBus → Components
 
 ---
 
-*AI Collaboration Knowledge Base*
+*Design Axioms v1.0*

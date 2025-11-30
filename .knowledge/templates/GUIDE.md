@@ -66,11 +66,10 @@ Key configuration options:
 
 ## Related
 
-<!-- Add links to related guides, references, or documents -->
-
-- [Related Guide](#) <!-- Replace with actual guide path -->
-- [API Reference](#) <!-- Replace with actual API reference path -->
+- `.knowledge/guidelines/DOCUMENTATION.md` — Documentation guidelines
+- `.knowledge/practices/documentation/DOCUMENTATION_STANDARDS.md` — Documentation standards
+- `.knowledge/templates/INDEX.md` — Templates index
 
 ---
 
-*AI Collaboration Knowledge Base*
+*Guide Template v1.0*

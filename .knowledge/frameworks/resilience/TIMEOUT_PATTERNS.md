@@ -161,4 +161,4 @@ async def resilient_call(params):
 
 ---
 
-*AI Collaboration Knowledge Base*
+*Timeout Patterns v1.0*
