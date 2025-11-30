@@ -189,6 +189,45 @@
 | Cost | 0.3 | 0.5 | 0.3 | 0.3 | 0.5 | 0.9 |
 | Change | 0.3 | 0.3 | 0.3 | 0.3 | 0.5 | 0.7 |
 
+### 4.7 Role-Angle Weight Matrix (Sparse)
+
+> Default weight = 0.2. Only weights ≥0.5 listed below.
+
+| Role | Primary Angles (0.9) | Secondary Angles (0.6) |
+|------|----------------------|------------------------|
+| Architect | D1, D2, E1, G2 | C3, A1 |
+| Backend | A1, A2, D4 | G2, C1 |
+| Frontend | H1-H6 | A1 |
+| QA | A1, A2, D5 | B1 |
+| Tech Lead | D1-D5 | A1 |
+| DevOps | E2, B2, B4 | F4 |
+| SRE | B1-B4 | C1, C2 |
+| DBA | C1, C2, I1 | F2 |
+| Release | E2, B4 | B2 |
+| Security | F1-F5 | — |
+| Compliance | F3, F4, I3 | — |
+| Privacy | I3, F1, F2 | — |
+| Data Eng | I1, I2, B3 | C2 |
+| ML Eng | J1-J3 | C1 |
+| Analyst | I1, I2, J1 | — |
+| PM | A2, A3, H3 | — |
+| UX | H1-H6 | — |
+| Domain | A1, A3, F3 | — |
+| Support | H2, H4, D3 | — |
+| CTO | D1, G2, C3, E1 | — |
+| Risk | B3, B4, F1 | — |
+| Cost | C2, C3 | — |
+| Change | D4, H2, H3 | — |
+
+**Matrix Statistics**:
+
+| Category | Cells | Percentage |
+|----------|:-----:|:----------:|
+| Primary (0.9) | ~92 | 11% |
+| Secondary (0.6) | ~46 | 5% |
+| Default (0.2) | ~713 | 84% |
+| **Total** | **851** | **100%** |
+
 ---
 
 ## 5. Deadlock Breakers

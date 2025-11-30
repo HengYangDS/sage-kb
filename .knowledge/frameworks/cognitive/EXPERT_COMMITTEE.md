@@ -6,6 +6,7 @@
 
 ## Table of Contents
 
+- [0. Quick Start](#0-quick-start)
 - [1. First Principles](#1-first-principles)
 - [2. Framework Overview](#2-framework-overview)
 - [3. Committee Levels](#3-committee-levels)
@@ -13,6 +14,43 @@
 - [5. Analysis Process](#5-analysis-process)
 - [6. Output Templates](#6-output-templates)
 - [7. Quick Reference](#7-quick-reference)
+- [8. Decision Effectiveness Tracking](#8-decision-effectiveness-tracking)
+
+---
+
+## 0. Quick Start
+
+### 30-Second Decision Flow
+
+```text
+1. ASSESS RISK → Select Level (L1-L5)
+2. ACTIVATE EXPERTS → By problem domain
+3. EVALUATE ANGLES → By level requirement
+4. REACH CONSENSUS → Weighted voting
+5. DOCUMENT → Use template
+```
+
+### Level Quick Reference
+
+| Problem Type | Level | Experts | Time |
+|--------------|:-----:|:-------:|------|
+| Bug fix, config | L1 | 2-3 | 15min |
+| Minor feature, API | L2 | 4-6 | 30min |
+| Refactor, new tech | L3 | 7-10 | 1h |
+| Architecture, DB | L4 | 11-15 | 2-3h |
+| Platform, security | L5 | 16-23 | Half day |
+
+### Minimal Example (L1)
+
+```markdown
+**Decision**: Fix login button bug
+**Panel**: Engineer, QA
+**Angles**: A1 Correctness, D3 Clarity, D5 Testability
+**Scores**: 5, 4, 5 → Avg 4.7
+**Verdict**: Approve
+```
+
+> For full details, see sections below. Templates at `templates/EXPERT_COMMITTEE.md`.
 
 ---
 
@@ -210,27 +248,11 @@ Problem → Select Level → Activate Experts → Activate Angles → Analyze �
 
 ### 5.2 Role Switching Syntax
 
-`````markdown
-[Architect] From architecture perspective...
-[Security] Security concerns include...
-[Synthesis] Combining all perspectives...
-`````
+> **Template**: `.knowledge/templates/EXPERT_COMMITTEE.md` Section 7.1
 
 ### 5.3 Per-Expert Analysis Template
 
-`````markdown
-**Role**: [Expert name]
-**Domain**: [Build/Run/Secure/Data/Product/Strategy]
-**Assigned Angles**: [List of angle IDs]
-
-| Angle | Score | Assessment |
-|-------|:-----:|------------|
-| A1 Correctness | 1-5 | [Brief note] |
-
-**Key Concerns**: [Main issues from this perspective]
-**Recommendation**: [Approve/Conditional/Reject]
-**Confidence**: [High/Medium/Low]
-`````
+> **Template**: `.knowledge/templates/EXPERT_COMMITTEE.md` Section 7.2
 
 ### 5.4 Scoring Scale
 
@@ -301,6 +323,53 @@ Problem → Select Level → Activate Experts → Activate Angles → Analyze �
 | Quality Angles | 37 |
 | Committee Levels | 5 |
 | Max Matrix Size | 23 × 37 = 851 |
+
+---
+
+## 8. Decision Effectiveness Tracking
+
+### 8.1 Post-Decision Review
+
+| Checkpoint | Timing | Question |
+|------------|--------|----------|
+| **Immediate** | 1 week | Was implementation smooth? |
+| **Short-term** | 1 month | Did expected benefits materialize? |
+| **Long-term** | 3 months | Was the decision correct? |
+
+### 8.2 Effectiveness Metrics
+
+| Metric | Formula | Target |
+|--------|---------|:------:|
+| Decision Accuracy | Correct / Total | >85% |
+| Prediction Error | \|Predicted - Actual\| | <20% |
+| Reversal Rate | Reversed / Total | <10% |
+
+### 8.3 Feedback Loop
+
+```text
+1. RECORD   → Document decision with predictions
+2. SCHEDULE → Set review checkpoints
+3. COMPARE  → Actual vs predicted outcomes
+4. LEARN    → Update framework if systematic errors
+```
+
+### 8.4 Review Template
+
+| Item | Predicted | Actual | Delta | Lesson |
+|------|-----------|--------|:-----:|--------|
+| Outcome | | | | |
+| Timeline | | | | |
+| Risk Events | | | | |
+| User Impact | | | | |
+
+### 8.5 Continuous Improvement
+
+| Signal | Action |
+|--------|--------|
+| Accuracy <85% | Review angle coverage |
+| Prediction Error >20% | Calibrate expert weights |
+| Reversal Rate >10% | Increase committee level |
+| Systematic bias | Add/remove expert roles |
 
 ---
 

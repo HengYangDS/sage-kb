@@ -129,7 +129,7 @@ class ContextSync:
 
 **Setup via .junie/guidelines.md**:
 
-`````markdown
+```markdown
 # Project Guidelines
 ## Knowledge Base
 - Use `sage get` for context loading
@@ -138,6 +138,7 @@ class ContextSync:
 ## Autonomy Level
 Default: L4 (Medium-High)
 ```
+
 **File Watcher Integration**:
 
 ```yaml

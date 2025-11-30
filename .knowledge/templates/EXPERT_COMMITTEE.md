@@ -12,7 +12,8 @@
 - [4. L3 Deep Analysis](#4-l3-deep-analysis)
 - [5. L4 Comprehensive Review](#5-l4-comprehensive-review)
 - [6. L5 Full Committee](#6-l5-full-committee)
-- [7. Usage Tips](#7-usage-tips)
+- [7. Analysis Templates](#7-analysis-templates)
+- [8. Usage Tips](#8-usage-tips)
 
 ---
 
@@ -243,7 +244,35 @@
 
 ---
 
-## 7. Usage Tips
+## 7. Analysis Templates
+
+### 7.1 Role Switching Syntax
+
+`````markdown
+[Architect] From architecture perspective...
+[Security] Security concerns include...
+[Synthesis] Combining all perspectives...
+`````
+
+### 7.2 Per-Expert Analysis
+
+`````markdown
+**Role**: [Expert name]
+**Domain**: [Build/Run/Secure/Data/Product/Strategy]
+**Assigned Angles**: [List of angle IDs]
+
+| Angle | Score | Assessment |
+|-------|:-----:|------------|
+| A1 Correctness | 1-5 | [Brief note] |
+
+**Key Concerns**: [Main issues from this perspective]
+**Recommendation**: [Approve/Conditional/Reject]
+**Confidence**: [High/Medium/Low]
+`````
+
+---
+
+## 8. Usage Tips
 
 | Tip | Description |
 |-----|-------------|
