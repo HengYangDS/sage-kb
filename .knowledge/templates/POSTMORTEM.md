@@ -37,32 +37,32 @@
 **Resolution**: [One-sentence summary of how it was fixed]
 ---
 ## Timeline
-| Time (UTC) | Event |
-|------------|-------|
-| HH:MM | [First indicator of problem] |
-| HH:MM | [Alert triggered] |
-| HH:MM | [On-call engaged] |
-| HH:MM | [Escalation to team lead] |
-| HH:MM | [Root cause identified] |
-| HH:MM | [Fix deployed] |
-| HH:MM | [Service restored] |
-| HH:MM | [All-clear declared] |
+| Time (UTC) | Event                        |
+|------------|------------------------------|
+| HH:MM      | [First indicator of problem] |
+| HH:MM      | [Alert triggered]            |
+| HH:MM      | [On-call engaged]            |
+| HH:MM      | [Escalation to team lead]    |
+| HH:MM      | [Root cause identified]      |
+| HH:MM      | [Fix deployed]               |
+| HH:MM      | [Service restored]           |
+| HH:MM      | [All-clear declared]         |
 ---
 ## Impact Assessment
 ### User Impact
-| Metric | Value |
-|--------|-------|
-| Users affected | [Number or %] |
-| Requests failed | [Number] |
-| Error rate peak | [%] |
-| Duration | [Time] |
+| Metric          | Value         |
+|-----------------|---------------|
+| Users affected  | [Number or %] |
+| Requests failed | [Number]      |
+| Error rate peak | [%]           |
+| Duration        | [Time]        |
 ### Business Impact
-| Area | Impact |
-|------|--------|
-| Revenue | [$ amount or N/A] |
-| SLA breach | [Yes/No, details] |
-| Customer complaints | [Number] |
-| Data loss | [Yes/No, details] |
+| Area                | Impact            |
+|---------------------|-------------------|
+| Revenue             | [$ amount or N/A] |
+| SLA breach          | [Yes/No, details] |
+| Customer complaints | [Number]          |
+| Data loss           | [Yes/No, details] |
 ### Systems Affected
 - [System 1]
 - [System 2]
@@ -92,18 +92,18 @@
 ---
 ## Detection & Response
 ### Detection
-| Aspect | Assessment |
-|--------|------------|
-| How detected | [Alert / Customer report / Manual discovery] |
-| Time to detect | [X minutes] |
-| Detection gap | [What could have detected it earlier] |
+| Aspect         | Assessment                                   |
+|----------------|----------------------------------------------|
+| How detected   | [Alert / Customer report / Manual discovery] |
+| Time to detect | [X minutes]                                  |
+| Detection gap  | [What could have detected it earlier]        |
 ### Response
-| Aspect | Assessment |
-|--------|------------|
-| Time to respond | [X minutes] |
-| Time to mitigate | [X minutes] |
-| Time to resolve | [X hours] |
-| Escalation path | [Who was involved] |
+| Aspect           | Assessment         |
+|------------------|--------------------|
+| Time to respond  | [X minutes]        |
+| Time to mitigate | [X minutes]        |
+| Time to resolve  | [X hours]          |
+| Escalation path  | [Who was involved] |
 ### What Went Well
 - [Positive 1: e.g., fast escalation]
 - [Positive 2: e.g., clear communication]
@@ -115,20 +115,20 @@
 ---
 ## Action Items
 ### Immediate (This Week)
-| # | Action | Owner | Due Date | Status |
-|---|--------|-------|----------|--------|
-| 1 | [Action item] | [Name] | [Date] | [ ] |
-| 2 | [Action item] | [Name] | [Date] | [ ] |
+| #   | Action        | Owner  | Due Date | Status |
+|-----|---------------|--------|----------|--------|
+| 1   | [Action item] | [Name] | [Date]   | [ ]    |
+| 2   | [Action item] | [Name] | [Date]   | [ ]    |
 ### Short-term (This Month)
-| # | Action | Owner | Due Date | Status |
-|---|--------|-------|----------|--------|
-| 3 | [Action item] | [Name] | [Date] | [ ] |
-| 4 | [Action item] | [Name] | [Date] | [ ] |
+| #   | Action        | Owner  | Due Date | Status |
+|-----|---------------|--------|----------|--------|
+| 3   | [Action item] | [Name] | [Date]   | [ ]    |
+| 4   | [Action item] | [Name] | [Date]   | [ ]    |
 ### Long-term (This Quarter)
-| # | Action | Owner | Due Date | Status |
-|---|--------|-------|----------|--------|
-| 5 | [Action item] | [Name] | [Date] | [ ] |
-| 6 | [Action item] | [Name] | [Date] | [ ] |
+| #   | Action        | Owner  | Due Date | Status |
+|-----|---------------|--------|----------|--------|
+| 5   | [Action item] | [Name] | [Date]   | [ ]    |
+| 6   | [Action item] | [Name] | [Date]   | [ ]    |
 ---
 ## Lessons Learned
 ### Technical
@@ -151,9 +151,9 @@
 - [Link to Slack thread]
 ---
 ## Sign-off
-| Role | Name | Date |
-|------|------|------|
-| Author | [Name] | [Date] |
+| Role     | Name   | Date   |
+|----------|--------|--------|
+| Author   | [Name] | [Date] |
 | Reviewer | [Name] | [Date] |
 | Approver | [Name] | [Date] |
 ---
