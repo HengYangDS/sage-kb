@@ -71,7 +71,10 @@
 
 ## Related
 
-- [Parent Index](../INDEX.md)
+- `.knowledge/practices/INDEX.md` — Parent practices index
+- `.knowledge/guidelines/ENGINEERING.md` — Engineering guidelines
+- `.knowledge/guidelines/CODE_STYLE.md` — Code style standards
+- `.knowledge/frameworks/patterns/INDEX.md` — Design patterns framework
 
 ---
 

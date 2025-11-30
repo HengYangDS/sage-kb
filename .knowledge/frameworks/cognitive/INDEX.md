@@ -57,6 +57,7 @@ enabling multi-perspective analysis.
 |--------|-------------|
 | `EXPERT_COMMITTEE_MATH.md` | Aggregation formulas, correlation-adjusted weights, uncertainty quantification |
 | `EXPERT_COMMITTEE_CALIBRATION.md` | Bias correction, weight learning, effectiveness tracking |
+| `EXPERT_COMMITTEE_ROADMAP.md` | v3.0 architecture roadmap, 6-layer design, implementation phases |
 
 ### 2.3 Related Practices
 

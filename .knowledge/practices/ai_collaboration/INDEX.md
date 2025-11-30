@@ -1,6 +1,6 @@
-# Ai Collaboration
+# AI Collaboration Practices
 
-> Index of ai collaboration documents
+> Patterns and workflows for effective human-AI collaboration
 
 ---
 
@@ -8,23 +8,27 @@
 
 | Document | Description |
 |:---------|:------------|
-| [Context Management Practices](CONTEXT_MANAGEMENT.md) | Context Management Practices |
-| [AI Collaboration Effectiveness Metrics](EFFECTIVENESS_METRICS.md) | AI Collaboration Effectiveness Metrics |
-| [AI Collaboration Patterns](INTERACTION_PATTERNS.md) | AI Collaboration Patterns |
-| [Junie Configuration Template System](JUNIE_CONFIGURATION_TEMPLATE.md) | Junie Configuration Template System |
-| [Knowledge Capture](KNOWLEDGE_CAPTURE.md) | Knowledge Capture |
-| [Knowledge Extraction Patterns](KNOWLEDGE_EXTRACTION.md) | Knowledge Extraction Patterns |
-| [Session Checklist](SESSION_CHECKLIST.md) | Session Checklist |
-| [Session Management Manual Fallback](SESSION_FALLBACK.md) | Session Management Manual Fallback |
-| [Session Management](SESSION_MANAGEMENT.md) | Session Management |
-| [Token Optimization Principles](TOKEN_OPTIMIZATION.md) | Token Optimization Principles |
-| [AI Collaboration Workflow Practices](WORKFLOW.md) | AI Collaboration Workflow Practices |
+| [CONTEXT_MANAGEMENT.md](CONTEXT_MANAGEMENT.md) | Managing context across sessions |
+| [EFFECTIVENESS_METRICS.md](EFFECTIVENESS_METRICS.md) | Measuring collaboration quality |
+| [INTERACTION_PATTERNS.md](INTERACTION_PATTERNS.md) | Communication patterns |
+| [JUNIE_CONFIGURATION_TEMPLATE.md](JUNIE_CONFIGURATION_TEMPLATE.md) | Project configuration templates |
+| [KNOWLEDGE_CAPTURE.md](KNOWLEDGE_CAPTURE.md) | Capturing insights and decisions |
+| [KNOWLEDGE_EXTRACTION.md](KNOWLEDGE_EXTRACTION.md) | Extracting reusable patterns |
+| [SESSION_CHECKLIST.md](SESSION_CHECKLIST.md) | Pre/post session checklist |
+| [SESSION_FALLBACK.md](SESSION_FALLBACK.md) | Manual fallback procedures |
+| [SESSION_MANAGEMENT.md](SESSION_MANAGEMENT.md) | Session lifecycle management |
+| [TOKEN_OPTIMIZATION.md](TOKEN_OPTIMIZATION.md) | Optimizing token usage |
+| [WORKFLOW.md](WORKFLOW.md) | End-to-end workflow guide |
 
 ---
 
 ## Related
 
-- [Parent Index](../INDEX.md)
+- `.knowledge/practices/INDEX.md` — Parent practices index
+- `.knowledge/guidelines/AI_COLLABORATION.md` — AI collaboration guidelines
+- `.knowledge/frameworks/autonomy/LEVELS.md` — Autonomy level framework
+- `.knowledge/frameworks/cognitive/EXPERT_COMMITTEE.md` — Expert committee pattern
+- `.knowledge/core/QUICK_REFERENCE.md` — Quick reference card
 
 ---
 
