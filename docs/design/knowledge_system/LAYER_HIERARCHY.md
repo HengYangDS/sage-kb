@@ -1,4 +1,4 @@
-# Layer Hierarchy
+﻿# Layer Hierarchy
 
 > Knowledge layer structure and priority system
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 SAGE organizes knowledge into hierarchical layers with defined priorities, token budgets, and loading strategies. This ensures efficient context management for AI interactions.
-
 
 ## Table of Contents
 
@@ -149,7 +148,6 @@ When content exists in multiple layers:
 
 ```text
 .knowledge/ > .context/ > .junie/ > docs/
-
 Example:
 - .knowledge/guidelines/CODE_STYLE.md  ← Universal default
 - .context/conventions/CODE_STYLE.md   ← Project override
@@ -179,7 +177,6 @@ Example:
 
 ```markdown
 ## Related
-
 - `.knowledge/guidelines/CODE_STYLE.md` — Universal style guide
 - `.context/conventions/NAMING.md` — Project naming conventions
 ```

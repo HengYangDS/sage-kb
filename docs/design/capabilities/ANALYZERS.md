@@ -1,4 +1,4 @@
-# Analyzers
+﻿# Analyzers
 
 > Analysis, diagnosis, and understanding capabilities
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 Analyzers extract meaning, structure, and relationships from content. They answer the question: "What is it?"
-
 
 ## Table of Contents
 

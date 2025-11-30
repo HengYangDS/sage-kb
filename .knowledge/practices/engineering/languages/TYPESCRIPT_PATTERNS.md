@@ -1,4 +1,4 @@
-# TypeScript Patterns
+﻿# TypeScript Patterns
 
 > Type system patterns, React patterns, and testing practices
 
@@ -448,7 +448,7 @@ mockFetch.mockResolvedValue({ id: '1', name: 'Test' });
 
 - `.knowledge/guidelines/TYPESCRIPT.md` — TypeScript guidelines and conventions
 - `.knowledge/guidelines/CODE_STYLE.md` — General code style
-- `.knowledge/practices/engineering/TESTING_STRATEGY.md` — Testing practices
+- `.knowledge/practices/engineering/quality/TESTING_STRATEGY.md` — Testing practices
 
 ---
 

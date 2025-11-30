@@ -1,4 +1,4 @@
-# Python Implementation Patterns
+﻿# Python Implementation Patterns
 
 > Code patterns and examples for Python development
 
@@ -21,10 +21,8 @@
 
 ```python
 from typing import Optional, List, Dict, Callable
-
 def process(name: str, count: int = 1) -> List[str]:
     return [name] * count
-
 def find_user(user_id: int) -> Optional[User]:
     return db.get(user_id)
 ```
@@ -32,9 +30,7 @@ def find_user(user_id: int) -> Optional[User]:
 
 ```python
 from typing import TypeVar, Generic, Protocol
-
 T = TypeVar("T")
-
 class Repository(Generic[T], Protocol):
     def get(self, id: str) -> Optional[T]: ...
     def save(self, entity: T) -> T: ...
@@ -43,13 +39,10 @@ class Repository(Generic[T], Protocol):
 
 ```python
 from typing import Callable, Awaitable
-
 # Sync function type
 Handler = Callable[[Request], Response]
-
 # Async function type
 AsyncHandler = Callable[[Request], Awaitable[Response]]
-
 def register(handler: Handler) -> None:
     pass
 ```
@@ -62,14 +55,12 @@ def register(handler: Handler) -> None:
 ```python
 from functools import wraps
 import logging
-
 def log_calls(func: Callable) -> Callable:
     @wraps(func)
     def wrapper(*args, **kwargs):
         logging.info(f"Calling {func.__name__}")
         return func(*args, **kwargs)
     return wrapper
-
 @log_calls
 def process(data: str) -> str:
     return data.upper()
@@ -90,7 +81,6 @@ def retry(max_attempts: int = 3, delay: float = 1.0):
                     time.sleep(delay)
         return wrapper
     return decorator
-
 @retry(max_attempts=3, delay=0.5)
 def fetch_data(url: str) -> dict:
     return requests.get(url).json()
@@ -106,7 +96,6 @@ def singleton(cls):
             instances[cls] = cls(*args, **kwargs)
         return instances[cls]
     return get_instance
-
 @singleton
 class Configuration:
     pass
@@ -120,7 +109,6 @@ class Configuration:
 ```python
 from contextlib import contextmanager
 import time
-
 @contextmanager
 def timer(name: str):
     start = time.time()
@@ -128,7 +116,6 @@ def timer(name: str):
         yield
     finally:
         print(f"{name}: {time.time() - start:.2f}s")
-
 # Usage
 with timer("process"):
     do_work()
@@ -149,7 +136,6 @@ class DatabaseConnection:
         if self.connection:
             self.connection.close()
         return False  # Don't suppress exceptions
-
 # Usage
 with DatabaseConnection("postgresql://...") as conn:
     conn.execute("SELECT 1")
@@ -158,7 +144,6 @@ with DatabaseConnection("postgresql://...") as conn:
 
 ```python
 from contextlib import asynccontextmanager
-
 @asynccontextmanager
 async def async_timer(name: str):
     start = time.time()
@@ -166,7 +151,6 @@ async def async_timer(name: str):
         yield
     finally:
         print(f"{name}: {time.time() - start:.2f}s")
-
 # Usage
 async with async_timer("async_process"):
     await do_async_work()
@@ -180,12 +164,10 @@ async with async_timer("async_process"):
 ```python
 import asyncio
 import aiohttp
-
 async def fetch_data(url: str) -> dict:
     async with aiohttp.ClientSession() as session:
         async with session.get(url) as response:
             return await response.json()
-
 async def fetch_all(urls: List[str]) -> List[dict]:
     return await asyncio.gather(*[fetch_data(u) for u in urls])
 ```
@@ -217,7 +199,6 @@ async def fetch_limited(urls: List[str], max_concurrent: int = 5) -> List[dict]:
 ```python
 from dataclasses import dataclass, field
 from typing import List
-
 @dataclass
 class User:
     name: str
@@ -266,7 +247,6 @@ class Order:
 
 ```python
 from typing import Dict, Type
-
 class HandlerFactory:
     _handlers: Dict[str, Type[Handler]] = {}
     
@@ -282,7 +262,6 @@ class HandlerFactory:
         if name not in cls._handlers:
             raise ValueError(f"Unknown handler: {name}")
         return cls._handlers[name]()
-
 @HandlerFactory.register("json")
 class JsonHandler(Handler):
     pass
@@ -291,7 +270,6 @@ class JsonHandler(Handler):
 
 ```python
 from abc import ABC, abstractmethod
-
 class UserRepository(ABC):
     @abstractmethod
     def get(self, id: str) -> Optional[User]:
@@ -300,7 +278,6 @@ class UserRepository(ABC):
     @abstractmethod
     def save(self, user: User) -> User:
         pass
-
 class SQLUserRepository(UserRepository):
     def __init__(self, session: Session):
         self._session = session
@@ -317,21 +294,17 @@ class SQLUserRepository(UserRepository):
 
 ```python
 from abc import ABC, abstractmethod
-
 class CompressionStrategy(ABC):
     @abstractmethod
     def compress(self, data: bytes) -> bytes:
         pass
-
 class GzipCompression(CompressionStrategy):
     def compress(self, data: bytes) -> bytes:
         import gzip
         return gzip.compress(data)
-
 class NoCompression(CompressionStrategy):
     def compress(self, data: bytes) -> bytes:
         return data
-
 class DataProcessor:
     def __init__(self, compression: CompressionStrategy):
         self.compression = compression
@@ -344,7 +317,7 @@ class DataProcessor:
 ## Related
 
 - `.knowledge/guidelines/PYTHON.md` — Python coding standards
-- `.knowledge/practices/engineering/ERROR_HANDLING.md` — Error handling patterns
+- `.knowledge/practices/engineering/design/ERROR_HANDLING.md` — Error handling patterns
 - `.knowledge/guidelines/CODE_STYLE.md` — General code style
 
 ---

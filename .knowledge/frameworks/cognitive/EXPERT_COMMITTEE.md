@@ -1,4 +1,4 @@
-# Expert Committee Framework
+﻿# Expert Committee Framework
 
 > Multi-perspective analysis using 35+ expert roles
 
@@ -128,19 +128,14 @@ Each expert provides:
 
 ```markdown
 ## Expert Committee Analysis
-
 ### Participants
 [List of experts consulted]
-
 ### Key Findings
 [Synthesized insights]
-
 ### Recommendations
 [Prioritized actions]
-
 ### Dissenting Views
 [Alternative perspectives]
-
 ### Decision
 [Final recommendation with rationale]
 ```

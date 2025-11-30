@@ -1,4 +1,4 @@
-# Knowledge System
+﻿# Knowledge System
 
 > Knowledge management and organization for SAGE
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 The knowledge system manages how knowledge is organized, loaded, and delivered within SAGE.
-
 
 ## Table of Contents
 

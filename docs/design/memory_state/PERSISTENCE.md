@@ -1,4 +1,4 @@
-# Persistence
+﻿# Persistence
 
 > State persistence mechanisms for SAGE
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 Persistence layer manages durable storage of state, session data, and learned patterns across system restarts and sessions.
-
 
 ## Table of Contents
 
@@ -89,12 +88,9 @@ graph TD
 
 ```python
 from sage.persistence import SQLiteStore
-
 store = SQLiteStore(path="~/.sage/sage.db")
-
 # Save state
 store.save("session:123", session_data)
-
 # Load state
 data = store.load("session:123")
 ```
@@ -102,9 +98,7 @@ data = store.load("session:123")
 
 ```python
 from sage.persistence import RedisStore
-
 store = RedisStore(url="redis://localhost:6379")
-
 # With TTL
 store.save("cache:key", data, ttl=3600)
 ```
@@ -112,9 +106,7 @@ store.save("cache:key", data, ttl=3600)
 
 ```python
 from sage.persistence import FileStore
-
 store = FileStore(base_path="~/.sage/data")
-
 # Save as JSON
 store.save("config/settings", config_data)
 ```
@@ -127,7 +119,6 @@ store.save("config/settings", config_data)
 ```python
 from abc import ABC, abstractmethod
 from typing import Any, Optional
-
 class PersistenceStore(ABC):
     @abstractmethod
     def save(self, key: str, value: Any, ttl: int = None) -> bool:
@@ -211,7 +202,6 @@ class KnowledgeCache:
 ```python
 import json
 import msgpack
-
 class Serializer:
     @staticmethod
     def serialize(data: Any, format: str = "json") -> bytes:
@@ -237,7 +227,6 @@ class Serializer:
 class TransactionalStore:
     def transaction(self):
         return Transaction(self)
-
 # Usage
 with store.transaction() as tx:
     tx.save("key1", value1)

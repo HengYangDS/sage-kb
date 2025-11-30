@@ -1,4 +1,4 @@
-# Architecture
+﻿# Architecture
 
 > System architecture and structural design for SAGE
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 This directory documents the architectural foundations of SAGE, including layer structure, dependencies, and infrastructure.
-
 
 ## Table of Contents
 

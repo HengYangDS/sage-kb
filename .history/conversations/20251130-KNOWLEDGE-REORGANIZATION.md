@@ -1,4 +1,4 @@
-# Knowledge Reorganization - 2025-11-30
+﻿# Knowledge Reorganization - 2025-11-30
 
 ## Context
 
@@ -370,7 +370,6 @@ theory.
     - Includes project paths and template locations
 
 - Updated `.knowledge/practices/INDEX.md`: Added SESSION_CHECKLIST.md (7 → 8 files in AI Collaboration)
-
 - Updated `.junie/GUIDELINES.md` Session History section:
     - Now references generic checklist in `.knowledge/`
     - References project-specific checklist in `.history/`
@@ -694,15 +693,12 @@ python tools/index_maintainer.py report    # Generate detailed report
 sage validate                      # Full validation
 sage validate --no-links           # Skip link check
 sage validate --min-score 80       # Higher quality threshold
-
 # Pre-commit (automatic on commit/push)
 pre-commit install
 pre-commit run sage-doc-quality    # Manual run
-
 # Index maintenance
 python tools/index_maintainer.py validate
 python tools/index_maintainer.py update
-
 # CI/CD (automatic on push/PR)
 # Triggers on .knowledge/docs/.context changes
 ```

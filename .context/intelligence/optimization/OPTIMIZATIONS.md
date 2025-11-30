@@ -1,4 +1,4 @@
-# SAGE Project Optimizations
+﻿# SAGE Project Optimizations
 
 > SAGE-specific optimizations, shortcuts, and code patterns
 
@@ -34,20 +34,16 @@ For comprehensive guides on general development practices, see:
 ```python
 # 1. Future imports (if needed)
 from __future__ import annotations
-
 # 2. Standard library
 import asyncio
 from pathlib import Path
 from typing import TYPE_CHECKING
-
 # 3. Third-party
 import structlog
 from pydantic import BaseModel
-
 # 4. Local imports
 from sage.core.config import get_config
 from sage.core.exceptions import SAGEError
-
 # 5. Type checking only imports
 if TYPE_CHECKING:
     from sage.core.protocols import SourceProtocol
@@ -93,16 +89,12 @@ async def search(query: str, layer: str | None = None) -> list[Knowledge]:
 ```python
 # Preferred: Module-level singleton with lazy init
 _instance: EventBus | None = None
-
-
 def get_event_bus() -> EventBus:
     """Get the global EventBus instance."""
     global _instance
     if _instance is None:
         _instance = EventBus()
     return _instance
-
-
 def reset_event_bus() -> None:
     """Reset for testing."""
     global _instance
@@ -116,7 +108,6 @@ def __init__(self):
     config = get_config()
     self._timeout = config.timeout.cache_lookup
     self._cache_enabled = config.features.enable_caching
-
 # Avoid: Repeated get_config() calls
 ```
 ### 3.3 Event Publishing
@@ -139,11 +130,9 @@ async def load_layer(self, layer: str) -> list[Knowledge]:
 # Preferred: Explicit protocol compliance
 class FileLoader:
     """File-based loader implementing LoaderProtocol."""
-
     async def load(self, path: str) -> str:
         async with aiofiles.open(path) as f:
             return await f.read()
-
     async def exists(self, path: str) -> bool:
         return Path(path).exists()
 ```
@@ -168,16 +157,12 @@ class FileLoader:
 ```bash
 # Run all tests
 pytest tests/ -v
-
 # Run specific test file
 pytest tests/unit/core/test_timeout.py -v
-
 # Run with coverage
 pytest tests/ --cov=src/sage --cov-report=html
-
 # Type checking
 mypy src/sage
-
 # Linting
 ruff check src/sage
 ruff format src/sage

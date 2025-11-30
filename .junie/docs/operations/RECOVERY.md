@@ -1,4 +1,4 @@
-
+﻿
 # Error Recovery Guide
 
 > Recovery procedures for common issues (~10 min read)
@@ -71,10 +71,8 @@ Issue Detected
 ```bash
 # Check Node.js
 node --version
-
 # Test server manually
 npx -y @modelcontextprotocol/server-filesystem .
-
 # Check for errors in output
 ```
 
@@ -82,19 +80,14 @@ npx -y @modelcontextprotocol/server-filesystem .
 
 ```bash
 # 1. Stop all servers in IDE
-
 # 2. Clear npm cache
 npm cache clean --force
-
 # 3. Remove npx cache
 rm -rf ~/.npm/_npx           # Unix
 Remove-Item -Recurse "$env:LOCALAPPDATA\npm-cache\_npx"  # Windows
-
 # 4. Restart IDE
-
 # 5. Reload MCP configuration
 # Settings | Tools | Junie | MCP Servers | Reload
-
 # 6. Start servers one by one
 ```
 
@@ -148,7 +141,6 @@ Remove-Item -Recurse "$env:LOCALAPPDATA\npm-cache\_npx"  # Windows
 ```bash
 # Restore from backup
 cp .junie/mcp/mcp.json.backup .junie/mcp/mcp.json
-
 # Or restore entire config
 cp -r .junie.backup-YYYYMMDD .junie
 ```
@@ -158,9 +150,7 @@ cp -r .junie.backup-YYYYMMDD .junie
 ```bash
 # 1. Validate current file
 python -m json.tool .junie/mcp/mcp.json
-
 # 2. Fix syntax errors based on output
-
 # 3. Or start fresh from template
 # Copy from another project or documentation
 ```
@@ -174,10 +164,8 @@ python -m json.tool .junie/mcp/mcp.json
 ```bash
 # Check if files exist
 ls -la .junie/
-
 # Restore from git
 git checkout -- .junie/
-
 # Or restore from backup
 cp -r .junie.backup-YYYYMMDD/* .junie/
 ```
@@ -192,7 +180,6 @@ cp -r .junie.backup-YYYYMMDD/* .junie/
 # Check current versions
 grep "schema_version" .junie/generic/config.yaml
 grep "schema_version" .junie/project/config.yaml
-
 # Update to match (edit files manually)
 # Both should have same version, e.g., "1.0"
 ```
@@ -267,7 +254,6 @@ When all else fails, perform a complete reset:
 ```bash
 # Backup everything
 cp -r .junie .junie.pre-reset-$(date +%Y%m%d-%H%M%S)
-
 # Note current state
 ls -la .junie/ > .junie-state.txt
 ```
@@ -286,7 +272,6 @@ ls -la .junie/ > .junie-state.txt
 # Clear npm/npx cache
 npm cache clean --force
 rm -rf ~/.npm/_npx
-
 # Clear IDE caches (optional, more aggressive)
 # Location varies by IDE and OS
 # Windows: %LOCALAPPDATA%\JetBrains\<Product>
@@ -326,10 +311,8 @@ rm -rf .junie
 ```bash
 # Run validation tests
 pytest tests/tools/test_junie_config.py -v
-
 # Check MCP status
 # All servers should show "Connected"
-
 # Test basic operations
 # git status (should auto-approve)
 # Ask Junie to read a file (tests filesystem server)
@@ -344,7 +327,6 @@ pytest tests/tools/test_junie_config.py -v
 ```bash
 # Daily backup script (add to cron/scheduler)
 cp -r .junie ".junie.backup-$(date +%Y%m%d)"
-
 # Keep last 7 days
 find . -maxdepth 1 -name ".junie.backup-*" -mtime +7 -exec rm -rf {} \;
 ```

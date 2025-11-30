@@ -1,4 +1,4 @@
-# Incremental Improvement Practices
+﻿# Incremental Improvement Practices
 
 > Systematic approach to continuous, low-risk enhancement
 
@@ -149,7 +149,7 @@ return old_algorithm(data)
 
 ## Related
 
-- `.knowledge/practices/engineering/BATCH_OPTIMIZATION.md` — Batch processing
+- `.knowledge/practices/engineering/optimization/BATCH_OPTIMIZATION.md` — Batch processing
 - `.knowledge/frameworks/patterns/COLLABORATION.md` — Collaboration patterns
 
 ---

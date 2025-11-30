@@ -85,10 +85,8 @@
 ```bash
 # ✅ Preferred - Portable
 #!/usr/bin/env bash
-
 # ✅ Also acceptable - Direct path
 #!/bin/bash
-
 # ⚠️ POSIX shell only
 #!/bin/sh
 ```
@@ -97,7 +95,6 @@
 
 ```bash
 set -euo pipefail
-
 # -e: Exit on error
 # -u: Error on undefined variables
 # -o pipefail: Catch errors in pipelines
@@ -127,7 +124,6 @@ For complete script templates, see:
 ```bash
 # ✅ Modern syntax
 result=$(command)
-
 # ❌ Avoid legacy syntax
 result=`command`
 ```

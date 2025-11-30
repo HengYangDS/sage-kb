@@ -31,13 +31,10 @@
 ```bash
 # CPU profiling
 python -m cProfile -s cumulative script.py
-
 # Line profiling
 kernprof -l -v script.py
-
 # Memory profiling
 python -m memory_profiler script.py
-
 # Production flame graph
 py-spy record -o profile.svg -- python script.py
 ```
@@ -75,7 +72,6 @@ py-spy record -o profile.svg -- python script.py
 from functools import lru_cache
 @lru_cache(maxsize=128)
 def expensive_fn(n): ...
-
 # Generator for large data
 def process_large(items):
     for item in items:

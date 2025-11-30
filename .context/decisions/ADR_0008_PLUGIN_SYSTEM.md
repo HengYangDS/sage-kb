@@ -1,4 +1,4 @@
-# ADR-0008: Plugin System Design
+﻿# ADR-0008: Plugin System Design
 
 > Architecture Decision Record for SAGE Knowledge Base
 
@@ -135,7 +135,6 @@ Load any Python module as plugin.
 
 ```python
 from typing import Protocol, runtime_checkable
-
 @runtime_checkable
 class PluginProtocol(Protocol):
     """Base protocol for all plugins."""

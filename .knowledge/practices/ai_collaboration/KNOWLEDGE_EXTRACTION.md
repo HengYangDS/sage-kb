@@ -1,4 +1,4 @@
-# Knowledge Extraction Patterns
+﻿# Knowledge Extraction Patterns
 
 > Methods for extracting reusable knowledge from experience
 
@@ -55,21 +55,13 @@
 
 ```markdown
 ## Pattern: [Name]
-
 ### Problem
-
 [What problem it solves]
-
 ### Solution
-
 [How to apply]
-
 ### Example
-
 [Code or usage example]
-
 ### When to Use
-
 [Applicability criteria]
 ```
 ### 3.2 Quality Criteria
@@ -89,21 +81,13 @@
 
 ```markdown
 ## Decision: [Title]
-
 ### Status
-
 [Proposed | Accepted | Deprecated]
-
 ### Context
-
 [Why decision was needed]
-
 ### Decision
-
 [What was decided]
-
 ### Consequences
-
 [+] Benefits
 [-] Drawbacks
 ```

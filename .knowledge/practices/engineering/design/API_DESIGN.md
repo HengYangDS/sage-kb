@@ -1,4 +1,4 @@
-# API Design Patterns
+﻿# API Design Patterns
 
 > Principles and patterns for designing clean, consistent APIs
 
@@ -148,7 +148,7 @@ GET /users?page=2&page_size=20
 ## Related
 
 - `.knowledge/guidelines/CODE_STYLE.md` — Code conventions
-- `.knowledge/practices/engineering/ERROR_HANDLING.md` — Error handling patterns
+- `.knowledge/practices/engineering/design/ERROR_HANDLING.md` — Error handling patterns
 
 ---
 

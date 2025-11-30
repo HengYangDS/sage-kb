@@ -1,4 +1,4 @@
-# ADR-0004: Dependency Injection Container
+﻿# ADR-0004: Dependency Injection Container
 
 > Architecture Decision Record for SAGE Knowledge Base
 
@@ -51,17 +51,11 @@ Implement a **custom lightweight DI container** with three lifetime modes and au
 ```python
 class DIContainer:
     """Lightweight dependency injection container."""
-
     def register(self, interface, implementation, lifetime): ...
-
     def register_instance(self, interface, instance): ...
-
     def register_factory(self, interface, factory, lifetime): ...
-
     def resolve(self, interface, scope_id=None): ...
-
     def try_resolve(self, interface, scope_id=None): ...
-
     def create_scope(self, scope_id): ...
 ```
 ### Lifetime Modes
@@ -77,10 +71,8 @@ class DIContainer:
 ```python
 # Single global container instance
 container = get_container()
-
 # Registration
 container.register(SourceProtocol, FileSource, Lifetime.SINGLETON)
-
 # Resolution
 source = container.resolve(SourceProtocol)
 ```
@@ -149,10 +141,8 @@ container.register(
     implementation=FileSource,
     lifetime=Lifetime.SINGLETON
 )
-
 # Pre-created instance
 container.register_instance(ConfigProtocol, loaded_config)
-
 # Factory function
 container.register_factory(
     interface=AnalyzerProtocol,
@@ -178,7 +168,6 @@ services:
     class: sage.core.loader.KnowledgeLoader
     lifetime: singleton
     config_key: loader
-
   code_analyzer:
     class: sage.capabilities.analyzers.CodeAnalyzer
     lifetime: transient
@@ -189,8 +178,6 @@ services:
 class ServiceA:
     def __init__(self, dep: ServiceB):  # Auto-resolved
         self.dep = dep
-
-
 # Container auto-wires ServiceB when resolving ServiceA
 container.register(ServiceA, ServiceA, Lifetime.SINGLETON)
 container.register(ServiceB, ServiceB, Lifetime.SINGLETON)
@@ -200,7 +187,6 @@ service_a = container.resolve(ServiceA)  # dep auto-injected
 
 ```python
 from sage.core.di import ServiceNotFoundError, CircularDependencyError
-
 try:
     service = container.resolve(UnknownProtocol)
 except ServiceNotFoundError as e:

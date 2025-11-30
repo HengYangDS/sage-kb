@@ -1,4 +1,4 @@
-# Milestones
+﻿# Milestones
 
 > Project milestones and deliverables
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 This document defines the milestones for SAGE development, tracking progress and deliverables for each major phase.
-
 
 ## Table of Contents
 

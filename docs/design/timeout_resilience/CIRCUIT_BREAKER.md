@@ -1,4 +1,4 @@
-# Circuit Breaker
+﻿# Circuit Breaker
 
 > Fail-fast pattern for handling repeated failures
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 The circuit breaker pattern prevents cascading failures by detecting repeated failures and temporarily blocking requests to failing services.
-
 
 ## Table of Contents
 
@@ -68,12 +67,10 @@ class CircuitBreakerConfig:
 ```python
 from enum import Enum
 from datetime import datetime, timedelta
-
 class CircuitState(Enum):
     CLOSED = "closed"
     OPEN = "open"
     HALF_OPEN = "half_open"
-
 class CircuitBreaker:
     def __init__(self, config: CircuitBreakerConfig):
         self.config = config
@@ -141,7 +138,6 @@ def circuit_breaker(name: str):
         
         return wrapper
     return decorator
-
 # Usage
 @circuit_breaker("external_api")
 def call_external_api(url: str) -> Response:
@@ -165,7 +161,6 @@ class CircuitBreakerContext:
         else:
             self.breaker.record_failure()
         return False
-
 # Usage
 with CircuitBreakerContext(breaker):
     result = external_call()

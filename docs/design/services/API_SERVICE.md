@@ -1,4 +1,4 @@
-# API Service
+﻿# API Service
 
 > HTTP REST API service using FastAPI
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 The API service provides HTTP REST access to SAGE knowledge base for web applications and external system integration using FastAPI framework.
-
 
 ## Table of Contents
 
@@ -52,25 +51,21 @@ The API service provides HTTP REST access to SAGE knowledge base for web applica
 
 ```python
 from pydantic import BaseModel
-
 class KnowledgeRequest(BaseModel):
     query: str
     layer: int | None = None
     content_type: str | None = None
     timeout_ms: int = 5000
-
 class KnowledgeResponse(BaseModel):
     content: str
     layer: int
     content_type: str
     token_count: int
     cached: bool = False
-
 class SearchRequest(BaseModel):
     query: str
     max_results: int = 10
     fuzzy: bool = False
-
 class SearchResponse(BaseModel):
     results: list[SearchResult]
     total: int
@@ -85,7 +80,6 @@ class SearchResponse(BaseModel):
 ```python
 from fastapi import FastAPI, HTTPException, Depends
 from contextlib import asynccontextmanager
-
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Startup
@@ -94,7 +88,6 @@ async def lifespan(app: FastAPI):
     yield
     # Shutdown
     container.dispose()
-
 app = FastAPI(
     title="SAGE Knowledge Base API",
     version="1.0.0",
@@ -122,7 +115,6 @@ async def get_knowledge(
         content_type=result.content_type,
         token_count=result.token_count
     )
-
 @app.get("/v1/search", response_model=SearchResponse)
 async def search_knowledge(
     query: str,
@@ -159,9 +151,7 @@ async def health_check():
 
 ```python
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-
 security = HTTPBearer()
-
 async def verify_token(
     credentials: HTTPAuthorizationCredentials = Depends(security)
 ) -> str:
@@ -169,7 +159,6 @@ async def verify_token(
     if not validate_token(token):
         raise HTTPException(status_code=401, detail="Invalid token")
     return token
-
 @app.get("/v1/knowledge")
 async def get_knowledge(
     query: str,
@@ -181,7 +170,6 @@ async def get_knowledge(
 
 ```python
 from fastapi import Header
-
 async def verify_api_key(x_api_key: str = Header(...)):
     if x_api_key not in valid_api_keys:
         raise HTTPException(status_code=401, detail="Invalid API key")
@@ -206,7 +194,6 @@ async def timeout_handler(request: Request, exc: TimeoutError):
             }
         }
     )
-
 @app.exception_handler(NotFoundError)
 async def not_found_handler(request: Request, exc: NotFoundError):
     return JSONResponse(
@@ -255,7 +242,6 @@ services:
 
 ```python
 from fastapi.middleware.cors import CORSMiddleware
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000"],
@@ -286,21 +272,17 @@ async def log_requests(request: Request, call_next):
 
 ```python
 from fastapi.testclient import TestClient
-
 client = TestClient(app)
-
 def test_get_knowledge():
     response = client.get("/v1/knowledge?query=test")
     assert response.status_code == 200
     data = response.json()
     assert "content" in data
-
 def test_search():
     response = client.get("/v1/search?query=architecture")
     assert response.status_code == 200
     data = response.json()
     assert "results" in data
-
 def test_health():
     response = client.get("/health")
     assert response.status_code == 200

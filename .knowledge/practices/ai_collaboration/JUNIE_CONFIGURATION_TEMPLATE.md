@@ -1,4 +1,4 @@
-# Junie Configuration Template System
+﻿# Junie Configuration Template System
 
 > A reusable template system for JetBrains Junie AI collaboration configuration.
 
@@ -57,11 +57,9 @@ project:
   name: "My Project"
   short_name: "my-project"
   version: "1.0.0"
-
 tech_stack:
   language: "Python 3.12+"
   framework: "FastAPI"
-
 commands:
   test: "pytest tests/ -v"
   lint: "ruff check src/"
@@ -117,27 +115,22 @@ The `.junie/` thin layer delegates detailed knowledge to:
 ```mermaid
 flowchart LR
     G["📋 guidelines.md"]
-
     subgraph GRP1[" 🔄 Generic "]
         GEN["⚙️ generic/"]
         MCP["🔌 mcp/"]
         DOC["📖 docs/"]
         SCH["📐 schema/"]
     end
-
     subgraph GRP2[" 📌 Project "]
         PY["📝 config.yaml"]
         PQ["📑 QUICKREF.md"]
     end
-
     G -->|loads| GRP1
     G -->|loads| GRP2
     PY -.->|referenced by| PQ
-
     classDef entry fill:#1a1a1a,stroke:#555,color:#fff,stroke-width:2px
     classDef generic fill:#2d2d2d,stroke:#444,color:#fff
     classDef project fill:#2d2d2d,stroke:#666,color:#fff
-
     class G entry
     class GEN,MCP,DOC,SCH generic
     class PY,PQ project
@@ -186,15 +179,12 @@ collaboration:
   session_history:
     enabled: true
     location: ".history/"
-
 context_loading:
   priority:
     - ".context/intelligence/"
     - ".context/conventions/"
-
 output:
   temp_directory: ".outputs/"
-
 timeouts:
   enabled: true
   tiers:
@@ -253,21 +243,17 @@ project:
   short_name: "project-name"
   description: "Brief description"
   version: "1.0.0"
-
 tech_stack:
   language: "Python 3.12+"
   framework: "FastAPI"
   testing: "pytest"
-
 directories:
   source: "src/"
   tests: "tests/"
   docs: "docs/"
-
 commands:
   test: "pytest tests/ -v"
   lint: "ruff check src/"
-
 key_files:
   main_config: "config/settings.yaml"
   entry_point: "src/main.py"
@@ -292,7 +278,6 @@ Project-specific quick reference including:
 ```bash
 # 1. Copy the entire .junie directory from template
 cp -r template/.junie .junie
-
 # 2. The directory structure will be:
 #    .junie/
 #    ├── guidelines.md          # Keep as-is (generic)
@@ -316,7 +301,6 @@ cp -r template/.junie .junie
 #        ├── config.yaml
 #        ├── INDEX.md
 #        └── QUICKREF.md
-
 # 3. Edit project/config.yaml with your project's information
 # 4. Edit project/QUICKREF.md with project-specific documentation
 ```
@@ -362,7 +346,6 @@ tech_stack:
   language: "Python 3.12+"
 commands:
   test: "pytest tests/"
-
 # Bad - Flat, unclear
 name: "My API Server"
 lang: "Python"
@@ -418,7 +401,6 @@ Add new sections as needed:
 deployment:
   environment: "production"
   region: "us-east-1"
-
 team:
   contact: "team@example.com"
   slack_channel: "#project-dev"

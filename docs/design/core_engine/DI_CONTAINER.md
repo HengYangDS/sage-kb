@@ -1,4 +1,4 @@
-# Dependency Injection Container
+﻿# Dependency Injection Container
 
 > Centralized dependency management for SAGE
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 The DI Container manages object creation, lifecycle, and dependency resolution, enabling loose coupling and testability.
-
 
 ## Table of Contents
 
@@ -40,9 +39,7 @@ The DI Container manages object creation, lifecycle, and dependency resolution, 
 
 ```python
 from typing import Protocol, TypeVar, Type
-
 T = TypeVar('T')
-
 class Container(Protocol):
     def register(self, 
                  interface: Type[T], 
@@ -81,7 +78,6 @@ container.register(EventBus, EventBusImpl, Lifecycle.SINGLETON)
 bus1 = container.resolve(EventBus)
 bus2 = container.resolve(EventBus)
 assert bus1 is bus2  # True
-
 # Transient - new instance each time
 container.register(Handler, HandlerImpl, Lifecycle.TRANSIENT)
 h1 = container.resolve(Handler)
@@ -106,7 +102,6 @@ container.register(CheckerProtocol, FormatChecker)
 def create_analyzer(container: Container) -> AnalyzerProtocol:
     config = container.resolve(Config)
     return ContentAnalyzer(config)
-
 container.register_factory(AnalyzerProtocol, create_analyzer)
 ```
 ### 5.3 Instance Registration
@@ -127,7 +122,6 @@ class ContentAnalyzer:
     def __init__(self, config: Config, logger: Logger):
         self.config = config
         self.logger = logger
-
 # Container auto-resolves Config and Logger
 container.register(AnalyzerProtocol, ContentAnalyzer)
 analyzer = container.resolve(AnalyzerProtocol)
@@ -163,7 +157,6 @@ class CoreModule:
     def register(container: Container) -> None:
         container.register(EventBus, EventBusImpl, Lifecycle.SINGLETON)
         container.register(Config, ConfigImpl, Lifecycle.SINGLETON)
-
 class CapabilitiesModule:
     @staticmethod
     def register(container: Container) -> None:

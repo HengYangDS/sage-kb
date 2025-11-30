@@ -1,4 +1,4 @@
-# Session Management Manual Fallback
+﻿# Session Management Manual Fallback
 
 > Manual procedures when automated session tools are unavailable
 
@@ -31,17 +31,14 @@
 
 ```markdown
 ## Session Start: [DATE TIME]
-
 ### Context Loaded
 - [ ] Core principles reviewed
 - [ ] Project config checked
 - [ ] Recent changes noted
-
 ### Task Definition
 - **Objective**: [What to accomplish]
 - **Scope**: [Boundaries]
 - **Constraints**: [Limitations]
-
 ### Environment
 - Project: [name]
 - Branch: [current branch]
@@ -71,15 +68,12 @@ ls -la .knowledge/
 
 ```markdown
 ## Checkpoint: [TIME]
-
 ### Progress
 - Completed: [list]
 - Current: [task]
 - Remaining: [list]
-
 ### Key Decisions
 - [Decision 1]: [rationale]
-
 ### Modified Files
 - [file1]: [change summary]
 ```
@@ -91,21 +85,16 @@ ls -la .knowledge/
 
 ```markdown
 ## Session Handoff: [DATE]
-
 ### Summary
 [1-2 sentence overview]
-
 ### Completed
 - [x] [Task 1]
 - [x] [Task 2]
-
 ### Pending
 - [ ] [Remaining task]
-
 ### For Next Session
 1. [First priority]
 2. [Second priority]
-
 ### Context Files
 - `.history/sessions/[date].md`
 ```

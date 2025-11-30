@@ -1,4 +1,4 @@
-# Design Axioms
+﻿# Design Axioms
 
 > Core design principles that guide all SAGE decisions
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 Design axioms are fundamental principles that cannot be compromised. They serve as the foundation for all architectural and implementation decisions.
-
 
 ## Table of Contents
 
@@ -93,7 +92,6 @@ Depend on abstractions, not implementations.
 # ✅ Good: Depend on protocol
 def process(loader: LoaderProtocol) -> Result:
     return loader.load()
-
 # ❌ Bad: Depend on concrete class
 def process(loader: FileLoader) -> Result:
     return loader.load()

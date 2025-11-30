@@ -1,4 +1,4 @@
-# Layer Hierarchy
+﻿# Layer Hierarchy
 
 > Knowledge layer structure and priority system for AI context management
 
@@ -150,7 +150,6 @@ When content exists in multiple layers:
 
 ```text
 .knowledge/ > .context/ > docs/
-
 Example:
 - .knowledge/guidelines/CODE_STYLE.md  ← Universal default
 - .context/conventions/CODE_STYLE.md   ← Project override
@@ -181,7 +180,6 @@ Example:
 
 ```markdown
 ## Related
-
 - `.knowledge/guidelines/CODE_STYLE.md` — Universal style guide
 - `.context/conventions/NAMING.md` — Project naming conventions
 ```

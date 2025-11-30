@@ -1,4 +1,4 @@
-# Infrastructure
+﻿# Infrastructure
 
 > Deployment, operations, and runtime infrastructure for SAGE
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 This document covers the infrastructure requirements, deployment options, and operational considerations for SAGE.
-
 
 ## Table of Contents
 
@@ -53,10 +52,8 @@ This document covers the infrastructure requirements, deployment options, and op
 ```bash
 # Install in development mode
 pip install -e ".[dev]"
-
 # Run CLI
 sage --help
-
 # Run tests
 pytest
 ```
@@ -65,7 +62,6 @@ pytest
 ```bash
 # Install from PyPI
 pip install sage-kb
-
 # Or with extras
 pip install "sage-kb[api,mcp]"
 ```
@@ -73,12 +69,9 @@ pip install "sage-kb[api,mcp]"
 
 ```dockerfile
 FROM python:3.12-slim
-
 WORKDIR /app
 COPY . .
-
 RUN pip install --no-cache-dir .
-
 EXPOSE 8000
 CMD ["sage", "serve", "--port", "8000"]
 ```
@@ -168,7 +161,6 @@ graph TD
 ```bash
 # CLI health check
 sage health
-
 # API health endpoint
 curl http://localhost:8000/health
 ```
@@ -241,7 +233,6 @@ curl http://localhost:8000/health
 ```bash
 # Restore from backup
 sage restore --backup /path/to/backup
-
 # Verify integrity
 sage verify --all
 ```

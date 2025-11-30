@@ -1,4 +1,4 @@
-# Three-Layer Architecture
+﻿# Three-Layer Architecture
 
 > Core, Services, and Capabilities — the foundation of SAGE
 
@@ -13,7 +13,6 @@ SAGE uses a three-layer architecture that separates concerns and enables modular
 | **Core** | Foundation and infrastructure | ★★★★★ |
 | **Services** | User-facing interfaces | ★★★★☆ |
 | **Capabilities** | Functional operations | ★★★☆☆ |
-
 
 ## Table of Contents
 

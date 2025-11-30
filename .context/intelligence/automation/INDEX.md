@@ -1,4 +1,4 @@
-# Automation
+﻿# Automation
 
 > Index of automation documents
 
@@ -13,7 +13,6 @@
 ---
 
 ## Related
-
 
 ---
 

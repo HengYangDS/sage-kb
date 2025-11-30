@@ -1,4 +1,4 @@
-# Bootstrap
+﻿# Bootstrap
 
 > Application startup and initialization process
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 The bootstrap process initializes SAGE, loading configuration, registering components, and preparing the system for operation.
-
 
 ## Table of Contents
 
@@ -56,7 +55,6 @@ flowchart LR
     subgraph PHASE4 [Phase 4: Services]
         D1["CLI | MCP | API"]
     end
-
     START(["Application Start"]) --> PHASE1
     PHASE1 --> PHASE2
     PHASE2 --> PHASE3

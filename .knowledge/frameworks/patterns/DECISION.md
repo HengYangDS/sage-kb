@@ -1,4 +1,4 @@
-# Quality Angles Framework
+﻿# Quality Angles Framework
 
 > Multi-perspective quality evaluation using 35+ quality angles
 
@@ -102,9 +102,7 @@ For major decisions, check core + extended + domain angles.
 
 ```markdown
 ## Quality Evaluation
-
 ### Core Angles
-
 | Angle           | Score | Notes |
 |-----------------|:-----:|-------|
 | Correctness     |   ~   |       |
@@ -117,15 +115,10 @@ For major decisions, check core + extended + domain angles.
 | Reliability     |   ~   |       |
 | Usability       |   ~   |       |
 | Testability     |   ~   |       |
-
 > Score: ✓ = Pass | ✗ = Fail | ~ = Needs Review
-
 ### Key Findings
-
 [Summary of evaluation]
-
 ### Recommendations
-
 [Actions to improve quality]
 ```
 ---

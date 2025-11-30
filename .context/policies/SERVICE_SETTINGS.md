@@ -1,4 +1,4 @@
-# Service Layer Configuration
+﻿# Service Layer Configuration
 
 > Configuration reference for CLI, MCP, and API services
 
@@ -88,7 +88,6 @@ services:
 export SAGE_CLI_FORMAT=json
 export SAGE_CLI_COLOR=never
 export SAGE_CLI_WIDTH=120
-
 # History
 export SAGE_CLI_HISTORY_ENABLED=false
 export SAGE_CLI_HISTORY_PATH=/custom/path
@@ -166,7 +165,6 @@ services:
 export SAGE_MCP_TRANSPORT=stdio
 export SAGE_MCP_HOST=localhost
 export SAGE_MCP_PORT=8080
-
 # Tools
 export SAGE_MCP_TOOLS_ENABLED=get_knowledge,search_content
 ```
@@ -233,12 +231,10 @@ services:
 export SAGE_API_HOST=0.0.0.0
 export SAGE_API_PORT=8000
 export SAGE_API_WORKERS=4
-
 # Security
 export SAGE_API_CORS_ORIGINS=http://localhost:3000
 export SAGE_API_AUTH_ENABLED=true
 export SAGE_API_KEY=your-secret-key
-
 # Rate limiting
 export SAGE_API_RATE_LIMIT=60
 ```
@@ -298,11 +294,9 @@ services:
 ```bash
 # CLI (default)
 sage get --layer core
-
 # MCP Server
 sage serve --transport stdio
 sage serve --port 8080 --transport sse
-
 # API Server
 sage api --host 0.0.0.0 --port 8000
 sage api --workers 4 --reload
@@ -320,7 +314,6 @@ sage api --workers 4 --reload
 ```bash
 # Validate service configuration
 sage config --validate --section services
-
 # Show service configuration
 sage config --show --section services.mcp
 ```

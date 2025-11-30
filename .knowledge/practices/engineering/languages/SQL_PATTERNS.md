@@ -1,4 +1,4 @@
-# SQL Patterns
+﻿# SQL Patterns
 
 > Query patterns, schema design, and database best practices
 
@@ -430,7 +430,7 @@ result = session.execute(
 
 - `.knowledge/guidelines/SQL.md` — SQL guidelines and conventions
 - `.knowledge/guidelines/SECURITY.md` — Security guidelines
-- `.knowledge/practices/engineering/API_DESIGN.md` — API patterns
+- `.knowledge/practices/engineering/design/API_DESIGN.md` — API patterns
 
 ---
 

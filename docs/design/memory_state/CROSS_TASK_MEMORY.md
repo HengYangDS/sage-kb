@@ -1,4 +1,4 @@
-# Cross-Task Memory
+﻿# Cross-Task Memory
 
 > Persistent memory across sessions and tasks
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 Cross-task memory enables SAGE to retain and utilize learned patterns, user preferences, and optimization insights across multiple sessions and tasks.
-
 
 ## Table of Contents
 

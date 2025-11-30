@@ -1,4 +1,4 @@
-
+﻿
 # Collaboration Efficiency Metrics
 
 > Track and optimize AI collaboration effectiveness (~10 min read)
@@ -61,7 +61,6 @@ Efficiency Metrics
 ```
 
 Auto-Approval Rate = (Auto-Approved Commands / Total Commands) × 100%
-
 Where:
 - Auto-Approved = Commands matching allowlist rules
 - Total Commands = All terminal commands requested
@@ -81,23 +80,16 @@ Where:
 
 ```markdown
 ## Week of [DATE]
-
 ### Command Statistics
-
 - Total Commands Requested: ___
 - Auto-Approved: ___
 - Manual Approval Required: ___
 - Blocked (Security): ___
-
 ### Auto-Approval Rate: ___%
-
 ### Commands Requiring Manual Approval:
-
 1. [command] - Reason: [why not auto-approved]
 2. [command] - Reason: [why not auto-approved]
-
 ### Action Items:
-
 - [ ] Add rule for [pattern] if safe
 - [ ] Review blocked commands for false positives
 ```
@@ -120,7 +112,6 @@ Where:
 ```
 
 Token Efficiency = (Baseline Tokens - Actual Tokens) / Baseline Tokens × 100%
-
 Where:
 - Baseline = Tokens without MCP optimization
 - Actual = Tokens with MCP context management
@@ -139,21 +130,15 @@ Where:
 
 ```markdown
 ## Session Token Analysis
-
 ### Session Info
-
 - Date: [DATE]
 - Duration: [hours]
 - Task: [description]
-
 ### Token Metrics
-
 - Estimated Baseline: ___
 - Actual Used: ___
 - Efficiency: ___%
-
 ### MCP Usage
-
 - Memory queries: ___
 - Filesystem reads: ___
 - Context from cache: ___
@@ -176,28 +161,20 @@ Where:
 
 ```markdown
 ## Session: [DATE] [TIME]
-
 ### Overview
-
 - Start Time: ___
 - End Time: ___
 - Primary Task: ___
 - Status: [Completed / Partial / Blocked]
-
 ### Productivity Metrics
-
 - Tasks Planned: ___
 - Tasks Completed: ___
 - Completion Rate: ___%
-
 ### Interruptions
-
 - Manual Approvals: ___
 - Context Reloads: ___
 - MCP Reconnections: ___
-
 ### Notes
-
 [Key observations, blockers, improvements]
 ```
 
@@ -233,12 +210,10 @@ Weekly:
 1. Review auto-approval rate
 2. Identify new command patterns
 3. Update rules as needed
-
 Monthly:
 1. Analyze token efficiency trends
 2. Review session productivity
 3. Identify optimization opportunities
-
 Quarterly:
 1. Full metrics review
 2. Update targets if needed

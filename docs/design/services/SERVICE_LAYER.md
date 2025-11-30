@@ -1,4 +1,4 @@
-# Service Layer
+﻿# Service Layer
 
 > Multi-channel service architecture for SAGE
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 The service layer provides three channels for knowledge access: CLI, MCP, and HTTP API. All services share common components through dependency injection.
-
 
 ## Table of Contents
 
@@ -83,7 +82,6 @@ All services share core components via dependency injection:
 ```python
 from sage.core.di import get_container
 from sage.core.protocols import SourceProtocol
-
 container = get_container()
 loader = container.resolve(SourceProtocol)
 result = loader.source(request)

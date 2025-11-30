@@ -23,6 +23,7 @@
 ├── guidelines/     # By role/task (~1200 tokens)
 ├── frameworks/     # On-demand (~2000 tokens)
 ├── practices/      # When implementing (~1500 tokens)
+├── references/     # Quick lookup (~400 tokens)
 ├── scenarios/      # By trigger (~500 tokens)
 └── templates/      # Direct copy (~300 tokens)
 ```
@@ -36,6 +37,7 @@
 | Guidelines | ~1200  | By role/task   |
 | Frameworks | ~2000  | On-demand      |
 | Practices  | ~1500  | Implementation |
+| References | ~400   | Quick lookup   |
 | Scenarios  | ~500   | By trigger     |
 | Templates  | ~300   | Direct use     |
 
@@ -79,6 +81,7 @@
 | Standards  | `guidelines/` | Practices      |
 | Concepts   | `frameworks/` | Guidelines     |
 | How-to     | `practices/`  | Scenarios      |
+| Quick ref  | `references/` | All layers     |
 | Presets    | `scenarios/`  | Index only     |
 
 ---

@@ -168,6 +168,7 @@ Each layer has an `INDEX.md` with:
 | Standards    | `guidelines/`    | Practices             |
 | Concepts     | `frameworks/`    | Guidelines, Practices |
 | How-to       | `practices/`     | Scenarios             |
+| Quick ref    | `references/`    | All layers            |
 | Presets      | `scenarios/`     | Index only            |
 | Boilerplate  | `templates/`     | Practices             |
 

@@ -1,4 +1,4 @@
-# SAGE Naming Conventions
+﻿# SAGE Naming Conventions
 
 > Project-specific naming standards for SAGE Knowledge Base
 
@@ -45,16 +45,10 @@ SAGE protocols follow the Source-Analyze-Generate-Evolve pattern:
 # Core SAGE protocols
 class SourceProtocol(Protocol):
     ...  # S - Knowledge sourcing
-
-
 class AnalyzeProtocol(Protocol):
     ...  # A - Processing & analysis
-
-
 class GenerateProtocol(Protocol):
     ...  # G - Multi-channel output
-
-
 class EvolveProtocol(Protocol):
     ...  # E - Metrics & optimization
 ```
@@ -80,21 +74,13 @@ class EvolveProtocol(Protocol):
 # Knowledge domain
 class KnowledgeAsset:
     ...  # Base knowledge unit
-
-
 class KnowledgeLayer:
     ...  # Layer abstraction (core, frameworks, etc.)
-
-
 class KnowledgeIndex:
     ...  # Index/navigation structure
-
-
 # Session domain
 class Session:
     ...  # User/AI session
-
-
 class SessionContext:
     ...  # Session state container
 ```
@@ -108,17 +94,14 @@ class SessionContext:
 # Top-level sections: lowercase
 sage:
   version: "0.1.0"
-
 # Nested keys: snake_case
 timeout:
   cache_lookup: 100ms
   file_read: 500ms
-
 # Lists: plural nouns
 layers:
   - name: core
   - name: frameworks
-
 # Feature flags: is_* or enable_*
 features:
   enable_caching: true
@@ -144,11 +127,9 @@ Events follow the pattern: `{domain}.{action}` or `{domain}.{entity}.{action}`
 "source.started"  # Source operation started
 "source.completed"  # Source operation completed
 "source.failed"  # Source operation failed
-
 # Entity events
 "knowledge.layer.loaded"  # Specific layer loaded
 "knowledge.asset.updated"  # Asset updated
-
 # Lifecycle events
 "system.initialized"  # System startup complete
 "system.shutdown"  # System shutting down
@@ -159,12 +140,8 @@ Events follow the pattern: `{domain}.{action}` or `{domain}.{entity}.{action}`
 # Event class naming
 class SourceStartedEvent:
     ...
-
-
 class KnowledgeLoadedEvent:
     ...
-
-
 class TimeoutOccurredEvent:
     ...
 ```

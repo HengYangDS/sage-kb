@@ -1,4 +1,4 @@
-
+﻿
 # MCP Troubleshooting
 
 > Problem solving guide for MCP server issues (~10 min read)
@@ -51,10 +51,8 @@
 ```bash
 # Verify Node.js installation
 node --version    # Should show v18.x or higher
-
 # Verify npx works
 npx --version
-
 # Test server manually
 npx -y @modelcontextprotocol/server-filesystem .
 ```
@@ -84,10 +82,8 @@ npx -y @modelcontextprotocol/server-filesystem .
 ```bash
 # Clear npm cache
 npm cache clean --force
-
 # Reinstall server package
 npx -y @modelcontextprotocol/server-filesystem .
-
 # Check for errors
 # Look in IDE logs: Help | Show Log in Explorer
 ```
@@ -139,7 +135,6 @@ npx -y @modelcontextprotocol/server-filesystem .
   ]
   // <- trailing comma error
 }
-
 // Correct
 {
   "command": "npx.cmd",
@@ -188,7 +183,6 @@ echo $env:GITHUB_PERSONAL_ACCESS_TOKEN  # PowerShell
 ```powershell
 # Set for current session
 $env:GITHUB_PERSONAL_ACCESS_TOKEN = "your-token"
-
 # Set permanently (User level)
 [Environment]::SetEnvironmentVariable("GITHUB_PERSONAL_ACCESS_TOKEN", "your-token", "User")
 ```
@@ -198,7 +192,6 @@ $env:GITHUB_PERSONAL_ACCESS_TOKEN = "your-token"
 ```bash
 # Set for current session
 export GITHUB_PERSONAL_ACCESS_TOKEN="your-token"
-
 # Set permanently (add to ~/.bashrc or ~/.zshrc)
 echo 'export GITHUB_PERSONAL_ACCESS_TOKEN="your-token"' >> ~/.bashrc
 source ~/.bashrc
@@ -261,7 +254,6 @@ source ~/.bashrc
 ```powershell
 # Use npx.cmd instead of npx
 "command": "npx.cmd"
-
 # Or add Node.js to PATH
 $env:PATH += ";C:\Program Files\nodejs"
 ```
@@ -285,7 +277,6 @@ New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem" -Name
 ```bash
 # Check npm permissions
 npm config get prefix
-
 # If needed, fix permissions
 sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share}
 ```
@@ -309,19 +300,14 @@ When nothing else works:
 
 ```bash
 # 1. Stop all MCP servers in IDE settings
-
 # 2. Clear npm cache
 npm cache clean --force
-
 # 3. Remove node_modules cache
 rm -rf ~/.npm/_npx    # Unix
 Remove-Item -Recurse -Force "$env:LOCALAPPDATA\npm-cache\_npx"  # Windows
-
 # 4. Restart IDE
-
 # 5. Reload MCP configuration
 # Settings | Tools | Junie | MCP Servers | Reload
-
 # 6. Start servers one by one
 ```
 
@@ -332,7 +318,6 @@ Before making changes:
 ```bash
 # Backup current config
 cp .junie/mcp/mcp.json .junie/mcp/mcp.json.backup
-
 # Restore if needed
 cp .junie/mcp/mcp.json.backup .junie/mcp/mcp.json
 ```
@@ -406,7 +391,6 @@ Test with minimal config to isolate issues:
 ```json
 // Wrong
 "args": ["-y", "server", "${PROJECT_ROOT}"]
-
 // Correct
 "args": ["-y", "server", "."]
 ```
@@ -418,7 +402,6 @@ Test with minimal config to isolate issues:
 ```bash
 # Unix
 cp mcp.unix.json mcp.json
-
 # Windows  
 copy mcp.windows.json mcp.json
 ```

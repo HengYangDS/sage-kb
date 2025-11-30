@@ -1,4 +1,4 @@
-# Scenario Presets
+﻿# Scenario Presets
 
 > Context-specific knowledge presets for common development scenarios
 
@@ -47,23 +47,14 @@ scenarios/[name]/
 
 ```markdown
 # [Scenario Name] Context
-
 > [Brief description]
-
 ## Quick Setup
-
 [Essential setup steps]
-
 ## Key Guidelines
-
 [Scenario-specific guidelines]
-
 ## Common Tasks
-
 [Frequent operations]
-
 ## Pitfalls
-
 [Common mistakes to avoid]
 ```
 ---

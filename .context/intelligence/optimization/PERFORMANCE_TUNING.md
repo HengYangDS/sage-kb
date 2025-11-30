@@ -1,4 +1,4 @@
-# SAGE Performance Tuning
+﻿# SAGE Performance Tuning
 
 > SAGE-specific performance goals, benchmarks, and monitoring
 
@@ -75,10 +75,8 @@ For comprehensive performance optimization guides, see:
 ```bash
 # Run performance tests
 pytest tests/performance/ -v
-
 # Run specific benchmark
 pytest tests/performance/test_load_performance.py -v
-
 # Profile specific operation
 python -m cProfile -s cumulative -m pytest tests/performance/
 ```
@@ -102,10 +100,7 @@ python -m cProfile -s cumulative -m pytest tests/performance/
 import time
 from contextlib import contextmanager
 import structlog
-
 log = structlog.get_logger()
-
-
 @contextmanager
 def measure_time(operation: str):
     start = time.perf_counter()

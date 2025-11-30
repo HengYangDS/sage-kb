@@ -1,4 +1,4 @@
-# Testing Strategy
+﻿# Testing Strategy
 
 > Universal testing layers, organization, and best practices
 
@@ -69,14 +69,11 @@
 
 ```python
 def test_[function]_[scenario]
-
 _[expected]():
 pass
-
 # Examples
 def test_calculate_total_empty_cart_returns_zero():
     ...
-
 def test_login_invalid_password_raises_error():
     ...
 ```
@@ -86,7 +83,6 @@ def test_login_invalid_password_raises_error():
 class TestUserService:
     class TestCreate:
         def test_valid_data_creates_user(self): ...
-
         def test_duplicate_email_raises_error(self): ...
 ```
 ---
@@ -100,10 +96,8 @@ def test_add_item_to_cart():
     # Arrange
     cart = Cart()
     item = Item(id=1, price=100)
-
     # Act
     cart.add(item)
-
     # Assert
     assert cart.total == 100
     assert len(cart.items) == 1
@@ -114,10 +108,8 @@ def test_add_item_to_cart():
 def test_user_registration():
     # Given a new user
     user_data = {"email": "test@example.com"}
-
     # When registering
     result = service.register(user_data)
-
     # Then user is created
     assert result.id is not None
 ```
@@ -131,7 +123,6 @@ def test_user_registration():
 @pytest.fixture
 def user():
     return User(name="Test", email="test@example.com")
-
 @pytest.fixture
 def db_session():
     session = create_session()
@@ -157,9 +148,7 @@ def db_session():
 def test_with_mock(mocker):
     mock_api = mocker.patch("module.api_call")
     mock_api.return_value = {"status": "ok"}
-
     result = service.process()
-
     mock_api.assert_called_once()
 ```
 ### 6.2 When to Mock
@@ -196,7 +185,7 @@ def test_with_mock(mocker):
 ## Related
 
 - `.knowledge/guidelines/QUALITY.md` — Quality standards
-- `.knowledge/practices/engineering/CODE_REVIEW.md` — Review practices
+- `.knowledge/practices/engineering/quality/CODE_REVIEW.md` — Review practices
 
 ---
 

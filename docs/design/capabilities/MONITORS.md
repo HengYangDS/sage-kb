@@ -1,4 +1,4 @@
-# Monitors
+﻿# Monitors
 
 > Monitoring, observation, and alerting capabilities
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 Monitors observe system state, track metrics, and trigger alerts. They answer the question: "What's happening?"
-
 
 ## Table of Contents
 

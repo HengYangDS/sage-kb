@@ -1,4 +1,4 @@
-# Analyze Protocol
+﻿# Analyze Protocol
 
 > Knowledge parsing, classification, and relation building
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 The Analyze protocol (A in SAGE) processes normalized knowledge to extract structure, classify content, and build relationships in the knowledge graph.
-
 
 ## Table of Contents
 

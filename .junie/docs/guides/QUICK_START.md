@@ -1,4 +1,4 @@
-
+﻿
 # Quick Start Guide
 
 > Get Junie configured in 10 minutes for maximum productivity
@@ -81,13 +81,11 @@ For immediate setup, copy the essential rules:
 ^\Qgit commit\E [^\s;&|<>@$]*$
 ^\Qgit push\E [^\s;&|<>@$]*$
 ^\Qgit pull\E [^\s;&|<>@$]*$
-
 # Python commands
 ^\Qpython\E [^\s;&|<>@$]*$
 ^\Qpython -m pytest\E.*$
 ^\Qpip install\E [^\s;&|<>@$]*$
 ^\Qpip list\E$
-
 # Node.js commands
 ^\Qnpm\E [^\s;&|<>@$]*$
 ^\Qnpx\E [^\s;&|<>@$]*$

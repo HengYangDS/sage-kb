@@ -1,4 +1,4 @@
-# Evolution
+﻿# Evolution
 
 > Roadmap, milestones, and project evolution for SAGE
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 This directory tracks SAGE's evolution, including roadmap, milestones, and evaluation criteria.
-
 
 ## Table of Contents
 

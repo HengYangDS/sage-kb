@@ -1,4 +1,4 @@
-# Evaluation Criteria
+﻿# Evaluation Criteria
 
 > Quality and success criteria for SAGE
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 This document defines the evaluation criteria used to assess SAGE quality, performance, and success across multiple dimensions.
-
 
 ## Table of Contents
 
@@ -188,7 +187,6 @@ This document defines the evaluation criteria used to assess SAGE quality, perfo
 
 ```
 Score = Σ (Dimension Weight × Dimension Score)
-
 Where:
 - Dimension Score = (Achieved / Target) × 100
 - Capped at 100%

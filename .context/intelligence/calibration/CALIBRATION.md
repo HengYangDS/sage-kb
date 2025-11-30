@@ -1,4 +1,4 @@
-# Autonomy Calibration Records
+﻿# Autonomy Calibration Records
 
 > Historical calibration data and effectiveness evaluation for AI collaboration in SAGE project
 
@@ -232,12 +232,10 @@ This document tracks **project-specific calibration data**:
    └── Analyze task outcomes
    └── Identify patterns
    └── Note anomalies
-
 2. Monthly Calibration
    └── Review success metrics
    └── Adjust levels if needed
    └── Document changes
-
 3. Quarterly Assessment
    └── Comprehensive analysis
    └── Update defaults
@@ -247,21 +245,15 @@ This document tracks **project-specific calibration data**:
 
 ```markdown
 ## Calibration Update: [Date]
-
 ### Changes Made
-
 | Category | Before | After | Rationale |
 |:---------|:-------|:------|:----------|
 | [Category] | L[X] | L[Y] | [Reason] |
-
 ### Supporting Data
-
 - Success rate: X%
 - Review efficiency: Y%
 - Sample size: N tasks
-
 ### Observations
-
 [Notes on effectiveness]
 ```
 ---

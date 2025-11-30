@@ -1,4 +1,4 @@
-# Knowledge Standards Summary
+﻿# Knowledge Standards Summary
 
 > Session record: Documentation and Configuration Standards extracted from .knowledge/
 
@@ -165,11 +165,9 @@ This file stores key knowledge about documentation writing standards and configu
 #
 # [Description]
 # Version: x.y.z
-
 # =============================================================================
 # [Section Name]
 # =============================================================================
-
 key: value              # Inline comment (aligned)
 ```
 ### 4.4 Quick Checklist

@@ -1,4 +1,4 @@
-# Configuration
+﻿# Configuration
 
 > Configuration system design for SAGE
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 The configuration system provides flexible, hierarchical configuration management for SAGE.
-
 
 ## Table of Contents
 

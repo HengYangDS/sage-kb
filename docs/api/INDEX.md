@@ -1,4 +1,4 @@
-
+﻿
 # API Reference
 
 > SAGE Knowledge Base API Documentation
@@ -77,10 +77,8 @@ All interfaces support the same knowledge loading patterns:
 ```
 # By layer
 core, guidelines, frameworks, practices
-
 # By topic
 search "timeout", search "autonomy"
-
 # By task type
 coding, debugging, reviewing, planning
 ```

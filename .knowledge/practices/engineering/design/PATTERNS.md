@@ -1,4 +1,4 @@
-# Engineering Patterns Practice Guide
+﻿# Engineering Patterns Practice Guide
 
 > Common engineering patterns and their practical application
 
@@ -35,17 +35,13 @@
 class Repository(ABC, Generic[T]):
     @abstractmethod
     def get(self, id: str) -> Optional[T]: ...
-
     @abstractmethod
     def save(self, entity: T) -> T: ...
-
     @abstractmethod
     def delete(self, id: str) -> bool: ...
-
 class UserRepository(Repository[User]):
     def __init__(self, session: Session):
         self._session = session
-
     def get(self, id: str) -> Optional[User]:
         return self._session.query(User).get(id)
 ```
@@ -60,7 +56,6 @@ class UserService:
     def __init__(self, repo: UserRepository, events: EventBus):
         self._repo = repo
         self._events = events
-
     def register(self, data: UserCreate) -> User:
         user = self._repo.save(User(**data.dict()))
         self._events.publish(UserRegistered(user.id))
@@ -75,15 +70,12 @@ class UserService:
 ```python
 class HandlerFactory:
     _handlers: Dict[str, Type[Handler]] = {}
-
     @classmethod
     def register(cls, msg_type: str):
         def decorator(handler_cls):
             cls._handlers[msg_type] = handler_cls
             return handler_cls
-
         return decorator
-
     @classmethod
     def create(cls, msg_type: str) -> Handler:
         return cls._handlers[msg_type]()
@@ -97,15 +89,12 @@ class HandlerFactory:
 ```python
 class PricingStrategy(Protocol):
     def calculate(self, base: float, qty: int) -> float: ...
-
 class RegularPricing:
     def calculate(self, base: float, qty: int) -> float:
         return base * qty
-
 class BulkPricing:
     def __init__(self, threshold: int, discount: float):
         self.threshold, self.discount = threshold, discount
-
     def calculate(self, base: float, qty: int) -> float:
         mult = 1 - self.discount if qty >= self.threshold else 1
         return base * qty * mult
@@ -120,10 +109,8 @@ class BulkPricing:
 class EventBus:
     def __init__(self):
         self._subs: Dict[str, List[Callable]] = {}
-
     def subscribe(self, event: str, handler: Callable):
         self._subs.setdefault(event, []).append(handler)
-
     def publish(self, event: str, data: Any):
         for handler in self._subs.get(event, []):
             handler(data)

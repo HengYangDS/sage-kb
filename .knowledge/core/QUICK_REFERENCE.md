@@ -1,4 +1,4 @@
-# Quick Reference Card
+﻿# Quick Reference Card
 
 > Critical questions and autonomy levels at a glance
 
@@ -63,19 +63,12 @@ Ask before every task:
 
 ```markdown
 ## Summary
-
 [Brief outcome]
-
 ## Changes Made
-
 [List of modifications]
-
 ## Verification
-
 [How to verify]
-
 ## Next Steps
-
 [Follow-up actions if applicable]
 ```
 ---

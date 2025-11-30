@@ -1,4 +1,4 @@
-# Profiling Guide
+﻿# Profiling Guide
 
 > Performance measurement and bottleneck identification
 
@@ -46,7 +46,6 @@ flowchart TB
 import cProfile
 import pstats
 from io import StringIO
-
 def profile_function(func, *args, **kwargs):
     """Profile a function and print results."""
     profiler = cProfile.Profile()
@@ -64,10 +63,8 @@ def profile_function(func, *args, **kwargs):
     
     print(stream.getvalue())
     return result
-
 # Usage
 profile_function(my_expensive_function, arg1, arg2)
-
 # Command line usage
 # python -m cProfile -s cumulative my_script.py
 ```
@@ -75,7 +72,6 @@ profile_function(my_expensive_function, arg1, arg2)
 
 ```python
 # Install: pip install line_profiler
-
 # Add decorator to functions to profile
 @profile  # This decorator is added by kernprof
 def slow_function(items):
@@ -84,7 +80,6 @@ def slow_function(items):
         processed = process(item)
         result.append(processed)
     return result
-
 # Run with: kernprof -l -v my_script.py
 ```
 **Output example:**
@@ -103,15 +98,12 @@ Line #    Hits    Time  Per Hit   % Time  Line Contents
 
 ```python
 # Install: pip install memory_profiler
-
 from memory_profiler import profile
-
 @profile
 def memory_intensive():
     large_list = [i ** 2 for i in range(1000000)]
     filtered = [x for x in large_list if x % 2 == 0]
     return sum(filtered)
-
 # Run with: python -m memory_profiler my_script.py
 ```
 **Output example:**
@@ -129,7 +121,6 @@ Line #    Mem usage    Increment   Line Contents
 
 ```python
 import tracemalloc
-
 def trace_memory():
     tracemalloc.start()
     
@@ -144,16 +135,12 @@ def trace_memory():
         print(stat)
     
     tracemalloc.stop()
-
 # Compare snapshots
 tracemalloc.start()
 snapshot1 = tracemalloc.take_snapshot()
-
 # ... code that may leak ...
-
 snapshot2 = tracemalloc.take_snapshot()
 top_stats = snapshot2.compare_to(snapshot1, 'lineno')
-
 for stat in top_stats[:10]:
     print(stat)
 ```
@@ -163,7 +150,6 @@ for stat in top_stats[:10]:
 import asyncio
 import time
 from contextlib import asynccontextmanager
-
 class AsyncProfiler:
     """Profile async operations."""
     
@@ -185,17 +171,14 @@ class AsyncProfiler:
         for name, times in self.timings.items():
             avg = sum(times) / len(times)
             print(f"{name}: avg={avg*1000:.2f}ms, count={len(times)}")
-
 # Usage
 profiler = AsyncProfiler()
-
 async def my_async_function():
     async with profiler.measure("database_query"):
         await db.query(...)
     
     async with profiler.measure("api_call"):
         await api.fetch(...)
-
 await my_async_function()
 profiler.report()
 ```
@@ -208,10 +191,8 @@ profiler.report()
 ```sql
 -- Basic explain
 EXPLAIN SELECT * FROM users WHERE email = 'test@example.com';
-
 -- With execution statistics
 EXPLAIN ANALYZE SELECT * FROM users WHERE email = 'test@example.com';
-
 -- Full details
 EXPLAIN (ANALYZE, BUFFERS, FORMAT TEXT)
 SELECT * FROM users WHERE email = 'test@example.com';
@@ -240,7 +221,6 @@ Execution Time: 12.400 ms
 -- PostgreSQL: Slow query log
 ALTER SYSTEM SET log_min_duration_statement = '100ms';
 SELECT pg_reload_conf();
-
 -- View recent slow queries
 SELECT
     query,
@@ -251,7 +231,6 @@ SELECT
 FROM pg_stat_statements
 ORDER BY total_time DESC
 LIMIT 10;
-
 -- Find missing indexes
 SELECT
     schemaname || '.' || relname as table,
@@ -270,15 +249,12 @@ import logging
 from sqlalchemy import event
 from sqlalchemy.engine import Engine
 import time
-
 # Enable SQL logging
 logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
-
 # Query timing
 @event.listens_for(Engine, "before_cursor_execute")
 def before_cursor_execute(conn, cursor, statement, parameters, context, executemany):
     conn.info.setdefault('query_start_time', []).append(time.time())
-
 @event.listens_for(Engine, "after_cursor_execute")
 def after_cursor_execute(conn, cursor, statement, parameters, context, executemany):
     total = time.time() - conn.info['query_start_time'].pop(-1)
@@ -294,11 +270,9 @@ def after_cursor_execute(conn, cursor, statement, parameters, context, executema
 ```bash
 # Linux: CPU usage by process
 top -p $(pgrep -f python)
-
 # Detailed CPU profiling with perf
 perf record -g python my_script.py
 perf report
-
 # Python with py-spy (sampling profiler)
 pip install py-spy
 py-spy record -o profile.svg -- python my_script.py
@@ -309,21 +283,17 @@ py-spy top --pid <PID>  # Real-time view
 ```bash
 # Linux: Memory usage
 ps aux --sort=-%mem | head -10
-
 # Detailed memory with valgrind
 valgrind --tool=massif python my_script.py
 ms_print massif.out.*
-
 # Python memory with pympler
 pip install pympler
 ```
 ```python
 from pympler import asizeof, tracker
-
 # Object size
 obj = {"key": [1, 2, 3] * 1000}
 print(f"Size: {asizeof.asizeof(obj)} bytes")
-
 # Track memory changes
 tr = tracker.SummaryTracker()
 # ... code ...
@@ -334,10 +304,8 @@ tr.print_diff()
 ```bash
 # Linux: I/O statistics
 iostat -x 1
-
 # Trace system calls
 strace -c python my_script.py
-
 # File operations only
 strace -e trace=file python my_script.py
 ```
@@ -352,7 +320,6 @@ import time
 from dataclasses import dataclass, field
 from typing import Dict, List
 from contextlib import contextmanager
-
 @dataclass
 class Metrics:
     """Application metrics collector."""
@@ -394,10 +361,8 @@ class Metrics:
             "gauges": self.gauges,
             "timings": timing_stats,
         }
-
 # Global metrics instance
 metrics = Metrics()
-
 # Usage
 metrics.increment("requests_total")
 with metrics.timer("request_duration"):
@@ -408,9 +373,7 @@ with metrics.timer("request_duration"):
 ```python
 import structlog
 import time
-
 logger = structlog.get_logger()
-
 def log_performance(func):
     """Decorator to log function performance."""
     async def wrapper(*args, **kwargs):
@@ -442,14 +405,11 @@ def log_performance(func):
 from fastapi import FastAPI
 import psutil
 import time
-
 app = FastAPI()
 start_time = time.time()
-
 @app.get("/health")
 async def health_check():
     return {"status": "healthy"}
-
 @app.get("/metrics")
 async def metrics():
     process = psutil.Process()
@@ -471,7 +431,6 @@ async def metrics():
 ```python
 # locustfile.py
 from locust import HttpUser, task, between
-
 class WebsiteUser(HttpUser):
     wait_time = between(1, 5)
     
@@ -490,19 +449,16 @@ class WebsiteUser(HttpUser):
             "name": "Test Item",
             "price": 99.99
         })
-
 # Run: locust -f locustfile.py --host=http://localhost:8000
 ```
 ### pytest-benchmark
 
 ```python
 # pip install pytest-benchmark
-
 def test_performance(benchmark):
     """Benchmark a function."""
     result = benchmark(my_function, arg1, arg2)
     assert result is not None
-
 def test_with_setup(benchmark):
     """Benchmark with setup/teardown."""
     def setup():
@@ -523,7 +479,6 @@ import httpx
 import time
 from dataclasses import dataclass
 from typing import List
-
 @dataclass
 class LoadTestResult:
     total_requests: int
@@ -534,7 +489,6 @@ class LoadTestResult:
     p95_latency: float
     p99_latency: float
     rps: float
-
 async def load_test(
     url: str,
     num_requests: int = 1000,
@@ -587,7 +541,6 @@ async def load_test(
         p99_latency=sorted_latencies[p99_idx] if latencies else 0,
         rps=len(latencies) / total_time
     )
-
 # Usage
 result = asyncio.run(load_test("http://localhost:8000/api/items"))
 print(f"RPS: {result.rps:.2f}")

@@ -1,4 +1,4 @@
-# Configuration Hierarchy
+﻿# Configuration Hierarchy
 
 > Multi-level configuration system for SAGE
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 SAGE uses a hierarchical configuration system where settings cascade from defaults through environment-specific overrides to runtime values.
-
 
 ## Table of Contents
 
@@ -30,7 +29,6 @@ SAGE uses a hierarchical configuration system where settings cascade from defaul
 
 ```
 Priority (highest to lowest):
-
 1. Runtime      → Command line, environment variables
 2. User         → ~/.sage/config.yaml
 3. Project      → .sage/config.yaml
@@ -150,7 +148,6 @@ sage:
 
 ```
 SAGE_{SECTION}_{KEY}
-
 Examples:
 SAGE_TIMEOUT_DEFAULT_MS=10000
 SAGE_SERVICES_API_PORT=8080
@@ -171,7 +168,6 @@ SAGE_KNOWLEDGE_TOKEN_BUDGET=6000
 
 ```bash
 sage get --timeout 5000 --format json --layer 2
-
 # Maps to:
 # timeout.default_ms = 5000
 # services.cli.format = json
@@ -203,12 +199,10 @@ services:
   api:
     port: 8080
     workers: 2
-
 # Override (project)
 services:
   api:
     workers: 4
-
 # Result
 services:
   api:
@@ -223,7 +217,6 @@ services:
 
 ```python
 from pydantic import BaseModel
-
 class TimeoutConfig(BaseModel):
     default_ms: int = 5000
     max_ms: int = 30000
@@ -261,15 +254,11 @@ class ConfigValidator:
 
 ```python
 from sage.config import get_config
-
 config = get_config()
-
 # Get with default
 timeout = config.get("timeout.default_ms", default=5000)
-
 # Get required
 port = config.require("services.api.port")
-
 # Get section
 services = config.section("services")
 ```

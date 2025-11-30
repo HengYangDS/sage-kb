@@ -34,24 +34,16 @@
 
 ```markdown
 # Project Guidelines
-
 **Name**: [Project Name] | **Type**: [Python Backend/Web/etc.] | **Language**: [Python 3.12/etc.]
-
 ## Knowledge Base
-
 Uses AI Collaboration KB v0.1.0 — Load: `kb get --scenario python_backend`
 ## Project-Specific
-
 - Naming: [overrides if any]
 - Structure: [notes if any]
 - Dependencies: [key constraints]
-
 ## Autonomy
-
 Default: L4 | Elevated: [routine tasks → L5] | Lowered: [sensitive areas → L1-L2]
-
 ## Commands
-
 `[dev cmd]` · `[test cmd]` · `[build cmd]`
 ```
 ---
@@ -66,17 +58,13 @@ name = "project-name"
 version = "0.1.0"
 requires-python = ">=3.11"
 dependencies = ["pydantic>=2.0", "httpx>=0.24"]
-
 [project.optional-dependencies]
 dev = ["pytest>=7.0", "pytest-cov>=4.0", "mypy>=1.0", "ruff>=0.1"]
-
 [tool.ruff]
 line-length = 88
-
 [tool.mypy]
 python_version = "3.11"
 strict = true
-
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-v --cov=src"
@@ -97,11 +85,8 @@ addopts = "-v --cov=src"
 
 ```markdown
 # Project Name
-
 Brief description.
-
 ## Quick Start
-
 ```bash
 # Setup environment (conda recommended)
 conda create -n project-name python=3.12
@@ -116,7 +101,6 @@ from project_name import main_function
 result = main_function()
 ```
 ## Development
-
 ```bash
 git clone <url> && cd project-name
 conda env create -f environment.yml  # recommended
@@ -125,13 +109,9 @@ pip install -e ".[dev]"
 ```
 **Test**: `pytest` | **Lint**: `ruff check . && mypy src/`
 ## Contributing
-
 Fork → Branch → Changes + Tests → PR
-
 ## License
-
 MIT
-
 ```
 ---
 
@@ -140,16 +120,12 @@ MIT
 ```gitignore
 # Python
 __pycache__/ | *.py[cod] | *.egg-info/ | dist/ | build/ | .eggs/
-
 # Virtual env
 .env | .venv | venv/
-
 # IDE
 .idea/ | .vscode/ | *.swp
-
 # Testing
 .coverage | htmlcov/ | .pytest_cache/ | .mypy_cache/
-
 # Local
 .env.local | *.local.yaml | secrets.yaml
 ```
@@ -194,7 +170,6 @@ name: CI
 on:
   push: { branches: [ main, develop ] }
   pull_request: { branches: [ main ] }
-
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -221,7 +196,6 @@ PROJECT=$1
 mkdir -p "$PROJECT"/{src/"$PROJECT",tests/{unit,integration},docs,.junie}
 touch "$PROJECT"/{src/"$PROJECT"/__init__.py,tests/conftest.py,README.md,.gitignore}
 echo "# Guidelines\nUses AI Collaboration KB v0.1.0" > "$PROJECT"/.junie/GUIDELINES.md
-
 # Create environment.yml for conda (recommended)
 cat > "$PROJECT"/environment.yml << EOF
 name: $PROJECT
@@ -234,7 +208,6 @@ dependencies:
   - pip:
       - -e ".[dev]"
 EOF
-
 echo "Created $PROJECT!"
 echo "Next steps:"
 echo "  cd $PROJECT"

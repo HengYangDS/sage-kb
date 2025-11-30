@@ -1,4 +1,4 @@
-# Error Handling Patterns
+﻿# Error Handling Patterns
 
 > Consistent error handling for robust applications
 
@@ -33,15 +33,12 @@
 class AppError(Exception):
     """Base application error."""
     pass
-
 class ValidationError(AppError):
     """Input validation failed."""
     pass
-
 class NotFoundError(AppError):
     """Resource not found."""
     pass
-
 class AuthorizationError(AppError):
     """Access denied."""
     pass
@@ -84,7 +81,6 @@ class ValidationError(AppError):
         super().__init__(message)
         self.field = field
         self.message = message
-
 raise ValidationError("Invalid email", field="email")
 ```
 ### 4.2 Error Chaining
@@ -143,7 +139,7 @@ except Exception as e:
 ## Related
 
 - `.knowledge/frameworks/resilience/TIMEOUT_PATTERNS.md` — Resilience patterns
-- `.knowledge/practices/engineering/API_DESIGN.md` — API error responses
+- `.knowledge/practices/engineering/design/API_DESIGN.md` — API error responses
 
 ---
 

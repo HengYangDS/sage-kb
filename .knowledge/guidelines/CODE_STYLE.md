@@ -84,13 +84,10 @@
 ```python
 def function(param: str) -> bool:
     """Brief description.
-
     Args:
         param: Parameter description.
-
     Returns:
         Return value description.
-
     Raises:
         ValueError: When param is invalid.
     """

@@ -1,4 +1,4 @@
-
+﻿
 # MCP Resources and Advanced Features
 
 > Resources, prompts, error handling, and client integration for SAGE MCP server
@@ -80,13 +80,11 @@ Generate a task-specific system prompt.
 
 ```
 You are an AI assistant with access to the SAGE Knowledge Base.
-
 Current task: coding
 Relevant guidelines:
 - Follow Python style guide
 - Use type hints
 - Write tests
-
 Available knowledge layers:
 - core: Core principles
 - guidelines: Coding standards
@@ -171,7 +169,6 @@ Add to `claude_desktop_config.json`:
 
 ```python
 from mcp import Client
-
 async with Client("localhost", 8000) as client:
     # Get knowledge
     result = await client.call_tool(

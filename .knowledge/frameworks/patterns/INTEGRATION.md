@@ -38,7 +38,6 @@ flowchart TB
         API["API Server"]
         Plugin["Plugin System"]
     end
-
     MCP --> AI["AI Clients"]
     CLI --> Terminal["Terminal Tools"]
     API --> External["External Apps"]
@@ -83,9 +82,7 @@ flowchart TB
 ```python
 # Support multiple concurrent clients
 from sage.services.mcp_server import create_app
-
 app = create_app()
-
 # Each client gets isolated session state
 @app.tool()
 async def get_knowledge(
@@ -111,7 +108,6 @@ class ContextSync:
     def __init__(self, client):
         self.client = client
         self.last_sync = None
-
     async def on_change(self, change_event):
         """Push: Notify client of changes."""
         await self.client.notify(
@@ -120,7 +116,6 @@ class ContextSync:
                 "path": change_event.path
             }
         )
-
     async def get_full_context(self):
         """Pull: Client requests full context."""
         self.last_sync = datetime.now()
@@ -136,15 +131,11 @@ class ContextSync:
 
 ```markdown
 # Project Guidelines
-
 ## Knowledge Base
-
 - Use `sage get` for context loading
 - Follow timeout hierarchy (T1-T5)
 - Reference `.context/` for project-specific knowledge
-
 ## Autonomy Level
-
 Default: L4 (Medium-High)
 ```
 **File Watcher Integration**:
@@ -206,10 +197,8 @@ Default: L4 (Medium-High)
 ```python
 class EditorBridge:
     """Bridge between SAGE and any editor."""
-
     def __init__(self, editor_type: str):
         self.editor = self._detect_editor(editor_type)
-
     async def provide_context(self, file_path: str) -> dict:
         """Provide context for current file."""
         return {
@@ -217,7 +206,6 @@ class EditorBridge:
             "project_context"   : await self.get_project_context(),
             "relevant_knowledge": await self.search_relevant(file_path)
         }
-
     async def on_file_save(self, file_path: str):
         """Hook for file save events."""
         if self._is_knowledge_file(file_path):
@@ -232,34 +220,27 @@ class EditorBridge:
 ```yaml
 # .github/workflows/knowledge-check.yml
 name: Knowledge Base Validation
-
 on:
   push:
     paths:
       - '.knowledge/**'
       - '.context/**'
       - 'docs/**'
-
 jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-
       - name: Install SAGE
         run: pip install -e .
-
       - name: Check Structure
         run: sage check --structure
-
       - name: Check Links
         run: sage check --links
-
       - name: Validate Content
         run: sage check --content
 ```
@@ -271,7 +252,6 @@ stages:
   - validate
   - build
   - deploy
-
 knowledge-validation:
   stage: validate
   image: python:3.12
@@ -282,7 +262,6 @@ knowledge-validation:
     - changes:
         - .knowledge/**
         - .context/**
-
 knowledge-build:
   stage: build
   script:
@@ -304,7 +283,6 @@ repos:
         language: system
         files: '\.md$'
         pass_filenames: false
-
       - id: sage-validate-structure
         name: Validate Structure
         entry: sage check --structure
@@ -329,10 +307,8 @@ repos:
 ```python
 from fastapi import FastAPI, HTTPException
 from sage.core.loader import KnowledgeLoader
-
 app = FastAPI()
 loader = KnowledgeLoader()
-
 @app.get("/api/v1/knowledge/{layer}")
 async def get_knowledge(layer: int, timeout_ms: int = 5000):
     """REST endpoint for knowledge retrieval."""
@@ -341,7 +317,6 @@ async def get_knowledge(layer: int, timeout_ms: int = 5000):
         return {"status": "success", "data": result}
     except TimeoutError:
         raise HTTPException(504, "Knowledge loading timed out")
-
 @app.get("/api/v1/search")
 async def search(q: str, max_results: int = 10):
     """Search knowledge base."""
@@ -353,21 +328,18 @@ async def search(q: str, max_results: int = 10):
 ```python
 import strawberry
 from sage.core.loader import KnowledgeLoader
-
 @strawberry.type
 class KnowledgeNode:
     id: str
     title: str
     content: str
     layer: int
-
 @strawberry.type
 class Query:
     @strawberry.field
     async def knowledge(self, layer: int = 0) -> list[KnowledgeNode]:
         loader = KnowledgeLoader()
         return await loader.load_layer(layer)
-
     @strawberry.field
     async def search(self, query: str) -> list[KnowledgeNode]:
         loader = KnowledgeLoader()
@@ -377,12 +349,10 @@ class Query:
 
 ```python
 from sage.core.events import EventBus
-
 class WebhookIntegration:
     def __init__(self, webhook_url: str):
         self.webhook_url = webhook_url
         EventBus.subscribe("knowledge.updated", self.on_update)
-
     async def on_update(self, event):
         """Send webhook on knowledge update."""
         await httpx.post(
@@ -401,21 +371,16 @@ class WebhookIntegration:
 
 ```python
 from sage.plugins import PluginManager
-
 class IntegrationPlugin:
     """Base class for integration plugins."""
-
     name: str = "base-integration"
     version: str = "1.0.0"
-
     async def initialize(self, context: dict) -> None:
         """Called when plugin is loaded."""
         pass
-
     async def on_knowledge_load(self, knowledge: dict) -> dict:
         """Hook for knowledge loading."""
         return knowledge
-
     async def on_search(self, query: str, results: list) -> list:
         """Hook for search results."""
         return results
@@ -432,11 +397,9 @@ flowchart TB
 
 ```python
 from sage.core.events import EventBus
-
 class AnalyticsPlugin:
     async def initialize(self, context):
         EventBus.subscribe("tool.invoked", self.track_usage)
-
     async def track_usage(self, event):
         # Track tool usage for analytics
         await self.analytics.track(event.tool_name, event.duration)
@@ -458,12 +421,10 @@ class AnalyticsPlugin:
 
 ```python
 from sage.integrations import ConfluenceImporter
-
 importer = ConfluenceImporter(
     base_url="https://company.atlassian.net",
     space_key="KB"
 )
-
 # Import with transformation
 await importer.import_space(
     target_path=".knowledge/imported/",
@@ -474,9 +435,7 @@ await importer.import_space(
 
 ```python
 from sage.integrations import Exporter
-
 exporter = Exporter(kb_path=".knowledge/")
-
 # Export to different formats
 await exporter.to_docusaurus("dist/docusaurus/")
 await exporter.to_mkdocs("dist/mkdocs/")
@@ -512,7 +471,6 @@ await exporter.to_json("dist/knowledge.json")
 
 ```python
 from sage.integrations import IntegrationError
-
 class ResilientIntegration:
     async def call_external(self, request):
         retries = 3

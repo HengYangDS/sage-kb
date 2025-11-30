@@ -1,4 +1,4 @@
----
+﻿---
 name: Feature Request
 about: Suggest an idea for SAGE Knowledge Base
 title: '[FEATURE] '
@@ -64,7 +64,6 @@ Link any related issues or pull requests:
 Add any other context, mockups, or examples about the feature request here.
 
 ---
-
 
 ---
 

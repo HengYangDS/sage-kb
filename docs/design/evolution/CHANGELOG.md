@@ -1,4 +1,4 @@
-# Changelog
+﻿# Changelog
 
 > All notable changes to SAGE Knowledge Base
 
@@ -15,7 +15,6 @@ Types of changes:
 - **Removed** — Removed features
 - **Fixed** — Bug fixes
 - **Security** — Vulnerability fixes
-
 
 ## Table of Contents
 
@@ -143,7 +142,6 @@ Types of changes:
 ```python
 # Old: Direct capability access
 from sage.capabilities import analyzer
-
 # New: Registry-based access
 from sage.core.registry import get_capability
 analyzer = get_capability("analyzer")
@@ -153,7 +151,6 @@ analyzer = get_capability("analyzer")
 ```python
 # Old: Direct service initialization
 cli = CLIService()
-
 # New: Container-based initialization
 container = get_container()
 cli = container.resolve(CLIService)

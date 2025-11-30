@@ -1,4 +1,4 @@
----
+﻿---
 name: Bug Report
 about: Create a report to help us improve SAGE Knowledge Base
 title: '[BUG] '
@@ -52,7 +52,6 @@ Add any other context about the problem here.
 If you have ideas on how to fix this, please share them.
 
 ---
-
 
 ---
 

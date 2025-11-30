@@ -1,4 +1,4 @@
-# YAML DSL
+﻿# YAML DSL
 
 > Domain-specific language for SAGE configuration
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 SAGE uses YAML as its configuration DSL with custom extensions for expressions, references, and conditional logic.
-
 
 ## Table of Contents
 
@@ -33,16 +32,13 @@ SAGE uses YAML as its configuration DSL with custom extensions for expressions, 
 # Strings
 name: "SAGE"
 path: /path/to/file
-
 # Numbers
 port: 8080
 timeout_ms: 5000
 ratio: 0.75
-
 # Booleans
 enabled: true
 debug: false
-
 # Null
 optional_value: null
 ```
@@ -54,7 +50,6 @@ layers:
   - .knowledge
   - .context
   - .junie
-
 # Maps
 services:
   cli:
@@ -73,12 +68,10 @@ services:
 _vars:
   base_timeout: 5000
   max_retries: 3
-
 # Reference variables with ${}
 timeout:
   default_ms: ${base_timeout}
   extended_ms: ${base_timeout * 2}
-
 retries:
   count: ${max_retries}
 ```
@@ -98,7 +91,6 @@ database:
 _include:
   - base.yaml
   - ${env:SAGE_ENV:development}.yaml
-
 # Partial includes
 services:
   _include: services/*.yaml
@@ -279,7 +271,6 @@ _profiles:
     debug: false
     logging:
       level: warning
-
 # Active profile
 _active_profile: ${env:SAGE_PROFILE:development}
 ```
@@ -304,7 +295,6 @@ _profiles:
 # sage.yaml
 _vars:
   base_timeout: 5000
-
 sage:
   knowledge:
     layers:

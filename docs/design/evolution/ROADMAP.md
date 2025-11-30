@@ -1,4 +1,4 @@
-# Roadmap
+﻿# Roadmap
 
 > SAGE development roadmap and feature planning
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 This document outlines the strategic roadmap for SAGE Knowledge Base development, including planned features, timelines, and priorities.
-
 
 ## Table of Contents
 

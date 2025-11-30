@@ -1,4 +1,4 @@
-# SAGE Knowledge Base - Test Fixture
+﻿# SAGE Knowledge Base - Test Fixture
 
 > Sample knowledge base index for testing purposes.
 
@@ -18,7 +18,6 @@ This is a test fixture for the SAGE Knowledge Base system.
 - [Core Principles](core/principles.md)
 
 ---
-
 
 ---
 

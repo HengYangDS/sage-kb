@@ -1,4 +1,4 @@
-
+﻿
 # Configuration Guide
 
 > Complete reference for SAGE Knowledge Base configuration options
@@ -76,16 +76,13 @@ config/
 project:
   name: "my-project"
   version: "1.0.0"
-
 # Include other configs (optional)
 includes:
   - core/timeout.yaml
   - knowledge/loading.yaml
-
 # Override specific values
 timeout:
   default_ms: 5000
-
 knowledge:
   content_path: "./.knowledge"
 ```
@@ -162,7 +159,6 @@ triggers:
       - .knowledge/guidelines/python.md
     timeout_ms: 2000
     priority: 1
-
   architecture:
     keywords: [architecture, design, system, pattern]
     load:
@@ -206,11 +202,9 @@ token_budget:
 # Override timeout settings
 export SAGE_TIMEOUT_DEFAULT_MS=8000
 export SAGE_TIMEOUT_GLOBAL_MAX_MS=15000
-
 # Override logging
 export SAGE_LOG_LEVEL=DEBUG
 export SAGE_LOG_FORMAT=json
-
 # Override loading behavior
 export SAGE_LOADING_MAX_TOKENS=10000
 export SAGE_CACHE_ENABLED=false

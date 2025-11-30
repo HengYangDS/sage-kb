@@ -1,4 +1,4 @@
-# Data Models
+﻿# Data Models
 
 > Core data structures and types for SAGE
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 Data models define the core types and structures used throughout SAGE, ensuring consistent data representation across all layers.
-
 
 ## Table of Contents
 
@@ -44,7 +43,6 @@ Data models define the core types and structures used throughout SAGE, ensuring 
 from dataclasses import dataclass
 from datetime import datetime
 from typing import Any
-
 @dataclass
 class KnowledgeAsset:
     """Fundamental unit of knowledge."""
@@ -90,7 +88,6 @@ class KnowledgeNode:
     id: str
     asset: KnowledgeAsset
     labels: set[str]
-
 @dataclass
 class KnowledgeEdge:
     """Edge connecting knowledge nodes."""
@@ -98,7 +95,6 @@ class KnowledgeEdge:
     target_id: str
     relation_type: str
     weight: float = 1.0
-
 @dataclass
 class KnowledgeGraph:
     """Graph of related knowledge."""
@@ -117,9 +113,7 @@ class KnowledgeGraph:
 
 ```python
 from typing import Generic, TypeVar
-
 T = TypeVar('T')
-
 @dataclass
 class Result(Generic[T]):
     """Generic operation result."""
@@ -145,7 +139,6 @@ class ValidationError:
     line: int | None
     message: str
     severity: str  # error, warning, info
-
 @dataclass
 class ValidationResult:
     """Result of validation operation."""
@@ -181,13 +174,11 @@ class TimeoutConfig:
     processing: int = 1000
     external_api: int = 5000
     batch: int = 30000
-
 @dataclass
 class LoadingConfig:
     strategy: str = "lazy"
     max_token_budget: int = 50000
     cache_enabled: bool = True
-
 @dataclass
 class Config:
     """Root configuration."""
@@ -210,7 +201,6 @@ class Session:
     started_at: datetime
     user_type: str  # human, ai
     context: "SessionContext"
-
 @dataclass
 class SessionContext:
     """State within a session."""
@@ -233,7 +223,6 @@ class RawKnowledge:
     content: bytes
     encoding: str | None
     collected_at: datetime
-
 @dataclass
 class NormalizedKnowledge:
     id: str
@@ -241,7 +230,6 @@ class NormalizedKnowledge:
     content: str
     metadata: dict[str, Any]
     fingerprint: str
-
 # Analyze phase
 @dataclass
 class ParsedKnowledge:
@@ -249,21 +237,18 @@ class ParsedKnowledge:
     structure: dict[str, Any]
     content_blocks: list[dict]
     references: list[str]
-
 @dataclass
 class ClassifiedKnowledge:
     id: str
     classifications: list[str]
     tags: set[str]
     confidence: float
-
 # Generate phase
 @dataclass
 class FormattedContent:
     format_type: str
     content: str | dict
     metadata: dict[str, Any]
-
 @dataclass
 class RenderedContent:
     content: str
@@ -277,13 +262,11 @@ class RenderedContent:
 
 ```python
 from typing import TypeAlias
-
 # Common type aliases
 AssetId: TypeAlias = str
 NodeId: TypeAlias = str
 Path: TypeAlias = str
 Fingerprint: TypeAlias = str
-
 # Collection aliases
 Assets: TypeAlias = list[KnowledgeAsset]
 Nodes: TypeAlias = dict[NodeId, KnowledgeNode]
@@ -297,7 +280,6 @@ Edges: TypeAlias = list[KnowledgeEdge]
 
 ```python
 from pydantic import BaseModel, Field
-
 class KnowledgeAssetModel(BaseModel):
     id: str = Field(..., min_length=1)
     path: str = Field(..., pattern=r"^[\w/.-]+$")

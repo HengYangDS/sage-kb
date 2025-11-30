@@ -78,10 +78,8 @@
 def test_user_creation():
     # Arrange
     data = {"name": "Alice"}
-
     # Act
     result = service.create(data)
-
     # Assert
     assert result.name == "Alice"
 ```

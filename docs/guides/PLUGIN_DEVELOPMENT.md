@@ -1,4 +1,4 @@
-
+﻿
 # Plugin Development Guide
 
 > How to create and publish plugins for SAGE Knowledge Base
@@ -46,7 +46,6 @@ SAGE plugins can:
 # Create plugin directory
 mkdir sage-plugin-myplugin
 cd sage-plugin-myplugin
-
 # Initialize structure
 mkdir -p src/sage_myplugin
 touch src/sage_myplugin/__init__.py
@@ -58,7 +57,6 @@ touch pyproject.toml
 ```python
 # src/sage_myplugin/plugin.py
 from sage.plugins import PluginBase, hookimpl
-
 class MyPlugin(PluginBase):
     """My custom SAGE plugin."""
     
@@ -93,14 +91,12 @@ class MyPlugin(PluginBase):
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
-
 [project]
 name = "sage-plugin-myplugin"
 version = "1.0.0"
 description = "My SAGE plugin"
 requires-python = ">=3.12"
 dependencies = ["sage-kb>=0.1.0"]
-
 [project.entry-points."sage.plugins"]
 my-plugin = "sage_myplugin.plugin:MyPlugin"
 ```
@@ -147,7 +143,6 @@ hooks:
 ```python
 from pathlib import Path
 import yaml
-
 class MyPlugin(PluginBase):
     def __init__(self):
         super().__init__()
@@ -179,7 +174,6 @@ class MyPlugin(PluginBase):
 
 ```python
 from sage.plugins import PluginBase, hookimpl
-
 class MyPlugin(PluginBase):
     
     @hookimpl
@@ -217,7 +211,6 @@ class MyPlugin(PluginBase):
 @hookimpl(tryfirst=True)  # Run before other plugins
 def on_knowledge_request(self, layer, query):
     ...
-
 @hookimpl(trylast=True)   # Run after other plugins
 def on_knowledge_loaded(self, layer, content):
     ...
@@ -231,10 +224,8 @@ def on_knowledge_loaded(self, layer, content):
 ```bash
 # Install in development mode
 pip install -e .
-
 # Enable plugin
 sage plugin enable my-plugin
-
 # Test
 sage plugin list
 sage info  # Should show plugin
@@ -244,7 +235,6 @@ sage info  # Should show plugin
 ```bash
 # Build
 python -m build
-
 # Upload to PyPI
 python -m twine upload dist/*
 ```
@@ -274,14 +264,11 @@ python -m twine upload dist/*
 ```bash
 # List plugins
 sage plugin list
-
 # Install plugin
 pip install sage-plugin-name
 sage plugin enable plugin-name
-
 # Disable plugin
 sage plugin disable plugin-name
-
 # Plugin info
 sage plugin info plugin-name
 ```
@@ -291,7 +278,6 @@ sage plugin info plugin-name
 # Enable debug logging
 import logging
 logging.getLogger("sage.plugins").setLevel(logging.DEBUG)
-
 # In plugin
 self.logger.debug("Debug message", extra={"data": data})
 ```

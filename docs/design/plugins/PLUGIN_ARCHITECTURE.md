@@ -1,4 +1,4 @@
-# Plugin Architecture
+﻿# Plugin Architecture
 
 > Extensible plugin system design for SAGE
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 The plugin architecture enables extending SAGE functionality without modifying core code, supporting custom capabilities, integrations, and behaviors.
-
 
 ## Table of Contents
 
@@ -67,7 +66,6 @@ graph TD
 ```python
 from abc import ABC, abstractmethod
 from typing import Any
-
 class Plugin(ABC):
     """Base class for all SAGE plugins."""
     
@@ -111,20 +109,15 @@ name: my-custom-plugin
 version: 1.0.0
 description: A custom SAGE plugin
 author: Developer Name
-
 sage:
   min_version: "0.1.0"
   max_version: "1.0.0"
-
 dependencies:
   - core-utils >= 1.0
-
 entry_point: my_plugin:MyPlugin
-
 capabilities:
   - type: analyzer
     name: custom_analyzer
-
 config:
   settings:
     option_a:

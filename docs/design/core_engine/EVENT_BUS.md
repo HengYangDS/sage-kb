@@ -1,4 +1,4 @@
-# Event Bus
+﻿# Event Bus
 
 > Decoupled communication through publish-subscribe pattern
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 The Event Bus enables loose coupling between components by allowing them to communicate through events without direct dependencies.
-
 
 ## Table of Contents
 
@@ -44,7 +43,6 @@ The Event Bus enables loose coupling between components by allowing them to comm
 from dataclasses import dataclass
 from datetime import datetime
 from typing import Any
-
 @dataclass
 class Event:
     topic: str
@@ -59,7 +57,6 @@ class Event:
 
 ```python
 from typing import Protocol, Callable
-
 class EventBus(Protocol):
     def publish(self, event: Event) -> None:
         """Publish an event to all subscribers."""
@@ -121,7 +118,6 @@ class EventBuilder:
             timestamp=datetime.now(),
             source="source"
         )
-
 # Usage
 event_bus.publish(EventBuilder.source_completed(10, 150))
 ```
@@ -135,7 +131,6 @@ event_bus.publish(EventBuilder.source_completed(10, 150))
 def on_source_completed(event: Event) -> None:
     count = event.payload["count"]
     logger.info(f"Sourced {count} items")
-
 subscription = event_bus.subscribe("source.completed", on_source_completed)
 ```
 ### 7.2 Class Handler
@@ -157,7 +152,6 @@ class MetricsCollector:
 ```python
 # Subscribe to all source events
 event_bus.subscribe("source.*", handler)
-
 # Subscribe to all events
 event_bus.subscribe("*", audit_handler)
 ```
@@ -225,11 +219,9 @@ event_bus.subscribe("__dead_letter__", handle_failed_events)
 # Pseudo request-response using correlation ID
 correlation_id = str(uuid4())
 response_received = asyncio.Event()
-
 def on_response(event: Event):
     if event.correlation_id == correlation_id:
         response_received.set()
-
 event_bus.subscribe("response.topic", on_response)
 event_bus.publish(Event(
     topic="request.topic",

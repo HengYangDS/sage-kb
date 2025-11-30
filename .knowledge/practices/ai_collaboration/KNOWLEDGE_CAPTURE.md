@@ -1,4 +1,4 @@
-# Knowledge Capture
+﻿# Knowledge Capture
 
 > When and how to document knowledge during AI collaboration
 
@@ -68,7 +68,6 @@ Always review at session end:
 
 ```markdown
 ## Session-End Knowledge Check
-
 1. [ ] Any decisions worth documenting as ADR?
 2. [ ] Any new patterns or conventions established?
 3. [ ] Any gotchas or pitfalls discovered?
@@ -116,7 +115,6 @@ Quick capture during active work:
 ```markdown
 <!-- Quick Note: Drop in session state -->
 ## Notable Findings
-
 ### [Topic]
 - **What**: Brief description
 - **Why it matters**: Impact or importance
@@ -141,16 +139,12 @@ After session, promote valuable knowledge:
 
 ```markdown
 ## Decision: [Title]
-
 **Date**: YYYY-MM-DD
 **Status**: Accepted | Superseded | Deprecated
-
 ### Context
 What situation prompted this decision?
-
 ### Decision
 What was decided?
-
 ### Consequences
 What are the implications?
 ```
@@ -158,39 +152,29 @@ What are the implications?
 
 ```markdown
 ## Pattern: [Name]
-
 ### Context
 When does this pattern apply?
-
 ### Problem
 What problem does it solve?
-
 ### Solution
 How does it work?
-
 ### Example
 ```code
 // Concrete example
 ```
 ### Related
-
 - Links to related patterns
-
 ```
 #### Gotcha Capture
 
 ```markdown
 ## Gotcha: [Brief Title]
-
 **Discovered**: YYYY-MM-DD
 **Severity**: Low | Medium | High
-
 ### Symptom
 What does it look like when you hit this?
-
 ### Cause
 Why does this happen?
-
 ### Solution
 How to fix or avoid it?
 ```
@@ -216,7 +200,6 @@ How to fix or avoid it?
 
 ```
 Is this knowledge...
-
 ├─ A significant technical decision?
 │  └─ YES → .context/decisions/ADR_NNNN_*.md
 │
@@ -244,7 +227,6 @@ Always link related knowledge:
 
 ```markdown
 ## Related
-
 - `path/to/related/DOC.md` — Brief description
 - `another/related/DOC.md` — Why it's relevant
 ```
@@ -277,7 +259,6 @@ Before committing knowledge documents:
 
 ```markdown
 ## Knowledge Quality Check
-
 1. [ ] Would this help someone new to the project?
 2. [ ] Is it findable in the right location?
 3. [ ] Does it follow the appropriate template?
@@ -293,10 +274,8 @@ Before committing knowledge documents:
 ```bash
 # Create new ADR
 touch .context/decisions/ADR_NNNN_TITLE.md
-
 # Add to conventions
 touch .context/conventions/NEW_CONVENTION.md
-
 # Record conversation insight
 touch .history/conversations/$(date +%Y%m%d)_TOPIC.md
 ```

@@ -1,4 +1,4 @@
-# Generators
+﻿# Generators
 
 > Generation, building, and creation capabilities
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 Generators produce new content, build artifacts, and create resources. They answer the question: "How to produce?"
-
 
 ## Table of Contents
 
@@ -76,21 +75,14 @@ class IndexGenerator(Capability[DirectoryInput, IndexOutput]):
 
 ```markdown
 # Directory Title
-
 > Purpose description
-
 ---
-
 ## Documents
-
 | Document | Description | Status |
 |----------|-------------|--------|
 | `FILE.md` | Description | Active |
-
 ---
-
 ## Related
-
 - Links to related directories
 ```
 ---

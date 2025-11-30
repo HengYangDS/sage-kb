@@ -1,4 +1,4 @@
-# Lessons Learned
+﻿# Lessons Learned
 
 > Key insights and learnings from SAGE Knowledge Base development
 
@@ -109,8 +109,6 @@ config/
 # Define protocol
 class LoaderProtocol(Protocol):
     async def load(self, path: str) -> Content: ...
-
-
 # Implementation can vary
 class FileLoader:  # Implicitly implements LoaderProtocol
     async def load(self, path: str) -> Content: ...

@@ -1,4 +1,4 @@
-# Troubleshooting Guide Template
+﻿# Troubleshooting Guide Template
 
 > **Purpose**: Template for creating troubleshooting documentation
 > **Use When**: Documenting solutions to common problems or error scenarios
@@ -28,136 +28,87 @@ This template helps create structured troubleshooting guides for components, fea
 
 ```markdown
 # Troubleshooting: [Component/Feature Name]
-
 > Quick solutions for common [component] issues
-
 ---
-
 ## Quick Diagnostics
-
 ### Health Check
-
 [Commands or steps to verify component health]
-
 ```bash
 # Example diagnostic commands
 [command 1]
 [command 2]
 ```
 ### Common Symptoms
-
 | Symptom     | Likely Cause | Solution Section  |
 |-------------|--------------|-------------------|
 | [Symptom 1] | [Cause]      | [Link to section] |
 | [Symptom 2] | [Cause]      | [Link to section] |
 | [Symptom 3] | [Cause]      | [Link to section] |
-
 ---
-
 ## Issue: [Issue Title 1]
-
 ### Symptom
-
 [Clear description of what the user observes]
-
 ### Possible Causes
-
 1. [Cause 1]
 2. [Cause 2]
 3. [Cause 3]
-
 ### Diagnosis
-
 ```bash
 # Commands to diagnose the issue
 [diagnostic command]
 ```text
 [How to interpret the output]
-
 ### Solution
-
 **Option 1: [Solution Name]**
-
 ```bash
 # Steps to fix
 [fix command]
 ```
 **Option 2: [Alternative Solution]**
-
 [Alternative steps if Option 1 doesn't work]
-
 ### Prevention
-
 [How to prevent this issue in the future]
-
 ---
-
 ## Issue: [Issue Title 2]
-
 ### Symptom
-
 [Description]
-
 ### Possible Causes
-
 1. [Cause 1]
 2. [Cause 2]
-
 ### Diagnosis
-
 [Diagnostic steps]
-
 ### Solution
-
 [Solution steps]
-
 ---
-
 ## Error Reference
-
 | Error Code/Message | Meaning         | Solution    |
 |--------------------|-----------------|-------------|
 | `[ERROR_001]`      | [What it means] | [Quick fix] |
 | `[ERROR_002]`      | [What it means] | [Quick fix] |
 | `[ERROR_003]`      | [What it means] | [Quick fix] |
-
 ---
-
 ## Escalation
-
 ### When to Escalate
-
 - [Condition 1]
 - [Condition 2]
 - [Condition 3]
-
 ### Information to Collect
-
 Before escalating, gather:
-
 1. [ ] Error messages and logs
 2. [ ] Steps to reproduce
 3. [ ] Environment details
 4. [ ] Configuration files
-
 ### Contact
-
 - **Team**: [Team name]
 - **Channel**: [Slack/Email/etc.]
 - **Response Time**: [Expected SLA]
-
 ---
-
 ## Related
-
 - [Link to related doc 1]
 - [Link to related doc 2]
 - [Link to configuration doc]
-
 ---
-
 *Last Updated: [DATE]*
-
 ```
 ---
 
@@ -203,66 +154,47 @@ For each issue, include:
 
 ```markdown
 # Troubleshooting: MCP Server
-
 > Quick solutions for common MCP server issues
-
 ---
-
 ## Quick Diagnostics
-
 ### Health Check
-
 ```bash
 app serve --status
 curl http://localhost:8080/health
 ```
 ### Common Symptoms
-
 | Symptom            | Likely Cause        | Solution Section       |
 |--------------------|---------------------|------------------------|
 | Connection refused | Server not running  | #server-not-starting   |
 | Timeout errors     | Performance issue   | #slow-responses        |
 | Auth failures      | Invalid credentials | #authentication-issues |
-
 ---
-
 ## Issue: Server Not Starting
-
 ### Symptom
-
 Running `app serve` fails with "Address already in use" error.
-
 ### Possible Causes
-
 1. Another process using the port
 2. Previous server instance not stopped
 3. Firewall blocking the port
-
 ### Diagnosis
-
 ```bash
 # Check what's using the port
 netstat -an | grep 8080
 lsof -i :8080
 ```
 ### Solution
-
 **Option 1: Kill existing process**
-
 ```bash
 kill $(lsof -t -i:8080)
 app serve
 ```
 **Option 2: Use different port**
-
 ```bash
 app serve --port 8081
 ```
 ### Prevention
-
 - Always stop server properly with Ctrl+C
 - Use unique ports per environment
-
 ```
 ---
 

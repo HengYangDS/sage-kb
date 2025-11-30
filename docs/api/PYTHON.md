@@ -1,4 +1,4 @@
-
+﻿
 # Python API Reference
 
 > SAGE Knowledge Base Python Library Documentation
@@ -27,7 +27,6 @@ The SAGE Python API provides programmatic access to the knowledge base. It suppo
 ```bash
 # Basic installation
 pip install sage-kb
-
 # With all dependencies
 pip install sage-kb[all]
 ```
@@ -38,21 +37,16 @@ pip install sage-kb[all]
 ```python
 from sage.core.loader import KnowledgeLoader
 from sage.core.config import get_config
-
 # Initialize loader
 loader = KnowledgeLoader()
-
 # Load core knowledge (sync)
 result = loader.load_sync("core", timeout_ms=2000)
 print(result.content)
-
 # Load with async
 import asyncio
-
 async def main():
     result = await loader.load("core", timeout_ms=2000)
     print(result.content)
-
 asyncio.run(main())
 ```
 ---
@@ -65,7 +59,6 @@ Main class for loading knowledge from the knowledge base.
 
 ```python
 from sage.core.loader import KnowledgeLoader
-
 loader = KnowledgeLoader(config=None)
 ```
 **Parameters:**
@@ -155,10 +148,8 @@ Configuration object for SAGE operations.
 
 ```python
 from sage.core.config import SAGEConfig, get_config
-
 # Load from default location
 config = get_config()
-
 # Load from custom path
 config = SAGEConfig.from_file("custom/config.yaml")
 ```

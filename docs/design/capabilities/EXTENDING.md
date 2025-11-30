@@ -1,4 +1,4 @@
-# Extending Capabilities
+﻿# Extending Capabilities
 
 > Guide to creating and registering custom capabilities
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 This guide explains how to extend SAGE with custom capabilities following the established patterns and conventions.
-
 
 ## Table of Contents
 
@@ -31,10 +30,8 @@ This guide explains how to extend SAGE with custom capabilities following the es
 ```python
 from abc import ABC, abstractmethod
 from typing import Generic, TypeVar
-
 TInput = TypeVar("TInput")
 TOutput = TypeVar("TOutput")
-
 class Capability(ABC, Generic[TInput, TOutput]):
     """Base class for all capabilities."""
     
@@ -88,21 +85,17 @@ class Context:
 
 ```python
 # src/sage/capabilities/analyzers/sentiment_analyzer.py
-
 from dataclasses import dataclass
 from sage.core.capability import Capability, Context
-
 @dataclass
 class SentimentInput:
     text: str
     language: str = "en"
-
 @dataclass
 class SentimentOutput:
     sentiment: str  # positive, negative, neutral
     confidence: float
     details: dict[str, float]
-
 class SentimentAnalyzer(Capability[SentimentInput, SentimentOutput]):
     name = "sentiment_analyzer"
     family = "analyzers"
@@ -135,7 +128,6 @@ class SentimentAnalyzer(Capability[SentimentInput, SentimentOutput]):
 ```python
 # Use decorator for automatic registration
 from sage.core.registry import register_capability
-
 @register_capability
 class SentimentAnalyzer(Capability[SentimentInput, SentimentOutput]):
     name = "sentiment_analyzer"
@@ -148,7 +140,6 @@ class SentimentAnalyzer(Capability[SentimentInput, SentimentOutput]):
 # Or register manually in module __init__.py
 from sage.core.registry import CapabilityRegistry
 from .sentiment_analyzer import SentimentAnalyzer
-
 def register(registry: CapabilityRegistry):
     registry.register(SentimentAnalyzer())
 ```
@@ -234,10 +225,8 @@ class SentimentAnalyzer(Capability[SentimentInput, SentimentOutput]):
 
 ```python
 # tests/capabilities/analyzers/test_sentiment_analyzer.py
-
 import pytest
 from sage.capabilities.analyzers import SentimentAnalyzer
-
 class TestSentimentAnalyzer:
     def setup_method(self):
         self.analyzer = SentimentAnalyzer()

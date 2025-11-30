@@ -1,4 +1,4 @@
-# ADR-0006: Protocol-First Interface Design
+﻿# ADR-0006: Protocol-First Interface Design
 
 > Architecture Decision Record for SAGE Knowledge Base
 
@@ -50,16 +50,12 @@ Adopt **Protocol-First Design** using `typing.Protocol` for all cross-layer inte
 
 ```python
 from typing import Protocol, runtime_checkable
-
-
 @runtime_checkable
 class SourceProtocol(Protocol):
     """Interface for knowledge sources."""
-
     async def load(self, path: str) -> Knowledge:
         """Load knowledge from path."""
         ...
-
     async def search(self, query: str) -> list[Knowledge]:
         """Search for knowledge."""
         ...
@@ -134,16 +130,12 @@ Use `zope.interface` library.
 
 ```python
 from typing import Protocol, runtime_checkable
-
-
 @runtime_checkable
 class LoaderProtocol(Protocol):
     """Protocol for knowledge loaders."""
-
     def load(self, path: str) -> str:
         """Load content from path."""
         ...
-
     def exists(self, path: str) -> bool:
         """Check if path exists."""
         ...
@@ -154,15 +146,11 @@ class LoaderProtocol(Protocol):
 # No inheritance needed - structural subtyping
 class FileLoader:
     """File-based loader implementation."""
-
     def load(self, path: str) -> str:
         with open(path) as f:
             return f.read()
-
     def exists(self, path: str) -> bool:
         return Path(path).exists()
-
-
 # Type checker verifies compliance
 loader: LoaderProtocol = FileLoader()  # OK
 ```
@@ -174,8 +162,6 @@ def process(loader: LoaderProtocol) -> None:
     if not isinstance(loader, LoaderProtocol):
         raise TypeError("Expected LoaderProtocol")
     # ...
-
-
 # Plugin validation
 def register_plugin(plugin: Any) -> None:
     if isinstance(plugin, SourceProtocol):
@@ -188,12 +174,8 @@ def register_plugin(plugin: Any) -> None:
 ```python
 class CacheableProtocol(Protocol):
     """Protocol for cacheable resources."""
-
     def cache_key(self) -> str: ...
-
     def is_stale(self) -> bool: ...
-
-
 class CacheableLoaderProtocol(LoaderProtocol, CacheableProtocol):
     """Combined protocol for cacheable loaders."""
     pass
@@ -202,51 +184,33 @@ class CacheableLoaderProtocol(LoaderProtocol, CacheableProtocol):
 
 ```python
 from typing import Protocol, TypeVar
-
 T = TypeVar("T")
-
-
 class RepositoryProtocol(Protocol[T]):
     """Generic repository protocol."""
-
     def get(self, id: str) -> T | None: ...
-
     def save(self, entity: T) -> None: ...
-
     def delete(self, id: str) -> bool: ...
 ```
 ### SAGE Core Protocols
 
 ```python
 # Core protocols in sage.core.protocols
-
 @runtime_checkable
 class SourceProtocol(Protocol):
     """S - Knowledge sourcing."""
-
     async def load(self, path: str) -> Knowledge: ...
-
     async def search(self, query: str) -> list[Knowledge]: ...
-
-
 @runtime_checkable
 class AnalyzeProtocol(Protocol):
     """A - Processing & analysis."""
-
     async def analyze(self, content: Knowledge) -> AnalysisResult: ...
-
-
 @runtime_checkable
 class GenerateProtocol(Protocol):
     """G - Multi-channel output."""
-
     async def format(self, data: Any, format: str) -> str: ...
-
-
 @runtime_checkable
 class EvolveProtocol(Protocol):
     """E - Metrics & optimization."""
-
     async def track(self, event: str, data: dict) -> None: ...
 ```
 ### Testing with Protocols
@@ -256,14 +220,10 @@ class EvolveProtocol(Protocol):
 class MockLoader:
     def __init__(self, content: str):
         self._content = content
-
     def load(self, path: str) -> str:
         return self._content
-
     def exists(self, path: str) -> bool:
         return True
-
-
 # Use in tests
 def test_processor():
     loader: LoaderProtocol = MockLoader("test content")

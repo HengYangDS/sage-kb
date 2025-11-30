@@ -1,4 +1,4 @@
-# SAGE Timeout Hierarchy
+﻿# SAGE Timeout Hierarchy
 
 > SAGE Knowledge Base specific timeout configuration (T1-T5 levels)
 >
@@ -80,7 +80,6 @@ timeout:
     layer_load: 2s         # T3
     full_load: 5s          # T4
     analysis: 10s          # T5
-
   fallback:
     strategy: graceful     # graceful | strict | none
     cache_stale_ms: 60000  # Use stale cache up to 60s

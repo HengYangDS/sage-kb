@@ -1,4 +1,4 @@
-# Generate Protocol
+﻿# Generate Protocol
 
 > Output formatting, rendering, and multi-channel delivery
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 The Generate protocol (G in SAGE) transforms analyzed knowledge into user-facing outputs across multiple delivery channels.
-
 
 ## Table of Contents
 

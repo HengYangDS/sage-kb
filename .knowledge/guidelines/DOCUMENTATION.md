@@ -1,4 +1,4 @@
-# Documentation Guidelines
+﻿# Documentation Guidelines
 
 > Clear, maintainable, useful documentation
 
@@ -52,23 +52,14 @@
 
 ```markdown
 # Title
-
 > Single-line purpose
-
 ---
-
 ## 1. Section
-
 ### 1.1 Subsection
-
 ---
-
 ## Related
-
 - `path/FILE.md` — Description
-
 ---
-
 *AI Collaboration Knowledge Base*
 ```
 ### 3.2 Heading Rules

@@ -1,4 +1,4 @@
-# Timeout Design Patterns
+﻿# Timeout Design Patterns
 
 > Universal timeout and resilience patterns for system design
 
@@ -114,12 +114,10 @@ async def get_with_fallback(key: str) -> Result:
     result = await with_timeout(primary.get(key), 500)
     if result:
         return result
-
     # Try cache
     cached = cache.get(key)
     if cached:
         return cached.with_warning("stale")
-
     # Return default
     return default_value(key)
 ```

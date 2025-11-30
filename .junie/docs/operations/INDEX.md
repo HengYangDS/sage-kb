@@ -1,4 +1,4 @@
-# Operations
+﻿# Operations
 
 > Index of operations documents
 
@@ -16,7 +16,6 @@
 ---
 
 ## Related
-
 
 ---
 

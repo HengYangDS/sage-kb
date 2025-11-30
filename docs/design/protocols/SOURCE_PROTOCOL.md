@@ -1,4 +1,4 @@
-# Source Protocol
+﻿# Source Protocol
 
 > Knowledge collection, validation, and normalization
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 The Source protocol (S in SAGE) handles all knowledge input operations, ensuring data is properly collected, validated, and normalized before processing.
-
 
 ## Table of Contents
 

@@ -99,7 +99,6 @@ flowchart LR
         NET["🌐 Network Latency"]
         DB["🗄️ Database Slow"]
     end
-
     subgraph Solutions["✅ Solutions"]
         CPU_FIX["Profile code<br/>Check algorithms<br/>Optimize hot paths"]
         MEM_FIX["Check for leaks<br/>Reduce caching<br/>Optimize data types"]
@@ -107,7 +106,6 @@ flowchart LR
         NET_FIX["Reduce payload<br/>Add CDN<br/>Connection pooling"]
         DB_FIX["Add indexes<br/>Optimize queries<br/>Read replicas"]
     end
-
     CPU --> CPU_FIX
     MEM --> MEM_FIX
     IO --> IO_FIX

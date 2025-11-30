@@ -1,4 +1,4 @@
-# Session Management
+﻿# Session Management
 
 > Session lifecycle and state management
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 Session management handles the lifecycle of user sessions, maintaining context and state throughout interactions with SAGE.
-
 
 ## Table of Contents
 
@@ -172,7 +171,6 @@ class Query:
     timestamp: datetime
     response_tokens: int
     knowledge_used: list[str]
-
 def record_query(self, session: Session, query: Query) -> None:
     session.context.query_history.append(query)
     

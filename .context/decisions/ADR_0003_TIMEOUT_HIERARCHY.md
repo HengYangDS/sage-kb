@@ -1,4 +1,4 @@
-# ADR-0003: Timeout Hierarchy Design
+﻿# ADR-0003: Timeout Hierarchy Design
 
 > Architecture Decision Record for SAGE Knowledge Base
 
@@ -138,8 +138,6 @@ Only Fast/Medium/Slow levels.
 
 ```python
 from enum import Enum
-
-
 class TimeoutLevel(Enum):
     T1_CACHE = 100  # 100ms
     T2_FILE = 500  # 500ms
@@ -151,9 +149,7 @@ class TimeoutLevel(Enum):
 
 ```python
 from sage.core.timeout import TimeoutManager, TimeoutLevel
-
 manager = TimeoutManager()
-
 # Select appropriate level for operation scope
 result = await manager.execute_with_timeout(
     coro=load_layer("core"),
@@ -172,7 +168,6 @@ timeout:
     layer_load: 2s         # T3
     full_load: 5s          # T4
     analysis: 10s          # T5
-
   fallback:
     strategy: graceful     # graceful | strict | none
     cache_stale_ms: 60000  # Use stale cache up to 60s

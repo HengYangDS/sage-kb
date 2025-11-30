@@ -1,4 +1,4 @@
-
+﻿
 # Configuration Maintenance
 
 > Daily operations and hot reload procedures (~10 min read)
@@ -105,22 +105,16 @@ For changes to:
 
 ```markdown
 ## Week of [DATE]
-
 ### Configuration Health
-
 - [ ] Verify MCP servers connected
 - [ ] Check Terminal rule count (target: 87)
 - [ ] Review any blocked commands
 - [ ] Update rules for new patterns if needed
-
 ### Documentation
-
 - [ ] Update session history if significant work done
 - [ ] Review and clean up .outputs/ directory
 - [ ] Archive old session files if needed
-
 ### Performance
-
 - [ ] Check auto-approval rate (target: 90%+)
 - [ ] Review token efficiency metrics
 - [ ] Identify optimization opportunities
@@ -130,23 +124,17 @@ For changes to:
 
 ```markdown
 ## Month of [DATE]
-
 ### Configuration Review
-
 - [ ] Review all Terminal rules for relevance
 - [ ] Check for deprecated patterns
 - [ ] Update MCP server versions if available
 - [ ] Validate schema compliance
-
 ### Knowledge Cleanup
-
 - [ ] Review Memory server entities
 - [ ] Remove obsolete entities
 - [ ] Consolidate duplicate information
 - [ ] Update relationships
-
 ### Documentation
-
 - [ ] Review and update project/GUIDELINES.md
 - [ ] Check cross-references are valid
 - [ ] Update version numbers if needed
@@ -163,7 +151,6 @@ Always backup before significant changes:
 ```bash
 # Full backup
 cp -r .junie .junie.backup-$(date +%Y%m%d)
-
 # Specific file backup
 cp .junie/mcp/mcp.json .junie/mcp/mcp.json.backup
 ```
@@ -173,7 +160,6 @@ cp .junie/mcp/mcp.json .junie/mcp/mcp.json.backup
 ```powershell
 # Full backup
 Copy-Item -Recurse .junie ".junie.backup-$( Get-Date -Format 'yyyyMMdd' )"
-
 # Specific file backup
 Copy-Item .junie\mcp\mcp.json .junie\mcp\mcp.json.backup
 ```
@@ -184,7 +170,6 @@ Copy-Item .junie\mcp\mcp.json .junie\mcp\mcp.json.backup
 # Restore full backup
 rm -rf .junie
 cp -r .junie.backup-20251130 .junie
-
 # Restore specific file
 cp .junie/mcp/mcp.json.backup .junie/mcp/mcp.json
 ```
@@ -194,7 +179,6 @@ cp .junie/mcp/mcp.json.backup .junie/mcp/mcp.json
 ```bash
 # Unix
 ls -la .junie.backup-*
-
 # Windows PowerShell
 Get-ChildItem ".junie.backup-*" | Sort-Object LastWriteTime -Descending
 ```
@@ -239,7 +223,6 @@ Maintain separate templates for different platforms:
 ```bash
 # Using Python
 python -m json.tool .junie/mcp/mcp.json > /dev/null && echo "Valid JSON"
-
 # Using Node.js
 node -e "require('./.junie/mcp/mcp.json')" && echo "Valid JSON"
 ```

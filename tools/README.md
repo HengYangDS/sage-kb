@@ -1,4 +1,4 @@
-# SAGE Development Tools
+﻿# SAGE Development Tools
 
 > Utilities and scripts for SAGE Knowledge Base development
 
@@ -41,7 +41,6 @@ Sets up the development environment with all necessary dependencies and configur
 ```bash
 # Full setup
 python tools/dev_scripts/setup_dev.py
-
 # Setup with options
 python tools/dev_scripts/setup_dev.py --skip-hooks  # Skip pre-commit hooks
 python tools/dev_scripts/setup_dev.py --minimal     # Minimal setup
@@ -76,13 +75,11 @@ Builds and visualizes the knowledge graph from content files.
 ```bash
 # Build graph from content directory
 python tools/knowledge_graph/knowledge_graph_builder.py
-
 # With options
 python tools/knowledge_graph/knowledge_graph_builder.py \
     --source .knowledge/ \
     --output .outputs/knowledge_graph.json \
     --format json
-
 # Generate visualization
 python tools/knowledge_graph/knowledge_graph_builder.py \
     --visualize \
@@ -139,13 +136,11 @@ Real-time monitoring of timeout events and circuit breaker status.
 ```bash
 # Start monitoring
 python tools/monitors/timeout_monitor.py
-
 # With options
 python tools/monitors/timeout_monitor.py \
     --interval 1000 \      # Update interval in ms
     --level T2 \           # Filter by timeout level
     --output .logs/timeouts.log
-
 # Dashboard mode
 python tools/monitors/timeout_monitor.py --dashboard
 ```
@@ -187,15 +182,12 @@ Utilities for migrating content between versions and formats.
 ```bash
 # Check migration status
 python tools/migration_toolkit.py status
-
 # Migrate content structure
 python tools/migration_toolkit.py migrate \
     --from-version 0.0.x \
     --to-version 0.1.0
-
 # Validate migrated content
 python tools/migration_toolkit.py validate
-
 # Rollback if needed
 python tools/migration_toolkit.py rollback --to-backup backup_20251129
 ```
@@ -215,17 +207,13 @@ python tools/migration_toolkit.py rollback --to-backup backup_20251129
 # Step 1: Check what needs migrating
 python tools/migration_toolkit.py status
 # Output: Current: 0.0.9, Target: 0.1.0, Pending: 3 migrations
-
 # Step 2: Create backup
 python tools/migration_toolkit.py backup --name pre-migration
-
 # Step 3: Run migration
 python tools/migration_toolkit.py migrate --to-version 0.1.0
-
 # Step 4: Validate
 python tools/migration_toolkit.py validate
 # Output: ✓ All content valid
-
 # Step 5: If issues, rollback
 python tools/migration_toolkit.py rollback --to-backup pre-migration
 ```
@@ -249,17 +237,14 @@ Testing and tuning utility for timeout configurations.
 ```bash
 # Run timeout tests
 python tools/timeout_manager.py test
-
 # Benchmark operations
 python tools/timeout_manager.py benchmark \
     --operation file_read \
     --iterations 100
-
 # Tune timeouts based on benchmarks
 python tools/timeout_manager.py tune \
     --target-percentile 95 \
     --output config/core/timeout.yaml
-
 # Stress test
 python tools/timeout_manager.py stress \
     --duration 60s \
@@ -302,19 +287,15 @@ python tools/timeout_manager.py tune --recommend
 # 1. Clone repository
 git clone https://github.com/HengYangDS/sage-kb.git
 cd sage-kb
-
 # 2. Setup conda environment (recommended)
 conda env create -f environment.yml
 conda activate sage-kb
-
 # Or use venv as alternative:
 # python -m venv .venv
 # source .venv/bin/activate  # Linux/macOS
 # .venv\Scripts\activate     # Windows
-
 # 3. Run setup script
 python tools/dev_scripts/setup_dev.py
-
 # 4. Verify setup
 sage info
 pytest tests/ -v --tb=short
@@ -324,7 +305,6 @@ pytest tests/ -v --tb=short
 ```bash
 # 1. Build knowledge graph
 python tools/knowledge_graph/knowledge_graph_builder.py --visualize
-
 # 2. Open visualization
 open .outputs/graph.html  # or start on Windows
 ```
@@ -333,13 +313,10 @@ open .outputs/graph.html  # or start on Windows
 ```bash
 # 1. Benchmark current performance
 python tools/timeout_manager.py benchmark --all
-
 # 2. Start monitoring
 python tools/monitors/timeout_monitor.py --dashboard &
-
 # 3. Run workload
 sage get core guidelines frameworks
-
 # 4. Get tuning recommendations
 python tools/timeout_manager.py tune --recommend
 ```
@@ -348,13 +325,10 @@ python tools/timeout_manager.py tune --recommend
 ```bash
 # 1. Check status
 python tools/migration_toolkit.py status
-
 # 2. Backup
 python tools/migration_toolkit.py backup
-
 # 3. Migrate
 python tools/migration_toolkit.py migrate --to-version X.Y.Z
-
 # 4. Validate
 python tools/migration_toolkit.py validate
 ```
@@ -368,7 +342,6 @@ python tools/migration_toolkit.py validate
 - `tests/performance/` — Performance tests
 
 ---
-
 
 ---
 

@@ -1,4 +1,4 @@
-# Vision
+﻿# Vision
 
 > Index of vision documents
 
@@ -13,7 +13,6 @@
 ---
 
 ## Related
-
 
 ---
 

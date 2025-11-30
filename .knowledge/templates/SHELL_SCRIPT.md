@@ -19,10 +19,8 @@
 ```bash
 # Copy template to new script
 cp template.sh my_script.sh
-
 # Make executable
 chmod +x my_script.sh
-
 # Run
 ./my_script.sh --help
 ```
@@ -47,74 +45,56 @@ chmod +x my_script.sh
 # Description: Brief description of what this script does
 # Usage: ./script_name.sh [options] <arguments>
 #
-
 set -euo pipefail
 IFS=$'\n\t'
-
 # =============================================================================
 # Constants
 # =============================================================================
-
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly SCRIPT_NAME="$(basename "${BASH_SOURCE[0]}")"
-
 # =============================================================================
 # Configuration
 # =============================================================================
-
 LOG_LEVEL="${LOG_LEVEL:-INFO}"
 OUTPUT_DIR="${OUTPUT_DIR:-./output}"
-
 # =============================================================================
 # Functions
 # =============================================================================
-
 usage() {
     cat << EOF
 Usage: ${SCRIPT_NAME} [options] <argument>
-
 Description:
     Brief description of what the script does.
-
 Options:
     -h, --help      Show this help message
     -v, --verbose   Enable verbose output
     -d, --dry-run   Show what would be done
-
 Arguments:
     argument        Description of the argument
-
 Examples:
     ${SCRIPT_NAME} --verbose input.txt
     ${SCRIPT_NAME} -d /path/to/dir
-
 EOF
 }
-
 log() {
     local level="$1"
     shift
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] [${level}] $*" >&2
 }
-
 log_info()  { log "INFO" "$@"; }
 log_warn()  { log "WARN" "$@"; }
 log_error() { log "ERROR" "$@"; }
-
 die() {
     log_error "$1"
     exit "${2:-1}"
 }
-
 cleanup() {
     log_info "Cleaning up..."
     # Add cleanup code here
 }
-
 # =============================================================================
 # Main
 # =============================================================================
-
 main() {
     trap cleanup EXIT
     
@@ -145,7 +125,6 @@ main() {
     # Main logic here
     log_info "Starting ${SCRIPT_NAME}"
 }
-
 main "$@"
 ```
 
@@ -160,16 +139,13 @@ For simple scripts, use this reduced template:
 ```bash
 #!/usr/bin/env bash
 set -euo pipefail
-
 die() { echo "ERROR: $1" >&2; exit 1; }
-
 main() {
     [[ $# -ge 1 ]] || die "Usage: $0 <argument>"
     
     # Your code here
     echo "Processing: $1"
 }
-
 main "$@"
 ```
 

@@ -1,4 +1,4 @@
-# Shell Script Patterns
+﻿# Shell Script Patterns
 
 > Common patterns and practices for Bash scripting
 
@@ -22,15 +22,12 @@
 # Quoted variables
 name="John Doe"
 path="/path/with spaces/file.txt"
-
 # Default values
 name="${NAME:-default_name}"      # Default if unset
 name="${NAME:?'NAME required'}"   # Error if unset
-
 # Constants
 readonly MAX_RETRIES=3
 readonly CONFIG_FILE="/etc/app/config.yaml"
-
 # Local in functions
 my_function() {
     local result=""
@@ -46,12 +43,10 @@ declare -a files=("file1.txt" "file2.txt")
 files+=("file3.txt")              # Append
 echo "${files[0]}"                # First element
 echo "${#files[@]}"               # Length
-
 # Iterate
 for file in "${files[@]}"; do
     process "${file}"
 done
-
 # Associative array (Bash 4+)
 declare -A config
 config[host]="localhost"
@@ -71,14 +66,11 @@ if [[ -f "${file}" ]]; then
 elif [[ -d "${file}" ]]; then
     echo "Is directory"
 fi
-
 # String comparison
 [[ "${name}" == "admin" ]] && echo "Admin user"
 [[ "${name}" =~ ^[A-Z] ]] && echo "Starts uppercase"
-
 # Numeric comparison
 [[ "${count}" -gt 10 ]] && echo "Greater than 10"
-
 # Combined conditions
 [[ -f "${file}" && -r "${file}" ]] && cat "${file}"
 ```
@@ -90,17 +82,14 @@ fi
 for item in apple banana cherry; do
     echo "${item}"
 done
-
 # For with range
 for i in {1..10}; do
     echo "${i}"
 done
-
 # While read file
 while IFS= read -r line; do
     echo "${line}"
 done < input.txt
-
 # While with condition
 count=0
 while [[ "${count}" -lt 10 ]]; do
@@ -139,7 +128,6 @@ process_file() {
     [[ -f "${file}" ]] || return 1
     cat "${file}" > "${output}"
 }
-
 # Usage
 if process_file "input.txt" "output.txt"; then
     echo "Success"
@@ -153,13 +141,11 @@ fi
 check_health() {
     [[ -f "/tmp/healthy" ]] && return 0 || return 1
 }
-
 # Output capture
 get_version() {
     echo "1.0.0"
 }
 version=$(get_version)
-
 # Multiple values via globals
 get_dimensions() {
     RESULT_WIDTH=1920
@@ -197,7 +183,6 @@ parse_args() {
 readonly EXIT_SUCCESS=0
 readonly EXIT_ERROR=1
 readonly EXIT_USAGE=2
-
 # Check command result
 if ! command_that_might_fail; then
     log_error "Command failed"
@@ -213,9 +198,7 @@ cleanup() {
     [[ -d "${TEMP_DIR:-}" ]] && rm -rf "${TEMP_DIR}"
     exit "${exit_code}"
 }
-
 trap cleanup EXIT INT TERM
-
 # Safe to create temp resources
 TEMP_DIR=$(mktemp -d)
 ```
@@ -227,7 +210,6 @@ die() {
     echo "ERROR: $1" >&2
     exit "${2:-1}"
 }
-
 # Guard clauses
 [[ -f "${config}" ]] || die "Config not found: ${config}"
 [[ -n "${API_KEY:-}" ]] || die "API_KEY required"
@@ -269,7 +251,6 @@ retry() {
     done
     return 1
 }
-
 # Usage
 retry 3 5 curl -f "https://api.example.com/health"
 ```
@@ -287,7 +268,6 @@ spinner() {
         printf "\b\b\b\b\b"
     done
 }
-
 # Usage
 long_command & spinner $!
 ```
@@ -314,7 +294,6 @@ load_config() {
 while IFS= read -r -d '' file; do
     process "${file}"
 done < <(find . -type f -print0)
-
 # Handle files starting with dash
 rm -- "${file}"
 cat -- "${file}"
@@ -326,7 +305,7 @@ cat -- "${file}"
 
 - `.knowledge/guidelines/SHELL.md` — Shell script guidelines
 - `.knowledge/templates/SHELL_SCRIPT.md` — Standard script template
-- `.knowledge/practices/engineering/ERROR_HANDLING.md` — General error handling
+- `.knowledge/practices/engineering/design/ERROR_HANDLING.md` — General error handling
 
 ---
 

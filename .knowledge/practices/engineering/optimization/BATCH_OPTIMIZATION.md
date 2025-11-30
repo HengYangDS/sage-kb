@@ -1,4 +1,4 @@
-# Batch Optimization Patterns
+﻿# Batch Optimization Patterns
 
 > Efficient processing of large-scale operations
 
@@ -79,7 +79,6 @@ class Checkpoint:
 def process_with_checkpoint(items: List, checkpoint_file: str):
     checkpoint = load_checkpoint(checkpoint_file)
     start = checkpoint.processed if checkpoint else 0
-
     for i, item in enumerate(items[start:], start):
         process_item(item)
         if i % 100 == 0:
@@ -136,7 +135,7 @@ def process_with_errors(items: List):
 ## Related
 
 - `.knowledge/frameworks/patterns/PERSISTENCE.md` — Data patterns
-- `.knowledge/practices/engineering/ERROR_HANDLING.md` — Error handling
+- `.knowledge/practices/engineering/design/ERROR_HANDLING.md` — Error handling
 
 ---
 

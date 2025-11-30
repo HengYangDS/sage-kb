@@ -1,4 +1,4 @@
-# Content Taxonomy
+﻿# Content Taxonomy
 
 > Classification system for knowledge content
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 Content taxonomy defines how knowledge is classified, tagged, and organized for efficient retrieval and context management.
-
 
 ## Table of Contents
 

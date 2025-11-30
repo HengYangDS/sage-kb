@@ -1,4 +1,4 @@
-
+﻿
 # Plugin API Reference
 
 ## Core Classes
@@ -20,7 +20,6 @@ class PluginBase(ABC):
     @property
     @abstractmethod
     def metadata(self) -> PluginMetadata: pass
-
     def on_load(self, context: Dict[str, Any]) -> None: pass
     def on_unload(self) -> None: pass
 ```
@@ -58,7 +57,6 @@ class LoaderPlugin(PluginBase):
 - `docs/guides/PLUGIN_DEVELOPMENT.md` — Plugin development guide
 - `docs/design/plugins/PLUGIN_ARCHITECTURE.md` — Plugin architecture design
 - `.context/decisions/ADR_0008_PLUGIN_SYSTEM.md` — Plugin system ADR
-
 
 ## Table of Contents
 

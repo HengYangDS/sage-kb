@@ -112,12 +112,10 @@ class RetentionPolicy:
     max_entries: int = 1000
     max_age_days: int = 30
     min_priority: int = 30  # LOW
-
 def cleanup(store: DataStore, policy: RetentionPolicy):
     # Remove by age
     cutoff = datetime.now() - timedelta(days=policy.max_age_days)
     store.delete_before(cutoff)
-
     # Remove by priority if over limit
     if store.count() > policy.max_entries:
         store.delete_lowest_priority(

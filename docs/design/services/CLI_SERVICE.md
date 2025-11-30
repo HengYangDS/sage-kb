@@ -1,4 +1,4 @@
-# CLI Service
+﻿# CLI Service
 
 > Command-line interface service using Typer and Rich
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 The CLI service provides interactive terminal access to SAGE knowledge base using Typer for command parsing and Rich for beautiful output formatting.
-
 
 ## Table of Contents
 
@@ -55,7 +54,6 @@ graph TD
 
 ```bash
 sage get [OPTIONS] [QUERY]
-
 Options:
   -l, --layer INTEGER    Knowledge layer (1-4)
   -t, --type TEXT        Content type filter
@@ -67,7 +65,6 @@ Options:
 
 ```bash
 sage search [OPTIONS] QUERY
-
 Options:
   -l, --layer INTEGER    Limit to specific layer
   -n, --max-results INT  Maximum results (default: 10)
@@ -78,7 +75,6 @@ Options:
 
 ```bash
 sage info [OPTIONS]
-
 Options:
   --health              Show health status
   --stats               Show statistics
@@ -89,7 +85,6 @@ Options:
 
 ```bash
 sage serve [OPTIONS]
-
 Options:
   --mcp                 Start MCP server (default)
   --api                 Start HTTP API server
@@ -105,14 +100,12 @@ Options:
 ```python
 import typer
 from rich.console import Console
-
 app = typer.Typer(
     name="sage",
     help="SAGE Knowledge Base CLI",
     add_completion=True
 )
 console = Console()
-
 @app.command()
 def get(
     query: str = typer.Argument(None),
@@ -143,7 +136,6 @@ def _output(result: KnowledgeResult, format: str):
         console.print(Markdown(result.content))
     else:
         _rich_output(result)
-
 def _rich_output(result: KnowledgeResult):
     table = Table(title="Knowledge Result")
     table.add_column("Field", style="cyan")
@@ -195,7 +187,6 @@ def get(query: str):
 
 ```python
 from rich.progress import Progress, SpinnerColumn, TextColumn
-
 with Progress(
     SpinnerColumn(),
     TextColumn("[progress.description]{task.description}"),
@@ -209,7 +200,6 @@ with Progress(
 ```python
 with console.status("[bold green]Searching knowledge base..."):
     results = searcher.search(query)
-
 console.print(f"[green]✓[/green] Found {len(results)} results")
 ```
 ---
@@ -233,14 +223,11 @@ services:
 
 ```python
 from typer.testing import CliRunner
-
 runner = CliRunner()
-
 def test_get_command():
     result = runner.invoke(app, ["get", "test query"])
     assert result.exit_code == 0
     assert "Knowledge Result" in result.stdout
-
 def test_get_with_timeout():
     result = runner.invoke(app, ["get", "--timeout", "100", "query"])
     assert result.exit_code in [0, 1]

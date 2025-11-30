@@ -1,4 +1,4 @@
-# Checkers
+﻿# Checkers
 
 > Validation, verification, and compliance capabilities
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 Checkers validate correctness, compliance, and integrity. They answer the question: "Is it correct?"
-
 
 ## Table of Contents
 

@@ -1,4 +1,4 @@
-# SAGE Project - AI Collaboration Guidelines
+﻿# SAGE Project - AI Collaboration Guidelines
 
 > Project-specific AI collaboration rules and quick reference for SAGE Knowledge Base
 
@@ -192,13 +192,11 @@ For complex SAGE decisions, simulate **Level 5 Expert Committee** review:
 pytest tests/ -v                    # Run all tests
 pytest tests/unit/ -v               # Unit tests only
 pytest tests/integration/ -v        # Integration tests only
-
 # Services
 sage serve                          # Start MCP server
 sage get --layer core               # Get core layer content
 sage search "timeout"               # Search knowledge base
 sage info                           # System information
-
 # Development
 ruff check src/                     # Lint check
 ruff format src/                    # Format code

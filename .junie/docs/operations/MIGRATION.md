@@ -1,4 +1,4 @@
-
+﻿
 # Version Migration Guide
 
 > Version migration strategies and breaking change handling (~10 min read)
@@ -127,13 +127,10 @@ Phase 4: Completion
 ```bash
 # 1. Pull latest configuration
 git pull origin main
-
 # 2. Verify no breaking changes
 cat .junie/docs/operations/migration.md
-
 # 3. Test configuration
 pytest tests/tools/test_junie_config.py -v
-
 # 4. Done - no restart needed for most patch updates
 ```
 
@@ -146,19 +143,14 @@ pytest tests/tools/test_junie_config.py -v
 ```bash
 # 1. Backup current config
 cp -r .junie .junie.backup-$(date +%Y%m%d)
-
 # 2. Pull latest configuration
 git pull origin main
-
 # 3. Review new features
 # Check release notes or changelog
-
 # 4. Update schema_version in config files
 # Edit generic/config.yaml and project/config.yaml
-
 # 5. Test configuration
 pytest tests/tools/test_junie_config.py -v
-
 # 6. Restart IDE to apply changes
 ```
 
@@ -171,30 +163,21 @@ pytest tests/tools/test_junie_config.py -v
 ```bash
 # 1. Full backup
 cp -r .junie .junie.backup-major-$(date +%Y%m%d)
-
 # 2. Review breaking changes
 # Read migration guide for specific version
-
 # 3. Create migration branch
 git checkout -b migrate-to-v2
-
 # 4. Apply configuration changes
 # Follow version-specific migration steps
-
 # 5. Update schema_version
 # Edit all config files
-
 # 6. Run migration scripts (if provided)
 python tools/migrate_config.py --from 1.0 --to 2.0
-
 # 7. Test thoroughly
 pytest tests/tools/test_junie_config.py -v
-
 # 8. Verify MCP servers
 # Settings | Tools | Junie | MCP Servers
-
 # 9. Test critical workflows manually
-
 # 10. Merge migration branch
 git checkout main
 git merge migrate-to-v2
@@ -211,13 +194,10 @@ If issues detected immediately:
 ```bash
 # 1. Stop MCP servers
 # Settings | Tools | Junie | MCP Servers | Stop All
-
 # 2. Restore from backup
 rm -rf .junie
 cp -r .junie.backup-YYYYMMDD .junie
-
 # 3. Restart IDE
-
 # 4. Verify configuration restored
 ```
 
@@ -228,10 +208,8 @@ If only specific component affected:
 ```bash
 # Rollback MCP config only
 cp .junie/mcp/mcp.json.backup .junie/mcp/mcp.json
-
 # Rollback YAML config only
 cp .junie/generic/config.yaml.backup .junie/generic/config.yaml
-
 # Restart IDE
 ```
 
@@ -241,16 +219,12 @@ If system is unstable:
 
 ```bash
 # 1. Exit IDE completely
-
 # 2. Restore entire configuration
 rm -rf .junie
 cp -r .junie.backup-YYYYMMDD .junie
-
 # 3. Clear IDE caches (optional)
 # Location varies by IDE and OS
-
 # 4. Restart IDE
-
 # 5. Verify all services working
 ```
 
@@ -278,7 +252,6 @@ pytest tests/tools/test_junie_config.py::TestYamlConfiguration::test_schema_vers
 ```bash
 # Fetch latest without merging
 git fetch origin main
-
 # Compare versions
 git diff origin/main -- .junie/generic/config.yaml | grep schema_version
 ```

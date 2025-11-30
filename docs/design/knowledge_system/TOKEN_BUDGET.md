@@ -1,4 +1,4 @@
-# Token Budget
+﻿# Token Budget
 
 > Token allocation and management for AI context
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 Token budget management ensures efficient use of limited AI context window by allocating tokens strategically across knowledge layers and content types.
-
 
 ## Table of Contents
 

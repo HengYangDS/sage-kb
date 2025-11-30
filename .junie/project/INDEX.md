@@ -1,4 +1,4 @@
-# Project
+﻿# Project
 
 > Index of project documents
 
@@ -13,7 +13,6 @@
 ---
 
 ## Related
-
 
 ---
 

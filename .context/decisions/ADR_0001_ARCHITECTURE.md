@@ -1,4 +1,4 @@
-# ADR-0001: Three-Layer Architecture
+﻿# ADR-0001: Three-Layer Architecture
 
 > Architecture Decision Record for SAGE Knowledge Base
 
@@ -172,12 +172,9 @@ src/sage/
 ```python
 # Services → Core: Direct dependency
 from sage.core.config import get_config
-
 config = get_config()
-
 # Core → Services: Via EventBus (decoupled)
 bus.publish(Event(type="knowledge.loaded", data={...}))
-
 # Services ↔ Capabilities: Via DI Container
 analyzer = container.resolve(AnalyzerProtocol)
 ```

@@ -1,4 +1,4 @@
-# Diagram Standards
+﻿# Diagram Standards
 
 > Single source of truth for diagram creation standards using Mermaid
 
@@ -275,16 +275,13 @@ stateDiagram-v2
     Processing --> Failed : ✗ error
     Completed --> [*]
     Failed --> Idle : ↻ retry
-
     Idle : 💤 Waiting
     Processing : ⚙️ Working
     Completed : ✅ Done
     Failed : ❌ Error
-
     classDef base fill:#2d2d2d,stroke:#555,color:#fff
     classDef success fill:#1a1a1a,stroke:#4a4,color:#fff
     classDef error fill:#1a1a1a,stroke:#a44,color:#fff
-
     class Idle,Processing base
     class Completed success
     class Failed error

@@ -1,4 +1,4 @@
-# Technical Cases Repository
+﻿# Technical Cases Repository
 
 > Collection of problem-solving cases and lessons learned
 
@@ -79,7 +79,6 @@ if output_file:
     project_root = Path(__file__).parent.parent.parent.parent
     outputs_dir = project_root / ".outputs"
     outputs_dir.mkdir(parents=True, exist_ok=True)
-
     output_filename = Path(output_file).name
     output_path = outputs_dir / output_filename
     builder.export_to_json(output_path)

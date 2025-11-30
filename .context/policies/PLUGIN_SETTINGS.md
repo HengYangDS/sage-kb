@@ -1,4 +1,4 @@
-# Plugin System Configuration
+﻿# Plugin System Configuration
 
 > Configuration reference for the SAGE plugin system
 
@@ -143,7 +143,6 @@ plugins:
 # Global
 export SAGE_PLUGINS_ENABLED=true
 export SAGE_PLUGINS_PATH=/custom/plugins
-
 # Per-plugin (pattern: SAGE_PLUGIN_<NAME>_<SETTING>)
 export SAGE_PLUGIN_ANALYZER_ENABLED=true
 export SAGE_PLUGIN_ANALYZER_MAX_DEPTH=10
@@ -222,17 +221,14 @@ name: my_plugin
 version: "1.0.0"
 description: Custom plugin description
 author: Your Name
-
 # Dependencies
 requires:
   sage: ">=0.1.0"
   python: ">=3.12"
-
 # Plugin capabilities
 capabilities:
   - analyzer
   - transformer
-
 # Configuration schema
 config_schema:
   type: object
@@ -334,18 +330,14 @@ plugins:
 sage plugin list
 sage plugin list --all
 sage plugin list --enabled
-
 # Plugin info
 sage plugin info <plugin_name>
-
 # Enable/disable
 sage plugin enable <plugin_name>
 sage plugin disable <plugin_name>
-
 # Install external plugin
 sage plugin install <package_name>
 sage plugin uninstall <package_name>
-
 # Reload plugins
 sage plugin reload
 sage plugin reload <plugin_name>
@@ -355,7 +347,6 @@ sage plugin reload <plugin_name>
 ```python
 # plugins/my_plugin/plugin.py
 from sage.plugins import Plugin, hook
-
 class MyPlugin(Plugin):
     """Custom SAGE plugin."""
     
@@ -381,7 +372,6 @@ class MyPlugin(Plugin):
 # Validate plugin configuration
 sage plugin validate
 sage plugin validate <plugin_name>
-
 # Show plugin configuration
 sage plugin config <plugin_name>
 ```

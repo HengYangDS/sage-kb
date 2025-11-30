@@ -1,4 +1,4 @@
-# Session History Automation Requirements
+﻿# Session History Automation Requirements
 
 > Long-term automation plan for AI session history management in SAGE Knowledge Base
 
@@ -50,12 +50,10 @@ class SessionHooks:
         """Called when a new AI session begins."""
         # Create session state file in .history/current/
         pass
-
     async def on_session_end(self, context: SessionContext, summary: SessionSummary) -> None:
         """Called when AI session ends."""
         # Generate appropriate record based on session type
         pass
-
     async def on_significant_decision(self, decision: Decision) -> None:
         """Called when significant decision is made."""
         # Queue for conversation record
@@ -102,7 +100,6 @@ class SessionAnalyzer:
         # - Decision points encountered
         # - Duration and complexity
         return SessionType.SIGNIFICANT  # or ROUTINE, EXPLORATION, etc.
-
     def suggest_record_type(self, session_type: SessionType) -> RecordType:
         """Suggest appropriate record type."""
         mapping = {
@@ -195,14 +192,11 @@ Implement as optional plugin for flexibility:
 ```python
 class SessionHistoryPlugin(PluginBase):
     """Plugin for automated session history management."""
-
     name = "session-history"
     version = "1.0.0"
-
     @hookimpl
     def on_startup(self, context):
         self._start_session_tracking()
-
     @hookimpl
     def on_shutdown(self, context):
         self._finalize_session()

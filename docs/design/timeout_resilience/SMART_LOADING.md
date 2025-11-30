@@ -1,4 +1,4 @@
-# Smart Loading
+﻿# Smart Loading
 
 > Intelligent content loading strategies for optimal performance
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 Smart loading optimizes knowledge delivery by choosing the right loading strategy based on context, token budget, and user needs.
-
 
 ## Table of Contents
 

@@ -1,4 +1,4 @@
-# Timeout Hierarchy
+﻿# Timeout Hierarchy
 
 > T1-T5 timeout levels design documentation
 >
@@ -11,7 +11,6 @@ SAGE uses a five-tier timeout hierarchy (T1-T5) to classify operations by expect
 
 > **Note**: For project-specific timeout values, see `.context/policies/TIMEOUT_HIERARCHY.md`.
 > This document describes the design rationale and implementation patterns.
-
 
 ## Table of Contents
 
@@ -188,7 +187,6 @@ if operation_time > T5_TIMEOUT:
 
 ```python
 from functools import wraps
-
 def with_timeout(level: str):
     timeouts = {
         "T1": 100, "T2": 500, "T3": 2000, 
@@ -208,7 +206,6 @@ def with_timeout(level: str):
                 raise TimeoutError(func.__name__, timeout_ms)
         return wrapper
     return decorator
-
 # Usage
 @with_timeout("T2")
 async def read_file(path: str) -> str:

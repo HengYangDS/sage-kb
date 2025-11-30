@@ -1,4 +1,4 @@
-# Timeout & Resilience
+﻿# Timeout & Resilience
 
 > Timeout hierarchy and resilience patterns for SAGE
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 This directory documents SAGE's approach to handling timeouts, failures, and graceful degradation.
-
 
 ## Table of Contents
 

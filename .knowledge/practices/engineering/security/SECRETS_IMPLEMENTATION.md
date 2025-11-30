@@ -1,4 +1,4 @@
-# Secrets Implementation Patterns
+﻿# Secrets Implementation Patterns
 
 > Code patterns for implementing secrets management
 
@@ -21,10 +21,8 @@
 ```python
 import os
 from dotenv import load_dotenv
-
 # Load from .env file
 load_dotenv()
-
 # Get with validation
 def get_required_secret(name: str) -> str:
     """Get required secret from environment."""
@@ -32,7 +30,6 @@ def get_required_secret(name: str) -> str:
     if not value:
         raise ValueError(f"{name} environment variable required")
     return value
-
 DATABASE_URL = get_required_secret("DATABASE_URL")
 API_KEY = get_required_secret("API_KEY")
 ```
@@ -40,7 +37,6 @@ API_KEY = get_required_secret("API_KEY")
 
 ```python
 from pydantic import BaseSettings, SecretStr
-
 class Settings(BaseSettings):
     database_url: SecretStr
     api_key: SecretStr
@@ -49,7 +45,6 @@ class Settings(BaseSettings):
     class Config:
         env_file = ".env"
         env_file_encoding = "utf-8"
-
 settings = Settings()
 # Access: settings.api_key.get_secret_value()
 ```
@@ -61,7 +56,6 @@ settings = Settings()
 
 ```python
 import hvac
-
 class VaultSecretManager:
     """HashiCorp Vault integration."""
     
@@ -113,7 +107,6 @@ class VaultAppRole:
 ```python
 import boto3
 import json
-
 class AWSSecretManager:
     """AWS Secrets Manager integration."""
     
@@ -145,7 +138,6 @@ class AWSSecretManager:
 ```python
 from functools import lru_cache
 from datetime import datetime, timedelta
-
 class CachedSecretManager:
     """Secret manager with caching."""
     
@@ -176,7 +168,6 @@ class CachedSecretManager:
 
 ```python
 from abc import ABC, abstractmethod
-
 class SecretRotator(ABC):
     """Base class for secret rotation."""
     
@@ -209,7 +200,6 @@ class SecretRotator(ABC):
 ```python
 import secrets
 import string
-
 class DatabasePasswordRotator(SecretRotator):
     """Rotate database passwords."""
     
@@ -244,18 +234,14 @@ class DatabasePasswordRotator(SecretRotator):
 ```python
 from fastapi import FastAPI, Depends
 from functools import lru_cache
-
 @lru_cache()
 def get_settings():
     return Settings()
-
 @lru_cache()
 def get_secret_manager():
     settings = get_settings()
     return AWSSecretManager(region=settings.aws_region)
-
 app = FastAPI()
-
 @app.get("/api/data")
 async def get_data(secrets: AWSSecretManager = Depends(get_secret_manager)):
     api_key = secrets.get_secret("external-api")["key"]
@@ -265,7 +251,6 @@ async def get_data(secrets: AWSSecretManager = Depends(get_secret_manager)):
 
 ```python
 from contextlib import contextmanager
-
 @contextmanager
 def secret_scope(secret_manager, secret_name: str):
     """Temporarily access a secret."""
@@ -275,7 +260,6 @@ def secret_scope(secret_manager, secret_name: str):
     finally:
         # Clear from memory
         del secret
-
 # Usage
 with secret_scope(manager, "api-credentials") as creds:
     response = call_api(creds["key"])
@@ -285,7 +269,7 @@ with secret_scope(manager, "api-credentials") as creds:
 ## Related
 
 - `.knowledge/frameworks/security/SECRETS_MANAGEMENT.md` — Secrets management framework
-- `.knowledge/practices/engineering/SECURITY_PATTERNS.md` — Security patterns
+- `.knowledge/practices/engineering/security/SECURITY_PATTERNS.md` — Security patterns
 - `.knowledge/guidelines/SECURITY.md` — Security guidelines
 
 ---

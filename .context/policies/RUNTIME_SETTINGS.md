@@ -1,4 +1,4 @@
-# SAGE Runtime Settings
+﻿# SAGE Runtime Settings
 
 > Runtime configuration, logging, and environment settings
 
@@ -31,13 +31,10 @@ Environment variables use double underscore (`__`) for nested keys:
 
 ```bash
 # Pattern: SAGE__SECTION__KEY=value
-
 # Override timeout.cache_lookup
 export SAGE__TIMEOUT__CACHE_LOOKUP=200
-
 # Override logging.level
 export SAGE__LOGGING__LEVEL=DEBUG
-
 # Override knowledge.base_path
 export SAGE__KNOWLEDGE__BASE_PATH=/custom/path
 ```
@@ -46,7 +43,6 @@ export SAGE__KNOWLEDGE__BASE_PATH=/custom/path
 ```bash
 # True values: true, 1, yes, on
 export SAGE__FEATURES__ENABLE_CACHING=true
-
 # False values: false, 0, no, off
 export SAGE__FEATURES__ENABLE_METRICS=false
 ```
@@ -129,10 +125,8 @@ logging:
 ```bash
 # Set log level
 export SAGE__LOGGING__LEVEL=DEBUG
-
 # Set format
 export SAGE__LOGGING__FORMAT=text
-
 # Enable file logging
 export SAGE__LOGGING__OUTPUT=file
 export SAGE__LOGGING__FILE__PATH=/var/log/sage.log
@@ -218,10 +212,8 @@ api:
 ```bash
 # CLI
 export SAGE__CLI__COLORS=never
-
 # MCP
 export SAGE__MCP__SERVER__NAME=custom-kb
-
 # API
 export SAGE__API__PORT=9000
 export SAGE__API__HOST=127.0.0.1
@@ -257,9 +249,7 @@ features:
 
 ```python
 from sage.core.config import get_config
-
 config = get_config()
-
 if config.features.enable_caching:
     result = await cache.get(key)
     if result is None:
@@ -273,7 +263,6 @@ else:
 ```bash
 # Disable caching
 export SAGE__FEATURES__ENABLE_CACHING=false
-
 # Enable experimental feature
 export SAGE__FEATURES__EXPERIMENTAL__AI_SUGGESTIONS=true
 ```
@@ -332,10 +321,8 @@ debug:
 # Enable full debug mode
 export SAGE_DEBUG=true
 export SAGE__DEBUG__ENABLED=true
-
 # Enable specific verbose logging
 export SAGE__DEBUG__VERBOSE__EVENT_BUS=true
-
 # Enable profiling
 export SAGE__DEBUG__PROFILING__ENABLED=true
 ```
@@ -373,7 +360,6 @@ performance:
 ```bash
 # Memory settings
 export SAGE__PERFORMANCE__MEMORY__MAX_HEAP_MB=1024
-
 # Concurrency
 export SAGE__PERFORMANCE__CONCURRENCY__MAX_WORKERS=8
 ```
@@ -389,7 +375,6 @@ export SAGE_ENV=development
 export SAGE_DEBUG=true
 export SAGE_LOG_LEVEL=DEBUG
 export SAGE_CONFIG_PATH=./sage.yaml
-
 # Override specific settings
 export SAGE__TIMEOUT__CACHE_LOOKUP=200
 export SAGE__FEATURES__ENABLE_CACHING=true
@@ -403,14 +388,11 @@ logging:
   level: INFO
   format: json
   output: file
-
 features:
   enable_caching: true
   enable_metrics: true
-
 debug:
   enabled: false
-
 performance:
   concurrency:
     max_workers: 8
@@ -423,10 +405,8 @@ logging:
   level: DEBUG
   format: rich
   output: stderr
-
 features:
   enable_caching: false
-
 debug:
   enabled: true
   hot_reload:

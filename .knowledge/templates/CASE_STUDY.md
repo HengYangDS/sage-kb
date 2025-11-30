@@ -1,4 +1,4 @@
-# Case Study Template
+﻿# Case Study Template
 
 > Template for documenting problem-solving cases and lessons learned
 
@@ -115,7 +115,6 @@
 ```python
 # Before
 [original code]
-
 # After
 [fixed code]
 ```
@@ -221,7 +220,6 @@ Modified `mcp_server.py` to:
 ```python
 # Before
 builder.export_to_json(Path(output_file))
-
 # After
 outputs_dir = project_root / ".outputs"
 outputs_dir.mkdir(parents=True, exist_ok=True)

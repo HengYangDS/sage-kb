@@ -1,4 +1,4 @@
-# Security Implementation Patterns
+﻿# Security Implementation Patterns
 
 > Code patterns and examples for implementing security controls
 
@@ -21,13 +21,10 @@
 
 ```python
 import os
-
 # ❌ Bad - Hardcoded secret
 API_KEY = "sk-1234567890abcdef"
-
 # ✅ Good - Environment variable
 API_KEY = os.environ.get("API_KEY")
-
 # ✅ Better - With validation
 API_KEY = os.environ.get("API_KEY")
 if not API_KEY:
@@ -53,7 +50,6 @@ secrets.yaml
 
 ```python
 from pathlib import Path
-
 def safe_path(user_input: str, base_dir: Path) -> Path:
     """Validate and resolve path safely.
     
@@ -68,17 +64,14 @@ def safe_path(user_input: str, base_dir: Path) -> Path:
         ValueError: If path escapes base directory.
     """
     requested = (base_dir / user_input).resolve()
-
     if not str(requested).startswith(str(base_dir.resolve())):
         raise ValueError(f"Path traversal detected: {user_input}")
-
     return requested
 ```
 ### String Validation
 
 ```python
 import re
-
 def validate_identifier(value: str, max_length: int = 64) -> str:
     """Validate identifier string.
     
@@ -94,13 +87,10 @@ def validate_identifier(value: str, max_length: int = 64) -> str:
     """
     if not value:
         raise ValueError("Identifier cannot be empty")
-
     if len(value) > max_length:
         raise ValueError(f"Identifier exceeds {max_length} characters")
-
     if not re.match(r'^[a-zA-Z0-9_-]+$', value):
         raise ValueError("Identifier contains invalid characters")
-
     return value
 ```
 ### Numeric Validation
@@ -122,17 +112,14 @@ def validate_timeout(value: int, min_val: int = 100, max_val: int = 10000) -> in
     """
     if not isinstance(value, int):
         raise TypeError(f"Timeout must be int, got {type(value)}")
-
     if value < min_val or value > max_val:
         raise ValueError(f"Timeout must be {min_val}-{max_val}ms")
-
     return value
 ```
 ### Pydantic Validation
 
 ```python
 from pydantic import BaseModel, Field, validator
-
 class UserInput(BaseModel):
     username: str = Field(..., min_length=3, max_length=50, regex="^[a-zA-Z0-9_]+$")
     email: str = Field(..., max_length=255)
@@ -152,7 +139,6 @@ class UserInput(BaseModel):
 
 ```python
 from markupsafe import escape
-
 def safe_html_output(user_input: str) -> str:
     """Escape HTML special characters."""
     return escape(user_input)
@@ -161,7 +147,6 @@ def safe_html_output(user_input: str) -> str:
 
 ```python
 import json
-
 def safe_json_response(data: dict) -> str:
     """Safely encode data as JSON."""
     return json.dumps(data, ensure_ascii=True)
@@ -175,13 +160,11 @@ def safe_json_response(data: dict) -> str:
 ```python
 from pathlib import Path
 import tempfile
-
 def safe_temp_file(suffix: str = ".tmp") -> Path:
     """Create a secure temporary file."""
     fd, path = tempfile.mkstemp(suffix=suffix)
     os.close(fd)
     return Path(path)
-
 def safe_read_file(filepath: Path, base_dir: Path) -> str:
     """Read file safely within allowed directory."""
     safe = safe_path(str(filepath), base_dir)
@@ -196,11 +179,9 @@ def safe_read_file(filepath: Path, base_dir: Path) -> str:
 ```python
 # ❌ Bad - SQL injection vulnerability
 query = f"SELECT * FROM users WHERE name = '{user_input}'"
-
 # ✅ Good - Parameterized query
 query = "SELECT * FROM users WHERE name = %s"
 cursor.execute(query, (user_input,))
-
 # ✅ Good - ORM with proper filtering
 User.objects.filter(name=user_input)
 ```
@@ -213,9 +194,7 @@ User.objects.filter(name=user_input)
 ```python
 import structlog
 from datetime import datetime
-
 logger = structlog.get_logger()
-
 def log_security_event(
     event_type: str,
     user_id: str,
@@ -240,7 +219,6 @@ def log_security_event(
 
 ```python
 import re
-
 def redact_secrets(text: str) -> str:
     """Redact potential secrets from text."""
     patterns = [
@@ -257,7 +235,7 @@ def redact_secrets(text: str) -> str:
 ## Related
 
 - `.knowledge/guidelines/SECURITY.md` — Security principles and standards
-- `.knowledge/practices/engineering/ERROR_HANDLING.md` — Error handling patterns
+- `.knowledge/practices/engineering/design/ERROR_HANDLING.md` — Error handling patterns
 - `.knowledge/frameworks/security/SECRETS_MANAGEMENT.md` — Secrets management
 
 ---

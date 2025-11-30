@@ -1,4 +1,4 @@
-
+﻿
 # Troubleshooting Guide
 
 > Common issues and solutions for SAGE Knowledge Base
@@ -97,7 +97,6 @@ pip install sage-kb
 ```bash
 # Linux/macOS
 export LANG=en_US.UTF-8
-
 # Windows PowerShell
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 ```
@@ -135,10 +134,8 @@ export LANG=en_US.UTF-8
 cache:
   enabled: true
   ttl: 300
-
 loading:
   smart_loading: true
-
 timeouts:
   mcp_request: 10000  # 10 seconds
 ```

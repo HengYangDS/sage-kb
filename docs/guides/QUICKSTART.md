@@ -1,4 +1,4 @@
-
+﻿
 # Quick Start Guide
 
 > Get up and running with SAGE Knowledge Base in 5 minutes
@@ -28,7 +28,6 @@
 # Create conda environment (recommended)
 conda create -n sage-kb python=3.12
 conda activate sage-kb
-
 # Or use venv as alternative:
 # python -m venv .venv
 # source .venv/bin/activate  # Linux/macOS
@@ -39,10 +38,8 @@ conda activate sage-kb
 ```bash
 # Basic installation
 pip install sage-kb
-
 # With MCP support
 pip install sage-kb[mcp]
-
 # With all optional features
 pip install sage-kb[all]
 ```
@@ -52,11 +49,9 @@ pip install sage-kb[all]
 # Clone the repository
 git clone https://github.com/HengYangDS/sage-kb.git
 cd sage-kb
-
 # Setup conda environment
 conda env create -f environment.yml
 conda activate sage-kb
-
 # Install in development mode
 pip install -e ".[dev]"
 ```
@@ -65,7 +60,6 @@ pip install -e ".[dev]"
 ```bash
 # Check version
 sage --version
-
 # View help
 sage --help
 ```
@@ -80,10 +74,8 @@ Retrieve knowledge from a specific layer:
 ```bash
 # Get core principles
 sage get --layer core
-
 # Get specific topic
 sage get --topic timeout
-
 # Get with filtering
 sage get --layer practices --format json
 ```
@@ -94,10 +86,8 @@ Search across the knowledge base:
 ```bash
 # Simple search
 sage search "error handling"
-
 # Search in specific layer
 sage search "timeout" --layer core
-
 # Limit results
 sage search "pattern" --limit 5
 ```
@@ -108,10 +98,8 @@ Display system information:
 ```bash
 # Show knowledge base info
 sage info
-
 # Show layer statistics
 sage info --layers
-
 # Show configuration
 sage info --config
 ```
@@ -139,10 +127,8 @@ relevant context during conversations.
 ```bash
 # Start with default settings
 sage serve
-
 # Start on custom port
 sage serve --port 8080
-
 # Start with verbose logging
 sage serve --verbose
 ```
@@ -187,7 +173,6 @@ from sage.core.config import get_config
 # Get core knowledge
 knowledge = get_knowledge(layer="core")
 print(knowledge.content)
-
 # Get specific topic
 timeout_info = get_knowledge(topic="timeout")
 ```
@@ -196,7 +181,6 @@ timeout_info = get_knowledge(topic="timeout")
 ```python
 # Search for content
 results = search_knowledge("error handling")
-
 for result in results:
     print(f"{result.path}: {result.title}")
 ```
@@ -205,13 +189,9 @@ for result in results:
 ```python
 import asyncio
 from sage import async_get_knowledge
-
-
 async def main():
     knowledge = await async_get_knowledge(layer="core")
     print(knowledge.content)
-
-
 asyncio.run(main())
 ```
 ---
@@ -269,7 +249,6 @@ Place your own knowledge files in:
 # CLI help
 sage --help
 sage get --help
-
 # Report issues
 # https://github.com/HengYangDS/sage-kb/issues
 ```

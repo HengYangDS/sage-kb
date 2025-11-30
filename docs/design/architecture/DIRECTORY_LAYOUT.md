@@ -1,4 +1,4 @@
-# Directory Layout
+﻿# Directory Layout
 
 > Canonical project structure for SAGE Knowledge Base
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 SAGE follows a consistent directory layout that reflects the three-layer architecture and supports the MECE principle.
-
 
 ## Table of Contents
 

@@ -1,4 +1,4 @@
-# Session Checklist
+﻿# Session Checklist
 
 > Quick reference checklist for AI collaboration session management
 
@@ -136,13 +136,10 @@
 ```
 SESSION START
   □ Load context  □ Check active sessions  □ Set scope
-
 DURING WORK
   □ Track progress  □ Document decisions  □ Commit often
-
 BEFORE END
   □ Verify work  □ Quality check  □ Update docs
-
 SESSION END
   □ Create records  □ Cleanup  □ Prepare handoff
 ```

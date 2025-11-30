@@ -1,4 +1,4 @@
-# Plugins
+﻿# Plugins
 
 > Plugin system architecture for SAGE extensibility
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 The plugin system provides a standardized way to extend SAGE functionality without modifying core code.
-
 
 ## Table of Contents
 

@@ -1,4 +1,4 @@
-# SAGE Code Patterns
+﻿# SAGE Code Patterns
 
 > Project-specific code patterns and idioms for SAGE Knowledge Base
 
@@ -22,7 +22,6 @@
 
 ```python
 from sage.core.di import get_container, DIContainer, Lifetime
-
 # Get global container instance
 container = get_container()
 ```
@@ -35,10 +34,8 @@ container.register(
     implementation=KnowledgeSource,
     lifetime=Lifetime.SINGLETON
 )
-
 # Register existing instance
 container.register_instance(ConfigProtocol, config)
-
 # Register with factory
 container.register_factory(
     interface=AnalyzerProtocol,
@@ -59,10 +56,8 @@ container.register_factory(
 ```python
 # Resolve service (raises if not found)
 source = container.resolve(SourceProtocol)
-
 # Try resolve (returns None if not found)
 analyzer = container.try_resolve(AnalyzerProtocol)
-
 # Scoped resolution
 with container.create_scope("request-123") as scope:
     handler = scope.resolve(RequestHandler)
@@ -85,7 +80,6 @@ services:
 
 ```python
 from sage.core.events import get_event_bus, Event, EventType
-
 # Get global event bus instance
 bus = get_event_bus()
 ```
@@ -93,14 +87,12 @@ bus = get_event_bus()
 
 ```python
 from sage.core.events import Event
-
 # Create and publish event
 event = Event(
     type=EventType.KNOWLEDGE_LOADED,
     data={"layer": "core", "count": 42}
 )
 await bus.publish(event)
-
 # Or use string type
 event = Event(type="knowledge.loaded", data={...})
 ```
@@ -111,15 +103,12 @@ event = Event(type="knowledge.loaded", data={...})
 async def on_knowledge_loaded(event: Event) -> None:
     layer = event.data.get("layer")
     logger.info(f"Layer {layer} loaded")
-
-
 subscription = bus.subscribe(
     event_pattern=EventType.KNOWLEDGE_LOADED,
     handler=on_knowledge_loaded,
     priority=100,  # Lower = higher priority
     timeout_ms=5000
 )
-
 # Wildcard subscription
 bus.subscribe("knowledge.*", handle_all_knowledge_events)
 ```
@@ -146,9 +135,7 @@ bus.unsubscribe(subscription.id)
 
 ```python
 from sage.core.timeout import TimeoutManager, TimeoutLevel
-
 manager = TimeoutManager()
-
 # Execute with timeout
 result = await manager.execute_with_timeout(
     coro=load_knowledge(),
@@ -160,7 +147,6 @@ result = await manager.execute_with_timeout(
 
 ```python
 from sage.core.timeout import TimeoutLevel
-
 # Use appropriate level for operation scope
 TimeoutLevel.T1_CACHE  # 100ms - Cache lookup
 TimeoutLevel.T2_FILE  # 500ms - Single file
@@ -172,8 +158,6 @@ TimeoutLevel.T5_COMPLEX  # 10s   - Analysis
 
 ```python
 from sage.core.timeout import with_timeout
-
-
 @with_timeout(TimeoutLevel.T2_FILE)
 async def load_file(path: str) -> str:
     async with aiofiles.open(path) as f:
@@ -212,8 +196,6 @@ from sage.core.exceptions import (
 
 ```python
 from sage.core.exceptions import SAGEError, LoadError
-
-
 async def safe_operation() -> Result:
     try:
         return await risky_operation()
@@ -243,15 +225,11 @@ except Exception as e:
 ```python
 from dataclasses import dataclass
 from typing import TypeVar, Generic
-
 T = TypeVar("T")
-
-
 @dataclass
 class Result(Generic[T]):
     value: T | None = None
     error: str | None = None
-
     @property
     def is_success(self) -> bool:
         return self.error is None
@@ -264,16 +242,12 @@ class Result(Generic[T]):
 
 ```python
 from typing import Protocol, runtime_checkable
-
-
 @runtime_checkable
 class SourceProtocol(Protocol):
     """Protocol for knowledge sourcing."""
-
     async def load(self, path: str) -> Knowledge:
         """Load knowledge from path."""
         ...
-
     async def search(self, query: str) -> list[Knowledge]:
         """Search for knowledge."""
         ...
@@ -283,16 +257,12 @@ class SourceProtocol(Protocol):
 ```python
 class FileSource:
     """File-based knowledge source."""
-
     async def load(self, path: str) -> Knowledge:
         content = await read_file(path)
         return Knowledge(content=content)
-
     async def search(self, query: str) -> list[Knowledge]:
         # Implementation
         ...
-
-
 # Type checking verifies protocol compliance
 source: SourceProtocol = FileSource()
 ```
@@ -311,10 +281,8 @@ class FullSourceProtocol(SourceProtocol, CacheableProtocol):
 
 ```python
 from sage.core.config import get_config, SAGEConfig
-
 # Get global config
 config = get_config()
-
 # Access values
 timeout = config.timeout.cache_lookup
 layers = config.knowledge.layers
@@ -324,7 +292,6 @@ layers = config.knowledge.layers
 ```python
 # Environment variables override YAML config
 # Pattern: SAGE__SECTION__KEY
-
 # YAML: timeout.cache_lookup: 100
 # Env:  SAGE__TIMEOUT__CACHE_LOOKUP=200
 ```
@@ -332,12 +299,9 @@ layers = config.knowledge.layers
 
 ```python
 from pydantic import BaseModel, validator
-
-
 class TimeoutConfig(BaseModel):
     cache_lookup: int = 100
     file_read: int = 500
-
     @validator("cache_lookup")
     def validate_cache_lookup(cls, v):
         if v < 10:
@@ -355,11 +319,8 @@ class AsyncResource:
     async def __aenter__(self) -> "AsyncResource":
         await self.initialize()
         return self
-
     async def __aexit__(self, exc_type, exc_val, exc_tb) -> None:
         await self.cleanup()
-
-
 # Usage
 async with AsyncResource() as resource:
     await resource.process()
@@ -368,8 +329,6 @@ async with AsyncResource() as resource:
 
 ```python
 import asyncio
-
-
 async def load_all_layers() -> list[Knowledge]:
     tasks = [
         load_layer("core"),
@@ -382,8 +341,6 @@ async def load_all_layers() -> list[Knowledge]:
 
 ```python
 semaphore = asyncio.Semaphore(10)  # Max 10 concurrent
-
-
 async def rate_limited_load(path: str) -> Knowledge:
     async with semaphore:
         return await load_file(path)
@@ -394,8 +351,6 @@ async def rate_limited_load(path: str) -> Knowledge:
 async def stream_knowledge() -> AsyncGenerator[Knowledge, None]:
     for path in knowledge_paths:
         yield await load_knowledge(path)
-
-
 # Usage
 async for knowledge in stream_knowledge():
     process(knowledge)
@@ -408,9 +363,7 @@ async for knowledge in stream_knowledge():
 
 ```python
 import structlog
-
 logger = structlog.get_logger(__name__)
-
 # Log with context
 logger.info(
     "knowledge_loaded",
@@ -436,8 +389,6 @@ logger.info("processing_completed")  # Includes request_id
 ```python
 import pytest
 from sage.core.di import DIContainer
-
-
 @pytest.fixture
 def container():
     container = DIContainer()
@@ -457,8 +408,6 @@ def mock_bus():
 
 ```python
 import pytest
-
-
 @pytest.mark.asyncio
 async def test_async_load():
     result = await load_knowledge("test.md")

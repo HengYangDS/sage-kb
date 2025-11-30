@@ -1,4 +1,4 @@
-# Documentation Standards
+﻿# Documentation Standards
 
 > Single source of truth for document format and structure standards
 
@@ -21,30 +21,18 @@
 
 ```markdown
 # Title
-
 > Single-line purpose
-
 ---
-
 ## Table of Contents (if >60 lines or >3 H2)
-
 - [1. Section](#1-section)
 - [2. Section](#2-section)
-
 ---
-
 ## 1. Section
-
 ### 1.1 Subsection
-
 ---
-
 ## Related
-
 - `path/FILE.md` — Description
-
 ---
-
 *AI Collaboration Knowledge Base*
 ```
 **Note**: Frontmatter metadata (version, tokens, etc.) is NOT used. Document content speaks for itself.
@@ -185,7 +173,6 @@
 # ✓ Good: focused, shows input/output
 def greet(name: str) -> str:
     return f"Hello, {name}"
-
 print(greet("World"))  # Output: Hello, World
 ```
 > **Full Standards**: See `CODE_BLOCK_STANDARDS.md`

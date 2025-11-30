@@ -1,4 +1,4 @@
-
+﻿
 # MCP Protocol Reference
 
 > SAGE Model Context Protocol (MCP) Server Documentation
@@ -33,7 +33,6 @@ SAGE provides an MCP server for AI agent integration. Built with FastMCP, it exp
 ```bash
 # Via CLI
 sage serve --host localhost --port 8000
-
 # Via Python
 python -m sage.services.mcp_server
 ```

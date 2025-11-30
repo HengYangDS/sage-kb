@@ -1,4 +1,4 @@
-# Concurrency Practices
+﻿# Concurrency Practices
 
 > Best practices for concurrent and parallel programming
 
@@ -42,16 +42,13 @@
 ```python
 import asyncio
 import httpx
-
 async def fetch_url(client: httpx.AsyncClient, url: str) -> str:
     response = await client.get(url)
     return response.text
-
 async def fetch_all(urls: list[str]) -> list[str]:
     async with httpx.AsyncClient() as client:
         tasks = [fetch_url(client, url) for url in urls]
         return await asyncio.gather(*tasks)
-
 # With concurrency limit
 async def fetch_with_limit(urls: list[str], limit: int = 10) -> list[str]:
     semaphore = asyncio.Semaphore(limit)
@@ -69,11 +66,9 @@ async def fetch_with_limit(urls: list[str], limit: int = 10) -> list[str]:
 ```python
 from concurrent.futures import ProcessPoolExecutor
 import multiprocessing as mp
-
 def cpu_intensive(data):
     # Heavy computation
     return sum(x ** 2 for x in data)
-
 def process_parallel(items: list, workers: int = None):
     workers = workers or mp.cpu_count()
     with ProcessPoolExecutor(max_workers=workers) as executor:
@@ -83,11 +78,9 @@ def process_parallel(items: list, workers: int = None):
 
 ```python
 from concurrent.futures import ThreadPoolExecutor
-
 def blocking_io(item):
     # Blocking operation (e.g., file I/O, legacy API)
     return process(item)
-
 def process_threaded(items: list, workers: int = 10):
     with ThreadPoolExecutor(max_workers=workers) as executor:
         return list(executor.map(blocking_io, items))
@@ -101,19 +94,16 @@ def process_threaded(items: list, workers: int = 10):
 ```python
 import asyncio
 from asyncio import Queue
-
 async def producer(queue: Queue, items: list):
     for item in items:
         await queue.put(item)
     await queue.put(None)  # Sentinel
-
 async def consumer(queue: Queue, process_func):
     while True:
         item = await queue.get()
         if item is None:
             break
         await process_func(item)
-
 async def run_pipeline(items, process_func, num_consumers=3):
     queue = Queue(maxsize=100)
     
@@ -135,7 +125,6 @@ async def run_pipeline(items, process_func, num_consumers=3):
 ```python
 import asyncio
 from typing import Callable, Any
-
 class WorkerPool:
     def __init__(self, num_workers: int = 5):
         self.num_workers = num_workers
@@ -210,7 +199,7 @@ async def safe_gather(tasks):
 ## Related
 
 - `.knowledge/frameworks/performance/OPTIMIZATION_STRATEGIES.md` — Performance optimization
-- `.knowledge/practices/engineering/ERROR_HANDLING.md` — Error handling patterns
+- `.knowledge/practices/engineering/design/ERROR_HANDLING.md` — Error handling patterns
 
 ---
 

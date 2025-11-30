@@ -1,4 +1,4 @@
-
+﻿
 # CLI Reference
 
 > SAGE Command-Line Interface Documentation
@@ -53,10 +53,8 @@ sage get [LAYER] [OPTIONS]
 ```bash
 # Load core knowledge
 sage get core
-
 # Load guidelines with custom timeout
 sage get guidelines --timeout 5000
-
 # Load frameworks as JSON
 sage get frameworks --format json
 ```
@@ -98,10 +96,8 @@ sage search QUERY [OPTIONS]
 ```bash
 # Basic search
 sage search "timeout"
-
 # Search with limit
 sage search "autonomy" --limit 5
-
 # Search specific layer
 sage search "pattern" --layer frameworks
 ```
@@ -127,10 +123,8 @@ sage serve [OPTIONS]
 ```bash
 # Start with defaults
 sage serve
-
 # Custom host and port
 sage serve --host 0.0.0.0 --port 9000
-
 # Development mode with reload
 sage serve --reload
 ```
@@ -162,7 +156,6 @@ sage info [OPTIONS]
 ```bash
 # Rich formatted output
 sage info
-
 # JSON output for scripting
 sage info --json
 ```
@@ -189,10 +182,8 @@ sage config [SUBCOMMAND] [OPTIONS]
 ```bash
 # Show all config
 sage config show
-
 # Get specific value
 sage config get timeout.t3
-
 # Set value
 sage config set mcp.port 9000
 ```

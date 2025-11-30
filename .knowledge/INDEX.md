@@ -25,7 +25,7 @@
 | **Scenarios**  | `scenarios/`  | Context-specific guides                   | 34    |
 | **Templates**  | `templates/`  | Reusable document templates               | 18    |
 
-**Total**: 167 knowledge files
+**Total**: 165 knowledge files
 
 ---
 
@@ -62,7 +62,7 @@ Code style and collaboration standards:
 | `PLANNING.md`         | Planning guidelines           |
 | `SUCCESS.md`          | Success metrics               |
 
-### 2.3 Frameworks (24 files)
+### 2.3 Frameworks (25 files)
 
 Reusable patterns and strategies across 7 categories:
 

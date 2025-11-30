@@ -1,4 +1,4 @@
-# Extension Points
+﻿# Extension Points
 
 > Where and how plugins can extend SAGE functionality
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 Extension points are well-defined interfaces where plugins can inject custom behavior into SAGE's processing pipeline.
-
 
 ## Table of Contents
 
@@ -70,7 +69,6 @@ class CapabilityExtension(Protocol):
     def execute(self, context: Context, *args, **kwargs) -> Result:
         """Execute the capability."""
         ...
-
 # Example: Custom analyzer
 class CustomAnalyzer(CapabilityExtension):
     name = "custom_analyzer"
@@ -138,7 +136,6 @@ class ValidationHook(Hook):
     def execute(self, context: Context, sources: list[str]) -> list[str]:
         # Validate and filter sources
         return [s for s in sources if self._is_valid(s)]
-
 # Register in plugin
 container.register_hook(ValidationHook())
 ```
@@ -187,7 +184,6 @@ class MyPluginConfig:
     enabled: bool = True
     threshold: float = 0.8
     options: dict = field(default_factory=dict)
-
 class MyPlugin(Plugin):
     def register(self, container: Container) -> None:
         # Register config schema

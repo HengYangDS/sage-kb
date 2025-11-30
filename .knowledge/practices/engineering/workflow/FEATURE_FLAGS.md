@@ -1,4 +1,4 @@
-# Feature Flag Patterns
+﻿# Feature Flag Patterns
 
 > Feature flag design principles and best practices
 
@@ -94,7 +94,6 @@ features:
 ```python
 def get_feature(name: str, default: bool = False) -> bool:
     return features_config.get(name, default)
-
 # Usage
 if get_feature("new_dashboard"):
     show_new_dashboard()
@@ -108,14 +107,11 @@ def is_feature_enabled(name: str, context: dict) -> bool:
     feature = features_config.get(name)
     if not feature:
         return False
-
     if not feature.get("enabled"):
         return False
-
     # Check whitelist
     if context.get("user_id") in feature.get("allowed_users", []):
         return True
-
     # Check rollout percentage
     rollout = feature.get("rollout_percentage", 100)
     return hash(context.get("user_id")) % 100 < rollout
@@ -130,11 +126,8 @@ def feature_flag(name: str, default: bool = False):
             if get_feature(name, default):
                 return func(*args, **kwargs)
             return None
-
         return wrapper
-
     return decorator
-
 @feature_flag("new_recommendation")
 def get_recommendations(user_id: str):
     return new_recommendation_engine(user_id)
@@ -213,7 +206,6 @@ alerts:
   - name: feature_error_spike
     condition: error_rate > baseline * 1.5
     action: auto_disable_flag
-
   - name: performance_degradation
     condition: latency_p99 > threshold
     action: notify_oncall
@@ -264,8 +256,8 @@ alerts:
 
 ## Related
 
-- `.knowledge/practices/engineering/TESTING_STRATEGY.md` — Testing with flags
-- `.knowledge/practices/engineering/ERROR_HANDLING.md` — Degradation patterns
+- `.knowledge/practices/engineering/quality/TESTING_STRATEGY.md` — Testing with flags
+- `.knowledge/practices/engineering/design/ERROR_HANDLING.md` — Degradation patterns
 - `config/capabilities/features.yaml` — Project feature configuration
 
 ---

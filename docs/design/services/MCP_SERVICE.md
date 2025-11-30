@@ -1,4 +1,4 @@
-# MCP Service
+﻿# MCP Service
 
 > Model Context Protocol service for AI assistant integration
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 The MCP service enables AI assistants (Claude, Cursor, etc.) to access SAGE knowledge base through the Model Context Protocol using FastMCP framework.
-
 
 ## Table of Contents
 
@@ -67,7 +66,6 @@ def get_knowledge(
         Knowledge content with metadata
     """
     ...
-
 @mcp.tool()
 def search_knowledge(
     query: str,
@@ -95,13 +93,11 @@ def search_knowledge(
 
 ```python
 from fastmcp import FastMCP
-
 mcp = FastMCP(
     name="sage-kb",
     version="1.0.0",
     description="SAGE Knowledge Base MCP Server"
 )
-
 @mcp.tool()
 def get_knowledge(query: str, layer: int = None) -> dict:
     container = get_container()
@@ -118,7 +114,6 @@ def get_knowledge(query: str, layer: int = None) -> dict:
         "type": result.content_type,
         "tokens": result.token_count
     }
-
 if __name__ == "__main__":
     mcp.run()
 ```
@@ -188,7 +183,6 @@ def knowledge_query(topic: str) -> list[Message]:
 
 ```python
 from fastmcp import McpError
-
 @mcp.tool()
 def get_knowledge(query: str) -> dict:
     try:
@@ -262,7 +256,6 @@ services:
 ```python
 import pytest
 from sage.services.mcp import mcp
-
 def test_get_knowledge():
     result = mcp.call_tool("get_knowledge", {
         "query": "test",
@@ -270,7 +263,6 @@ def test_get_knowledge():
     })
     assert "content" in result
     assert result["layer"] == 1
-
 def test_search_knowledge():
     results = mcp.call_tool("search_knowledge", {
         "query": "architecture",

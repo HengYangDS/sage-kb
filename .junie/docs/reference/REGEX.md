@@ -1,4 +1,4 @@
-
+﻿
 # Regex Reference
 
 > Regular expression patterns for Terminal rules (~10 min reference)
@@ -170,12 +170,10 @@ Use for: Commands with specific allowed subcommands
 # Exact match (no args)
 ^\Qgit status\E$
 ^\Qgit fetch\E$
-
 # Safe arguments
 ^\Qgit add\E [^\s;&|<>@$]*$
 ^\Qgit commit\E [^\s;&|<>@$]*$
 ^\Qgit push\E [^\s;&|<>@$]*$
-
 # Any arguments (safe commands)
 ^\Qgit diff\E.*$
 ^\Qgit log\E.*$
@@ -188,7 +186,6 @@ Use for: Commands with specific allowed subcommands
 ^\Qpython\E [^\s;&|<>@$]*$
 ^\Qpython3\E [^\s;&|<>@$]*$
 ^\Qpip install\E [^\s;&|<>@$]*$
-
 # Any arguments (test commands)
 ^\Qpython -m pytest\E.*$
 ^\Qpytest\E.*$
@@ -201,7 +198,6 @@ Use for: Commands with specific allowed subcommands
 ^\Qnpm run\E [^\s;&|<>@$]*$
 ^\Qnpx\E [^\s;&|<>@$]*$
 ^\Qnode\E [^\s;&|<>@$]*$
-
 # Any arguments
 ^\Qnpm install\E.*$
 ^\Qnpm test\E.*$
@@ -229,12 +225,10 @@ Use for: Commands with specific allowed subcommands
 ```
 
 Pattern: ^\Qgit add\E [^\s;&|<>@$]*$
-
 Should MATCH:
 ✓ git add .
 ✓ git add file.txt
 ✓ git add src/main.py
-
 Should NOT MATCH:
 ✗ git add; rm -rf /
 ✗ git add | cat

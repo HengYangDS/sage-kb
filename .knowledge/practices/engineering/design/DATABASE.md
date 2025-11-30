@@ -1,4 +1,4 @@
-# Database Best Practices
+﻿# Database Best Practices
 
 > Guidelines for effective database design and usage
 
@@ -30,13 +30,10 @@
 -- Tables: plural, snake_case
 CREATE TABLE users (...);
 CREATE TABLE order_items (...);
-
 -- Columns: singular, snake_case
 user_id, created_at, is_active
-
 -- Indexes: ix_table_columns
 CREATE INDEX ix_users_email ON users(email);
-
 -- Foreign keys: fk_table_referenced
 CONSTRAINT fk_orders_user FOREIGN KEY (user_id) REFERENCES users(id)
 ```
@@ -53,10 +50,8 @@ CONSTRAINT fk_orders_user FOREIGN KEY (user_id) REFERENCES users(id)
 ```sql
 -- Composite index (column order matters!)
 CREATE INDEX ix_orders_user_date ON orders(user_id, created_at DESC);
-
 -- Partial index
 CREATE INDEX ix_active_users ON users(email) WHERE is_active = true;
-
 -- Covering index
 CREATE INDEX ix_orders_covering ON orders(user_id) INCLUDE (total, status);
 ```
@@ -69,20 +64,16 @@ CREATE INDEX ix_orders_covering ON orders(user_id) INCLUDE (total, status);
 ```sql
 -- ❌ Bad: SELECT *
 SELECT * FROM users WHERE id = 1;
-
 -- ✅ Good: Select only needed columns
 SELECT id, name, email FROM users WHERE id = 1;
-
 -- ❌ Bad: N+1 queries (in application loop)
 -- ✅ Good: JOIN or batch query
 SELECT u.*, o.*
 FROM users u
 LEFT JOIN orders o ON u.id = o.user_id
 WHERE u.id IN (1, 2, 3);
-
 -- ❌ Bad: LIKE with leading wildcard
 SELECT * FROM users WHERE name LIKE '%john%';
-
 -- ✅ Good: Full-text search for text searching
 SELECT * FROM users WHERE to_tsvector(name) @@ to_tsquery('john');
 ```
@@ -91,7 +82,6 @@ SELECT * FROM users WHERE to_tsvector(name) @@ to_tsquery('john');
 ```sql
 -- ❌ Bad: OFFSET for large datasets
 SELECT * FROM orders ORDER BY id LIMIT 20 OFFSET 10000;
-
 -- ✅ Good: Keyset pagination
 SELECT * FROM orders
 WHERE id > :last_seen_id
@@ -104,7 +94,6 @@ LIMIT 20;
 -- Always analyze slow queries
 EXPLAIN ANALYZE
 SELECT * FROM orders WHERE user_id = 123 AND status = 'pending';
-
 -- Look for:
 -- - Seq Scan (may need index)
 -- - High cost estimates
@@ -119,7 +108,6 @@ SELECT * FROM orders WHERE user_id = 123 AND status = 'pending';
 ```python
 from sqlalchemy import create_engine
 from sqlalchemy.pool import QueuePool
-
 engine = create_engine(
     "postgresql://user:pass@localhost/db",
     poolclass=QueuePool,
@@ -134,13 +122,11 @@ engine = create_engine(
 
 ```python
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
-
 engine = create_async_engine(
     "postgresql+asyncpg://user:pass@localhost/db",
     pool_size=10,
     max_overflow=20,
 )
-
 async with AsyncSession(engine) as session:
     result = await session.execute(query)
 ```
@@ -166,7 +152,6 @@ async with session.begin():
 -- Use database constraints, not just application logic
 ALTER TABLE users ADD CONSTRAINT chk_email CHECK (email LIKE '%@%');
 ALTER TABLE orders ADD CONSTRAINT chk_amount CHECK (amount > 0);
-
 -- Unique constraints
 ALTER TABLE users ADD CONSTRAINT uq_users_email UNIQUE (email);
 ```
@@ -175,10 +160,8 @@ ALTER TABLE users ADD CONSTRAINT uq_users_email UNIQUE (email);
 ```sql
 -- Soft delete pattern
 ALTER TABLE users ADD COLUMN deleted_at TIMESTAMP;
-
 -- Query active records
 SELECT * FROM users WHERE deleted_at IS NULL;
-
 -- Create partial index for performance
 CREATE INDEX ix_users_active ON users(email) WHERE deleted_at IS NULL;
 ```
@@ -210,7 +193,7 @@ CREATE INDEX ix_users_active ON users(email) WHERE deleted_at IS NULL;
 ## Related
 
 - `.knowledge/frameworks/performance/OPTIMIZATION_STRATEGIES.md` — Performance guide
-- `.knowledge/practices/engineering/BATCH_OPTIMIZATION.md` — Batch processing
+- `.knowledge/practices/engineering/optimization/BATCH_OPTIMIZATION.md` — Batch processing
 
 ---
 

@@ -1,4 +1,4 @@
-# Plugin Lifecycle
+﻿# Plugin Lifecycle
 
 > Plugin states and lifecycle management
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 Plugins go through a defined lifecycle from discovery to unload, with clear states and transitions managed by the Plugin Manager.
-
 
 ## Table of Contents
 
@@ -124,7 +123,6 @@ class PluginState(Enum):
     DISABLED = "disabled"
     UNLOADING = "unloading"
     ERROR = "error"
-
 class PluginLifecycleManager:
     def __init__(self):
         self.states: dict[str, PluginState] = {}

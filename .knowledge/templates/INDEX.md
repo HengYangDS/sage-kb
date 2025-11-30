@@ -1,4 +1,4 @@
-# Document Templates
+﻿# Document Templates
 
 > Reusable templates for common documents
 
@@ -96,13 +96,9 @@
 
 ```markdown
 ## Expert Committee Review: [Topic]
-
 ### Architecture Group Assessment
-
 [Use template prompts]
-
 ### Knowledge Group Assessment
-
 [Use template prompts]
 ...
 ```
@@ -200,28 +196,17 @@ All templates follow this structure:
 
 ```markdown
 # [Template Name]
-
 > **Purpose**: [brief description]
 > **Use When**: [trigger conditions]
-
 ---
-
 ## Overview
-
 [What this template helps accomplish]
-
 ## Template
-
 [The actual template content with placeholders]
-
 ## Instructions
-
 [How to fill in the template]
-
 ## Examples
-
 [Completed example if helpful]
-
 ---
 *Template from AI Collaboration Knowledge Base*
 ```

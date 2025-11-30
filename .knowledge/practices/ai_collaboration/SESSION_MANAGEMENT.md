@@ -1,4 +1,4 @@
-# Session Management
+﻿# Session Management
 
 > Best practices for managing AI collaboration sessions effectively
 
@@ -81,23 +81,18 @@ flowchart LR
 
 ```markdown
 ## Session Context Template
-
 ### Objective
 What are we trying to accomplish?
-
 ### Scope
 - Included: [specific items]
 - Excluded: [out of scope items]
-
 ### Constraints
 - Time: [deadline if any]
 - Dependencies: [blockers or requirements]
 - Autonomy: [L1-L6 level]
-
 ### Key Files
 - `path/to/main/file.py` — Primary file being modified
 - `path/to/test/file.py` — Related test file
-
 ### Decisions Made
 1. Decision with rationale
 2. Another decision
@@ -121,39 +116,29 @@ Priority Order:
 Location: `.history/current/session-YYYYMMDD-HHMM.md`
 ```markdown
 # Session State: [Task Name]
-
 > **Session ID**: session-20251129-2230
 > **Started**: 2025-11-29 22:30
 > **Last Updated**: 2025-11-29 23:15
 > **Status**: Active
-
 ---
-
 ## Current Task
-
 ### Objective
 [Clear description of what we're doing]
-
 ### Progress
 - [x] Step 1 completed
 - [x] Step 2 completed
 - [ ] Step 3 in progress
 - [ ] Step 4 pending
-
 ### Files Modified
 | File                    | Changes          | Status      |
 |-------------------------|------------------|-------------|
 | `src/module.py`         | Added function X | Done        |
 | `tests/test_module.py`  | Added tests      | In Progress |
-
 ### Decisions
 1. Chose approach A because [reason]
-
 ### Blockers
 - None currently
-
 ---
-
 ## Quick Resume
 To continue: [specific next action]
 ```
@@ -192,35 +177,25 @@ To continue: [specific next action]
 Location: `.history/handoffs/YYYY-MM-DD-TASK-HANDOFF.md`
 ```markdown
 # Task Handoff: [Task Name]
-
 > **From**: Session session-20251129-2230
 > **Date**: 2025-11-29
 > **Status**: Partial completion
-
 ---
-
 ## Summary
 Brief description of what was accomplished and what remains.
-
 ## Completed Work
 1. Item 1 with details
 2. Item 2 with details
-
 ## Pending Items
 1. [ ] Remaining task 1
 2. [ ] Remaining task 2
-
 ## Context for Continuation
-
 ### Key Files
 - `path/to/file.py` — Description of state
-
 ### Important Decisions
 - Decision 1: Rationale
-
 ### Potential Issues
 - Issue to watch for
-
 ## Recommended Next Steps
 1. Immediate next action
 2. Following action
@@ -254,7 +229,6 @@ When context is lost mid-session:
 
 ```markdown
 ## Recovery Checklist
-
 1. [ ] Check .history/current/ for session state
 2. [ ] Review git log for recent commits
 3. [ ] Check git diff for uncommitted changes
@@ -281,14 +255,11 @@ When multiple sessions conflict:
 ```bash
 # Check for active sessions
 ls .history/current/
-
 # View recent handoffs
 ls -la .history/handoffs/
-
 # Check uncommitted work
 git status
 git diff
-
 # View recent activity
 git log --oneline -10
 ```

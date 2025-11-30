@@ -1,4 +1,4 @@
-# Authentication Patterns
+﻿# Authentication Patterns
 
 > Identity verification mechanisms and best practices
 
@@ -34,7 +34,6 @@ sequenceDiagram
     participant Auth as Authn Server
     participant Authz as Authz Server
     participant R as Resource Server
-
     C->>Auth: Credentials
     Auth-->>C: Token
     C->>Authz: Token + Request
@@ -66,7 +65,6 @@ sequenceDiagram
 import hashlib
 import secrets
 from typing import Tuple
-
 def hash_password(password: str) -> Tuple[str, str]:
     """Hash password with salt using secure algorithm."""
     salt = secrets.token_hex(32)
@@ -78,7 +76,6 @@ def hash_password(password: str) -> Tuple[str, str]:
         iterations=100000
     )
     return hash_value.hex(), salt
-
 def verify_password(password: str, hash_value: str, salt: str) -> bool:
     """Verify password against stored hash."""
     new_hash, _ = hash_password_with_salt(password, salt)
@@ -90,22 +87,16 @@ def verify_password(password: str, hash_value: str, salt: str) -> bool:
 # API key validation pattern
 from functools import wraps
 from typing import Callable
-
 def require_api_key(func: Callable) -> Callable:
     """Decorator to require valid API key."""
-
     @wraps(func)
     async def wrapper(request, *args, **kwargs):
         api_key = request.headers.get("X-API-Key")
-
         if not api_key:
             raise AuthenticationError("API key required")
-
         if not await validate_api_key(api_key):
             raise AuthenticationError("Invalid API key")
-
         return await func(request, *args, **kwargs)
-
     return wrapper
 ```
 ---
@@ -140,14 +131,11 @@ flowchart LR
 import jwt
 from datetime import datetime, timedelta
 from typing import Dict, Any
-
 class JWTManager:
     """JWT token management."""
-
     def __init__(self, secret: str, algorithm: str = "HS256"):
         self.secret = secret
         self.algorithm = algorithm
-
     def create_token(
         self,
         user_id: str,
@@ -162,7 +150,6 @@ class JWTManager:
             **(claims or {})
         }
         return jwt.encode(payload, self.secret, algorithm=self.algorithm)
-
     def verify_token(self, token: str) -> Dict[str, Any]:
         """Verify and decode JWT token."""
         try:
@@ -197,18 +184,14 @@ class JWTManager:
 import secrets
 from datetime import datetime, timedelta
 from typing import Optional
-
 class SessionManager:
     """Secure session management."""
-
     def __init__(self, store, idle_timeout: int = 1800):
         self.store = store
         self.idle_timeout = idle_timeout  # 30 minutes
-
     def create_session(self, user_id: str) -> str:
         """Create new session."""
         session_id = secrets.token_urlsafe(32)
-
         self.store.set(
             f"session:{session_id}",
             {
@@ -218,16 +201,12 @@ class SessionManager:
             },
             expire=self.idle_timeout
         )
-
         return session_id
-
     def validate_session(self, session_id: str) -> Optional[str]:
         """Validate session and return user_id."""
         session = self.store.get(f"session:{session_id}")
-
         if not session:
             return None
-
         # Update last activity (sliding expiration)
         session["last_activity"] = datetime.utcnow().isoformat()
         self.store.set(
@@ -235,9 +214,7 @@ class SessionManager:
             session,
             expire=self.idle_timeout
         )
-
         return session["user_id"]
-
     def destroy_session(self, session_id: str) -> None:
         """Destroy session."""
         self.store.delete(f"session:{session_id}")
@@ -263,14 +240,11 @@ class SessionManager:
 import pyotp
 import qrcode
 from io import BytesIO
-
 class TOTPManager:
     """Time-based OTP management."""
-
     def generate_secret(self) -> str:
         """Generate new TOTP secret."""
         return pyotp.random_base32()
-
     def get_provisioning_uri(
         self,
         secret: str,
@@ -283,18 +257,15 @@ class TOTPManager:
             name=user_email,
             issuer_name=issuer
         )
-
     def generate_qr_code(self, uri: str) -> bytes:
         """Generate QR code image."""
         qr = qrcode.QRCode(version=1, box_size=10, border=5)
         qr.add_data(uri)
         qr.make(fit=True)
-
         img = qr.make_image(fill_color="black", back_color="white")
         buffer = BytesIO()
         img.save(buffer, format="PNG")
         return buffer.getvalue()
-
     def verify_code(self, secret: str, code: str) -> bool:
         """Verify TOTP code."""
         totp = pyotp.TOTP(secret)
@@ -309,38 +280,30 @@ class TOTPManager:
 ```python
 async def login(request: LoginRequest) -> LoginResponse:
     """Secure login implementation."""
-
     # 1. Rate limiting
     if await is_rate_limited(request.ip):
         raise TooManyRequestsError("Too many login attempts")
-
     # 2. Find user
     user = await find_user_by_email(request.email)
     if not user:
         # Constant time response to prevent enumeration
         await simulate_password_check()
         raise AuthenticationError("Invalid credentials")
-
     # 3. Verify password
     if not verify_password(request.password, user.password_hash):
         await record_failed_attempt(request.email, request.ip)
         raise AuthenticationError("Invalid credentials")
-
     # 4. Check MFA
     if user.mfa_enabled:
         if not request.mfa_code:
             return LoginResponse(requires_mfa=True)
-
         if not verify_mfa(user.mfa_secret, request.mfa_code):
             raise AuthenticationError("Invalid MFA code")
-
     # 5. Create session/token
     token = create_access_token(user.id)
     refresh_token = create_refresh_token(user.id)
-
     # 6. Audit log
     await audit_log("login_success", user.id, request.ip)
-
     return LoginResponse(
         access_token=token,
         refresh_token=refresh_token,
@@ -352,23 +315,17 @@ async def login(request: LoginRequest) -> LoginResponse:
 ```python
 from fastapi import Request, HTTPException
 from fastapi.security import HTTPBearer
-
 security = HTTPBearer()
-
 async def auth_middleware(request: Request, call_next):
     """Authentication middleware."""
-
     # Skip auth for public endpoints
     if request.url.path in PUBLIC_ENDPOINTS:
         return await call_next(request)
-
     # Extract token
     auth_header = request.headers.get("Authorization")
     if not auth_header or not auth_header.startswith("Bearer "):
         raise HTTPException(status_code=401, detail="Missing token")
-
     token = auth_header.split(" ")[1]
-
     # Verify token
     try:
         payload = verify_token(token)
@@ -376,7 +333,6 @@ async def auth_middleware(request: Request, call_next):
         request.state.roles = payload.get("roles", [])
     except AuthenticationError as e:
         raise HTTPException(status_code=401, detail=str(e))
-
     return await call_next(request)
 ```
 ---

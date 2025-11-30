@@ -1,4 +1,4 @@
-
+﻿
 # Migration Guide
 
 > Version upgrade procedures and compatibility notes
@@ -112,7 +112,6 @@ sage config migrate            # Apply changes
 # Old (v0.x)
 timeout_ms: 5000
 cache: true
-
 # New (v1.x)
 timeout:
   default_ms: 5000
@@ -145,7 +144,6 @@ sage content verify             # Verify
 ---
 title: Document
 ---
-
 # New format
 ---
 version: "1.0"
@@ -196,7 +194,6 @@ pip install sage-kb==1.0.0      # Downgrade version
 # Restore from backup
 cp -r .backups/YYYYMMDD/config/ ./config/
 cp -r .backups/YYYYMMDD/.knowledge/ ./.knowledge/
-
 # Downgrade package
 pip install sage-kb==<previous-version>
 ```

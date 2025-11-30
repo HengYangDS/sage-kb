@@ -1,4 +1,4 @@
-
+﻿
 # Python API Advanced Reference
 
 > Search, events, enums, exceptions, and usage examples for SAGE Python API
@@ -24,7 +24,6 @@ Search the knowledge base.
 
 ```python
 from sage.core.search import KnowledgeSearcher
-
 searcher = KnowledgeSearcher()
 ```
 #### search
@@ -82,14 +81,11 @@ Pub/sub system for decoupled communication.
 
 ```python
 from sage.core.events import EventBus, Event
-
 bus = EventBus()
-
 # Subscribe to events
 @bus.subscribe("knowledge.loaded")
 async def on_load(event: Event):
     print(f"Loaded: {event.data}")
-
 # Publish events
 await bus.publish(Event(
     type="knowledge.loaded",
@@ -106,7 +102,6 @@ Task types for context loading.
 
 ```python
 from sage.domain.knowledge import TaskType
-
 class TaskType(Enum):
     CODING = "coding"
     DEBUGGING = "debugging"
@@ -120,7 +115,6 @@ Timeout levels for operations.
 
 ```python
 from sage.core.timeout import TimeoutLevel
-
 class TimeoutLevel(Enum):
     T1 = 100    # Cache lookup
     T2 = 500    # Single file
@@ -138,7 +132,6 @@ Base exception for all SAGE errors.
 
 ```python
 from sage.core.exceptions import SAGEError
-
 try:
     result = await loader.load("invalid")
 except SAGEError as e:
@@ -150,7 +143,6 @@ Raised when operation exceeds timeout.
 
 ```python
 from sage.core.exceptions import TimeoutError
-
 try:
     result = await loader.load("all", timeout_ms=100)
 except TimeoutError as e:
@@ -164,7 +156,6 @@ Raised when content is not found.
 
 ```python
 from sage.core.exceptions import NotFoundError
-
 try:
     result = await loader.load("core", topic="nonexistent")
 except NotFoundError as e:
@@ -180,7 +171,6 @@ Context manager for timeout protection.
 
 ```python
 from sage.core.timeout import timeout_context
-
 async with timeout_context(TimeoutLevel.T3) as ctx:
     result = await long_operation()
     if ctx.remaining_ms < 100:
@@ -195,14 +185,11 @@ async with timeout_context(TimeoutLevel.T3) as ctx:
 
 ```python
 from sage.core.loader import KnowledgeLoader
-
 loader = KnowledgeLoader()
-
 # Load different layers
 core = await loader.load("core")
 guidelines = await loader.load("guidelines")
 frameworks = await loader.load("frameworks")
-
 # Load specific topic
 python_guide = await loader.load("guidelines", topic="python")
 ```
@@ -211,34 +198,27 @@ python_guide = await loader.load("guidelines", topic="python")
 ```python
 from sage.core.loader import KnowledgeLoader
 from sage.domain.knowledge import TaskType
-
 loader = KnowledgeLoader()
-
 # Load context for coding task
 context = await loader.load_for_task(
     task_type=TaskType.CODING,
     token_budget=4000
 )
-
 print(f"Loaded {context.metadata.token_count} tokens")
 ```
 ### 6.3 Search with Filters
 
 ```python
 from sage.core.search import KnowledgeSearcher
-
 searcher = KnowledgeSearcher()
-
 # Basic search
 results = await searcher.search("timeout")
-
 # Search with filters
 results = await searcher.search(
     query="python",
     layer="guidelines",
     limit=5
 )
-
 for hit in results.results:
     print(f"{hit.title}: {hit.snippet}")
 ```
@@ -247,18 +227,14 @@ for hit in results.results:
 ```python
 from sage.core.events import EventBus, Event
 from sage.core.loader import KnowledgeLoader
-
 bus = EventBus()
 loader = KnowledgeLoader(event_bus=bus)
-
 @bus.subscribe("knowledge.loaded")
 async def log_load(event: Event):
     print(f"Loaded {event.data['layer']} in {event.data['load_time_ms']}ms")
-
 @bus.subscribe("knowledge.error")
 async def handle_error(event: Event):
     print(f"Error: {event.data['error']}")
-
 # Loading will trigger events
 result = await loader.load("core")
 ```

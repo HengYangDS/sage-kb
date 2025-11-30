@@ -1,4 +1,4 @@
-# Quick Start Guide
+﻿# Quick Start Guide
 
 > Get productive in 3 minutes
 
@@ -54,15 +54,10 @@ Ask before every task:
 
 ```markdown
 ## Summary
-
 [What was done]
-
 ## Changes Made
-
 [List of changes]
-
 ## Verification
-
 [How to verify]
 ```
 ---

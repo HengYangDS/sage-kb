@@ -1,4 +1,4 @@
-# Converters
+﻿# Converters
 
 > Conversion, migration, and adaptation capabilities
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 Converters transform data between formats, migrate content between versions, and adapt interfaces. They answer the question: "How to transform?"
-
 
 ## Table of Contents
 

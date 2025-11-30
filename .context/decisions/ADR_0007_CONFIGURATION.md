@@ -1,4 +1,4 @@
-# ADR-0007: Configuration Management
+﻿# ADR-0007: Configuration Management
 
 > Architecture Decision Record for SAGE Knowledge Base
 
@@ -149,7 +149,6 @@ All configuration via environment variables.
 sage:
   version: "0.1.0"
   name: "SAGE Knowledge Base"
-
 # Timeout configuration
 timeout:
   operations:
@@ -160,7 +159,6 @@ timeout:
     analysis: 10s
   fallback:
     strategy: graceful
-
 # Knowledge configuration
 knowledge:
   base_path: .knowledge/
@@ -174,13 +172,11 @@ knowledge:
     - name: practices
       path: practices/
       priority: 3
-
 # Logging configuration
 logging:
   level: INFO
   format: json
   output: stderr
-
 # Feature flags
 features:
   enable_caching: true
@@ -191,20 +187,15 @@ features:
 ```python
 from pydantic import BaseModel, Field
 from pydantic_settings import BaseSettings
-
-
 class TimeoutConfig(BaseModel):
     cache_lookup: int = Field(default=100, ge=10)
     file_read: int = Field(default=500, ge=50)
     layer_load: int = Field(default=2000, ge=500)
     full_load: int = Field(default=5000, ge=1000)
     analysis: int = Field(default=10000, ge=2000)
-
-
 class SAGEConfig(BaseSettings):
     version: str = "0.1.0"
     timeout: TimeoutConfig = TimeoutConfig()
-
     class Config:
         env_prefix = "SAGE__"
         env_nested_delimiter = "__"
@@ -214,10 +205,8 @@ class SAGEConfig(BaseSettings):
 ```bash
 # Override timeout.cache_lookup
 export SAGE__TIMEOUT__CACHE_LOOKUP=200
-
 # Override logging.level
 export SAGE__LOGGING__LEVEL=DEBUG
-
 # Override feature flag
 export SAGE__FEATURES__ENABLE_CACHING=false
 ```
@@ -225,10 +214,8 @@ export SAGE__FEATURES__ENABLE_CACHING=false
 
 ```python
 from sage.core.config import get_config
-
 # Get global config (singleton)
 config = get_config()
-
 # Access values
 timeout = config.timeout.cache_lookup
 layers = config.knowledge.layers
@@ -240,12 +227,10 @@ def load_config(config_path: str | None = None) -> SAGEConfig:
     """Load configuration with hierarchy."""
     # 1. Start with defaults
     config_dict = {}
-
     # 2. Load from YAML files
     if config_path:
         yaml_config = load_yaml(config_path)
         config_dict = deep_merge(config_dict, yaml_config)
-
     # 3. Environment variables applied by Pydantic
     return SAGEConfig(**config_dict)
 ```
@@ -253,7 +238,6 @@ def load_config(config_path: str | None = None) -> SAGEConfig:
 
 ```python
 from pydantic import ValidationError
-
 try:
     config = load_config("sage.yaml")
 except ValidationError as e:
@@ -266,7 +250,6 @@ except ValidationError as e:
 # Check feature flags
 if config.features.enable_caching:
     cache = initialize_cache()
-
 # Dynamic timeout selection
 level = TimeoutLevel(config.timeout.cache_lookup)
 ```

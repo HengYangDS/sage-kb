@@ -1,4 +1,4 @@
-
+﻿
 # Memory Server Best Practices
 
 > Knowledge graph persistence patterns and usage guidelines (~15 min read)
@@ -80,7 +80,6 @@ Junie to remember decisions, patterns, and context across multiple sessions.
 
 ```text
 <category>_<subject>_<qualifier>
-
 Examples:
 - decision_auth_jwt
 - convention_naming_files
@@ -172,7 +171,6 @@ memory.create_entities([
     {name: "core_layer", type: "component", content: "Core layer with loader, config, timeout"},
     {name: "service_layer", type: "component", content: "Service layer with CLI, MCP, API"}
 ])
-
 // Create relationships
 memory.create_relations([
     {from: "service_layer", to: "core_layer", type: "depends_on"}
@@ -220,7 +218,6 @@ memory.open_nodes(["decision_auth_jwt", "convention_file_naming"])
 // 1. Check for relevant existing knowledge
 memory.search_nodes("project architecture")
 memory.search_nodes("recent decisions")
-
 // 2. Load specific entities if known
 memory.open_nodes(["project_overview", "current_sprint"])
 ```
@@ -245,7 +242,6 @@ memory.create_entities([{
     type: "session",
     content: "Completed authentication module. Next: implement refresh tokens."
 }])
-
 // 2. Update relationships if needed
 memory.create_relations([{
     from: "auth_module",

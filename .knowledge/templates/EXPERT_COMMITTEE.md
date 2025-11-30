@@ -1,4 +1,4 @@
-# Expert Committee Decision Templates
+﻿# Expert Committee Decision Templates
 
 > Ready-to-use decision prompts for multi-perspective analysis
 
@@ -72,13 +72,10 @@ Recommendation: [Approve/Revise/Reject] | Conditions: [if any] | Next Steps: [ac
 
 ```
 Decision: [what] | Context: [background] | Stakeholders: [who]
-
 Technical Dimension (1-5): Correctness · Maintainability · Performance · Security · Scalability
 Business Dimension (1-5): Value · User Impact · Cost · Time to Market
-
 Risk Matrix: | Risk | Probability | Impact | Mitigation |
 Expert Votes: | Expert | Vote | Confidence | Key Concern |
-
 Consensus: [Approve/Conditional/Reject] | Score: [X/100]
 Conditions: [required] | Action Items: [with owners]
 ```
@@ -95,11 +92,8 @@ Governance (KE, Compliance)
 
 ```
 Decision: [detailed] | Impact Scope: [systems, teams, users] | Timeline: [deadline]
-
 10×10 Matrix: Roles × Angles (Correct, Maintain, Perform, Secure, Scale, Value, Usable, Efficient, Timely, Document)
-
 Weighted Scoring: Technical [X/100, 40%] · Business [X/100, 35%] · Process [X/100, 25%] = Final [X/100]
-
 Recommendation: [Approve/Conditional/Major Revision/Reject] | Confidence: [H/M/L]
 Dissenting Opinions: [if any]
 Implementation: Phase 1 [timeline] → Phase 2 [timeline] → Validation checkpoints
@@ -124,11 +118,8 @@ Implementation: Phase 1 [timeline] → Phase 2 [timeline] → Validation checkpo
 
 ```
 Decision: [strategic] | Impact: [org-wide implications] | Urgency: [Critical/High/Medium]
-
 Group Assessments: | Group | Approval | Score | Key Concerns | Conditions |
-
 Consensus: Unanimous (4/4) · Strong (3/4) · Conditional (2/4) · Rejected (<2/4)
-
 Final: [Approved/Conditional/Rejected] | Score: [X/100] | Confidence: [X%]
 Binding Conditions: [must-meet items]
 Post-Decision: Document rationale · Communicate · Set checkpoints · Plan rollback

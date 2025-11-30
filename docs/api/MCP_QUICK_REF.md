@@ -1,4 +1,4 @@
-
+﻿
 # MCP API Quick Reference
 
 > Essential MCP tools and resources for SAGE integration
@@ -13,7 +13,6 @@
 | `sage_search`        | Search KB             | `query`         |
 | `sage_get_context`   | Task-specific context | `task_type`     |
 | `sage_info`          | System status         | (none)          |
-
 
 ## Table of Contents
 

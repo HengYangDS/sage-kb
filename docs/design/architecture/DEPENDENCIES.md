@@ -1,4 +1,4 @@
-# Dependency Rules
+﻿# Dependency Rules
 
 > Strict dependency boundaries for maintainable architecture
 
@@ -8,7 +8,6 @@
 
 SAGE enforces strict dependency rules to maintain clean architecture, prevent circular dependencies, and ensure
 testability.
-
 
 ## Table of Contents
 
@@ -65,7 +64,6 @@ graph TD
 # ✅ Core can import from Python stdlib
 from typing import Protocol
 from dataclasses import dataclass
-
 # ✅ Core can import from other Core modules
 from sage.core.models import KnowledgeAsset
 from sage.core.events import EventBus
@@ -75,10 +73,8 @@ from sage.core.events import EventBus
 ```python
 # ❌ Core cannot import from Capabilities
 from sage.capabilities.analyzers import Analyzer  # FORBIDDEN
-
 # ❌ Core cannot import from Services
 from sage.services.cli import CLIService  # FORBIDDEN
-
 # ❌ Core cannot import external libraries (except approved list)
 import requests  # FORBIDDEN in core
 ```
@@ -99,11 +95,9 @@ import requests  # FORBIDDEN in core
 # ✅ Capabilities can import from Core
 from sage.core.models import KnowledgeAsset
 from sage.core.events import publish
-
 # ✅ Capabilities can import from other Capabilities
 from sage.capabilities.analyzers import BaseAnalyzer
 from sage.capabilities.checkers import ValidationResult
-
 # ✅ Limited external dependencies
 import yaml  # For parsing
 ```
@@ -131,10 +125,8 @@ from sage.services.mcp import MCPService  # FORBIDDEN
 ```python
 # ✅ Services can import from Core
 from sage.core.di import Container
-
 # ✅ Services can import from Capabilities
 from sage.capabilities.analyzers import analyze
-
 # ✅ Services can import external libraries
 from fastapi import FastAPI  # For API service
 import click  # For CLI service
@@ -156,7 +148,6 @@ import click  # For CLI service
 ```python
 # ✅ Always use absolute imports
 from sage.core.models import KnowledgeAsset
-
 # ❌ Avoid relative imports across layers
 from ...core.models import KnowledgeAsset  # AVOID
 ```
@@ -166,18 +157,14 @@ from ...core.models import KnowledgeAsset  # AVOID
 # 1. Standard library
 import os
 from typing import Protocol
-
 # 2. Third-party packages
 import yaml
 from pydantic import BaseModel
-
 # 3. Core layer
 from sage.core.models import KnowledgeAsset
 from sage.core.events import EventBus
-
 # 4. Capabilities layer (if in services)
 from sage.capabilities.analyzers import analyze
-
 # 5. Local module
 from .helpers import format_output
 ```
@@ -195,13 +182,9 @@ DI allows upper layers to receive dependencies without importing them directly.
 # In Core: Define protocol
 class AnalyzerProtocol(Protocol):
     def analyze(self, data: str) -> Result: ...
-
-
 # In Capabilities: Implement protocol
 class ContentAnalyzer:
     def analyze(self, data: str) -> Result: ...
-
-
 # In Services: Receive via DI
 class CLIService:
     def __init__(self, analyzer: AnalyzerProtocol):
@@ -216,7 +199,6 @@ class CLIService:
 ```bash
 # Run dependency check
 python -m scripts.check.check_architecture
-
 # Check specific module
 python -m scripts.check.check_architecture --module sage.core
 ```

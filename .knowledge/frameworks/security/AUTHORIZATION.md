@@ -1,4 +1,4 @@
-# Authorization Patterns
+﻿# Authorization Patterns
 
 > Access control strategies and permission management
 
@@ -25,7 +25,6 @@ sequenceDiagram
     participant PE as Policy Engine
     participant DP as Decision Point
     participant R as Resource
-
     S->>PE: Who + What
     PE->>PE: Evaluate Policies
     PE->>DP: PERMIT/DENY
@@ -68,7 +67,6 @@ flowchart LR
     Q3 -->|N| Q4{Relationships?}
     Q4 -->|Y| ReBAC([ReBAC])
     Q4 -->|N| PBAC([PBAC])
-
     classDef q fill:#2d2d2d,stroke:#555,color:#fff
     classDef a fill:#1a1a1a,stroke:#444,color:#fff
     class Q1,Q2,Q3,Q4 q
@@ -97,7 +95,6 @@ flowchart LR
         P2["content:read/update"]
         P3["content:read"]
     end
-
     Alice --> Admin --> P1
     Bob --> Editor --> P2
     Carol --> Viewer --> P3
@@ -108,7 +105,6 @@ flowchart LR
 from enum import Enum
 from typing import Set, Dict
 from dataclasses import dataclass
-
 class Permission(Enum):
     """Available permissions."""
     USERS_CREATE = "users:create"
@@ -119,13 +115,11 @@ class Permission(Enum):
     CONTENT_READ = "content:read"
     CONTENT_UPDATE = "content:update"
     CONTENT_DELETE = "content:delete"
-
 @dataclass
 class Role:
     """Role with permissions."""
     name: str
     permissions: Set[Permission]
-
 # Define roles
 ROLES: Dict[str, Role] = {
     "admin": Role(
@@ -147,7 +141,6 @@ ROLES: Dict[str, Role] = {
         }
     ),
 }
-
 class RBACAuthorizer:
     """Role-based access control."""
     
@@ -210,7 +203,6 @@ flowchart TB
         R["Resource Attributes<br/>owner, sensitivity, type"]
         E["Environment<br/>time, location, ip_addr"]
     end
-
     S --> PE["Policy Engine"]
     R --> PE
     E --> PE
@@ -222,7 +214,6 @@ flowchart TB
 from dataclasses import dataclass
 from typing import Any, Dict, Callable
 from datetime import datetime, time
-
 @dataclass
 class AccessContext:
     """Context for access decision."""
@@ -230,7 +221,6 @@ class AccessContext:
     resource: Dict[str, Any]   # Resource attributes
     action: str                # Requested action
     environment: Dict[str, Any]  # Environmental attributes
-
 class ABACPolicy:
     """ABAC policy definition."""
     
@@ -240,7 +230,6 @@ class ABACPolicy:
     
     def evaluate(self, context: AccessContext) -> bool:
         return self.condition(context)
-
 # Policy examples
 policies = [
     # Users can read their own documents
@@ -279,7 +268,6 @@ policies = [
         )
     ),
 ]
-
 class ABACAuthorizer:
     """ABAC authorization engine."""
     
@@ -299,7 +287,6 @@ class ABACAuthorizer:
 ```python
 from functools import wraps
 from typing import Callable, Set
-
 def require_permissions(*permissions: Permission):
     """Decorator to require specific permissions."""
     def decorator(func: Callable) -> Callable:
@@ -316,7 +303,6 @@ def require_permissions(*permissions: Permission):
             return await func(request, *args, **kwargs)
         return wrapper
     return decorator
-
 # Usage
 @require_permissions(Permission.CONTENT_CREATE)
 async def create_content(request, content: ContentCreate):
@@ -408,13 +394,10 @@ class PolicyEnforcementPoint:
 
 ```python
 from fastapi import APIRouter, Depends, HTTPException
-
 router = APIRouter()
-
 async def get_current_user(token: str = Depends(oauth2_scheme)):
     """Extract and validate current user."""
     return await validate_token(token)
-
 async def require_role(required_roles: Set[str]):
     """Dependency for role-based protection."""
     async def dependency(user = Depends(get_current_user)):
@@ -422,12 +405,10 @@ async def require_role(required_roles: Set[str]):
             raise HTTPException(status_code=403, detail="Insufficient role")
         return user
     return dependency
-
 # Protected endpoints
 @router.get("/admin/users")
 async def list_users(user = Depends(require_role({"admin"}))):
     return await user_service.list_all()
-
 @router.post("/content")
 async def create_content(
     content: ContentCreate,
@@ -439,7 +420,6 @@ async def create_content(
 
 ```python
 from fastapi.security import OAuth2PasswordBearer, SecurityScopes
-
 oauth2_scheme = OAuth2PasswordBearer(
     tokenUrl="token",
     scopes={
@@ -449,7 +429,6 @@ oauth2_scheme = OAuth2PasswordBearer(
         "admin": "Full administrative access",
     }
 )
-
 async def get_current_user(
     security_scopes: SecurityScopes,
     token: str = Depends(oauth2_scheme)
@@ -472,12 +451,10 @@ async def get_current_user(
             )
     
     return payload
-
 # Usage with scopes
 @router.get("/content", dependencies=[Security(get_current_user, scopes=["read:content"])])
 async def read_content():
     return await content_service.list()
-
 @router.delete("/.knowledge/{id}", dependencies=[Security(get_current_user, scopes=["delete:content"])])
 async def delete_content(id: str):
     return await content_service.delete(id)

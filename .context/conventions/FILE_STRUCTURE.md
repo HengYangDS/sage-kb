@@ -1,4 +1,4 @@
-# SAGE File Structure Conventions
+﻿# SAGE File Structure Conventions
 
 > Project-specific file organization standards for SAGE Knowledge Base
 
@@ -82,7 +82,6 @@ When generating output files, always specify the full path to `.outputs/`:
 ```bash
 # Correct
 command > .outputs/output.txt
-
 # Incorrect
 command > output.txt
 command > .output.txt
@@ -168,15 +167,12 @@ When deciding where content belongs, apply these rules in order:
 1. Is it SAGE-specific implementation/decision?
    YES → .context/ (ADRs, conventions, policies)
    NO  → Continue to step 2
-
 2. Is it user-facing documentation?
    YES → docs/ (design, API, guides)
    NO  → Continue to step 3
-
 3. Is it AI session/collaboration record?
    YES → .history/ (sessions, handoffs)
    NO  → Continue to step 4
-
 4. Is it generic, reusable knowledge?
    YES → .knowledge/ (frameworks, practices, guidelines)
    NO  → Ask: Does this need to exist?
@@ -291,38 +287,25 @@ tests/
 
 ```python
 # tests/unit/core/test_config.py
-
 """Tests for sage.core.config module."""
-
 import pytest
 from sage.core.config import SAGEConfig, get_config
-
-
 # --- Fixtures ---
-
 @pytest.fixture
 def sample_config():
     """Create sample configuration."""
     return SAGEConfig(...)
-
-
 # --- Test Classes (grouped by feature) ---
-
 class TestSAGEConfig:
     """Tests for SAGEConfig class."""
-
     def test_default_values(self):
         """Test default configuration values."""
         ...
-
     def test_env_override(self):
         """Test environment variable override."""
         ...
-
-
 class TestGetConfig:
     """Tests for get_config function."""
-
     def test_singleton_behavior(self):
         """Test singleton pattern."""
         ...
@@ -513,7 +496,6 @@ The `interfaces/` package provides a convenience layer for importing protocols a
 # Instead of multiple imports:
 from sage.core.protocols import SourceProtocol, AnalyzeProtocol
 from sage.core.models import LoadResult, SearchResult
-
 # Use single import:
 from sage.interfaces import SourceProtocol, AnalyzeProtocol, LoadResult, SearchResult
 ```
@@ -528,15 +510,12 @@ This supports the **Protocol-First** design principle (ADR-0006).
 ```python
 # src/sage/core/__init__.py
 """SAGE Core module.
-
 This module provides core infrastructure for the SAGE Knowledge Base.
 """
-
 from sage.core.config import SAGEConfig, get_config
 from sage.core.exceptions import SAGEError
 from sage.core.loader import KnowledgeLoader
 from sage.core.timeout import TimeoutManager
-
 __all__ = [
     "SAGEConfig",
     "get_config",
@@ -560,45 +539,32 @@ Within each module directory, files should be organized:
 
 ```python
 """Module docstring with brief description.
-
 Extended description if needed.
 """
-
 # --- Imports ---
 # Standard library
 from __future__ import annotations
 import asyncio
 from typing import TYPE_CHECKING
-
 # Third-party
 import structlog
-
 # Local
 from sage.core.exceptions import SAGEError
-
 if TYPE_CHECKING:
     from sage.core.config import SAGEConfig
-
 # --- Constants ---
 DEFAULT_TIMEOUT_MS = 5000
 MAX_RETRIES = 3
-
 # --- Module Logger ---
 logger = structlog.get_logger(__name__)
-
-
 # --- Classes ---
 class MyClass:
     """Class docstring."""
     ...
-
-
 # --- Functions ---
 def my_function() -> None:
     """Function docstring."""
     ...
-
-
 # --- Private Helpers ---
 def _helper_function() -> None:
     """Private helper."""

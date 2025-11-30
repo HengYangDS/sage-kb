@@ -1,4 +1,4 @@
-# Design Documents Index
+﻿# Design Documents Index
 
 > Navigation hub for SAGE Knowledge Base design documentation
 
@@ -9,7 +9,6 @@
 | Document | Description |
 |----------|-------------|
 | `OVERVIEW.md` | Design overview and reading guide |
-
 
 ## Table of Contents
 

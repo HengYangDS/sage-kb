@@ -1,4 +1,4 @@
-# SAGE Test Suite
+﻿# SAGE Test Suite
 
 > Comprehensive testing guide for SAGE Knowledge Base
 
@@ -43,18 +43,14 @@ tests/
 ```bash
 # Run all tests
 pytest tests/
-
 # Run with coverage
 pytest tests/ --cov=sage --cov-report=html
-
 # Run specific category
 pytest tests/unit/
 pytest tests/integration/
 pytest tests/performance/
-
 # Run specific module
 pytest tests/unit/core/test_loader.py
-
 # Run specific test
 pytest tests/unit/core/test_loader.py::test_load_core_success
 ```
@@ -63,19 +59,14 @@ pytest tests/unit/core/test_loader.py::test_load_core_success
 ```bash
 # Verbose output
 pytest tests/ -v
-
 # Show print statements
 pytest tests/ -s
-
 # Stop on first failure
 pytest tests/ -x
-
 # Run last failed tests
 pytest tests/ --lf
-
 # Parallel execution
 pytest tests/ -n auto
-
 # With markers
 pytest tests/ -m "not slow"
 pytest tests/ -m "integration"
@@ -162,7 +153,6 @@ tests/
 import pytest
 from sage.core.loader import KnowledgeLoader
 from sage.core.exceptions import LoadError
-
 class TestKnowledgeLoader:
     """Tests for KnowledgeLoader."""
     
@@ -200,9 +190,7 @@ class TestKnowledgeLoader:
 import pytest
 from typer.testing import CliRunner
 from sage.services.cli import app
-
 runner = CliRunner()
-
 class TestCLIEndToEnd:
     """End-to-end CLI tests."""
     
@@ -234,7 +222,6 @@ class TestCLIEndToEnd:
 import pytest
 import asyncio
 from sage.core.timeout import TimeoutManager, TimeoutLevel
-
 class TestTimeoutManager:
     """Tests for TimeoutManager."""
     
@@ -279,17 +266,14 @@ class TestTimeoutManager:
 # tests/conftest.py
 import pytest
 from pathlib import Path
-
 @pytest.fixture(scope="session")
 def project_root():
     """Return project root directory."""
     return Path(__file__).parent.parent
-
 @pytest.fixture(scope="session")
 def content_path(project_root):
     """Return content directory path."""
     return project_root / "content"
-
 @pytest.fixture
 def sample_content(tmp_path):
     """Create sample content for testing."""
@@ -298,12 +282,10 @@ def sample_content(tmp_path):
     
     (core_dir / "principles.md").write_text("""
 # Core Principles
-
 Test principles content.
 """)
     
     return tmp_path
-
 @pytest.fixture
 def mock_config():
     """Return mock configuration."""
@@ -327,7 +309,6 @@ timeout:
     cache_lookup: 50ms
     file_read: 200ms
     layer_load: 1000ms
-
 logging:
   level: DEBUG
   
@@ -338,11 +319,8 @@ knowledge:
 
 ```markdown
 # Test Principles
-
 > Test content for unit tests
-
 ## Principle 1
-
 Test principle content.
 ```
 ### Using Fixtures
@@ -356,12 +334,10 @@ def test_with_fixture(sample_content, mock_config):
     )
     result = loader.load_sync("core")
     assert result is not None
-
 # Parametrized fixtures
 @pytest.fixture(params=["core", "guidelines", "frameworks"])
 def layer_name(request):
     return request.param
-
 def test_all_layers(layer_name, loader):
     result = loader.load_sync(layer_name)
     assert result is not None
@@ -376,7 +352,6 @@ def test_all_layers(layer_name, loader):
 # tests/performance/test_load_performance.py
 import pytest
 from sage.core.loader import KnowledgeLoader
-
 class TestLoadPerformance:
     """Performance benchmarks for loading."""
     
@@ -405,13 +380,10 @@ class TestLoadPerformance:
 ```bash
 # Run performance tests
 pytest tests/performance/ -v
-
 # With benchmark output
 pytest tests/performance/ --benchmark-only
-
 # Compare with baseline
 pytest tests/performance/ --benchmark-compare=baseline.json
-
 # Save new baseline
 pytest tests/performance/ --benchmark-save=baseline
 ```
@@ -422,7 +394,6 @@ pytest tests/performance/ --benchmark-save=baseline
 import pytest
 import asyncio
 from sage.core.timeout import TimeoutManager
-
 class TestTimeoutStress:
     """Stress tests for timeout handling."""
     
@@ -471,9 +442,7 @@ class TestTimeoutStress:
 ```yaml
 # .github/workflows/ci.yml
 name: CI
-
 on: [push, pull_request]
-
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -545,7 +514,6 @@ repos:
 - `pyproject.toml` — pytest configuration
 
 ---
-
 
 ---
 

@@ -1,4 +1,4 @@
-# Junie Guidelines
+﻿# Junie Guidelines
 
 > Primary entry point for JetBrains Junie AI collaboration
 
@@ -172,7 +172,6 @@ Optimize token usage for better AI performance.
 ```bash
 # YAML
 python -c "import yaml; yaml.safe_load(open('.junie/generic/config.yaml'))"
-
 # JSON
 python -c "import json; json.load(open('.junie/mcp/mcp.json'))"
 ```

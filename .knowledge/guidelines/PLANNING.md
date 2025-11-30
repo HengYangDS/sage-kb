@@ -64,15 +64,10 @@
 
 ```markdown
 ## Context
-
 [Why decision needed]
-
 ## Decision
-
 [What was decided]
-
 ## Consequences
-
 [+] Benefits
 [-] Drawbacks
 [~] Trade-offs

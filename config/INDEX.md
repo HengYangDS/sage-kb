@@ -1,4 +1,4 @@
-# Configuration Directory
+﻿# Configuration Directory
 
 > SAGE Knowledge Base runtime configuration files
 
@@ -145,7 +145,6 @@ Configuration values are resolved in this order (later overrides earlier):
 - `docs/design/09-configuration.md` — Configuration design details
 
 ---
-
 
 ---
 

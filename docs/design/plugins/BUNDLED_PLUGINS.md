@@ -1,4 +1,4 @@
-# Bundled Plugins
+﻿# Bundled Plugins
 
 > Built-in plugins shipped with SAGE
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 SAGE includes several bundled plugins that provide core functionality. These plugins are automatically loaded and can be disabled if needed.
-
 
 ## Table of Contents
 

@@ -1,4 +1,4 @@
-# Guides
+﻿# Guides
 
 > Index of guides documents
 
@@ -14,7 +14,6 @@
 ---
 
 ## Related
-
 
 ---
 

@@ -1,4 +1,4 @@
-# Exceptions
+﻿# Exceptions
 
 > Exception hierarchy and error handling for SAGE
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 SAGE uses a structured exception hierarchy to provide clear error categorization, consistent handling, and useful debugging information.
-
 
 ## Table of Contents
 
@@ -94,13 +93,11 @@ class SAGEError(Exception):
 class ConfigurationError(SAGEError):
     """Configuration-related errors."""
     pass
-
 class ConfigNotFoundError(ConfigurationError):
     """Config file not found."""
     def __init__(self, path: str):
         super().__init__(f"Configuration not found: {path}")
         self.details["path"] = path
-
 class ConfigValidationError(ConfigurationError):
     """Config validation failed."""
     def __init__(self, errors: list[str]):
@@ -113,13 +110,11 @@ class ConfigValidationError(ConfigurationError):
 class KnowledgeError(SAGEError):
     """Knowledge operation errors."""
     pass
-
 class AssetNotFoundError(KnowledgeError):
     """Knowledge asset not found."""
     def __init__(self, asset_id: str):
         super().__init__(f"Asset not found: {asset_id}")
         self.details["asset_id"] = asset_id
-
 class AssetLoadError(KnowledgeError):
     """Failed to load knowledge asset."""
     def __init__(self, path: str, reason: str):
@@ -133,14 +128,12 @@ class AssetLoadError(KnowledgeError):
 class OperationError(SAGEError):
     """Operation execution errors."""
     pass
-
 class TimeoutError(OperationError):
     """Operation timed out."""
     def __init__(self, operation: str, timeout_ms: int):
         super().__init__(f"{operation} timed out after {timeout_ms}ms")
         self.details["operation"] = operation
         self.details["timeout_ms"] = timeout_ms
-
 class CircuitBreakerError(OperationError):
     """Circuit breaker is open."""
     def __init__(self, service: str):
@@ -153,15 +146,12 @@ class CircuitBreakerError(OperationError):
 class ServiceError(SAGEError):
     """Service layer errors."""
     pass
-
 class CLIError(ServiceError):
     """CLI service error."""
     exit_code: int = 1
-
 class MCPError(ServiceError):
     """MCP protocol error."""
     pass
-
 class APIError(ServiceError):
     """API service error."""
     status_code: int = 500

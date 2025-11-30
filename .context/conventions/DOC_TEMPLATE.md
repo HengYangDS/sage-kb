@@ -1,4 +1,4 @@
-# Document Template
+﻿# Document Template
 
 > Standard template for all Markdown documents in SAGE Knowledge Base
 
@@ -8,35 +8,21 @@
 
 ```markdown
 # Document Title
-
 > Single-line purpose description
-
 ---
-
 ## 1. First Section
-
 Content.
-
 ### 1.1 Subsection
-
 More content.
-
 ---
-
 ## 2. Second Section
-
 | Column A | Column B |
 |----------|----------|
 | Value 1  | Value 2  |
-
 ---
-
 ## Related
-
 - `path/FILE.md` — Description
-
 ---
-
 *Part of SAGE Knowledge Base*
 ```
 ---
@@ -62,7 +48,6 @@ More content.
 
 ```markdown
 ---
-
 ## Section Title
 ```
 - Use `---` (horizontal rule) before each H2 section
@@ -88,7 +73,6 @@ More content.
 
 ```markdown
 ---
-
 *Part of SAGE Knowledge Base*
 ```
 - Always present

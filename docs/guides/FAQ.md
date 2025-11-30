@@ -1,4 +1,4 @@
-
+﻿
 # Frequently Asked Questions
 
 > Common questions and answers about SAGE Knowledge Base
@@ -53,10 +53,8 @@ Python 3.12 or higher is required.
 ```bash
 # Basic installation
 pip install sage-kb
-
 # With MCP support
 pip install sage-kb[mcp]
-
 # Development installation
 pip install -e ".[dev]"
 ```
@@ -67,7 +65,6 @@ Ensure the installation directory is in your PATH:
 ```bash
 # Check where pip installs scripts
 pip show sage-kb | grep Location
-
 # Add to PATH if needed
 export PATH="$PATH:$(python -m site --user-base)/bin"
 ```
@@ -80,10 +77,8 @@ export PATH="$PATH:$(python -m site --user-base)/bin"
 ```bash
 # Get core principles
 sage get core
-
 # Get specific layer
 sage get --layer guidelines
-
 # Search knowledge
 sage search "timeout"
 ```
@@ -111,7 +106,6 @@ sage info --verbose
 ```bash
 # Start with stdio (for AI clients)
 sage serve
-
 # Start with specific transport
 sage serve --transport sse --port 3000
 ```
@@ -161,7 +155,6 @@ Main configuration is at `config/sage.yaml`. Environment-specific overrides can 
 # Environment variables
 export SAGE_TIMEOUT_CACHE_LOOKUP=200ms
 export SAGE_LOGGING_LEVEL=DEBUG
-
 # Custom config file
 sage --config custom.yaml get core
 ```
@@ -214,10 +207,8 @@ token_budget:
 ```bash
 # All tests
 pytest tests/
-
 # With coverage
 pytest tests/ --cov=sage
-
 # Specific category
 pytest tests/unit/
 ```
@@ -229,11 +220,8 @@ Quick start:
 
 ```python
 from sage.plugins import PluginBase, hookimpl
-
-
 class MyPlugin(PluginBase):
     name = "my-plugin"
-
     @hookimpl
     def register_tools(self, registry):
         registry.add_tool(self.my_tool)
@@ -276,7 +264,6 @@ https://github.com/HengYangDS/sage-kb/issues
 ```bash
 # Enable maximum logging
 sage --debug get core
-
 # With timing information
 sage --debug --timing get core
 ```

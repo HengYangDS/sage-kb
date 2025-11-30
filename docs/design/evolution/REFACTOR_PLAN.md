@@ -1,4 +1,4 @@
-# docs/design 深度重构战略规划方案（最终版 v9.0）
+﻿# docs/design 深度重构战略规划方案（最终版 v9.0）
 
 > Level-5 专家委员会全票通过的终局重构方案
 
@@ -13,7 +13,6 @@
 | **版本** | v9.0 |
 | **评审** | Level-5 专家委员会全票通过 (6/6) |
 | **预计工时** | 33-40 小时 |
-
 
 ## Table of Contents
 
@@ -42,18 +41,15 @@
 
 ```text
 优先级: .knowledge/ → .context/ → .junie/ → docs/
-
 .knowledge/                    通用知识（跨项目复用）
 └── practices/engineering/
     └── MECE.md               MECE 原则
-
 .context/                      项目知识（本项目特定）
 └── conventions/
     ├── NAMING.md             命名规范
     ├── DOC_TEMPLATE.md       文档模板
     ├── FOUR_LAYER_MODEL.md   四层架构模型
     └── DIRECTORY_STRUCTURE.md 目录结构规范
-
 docs/design/                   用户文档（本次重构目标）
 ```
 ---
@@ -289,35 +285,21 @@ docs/design/                        # 12 子目录 + 57 文件
 
 ```markdown
 # Document Title
-
 > Single-line purpose description
-
 ---
-
 ## 1. First Section
-
 Content.
-
 ### 1.1 Subsection
-
 More content.
-
 ---
-
 ## 2. Second Section
-
 | Column A | Column B |
 |----------|----------|
 | Value 1  | Value 2  |
-
 ---
-
 ## Related
-
 - `path/FILE.md` — Description
-
 ---
-
 *Part of SAGE Knowledge Base*
 ```
 **规范要点**:

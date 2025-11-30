@@ -1,4 +1,4 @@
-# Loading Strategy
+﻿# Loading Strategy
 
 > Smart loading patterns for efficient context management
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 Loading strategy defines how knowledge content is loaded into AI context based on relevance, priority, and token budget constraints.
-
 
 ## Table of Contents
 
@@ -126,7 +125,6 @@ scenarios:
       - .knowledge/practices/engineering/API_DESIGN.md
       - .context/conventions/CODE_PATTERNS.md
     token_budget: 2000
-
   documentation:
     preload:
       - .knowledge/guidelines/DOCUMENTATION.md

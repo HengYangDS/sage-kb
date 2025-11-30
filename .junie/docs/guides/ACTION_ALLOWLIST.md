@@ -1,4 +1,4 @@
-
+﻿
 # Action Allowlist Configuration
 
 > Configure 87 Terminal rules for 90%+ automatic command approval (~30 min)
@@ -105,7 +105,6 @@ This pattern **excludes** dangerous characters:
 ^\Qgit status\E$
 ^\Qgit fetch\E$
 ^\Qgit pull\E$
-
 # Commands with arguments
 ^\Qgit add\E [^\s;&|<>@$]*$
 ^\Qgit commit\E [^\s;&|<>@$]*$
@@ -113,7 +112,6 @@ This pattern **excludes** dangerous characters:
 ^\Qgit checkout\E [^\s;&|<>@$]*$
 ^\Qgit branch\E [^\s;&|<>@$]*$
 ^\Qgit merge\E [^\s;&|<>@$]*$
-
 # Commands with any arguments
 ^\Qgit diff\E.*$
 ^\Qgit log\E.*$
@@ -130,11 +128,9 @@ This pattern **excludes** dangerous characters:
 ^\Qpython\E [^\s;&|<>@$]*$
 ^\Qpython3\E [^\s;&|<>@$]*$
 ^\Qpython -m\E [^\s;&|<>@$]*$
-
 # Testing
 ^\Qpython -m pytest\E.*$
 ^\Qpytest\E.*$
-
 # Package management
 ^\Qpip install\E [^\s;&|<>@$]*$
 ^\Qpip install -e\E [^\s;&|<>@$]*$
@@ -142,7 +138,6 @@ This pattern **excludes** dangerous characters:
 ^\Qpip list\E$
 ^\Qpip freeze\E$
 ^\Qpip show\E [^\s;&|<>@$]*$
-
 # Virtual environments
 ^\Qconda activate\E [^\s;&|<>@$]*$
 ```
@@ -170,11 +165,9 @@ This pattern **excludes** dangerous characters:
 ^\Qruff format\E.*$
 ^\Qeslint\E.*$
 ^\Qprettier\E.*$
-
 # Type checking
 ^\Qmypy\E.*$
 ^\Qtsc\E.*$
-
 # Testing
 ^\Qjest\E.*$
 ^\Qvitest\E.*$

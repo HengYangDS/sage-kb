@@ -1,4 +1,4 @@
-# Code Block Standards
+﻿# Code Block Standards
 
 > Single source of truth for code blocks, quote blocks, and callout standards
 
@@ -181,10 +181,8 @@ Always show expected output:
 ```python
 # Input
 data = [1, 2, 3, 4, 5]
-
 # Processing
 result = sum(data)
-
 # Output
 print(result)  # Output: 15
 ```
@@ -214,7 +212,6 @@ database:
 
 ```python
 import yaml
-
 with open("config.yaml") as f:
     config = yaml.safe_load(f)
 ```

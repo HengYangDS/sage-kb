@@ -1,4 +1,4 @@
-# Caching Patterns
+﻿# Caching Patterns
 
 > Data caching strategies for performance optimization
 
@@ -54,7 +54,6 @@ sequenceDiagram
     participant C as Client
     participant Ca as Cache
     participant DB as Database
-
     C->>Ca: 1. Check
     Ca-->>C: 2. Miss
     C->>DB: 3. Query
@@ -129,7 +128,6 @@ class WriteThroughCache:
 ```python
 import asyncio
 from collections import deque
-
 class WriteBehindCache:
     """Write-behind (async) caching pattern."""
     
@@ -177,7 +175,6 @@ class WriteBehindCache:
 ```python
 # Simple TTL
 await cache.set("user:123", user_data, ttl=3600)  # 1 hour
-
 # Staggered TTL to prevent thundering herd
 import random
 base_ttl = 3600
@@ -237,7 +234,6 @@ class VersionedCache:
 ```python
 from functools import wraps
 from typing import Callable
-
 def cached(ttl: int = 3600, key_prefix: str = ""):
     """Caching decorator."""
     def decorator(func: Callable):
@@ -259,7 +255,6 @@ def cached(ttl: int = 3600, key_prefix: str = ""):
             return result
         return wrapper
     return decorator
-
 # Usage
 @cached(ttl=3600, key_prefix="users")
 async def get_user(user_id: str):
@@ -270,7 +265,6 @@ async def get_user(user_id: str):
 ```python
 import asyncio
 from typing import Dict, Any
-
 class StampedeProtectedCache:
     """Cache with stampede prevention using locks."""
     
@@ -347,7 +341,6 @@ class MultiLevelCache:
 ```python
 import redis.asyncio as redis
 from typing import Optional
-
 class RedisCache:
     """Redis-based distributed cache."""
     
@@ -433,7 +426,6 @@ class RedisCache:
 "user:123"                    # Type:ID
 "user:123:profile"            # Type:ID:Subtype
 "api:v2:users:list:page:1"    # Versioned, descriptive
-
 # Bad cache keys
 "u123"                        # Unclear
 user_data                     # No structure

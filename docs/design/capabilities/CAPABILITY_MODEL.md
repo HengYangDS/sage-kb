@@ -1,4 +1,4 @@
-# Capability Model
+﻿# Capability Model
 
 > MECE capability families defining what SAGE can do
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 Capabilities are functional units organized into 5 mutually exclusive, collectively exhaustive (MECE) families that define SAGE's operational abilities.
-
 
 ## Table of Contents
 
@@ -56,10 +55,8 @@ graph TD
 ```python
 from abc import ABC, abstractmethod
 from typing import Generic, TypeVar
-
 TInput = TypeVar('TInput')
 TOutput = TypeVar('TOutput')
-
 class Capability(ABC, Generic[TInput, TOutput]):
     """Base interface for all capabilities."""
     
@@ -214,7 +211,6 @@ class ComposedCapability(Capability):
         for cap in self.capabilities:
             result = cap.execute(result, context)
         return result
-
 # Example: Analyze then validate
 pipeline = ComposedCapability(
     ContentParser(),

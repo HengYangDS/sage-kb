@@ -1,4 +1,4 @@
-# Capabilities
+﻿# Capabilities
 
 > Capability families and extensibility model for SAGE
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 Capabilities are organized into 5 MECE families that define what SAGE can do.
-
 
 ## Table of Contents
 

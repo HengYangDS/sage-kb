@@ -1,4 +1,4 @@
-# Common Pitfalls
+﻿# Common Pitfalls
 
 > Known pitfalls and how to avoid them in software development
 
@@ -51,24 +51,18 @@ cause, and prevention strategies.
 # ❌ Bad - Circular import
 # module_a.py
 from module_b import B
-
 class A:
     def use_b(self): return B()
-
 # module_b.py
 from module_a import A  # Circular!
-
 class B:
     def use_a(self): return A()
-
 # ✅ Good - Use protocol/interface
 # protocols.py
 class AProtocol(Protocol):
     def method(self) -> None: ...
-
 # module_b.py
 from protocols import AProtocol
-
 class B:
     def __init__(self, a: AProtocol):
         self.a = a
@@ -94,7 +88,6 @@ class B:
 ```python
 # ❌ Bad - No timeout
 content = await file.read()
-
 # ✅ Good - With timeout
 async with asyncio.timeout(5.0):
     content = await file.read()
@@ -122,7 +115,6 @@ async with asyncio.timeout(5.0):
 class Service:
     def __init__(self):
         self.loader = FileLoader()  # Tight coupling
-
 # ✅ Good - Dependency injection
 class Service:
     def __init__(self, loader: LoaderProtocol):
@@ -151,7 +143,6 @@ class Service:
 def process(items: list = []):
     items.append("new")
     return items
-
 # ✅ Good - None default
 def process(items: list | None = None):
     if items is None:
@@ -181,7 +172,6 @@ try:
     result = process()
 except Exception:
     pass  # Swallows all errors
-
 # ✅ Good - Specific exceptions
 try:
     result = process()
@@ -211,11 +201,9 @@ except ValueError as e:
 # ❌ Bad - Missing await
 def get_content():
     return loader.load("file.md")  # Returns coroutine!
-
 # ✅ Good - Proper await
 async def get_content():
     return await loader.load("file.md")
-
 # ✅ Good - Or explicitly sync
 def get_content():
     return asyncio.run(loader.load("file.md"))
@@ -241,12 +229,10 @@ def get_content():
 file = open("data.txt")
 content = file.read()
 # file never closed!
-
 # ✅ Good - Context manager
 with open("data.txt") as file:
     content = file.read()
 # Automatically closed
-
 # ✅ Good - Async context manager
 async with aiofiles.open("data.txt") as file:
     content = await file.read()
@@ -274,7 +260,6 @@ async with aiofiles.open("data.txt") as file:
 timeout = 5000
 if len(content) > 10000:
     truncate(content)
-
 # ✅ Good - Configurable
 timeout = config.get("timeout_ms", 5000)
 if len(content) > config.get("max_content_length", 10000):
@@ -300,11 +285,9 @@ if len(content) > config.get("max_content_length", 10000):
 # config/app.yaml
 defaults:
   timeout_ms: 5000
-
 development:
   debug: true
   log_level: DEBUG
-
 production:
   debug: false
   log_level: INFO
@@ -328,10 +311,8 @@ production:
 ```yaml
 # ❌ Bad - Secret in config
 api_key: "sk-1234567890"
-
 # ✅ Good - Environment variable reference
 api_key: "${API_KEY}"
-
 # ✅ Good - Separate secrets file (gitignored)
 # secrets.yaml (in .gitignore)
 api_key: "sk-1234567890"
@@ -360,7 +341,6 @@ def test_user_service():
     service = UserService()
     service._cache["user1"] = user  # Testing internal
     assert service._cache["user1"] == user
-
 # ✅ Good - Testing behavior
 def test_user_service():
     service = UserService()
@@ -390,7 +370,6 @@ def test_timeout():
     start = time.time()
     result = slow_operation()
     assert time.time() - start < 1.0  # Flaky!
-
 # ✅ Good - Mock time
 def test_timeout(mocker):
     mock_time = mocker.patch("time.time")
@@ -418,19 +397,12 @@ def test_timeout(mocker):
 # Test edge cases
 class TestLoadContent:
     def test_normal_file(self): ...
-
     def test_empty_file(self): ...
-
     def test_missing_file(self): ...
-
     def test_permission_denied(self): ...
-
     def test_very_large_file(self): ...
-
     def test_binary_file(self): ...
-
     def test_unicode_content(self): ...
-
     def test_special_characters_in_path(self): ...
 ```
 ---
@@ -473,11 +445,8 @@ class TestLoadContent:
 
 ```markdown
 # ❌ Bad - Too broad
-
 "Fix the loading issues"
-
 # ✅ Good - Specific
-
 "In src/core/loader.py, add timeout handling to the
 load_file method. Use 500ms timeout. Return None on
 timeout instead of raising exception."
@@ -533,8 +502,8 @@ timeout instead of raising exception."
 
 ## Related
 
-- `.knowledge/practices/engineering/ERROR_HANDLING.md` — Error handling patterns
-- `.knowledge/practices/engineering/TESTING_STRATEGY.md` — Testing best practices
+- `.knowledge/practices/engineering/design/ERROR_HANDLING.md` — Error handling patterns
+- `.knowledge/practices/engineering/quality/TESTING_STRATEGY.md` — Testing best practices
 - `.knowledge/practices/ai_collaboration/` — AI collaboration practices
 
 ---

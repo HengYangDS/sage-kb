@@ -1,4 +1,4 @@
-# SAGE Loading Configurations
+﻿# SAGE Loading Configurations
 
 > Knowledge Base loading strategies and layer configuration
 
@@ -284,7 +284,6 @@ loading:
     parallel_loads: 4        # Concurrent layer loads
     batch_size: 50           # Files per batch
     memory_limit_mb: 200     # Max memory for loading
-
 # Knowledge layers
 knowledge:
   base_path: .knowledge/
@@ -315,7 +314,6 @@ knowledge:
       path: templates/
       priority: 5
       load_strategy: on-demand
-
 # Cache settings
 cache:
   enabled: true
@@ -330,10 +328,8 @@ cache:
 ```bash
 # Override loading strategy
 export SAGE__LOADING__STRATEGY=eager
-
 # Override cache TTL
 export SAGE__CACHE__TTL__DEFAULT=3600
-
 # Disable cache
 export SAGE__CACHE__ENABLED=false
 ```

@@ -1,4 +1,4 @@
-# Evolve Protocol
+﻿# Evolve Protocol
 
 > Measurement, learning, and continuous optimization
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 The Evolve protocol (E in SAGE) closes the feedback loop by measuring performance, learning from patterns, and applying optimizations.
-
 
 ## Table of Contents
 
@@ -64,7 +63,6 @@ class Metrics:
     success: bool
     dimensions: dict[str, str]
     values: dict[str, float]
-
 @dataclass
 class MetricStore:
     metrics: list[Metrics]
@@ -117,7 +115,6 @@ class Insight:
     confidence: float
     evidence: list[str]
     suggested_action: str | None
-
 @dataclass
 class Insights:
     insights: list[Insight]
@@ -167,7 +164,6 @@ class Improvement:
     auto_apply: bool
     applied_at: datetime | None
     result: str | None
-
 @dataclass
 class Improvements:
     improvements: list[Improvement]

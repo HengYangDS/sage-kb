@@ -1,4 +1,4 @@
-# Logging Standards
+﻿# Logging Standards
 
 > Universal logging standards and best practices
 
@@ -135,7 +135,6 @@ logger.info(
 def mask_email(email: str) -> str:
     local, domain = email.split("@")
     return f"{local[0]}***@{domain}"
-
 def mask_token(token: str) -> str:
     return f"***{token[-4:]}"
 ```
@@ -147,11 +146,9 @@ def mask_token(token: str) -> str:
 
 ```python
 import time
-
 start = time.perf_counter()
 result = process_request()
 duration_ms = (time.perf_counter() - start) * 1000
-
 logger.info(
     "Request completed",
     extra={"duration_ms": round(duration_ms, 2)}
@@ -217,7 +214,6 @@ logging:
   output:
     console: true
     file: false
-
   # Per-module levels
   modules:
     app.core: INFO
@@ -262,7 +258,7 @@ logging:
 
 ## Related
 
-- `.knowledge/practices/engineering/ERROR_HANDLING.md` — Error handling patterns
+- `.knowledge/practices/engineering/design/ERROR_HANDLING.md` — Error handling patterns
 - `config/core/logging.yaml` — Logging configuration
 - `.knowledge/guidelines/ENGINEERING.md` — Engineering guidelines
 

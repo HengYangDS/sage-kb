@@ -1,4 +1,4 @@
-# Configuration Reference
+﻿# Configuration Reference
 
 > Complete reference for all SAGE configuration options
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 This document provides a comprehensive reference for all configuration options available in SAGE.
-
 
 ## Table of Contents
 
@@ -288,7 +287,6 @@ sage:
   services:
     cli:
       format: rich
-
 # Production configuration
 sage:
   timeout:

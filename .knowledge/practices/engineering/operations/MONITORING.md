@@ -1,4 +1,4 @@
-# Monitoring & Observability
+﻿# Monitoring & Observability
 
 > Best practices for system monitoring and observability
 
@@ -54,14 +54,12 @@ flowchart LR
 ```python
 from prometheus_client import Counter, Histogram, Gauge
 import time
-
 # Counters
 requests_total = Counter(
     'requests_total',
     'Total requests',
     ['method', 'endpoint', 'status']
 )
-
 # Histograms
 request_duration = Histogram(
     'request_duration_seconds',
@@ -69,13 +67,11 @@ request_duration = Histogram(
     ['endpoint'],
     buckets=[.005, .01, .025, .05, .1, .25, .5, 1, 2.5, 5, 10]
 )
-
 # Gauges
 active_connections = Gauge(
     'active_connections',
     'Current active connections'
 )
-
 # Usage
 def handle_request(endpoint):
     active_connections.inc()
@@ -101,9 +97,7 @@ def handle_request(endpoint):
 
 ```python
 import structlog
-
 logger = structlog.get_logger()
-
 # ✅ Good: Structured with context
 logger.info(
     "order_created",
@@ -112,7 +106,6 @@ logger.info(
     amount=order.total,
     items=len(order.items)
 )
-
 # ❌ Bad: Unstructured string
 logger.info(f"Order {order.id} created for user {user.id}")
 ```
@@ -143,9 +136,7 @@ logger.info(f"Order {order.id} created for user {user.id}")
 ```python
 from opentelemetry import trace
 from opentelemetry.trace import SpanKind
-
 tracer = trace.get_tracer(__name__)
-
 async def handle_request(request):
     with tracer.start_as_current_span(
         "handle_request",
@@ -165,7 +156,6 @@ async def handle_request(request):
 ```python
 # Extract trace context from incoming request
 context = extract(request.headers)
-
 # Propagate to outgoing requests
 headers = {}
 inject(headers)
@@ -240,7 +230,7 @@ groups:
 
 ## Related
 
-- `.knowledge/practices/engineering/LOGGING.md` — Logging practices
+- `.knowledge/practices/engineering/operations/LOGGING.md` — Logging practices
 - `.knowledge/frameworks/performance/PROFILING_FRAMEWORK.md` — Performance profiling
 
 ---

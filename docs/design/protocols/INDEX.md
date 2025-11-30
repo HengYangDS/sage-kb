@@ -1,4 +1,4 @@
-# Protocols
+﻿# Protocols
 
 > SAGE protocol specifications and interfaces
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 SAGE follows the **Source → Analyze → Generate → Evolve** protocol pattern for all knowledge operations.
-
 
 ## Table of Contents
 

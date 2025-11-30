@@ -62,7 +62,6 @@ def find_duplicates_slow(items: list) -> list:
             if i != j and item == other:
                 duplicates.append(item)
     return duplicates
-
 # Good: O(n) - hash-based
 def find_duplicates_fast(items: list) -> list:
     seen = set()
@@ -86,17 +85,14 @@ def find_duplicates_fast(items: list) -> list:
 ```python
 from collections import deque
 import heapq
-
 # Queue: Use deque, not list
 queue = deque()
 queue.append(item)      # O(1)
 item = queue.popleft()  # O(1)
-
 # Priority queue: Use heapq
 heap = []
 heapq.heappush(heap, (priority, item))
 priority, item = heapq.heappop(heap)
-
 # Membership testing: Use set, not list
 items_set = set(items)  # O(n) once
 if item in items_set:   # O(1) per lookup
@@ -109,24 +105,19 @@ if item in items_set:   # O(1) per lookup
 for item in items:
     result = expensive_function()  # Called every iteration
     process(item, result)
-
 # Good: Compute once outside loop
 result = expensive_function()
 for item in items:
     process(item, result)
-
 # Bad: String concatenation in loop
 result = ""
 for item in items:
     result += str(item)  # O(n²) total
-
 # Good: Join list
 result = "".join(str(item) for item in items)  # O(n)
-
 # Bad: Function call in loop condition
 for i in range(len(items)):  # len() called each time
     ...
-
 # Good: Cache length
 n = len(items)
 for i in range(n):
@@ -138,15 +129,12 @@ for i in range(n):
 # Bad: Materialize entire list
 def get_all_users():
     return [process(user) for user in db.get_all_users()]
-
 # Good: Generator for memory efficiency
 def get_all_users():
     for user in db.get_all_users():
         yield process(user)
-
 # Good: Generator expression
 processed = (process(user) for user in users)
-
 # Batch processing with generators
 def batch_iterator(items, batch_size=100):
     batch = []
@@ -167,14 +155,11 @@ def batch_iterator(items, batch_size=100):
 ```sql
 -- Bad: SELECT *
 SELECT * FROM users WHERE status = 'active';
-
 -- Good: Select only needed columns
 SELECT id, name, email FROM users WHERE status = 'active';
-
 -- Bad: N+1 queries
 for user in users:
     orders = db.query("SELECT * FROM orders WHERE user_id = ?", user.id)
-
 -- Good: Single query with JOIN
 SELECT u.*, o.*
 FROM users u
@@ -195,12 +180,10 @@ WHERE u.status = 'active';
 -- Create composite index for common query pattern
 CREATE INDEX idx_user_status_created
 ON orders (user_id, status, created_at);
-
 -- Partial index for subset of data
 CREATE INDEX idx_active_users
 ON users (email)
 WHERE status = 'active';
-
 -- Covering index
 CREATE INDEX idx_user_orders_covering
 ON orders (user_id)
@@ -211,7 +194,6 @@ INCLUDE (total, status, created_at);
 ```python
 from sqlalchemy import create_engine
 from sqlalchemy.pool import QueuePool
-
 # Configure connection pool
 engine = create_engine(
     "postgresql://user:pass@localhost/db",
@@ -229,17 +211,14 @@ engine = create_engine(
 # Bad: Individual inserts
 for item in items:
     db.execute("INSERT INTO items VALUES (?)", item)
-
 # Good: Batch insert
 db.executemany(
     "INSERT INTO items VALUES (?)",
     items
 )
-
 # Better: Bulk insert with COPY (PostgreSQL)
 from io import StringIO
 import csv
-
 buffer = StringIO()
 writer = csv.writer(buffer)
 writer.writerows(items)
@@ -264,7 +243,6 @@ cursor.copy_from(buffer, 'items', sep=',')
 # Enable compression in FastAPI
 from fastapi import FastAPI
 from fastapi.middleware.gzip import GZipMiddleware
-
 app = FastAPI()
 app.add_middleware(GZipMiddleware, minimum_size=1000)
 ```
@@ -272,7 +250,6 @@ app.add_middleware(GZipMiddleware, minimum_size=1000)
 
 ```python
 import httpx
-
 # Bad: New connection per request
 async def fetch_many_bad(urls):
     results = []
@@ -280,14 +257,12 @@ async def fetch_many_bad(urls):
         async with httpx.AsyncClient() as client:
             results.append(await client.get(url))
     return results
-
 # Good: Reuse connections
 async def fetch_many_good(urls):
     async with httpx.AsyncClient() as client:
         return await asyncio.gather(*[
             client.get(url) for url in urls
         ])
-
 # Better: Connection pool with limits
 limits = httpx.Limits(
     max_keepalive_connections=10,
@@ -320,7 +295,6 @@ async def list_items(
         "total": total,
         "pages": (total + page_size - 1) // page_size
     }
-
 # Field selection
 @app.get("/users/{user_id}")
 async def get_user(user_id: str, fields: str = None):
@@ -342,18 +316,15 @@ async def get_user(user_id: str, fields: str = None):
 ```python
 import asyncio
 from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
-
 # I/O-bound: Use asyncio
 async def fetch_all(urls):
     async with httpx.AsyncClient() as client:
         tasks = [client.get(url) for url in urls]
         return await asyncio.gather(*tasks)
-
 # CPU-bound: Use ProcessPoolExecutor
 def process_all(items):
     with ProcessPoolExecutor(max_workers=4) as executor:
         return list(executor.map(cpu_intensive_task, items))
-
 # Mixed workloads: Combine approaches
 async def hybrid_processing(items):
     loop = asyncio.get_event_loop()
@@ -384,18 +355,15 @@ class UserSlots:
         self.id = id
         self.name = name
         self.email = email
-
 # Use generators instead of lists for large datasets
 def process_large_file(filepath):
     with open(filepath) as f:
         for line in f:  # Reads one line at a time
             yield process_line(line)
-
 # Use numpy for numerical data
 import numpy as np
 # Bad: Python list of floats
 python_list = [0.0] * 1_000_000  # ~8MB
-
 # Good: NumPy array
 numpy_array = np.zeros(1_000_000)  # ~8MB but faster operations
 ```
@@ -405,7 +373,6 @@ numpy_array = np.zeros(1_000_000)  # ~8MB but faster operations
 from contextlib import asynccontextmanager
 from typing import AsyncGenerator
 import asyncio
-
 class ResourcePool:
     """Generic async resource pool."""
     

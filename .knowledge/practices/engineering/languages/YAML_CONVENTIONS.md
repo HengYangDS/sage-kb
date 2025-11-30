@@ -1,4 +1,4 @@
-# YAML Configuration Conventions
+﻿# YAML Configuration Conventions
 
 > Universal standards for writing YAML configuration files
 
@@ -27,7 +27,6 @@
 #
 # [Description of what this file configures]
 # Version: x.y.z
-
 # =============================================================================
 # [Section Name]
 # =============================================================================

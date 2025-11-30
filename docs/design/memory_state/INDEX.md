@@ -1,4 +1,4 @@
-# Memory & State
+﻿# Memory & State
 
 > State persistence and session management for SAGE
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 This directory documents how SAGE manages state, sessions, and cross-task memory.
-
 
 ## Table of Contents
 

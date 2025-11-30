@@ -1,4 +1,4 @@
-# Services
+﻿# Services
 
 > Service layer design for SAGE interfaces
 
@@ -7,7 +7,6 @@
 ## 1. Overview
 
 The services layer provides multiple interfaces (CLI, MCP, API) for interacting with SAGE.
-
 
 ## Table of Contents
 

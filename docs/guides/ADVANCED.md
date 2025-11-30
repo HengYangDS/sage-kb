@@ -1,4 +1,4 @@
-
+﻿
 # Advanced Usage Guide
 
 > Deep dive into SAGE Knowledge Base advanced features
@@ -119,7 +119,6 @@ mcp:
 
 ```python
 from sage.services.mcp_server import mcp
-
 @mcp.tool()
 async def my_custom_tool(param: str) -> dict:
     """Custom tool description."""
@@ -133,7 +132,6 @@ async def my_custom_tool(param: str) -> dict:
 
 ```python
 from sage.core.loader import KnowledgeLoader
-
 loader = KnowledgeLoader()
 result = await loader.load("core", timeout_ms=2000)
 print(result.content, result.metadata)
@@ -142,7 +140,6 @@ print(result.content, result.metadata)
 
 ```python
 from sage.core.search import KnowledgeSearcher
-
 searcher = KnowledgeSearcher()
 results = await searcher.search("timeout", limit=5)
 for hit in results:
@@ -152,20 +149,16 @@ for hit in results:
 
 ```python
 from sage.core.events import EventBus, Event
-
 bus = EventBus()
-
 @bus.subscribe("knowledge.loaded")
 async def on_load(event: Event):
     print(f"Loaded: {event.data}")
-
 await bus.publish(Event(type="knowledge.loaded", data={"layer": "core"}))
 ```
 ### 4.4 Context Manager
 
 ```python
 from sage.core.timeout import timeout_context, TimeoutLevel
-
 async with timeout_context(TimeoutLevel.T3) as ctx:
     result = await long_operation()
     if ctx.remaining_ms < 100:
@@ -188,7 +181,6 @@ my_plugin/
 ```python
 # my_plugin/__init__.py
 from sage.plugins import Plugin, hook
-
 class MyPlugin(Plugin):
     name = "my-plugin"
     version = "1.0.0"

@@ -1,4 +1,4 @@
-# Core Principles - Test Fixture
+﻿# Core Principles - Test Fixture
 
 > Test fixture for core principles content.
 
@@ -32,7 +32,6 @@ The SAGE Knowledge Base follows the Xin-Da-Ya philosophy:
 4. **Consistency**: Follow established patterns
 
 ---
-
 
 ---
 
