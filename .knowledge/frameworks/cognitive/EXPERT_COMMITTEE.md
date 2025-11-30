@@ -18,6 +18,7 @@
 - [9. Dynamic Weight Learning](#9-dynamic-weight-learning)
 - [10. Decision Effectiveness Tracking](#10-decision-effectiveness-tracking)
 - [11. Quick Reference](#11-quick-reference)
+- [12. No-Calculator Simplified Method](#12-no-calculator-simplified-method)
 
 ---
 
@@ -191,6 +192,39 @@ Enhanced Aggregation → Uncertainty Quantification → Decide → Document → 
 | **L3** | A-F | A-F all (23) |
 | **L4** | A-H | A-H all (31) |
 | **L5** | A-J | All 37 |
+
+### 3.6 Level Adjustment Factors
+
+Higher committee levels require enhanced weight precision for critical decisions.
+
+| Level | Factor | Effect | Rationale |
+|-------|:------:|--------|-----------|
+| **L1** | ×1.00 | Baseline | Routine decisions |
+| **L2** | ×1.00 | Baseline | Standard decisions |
+| **L3** | ×1.05 | +5% | Major changes need higher precision |
+| **L4** | ×1.10 | +10% | Critical decisions amplify expert weight |
+| **L5** | ×1.15 | +15% | Strategic decisions maximize expert influence |
+
+**Application Formula**:
+
+```text
+W_adjusted = W_total × Level_Factor
+
+Where:
+  W_total = 0.4 × W_domain + 0.6 × W_angle
+  Level_Factor = {1.00, 1.00, 1.05, 1.10, 1.15} for L1-L5
+```
+
+**Example** (L4, Architect evaluating D1 in Build domain):
+
+```text
+W_domain = 0.9 (Architect-Build)
+W_angle = 0.88 (Architect-D1, Primary)
+W_total = 0.4 × 0.9 + 0.6 × 0.88 = 0.36 + 0.528 = 0.888
+W_adjusted = 0.888 × 1.10 = 0.977
+```
+
+> **SSOT**: Weight values defined in `CONFLICT_RESOLUTION.md` Section 4.7
 
 ---
 
@@ -542,12 +576,146 @@ New experts or new domains: Use base weight, start adjusting after 5 accumulated
 
 ---
 
+## 12. No-Calculator Simplified Method
+
+> For situations where calculators or spreadsheets are unavailable. Accuracy: ~90% of full method.
+
+### 12.1 Simplified Weight System
+
+Replace decimal weights with integer tiers:
+
+| Original Weight | Simplified Tier | Multiplier |
+|-----------------|-----------------|:----------:|
+| 0.9 (Primary expertise) | **High** | 3 |
+| 0.6-0.7 (Secondary) | **Medium** | 2 |
+| 0.2-0.5 (Minimal) | **Low** | 1 |
+
+### 12.2 Quick Score Calculation
+
+**Step 1**: Assign tier multipliers and collect scores
+
+| Expert | Tier | Score |
+|--------|:----:|:-----:|
+| Expert A | 3 | sₐ |
+| Expert B | 2 | sᵦ |
+| Expert C | 1 | sᵧ |
+
+**Step 2**: Calculate weighted average (integer math)
+
+```
+S = (3×sₐ + 2×sᵦ + 1×sᵧ) / (3+2+1)
+```
+
+**Step 3**: Calculate divergence penalty
+
+```
+Range = max(scores) - min(scores)
+Penalty = Range / 5
+S_final = S - Penalty
+```
+
+### 12.3 Range-Based Divergence Table
+
+| Score Range | σ Approximation | Penalty (÷5) | Interpretation |
+|:-----------:|:---------------:|:------------:|----------------|
+| 0 | ~0 | 0 | Perfect consensus |
+| 1 | ~0.4 | 0.2 | Minor divergence |
+| 2 | ~0.8 | 0.4 | Moderate divergence |
+| 3 | ~1.2 | 0.6 | Significant divergence |
+| 4 | ~1.6 | 0.8 | Severe divergence |
+
+### 12.4 Quick Decision Matrix
+
+| S_final | Range ≤1 | Range = 2 | Range ≥3 |
+|:-------:|:--------:|:---------:|:--------:|
+| **≥4.0** | ✅ Strong Approve | ⚠️ Conditional | 🔄 Discuss First |
+| **3.5-3.9** | ⚠️ Conditional | 🔄 Revise | 🔄 Revise |
+| **3.0-3.4** | 🔄 Revise | 🔄 Revise | ❌ Reject |
+| **<3.0** | ❌ Reject | ❌ Reject | ❌ Reject |
+
+### 12.5 Information Sufficiency Quick Check
+
+| Expert Count | Range ≤1 | Range = 2 | Range ≥3 |
+|:------------:|:--------:|:---------:|:--------:|
+| **≥5** | ✅ Sufficient | ✅ Sufficient | ⚠️ Borderline |
+| **3-4** | ✅ Sufficient | ⚠️ Borderline | ❌ Insufficient |
+| **2** | ⚠️ Borderline | ❌ Insufficient | ❌ Insufficient |
+
+### 12.6 √n Lookup Table (for CI calculation if needed)
+
+| n (experts) | √n | 2/√n (CI factor) |
+|:-----------:|:--:|:----------------:|
+| 2 | 1.4 | 1.4 |
+| 3 | 1.7 | 1.2 |
+| 4 | 2.0 | 1.0 |
+| 5 | 2.2 | 0.9 |
+| 6 | 2.4 | 0.8 |
+| 8 | 2.8 | 0.7 |
+| 10 | 3.2 | 0.6 |
+| 15 | 3.9 | 0.5 |
+| 20 | 4.5 | 0.4 |
+
+**Simplified CI**: `CI ≈ [S_final - Factor×Range/2, S_final + Factor×Range/2]`
+
+### 12.7 Complete No-Calculator Example
+
+**Scenario**: L2 decision with 4 experts
+
+| Expert | Tier | Score |
+|--------|:----:|:-----:|
+| Architect | 3 | 4 |
+| Engineer | 2 | 4 |
+| QA | 2 | 3 |
+| PM | 1 | 5 |
+
+**Calculation**:
+```
+Sum of weights = 3 + 2 + 2 + 1 = 8
+Weighted sum = 3×4 + 2×4 + 2×3 + 1×5 = 12 + 8 + 6 + 5 = 31
+S = 31 / 8 = 3.875 ≈ 3.9
+
+Range = 5 - 3 = 2
+Penalty = 2 / 5 = 0.4
+S_final = 3.9 - 0.4 = 3.5
+
+Decision: S_final=3.5, Range=2 → "Revise" (from matrix)
+Info Sufficiency: 4 experts, Range=2 → "Borderline"
+```
+
+**Compare to full method**: S_enhanced=3.55, very close!
+
+### 12.8 One-Page Cheat Sheet
+
+```
+┌─────────────────────────────────────────────────────┐
+│  NO-CALCULATOR EXPERT COMMITTEE CHEAT SHEET         │
+├─────────────────────────────────────────────────────┤
+│  1. WEIGHTS: High=3, Medium=2, Low=1                │
+│  2. AVERAGE: S = Σ(tier×score) / Σ(tier)            │
+│  3. PENALTY: Range/5                                │
+│  4. FINAL: S_final = S - Range/5                    │
+├─────────────────────────────────────────────────────┤
+│  QUICK DECISION:                                    │
+│  • S≥4 + Range≤1 → Approve                          │
+│  • S≥3.5 + Range≤1 → Conditional                    │
+│  • S<3 or Range≥3 → Reject/Discuss                  │
+├─────────────────────────────────────────────────────┤
+│  INFO CHECK:                                        │
+│  • ≥5 experts + Range≤2 → Sufficient                │
+│  • 3-4 experts + Range≤1 → Sufficient               │
+│  • Otherwise → Add more experts                     │
+└─────────────────────────────────────────────────────┘
+```
+
+---
+
 ## Related
 
+- `.knowledge/templates/EXPERT_COMMITTEE_QUICKSTART.md` — **Quick-Start Guide (5 min)**
+- `.knowledge/templates/EXPERT_COMMITTEE.md` — Decision templates
 - `.knowledge/frameworks/cognitive/ROLE_PERSONA.md` — Expert roles (SSOT)
 - `.knowledge/frameworks/patterns/DECISION.md` — Quality angles (SSOT)
 - `.knowledge/frameworks/cognitive/CONFLICT_RESOLUTION.md` — Conflict resolution
-- `.knowledge/templates/EXPERT_COMMITTEE.md` — Decision templates
 - `.knowledge/guidelines/COGNITIVE.md` — Cognitive guidelines
 
 ---

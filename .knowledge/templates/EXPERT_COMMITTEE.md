@@ -98,17 +98,20 @@
 **Panel**: Architect, Engineer, QA, PM
 
 ### Phase 1: Independent Scoring
-| Expert | Weight | Score | Concerns | (独立填写，勿看他人) |
-|--------|:------:|:-----:|----------|---------------------|
-| Architect | 0.9 | | | |
-| Engineer | 0.7 | | | |
-| QA | 0.7 | | | |
-| PM | 0.3 | | | |
+
+> **Weight Formula**: `W = 0.4 × W_domain + 0.6 × W_angle` (see CONFLICT_RESOLUTION.md §4.7)
+
+| Expert | W_domain | W_angle | W_total | Score | Concerns | (独立填写) |
+|--------|:--------:|:-------:|:-------:|:-----:|----------|-----------|
+| Architect | 0.9 | 0.88 | 0.89 | | | |
+| Engineer | 0.7 | 0.88 | 0.81 | | | |
+| QA | 0.7 | 0.88 | 0.81 | | | |
+| PM | 0.25 | 0.55 | 0.43 | | | |
 
 ### Phase 2: Aggregation
 | Metric | Value | Formula |
 |--------|-------|---------|
-| Weighted Mean (S) | | Σ(w×s)/Σw |
+| Weighted Mean (S) | | Σ(W_total×s)/Σ(W_total) |
 | Weighted StdDev (σ) | | √[Σw(s-S)²/Σw] |
 | Enhanced Score | | S - 0.5σ |
 | Standard Error (SE) | | σ/√n |
@@ -163,6 +166,9 @@
 **Panel**: [List 7-10 experts]
 
 ### Phase 1: Independent Scoring (Angles 1-23)
+
+> **Weight Formula**: `W = (0.4 × W_domain + 0.6 × W_angle) × 1.05` (L3 factor, see EXPERT_COMMITTEE.md §3.6)
+
 | # | Angle | Expert | Weight | Score | Notes |
 |---|-------|--------|:------:|:-----:|-------|
 | A1 | Correctness | | | | |
@@ -252,11 +258,14 @@
 **Timeline**: [Deadline]
 
 ### Committee Composition
-| Category | Experts | Weights |
-|----------|---------|---------|
-| Technical | [List 5-7] | [0.9, 0.7, ...] |
-| Domain | [List 3-5] | [0.9, 0.7, ...] |
-| Strategic | [List 2-3] | [0.9, 0.7, ...] |
+
+> **Weight Formula**: `W = (0.4 × W_domain + 0.6 × W_angle) × 1.10` (L4 factor, see EXPERT_COMMITTEE.md §3.6)
+
+| Category | Experts | W_domain | W_angle | W_adjusted |
+|----------|---------|:--------:|:-------:|:----------:|
+| Technical | [List 5-7] | [per role] | [per angle] | [calculated] |
+| Domain | [List 3-5] | [per role] | [per angle] | [calculated] |
+| Strategic | [List 2-3] | [per role] | [per angle] | [calculated] |
 
 ### Phase 1: Independent Scoring (31 angles: A-H)
 
@@ -335,11 +344,14 @@
 **Date**: [YYYY-MM-DD]
 
 ### Committee Composition (16-23 experts)
-| Category | Count | Experts | Weight Range |
-|----------|:-----:|---------|--------------|
-| Technical | 6-8 | [List] | 0.3-0.9 |
-| Domain | 5-7 | [List] | 0.3-0.9 |
-| Strategic | 5-8 | [List] | 0.5-0.9 |
+
+> **Weight Formula**: `W = (0.4 × W_domain + 0.6 × W_angle) × 1.15` (L5 factor, see EXPERT_COMMITTEE.md §3.6)
+
+| Category | Count | Experts | W_domain | W_angle | W_adjusted |
+|----------|:-----:|---------|:--------:|:-------:|:----------:|
+| Technical | 6-8 | [List] | [per role] | [per angle] | [calculated] |
+| Domain | 5-7 | [List] | [per role] | [per angle] | [calculated] |
+| Strategic | 5-8 | [List] | [per role] | [per angle] | [calculated] |
 
 ### Phase 1: Independent Scoring (All 37 angles: A-J)
 > Each expert scores independently. Do NOT view others' scores.
@@ -558,6 +570,7 @@ IS = 1 - (CI_width / 4) = 1 - (_____ / 4) = _____
 
 ## Related
 
+- `.knowledge/templates/EXPERT_COMMITTEE_QUICKSTART.md` — **Quick-Start Guide (5 min)**
 - `.knowledge/frameworks/cognitive/EXPERT_COMMITTEE.md` — Full framework (SSOT)
 - `.knowledge/frameworks/cognitive/ROLE_PERSONA.md` — Expert role definitions (23)
 - `.knowledge/frameworks/patterns/DECISION.md` — Quality angles (37)

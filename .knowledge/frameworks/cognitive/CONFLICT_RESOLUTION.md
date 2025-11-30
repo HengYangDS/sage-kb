@@ -140,93 +140,88 @@
 
 | Role | Build | Run | Secure | Data | Product | Strategy |
 |------|:-----:|:---:|:------:|:----:|:-------:|:--------:|
-| Architect | 0.9 | 0.5 | 0.5 | 0.5 | 0.3 | 0.7 |
-| Backend | 0.7 | 0.5 | 0.3 | 0.7 | 0.5 | 0.3 |
-| Frontend | 0.5 | 0.3 | 0.3 | 0.3 | 0.7 | 0.3 |
-| QA | 0.7 | 0.5 | 0.3 | 0.3 | 0.7 | 0.3 |
+| Architect | 0.9 | 0.5 | 0.5 | 0.5 | 0.25 | 0.7 |
+| Backend | 0.7 | 0.5 | 0.25 | 0.7 | 0.5 | 0.25 |
+| Frontend | 0.5 | 0.25 | 0.25 | 0.25 | 0.7 | 0.25 |
+| QA | 0.7 | 0.5 | 0.25 | 0.25 | 0.7 | 0.25 |
 | Tech Lead | 0.9 | 0.5 | 0.5 | 0.5 | 0.5 | 0.5 |
 
 ### 4.2 Run Domain (4 roles)
 
 | Role | Build | Run | Secure | Data | Product | Strategy |
 |------|:-----:|:---:|:------:|:----:|:-------:|:--------:|
-| DevOps | 0.5 | 0.9 | 0.7 | 0.5 | 0.3 | 0.3 |
-| SRE | 0.5 | 0.9 | 0.5 | 0.5 | 0.3 | 0.3 |
-| DBA | 0.5 | 0.7 | 0.5 | 0.9 | 0.3 | 0.3 |
-| Release | 0.5 | 0.7 | 0.5 | 0.3 | 0.5 | 0.3 |
+| DevOps | 0.5 | 0.9 | 0.7 | 0.5 | 0.25 | 0.25 |
+| SRE | 0.5 | 0.9 | 0.5 | 0.5 | 0.25 | 0.25 |
+| DBA | 0.5 | 0.7 | 0.5 | 0.9 | 0.25 | 0.25 |
+| Release | 0.5 | 0.7 | 0.5 | 0.25 | 0.5 | 0.25 |
 
 ### 4.3 Secure Domain (3 roles)
 
 | Role | Build | Run | Secure | Data | Product | Strategy |
 |------|:-----:|:---:|:------:|:----:|:-------:|:--------:|
-| Security | 0.5 | 0.7 | 0.9 | 0.5 | 0.3 | 0.5 |
-| Compliance | 0.3 | 0.5 | 0.9 | 0.5 | 0.3 | 0.5 |
-| Privacy | 0.3 | 0.3 | 0.9 | 0.9 | 0.3 | 0.5 |
+| Security | 0.5 | 0.7 | 0.9 | 0.5 | 0.25 | 0.5 |
+| Compliance | 0.25 | 0.5 | 0.9 | 0.5 | 0.25 | 0.5 |
+| Privacy | 0.25 | 0.25 | 0.9 | 0.9 | 0.25 | 0.5 |
 
 ### 4.4 Data Domain (3 roles)
 
 | Role | Build | Run | Secure | Data | Product | Strategy |
 |------|:-----:|:---:|:------:|:----:|:-------:|:--------:|
-| Data Eng | 0.3 | 0.5 | 0.5 | 0.9 | 0.3 | 0.3 |
-| ML Eng | 0.3 | 0.5 | 0.3 | 0.9 | 0.5 | 0.5 |
-| Analyst | 0.3 | 0.3 | 0.3 | 0.9 | 0.5 | 0.5 |
+| Data Eng | 0.25 | 0.5 | 0.5 | 0.9 | 0.25 | 0.25 |
+| ML Eng | 0.25 | 0.5 | 0.25 | 0.9 | 0.5 | 0.5 |
+| Analyst | 0.25 | 0.25 | 0.25 | 0.9 | 0.5 | 0.5 |
 
 ### 4.5 Product Domain (4 roles)
 
 | Role | Build | Run | Secure | Data | Product | Strategy |
 |------|:-----:|:---:|:------:|:----:|:-------:|:--------:|
-| PM | 0.3 | 0.3 | 0.3 | 0.3 | 0.9 | 0.7 |
-| UX | 0.3 | 0.3 | 0.3 | 0.3 | 0.9 | 0.3 |
-| Domain | 0.5 | 0.3 | 0.5 | 0.5 | 0.9 | 0.5 |
-| Support | 0.3 | 0.5 | 0.3 | 0.3 | 0.7 | 0.3 |
+| PM | 0.25 | 0.25 | 0.25 | 0.25 | 0.9 | 0.7 |
+| UX | 0.25 | 0.25 | 0.25 | 0.25 | 0.9 | 0.25 |
+| Domain | 0.5 | 0.25 | 0.5 | 0.5 | 0.9 | 0.5 |
+| Support | 0.25 | 0.5 | 0.25 | 0.25 | 0.7 | 0.25 |
 
 ### 4.6 Strategy Domain (4 roles)
 
 | Role | Build | Run | Secure | Data | Product | Strategy |
 |------|:-----:|:---:|:------:|:----:|:-------:|:--------:|
 | CTO | 0.7 | 0.7 | 0.7 | 0.5 | 0.7 | 0.9 |
-| Risk | 0.3 | 0.5 | 0.7 | 0.5 | 0.5 | 0.9 |
-| Cost | 0.3 | 0.5 | 0.3 | 0.3 | 0.5 | 0.9 |
-| Change | 0.3 | 0.3 | 0.3 | 0.3 | 0.5 | 0.7 |
+| Risk | 0.25 | 0.5 | 0.7 | 0.5 | 0.5 | 0.9 |
+| Cost | 0.25 | 0.5 | 0.25 | 0.25 | 0.5 | 0.9 |
+| Change | 0.25 | 0.25 | 0.25 | 0.25 | 0.5 | 0.7 |
 
-### 4.7 Role-Angle Weight Matrix (Sparse)
+### 4.7 Role-Angle Weight Matrix (Optimized)
 
-> Default weight = 0.2. Only weights ≥0.5 listed below.
+> **Weight Levels**: Primary (0.88), Secondary (0.55), Default (0.22)
+>
+> **Calculation Formula**: `W_total = 0.4 × W_domain + 0.6 × W_angle`
 
-| Role | Primary Angles (0.9) | Secondary Angles (0.6) |
-|------|----------------------|------------------------|
-| Architect | D1, D2, E1, G2 | C3, A1 |
-| Backend | A1, A2, D4 | G2, C1 |
-| Frontend | H1-H6 | A1 |
-| QA | A1, A2, D5 | B1 |
-| Tech Lead | D1-D5 | A1 |
-| DevOps | E2, B2, B4 | F4 |
-| SRE | B1-B4 | C1, C2 |
-| DBA | C1, C2, I1 | F2 |
-| Release | E2, B4 | B2 |
-| Security | F1-F5 | — |
-| Compliance | F3, F4, I3 | — |
-| Privacy | I3, F1, F2 | — |
-| Data Eng | I1, I2, B3 | C2 |
-| ML Eng | J1-J3 | C1 |
-| Analyst | I1, I2, J1 | — |
-| PM | A2, A3, H3 | — |
-| UX | H1-H6 | — |
-| Domain | A1, A3, F3 | — |
-| Support | H2, H4, D3 | — |
-| CTO | D1, G2, C3, E1 | — |
-| Risk | B3, B4, F1 | — |
-| Cost | C2, C3 | — |
-| Change | D4, H2, H3 | — |
+#### Primary Weights (0.88)
 
-**Matrix Statistics**:
+| Domain | Roles : Angles |
+|--------|----------------|
+| **Build** | Architect: D1, D2, E1, G2 · Backend: A1, A2, D4 · Frontend: H1-H6 · QA: A1, A2, D5 · Tech Lead: D1-D5 |
+| **Run** | DevOps: E2, B2, B4 · SRE: B1-B4 · DBA: C1, C2, I1 · Release: E2, B4 |
+| **Secure** | Security: F1-F5 · Compliance: F3, F4, I3 · Privacy: I3, F1, F2 |
+| **Data** | Data Eng: I1, I2, B3 · ML Eng: J1-J3 · Analyst: I1, I2, J1 |
+| **Product** | PM: A2, A3, H3 · UX: H1-H6 · Domain: A1, A3, F3 · Support: H2, H4, D3 |
+| **Strategy** | CTO: D1, G2, C3, E1 · Risk: B3, B4, F1 · Cost: C2, C3 · Change: D4, H2, H3 |
 
-| Category | Cells | Percentage |
-|----------|:-----:|:----------:|
-| Primary (0.9) | ~92 | 11% |
-| Secondary (0.6) | ~46 | 5% |
-| Default (0.2) | ~713 | 84% |
-| **Total** | **851** | **100%** |
+#### Secondary Weights (0.55)
+
+| Domain | Roles : Angles |
+|--------|----------------|
+| **Build** | Architect: C3, A1 · Backend: G2, C1 · Frontend: A1 · QA: B1 · Tech Lead: A1 |
+| **Run** | DevOps: F4 · SRE: C1, C2 · DBA: F2 · Release: B2 |
+| **Data** | Data Eng: C2 · ML Eng: C1 |
+
+#### Matrix Statistics
+
+| Category | Weight | Cells | Percentage |
+|----------|:------:|:-----:|:----------:|
+| Primary | 0.88 | ~92 | 11% |
+| Secondary | 0.55 | ~46 | 5% |
+| Default | 0.22 | ~713 | 84% |
+| **Total** | — | **851** | **100%** |
 
 ---
 
