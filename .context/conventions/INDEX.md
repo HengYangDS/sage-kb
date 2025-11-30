@@ -1,6 +1,6 @@
 # Conventions
 
-> Index of conventions documents
+> Index of project-specific conventions and standards
 
 ---
 
@@ -8,18 +8,18 @@
 
 | Document | Description |
 |:---------|:------------|
-| [SAGE Code Patterns](CODE_PATTERNS.md) | SAGE Code Patterns |
-| [Directory Structure](DIRECTORY_STRUCTURE.md) | Directory Structure |
-| [Document Template](DOC_TEMPLATE.md) | Document Template |
-| [SAGE File Structure Conventions](FILE_STRUCTURE.md) | SAGE File Structure Conventions |
-| [Four Layer Model](FOUR_LAYER_MODEL.md) | Four Layer Model |
-| [SAGE Naming Conventions](NAMING.md) | SAGE Naming Conventions |
+| [CODE_PATTERNS.md](CODE_PATTERNS.md) | DI, EventBus, timeout, and async patterns |
+| [DIRECTORY_STRUCTURE.md](DIRECTORY_STRUCTURE.md) | Project directory layout overview |
+| [DOC_TEMPLATE.md](DOC_TEMPLATE.md) | Standard document template for project |
+| [FILE_STRUCTURE.md](FILE_STRUCTURE.md) | Module and file organization conventions |
+| [FOUR_LAYER_MODEL.md](FOUR_LAYER_MODEL.md) | Four-layer architecture model explanation |
+| [NAMING.md](NAMING.md) | Naming conventions for all code elements |
 
 ---
 
 ## Related
 
-- [Parent Index](../INDEX.md)
+- [.context/INDEX.md](./../INDEX.md) — Parent context index
 
 ---
 

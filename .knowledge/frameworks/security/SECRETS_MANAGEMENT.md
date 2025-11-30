@@ -144,5 +144,4 @@ Generate → Store → Use → Rotate → Revoke
 
 ---
 
-*Secrets Management v1.0*
-
+*AI Collaboration Knowledge Base*

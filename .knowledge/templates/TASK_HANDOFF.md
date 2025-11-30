@@ -242,4 +242,4 @@ The Redis mock in tests occasionally fails due to timing. Consider using `freeze
 *Template from AI Collaboration Knowledge Base*
 ---
 
-*Task Handoff Template v1.0*
+*AI Collaboration Knowledge Base*

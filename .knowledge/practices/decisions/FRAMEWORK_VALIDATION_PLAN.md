@@ -328,3 +328,7 @@ monthly_summary:
 
 *Framework Validation Plan v1.0*
 *Created: 2025-12-01*
+
+---
+
+*AI Collaboration Knowledge Base*

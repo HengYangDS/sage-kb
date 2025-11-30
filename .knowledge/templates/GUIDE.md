@@ -72,4 +72,4 @@ Key configuration options:
 
 ---
 
-*Guide Template v1.0*
+*AI Collaboration Knowledge Base*

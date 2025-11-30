@@ -172,3 +172,7 @@ Decision: L2 - Detailed review before proceeding
 
 *Autonomy Decision Cases v1.1*
 *Updated: 2025-12-01 - Added concrete scenario examples (§7)*
+
+---
+
+*AI Collaboration Knowledge Base*

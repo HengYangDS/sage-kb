@@ -478,6 +478,108 @@ S_final = S - Penalty
 
 ---
 
+## 11. Decision Rollback
+
+### 11.1 When to Rollback
+
+| Trigger | Condition | Action |
+|---------|-----------|--------|
+| **New Information** | Critical facts emerge post-decision | Re-evaluate with new data |
+| **Implementation Failure** | Cannot implement as decided | Return to committee |
+| **Outcome Divergence** | Results differ >30% from prediction | Trigger review |
+| **Stakeholder Escalation** | Formal objection raised | Mandatory re-review |
+
+### 11.2 Rollback Levels
+
+| Level | Scope | Process | Time |
+|-------|-------|---------|------|
+| **R1** | Minor adjustment | Same committee, quick review | 15 min |
+| **R2** | Partial revision | Add 1-2 experts, focused review | 1 hour |
+| **R3** | Full re-evaluation | Reconvene at same level | Original time |
+| **R4** | Escalation | Elevate to higher committee level | +1 level time |
+
+### 11.3 Rollback Protocol
+
+```text
+1. DETECT  → Identify rollback trigger
+2. ASSESS  → Determine rollback level (R1-R4)
+3. NOTIFY  → Inform original committee members
+4. PAUSE   → Halt implementation if in progress
+5. REVIEW  → Re-evaluate with new context
+6. DECIDE  → Confirm, modify, or reverse original decision
+7. DOCUMENT → Record rollback rationale and outcome
+```
+
+### 11.4 Rollback Record Template
+
+```markdown
+## Rollback Record
+**Original Decision**: [Reference]
+**Rollback Level**: R1/R2/R3/R4
+**Trigger**: [What prompted rollback]
+**New Information**: [If applicable]
+**Revised Decision**: [Outcome]
+**Lessons Learned**: [For future reference]
+```
+
+---
+
+## 12. Anti-Patterns
+
+### 12.1 Process Anti-Patterns
+
+| Anti-Pattern | Problem | Solution |
+|--------------|---------|----------|
+| **Anchoring** | First opinion influences all others | Independent scoring before discussion |
+| **Groupthink** | Consensus without critical evaluation | Mandatory devil's advocate |
+| **Analysis Paralysis** | Over-analysis delays decision | Time-box each level |
+| **Authority Bias** | Senior voices dominate | Anonymous initial scoring |
+| **Premature Closure** | Rushing to conclusion | Minimum angle coverage required |
+
+### 12.2 Composition Anti-Patterns
+
+| Anti-Pattern | Problem | Solution |
+|--------------|---------|----------|
+| **Homogeneous Panel** | Same domain experts only | Cross-domain minimum (2+ domains) |
+| **Missing Critic** | No dissenting voice | Devil's advocate assignment |
+| **Expertise Mismatch** | Wrong experts for problem type | Domain-problem matching table |
+| **Over-Staffing** | Too many experts, diffused responsibility | Level-appropriate sizing |
+| **Under-Staffing** | Too few for problem complexity | Minimum expert count per level |
+
+### 12.3 Scoring Anti-Patterns
+
+| Anti-Pattern | Problem | Solution |
+|--------------|---------|----------|
+| **Score Inflation** | All scores clustered at 4-5 | Calibration training, historical comparison |
+| **Middle Clustering** | All scores at 3, avoiding commitment | Require justification for neutral scores |
+| **Revenge Scoring** | Personal bias affects scores | Anonymous aggregation |
+| **Copy Scoring** | Following others' scores | Independent phase before reveal |
+| **Incomplete Coverage** | Skipping angles | Minimum angle checklist |
+
+### 12.4 Decision Anti-Patterns
+
+| Anti-Pattern | Problem | Solution |
+|--------------|---------|----------|
+| **Ignoring CI** | Using point estimate only | Mandate CI in all decisions |
+| **Overconfidence** | Narrow CI without justification | Bessel correction, correlation adjustment |
+| **Ignoring Dissent** | Dismissing minority opinions | Record all dissent with rationale |
+| **No Follow-up** | Decision without tracking | Effectiveness metrics (§8.4) |
+| **Scope Creep** | Expanding decision scope mid-review | Lock scope at start |
+
+### 12.5 Anti-Pattern Checklist
+
+```markdown
+□ Independent scoring completed before discussion?
+□ At least 2 domains represented?
+□ Devil's advocate assigned?
+□ No single expert >40% weight contribution?
+□ CI width reasonable (<2.0)?
+□ All dissent recorded?
+□ Follow-up checkpoint scheduled?
+```
+
+---
+
 ## Related
 
 ### Module Files (This Framework)
@@ -501,3 +603,7 @@ S_final = S - Penalty
 ---
 
 *Expert Committee Framework v2.2 (Modular)*
+
+---
+
+*AI Collaboration Knowledge Base*

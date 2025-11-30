@@ -138,3 +138,7 @@ New experts or new domains: Use base weight, start adjusting after 5 accumulated
 
 *Expert Committee Calibration v2.2*
 *Extracted from Expert Committee Framework*
+
+---
+
+*AI Collaboration Knowledge Base*

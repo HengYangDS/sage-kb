@@ -48,6 +48,12 @@ def fix_file(filepath: Path) -> tuple[bool, list[str]]:
             content = re.sub(footer_pattern, standard_footer, content)
             fixes.append("Restored standard footer")
         
+        # Add footer if missing (check if standard footer exists anywhere)
+        if standard_footer not in content:
+            # Add separator and footer at the end
+            content = content.rstrip() + '\n\n---\n\n' + standard_footer + '\n'
+            fixes.append("Added missing footer")
+        
         # Ensure file ends with exactly one newline
         content = content.rstrip() + '\n'
         if original_content != content or fixes:

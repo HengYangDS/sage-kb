@@ -256,5 +256,4 @@ Detect → Assess → Contain → Eradicate → Recover → Learn
 
 ---
 
-*Security Checklist v1.0*
-
+*AI Collaboration Knowledge Base*

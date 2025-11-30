@@ -133,3 +133,7 @@ class EditorBridge:
 
 *IDE Integration Guide v1.0*
 *Extracted from Integration Patterns Framework*
+
+---
+
+*AI Collaboration Knowledge Base*

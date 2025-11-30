@@ -313,3 +313,7 @@ IS = max(0, 1 - (2.48 / 4)) = max(0, 0.38) = 0.38
 
 *Expert Committee Mathematical Methods v2.3*
 *Updated: 2025-12-01 - Added correlation-adjusted weights (§1.7) and winsorized aggregation (§1.8)*
+
+---
+
+*AI Collaboration Knowledge Base*

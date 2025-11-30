@@ -225,4 +225,4 @@ Always include:
 *Template from AI Collaboration Knowledge Base*
 ---
 
-*Runbook Template v1.0*
+*AI Collaboration Knowledge Base*

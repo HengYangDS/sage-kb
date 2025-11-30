@@ -631,4 +631,4 @@ IS = max(0, 1 - (CI_width / 4)) = max(0, 1 - _____) = _____
 
 ---
 
-*Expert Committee Templates v2.2*
+*AI Collaboration Knowledge Base*

@@ -193,3 +193,7 @@ Info Sufficiency: 4 experts, Range=2 → "Borderline"
 
 *Expert Committee Simplified Method v2.2*
 *Extracted from Expert Committee Framework*
+
+---
+
+*AI Collaboration Knowledge Base*

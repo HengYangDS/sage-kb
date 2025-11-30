@@ -254,5 +254,4 @@ flowchart TB
 
 ---
 
-*Optimization Strategies v1.0*
-
+*AI Collaboration Knowledge Base*

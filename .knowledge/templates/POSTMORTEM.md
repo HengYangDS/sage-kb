@@ -220,4 +220,4 @@
 *Template from AI Collaboration Knowledge Base*
 ---
 
-*Postmortem Template v1.0*
+*AI Collaboration Knowledge Base*

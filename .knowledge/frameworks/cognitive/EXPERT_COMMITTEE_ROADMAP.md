@@ -458,3 +458,7 @@ validation_scenarios:
 *Expert Committee 3.0 Roadmap v1.0*
 *Created: 2025-12-01*
 *Status: Planning*
+
+---
+
+*AI Collaboration Knowledge Base*

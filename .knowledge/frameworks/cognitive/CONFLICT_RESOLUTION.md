@@ -327,4 +327,4 @@ Each dissent record must include: Role, Domain, Position, Rationale, Risk, Mitig
 
 ---
 
-*Conflict Resolution Framework v1.0*
+*AI Collaboration Knowledge Base*

@@ -119,3 +119,7 @@ flowchart TB
 
 *Security Framework v1.0*
 *Last reviewed: 2025-12-01 by Expert Committee (L2, Conditional Approve, 4.27/5)*
+
+---
+
+*AI Collaboration Knowledge Base*

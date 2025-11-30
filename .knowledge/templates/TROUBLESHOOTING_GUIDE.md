@@ -219,4 +219,4 @@ app serve --port 8081
 *Template from AI Collaboration Knowledge Base*
 ---
 
-*Troubleshooting Guide Template v1.0*
+*AI Collaboration Knowledge Base*

@@ -82,4 +82,4 @@
 
 ---
 
-*Decision Records Template v1.0*
+*AI Collaboration Knowledge Base*

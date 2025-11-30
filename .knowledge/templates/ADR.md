@@ -177,4 +177,4 @@ FastMCP provides the right balance of simplicity and capability.
 *Template from AI Collaboration Knowledge Base*
 ---
 
-*ADR Template v1.0*
+*AI Collaboration Knowledge Base*

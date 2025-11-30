@@ -249,5 +249,4 @@ flowchart TB
 
 ---
 
-*Authorization Patterns v1.0*
-
+*AI Collaboration Knowledge Base*

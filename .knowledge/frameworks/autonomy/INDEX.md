@@ -73,4 +73,4 @@ autonomy (always ask) to full autonomy (act independently).
 
 ---
 
-*AI Autonomy Framework v2.1*
+*AI Collaboration Knowledge Base*

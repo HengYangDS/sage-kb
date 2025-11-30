@@ -123,4 +123,4 @@
 
 ---
 
-*Information Density Framework v1.0*
+*AI Collaboration Knowledge Base*

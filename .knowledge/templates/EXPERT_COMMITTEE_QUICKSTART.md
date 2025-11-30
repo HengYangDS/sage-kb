@@ -510,3 +510,7 @@ Confidence: Medium (score borderline, but majority support)
 ---
 
 *Expert Committee Quick-Start Guide v2.2*
+
+---
+
+*AI Collaboration Knowledge Base*

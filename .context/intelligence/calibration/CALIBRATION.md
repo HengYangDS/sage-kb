@@ -13,6 +13,7 @@
 - [5. Adjustment Guidelines](#5-adjustment-guidelines)
 - [6. Special Cases](#6-special-cases)
 - [7. Lessons Learned](#7-lessons-learned)
+- [8. Calibration Process](#8-calibration-process)
 
 ---
 

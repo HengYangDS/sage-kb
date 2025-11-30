@@ -109,5 +109,4 @@ Define Metrics → Establish Baseline → Profile Under Load → Identify Bottle
 
 ---
 
-*Profiling Framework v1.0*
-
+*AI Collaboration Knowledge Base*

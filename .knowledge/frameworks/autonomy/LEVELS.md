@@ -504,3 +504,7 @@ autonomy:
 *AI Autonomy Levels Framework v2.1*
 *Updated: 2025-12-01 - Added observability specs (§7.5-7.7), L3-L4 boundary refinement*
 *Last reviewed: 2025-12-01 by Expert Committee (L3, Conditional Approve)*
+
+---
+
+*AI Collaboration Knowledge Base*
