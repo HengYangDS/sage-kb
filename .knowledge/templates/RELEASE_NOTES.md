@@ -222,7 +222,7 @@ performance:
 4. **Verify**: `app info`
 ---
 *Released by Team on 2025-11-29*
-```
+`````
 ---
 
 ## Best Practices
