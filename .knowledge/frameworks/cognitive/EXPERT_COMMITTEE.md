@@ -803,7 +803,7 @@ Info Sufficiency: 4 experts, Range=2 → "Borderline"
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  NO-CALCULATOR EXPERT COMMITTEE CHEAT SHEET v2.1    │
+│  NO-CALCULATOR EXPERT COMMITTEE CHEAT SHEET v2.2    │
 ├─────────────────────────────────────────────────────┤
 │  1. WEIGHTS: High=3, Medium=2, Low=1                │
 │  2. AVERAGE: S = Σ(tier×score) / Σ(tier)            │
@@ -841,4 +841,4 @@ Info Sufficiency: 4 experts, Range=2 → "Borderline"
 
 ---
 
-*Expert Committee Framework v2.1*
+*Expert Committee Framework v2.2*

@@ -471,10 +471,10 @@
 
 > **SSOT**: Full formulas and lookup tables in `EXPERT_COMMITTEE.md` §6-7
 
-### 8.1 Step-by-Step Calculation (v2.1 - Corrected)
+### 8.1 Step-by-Step Calculation (v2.2 - Corrected)
 
 ```markdown
-## Aggregation Worksheet v2.1
+## Aggregation Worksheet v2.2
 
 ### Input Data
 | Expert | Weight (w) | Score (s) | Domain |
@@ -603,7 +603,7 @@ IS = max(0, 1 - (CI_width / 4)) = max(0, 1 - _____) = _____
 | **Start Low** | Begin at L1, escalate if complexity emerges |
 | **Time-Box** | Set strict time limits per level |
 
-### Pre-Decision Checklist (v2.1)
+### Pre-Decision Checklist (v2.2)
 
 ```markdown
 □ Independent scoring completed? (prevents anchoring)
@@ -631,4 +631,4 @@ IS = max(0, 1 - (CI_width / 4)) = max(0, 1 - _____) = _____
 
 ---
 
-*Expert Committee Templates v2.1*
+*Expert Committee Templates v2.2*
