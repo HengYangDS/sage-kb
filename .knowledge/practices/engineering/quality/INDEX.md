@@ -17,7 +17,9 @@
 
 ## Related
 
-- [Parent Index](../INDEX.md)
+- `.knowledge/practices/engineering/INDEX.md` — Parent engineering index
+- `.knowledge/guidelines/QUALITY.md` — Quality guidelines
+- `.knowledge/guidelines/CODE_STYLE.md` — Code style standards
 
 ---
 

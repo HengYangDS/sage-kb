@@ -17,7 +17,9 @@
 
 ## Related
 
-- [Parent Index](../INDEX.md)
+- `.knowledge/practices/engineering/INDEX.md` — Parent engineering index
+- `.knowledge/frameworks/resilience/INDEX.md` — Resilience framework
+- `.knowledge/frameworks/performance/INDEX.md` — Performance framework
 
 ---
 
