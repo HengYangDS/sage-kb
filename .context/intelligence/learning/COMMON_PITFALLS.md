@@ -4,7 +4,14 @@
 
 ---
 
-## Generic Pitfalls Reference
+## Table of Contents
+
+- [1. Generic Pitfalls Reference](#1-generic-pitfalls-reference)
+- [2. SAGE-Specific Pitfalls](#2-sage-specific-pitfalls)
+
+---
+
+## 1. Generic Pitfalls Reference
 
 For the comprehensive guide on common software development pitfalls, see:
 
@@ -20,7 +27,7 @@ This includes:
 
 ---
 
-## SAGE-Specific Pitfalls
+## 2. SAGE-Specific Pitfalls
 
 ### Timeout Hierarchy Violations
 
