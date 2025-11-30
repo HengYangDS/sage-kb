@@ -18,7 +18,9 @@
 
 ## Related
 
-- [Parent Index](../INDEX.md)
+- `.knowledge/practices/engineering/INDEX.md` — Parent engineering index
+- `.knowledge/frameworks/performance/INDEX.md` — Performance framework
+- `.knowledge/frameworks/performance/CACHING_PATTERNS.md` — Caching patterns
 
 ---
 

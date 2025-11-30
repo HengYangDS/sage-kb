@@ -16,7 +16,9 @@
 
 ## Related
 
-- [Parent Index](../INDEX.md)
+- `.knowledge/practices/engineering/INDEX.md` — Parent engineering index
+- `.knowledge/frameworks/security/INDEX.md` — Security framework
+- `.knowledge/guidelines/SECURITY.md` — Security guidelines
 
 ---
 

@@ -16,7 +16,9 @@
 
 ## Related
 
-- [Parent Index](../INDEX.md)
+- `.knowledge/practices/engineering/INDEX.md` — Parent engineering index
+- `.knowledge/practices/ai_collaboration/WORKFLOW.md` — AI collaboration workflow
+- `.knowledge/guidelines/ENGINEERING.md` — Engineering guidelines
 
 ---
 

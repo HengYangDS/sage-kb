@@ -24,8 +24,9 @@
 | **References** | `references/` | Quick reference guides and checklists     | 4     |
 | **Scenarios**  | `scenarios/`  | Context-specific guides                   | 34    |
 | **Templates**  | `templates/`  | Reusable document templates               | 21    |
+| **Scripts**    | `scripts/`    | Automation tools for maintenance          | 4     |
 
-**Total**: 169 knowledge files
+**Total**: 173 knowledge files
 
 ---
 

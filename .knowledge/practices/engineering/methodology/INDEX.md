@@ -17,7 +17,9 @@
 
 ## Related
 
-- [Parent Index](../INDEX.md)
+- `.knowledge/practices/engineering/INDEX.md` — Parent engineering index
+- `.knowledge/core/PRINCIPLES.md` — Core principles (信达雅, 术法道)
+- `.knowledge/frameworks/cognitive/INDEX.md` — Cognitive framework
 
 ---
 

@@ -18,7 +18,10 @@
 
 ## Related
 
-- [Parent Index](../INDEX.md)
+- `.knowledge/practices/engineering/INDEX.md` — Parent engineering index
+- `.knowledge/guidelines/PYTHON.md` — Python guidelines
+- `.knowledge/guidelines/TYPESCRIPT.md` — TypeScript guidelines
+- `.knowledge/guidelines/CODE_STYLE.md` — Code style standards
 
 ---
 
