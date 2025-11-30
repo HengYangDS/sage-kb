@@ -171,11 +171,10 @@ ruff format src/sage
 
 ## Related
 
-- `.knowledge/practices/engineering/patterns.md` — Generic code patterns
-- `.knowledge/frameworks/performance/` — Performance optimization guides
-- `.context/intelligence/calibration/patterns.md` — SAGE AI interaction patterns
-- `.context/intelligence/calibration/calibration.md` — Autonomy calibration
-- `.context/conventions/` — SAGE coding conventions
+- `.knowledge/frameworks/performance/INDEX.md` — Performance optimization guides
+- `.context/intelligence/calibration/PATTERNS.md` — SAGE AI interaction patterns
+- `.context/intelligence/calibration/CALIBRATION.md` — Autonomy calibration
+- `.context/conventions/CODE_PATTERNS.md` — SAGE coding conventions
 
 ---
 

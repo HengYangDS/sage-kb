@@ -95,10 +95,10 @@ For all I/O operations in SAGE:
 
 ## Related
 
-- `.knowledge/practices/ai_collaboration/interaction_patterns.md` — Generic patterns
-- `.knowledge/frameworks/autonomy/levels.md` — Autonomy level definitions
-- `.context/policies/timeout_hierarchy.md` — Timeout policy
-- `.context/intelligence/calibration/calibration.md` — Detailed calibration data
+- `.knowledge/practices/ai_collaboration/INTERACTION_PATTERNS.md` — Generic patterns
+- `.knowledge/frameworks/autonomy/LEVELS.md` — Autonomy level definitions
+- `.context/policies/TIMEOUT_HIERARCHY.md` — Timeout policy
+- `.context/intelligence/calibration/CALIBRATION.md` — Detailed calibration data
 - `.junie/guidelines.md` — Project collaboration guidelines
 
 ---
