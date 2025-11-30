@@ -229,6 +229,81 @@ audit_log:
 └─────────────────────────────────────────────────────┘
 ```
 
+### 7.5 Dashboard Components Specification
+
+| Component | Data Source | Update Frequency | Visualization |
+|-----------|-------------|------------------|---------------|
+| Current Level | Session state | Real-time | Badge/indicator |
+| Success Rate | Audit logs | Hourly | Percentage + trend |
+| Override Count | Audit logs | Daily | Counter + sparkline |
+| Level Distribution | Audit logs | Daily | Bar chart |
+| Calibration Trend | Calibration events | Per calibration | Line chart |
+| Emergency Status | Emergency logs | Real-time | Alert banner |
+
+### 7.6 Data Collection Requirements
+
+```yaml
+data_collection:
+  events:
+    - type: autonomy_decision
+      fields: [timestamp, level, action, outcome, duration_ms]
+      retention: 90_days
+      
+    - type: level_change
+      fields: [timestamp, from_level, to_level, reason, trigger]
+      retention: 180_days
+      
+    - type: user_override
+      fields: [timestamp, original_level, override_level, reason]
+      retention: 180_days
+      
+    - type: emergency_trigger
+      fields: [timestamp, trigger_type, previous_level, actions_halted]
+      retention: 365_days
+
+  aggregations:
+    - name: daily_success_rate
+      formula: successful_decisions / total_decisions
+      granularity: daily
+      
+    - name: level_distribution
+      formula: count_by_level / total_count
+      granularity: daily
+      
+    - name: calibration_accuracy
+      formula: correct_predictions / total_predictions
+      granularity: weekly
+```
+
+### 7.7 Alert Configuration
+
+| Alert | Condition | Severity | Action |
+|-------|-----------|----------|--------|
+| High Override Rate | > 5 overrides/day for 3 consecutive days | Warning | Review level settings |
+| Low Success Rate | < 80% success rate (7-day rolling) | Warning | Consider downgrade |
+| Calibration Drift | Accuracy dropped > 10% from baseline | Warning | Recalibrate |
+| Emergency Triggered | Any emergency event | Critical | Immediate notification |
+| Prolonged L1 | L1 for > 24 hours non-emergency | Info | Review if upgrade possible |
+
+```yaml
+alerts:
+  high_override_rate:
+    condition: "override_count_3d > 15"
+    severity: warning
+    channels: [dashboard, email]
+    
+  low_success_rate:
+    condition: "success_rate_7d < 0.80"
+    severity: warning
+    channels: [dashboard, email]
+    
+  emergency_triggered:
+    condition: "emergency_event == true"
+    severity: critical
+    channels: [dashboard, email, slack]
+    escalation: immediate
+```
+
 ---
 
 ## 8. Testing & Validation

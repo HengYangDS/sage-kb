@@ -7,6 +7,8 @@
 ## Table of Contents
 
 - [1. Enhanced Aggregation](#1-enhanced-aggregation)
+  - [1.7 Correlation-Adjusted Weights](#17-correlation-adjusted-weights-advanced)
+  - [1.8 Winsorized Aggregation](#18-winsorized-aggregation-outlier-handling)
 - [2. Uncertainty Quantification](#2-uncertainty-quantification)
 
 ---
@@ -102,6 +104,84 @@ S_enhanced = 3.85 - 0.9 × 0.68 = 3.24
 | > 1.5 | Severe divergence | Very High |
 
 > **Note**: Actual penalty depends on λ(n). Use `Penalty = λ(n) × σ_corrected`.
+
+### 1.7 Correlation-Adjusted Weights (Advanced)
+
+When experts from similar domains may have correlated opinions, adjust weights to reduce redundancy:
+
+**Formula**:
+```
+w'ᵢ = wᵢ / (1 + Σⱼ≠ᵢ ρᵢⱼ × wⱼ)
+
+Where:
+- w'ᵢ = adjusted weight for expert i
+- wᵢ = original weight for expert i
+- ρᵢⱼ = correlation between expert i and j (from domain similarity)
+- Σⱼ≠ᵢ = sum over all other experts
+```
+
+**Domain Correlation Matrix (ρᵢⱼ)**:
+
+| Domain Pair | ρ | Rationale |
+|-------------|:-:|-----------|
+| Same domain | 0.35 | High overlap |
+| Adjacent domains* | 0.15 | Some overlap |
+| Different domains | 0.05 | Minimal overlap |
+
+*Adjacent: Build↔Run, Secure↔Run, Data↔Build, Product↔Strategy
+
+**Simplified Adjustment Table**:
+
+| Expert Composition | Adjustment Factor | Apply to |
+|--------------------|:-----------------:|----------|
+| All different domains | 1.0 (no adjustment) | Each weight |
+| 2 experts same domain | 0.85 | Same-domain experts |
+| 3+ experts same domain | 0.75 | Same-domain experts |
+| Majority same domain | 0.70 | All same-domain experts |
+
+**Example**:
+```
+Original: Architect(0.9), Engineer(0.7), QA(0.7) - all Build domain
+Adjusted: Architect(0.9×0.75=0.68), Engineer(0.7×0.75=0.53), QA(0.7×0.75=0.53)
+
+Effect: Reduces over-representation of Build perspective
+```
+
+### 1.8 Winsorized Aggregation (Outlier Handling)
+
+For robustness against extreme scores:
+
+**Formula**:
+```
+S_winsorized = Winsorize(scores, α=10%)
+
+Process:
+1. Sort scores
+2. Replace bottom α% with (α+1)th percentile value
+3. Replace top α% with (100-α-1)th percentile value
+4. Apply weighted average to winsorized scores
+```
+
+**When to Use**:
+
+| Condition | Use Winsorization? |
+|-----------|:------------------:|
+| n ≥ 5 experts | Yes (α=10%) |
+| n = 3-4 experts | Optional (α=20%) |
+| n ≤ 2 experts | No |
+| Score range ≥ 3 | Recommended |
+| Score range ≤ 1 | Not needed |
+
+**Combined Formula (Full Enhancement)**:
+```
+S_improved = Winsorize(Σ w'ᵢsᵢ / Σ w'ᵢ, α) - λ(n) × σ_corrected
+
+Where:
+- w'ᵢ = correlation-adjusted weights
+- α = winsorization level (10% default)
+- λ(n) = divergence penalty coefficient
+- σ_corrected = Bessel-corrected standard deviation
+```
 
 ---
 
@@ -231,5 +311,5 @@ IS = max(0, 1 - (2.48 / 4)) = max(0, 0.38) = 0.38
 
 ---
 
-*Expert Committee Mathematical Methods v2.2*
-*Extracted from Expert Committee Framework*
+*Expert Committee Mathematical Methods v2.3*
+*Updated: 2025-12-01 - Added correlation-adjusted weights (§1.7) and winsorized aggregation (§1.8)*

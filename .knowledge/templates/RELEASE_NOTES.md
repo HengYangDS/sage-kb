@@ -120,7 +120,7 @@ Thanks to everyone who contributed to this release:
 - **Download**: [link to download/install]
 ---
 *Released by [Team/Person] on [DATE]*
-```
+`````
 ---
 
 ## Instructions
