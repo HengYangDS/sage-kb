@@ -66,14 +66,14 @@ Capture if the insight is likely to be useful again:
 
 Always review at session end:
 
-`````markdown
+````markdown
 ## Session-End Knowledge Check
 1. [ ] Any decisions worth documenting as ADR?
 2. [ ] Any new patterns or conventions established?
 3. [ ] Any gotchas or pitfalls discovered?
 4. [ ] Any useful commands or snippets?
 5. [ ] Any calibration insights for AI collaboration?
-```
+````
 ---
 
 ## 3. Knowledge Types
@@ -112,14 +112,14 @@ flowchart TB
 
 Quick capture during active work:
 
-`````markdown
+````markdown
 <!-- Quick Note: Drop in session state -->
 ## Notable Findings
 ### [Topic]
 - **What**: Brief description
 - **Why it matters**: Impact or importance
 - **Details**: Specifics if needed
-```
+````
 ### 4.2 Post-Session Processing
 
 After session, promote valuable knowledge:
@@ -137,7 +137,7 @@ After session, promote valuable knowledge:
 
 #### Decision Capture
 
-`````markdown
+````markdown
 ## Decision: [Title]
 **Date**: YYYY-MM-DD
 **Status**: Accepted | Superseded | Deprecated
@@ -147,10 +147,10 @@ What situation prompted this decision?
 What was decided?
 ### Consequences
 What are the implications?
-```
+````
 #### Pattern Capture
 
-`````markdown
+````markdown
 ## Pattern: [Name]
 ### Context
 When does this pattern apply?
@@ -164,10 +164,10 @@ How does it work?
 ```
 ### Related
 - Links to related patterns
-```
+````
 #### Gotcha Capture
 
-`````markdown
+````markdown
 ## Gotcha: [Brief Title]
 **Discovered**: YYYY-MM-DD
 **Severity**: Low | Medium | High
@@ -177,7 +177,7 @@ What does it look like when you hit this?
 Why does this happen?
 ### Solution
 How to fix or avoid it?
-```
+````
 ---
 
 ## 5. Storage Locations
@@ -225,11 +225,11 @@ Is this knowledge...
 
 Always link related knowledge:
 
-`````markdown
+````markdown
 ## Related
 - `path/to/related/DOC.md` — Brief description
 - `another/related/DOC.md` — Why it's relevant
-```
+````
 ---
 
 ## 6. Quality Standards
@@ -257,14 +257,14 @@ Always link related knowledge:
 
 Before committing knowledge documents:
 
-`````markdown
+````markdown
 ## Knowledge Quality Check
 1. [ ] Would this help someone new to the project?
 2. [ ] Is it findable in the right location?
 3. [ ] Does it follow the appropriate template?
 4. [ ] Are examples accurate and tested?
 5. [ ] Are related documents linked?
-```
+````
 ---
 
 ## Quick Reference

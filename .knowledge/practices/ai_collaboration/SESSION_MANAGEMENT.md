@@ -79,7 +79,7 @@ flowchart LR
 
 ### 3.2 Critical Context Elements
 
-`````markdown
+````markdown
 ## Session Context Template
 ### Objective
 What are we trying to accomplish?
@@ -96,7 +96,7 @@ What are we trying to accomplish?
 ### Decisions Made
 1. Decision with rationale
 2. Another decision
-```
+````
 ### 3.3 Context Loading Strategy
 
 ```
@@ -114,7 +114,7 @@ Priority Order:
 ### 4.1 Session State Document
 
 Location: `.history/current/session-YYYYMMDD-HHMM.md`
-`````markdown
+````markdown
 # Session State: [Task Name]
 > **Session ID**: session-20251129-2230
 > **Started**: 2025-11-29 22:30
@@ -141,7 +141,7 @@ Location: `.history/current/session-YYYYMMDD-HHMM.md`
 ---
 ## Quick Resume
 To continue: [specific next action]
-```
+````
 ### 4.2 Progress Tracking
 
 | Status      | Marker | Meaning                 |

@@ -50,7 +50,7 @@
 
 ### 3.1 Standard Template
 
-`````markdown
+````markdown
 # Title
 > Single-line purpose
 ---
@@ -61,7 +61,7 @@
 - `path/FILE.md` — Description
 ---
 *AI Collaboration Knowledge Base*
-```
+````
 ### 3.2 Heading Rules
 
 | Level | Use For             | Numbering  |

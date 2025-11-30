@@ -19,7 +19,7 @@
 
 ### 1.1 Document Template
 
-`````markdown
+````markdown
 # Title
 > Single-line purpose
 ---
@@ -34,7 +34,7 @@
 - `path/FILE.md` — Description
 ---
 *AI Collaboration Knowledge Base*
-```
+````
 **Note**: Frontmatter metadata (version, tokens, etc.) is NOT used. Document content speaks for itself.
 
 ### 1.2 Heading Rules
