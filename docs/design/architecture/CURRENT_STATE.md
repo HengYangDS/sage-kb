@@ -301,11 +301,12 @@ scripts/
 
 ## 8. Remediation Plan
 
-### 8.1 Phase 1: Quick Wins (1-2 days)
+### 8.1 Phase 1: Quick Wins (1-2 days) ✓
 
-- [ ] Create `scripts/dev/`, `scripts/check/`, `scripts/hooks/`, `scripts/ci/`
-- [ ] Move `tools/dev_scripts/*` → `scripts/dev/`
-- [ ] Move `tools/hooks/*` → `scripts/hooks/`
+- [x] Create `scripts/dev/`, `scripts/check/`, `scripts/hooks/`, `scripts/ci/`
+- [x] Move `tools/dev_scripts/*` → `scripts/dev/`
+- [x] Move `tools/hooks/*` → `scripts/hooks/`
+- [x] Add `scripts/README.md` with directory documentation
 
 ### 8.2 Phase 2: Tools Reorganization (3-5 days)
 
