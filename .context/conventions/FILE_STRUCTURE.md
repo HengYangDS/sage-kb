@@ -22,7 +22,7 @@
 
 ### 1.1 Top-Level Structure
 
-```
+```text
 sage-kb/
 ├── .junie/              # JetBrains Junie AI configuration
 ├── .context/            # Project-specific knowledge (ADRs, conventions)
@@ -349,7 +349,7 @@ config/
 
 The main `sage.yaml` is located inside the `config/` directory:
 
-```
+```text
 sage-kb/
 ├── config/
 │   ├── sage.yaml          # ← Main config entry point

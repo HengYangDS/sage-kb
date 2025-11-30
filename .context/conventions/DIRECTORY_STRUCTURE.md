@@ -6,7 +6,7 @@
 
 ## 1. Project Root
 
-```
+```text
 sage-kb/
 ├── .knowledge/              # Universal knowledge (cross-project)
 ├── .context/                # Project knowledge (this project)
@@ -27,7 +27,7 @@ sage-kb/
 
 ## 2. docs/design/ Structure
 
-```
+```text
 docs/design/                        # 12 subdirectories + 57 files
 ├── INDEX.md
 ├── OVERVIEW.md
@@ -109,7 +109,7 @@ docs/design/                        # 12 subdirectories + 57 files
 
 ## 3. tools/ Structure
 
-```
+```text
 tools/
 ├── INDEX.md
 ├── __init__.py
@@ -147,7 +147,7 @@ tools/
 
 ## 4. scripts/ Structure
 
-```
+```text
 scripts/
 ├── README.md
 ├── dev/
