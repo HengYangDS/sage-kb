@@ -1,4 +1,4 @@
-﻿# Expert Committee Conflict Resolution
+# Expert Committee Conflict Resolution
 
 > Protocols for resolving disagreements in multi-expert analysis (6 domains × 23 roles)
 

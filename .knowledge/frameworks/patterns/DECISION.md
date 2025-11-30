@@ -1,4 +1,4 @@
-﻿# Quality Angles Framework
+# Quality Angles Framework
 
 > Hierarchical quality evaluation based on ISO 25010 + extensions (10 categories × 37 angles)
 

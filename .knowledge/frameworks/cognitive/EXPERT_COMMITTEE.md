@@ -1,4 +1,4 @@
-﻿# Expert Committee Framework
+# Expert Committee Framework
 
 > Multi-perspective analysis using 6 domains × 23 roles × 10 categories × 37 angles
 
