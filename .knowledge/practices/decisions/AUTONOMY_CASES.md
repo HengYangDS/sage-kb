@@ -88,9 +88,61 @@
 
 ---
 
-## 7. Override Conditions
+## 7. Concrete Scenario Examples
 
-### 7.1 Force Lower Level
+### 7.1 L3 vs L4 Boundary Cases
+
+| Scenario | Context | Decision | Level | Rationale |
+|----------|---------|----------|:-----:|-----------|
+| Refactor utility function | Done 5 times before, good tests | Proceed, report after | L4 | Familiar pattern, safety net |
+| Refactor utility function | First time in this codebase | Ask before proceeding | L3 | New context risk |
+| Add database index | Read-only, dev environment | Proceed, report after | L4 | Low risk, reversible |
+| Add database index | Production, write-heavy table | Ask before proceeding | L3 | Production risk |
+| Update npm dependency | Patch version, good CI | Proceed, report after | L4 | Low risk, tested |
+| Update npm dependency | Major version, breaking changes | Ask before proceeding | L3 | Breaking potential |
+
+### 7.2 Knowledge Base Operations
+
+| Operation | Context | Level | Rationale |
+|-----------|---------|:-----:|-----------|
+| Fix typo in .md file | Obvious error | L5 | Trivial, reversible |
+| Add new practice doc | Following template | L4 | Additive, established pattern |
+| Restructure INDEX.md | Single directory | L3-L4 | Moderate impact |
+| Move files between dirs | Multiple files | L3 | Cross-reference impact |
+| Delete framework doc | Active references | L1-L2 | High impact, irreversible |
+| Update SSOT document | Referenced by many | L2-L3 | Cascading impact |
+
+### 7.3 Real Decision Examples
+
+**Example 1: Bug Fix (L4)**
+```
+Context: Login button not working on mobile
+Action: Fix CSS media query in button.css
+Factors: ✓ Clear fix, ✓ Good test coverage, ✓ Isolated change
+Decision: L4 - Proceed, report completion
+```
+
+**Example 2: New Feature (L3)**
+```
+Context: Add dark mode support
+Action: Implement theme switching
+Factors: ✗ First implementation, ✓ Dev environment, ✗ Multiple files
+Decision: L3 - Ask before major changes, proceed on routine parts
+```
+
+**Example 3: Security Patch (L2)**
+```
+Context: CVE reported in auth library
+Action: Update library version
+Factors: ✗ Security sensitive, ✗ Production impact, ✓ Patch available
+Decision: L2 - Detailed review before proceeding
+```
+
+---
+
+## 8. Override Conditions
+
+### 8.1 Force Lower Level
 
 | Condition          | Action          |
 |--------------------|-----------------|

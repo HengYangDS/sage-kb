@@ -1,0 +1,49 @@
+name: Documentation Check
+
+on:
+  push:
+    paths:
+      - '.knowledge/**'
+    branches:
+      - main
+      - develop
+  pull_request:
+    paths:
+      - '.knowledge/**'
+
+jobs:
+  check-docs:
+    name: Check Documentation Quality
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Check Markdown Format
+        run: |
+          echo "🔍 Checking Markdown format..."
+          python .knowledge/scripts/check_markdown.py
+        continue-on-error: false
+      
+      - name: Check Links
+        run: |
+          echo "🔗 Checking cross-references..."
+          python .knowledge/scripts/check_links.py
+        continue-on-error: false
+      
+      - name: Summary
+        if: success()
+        run: |
+          echo "✅ All documentation checks passed!"
+          echo ""
+          echo "Checks completed:"
+          echo "  - Markdown format validation"
+          echo "  - Code block backtick matching"
+          echo "  - Document structure (H1, Related, Footer)"
+          echo "  - Cross-reference link validation"
