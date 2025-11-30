@@ -48,8 +48,8 @@ conversations that contain decisions, insights, or learnings worth preserving fo
 [Summary of discussion]
 ---
 ## Decisions Made
-| Decision | Rationale | Impact |
-|----------|-----------|--------|
+| Decision     | Rationale         | Impact            |
+|--------------|-------------------|-------------------|
 | [Decision 1] | [Why this choice] | [What it affects] |
 | [Decision 2] | [Why this choice] | [What it affects] |
 ---
@@ -124,10 +124,10 @@ and completeness.
 Explored graceful degradation patterns when timeouts occur. Decided on partial content delivery over complete failure.
 ---
 ## Decisions Made
-| Decision | Rationale | Impact |
-|----------|-----------|--------|
-| 5-tier timeout hierarchy | Balances speed vs completeness | Core architecture pattern |
-| Partial content on T3/T4 timeout | Better UX than failure | Affects all loaders |
+| Decision                         | Rationale                      | Impact                    |
+|----------------------------------|--------------------------------|---------------------------|
+| 5-tier timeout hierarchy         | Balances speed vs completeness | Core architecture pattern |
+| Partial content on T3/T4 timeout | Better UX than failure         | Affects all loaders       |
 ---
 ## Action Items
 - [x] Document timeout hierarchy in `.context/policies/`

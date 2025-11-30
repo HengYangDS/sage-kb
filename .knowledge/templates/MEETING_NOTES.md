@@ -37,77 +37,114 @@ reference.
 
 ```markdown
 # Meeting: [Meeting Title]
+
 > **Date**: [YYYY-MM-DD]
 > **Time**: [HH:MM] - [HH:MM] ([Timezone])
 > **Location**: [Room/Virtual Link]
 > **Type**: [Standup | Planning | Review | Decision | Brainstorm | 1:1]
 ---
+
 ## Attendees
+
 ### Present
+
 - [Name] ([Role]) — Facilitator
 - [Name] ([Role])
 - [Name] ([Role])
+
 ### Absent
+
 - [Name] ([Role]) — [Reason if known]
+
 ---
+
 ## Agenda
+
 1. [Topic 1] — [Time allocation] — [Owner]
 2. [Topic 2] — [Time allocation] — [Owner]
 3. [Topic 3] — [Time allocation] — [Owner]
 4. Open Discussion
 5. Action Items Review
+
 ---
+
 ## Discussion Notes
+
 ### [Topic 1]
+
 **Context**: [Brief background]
 **Discussion**:
+
 - [Key point discussed]
 - [Key point discussed]
 - [Different viewpoint raised]
-**Outcome**: [Decision made or next steps]
+  **Outcome**: [Decision made or next steps]
+
 ### [Topic 2]
+
 **Context**: [Brief background]
 **Discussion**:
+
 - [Key point discussed]
 - [Key point discussed]
-**Outcome**: [Decision made or next steps]
+  **Outcome**: [Decision made or next steps]
+
 ---
+
 ## Decisions Made
-| # | Decision | Rationale | Owner |
-|---|----------|-----------|-------|
-| D1 | [Decision description] | [Why this was decided] | [Person] |
-| D2 | [Decision description] | [Why this was decided] | [Person] |
+
+| #   | Decision               | Rationale              | Owner    |
+|-----|------------------------|------------------------|----------|
+| D1  | [Decision description] | [Why this was decided] | [Person] |
+| D2  | [Decision description] | [Why this was decided] | [Person] |
+
 ---
+
 ## Action Items
-| # | Action | Owner | Due Date | Status |
-|---|--------|-------|----------|--------|
-| A1 | [Action description] | [Person] | [YYYY-MM-DD] | ⬜ Open |
-| A2 | [Action description] | [Person] | [YYYY-MM-DD] | ⬜ Open |
-| A3 | [Action description] | [Person] | [YYYY-MM-DD] | ⬜ Open |
+
+| #   | Action               | Owner    | Due Date     | Status  |
+|-----|----------------------|----------|--------------|---------|
+| A1  | [Action description] | [Person] | [YYYY-MM-DD] | ⬜ Open |
+| A2  | [Action description] | [Person] | [YYYY-MM-DD] | ⬜ Open |
+| A3  | [Action description] | [Person] | [YYYY-MM-DD] | ⬜ Open |
+
 ### Carried Over from Previous
-| # | Action | Owner | Original Due | New Due | Status |
-|---|--------|-------|--------------|---------|--------|
-| A0 | [Carried action] | [Person] | [Date] | [Date] | 🔄 In Progress |
+
+| #   | Action           | Owner    | Original Due | New Due | Status         |
+|-----|------------------|----------|--------------|---------|----------------|
+| A0  | [Carried action] | [Person] | [Date]       | [Date]  | 🔄 In Progress |
+
 ---
+
 ## Parking Lot
+
 Items to discuss later:
+
 - [Topic for future discussion]
 - [Topic for future discussion]
+
 ---
+
 ## Next Meeting
+
 - **Date**: [YYYY-MM-DD]
 - **Time**: [HH:MM] ([Timezone])
 - **Proposed Agenda**:
     1. [Topic]
     2. Action Items Review
+
 ---
+
 ## Attachments
+
 - [Link to presentation]
 - [Link to document]
 - [Link to diagram]
+
 ---
 *Notes taken by [Name] on [Date]*
 ```
+
 ---
 
 ## Instructions
@@ -161,64 +198,92 @@ Use status indicators:
 
 ```markdown
 # Meeting: Architecture Review
+
 > **Date**: 2025-11-29
 > **Time**: 14:00 - 15:30 (UTC+8)
 > **Location**: Virtual - Teams
 > **Type**: Review
 ---
+
 ## Attendees
+
 ### Present
+
 - Alice Chen (Tech Lead) — Facilitator
 - Bob Wang (Backend Dev)
 - Carol Li (DevOps)
+
 ### Absent
+
 - David Zhang (Frontend Dev) — On leave
+
 ---
+
 ## Agenda
+
 1. Plugin System Design — 30 min — Alice
 2. Timeout Hierarchy Review — 20 min — Bob
 3. CI/CD Pipeline Updates — 20 min — Carol
 4. Open Discussion — 15 min
 5. Action Items Review — 5 min
+
 ---
+
 ## Discussion Notes
+
 ### Plugin System Design
+
 **Context**: Need to finalize plugin architecture for v0.2.0
 **Discussion**:
+
 - Alice presented three options for plugin discovery
 - Bob raised concerns about security sandboxing
 - Carol suggested using entry points for external plugins
-**Outcome**: Decided to use entry points + local directory scanning
+  **Outcome**: Decided to use entry points + local directory scanning
+
 ### Timeout Hierarchy Review
+
 **Context**: Current timeouts causing issues in production
 **Discussion**:
+
 - T3 timeout (2s) too short for large knowledge bases
 - Suggested increasing to 3s with fallback mechanism
-**Outcome**: Will increase T3 to 3s, add graceful degradation
+  **Outcome**: Will increase T3 to 3s, add graceful degradation
+
 ---
+
 ## Decisions Made
-| # | Decision | Rationale | Owner |
-|---|----------|-----------|-------|
-| D1 | Use entry points for plugins | Standard Python pattern, good ecosystem support | Alice |
-| D2 | Increase T3 timeout to 3s | Production data shows 2s insufficient | Bob |
+
+| #   | Decision                       | Rationale                                       | Owner |
+|-----|--------------------------------|-------------------------------------------------|-------|
+| D1  | Use entry points for plugins   | Standard Python pattern, good ecosystem support | Alice |
+| D2  | Increase T3 timeout to 3s      | Production data shows 2s insufficient           | Bob   |
+
 ---
+
 ## Action Items
-| # | Action | Owner | Due Date | Status |
-|---|--------|-------|----------|--------|
-| A1 | Draft plugin system ADR | Alice | 2025-12-01 | ⬜ Open |
-| A2 | Update timeout configuration | Bob | 2025-12-02 | ⬜ Open |
-| A3 | Add plugin security checks to CI | Carol | 2025-12-05 | ⬜ Open |
+
+| #   | Action                           | Owner | Due Date   | Status  |
+|-----|----------------------------------|-------|------------|---------|
+| A1  | Draft plugin system ADR          | Alice | 2025-12-01 | ⬜ Open |
+| A2  | Update timeout configuration     | Bob   | 2025-12-02 | ⬜ Open |
+| A3  | Add plugin security checks to CI | Carol | 2025-12-05 | ⬜ Open |
+
 ---
+
 ## Next Meeting
+
 - **Date**: 2025-12-06
 - **Time**: 14:00 (UTC+8)
 - **Proposed Agenda**:
     1. Plugin System ADR Review
     2. Timeout Changes Testing Results
     3. Action Items Review
+
 ---
 *Notes taken by Alice Chen on 2025-11-29*
 ```
+
 ---
 
 ## Meeting Types
