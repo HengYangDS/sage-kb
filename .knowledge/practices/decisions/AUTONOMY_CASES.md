@@ -12,6 +12,8 @@
 - [4. Testing](#4-testing)
 - [5. Infrastructure](#5-infrastructure)
 - [6. Decision Matrix](#6-decision-matrix)
+- [7. Concrete Scenario Examples](#7-concrete-scenario-examples)
+- [8. Override Conditions](#8-override-conditions)
 
 ---
 
@@ -151,7 +153,7 @@ Decision: L2 - Detailed review before proceeding
 | Irreversible       | -1 level        |
 | Unfamiliar domain  | -1 level        |
 
-### 7.2 Allow Higher Level
+### 8.2 Allow Higher Level
 
 | Condition           | Action       |
 |---------------------|--------------|
@@ -168,4 +170,5 @@ Decision: L2 - Detailed review before proceeding
 
 ---
 
-*AI Collaboration Knowledge Base*
+*Autonomy Decision Cases v1.1*
+*Updated: 2025-12-01 - Added concrete scenario examples (§7)*

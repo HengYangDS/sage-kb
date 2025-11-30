@@ -1,4 +1,4 @@
-# Authorization Patterns
+﻿# Authorization Patterns
 
 > Access control strategies and permission management
 
@@ -249,4 +249,5 @@ flowchart TB
 
 ---
 
-*AI Collaboration Knowledge Base*
+*Authorization Patterns v1.0*
+

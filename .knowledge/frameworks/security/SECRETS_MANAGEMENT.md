@@ -1,4 +1,4 @@
-# Secrets Management Framework
+﻿# Secrets Management Framework
 
 > Conceptual framework for secure handling of sensitive data and credentials
 
@@ -144,4 +144,5 @@ Generate → Store → Use → Rotate → Revoke
 
 ---
 
-*AI Collaboration Knowledge Base*
+*Secrets Management v1.0*
+

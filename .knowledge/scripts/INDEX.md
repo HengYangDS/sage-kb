@@ -18,6 +18,7 @@
 |--------|---------|---------------|
 | `check_markdown.py` | Validate Markdown format, code blocks, structure | Per commit |
 | `check_links.py` | Validate cross-references and Related links | Per commit |
+| `pre-commit-hook.sh` | Git pre-commit hook for local validation | Per commit |
 | `MECE_AUDIT_CHECKLIST.md` | Manual MECE compliance checklist | Quarterly |
 
 ---

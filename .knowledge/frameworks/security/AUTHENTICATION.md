@@ -1,4 +1,4 @@
-# Authentication Patterns
+﻿# Authentication Patterns
 
 > Identity verification mechanisms and best practices
 
@@ -372,4 +372,5 @@ SECURITY_HEADERS = {
 
 ---
 
-*AI Collaboration Knowledge Base*
+*Authentication Patterns v1.0*
+
