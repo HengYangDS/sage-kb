@@ -184,7 +184,7 @@ analyzer = container.resolve(AnalyzerProtocol)
 
 - `.context/decisions/ADR_0004_DEPENDENCY_INJECTION.md` — DI container design
 - `.context/decisions/ADR_0005_EVENT_BUS.md` — Event communication
-- `docs/design/01-architecture.md` — Full architecture documentation
+- `.context/overview/PROJECT_OVERVIEW.md` — Project overview
 
 ---
 

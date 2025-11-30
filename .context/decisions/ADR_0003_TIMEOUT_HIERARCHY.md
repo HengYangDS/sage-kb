@@ -188,10 +188,9 @@ timeout:
 
 ## Related
 
-- `.context/policies/timeout_hierarchy.md` — Detailed configuration
+- `.context/policies/TIMEOUT_HIERARCHY.md` — Detailed configuration
 - `.context/decisions/ADR_0001_ARCHITECTURE.md` — Architecture context
-- `.knowledge/frameworks/resilience/timeout_patterns.md` — Universal patterns
-- `docs/design/04-timeout-loading.md` — Full design documentation
+- `.knowledge/frameworks/resilience/TIMEOUT_PATTERNS.md` — Universal patterns
 
 ---
 

@@ -145,7 +145,7 @@ Arbitrary stages without semantic meaning.
 
 ### Event Flow
 
-```python
+```text
 # Each phase emits lifecycle events
 "source.started"    → "source.completed" | "source.failed"
 "analyze.started"   → "analyze.completed" | "analyze.failed"
@@ -180,7 +180,7 @@ output = await generator.format(content, "json")
 
 - `.context/decisions/ADR_0001_ARCHITECTURE.md` — Three-layer architecture
 - `.context/decisions/ADR_0006_PROTOCOL_FIRST.md` — Protocol-first design
-- `docs/design/02-sage-protocol.md` — Full protocol documentation
+- `.context/overview/PROJECT_OVERVIEW.md` — Project overview
 
 ---
 

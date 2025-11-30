@@ -227,8 +227,7 @@ async def test_event_publishing(event_bus):
 
 - `.context/decisions/ADR_0001_ARCHITECTURE.md` — Layer architecture
 - `.context/decisions/ADR_0002_SAGE_PROTOCOL.md` — SAGE phase events
-- `.context/conventions/code_patterns.md` — EventBus patterns
-- `src/sage/core/events/` — Implementation
+- `.context/conventions/CODE_PATTERNS.md` — EventBus patterns
 
 ---
 

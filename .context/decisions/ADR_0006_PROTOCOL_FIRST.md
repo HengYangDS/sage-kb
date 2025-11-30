@@ -238,8 +238,7 @@ def test_processor():
 - `.context/decisions/ADR_0001_ARCHITECTURE.md` — Layer architecture
 - `.context/decisions/ADR_0002_SAGE_PROTOCOL.md` — SAGE protocols
 - `.context/decisions/ADR_0004_DEPENDENCY_INJECTION.md` — DI with protocols
-- `.context/conventions/code_patterns.md` — Protocol patterns
-- `src/sage/core/protocols.py` — Core protocol definitions
+- `.context/conventions/CODE_PATTERNS.md` — Protocol patterns
 
 ---
 

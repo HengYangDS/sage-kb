@@ -313,8 +313,7 @@ src/sage/plugins/
 - `.context/decisions/ADR_0001_ARCHITECTURE.md` — Capabilities layer
 - `.context/decisions/ADR_0004_DEPENDENCY_INJECTION.md` — DI integration
 - `.context/decisions/ADR_0006_PROTOCOL_FIRST.md` — Protocol contracts
-- `docs/design/05-plugin-memory.md` — Full plugin design
-- `src/sage/plugins/` — Implementation
+- `.context/policies/PLUGIN_SETTINGS.md` — Plugin configuration
 
 ---
 

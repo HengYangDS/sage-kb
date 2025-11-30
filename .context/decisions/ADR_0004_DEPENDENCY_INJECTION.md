@@ -200,8 +200,7 @@ except CircularDependencyError as e:
 
 - `.context/decisions/ADR_0001_ARCHITECTURE.md` — Layer architecture
 - `.context/decisions/ADR_0006_PROTOCOL_FIRST.md` — Protocol-based interfaces
-- `.context/conventions/code_patterns.md` — DI usage patterns
-- `src/sage/core/di/` — Implementation
+- `.context/conventions/CODE_PATTERNS.md` — DI usage patterns
 
 ---
 
