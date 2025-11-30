@@ -1,4 +1,4 @@
-# Overview
+﻿# Overview
 
 > Index of overview documents
 
@@ -18,4 +18,4 @@
 
 ---
 
-*Auto-generated index*
+*AI Collaboration Knowledge Base*

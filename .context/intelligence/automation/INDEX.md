@@ -1,4 +1,4 @@
-# Automation
+﻿# Automation
 
 > Index of automation documents
 
@@ -17,4 +17,4 @@
 
 ---
 
-*Auto-generated index*
+*AI Collaboration Knowledge Base*

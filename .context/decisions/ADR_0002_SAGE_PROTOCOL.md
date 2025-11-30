@@ -1,10 +1,4 @@
----
-version: "1.0"
-last_updated: "2025-11-30"
-status: published
-tokens: ~500
----
-# ADR-0002: SAGE Protocol Design
+﻿# ADR-0002: SAGE Protocol Design
 
 > Architecture Decision Record for SAGE Knowledge Base
 
@@ -217,4 +211,4 @@ output = await generator.format(content, "json")
 
 ---
 
-*Part of SAGE Knowledge Base - Architecture Decisions*
+*AI Collaboration Knowledge Base*

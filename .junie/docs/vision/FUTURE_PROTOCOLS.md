@@ -1,10 +1,4 @@
----
-version: "1.0"
-last_updated: "2025-11-30"
-status: published
-tokens: ~500
----
-
+﻿
 # Future Protocol Vision
 
 > Prepare architecture for future multi-agent collaboration (~30 min read)
@@ -322,4 +316,4 @@ For Junie, ACP is **lower priority** because:
 
 ---
 
-*Part of the Junie Configuration Template System*
+*AI Collaboration Knowledge Base*

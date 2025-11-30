@@ -1,4 +1,4 @@
-# Decisions
+﻿# Decisions
 
 > Index of decisions documents
 
@@ -25,4 +25,4 @@
 
 ---
 
-*Auto-generated index*
+*AI Collaboration Knowledge Base*

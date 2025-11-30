@@ -1,4 +1,4 @@
-# Calibration
+﻿# Calibration
 
 > Index of calibration documents
 
@@ -18,4 +18,4 @@
 
 ---
 
-*Auto-generated index*
+*AI Collaboration Knowledge Base*

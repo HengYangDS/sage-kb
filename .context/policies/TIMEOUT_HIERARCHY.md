@@ -1,10 +1,4 @@
----
-version: "1.0"
-last_updated: "2025-11-30"
-status: published
-tokens: ~500
----
-# SAGE Timeout Hierarchy
+﻿# SAGE Timeout Hierarchy
 
 > SAGE Knowledge Base specific timeout configuration (T1-T5 levels)
 >
@@ -120,4 +114,4 @@ timeout:
 
 **Golden Rule**: Always return something, never hang.
 
-*Part of SAGE Knowledge Base - Project Configuration*
+*AI Collaboration Knowledge Base*

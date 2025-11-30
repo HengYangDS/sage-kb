@@ -1,10 +1,4 @@
----
-version: "1.0"
-last_updated: "2025-11-30"
-status: published
-tokens: ~500
----
-# Common Pitfalls - SAGE Project Reference
+﻿# Common Pitfalls - SAGE Project Reference
 
 > Project-specific pitfall notes for SAGE Knowledge Base
 
@@ -97,4 +91,4 @@ This includes:
 ---
 
 *Last updated: 2025-11-30*
-*Part of SAGE Knowledge Base - Project Intelligence*
+*AI Collaboration Knowledge Base*

@@ -1,4 +1,4 @@
-# Four Layer Model
+﻿# Four Layer Model
 
 > Architecture layers defining extension, capability, tool, and script boundaries
 
@@ -153,4 +153,4 @@ plugins ✗→ capabilities ✗→ tools ✗→ scripts
 
 ---
 
-*Part of SAGE Knowledge Base*
+*AI Collaboration Knowledge Base*

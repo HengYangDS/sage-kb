@@ -1,4 +1,4 @@
-# Optimization
+﻿# Optimization
 
 > Index of optimization documents
 
@@ -18,4 +18,4 @@
 
 ---
 
-*Auto-generated index*
+*AI Collaboration Knowledge Base*

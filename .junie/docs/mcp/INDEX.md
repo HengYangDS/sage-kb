@@ -1,4 +1,4 @@
-# Mcp
+﻿# Mcp
 
 > Index of mcp documents
 
@@ -21,4 +21,4 @@
 
 ---
 
-*Auto-generated index*
+*AI Collaboration Knowledge Base*

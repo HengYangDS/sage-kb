@@ -1,10 +1,4 @@
----
-version: "1.1"
-last_updated: "2025-11-30"
-status: published
-tokens: ~800
----
-# Lessons Learned
+﻿# Lessons Learned
 
 > Key insights and learnings from SAGE Knowledge Base development
 
@@ -313,4 +307,4 @@ alone.
 ---
 
 *Last updated: 2025-11-30*
-*Part of SAGE Knowledge Base*
+*AI Collaboration Knowledge Base*

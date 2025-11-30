@@ -1,10 +1,4 @@
----
-version: "1.0"
-last_updated: "2025-11-30"
-status: published
-tokens: ~500
----
-
+﻿
 # Windows Terminal Rules
 
 > Complete rule list for Windows PowerShell (68 Rules)
@@ -241,4 +235,4 @@ Copy this entire block for quick setup:
 
 ---
 
-*Part of the Junie Configuration Template System*
+*AI Collaboration Knowledge Base*

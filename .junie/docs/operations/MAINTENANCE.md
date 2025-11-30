@@ -1,10 +1,4 @@
----
-version: "1.0"
-last_updated: "2025-11-30"
-status: published
-tokens: ~500
----
-
+﻿
 # Configuration Maintenance
 
 > Daily operations and hot reload procedures (~10 min read)
@@ -305,4 +299,4 @@ Monthly review:
 
 ---
 
-*Part of the Junie Configuration Template System*
+*AI Collaboration Knowledge Base*

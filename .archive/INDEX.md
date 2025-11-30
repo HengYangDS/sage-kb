@@ -1,10 +1,4 @@
----
-version: "1.0"
-last_updated: "2025-11-30"
-status: published
-tokens: ~500
----
-
+﻿
 # Archive Navigation
 
 > Historical and deprecated content for SAGE Knowledge Base
@@ -53,4 +47,4 @@ Content here may be outdated or superseded by newer versions.
 
 ---
 
-*Part of SAGE Knowledge Base - Archive*
+*AI Collaboration Knowledge Base*

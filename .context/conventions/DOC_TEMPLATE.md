@@ -1,4 +1,4 @@
-# Document Template
+﻿# Document Template
 
 > Standard template for all Markdown documents in SAGE Knowledge Base
 
@@ -172,4 +172,4 @@ def example():
 
 ---
 
-*Part of SAGE Knowledge Base*
+*AI Collaboration Knowledge Base*

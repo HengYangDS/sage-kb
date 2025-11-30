@@ -1,10 +1,4 @@
----
-version: "1.0"
-last_updated: "2025-11-30"
-status: published
-tokens: ~500
----
-# Task Handoff: History Directory Enhancement
+﻿# Task Handoff: History Directory Enhancement
 
 > **Handoff ID**: 2025-11-29-history-enhancement-handoff
 > **From**: Current session (Junie)
@@ -140,4 +134,4 @@ The `_example-` files can be kept as permanent references or removed once the te
 
 ---
 
-*Task handoff from SAGE Knowledge Base*
+*AI Collaboration Knowledge Base*

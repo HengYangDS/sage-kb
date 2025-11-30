@@ -1,4 +1,4 @@
-# Generic
+﻿# Generic
 
 > Index of generic documents
 
@@ -17,4 +17,4 @@
 
 ---
 
-*Auto-generated index*
+*AI Collaboration Knowledge Base*

@@ -1,4 +1,4 @@
-# Policies
+﻿# Policies
 
 > Index of policies documents
 
@@ -23,4 +23,4 @@
 
 ---
 
-*Auto-generated index*
+*AI Collaboration Knowledge Base*

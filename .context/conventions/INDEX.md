@@ -1,4 +1,4 @@
-# Conventions
+﻿# Conventions
 
 > Index of conventions documents
 
@@ -23,4 +23,4 @@
 
 ---
 
-*Auto-generated index*
+*AI Collaboration Knowledge Base*

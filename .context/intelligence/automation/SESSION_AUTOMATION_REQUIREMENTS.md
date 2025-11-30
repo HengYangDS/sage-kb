@@ -1,10 +1,4 @@
----
-version: "1.0"
-last_updated: "2025-11-30"
-status: published
-tokens: ~500
----
-# Session History Automation Requirements
+﻿# Session History Automation Requirements
 
 > Long-term automation plan for AI session history management in SAGE Knowledge Base
 
@@ -259,4 +253,4 @@ session_history:
 ---
 
 *Last updated: 2025-11-30*
-*Part of SAGE Knowledge Base - Project Intelligence*
+*AI Collaboration Knowledge Base*

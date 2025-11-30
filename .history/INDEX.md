@@ -1,10 +1,4 @@
----
-version: "1.0"
-last_updated: "2025-11-30"
-status: published
-tokens: ~500
----
-# Session History Navigation
+﻿# Session History Navigation
 
 > AI session history and task handoffs for SAGE Knowledge Base
 
@@ -97,4 +91,4 @@ format and content structure.
 
 ---
 
-*Part of SAGE Knowledge Base - Session History*
+*AI Collaboration Knowledge Base*

@@ -1,10 +1,4 @@
----
-version: "1.0"
-last_updated: "2025-11-30"
-status: published
-tokens: ~500
----
-# ADR-0006: Protocol-First Interface Design
+﻿# ADR-0006: Protocol-First Interface Design
 
 > Architecture Decision Record for SAGE Knowledge Base
 
@@ -297,4 +291,4 @@ def test_processor():
 
 ---
 
-*Part of SAGE Knowledge Base - Architecture Decisions*
+*AI Collaboration Knowledge Base*

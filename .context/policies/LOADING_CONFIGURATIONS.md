@@ -1,10 +1,4 @@
----
-version: "1.0"
-last_updated: "2025-11-30"
-status: published
-tokens: ~500
----
-# SAGE Loading Configurations
+﻿# SAGE Loading Configurations
 
 > Knowledge Base loading strategies and layer configuration
 
@@ -374,4 +368,4 @@ export SAGE__CACHE__ENABLED=false
 
 ---
 
-*Part of SAGE Knowledge Base - Project Configuration*
+*AI Collaboration Knowledge Base*

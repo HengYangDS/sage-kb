@@ -1,4 +1,4 @@
-# Project
+﻿# Project
 
 > Index of project documents
 
@@ -17,4 +17,4 @@
 
 ---
 
-*Auto-generated index*
+*AI Collaboration Knowledge Base*

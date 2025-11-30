@@ -1,10 +1,4 @@
----
-version: "1.0"
-last_updated: "2025-11-30"
-status: published
-tokens: ~500
----
-
+﻿
 # MCP Troubleshooting
 
 > Problem solving guide for MCP server issues (~10 min read)
@@ -440,4 +434,4 @@ copy mcp.windows.json mcp.json
 
 ---
 
-*Part of the Junie Configuration Template System*
+*AI Collaboration Knowledge Base*

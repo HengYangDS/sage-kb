@@ -1,10 +1,4 @@
----
-version: "1.0"
-last_updated: "2025-11-30"
-status: published
-tokens: ~500
----
-
+﻿
 # MCP Configuration
 
 > Setup and configure MCP servers for Junie (~30 min)
@@ -530,4 +524,4 @@ Use JSON schema for validation:
 
 ---
 
-*Part of the Junie Configuration Template System*
+*AI Collaboration Knowledge Base*

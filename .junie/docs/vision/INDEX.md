@@ -1,4 +1,4 @@
-# Vision
+﻿# Vision
 
 > Index of vision documents
 
@@ -17,4 +17,4 @@
 
 ---
 
-*Auto-generated index*
+*AI Collaboration Knowledge Base*

@@ -1,4 +1,4 @@
-# Directory Structure
+﻿# Directory Structure
 
 > Canonical directory layout for SAGE Knowledge Base
 
@@ -220,4 +220,4 @@ scripts/
 
 ---
 
-*Part of SAGE Knowledge Base*
+*AI Collaboration Knowledge Base*

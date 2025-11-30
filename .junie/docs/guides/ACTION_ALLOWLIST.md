@@ -1,10 +1,4 @@
----
-version: "1.0"
-last_updated: "2025-11-30"
-status: published
-tokens: ~500
----
-
+﻿
 # Action Allowlist Configuration
 
 > Configure 87 Terminal rules for 90%+ automatic command approval (~30 min)
@@ -328,4 +322,4 @@ For copy-paste ready rule lists:
 
 ---
 
-*Part of the Junie Configuration Template System*
+*AI Collaboration Knowledge Base*

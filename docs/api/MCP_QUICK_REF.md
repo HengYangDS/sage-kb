@@ -88,3 +88,7 @@ results = await client.call_tool("sage_search", {"query": "timeout"})
 ---
 
 **Full Reference**: `docs/api/mcp.md`
+
+---
+
+*AI Collaboration Knowledge Base*

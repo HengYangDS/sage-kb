@@ -1,10 +1,4 @@
----
-version: "1.1"
-last_updated: "2025-11-30"
-status: published
-tokens: ~400
----
-# Autonomy Calibration Records
+﻿# Autonomy Calibration Records
 
 > Historical calibration data and effectiveness evaluation for AI collaboration in SAGE project
 
@@ -284,4 +278,4 @@ This document tracks **project-specific calibration data**:
 
 ---
 
-*Part of SAGE Knowledge Base - Project Calibration Data*
+*AI Collaboration Knowledge Base*

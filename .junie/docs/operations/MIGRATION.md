@@ -1,10 +1,4 @@
----
-version: "1.0"
-last_updated: "2025-11-30"
-status: published
-tokens: ~500
----
-
+﻿
 # Version Migration Guide
 
 > Version migration strategies and breaking change handling (~10 min read)
@@ -331,4 +325,4 @@ git diff origin/main -- .junie/generic/config.yaml | grep schema_version
 
 ---
 
-*Part of the Junie Configuration Template System*
+*AI Collaboration Knowledge Base*

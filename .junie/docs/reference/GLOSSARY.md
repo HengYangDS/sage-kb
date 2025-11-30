@@ -1,10 +1,4 @@
----
-version: "1.1"
-last_updated: "2025-11-30"
-status: published
-tokens: ~400
----
-
+﻿
 # Glossary
 
 > Unified terminology definitions for Junie configuration (~5 min reference)
@@ -167,4 +161,4 @@ Project-specific timeout hierarchy for SAGE operations.
 
 ---
 
-*Part of the Junie Configuration Template System*
+*AI Collaboration Knowledge Base*

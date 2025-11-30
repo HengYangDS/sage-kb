@@ -1,10 +1,4 @@
----
-version: "1.0"
-last_updated: "2025-11-30"
-status: published
-tokens: ~500
----
-# Session End Checklist - SAGE Project
+﻿# Session End Checklist - SAGE Project
 
 > Quick reference for SAGE session management
 
@@ -75,4 +69,4 @@ This includes:
 
 ---
 
-*Part of SAGE Knowledge Base - Session Management*
+*AI Collaboration Knowledge Base*

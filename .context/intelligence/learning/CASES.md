@@ -1,10 +1,4 @@
----
-version: "1.0"
-last_updated: "2025-11-30"
-status: published
-tokens: ~500
----
-# Technical Cases Repository
+﻿# Technical Cases Repository
 
 > Collection of problem-solving cases and lessons learned
 
@@ -464,4 +458,4 @@ For future development:
 
 ---
 
-*Part of SAGE Knowledge Base — 信达雅 (Xin-Da-Ya)*
+*AI Collaboration Knowledge Base*

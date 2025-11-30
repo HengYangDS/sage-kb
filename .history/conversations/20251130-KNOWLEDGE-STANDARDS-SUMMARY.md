@@ -1,10 +1,4 @@
----
-version: "1.0"
-last_updated: "2025-11-30"
-status: published
-tokens: ~500
----
-# Knowledge Standards Summary
+﻿# Knowledge Standards Summary
 
 > Session record: Documentation and Configuration Standards extracted from .knowledge/
 
@@ -230,4 +224,4 @@ key: value              # Inline comment (aligned)
 
 ---
 
-*Session record created during content → .knowledge rename operation*
+*AI Collaboration Knowledge Base*

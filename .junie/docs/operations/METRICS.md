@@ -1,10 +1,4 @@
----
-version: "1.0"
-last_updated: "2025-11-30"
-status: published
-tokens: ~500
----
-
+﻿
 # Collaboration Efficiency Metrics
 
 > Track and optimize AI collaboration effectiveness (~10 min read)
@@ -355,4 +349,4 @@ Start with achievable targets:
 
 ---
 
-*Part of the Junie Configuration Template System*
+*AI Collaboration Knowledge Base*

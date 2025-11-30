@@ -1,10 +1,4 @@
----
-version: "1.0"
-last_updated: "2025-11-30"
-status: published
-tokens: ~500
----
-# Service Layer Configuration
+﻿# Service Layer Configuration
 
 > Configuration reference for CLI, MCP, and API services
 
@@ -356,4 +350,4 @@ sage config --show --section services.mcp
 
 ---
 
-*Part of SAGE Knowledge Base - Configuration Reference*
+*AI Collaboration Knowledge Base*

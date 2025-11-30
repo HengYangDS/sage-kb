@@ -1,10 +1,4 @@
----
-version: "1.0"
-last_updated: "2025-11-30"
-status: published
-tokens: ~500
----
-# ADR-0005: Event Bus Architecture
+﻿# ADR-0005: Event Bus Architecture
 
 > Architecture Decision Record for SAGE Knowledge Base
 
@@ -266,4 +260,4 @@ async def test_event_publishing(event_bus):
 
 ---
 
-*Part of SAGE Knowledge Base - Architecture Decisions*
+*AI Collaboration Knowledge Base*

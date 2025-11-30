@@ -1,4 +1,4 @@
-# Operations
+﻿# Operations
 
 > Index of operations documents
 
@@ -20,4 +20,4 @@
 
 ---
 
-*Auto-generated index*
+*AI Collaboration Knowledge Base*

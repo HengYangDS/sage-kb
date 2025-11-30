@@ -1,10 +1,4 @@
----
-version: "1.0"
-last_updated: "2025-11-30"
-status: published
-tokens: ~500
----
-# ADR-0004: Dependency Injection Container
+﻿# ADR-0004: Dependency Injection Container
 
 > Architecture Decision Record for SAGE Knowledge Base
 
@@ -232,4 +226,4 @@ except CircularDependencyError as e:
 
 ---
 
-*Part of SAGE Knowledge Base - Architecture Decisions*
+*AI Collaboration Knowledge Base*

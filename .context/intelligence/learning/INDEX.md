@@ -1,4 +1,4 @@
-# Learning
+﻿# Learning
 
 > Index of learning documents
 
@@ -19,4 +19,4 @@
 
 ---
 
-*Auto-generated index*
+*AI Collaboration Knowledge Base*

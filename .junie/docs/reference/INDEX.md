@@ -1,4 +1,4 @@
-# Reference
+﻿# Reference
 
 > Index of reference documents
 
@@ -20,4 +20,4 @@
 
 ---
 
-*Auto-generated index*
+*AI Collaboration Knowledge Base*

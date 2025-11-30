@@ -1,4 +1,4 @@
-# Guides
+﻿# Guides
 
 > Index of guides documents
 
@@ -18,4 +18,4 @@
 
 ---
 
-*Auto-generated index*
+*AI Collaboration Knowledge Base*

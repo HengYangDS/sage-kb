@@ -1,10 +1,4 @@
----
-version: "1.0"
-last_updated: "2025-11-30"
-status: published
-tokens: ~500
----
-# ADR-0003: Timeout Hierarchy Design
+﻿# ADR-0003: Timeout Hierarchy Design
 
 > Architecture Decision Record for SAGE Knowledge Base
 
@@ -210,4 +204,4 @@ timeout:
 
 ---
 
-*Part of SAGE Knowledge Base - Architecture Decisions*
+*AI Collaboration Knowledge Base*

@@ -1,10 +1,4 @@
----
-version: "1.0"
-last_updated: "2025-11-30"
-status: published
-tokens: ~500
----
-# ADR-0007: Configuration Management
+﻿# ADR-0007: Configuration Management
 
 > Architecture Decision Record for SAGE Knowledge Base
 
@@ -296,4 +290,4 @@ level = TimeoutLevel(config.timeout.cache_lookup)
 
 ---
 
-*Part of SAGE Knowledge Base - Architecture Decisions*
+*AI Collaboration Knowledge Base*

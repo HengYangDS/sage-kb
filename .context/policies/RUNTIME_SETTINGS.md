@@ -1,10 +1,4 @@
----
-version: "1.0"
-last_updated: "2025-11-30"
-status: published
-tokens: ~500
----
-# SAGE Runtime Settings
+﻿# SAGE Runtime Settings
 
 > Runtime configuration, logging, and environment settings
 
@@ -473,4 +467,4 @@ debug:
 
 ---
 
-*Part of SAGE Knowledge Base - Project Configuration*
+*AI Collaboration Knowledge Base*

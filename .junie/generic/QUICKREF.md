@@ -1,10 +1,4 @@
----
-version: "1.0"
-last_updated: "2025-11-30"
-status: published
-tokens: ~500
----
-
+﻿
 # Quick Reference Card
 
 > Instant lookup for AI collaboration essentials
@@ -122,4 +116,4 @@ See `../project/config.yaml` for:
 
 ---
 
-*Part of the Junie Configuration Template System*
+*AI Collaboration Knowledge Base*
