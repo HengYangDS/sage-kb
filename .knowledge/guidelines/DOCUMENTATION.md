@@ -1,4 +1,4 @@
-# Documentation Guidelines
+﻿# Documentation Guidelines
 
 > Clear, maintainable, useful documentation
 
@@ -60,6 +60,10 @@
 ## Related
 - `path/FILE.md` — Description
 ---
+*DOCUMENTATION Guidelines v1.0*
+
+---
+
 *AI Collaboration Knowledge Base*
 ````
 ### 3.2 Heading Rules
@@ -183,6 +187,10 @@ print(result)  # Output: "processed"
 - `.knowledge/practices/documentation/TABLE_STANDARDS.md` — Table creation standards
 - `.knowledge/practices/documentation/CODE_BLOCK_STANDARDS.md` — Code block standards
 - `.knowledge/core/PRINCIPLES.md` — Core principles (信达雅 · 术法道)
+
+---
+
+*DOCUMENTATION Guidelines v1.0*
 
 ---
 

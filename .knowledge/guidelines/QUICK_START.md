@@ -1,4 +1,4 @@
-# Quick Start Guide
+﻿# Quick Start Guide
 
 > Get productive in 3 minutes
 
@@ -79,6 +79,10 @@ Ask before every task:
 - `.knowledge/guidelines/CODE_STYLE.md` — Code style standards
 - `.knowledge/guidelines/AI_COLLABORATION.md` — AI collaboration patterns
 - `.knowledge/core/PRINCIPLES.md` — Core philosophy (信达雅 · 术法道)
+
+---
+
+*QUICK_START Guidelines v1.0*
 
 ---
 

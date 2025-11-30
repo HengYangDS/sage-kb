@@ -1,4 +1,4 @@
-# Security Guidelines
+﻿# Security Guidelines
 
 > Security principles and standards for knowledge base development
 
@@ -180,6 +180,10 @@
 - `.knowledge/frameworks/security/SECURITY_CHECKLIST.md` — Comprehensive security checklist
 - `.knowledge/frameworks/security/AUTHENTICATION.md` — Authentication patterns
 - `.knowledge/frameworks/security/AUTHORIZATION.md` — Authorization patterns
+
+---
+
+*SECURITY Guidelines v1.0*
 
 ---
 

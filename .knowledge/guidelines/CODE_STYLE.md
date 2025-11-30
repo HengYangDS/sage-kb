@@ -1,4 +1,4 @@
-# Code Style Guidelines
+﻿# Code Style Guidelines
 
 > Consistent, readable, maintainable code
 
@@ -129,6 +129,10 @@ def process(data: str) -> Result:
 - `.knowledge/guidelines/TYPESCRIPT.md` — TypeScript guidelines
 - `.knowledge/practices/engineering/quality/CODE_REVIEW.md` — Code review practices
 - `.knowledge/guidelines/QUALITY.md` — Quality assurance guidelines
+
+---
+
+*CODE_STYLE Guidelines v1.0*
 
 ---
 

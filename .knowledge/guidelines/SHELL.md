@@ -1,4 +1,4 @@
-# Shell Script Guidelines
+﻿# Shell Script Guidelines
 
 > Principles, standards, and quick reference for Bash scripting
 
@@ -152,6 +152,10 @@ For detailed implementation patterns, see:
 - `.knowledge/practices/engineering/languages/SHELL_PATTERNS.md` — Common patterns
 - `.knowledge/guidelines/CODE_STYLE.md` — General code style
 - `.knowledge/practices/engineering/design/ERROR_HANDLING.md` — Error handling patterns
+
+---
+
+*SHELL Guidelines v1.0*
 
 ---
 

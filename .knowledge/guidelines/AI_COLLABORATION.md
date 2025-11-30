@@ -1,4 +1,4 @@
-# AI Collaboration Guidelines
+﻿# AI Collaboration Guidelines
 
 > Human-AI interaction patterns, autonomy levels, execution modes
 
@@ -118,6 +118,10 @@
 - `.knowledge/practices/ai_collaboration/WORKFLOW.md` — Detailed workflow practices
 - `.knowledge/practices/ai_collaboration/CONTEXT_MANAGEMENT.md` — Context management
 - `.knowledge/practices/ai_collaboration/SESSION_MANAGEMENT.md` — Session management
+
+---
+
+*AI_COLLABORATION Guidelines v1.0*
 
 ---
 

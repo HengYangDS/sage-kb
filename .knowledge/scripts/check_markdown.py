@@ -112,7 +112,14 @@ def check_document_structure(content: str, filepath: str) -> List[Issue]:
 
 
 def check_related_links(content: str, filepath: str) -> List[Issue]:
-    """Check Related section has 3-5 links."""
+    """Check Related section has 2-5 links (optimal: 3-5).
+    
+    Thresholds:
+    - 0-1 links: WARNING (too few for navigation)
+    - 2 links: INFO (acceptable but could be improved)
+    - 3-5 links: OK (optimal range)
+    - 6+ links: INFO (many links, but not a problem)
+    """
     issues = []
     
     # Find Related section
@@ -123,12 +130,21 @@ def check_related_links(content: str, filepath: str) -> List[Issue]:
         links = [line for line in related_content.split('\n') if line.strip().startswith('-')]
         link_count = len(links)
         
-        if link_count < 3:
+        if link_count < 2:
+            # 0-1 links is a warning - too few for useful navigation
             issues.append(Issue(
                 file=filepath,
                 line=content[:related_match.start()].count('\n') + 1,
                 severity="WARNING",
                 message=f"Related section has {link_count} links (recommended: 3-5)"
+            ))
+        elif link_count == 2:
+            # 2 links is acceptable but could be improved
+            issues.append(Issue(
+                file=filepath,
+                line=content[:related_match.start()].count('\n') + 1,
+                severity="INFO",
+                message=f"Related section has {link_count} links (optimal: 3-5)"
             ))
         elif link_count > 5:
             issues.append(Issue(

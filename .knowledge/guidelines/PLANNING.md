@@ -1,4 +1,4 @@
-# Planning and Design Guidelines
+﻿# Planning and Design Guidelines
 
 > Architecture and design principles for sustainable systems
 
@@ -102,6 +102,10 @@
 - `.knowledge/guidelines/ENGINEERING.md` — Engineering practices
 - `.knowledge/practices/engineering/design/API_DESIGN.md` — API design patterns
 - `.knowledge/frameworks/patterns/DECISION.md` — Decision quality framework
+
+---
+
+*PLANNING Guidelines v1.0*
 
 ---
 

@@ -1,4 +1,4 @@
-# Success Principles Guidelines
+﻿# Success Principles Guidelines
 
 > Philosophy mapping, success criteria, holistic excellence
 
@@ -110,6 +110,10 @@ Do → Reflect → Learn → Apply → Do
 - `.knowledge/guidelines/QUALITY.md` — Quality assurance guidelines
 - `.knowledge/frameworks/patterns/DECISION.md` — Decision quality framework
 - `.knowledge/practices/ai_collaboration/EFFECTIVENESS_METRICS.md` — Effectiveness metrics
+
+---
+
+*SUCCESS Guidelines v1.0*
 
 ---
 

@@ -1,4 +1,4 @@
-# Engineering Practices Guidelines
+﻿# Engineering Practices Guidelines
 
 > Configuration, testing, performance, change control, maintainability
 
@@ -129,6 +129,10 @@ Measure → Profile → Optimize → Verify
 - `.knowledge/practices/engineering/quality/TESTING_STRATEGY.md` — Testing strategies
 - `.knowledge/practices/engineering/workflow/GIT_WORKFLOW.md` — Git workflow practices
 - `.knowledge/guidelines/QUALITY.md` — Quality assurance guidelines
+
+---
+
+*ENGINEERING Guidelines v1.0*
 
 ---
 

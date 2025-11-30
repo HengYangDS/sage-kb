@@ -1,4 +1,4 @@
-# TypeScript Guidelines
+﻿# TypeScript Guidelines
 
 > TypeScript and JavaScript development standards
 
@@ -167,6 +167,10 @@
 - `.knowledge/guidelines/CODE_STYLE.md` — General code style
 - `.knowledge/practices/engineering/quality/TESTING_STRATEGY.md` — Testing practices
 - `.knowledge/scenarios/typescript_frontend/CONTEXT.md` — Frontend scenario
+
+---
+
+*TYPESCRIPT Guidelines v1.0*
 
 ---
 

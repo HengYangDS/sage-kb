@@ -31,6 +31,28 @@ class LinkIssue:
     issue_type: str  # BROKEN, FORMAT
 
 
+# Placeholder patterns to ignore (example links in documentation)
+PLACEHOLDER_PATTERNS = [
+    r'^path\d*$',           # path, path1, path2
+    r'^url$',               # url
+    r'^#$',                 # empty anchor
+    r'^\./docs$',           # ./docs (example)
+    r'^\./[A-Z]+\.md$',     # ./AUTH.md, ./API.md, ./MODELS.md (examples)
+    r'\*',                  # glob patterns like *.md, */*.md
+    r'new_topic',           # example paths
+    r'new_file\.md$',       # example file
+    r'^\.knowledge/old\.md$',  # example old file
+]
+
+
+def is_placeholder_link(link: str) -> bool:
+    """Check if a link is a placeholder/example that should be ignored."""
+    for pattern in PLACEHOLDER_PATTERNS:
+        if re.search(pattern, link):
+            return True
+    return False
+
+
 def extract_links(content: str) -> List[Tuple[int, str]]:
     """Extract all markdown links from content with line numbers.
     
@@ -86,10 +108,18 @@ def check_file(filepath: Path, knowledge_root: Path) -> List[LinkIssue]:
     links = extract_links(content)
     
     for line_num, link in links:
-        # Check link format
+        # Skip placeholder/example links
+        if is_placeholder_link(link):
+            continue
+        
+        # Resolve the target path first
+        target = resolve_link(link, filepath, knowledge_root)
+        
+        # Check link format (only if target doesn't exist as relative path)
         if not link.startswith('.knowledge/') and not link.startswith('./') and not link.startswith('../'):
             # Check if it's a relative link that should use .knowledge/ prefix
-            if '/' in link and link.endswith('.md'):
+            # But only report if the target doesn't exist (valid relative links are OK)
+            if '/' in link and link.endswith('.md') and not target.exists():
                 issues.append(LinkIssue(
                     file=str(filepath),
                     line=line_num,
@@ -97,15 +127,16 @@ def check_file(filepath: Path, knowledge_root: Path) -> List[LinkIssue]:
                     issue_type="FORMAT"
                 ))
         
-        # Check if target exists
-        target = resolve_link(link, filepath, knowledge_root)
+        # Check if target exists (for non-relative links or links with .knowledge/ prefix)
         if not target.exists():
-            issues.append(LinkIssue(
-                file=str(filepath),
-                line=line_num,
-                link=link,
-                issue_type="BROKEN"
-            ))
+            # Only report as BROKEN if not already reported as FORMAT
+            if link.startswith('.knowledge/') or link.startswith('./') or link.startswith('../'):
+                issues.append(LinkIssue(
+                    file=str(filepath),
+                    line=line_num,
+                    link=link,
+                    issue_type="BROKEN"
+                ))
     
     return issues
 

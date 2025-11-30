@@ -1,4 +1,4 @@
-# Quality Assurance Guidelines
+﻿# Quality Assurance Guidelines
 
 > Quality metrics, review processes, continuous improvement
 
@@ -123,6 +123,10 @@ def test_user_creation():
 - `.knowledge/practices/engineering/quality/TESTING_STRATEGY.md` — Testing strategies
 - `.knowledge/guidelines/ENGINEERING.md` — Engineering practices
 - `.knowledge/frameworks/patterns/DECISION.md` — Decision quality framework
+
+---
+
+*QUALITY Guidelines v1.0*
 
 ---
 

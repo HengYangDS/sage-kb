@@ -1,4 +1,4 @@
-# Cognitive Enhancement Guidelines
+﻿# Cognitive Enhancement Guidelines
 
 > Enhanced metacognitive capabilities for AI collaboration
 
@@ -140,6 +140,10 @@
 - `.knowledge/frameworks/cognitive/INFORMATION_DENSITY.md` — Information density
 - `.knowledge/practices/ai_collaboration/INTERACTION_PATTERNS.md` — Interaction patterns
 - `.knowledge/core/PRINCIPLES.md` — Core philosophy (信达雅 · 术法道)
+
+---
+
+*COGNITIVE Guidelines v1.0*
 
 ---
 
