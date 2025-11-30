@@ -28,13 +28,13 @@ SAGE (Source, Analyze, Generate, Evolve) is an intelligent knowledge management 
 ## 3. Architecture Layers
 
 ```mermaid
-graph TD
-    Services["Services (CLI, MCP, API)"]
-    Capabilities["Capabilities (5 families)"]
-    Core["Core Engine (DI, Events, Models)"]
-    Plugins["Plugins (Extension mechanisms)"]
+flowchart TD
+    A1["Services (CLI, MCP, API)"]
+    A2["Capabilities (5 families)"]
+    A3["Core Engine (DI, Events, Models)"]
+    A4["Plugins (Extension mechanisms)"]
     
-    Services --> Capabilities --> Core --> Plugins
+    A1 --> A2 --> A3 --> A4
 ```
 
 ---
@@ -60,21 +60,21 @@ graph TD
 
 ## 5. Quick Navigation
 
-### Core Concepts
+### 5.1 Core Concepts
 - `philosophy/XIN_DA_YA.md` — Design philosophy
 - `protocols/SAGE_PROTOCOL.md` — Core protocol
 
-### Technical Design
+### 5.2 Technical Design
 - `architecture/THREE_LAYER.md` — Layer architecture
 - `core_engine/DI_CONTAINER.md` — Dependency injection
 - `timeout_resilience/TIMEOUT_HIERARCHY.md` — Timeout design
 
-### Implementation
+### 5.3 Implementation
 - `services/SERVICE_LAYER.md` — Service architecture
 - `capabilities/CAPABILITY_MODEL.md` — Capability system
 - `plugins/PLUGIN_ARCHITECTURE.md` — Plugin design
 
-### Operations
+### 5.4 Operations
 - `configuration/CONFIG_HIERARCHY.md` — Configuration
 - `evolution/ROADMAP.md` — Project roadmap
 
@@ -95,10 +95,10 @@ For new readers, recommended order:
 
 ## Related
 
-- `INDEX.md` — Document index
-- `.context/conventions/DIRECTORY_STRUCTURE.md` — Structure conventions
+- `docs/design/INDEX.md` — Document index
+- `.context/conventions/FILE_STRUCTURE.md` — Structure conventions
 - `README.md` — Project readme
 
 ---
 
-*Part of SAGE Knowledge Base*
+*AI Collaboration Knowledge Base*

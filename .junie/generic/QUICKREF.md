@@ -113,4 +113,13 @@ See `../project/config.yaml` for:
 
 ---
 
+## Related
+
+- [Junie Guidelines](../guidelines.md) — Core Junie AI rules
+- [Project Guidelines](../project/GUIDELINES.md) — Project-specific rules
+- [Autonomy Levels](../../.knowledge/frameworks/autonomy/LEVELS.md) — Full autonomy definitions
+- [Timeout Patterns](../../.knowledge/frameworks/resilience/TIMEOUT_PATTERNS.md) — Timeout design patterns
+
+---
+
 *Part of the Junie Configuration Template System*

@@ -262,4 +262,14 @@ mypy src/                           # Type check
 
 ---
 
+## Related
+
+- [Junie Guidelines](../guidelines.md) — Core Junie AI rules
+- [Quick Reference](../generic/QUICKREF.md) — Quick lookup card
+- [Project Config](config.yaml) — Project identity and settings
+- [Timeout Hierarchy](../../.context/policies/TIMEOUT_HIERARCHY.md) — Project timeout configuration
+- [Autonomy Calibration](../../.context/intelligence/calibration/CALIBRATION.md) — Project calibration data
+
+---
+
 *AI Collaboration Knowledge Base*

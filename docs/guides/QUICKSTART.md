@@ -267,7 +267,7 @@ Place your own knowledge files in:
 
 - [Advanced Usage Guide](advanced.md) — Deep dive into features
 - [API Reference](../api/index.md) — Complete API documentation
-- [Design Documents](../design/00-overview.md) — Architecture details
+- [Design Documents](../design/INDEX.md) — Architecture details
 
 ---
 

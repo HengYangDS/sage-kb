@@ -1,4 +1,4 @@
-﻿# Autonomy Framework
+# Autonomy Framework
 
 > AI autonomy levels and decision-making guidelines
 

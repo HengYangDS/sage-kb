@@ -13,6 +13,8 @@
 - [5. Organization](#5-organization)
 - [6. Quality](#6-quality)
 - [7. Diagrams](#7-diagrams)
+- [8. Tables](#8-tables)
+- [9. Code Blocks & Quotes](#9-code-blocks--quotes)
 
 ---
 
@@ -372,12 +374,89 @@ print(greet("World"))  # Output: Hello, World
 
 ---
 
+## 8. Tables
+
+> **Full Standards**: See `.knowledge/practices/documentation/TABLE_STANDARDS.md`
+
+### 8.1 Quick Reference
+
+| Rule | Requirement |
+|------|-------------|
+| **Purpose** | Present structured, comparable data |
+| **Design Philosophy** | 信达雅 (Xin-Da-Ya): Faithfulness → Clarity → Elegance |
+| **Column Limit** | 3-5 recommended, 7 maximum |
+| **Row Limit** | 5-15 recommended, 25 maximum |
+
+### 8.2 When to Use Tables
+
+| Scenario | Use Table? |
+|----------|------------|
+| Comparing multiple items | ✅ Yes |
+| Key-value pairs (>3) | ✅ Yes |
+| Sequential steps | ❌ Use numbered list |
+| Hierarchical data | ❌ Use nested lists |
+
+### 8.3 Alignment Rules
+
+| Data Type | Alignment |
+|-----------|-----------|
+| Text | Left (`:---`) |
+| Numbers | Right (`---:`) |
+| Status/Icons | Center (`:---:`) |
+
+---
+
+## 9. Code Blocks & Quotes
+
+> **Full Standards**: See `.knowledge/practices/documentation/CODE_BLOCK_STANDARDS.md`
+
+### 9.1 Quick Reference
+
+| Element | Purpose |
+|---------|---------|
+| **Code Block** | Display code, commands, output |
+| **Quote Block** | Highlight important information |
+| **Callout** | Draw attention to warnings/notes |
+| **Inline Code** | Reference code elements in text |
+
+### 9.2 Code Block Rules
+
+| Rule | Requirement |
+|------|-------------|
+| **Language ID** | Always specify (e.g., `python`, `yaml`) |
+| **Design Philosophy** | 信达雅 (Xin-Da-Ya): Faithfulness → Clarity → Elegance |
+| **Line Limit** | 5-25 recommended, 50 maximum |
+| **Width** | 80 chars recommended, 100 maximum |
+
+### 9.3 Code Example Requirements
+
+**Good examples are**: Complete · Minimal · Commented · Runnable
+
+```python
+# ✓ Good: focused, shows input/output
+def greet(name: str) -> str:
+    return f"Hello, {name}"
+
+print(greet("World"))  # Output: Hello, World
+```
+
+### 9.4 Quote Block Types
+
+| Type | Syntax | Use Case |
+|------|--------|----------|
+| Note | `> **Note**:` | Additional information |
+| Warning | `> **⚠️ Warning**:` | Caution required |
+| Tip | `> **💡 Tip**:` | Helpful suggestion |
+
+---
+
 ## Related
 
 - `.knowledge/practices/documentation/DIAGRAM_STANDARDS.md` — Diagram creation standards (SSOT)
+- `.knowledge/practices/documentation/TABLE_STANDARDS.md` — Table creation standards (SSOT)
+- `.knowledge/practices/documentation/CODE_BLOCK_STANDARDS.md` — Code and quote block standards (SSOT)
 - `.knowledge/practices/documentation/KNOWLEDGE_ORGANIZATION.md` — Layer architecture details
 - `.knowledge/practices/documentation/OPTIMIZATION_WORKFLOW.md` — Full optimization process
-- `.knowledge/practices/documentation/PROJECT_DIRECTORY_STRUCTURE.md` — Directory conventions details
 - `.knowledge/templates/INDEX.md` — Document templates
 
 ---

@@ -1,4 +1,4 @@
-﻿# Resilience Framework
+# Resilience Framework
 
 > Fault tolerance and graceful degradation patterns
 

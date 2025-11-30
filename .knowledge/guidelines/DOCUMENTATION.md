@@ -10,9 +10,10 @@
 - [2. Document Types](#2-document-types)
 - [3. Structure Standards](#3-structure-standards)
 - [4. Writing Style](#4-writing-style)
-- [5. Code Examples](#5-code-examples)
+- [5. Code Blocks & Quotes](#5-code-blocks--quotes)
 - [6. Diagrams](#6-diagrams)
-- [7. Maintenance](#7-maintenance)
+- [7. Tables](#7-tables)
+- [8. Maintenance](#8-maintenance)
 
 ---
 
@@ -87,7 +88,22 @@
 
 ---
 
-## 5. Code Examples
+## 5. Code Blocks & Quotes
+
+| Element | Purpose |
+|---------|---------|
+| **Code Block** | Display code, commands, output |
+| **Quote Block** | Highlight important information |
+| **Callout** | Draw attention to warnings/notes |
+| **Inline Code** | Reference code elements in text |
+
+### 5.1 Code Block Rules
+
+| Rule | Requirement |
+|------|-------------|
+| **Language ID** | Always specify (e.g., `python`, `yaml`) |
+| **Completeness** | Include imports, show output |
+| **Size** | 5-25 lines recommended |
 
 **Good examples are**: Complete · Minimal · Commented · Runnable
 
@@ -96,6 +112,23 @@
 result = process("input")
 print(result)  # Output: "processed"
 ```
+
+### 5.2 Quote Block Types
+
+| Type | Syntax | Use Case |
+|------|--------|----------|
+| Note | `> **Note**:` | Additional information |
+| Warning | `> **⚠️ Warning**:` | Caution required |
+| Tip | `> **💡 Tip**:` | Helpful suggestion |
+
+### 5.3 Design Principles
+
+Apply 信达雅 (Xin-Da-Ya) philosophy:
+- **信 (Faithfulness)**: Code must be correct and runnable
+- **达 (Clarity)**: Clear purpose and structure
+- **雅 (Elegance)**: Minimal, focused examples
+
+> **Full Standards**: See `.knowledge/practices/documentation/CODE_BLOCK_STANDARDS.md`
 
 ---
 
@@ -176,9 +209,46 @@ Apply 信达雅 (Xin-Da-Ya) philosophy:
 
 ---
 
-## 7. Maintenance
+## 7. Tables
 
-### 7.1 Update Triggers
+| Rule | Requirement |
+|------|-------------|
+| **Purpose** | Present structured, comparable data |
+| **Efficiency** | ~40% token savings vs paragraphs |
+| **Columns** | 3-5 recommended, 7 maximum |
+| **Rows** | 5-15 recommended, 25 maximum |
+
+### 7.1 When to Use Tables
+
+| Scenario | Use Table? | Alternative |
+|----------|------------|-------------|
+| Comparing multiple items | ✅ Yes | - |
+| Key-value pairs (>3) | ✅ Yes | - |
+| Sequential steps | ❌ No | Numbered list |
+| Hierarchical data | ❌ No | Nested lists |
+
+### 7.2 Alignment Rules
+
+| Data Type | Alignment | Syntax |
+|-----------|-----------|--------|
+| Text | Left | `:---` |
+| Numbers | Right | `---:` |
+| Status/Icons | Center | `:---:` |
+
+### 7.3 Design Principles
+
+Apply 信达雅 (Xin-Da-Ya) philosophy:
+- **信 (Faithfulness)**: All data accurate and complete
+- **达 (Clarity)**: Readers find info in 5 seconds
+- **雅 (Elegance)**: Every column earns its place
+
+> **Full Standards**: See `.knowledge/practices/documentation/TABLE_STANDARDS.md`
+
+---
+
+## 8. Maintenance
+
+### 8.1 Update Triggers
 
 | Event         | Action               |
 |---------------|----------------------|
@@ -186,7 +256,7 @@ Apply 信达雅 (Xin-Da-Ya) philosophy:
 | API change    | Update reference     |
 | User question | Improve clarity      |
 
-### 7.2 Quality Checklist
+### 8.2 Quality Checklist
 
 - [ ] Links verified
 - [ ] Examples tested
@@ -199,7 +269,8 @@ Apply 信达雅 (Xin-Da-Ya) philosophy:
 
 - `.knowledge/practices/documentation/DOCUMENTATION_STANDARDS.md` — Full documentation standards (SSOT)
 - `.knowledge/practices/documentation/DIAGRAM_STANDARDS.md` — Diagram creation standards (SSOT)
-- `config/capabilities/documentation.yaml` — TOC configuration
+- `.knowledge/practices/documentation/TABLE_STANDARDS.md` — Table creation standards (SSOT)
+- `.knowledge/practices/documentation/CODE_BLOCK_STANDARDS.md` — Code and quote block standards (SSOT)
 
 ---
 

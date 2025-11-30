@@ -260,4 +260,14 @@ This `.junie/` configuration follows the **Thin Layer** principle:
 
 ---
 
+## Related
+
+- [Project Guidelines](project/GUIDELINES.md) — Project-specific AI rules
+- [Quick Reference](generic/QUICKREF.md) — Quick lookup card
+- [MCP Configuration](mcp/mcp.json) — MCP server setup
+- [Autonomy Levels](../.knowledge/frameworks/autonomy/LEVELS.md) — Full autonomy definitions
+- [AI Collaboration](../.knowledge/guidelines/AI_COLLABORATION.md) — General AI collaboration patterns
+
+---
+
 *AI Collaboration Knowledge Base*
