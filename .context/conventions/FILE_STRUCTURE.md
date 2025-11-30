@@ -183,7 +183,7 @@ When deciding where content belongs, apply these rules in order:
 
 ### 3.1 Package Structure
 
-```
+```text
 src/sage/
 ├── __init__.py          # Package exports
 ├── __main__.py          # Entry point: python -m sage
@@ -197,7 +197,7 @@ src/sage/
 ```
 ### 3.2 Core Layer (`core/`)
 
-```
+```text
 core/
 ├── __init__.py          # Core exports
 ├── config.py            # Configuration management
@@ -228,7 +228,7 @@ core/
 ```
 ### 3.3 Services Layer (`services/`)
 
-```
+```text
 services/
 ├── __init__.py          # Service exports
 ├── cli.py               # CLI service (Typer)
@@ -237,7 +237,7 @@ services/
 ```
 ### 3.4 Capabilities Layer (`capabilities/`)
 
-```
+```text
 capabilities/
 ├── __init__.py          # Capability exports
 ├── analyzers/           # Analysis capabilities
@@ -259,7 +259,7 @@ capabilities/
 
 ### 4.1 Test Directory Structure
 
-```
+```text
 tests/
 ├── __init__.py
 ├── conftest.py          # Shared fixtures
@@ -392,7 +392,7 @@ This pattern enables:
 
 ### 6.1 Documentation Structure
 
-```
+```text
 docs/
 ├── design/              # Design documents
 │   ├── 00-overview.md

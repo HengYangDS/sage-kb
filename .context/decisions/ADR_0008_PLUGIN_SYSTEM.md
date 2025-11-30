@@ -284,7 +284,7 @@ async def safe_plugin_call(
 ```
 ### Directory Structure
 
-```
+```text
 src/sage/plugins/
 ├── __init__.py          # Plugin system exports
 ├── manager.py           # Plugin manager

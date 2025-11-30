@@ -147,7 +147,7 @@ Everything as plugins, minimal core.
 
 ### Directory Structure
 
-```
+```text
 src/sage/
 ├── core/           # Core layer
 │   ├── config.py
