@@ -135,7 +135,7 @@ For changes to:
 - [ ] Consolidate duplicate information
 - [ ] Update relationships
 ### Documentation
-- [ ] Review and update project/GUIDELINES.md
+- [ ] Review and update project/QUICKREF.md
 - [ ] Check cross-references are valid
 - [ ] Update version numbers if needed
 ```

@@ -44,11 +44,13 @@ SAGE Knowledge Base requires a unified processing model that:
 
 Adopt the **SAGE Protocol** — a four-phase processing model:
 
-```text
-┌─────────┐    ┌─────────┐    ┌──────────┐    ┌────────┐
-│ Source  │ →  │ Analyze │ →  │ Generate │ →  │ Evolve │
-│   (S)   │    │   (A)   │    │    (G)   │    │   (E)  │
-└─────────┘    └─────────┘    └──────────┘    └────────┘
+```mermaid
+flowchart LR
+    S["<b>Source</b><br/>(S)"]
+    A["<b>Analyze</b><br/>(A)"]
+    G["<b>Generate</b><br/>(G)"]
+    E["<b>Evolve</b><br/>(E)"]
+    S --> A --> G --> E
 ```
 ### Phase Definitions
 

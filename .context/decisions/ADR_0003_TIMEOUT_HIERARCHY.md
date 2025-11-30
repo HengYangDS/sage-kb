@@ -73,10 +73,17 @@ Every timeout path must have a defined fallback that returns useful (if degraded
 
 ### Timeout Flow
 
-```
-Request → T1 Cache → T2 File → T3 Layer → T4 Full → Result
-              ↓          ↓          ↓          ↓
-           Skip      Fallback   Partial    Core Only
+```mermaid
+flowchart LR
+    Request --> T1["T1 Cache"]
+    T1 --> T2["T2 File"]
+    T2 --> T3["T3 Layer"]
+    T3 --> T4["T4 Full"]
+    T4 --> Result
+    T1 -.->|timeout| F1["Skip"]
+    T2 -.->|timeout| F2["Fallback"]
+    T3 -.->|timeout| F3["Partial"]
+    T4 -.->|timeout| F4["Core Only"]
 ```
 ---
 

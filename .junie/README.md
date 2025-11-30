@@ -81,7 +81,7 @@
 
 3. **Customize project-specific files**:
     - `project/config.yaml` — Define your project variables
-    - `project/GUIDELINES.md` — Add project-specific guidelines
+    - `project/QUICKREF.md` — Add project-specific guidelines
 
 ### File Relationships
 

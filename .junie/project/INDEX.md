@@ -8,7 +8,7 @@
 
 | Document | Description |
 |:---------|:------------|
-| [GUIDELINES.md](GUIDELINES.md) | SAGE project-specific AI collaboration rules and quick reference |
+| [QUICKREF.md](QUICKREF.md) | SAGE project-specific AI collaboration rules and quick reference |
 | [config.yaml](config.yaml) | Project identity, tech stack, and directory configuration |
 
 ---

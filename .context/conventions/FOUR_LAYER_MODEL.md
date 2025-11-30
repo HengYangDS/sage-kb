@@ -35,34 +35,19 @@ This document contains SAGE-specific directory mappings and implementation detai
 
 ### 1.1 Layer Diagram (SAGE-specific)
 
-```
-Abstract ▲
-         │  ┌─────────────────────────────────────────┐
-         │  │ plugins (L1: Extension Layer)           │
-         │  │ · src/sage/core/plugins/                │
-         │  │ · docs/design/plugins/                  │
-         │  └─────────────────────────────────────────┘
-         │                    │
-         │                    ▼
-         │  ┌─────────────────────────────────────────┐
-         │  │ capabilities (L2: Interface Layer)      │
-         │  │ · src/sage/capabilities/                │
-         │  │ · docs/design/capabilities/             │
-         │  └─────────────────────────────────────────┘
-         │                    │
-         │                    ▼
-         │  ┌─────────────────────────────────────────┐
-         │  │ tools (L3: Implementation Layer)        │
-         │  │ · tools/{analyzers,checkers,...}        │
-         │  │ · docs/guides/TOOLS.md                  │
-         │  └─────────────────────────────────────────┘
-         │                    │
-         ▼                    ▼
-Concrete   ┌─────────────────────────────────────────┐
-           │ scripts (L4: Auxiliary Layer)           │
-           │ · scripts/{dev,check,hooks,ci}          │
-           │ · scripts/README.md                     │
-           └─────────────────────────────────────────┘
+```mermaid
+flowchart TB
+    subgraph Abstract ["Abstract ▲"]
+        L1["<b>plugins (L1: Extension Layer)</b><br/>· src/sage/core/plugins/<br/>· docs/design/plugins/"]
+        L2["<b>capabilities (L2: Interface Layer)</b><br/>· src/sage/capabilities/<br/>· docs/design/capabilities/"]
+        L3["<b>tools (L3: Implementation Layer)</b><br/>· tools/{analyzers,checkers,...}<br/>· docs/guides/TOOLS.md"]
+    end
+    subgraph Concrete ["Concrete ▼"]
+        L4["<b>scripts (L4: Auxiliary Layer)</b><br/>· scripts/{dev,check,hooks,ci}<br/>· scripts/README.md"]
+    end
+    L1 --> L2
+    L2 --> L3
+    L3 --> L4
 ```
 
 ---

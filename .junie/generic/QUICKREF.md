@@ -71,7 +71,7 @@
 | `../guidelines.md`       | Full AI collaboration rules |
 | `config.yaml`            | Junie settings              |
 | `../project/config.yaml` | Project variables           |
-| `../project/GUIDELINES.md` | Project-specific guidelines |
+| `../project/QUICKREF.md` | Project-specific guidelines |
 | `../mcp/mcp.json`        | MCP server config           |
 
 ---
@@ -90,7 +90,7 @@
 
 ## 7. Project Commands
 
-See `../project/GUIDELINES.md` for:
+See `../project/QUICKREF.md` for:
 
 - Build commands
 - Test commands
@@ -109,7 +109,7 @@ See `../project/config.yaml` for:
 ## Related
 
 - [Junie Guidelines](../guidelines.md) — Core Junie AI rules
-- [Project Guidelines](../project/GUIDELINES.md) — Project-specific rules
+- [Project Guidelines](../project/QUICKREF.md) — Project-specific rules
 - [Autonomy Levels](../../.knowledge/frameworks/autonomy/LEVELS.md) — Full autonomy definitions
 - [Timeout Patterns](../../.knowledge/frameworks/resilience/TIMEOUT_PATTERNS.md) — Timeout design patterns
 

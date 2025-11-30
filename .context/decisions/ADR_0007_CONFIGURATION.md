@@ -48,18 +48,16 @@ Implement a **YAML + Environment Variable** configuration system with Pydantic v
 
 ### Configuration Hierarchy
 
-```text
-┌─────────────────────────────────────────────────────────┐
-│ 1. Environment Variables (SAGE__*)     [Highest Priority]│
-├─────────────────────────────────────────────────────────┤
-│ 2. Command-line Arguments                               │
-├─────────────────────────────────────────────────────────┤
-│ 3. sage.yaml (project root)                             │
-├─────────────────────────────────────────────────────────┤
-│ 4. config/*.yaml (additional configs)                   │
-├─────────────────────────────────────────────────────────┤
-│ 5. Default Values in Code               [Lowest Priority]│
-└─────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TB
+    subgraph Priority ["Configuration Priority (High → Low)"]
+        P1["1. Environment Variables (SAGE__*)<br/><i>Highest Priority</i>"]
+        P2["2. Command-line Arguments"]
+        P3["3. sage.yaml (project root)"]
+        P4["4. config/*.yaml (additional configs)"]
+        P5["5. Default Values in Code<br/><i>Lowest Priority</i>"]
+    end
+    P1 --> P2 --> P3 --> P4 --> P5
 ```
 Higher priority sources override lower priority sources.
 

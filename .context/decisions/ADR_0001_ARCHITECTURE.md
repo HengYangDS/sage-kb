@@ -47,31 +47,28 @@ Adopt a **Core-Services-Capabilities** three-layer architecture with dev tools i
 
 ### Layer Structure
 
-```text
-┌─────────────────────────────────────────────────────────┐
-│                    Core Engine Layer                    │
-│                   (<500 lines minimal)                  │
-│  • SAGE Protocol Interface                              │
-│  • TimeoutManager                                       │
-│  • EventBus                                             │
-│  • DI Container                                         │
-└─────────────────────────────────────────────────────────┘
-                           │
-          ┌────────────────┼────────────────┐
-          │                │                │
-          ▼                ▼                ▼
-┌─────────────────┐ ┌─────────────────┐ ┌─────────────────┐
-│   CLI Service   │ │   MCP Service   │ │   API Service   │
-│     (Typer)     │ │    (FastMCP)    │ │    (FastAPI)    │
-└─────────────────┘ └─────────────────┘ └─────────────────┘
-          │                │                │
-          └────────────────┼────────────────┘
-                           │
-                           ▼
-┌─────────────────────────────────────────────────────────┐
-│                  Capabilities Layer                     │
-│           (Analyzers, Checkers, Monitors)               │
-└─────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TB
+    subgraph Core ["Core Engine Layer (<500 lines minimal)"]
+        C1["SAGE Protocol Interface"]
+        C2["TimeoutManager"]
+        C3["EventBus"]
+        C4["DI Container"]
+    end
+    subgraph Services ["Services Layer"]
+        S1["CLI Service<br/>(Typer)"]
+        S2["MCP Service<br/>(FastMCP)"]
+        S3["API Service<br/>(FastAPI)"]
+    end
+    subgraph Capabilities ["Capabilities Layer"]
+        CAP["Analyzers, Checkers, Monitors"]
+    end
+    Core --> S1
+    Core --> S2
+    Core --> S3
+    S1 --> Capabilities
+    S2 --> Capabilities
+    S3 --> Capabilities
 ```
 ### Layer Responsibilities
 
