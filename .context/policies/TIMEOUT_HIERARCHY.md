@@ -104,9 +104,9 @@ timeout:
 
 ## Related
 
-- `.knowledge/frameworks/resilience/TIMEOUT_PATTERNS.md` — Universal timeout and resilience patterns
-- `config/sage.yaml` — Runtime timeout settings
-- `.knowledge/core/DEFAULTS.md` — Default timeout values reference
+- `.knowledge/frameworks/resilience/TIMEOUT_PATTERNS.md` — **Authoritative** universal timeout and resilience patterns
+- `.knowledge/core/DEFAULTS.md` — **Authoritative** default timeout values reference
+- `config/sage.yaml` — SAGE runtime timeout settings
 
 ---
 

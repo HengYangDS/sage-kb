@@ -84,9 +84,9 @@ This includes:
 
 ## Related
 
-- `.knowledge/practices/engineering/COMMON_PITFALLS.md` — Generic pitfalls guide
+- `.knowledge/practices/engineering/COMMON_PITFALLS.md` — **Authoritative** generic pitfalls guide
 - `.context/intelligence/learning/LESSONS_LEARNED.md` — SAGE-specific lessons
-- `.context/policies/TIMEOUT_HIERARCHY.md` — Timeout policy
+- `.context/policies/TIMEOUT_HIERARCHY.md` — SAGE timeout policy
 
 ---
 

@@ -1,104 +1,73 @@
-# Four Layer Model
+# SAGE Four Layer Model
 
-> Architecture layers defining extension, capability, tool, and script boundaries
+> SAGE-specific implementation of the Four-Layer Architecture Pattern
 
 ---
 
-## 1. Layer Diagram
+## Generic Pattern Reference
+
+For the universal Four-Layer Architecture Pattern (definitions, dependency rules, stability levels), see:
+
+**→ `.knowledge/frameworks/design/FOUR_LAYER_PATTERN.md`**
+
+This document contains SAGE-specific directory mappings and implementation details.
+
+---
+
+## Table of Contents
+
+- [1. SAGE Layer Mapping](#1-sage-layer-mapping)
+- [2. Directory Structure](#2-directory-structure)
+- [3. Capability Families](#3-capability-families)
+- [4. Script Categories](#4-script-categories)
+- [5. SAGE Validation Checklist](#5-sage-validation-checklist)
+
+---
+
+## 1. SAGE Layer Mapping
+
+| Layer | Generic Name | SAGE Implementation | Directory |
+|-------|--------------|---------------------|-----------|
+| **L1** | Extension | plugins | `src/sage/core/plugins/` |
+| **L2** | Interface | capabilities | `src/sage/capabilities/` |
+| **L3** | Implementation | tools | `tools/{family}/` |
+| **L4** | Auxiliary | scripts | `scripts/{category}/` |
+
+### 1.1 Layer Diagram (SAGE-specific)
 
 ```
 Abstract ▲
          │  ┌─────────────────────────────────────────┐
-         │  │ plugins (Architecture Layer)            │
-         │  │ · Extension mechanisms, lifecycle       │
+         │  │ plugins (L1: Extension Layer)           │
          │  │ · src/sage/core/plugins/                │
          │  │ · docs/design/plugins/                  │
          │  └─────────────────────────────────────────┘
          │                    │
          │                    ▼
          │  ┌─────────────────────────────────────────┐
-         │  │ capabilities (Interface Layer)          │
-         │  │ · Capability family interfaces:         │
-         │  │   analyzers, checkers, monitors,        │
-         │  │   converters, generators                │
+         │  │ capabilities (L2: Interface Layer)      │
          │  │ · src/sage/capabilities/                │
          │  │ · docs/design/capabilities/             │
          │  └─────────────────────────────────────────┘
          │                    │
          │                    ▼
          │  ┌─────────────────────────────────────────┐
-         │  │ tools (Implementation Layer)            │
-         │  │ · Runtime tools, user-facing            │
+         │  │ tools (L3: Implementation Layer)        │
          │  │ · tools/{analyzers,checkers,...}        │
          │  │ · docs/guides/TOOLS.md                  │
          │  └─────────────────────────────────────────┘
          │                    │
          ▼                    ▼
 Concrete   ┌─────────────────────────────────────────┐
-           │ scripts (Auxiliary Layer)               │
-           │ · Development scripts, CI/CD            │
+           │ scripts (L4: Auxiliary Layer)           │
            │ · scripts/{dev,check,hooks,ci}          │
            │ · scripts/README.md                     │
            └─────────────────────────────────────────┘
 ```
----
-
-## 2. Layer Definitions
-
-| Layer | Definition | Key Question | Target User |
-|-------|------------|--------------|-------------|
-| **plugins** | Extension mechanisms | How to extend? | Framework developers |
-| **capabilities** | Capability contracts | What can it do? | Capability developers |
-| **tools** | Concrete implementations | How to use? | End users |
-| **scripts** | Development utilities | How to develop? | Project developers |
 
 ---
 
-## 3. Stability Levels
-
-| Layer | Stability | Change Frequency |
-|-------|-----------|------------------|
-| plugins | ★★★★★ | Rarely changes |
-| capabilities | ★★★★☆ | Infrequent changes |
-| tools | ★★★☆☆ | Regular changes |
-| scripts | ★★☆☆☆ | Frequent changes |
-
----
-
-## 4. Dependency Rules
-
-### 4.1 Allowed Dependencies
-
-```
-scripts → tools → capabilities → plugins
-```
-- Scripts may depend on tools
-- Tools may depend on capabilities
-- Capabilities may depend on plugins
-- Each layer may depend on layers above it
-
-### 4.2 Forbidden Dependencies
-
-```
-plugins ✗→ capabilities ✗→ tools ✗→ scripts
-```
-- Plugins must NOT depend on capabilities
-- Capabilities must NOT depend on tools
-- Tools must NOT depend on scripts
-- No downward dependencies allowed
-
-### 4.3 Dependency Matrix
-
-| From ↓ / To → | plugins | capabilities | tools | scripts |
-|---------------|---------|--------------|-------|---------|
-| plugins       | ✅      | ❌           | ❌    | ❌      |
-| capabilities  | ✅      | ✅           | ❌    | ❌      |
-| tools         | ✅      | ✅           | ✅    | ❌      |
-| scripts       | ✅      | ✅           | ✅    | ✅      |
-
----
-
-## 5. Directory Mapping
+## 2. Directory Structure
 
 | Layer | Source Code | Documentation |
 |-------|-------------|---------------|
@@ -109,7 +78,9 @@ plugins ✗→ capabilities ✗→ tools ✗→ scripts
 
 ---
 
-## 6. Capability Families (tools layer)
+## 3. Capability Families
+
+SAGE organizes tools by capability family (L3 layer):
 
 | Family | Responsibility | Representative Tools |
 |--------|---------------|---------------------|
@@ -121,7 +92,9 @@ plugins ✗→ capabilities ✗→ tools ✗→ scripts
 
 ---
 
-## 7. Script Categories (scripts layer)
+## 4. Script Categories
+
+SAGE organizes scripts by category (L4 layer):
 
 | Category | Purpose | Examples |
 |----------|---------|----------|
@@ -132,21 +105,22 @@ plugins ✗→ capabilities ✗→ tools ✗→ scripts
 
 ---
 
-## 8. Validation Checklist
+## 5. SAGE Validation Checklist
 
-- [ ] Each component belongs to exactly one layer
-- [ ] No downward dependencies exist
+- [ ] Each SAGE component belongs to exactly one layer
+- [ ] No downward dependencies in SAGE codebase
 - [ ] Tools are organized by capability family
 - [ ] Scripts are organized by category
-- [ ] Documentation follows layer structure
+- [ ] Documentation exists in designated locations
 
 ---
 
 ## Related
 
+- `.knowledge/frameworks/design/FOUR_LAYER_PATTERN.md` — **Authoritative** Four-Layer Architecture Pattern
 - `.knowledge/practices/engineering/MECE.md` — MECE categorization principle
-- `.context/conventions/DIRECTORY_STRUCTURE.md` — Full directory layout
-- `docs/design/architecture/INDEX.md` — Architecture documentation
+- `.context/conventions/DIRECTORY_STRUCTURE.md` — Full SAGE directory layout
+- `docs/design/architecture/INDEX.md` — SAGE architecture documentation
 
 ---
 

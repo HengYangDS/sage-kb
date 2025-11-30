@@ -21,9 +21,11 @@ implementation decisions in AI Collaboration Knowledge Base.
 
 ## 2. Documents
 
-| Document    | Description                                   |
-|-------------|-----------------------------------------------|
-| `AXIOMS.md` | Core design axioms and fundamental principles |
+| Document                 | Description                                       |
+|--------------------------|---------------------------------------------------|
+| `AXIOMS.md`              | Core design axioms and fundamental principles     |
+| `LAYER_HIERARCHY.md`     | Knowledge layer structure and priority system     |
+| `FOUR_LAYER_PATTERN.md`  | Four-layer architecture pattern (plugins → tools) |
 
 ---
 
