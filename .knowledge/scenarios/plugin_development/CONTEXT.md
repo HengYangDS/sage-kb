@@ -318,7 +318,7 @@ pytest tests/unit/plugins/test_my_plugin.py -v
 ```python
 import logging
 # Enable debug logging for plugins
-logging.getLogger("sage.plugins").setLevel(logging.DEBUG)
+logging.getLogger("myapp.plugins").setLevel(logging.DEBUG)
 # In your plugin
 class MyPlugin(PluginBase):
     @hook("before_load")
@@ -346,10 +346,10 @@ class MyPlugin(PluginBase):
 | Category   | Commands                                                     |
 |------------|--------------------------------------------------------------|
 | **Test**   | `pytest tests/unit/plugins/ -v`                              |
-| **Lint**   | `ruff check src/sage/plugins/`                               |
-| **Type**   | `mypy src/sage/plugins/`                                     |
-| **List**   | `sage plugins list`<br/>`sage plugins info <name>`             |
-| **Enable** | `sage plugins enable <name>`<br/>`sage plugins disable <name>` |
+| **Lint**   | `ruff check src/plugins/`                                      |
+| **Type**   | `mypy src/plugins/`                                            |
+| **List**   | `myapp plugins list`<br/>`myapp plugins info <name>`           |
+| **Enable** | `myapp plugins enable <name>`<br/>`myapp plugins disable <name>` |
 
 ---
 
