@@ -1,19 +1,21 @@
 # Calibration
 
-> Index of calibration documents
+> Index of AI behavior calibration documents
 
 ---
 
 ## Contents
 
-| Document | Description |
-|:---------|:------------|
-| [Autonomy Calibration Records](CALIBRATION.md) | Autonomy Calibration Records |
-| [AI Collaboration Patterns - SAGE Project Reference](PATTERNS.md) | AI Collaboration Patterns - SAGE Project Reference |
+| Document                         | Description                                   |
+|:---------------------------------|:----------------------------------------------|
+| [CALIBRATION.md](CALIBRATION.md) | Autonomy level calibration (L1-L6)            |
+| [PATTERNS.md](PATTERNS.md)       | AI interaction patterns and templates         |
 
 ---
 
 ## Related
+
+- [.context/intelligence/INDEX.md](./../INDEX.md) — Parent intelligence index
 
 ---
 

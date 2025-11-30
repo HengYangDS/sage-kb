@@ -1,18 +1,20 @@
 # Automation
 
-> Index of automation documents
+> Index of session automation documents
 
 ---
 
 ## Contents
 
-| Document | Description |
-|:---------|:------------|
-| [Session History Automation Requirements](SESSION_AUTOMATION_REQUIREMENTS.md) | Session History Automation Requirements |
+| Document                                                                  | Description                                   |
+|:--------------------------------------------------------------------------|:----------------------------------------------|
+| [SESSION_AUTOMATION_REQUIREMENTS.md](SESSION_AUTOMATION_REQUIREMENTS.md)  | Long-term automation plan for session history |
 
 ---
 
 ## Related
+
+- [.context/intelligence/INDEX.md](./../INDEX.md) — Parent intelligence index
 
 ---
 
