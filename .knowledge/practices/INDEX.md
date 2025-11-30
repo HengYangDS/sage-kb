@@ -18,11 +18,13 @@
 | File                                               | Purpose                            |
 |----------------------------------------------------|------------------------------------|
 | `ai_collaboration/CONTEXT_MANAGEMENT.md`           | Managing shared context            |
+| `ai_collaboration/EFFECTIVENESS_METRICS.md`        | AI collaboration effectiveness     |
 | `ai_collaboration/INTERACTION_PATTERNS.md`         | AI collaboration patterns          |
 | `ai_collaboration/JUNIE_CONFIGURATION_TEMPLATE.md` | Junie `.junie/` template system    |
 | `ai_collaboration/KNOWLEDGE_CAPTURE.md`            | When and how to capture knowledge  |
 | `ai_collaboration/KNOWLEDGE_EXTRACTION.md`         | Extracting reusable knowledge      |
 | `ai_collaboration/SESSION_CHECKLIST.md`            | Session management quick checklist |
+| `ai_collaboration/SESSION_FALLBACK.md`             | Session fallback strategies        |
 | `ai_collaboration/SESSION_MANAGEMENT.md`           | Managing AI collaboration sessions |
 | `ai_collaboration/TOKEN_OPTIMIZATION.md`           | Token efficiency                   |
 | `ai_collaboration/WORKFLOW.md`                     | Collaboration workflows            |
@@ -39,9 +41,11 @@
 |------------------------------------------------|----------------------------------------|
 | `documentation/ASCII_ART_FORMATTING.md`        | ASCII art box alignment best practices |
 | `documentation/DOCUMENTATION_STANDARDS.md`     | Documentation format standards (SSOT)  |
+| `documentation/KNOWLEDGE_MAINTENANCE_SOP.md`   | Knowledge base maintenance procedures  |
 | `documentation/KNOWLEDGE_ORGANIZATION.md`      | Knowledge hierarchy patterns           |
 | `documentation/OPTIMIZATION_WORKFLOW.md`       | Batch optimization process             |
 | `documentation/PROJECT_DIRECTORY_STRUCTURE.md` | Project directory patterns             |
+| `documentation/QUARTERLY_REVIEW_PROCESS.md`    | Quarterly knowledge review process     |
 
 ### 1.4 Engineering
 
@@ -62,13 +66,13 @@
 | `engineering/INTEGRATION_TESTING.md`     | Integration testing            |
 | `engineering/KNOWLEDGE_GRAPH.md`         | Knowledge graph patterns       |
 | `engineering/LOGGING.md`                 | Logging practices              |
+| `engineering/MECE.md`                    | MECE principle application     |
 | `engineering/MONITORING.md`              | Monitoring and observability   |
 | `engineering/PATTERNS.md`                | Engineering patterns           |
 | `engineering/PERFORMANCE.md`             | Performance optimization       |
 | `engineering/PROFILING_GUIDE.md`         | Performance profiling guide    |
 | `engineering/PYTHON_PATTERNS.md`         | Python implementation patterns |
 | `engineering/SECRETS_IMPLEMENTATION.md`  | Secrets management code        |
-| `engineering/SECURITY.md`                | Security best practices        |
 | `engineering/SECURITY_PATTERNS.md`       | Security implementation code   |
 | `engineering/TESTING_STRATEGY.md`        | Testing strategies             |
 | `engineering/TROUBLESHOOTING.md`         | Troubleshooting guides         |

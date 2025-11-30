@@ -6,7 +6,8 @@
 
 ## 1. Overview
 
-SAGE enforces strict dependency rules to maintain clean architecture, prevent circular dependencies, and ensure testability.
+SAGE enforces strict dependency rules to maintain clean architecture, prevent circular dependencies, and ensure
+testability.
 
 ---
 
@@ -14,13 +15,14 @@ SAGE enforces strict dependency rules to maintain clean architecture, prevent ci
 
 ### 2.1 Layer Dependencies
 
-| From ↓ / To → | Core | Capabilities | Services | External |
-|---------------|------|--------------|----------|----------|
-| **Core** | ✅ Internal | ❌ | ❌ | ❌ |
-| **Capabilities** | ✅ | ✅ Internal | ❌ | ⚠️ Limited |
-| **Services** | ✅ | ✅ | ✅ Internal | ✅ |
+| From ↓ / To →    | Core       | Capabilities | Services   | External   |
+|------------------|------------|--------------|------------|------------|
+| **Core**         | ✅ Internal | ❌            | ❌          | ❌          |
+| **Capabilities** | ✅          | ✅ Internal   | ❌          | ⚠️ Limited |
+| **Services**     | ✅          | ✅            | ✅ Internal | ✅          |
 
 **Legend:**
+
 - ✅ Allowed
 - ❌ Forbidden
 - ⚠️ Allowed with restrictions
@@ -35,18 +37,18 @@ SAGE enforces strict dependency rules to maintain clean architecture, prevent ci
                              │ ✅
                              ▼
 ┌─────────────────────────────────────────────────────────┐
-│                      Services                            │
-│                         │ ✅                             │
+│                      Services                           │
+│                         │ ✅                            │
 │                         ▼                               │
-│  ┌───────────────────────────────────────────────────┐ │
-│  │                 Capabilities                       │ │
-│  │                      │ ✅                          │ │
-│  │                      ▼                            │ │
-│  │  ┌─────────────────────────────────────────────┐ │ │
-│  │  │                    Core                      │ │ │
-│  │  │              (No dependencies)               │ │ │
-│  │  └─────────────────────────────────────────────┘ │ │
-│  └───────────────────────────────────────────────────┘ │
+│  ┌───────────────────────────────────────────────────┐  │
+│  │                 Capabilities                      │  │
+│  │                      │ ✅                         │  │
+│  │                      ▼                            │  │
+│  │  ┌─────────────────────────────────────────────┐  │  │
+│  │  │                    Core                     │  │  │
+│  │  │              (No dependencies)              │  │  │
+│  │  └─────────────────────────────────────────────┘  │  │
+│  └───────────────────────────────────────────────────┘  │
 └─────────────────────────────────────────────────────────┘
 ```
 
@@ -81,10 +83,10 @@ import requests  # FORBIDDEN in core
 
 ### 3.3 Approved External Dependencies
 
-| Package | Purpose | Justification |
-|---------|---------|---------------|
-| `typing_extensions` | Type hints | Standard typing |
-| `pydantic` | Data validation | Core data models |
+| Package             | Purpose         | Justification    |
+|---------------------|-----------------|------------------|
+| `typing_extensions` | Type hints      | Standard typing  |
+| `pydantic`          | Data validation | Core data models |
 
 ---
 
@@ -114,12 +116,12 @@ from sage.services.mcp import MCPService  # FORBIDDEN
 
 ### 4.3 External Dependency Guidelines
 
-| Category | Examples | Policy |
-|----------|----------|--------|
-| **Parsing** | `yaml`, `json`, `toml` | ✅ Allowed |
-| **File I/O** | `pathlib`, `os` | ✅ Allowed |
-| **Network** | `requests`, `httpx` | ⚠️ Only in specific capabilities |
-| **Heavy** | `numpy`, `pandas` | ⚠️ Optional, lazy-loaded |
+| Category     | Examples               | Policy                           |
+|--------------|------------------------|----------------------------------|
+| **Parsing**  | `yaml`, `json`, `toml` | ✅ Allowed                        |
+| **File I/O** | `pathlib`, `os`        | ✅ Allowed                        |
+| **Network**  | `requests`, `httpx`    | ⚠️ Only in specific capabilities |
+| **Heavy**    | `numpy`, `pandas`      | ⚠️ Optional, lazy-loaded         |
 
 ---
 
@@ -141,11 +143,11 @@ import click  # For CLI service
 
 ### 5.2 Guidelines
 
-| Guideline | Description |
-|-----------|-------------|
-| **Thin services** | Delegate logic to capabilities |
-| **Adapter pattern** | Convert external to internal types |
-| **Validation at boundary** | Validate all external input |
+| Guideline                  | Description                        |
+|----------------------------|------------------------------------|
+| **Thin services**          | Delegate logic to capabilities     |
+| **Adapter pattern**        | Convert external to internal types |
+| **Validation at boundary** | Validate all external input        |
 
 ---
 
@@ -198,9 +200,11 @@ DI allows upper layers to receive dependencies without importing them directly.
 class AnalyzerProtocol(Protocol):
     def analyze(self, data: str) -> Result: ...
 
+
 # In Capabilities: Implement protocol
 class ContentAnalyzer:
     def analyze(self, data: str) -> Result: ...
+
 
 # In Services: Receive via DI
 class CLIService:
@@ -234,12 +238,12 @@ python -m scripts.check.check_architecture --module sage.core
 
 ## 9. Common Violations
 
-| Violation | Example | Fix |
-|-----------|---------|-----|
-| **Upward dependency** | Core imports Service | Move code to capability |
-| **Circular import** | A imports B, B imports A | Extract shared code |
-| **Heavy in core** | Core imports pandas | Move to capability |
-| **Skip layer** | Service imports Core directly | Go through capability |
+| Violation             | Example                       | Fix                     |
+|-----------------------|-------------------------------|-------------------------|
+| **Upward dependency** | Core imports Service          | Move code to capability |
+| **Circular import**   | A imports B, B imports A      | Extract shared code     |
+| **Heavy in core**     | Core imports pandas           | Move to capability      |
+| **Skip layer**        | Service imports Core directly | Go through capability   |
 
 ---
 

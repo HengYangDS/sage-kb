@@ -1,8 +1,8 @@
 ---
-version: "1.0"
+version: "1.1"
 last_updated: "2025-11-30"
 status: published
-tokens: ~500
+tokens: ~400
 ---
 
 # Glossary
@@ -50,6 +50,8 @@ The guiding design philosophy for this configuration system, derived from Chines
 
 **Usage**: Always reference as "信达雅 (Xin-Da-Ya)" for consistency across documents.
 
+> **Full Definition**: `.knowledge/core/PRINCIPLES.md`
+
 ---
 
 ## 3. MCP Terminology
@@ -93,16 +95,20 @@ The guiding design philosophy for this configuration system, derived from Chines
 
 ## 5. Collaboration Terms
 
-### Autonomy Levels
+### Autonomy Levels (L1-L6)
 
-| Level  | Name        | Autonomy Range | Behavior                                    |
-|:-------|:------------|:---------------|:--------------------------------------------|
-| **L1** | Minimal     | 0-20%          | Ask before any changes                      |
-| **L2** | Low         | 20-40%         | Ask before significant changes              |
-| **L3** | Medium      | 40-60%         | Proceed with routine tasks, ask for complex |
-| **L4** | Medium-High | 60-80%         | Proceed, report after (default) ⭐           |
-| **L5** | High        | 80-95%         | High autonomy for trusted patterns          |
-| **L6** | Full        | 95-100%        | Full autonomy (documentation, formatting)   |
+AI collaboration autonomy spectrum from supervised to fully autonomous.
+
+| Level | Name        | Summary                                     |
+|:------|:------------|:--------------------------------------------|
+| L1    | Minimal     | Ask before any changes                      |
+| L2    | Low         | Ask before significant changes              |
+| L3    | Medium      | Routine tasks autonomous, complex asks      |
+| L4    | Medium-High | Proceed and report after (default) ⭐        |
+| L5    | High        | High autonomy for trusted patterns          |
+| L6    | Full        | Full autonomy (documentation, formatting)   |
+
+> **Full Definition**: `.knowledge/frameworks/autonomy/LEVELS.md`
 
 ### Session Management
 
@@ -112,7 +118,9 @@ The guiding design philosophy for this configuration system, derived from Chines
 | **Conversation**  | Record of key decisions and outcomes from a session                |
 | **Session State** | Active work tracking file in `.history/current/`                   |
 
-### Timeout Tiers
+### Timeout Tiers (T1-T5)
+
+Project-specific timeout hierarchy for SAGE operations.
 
 | Tier | Duration | Use Case                           |
 |:-----|:---------|:-----------------------------------|
@@ -121,6 +129,9 @@ The guiding design philosophy for this configuration system, derived from Chines
 | T3   | ~2s      | Layer/module loading               |
 | T4   | ~5s      | Full system initialization         |
 | T5   | ~10s     | Complex analysis, external calls   |
+
+> **Full Definition**: `.context/policies/TIMEOUT_HIERARCHY.md`  
+> **Generic Patterns**: `.knowledge/frameworks/resilience/TIMEOUT_PATTERNS.md`
 
 ---
 
