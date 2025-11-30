@@ -20,18 +20,18 @@
 
 ### 1.1 Plugin Architecture
 
-```text
-┌─────────────────────────────────────────────────────────────┐
-│                    Plugin Manager                           │
-├─────────────────────────────────────────────────────────────┤
-│  Discovery  │  Loading  │  Lifecycle  │  Configuration     │
-└──────┬──────┴─────┬─────┴──────┬──────┴────────┬───────────┘
-       │            │            │               │
-       ▼            ▼            ▼               ▼
-┌──────────┐ ┌──────────┐ ┌──────────┐ ┌───────────────────┐
-│ Bundled  │ │ External │ │  Custom  │ │ Per-Plugin Config │
-│ Plugins  │ │ Packages │ │  Local   │ │    Settings       │
-└──────────┘ └──────────┘ └──────────┘ └───────────────────┘
+```mermaid
+flowchart TB
+    subgraph PM ["Plugin Manager"]
+        D["Discovery"]
+        L["Loading"]
+        LC["Lifecycle"]
+        CF["Configuration"]
+    end
+    D --> BP["Bundled<br/>Plugins"]
+    L --> EP["External<br/>Packages"]
+    LC --> CP["Custom<br/>Local"]
+    CF --> PC["Per-Plugin Config<br/>Settings"]
 ```
 ### 1.2 Plugin Types
 

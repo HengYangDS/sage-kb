@@ -48,23 +48,17 @@ Implement a **Protocol-Based Plugin System** with bundled and external plugin su
 
 ### Plugin Architecture
 
-```text
-┌─────────────────────────────────────────────────────────┐
-│                    Plugin Manager                        │
-│  • Discovery (bundled + external)                       │
-│  • Loading and initialization                           │
-│  • Lifecycle management                                 │
-│  • Dependency resolution                                │
-└─────────────────────────────────────────────────────────┘
-                           │
-          ┌────────────────┼────────────────┐
-          │                │                │
-          ▼                ▼                ▼
-┌─────────────────┐ ┌─────────────────┐ ┌─────────────────┐
-│ Bundled Plugins │ │ External Plugins│ │  User Plugins   │
-│  (src/plugins/  │ │   (pip install) │ │ (~/.sage/plugins)│
-│    bundled/)    │ │                 │ │                 │
-└─────────────────┘ └─────────────────┘ └─────────────────┘
+```mermaid
+flowchart TB
+    subgraph PM ["Plugin Manager"]
+        D["Discovery (bundled + external)"]
+        L["Loading and initialization"]
+        LC["Lifecycle management"]
+        DR["Dependency resolution"]
+    end
+    PM --> BP["<b>Bundled Plugins</b><br/>src/plugins/bundled/"]
+    PM --> EP["<b>External Plugins</b><br/>pip install"]
+    PM --> UP["<b>User Plugins</b><br/>~/.sage/plugins"]
 ```
 ### Plugin Types
 
@@ -238,15 +232,10 @@ plugins:
 ```
 ### Plugin Lifecycle
 
-```text
-┌──────────┐    ┌──────────┐    ┌──────────┐    ┌──────────┐
-│ Discover │ →  │  Load    │ →  │Initialize│ →  │  Active  │
-└──────────┘    └──────────┘    └──────────┘    └──────────┘
-                                                      │
-                                                      ▼
-                                              ┌──────────┐
-                                              │ Shutdown │
-                                              └──────────┘
+```mermaid
+flowchart LR
+    Discover --> Load --> Initialize --> Active
+    Active --> Shutdown
 ```
 ### Plugin Registration with DI
 

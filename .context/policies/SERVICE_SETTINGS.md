@@ -19,19 +19,16 @@
 
 ### 1.1 Service Architecture
 
-```text
-┌─────────────────────────────────────────────────────────────┐
-│                      Service Layer                          │
-├─────────────────┬─────────────────┬─────────────────────────┤
-│   CLI Service   │   MCP Service   │      API Service        │
-│   (Typer+Rich)  │   (FastMCP)     │    (FastAPI+Uvicorn)    │
-└────────┬────────┴────────┬────────┴────────────┬────────────┘
-         │                 │                      │
-         └─────────────────┴──────────────────────┘
-                           │
-                    ┌──────▼──────┐
-                    │  Core Layer │
-                    └─────────────┘
+```mermaid
+flowchart TB
+    subgraph SL ["Service Layer"]
+        CLI["CLI Service<br/>(Typer+Rich)"]
+        MCP["MCP Service<br/>(FastMCP)"]
+        API["API Service<br/>(FastAPI+Uvicorn)"]
+    end
+    CLI --> Core["Core Layer"]
+    MCP --> Core
+    API --> Core
 ```
 ### 1.2 Configuration Locations
 

@@ -230,19 +230,24 @@ This document tracks **project-specific calibration data**:
 
 ### 8.1 Review Cycle
 
-```text
-1. Weekly Review
-   └── Analyze task outcomes
-   └── Identify patterns
-   └── Note anomalies
-2. Monthly Calibration
-   └── Review success metrics
-   └── Adjust levels if needed
-   └── Document changes
-3. Quarterly Assessment
-   └── Comprehensive analysis
-   └── Update defaults
-   └── Share learnings
+```mermaid
+flowchart TB
+    subgraph W ["1. Weekly Review"]
+        W1["Analyze task outcomes"]
+        W2["Identify patterns"]
+        W3["Note anomalies"]
+    end
+    subgraph M ["2. Monthly Calibration"]
+        M1["Review success metrics"]
+        M2["Adjust levels if needed"]
+        M3["Document changes"]
+    end
+    subgraph Q ["3. Quarterly Assessment"]
+        Q1["Comprehensive analysis"]
+        Q2["Update defaults"]
+        Q3["Share learnings"]
+    end
+    W --> M --> Q
 ```
 
 ### 8.2 Recording Template

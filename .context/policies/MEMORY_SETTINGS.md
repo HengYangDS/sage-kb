@@ -20,17 +20,16 @@
 
 ### 1.1 Memory Architecture
 
-```text
-┌─────────────────────────────────────────────────────────────┐
-│                    Memory Layer                             │
-├─────────────────┬─────────────────┬─────────────────────────┤
-│   L1 Cache      │   L2 Cache      │    Persistence          │
-│   (In-Memory)   │   (File/Redis)  │    (Disk/DB)            │
-└────────┬────────┴────────┬────────┴────────────┬────────────┘
-         │                 │                     │
-         ▼                 ▼                     ▼
-    Hot Data          Warm Data             Cold Data
-    (< 100ms)         (< 500ms)             (< 2s)
+```mermaid
+flowchart TB
+    subgraph ML ["Memory Layer"]
+        L1["<b>L1 Cache</b><br/>(In-Memory)"]
+        L2["<b>L2 Cache</b><br/>(File/Redis)"]
+        P["<b>Persistence</b><br/>(Disk/DB)"]
+    end
+    L1 --> H["Hot Data<br/>(< 100ms)"]
+    L2 --> W["Warm Data<br/>(< 500ms)"]
+    P --> C["Cold Data<br/>(< 2s)"]
 ```
 ### 1.2 Storage Hierarchy
 

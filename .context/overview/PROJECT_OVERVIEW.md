@@ -40,23 +40,26 @@ collaboration.
 
 SAGE uses a **Core-Services-Capabilities** three-layer architecture:
 
-```text
-┌─────────────────────────────────────────────────────────┐
-│                    Core Engine Layer                    │
-│  • SAGE Protocol  • TimeoutManager  • EventBus  • DI    │
-└─────────────────────────────────────────────────────────┘
-                           │
-          ┌────────────────┼────────────────┐
-          ▼                ▼                ▼
-┌─────────────────┐ ┌─────────────────┐ ┌─────────────────┐
-│   CLI Service   │ │   MCP Service   │ │   API Service   │
-└─────────────────┘ └─────────────────┘ └─────────────────┘
-                           │
-                           ▼
-┌─────────────────────────────────────────────────────────┐
-│                  Capabilities Layer                     │
-│           (Analyzers, Checkers, Monitors)               │
-└─────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TB
+    subgraph Core ["Core Engine Layer"]
+        C1["SAGE Protocol"]
+        C2["TimeoutManager"]
+        C3["EventBus"]
+        C4["DI"]
+    end
+    subgraph Services ["Services Layer"]
+        S1["CLI Service"]
+        S2["MCP Service"]
+        S3["API Service"]
+    end
+    subgraph Capabilities ["Capabilities Layer"]
+        CAP["Analyzers, Checkers, Monitors"]
+    end
+    Core --> S1
+    Core --> S2
+    Core --> S3
+    Services --> Capabilities
 ```
 ### 2.1 Layer Responsibilities
 

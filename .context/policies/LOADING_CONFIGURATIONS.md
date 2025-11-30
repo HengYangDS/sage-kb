@@ -58,23 +58,16 @@ loading:
 
 SAGE organizes knowledge into hierarchical layers:
 
-```text
-┌─────────────────────────────────────────────────────────┐
-│                     core (Priority 1)                   │
-│              Fundamental principles                     │
-├─────────────────────────────────────────────────────────┤
-│                  frameworks (Priority 2)                │
-│            Conceptual frameworks & patterns             │
-├─────────────────────────────────────────────────────────┤
-│                  practices (Priority 3)                 │
-│              Best practices & guidelines                │
-├─────────────────────────────────────────────────────────┤
-│                  scenarios (Priority 4)                 │
-│             Domain-specific scenarios                   │
-├─────────────────────────────────────────────────────────┤
-│                  templates (Priority 5)                 │
-│              Document templates                         │
-└─────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TB
+    subgraph Layers ["Knowledge Layers (by Priority)"]
+        L1["<b>core</b> (Priority 1)<br/>Fundamental principles"]
+        L2["<b>frameworks</b> (Priority 2)<br/>Conceptual frameworks & patterns"]
+        L3["<b>practices</b> (Priority 3)<br/>Best practices & guidelines"]
+        L4["<b>scenarios</b> (Priority 4)<br/>Domain-specific scenarios"]
+        L5["<b>templates</b> (Priority 5)<br/>Document templates"]
+    end
+    L1 --> L2 --> L3 --> L4 --> L5
 ```
 ### 2.2 Layer Configuration
 

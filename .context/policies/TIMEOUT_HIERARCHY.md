@@ -30,31 +30,17 @@
 
 ## 2. Timeout Flow
 
-```text
-Request
-    │
-    ▼
-┌─────────────┐
-│ T1: Cache   │──timeout──▶ Skip, proceed
-└──────┬──────┘
-       │
-       ▼
-┌─────────────┐
-│ T2: File    │──timeout──▶ Use fallback
-└──────┬──────┘
-       │
-       ▼
-┌─────────────┐
-│ T3: Layer   │──timeout──▶ Return partial
-└──────┬──────┘
-       │
-       ▼
-┌─────────────┐
-│ T4: Full    │──timeout──▶ Core only
-└──────┬──────┘
-       │
-       ▼
-    Result
+```mermaid
+flowchart TB
+    Request --> T1["T1: Cache"]
+    T1 --> T2["T2: File"]
+    T2 --> T3["T3: Layer"]
+    T3 --> T4["T4: Full"]
+    T4 --> Result
+    T1 -.->|timeout| F1["Skip, proceed"]
+    T2 -.->|timeout| F2["Use fallback"]
+    T3 -.->|timeout| F3["Return partial"]
+    T4 -.->|timeout| F4["Core only"]
 ```
 
 ---
