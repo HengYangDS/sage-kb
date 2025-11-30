@@ -1,6 +1,6 @@
 # Guides
 
-> Index of guides documents
+> User guides for Junie configuration and setup
 
 ---
 
@@ -8,12 +8,15 @@
 
 | Document | Description |
 |:---------|:------------|
-| [Action Allowlist Configuration](ACTION_ALLOWLIST.md) | Action Allowlist Configuration |
-| [Quick Start Guide](QUICK_START.md) | Quick Start Guide |
+| [QUICK_START.md](QUICK_START.md) | First-time setup guide (~10 min) |
+| [ACTION_ALLOWLIST.md](ACTION_ALLOWLIST.md) | Terminal rules configuration (~30 min) |
 
 ---
 
 ## Related
+
+- [../README.md](../README.md) — Documentation index
+- [../mcp/INDEX.md](../mcp/INDEX.md) — MCP integration guides
 
 ---
 
