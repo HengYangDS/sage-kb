@@ -600,7 +600,7 @@ def _helper_function() -> None:
 
 - `.context/conventions/NAMING.md` — Naming conventions
 - `.context/conventions/CODE_PATTERNS.md` — Code patterns
-- `docs/design/architecture/INDEX.md` — Architecture
+- `.context/decisions/ADR_0001_ARCHITECTURE.md` — Architecture decision
 - `.knowledge/practices/documentation/PROJECT_DIRECTORY_STRUCTURE.md` — General directory practices
 
 ---
