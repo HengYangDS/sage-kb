@@ -1,25 +1,25 @@
 # Policies
 
-> Index of policies documents
+> Index of project-specific policy documents
 
 ---
 
 ## Contents
 
-| Document | Description |
-|:---------|:------------|
-| [SAGE Loading Configurations](LOADING_CONFIGURATIONS.md) | SAGE Loading Configurations |
-| [Memory and Persistence Configuration](MEMORY_SETTINGS.md) | Memory and Persistence Configuration |
-| [Plugin System Configuration](PLUGIN_SETTINGS.md) | Plugin System Configuration |
-| [SAGE Runtime Settings](RUNTIME_SETTINGS.md) | SAGE Runtime Settings |
-| [Service Layer Configuration](SERVICE_SETTINGS.md) | Service Layer Configuration |
-| [SAGE Timeout Hierarchy](TIMEOUT_HIERARCHY.md) | SAGE Timeout Hierarchy |
+| Document                                                | Description                                   |
+|:--------------------------------------------------------|:----------------------------------------------|
+| [LOADING_CONFIGURATIONS.md](LOADING_CONFIGURATIONS.md)  | Knowledge loading strategies and layer config |
+| [MEMORY_SETTINGS.md](MEMORY_SETTINGS.md)                | Memory persistence and caching configuration  |
+| [PLUGIN_SETTINGS.md](PLUGIN_SETTINGS.md)                | Plugin system settings and extension points   |
+| [RUNTIME_SETTINGS.md](RUNTIME_SETTINGS.md)              | Environment variables, logging, services      |
+| [SERVICE_SETTINGS.md](SERVICE_SETTINGS.md)              | Service layer configuration (CLI, MCP, API)   |
+| [TIMEOUT_HIERARCHY.md](TIMEOUT_HIERARCHY.md)            | T1-T5 timeout levels and fallback strategies  |
 
 ---
 
 ## Related
 
-- [Parent Index](../INDEX.md)
+- [.context/INDEX.md](./../INDEX.md) — Parent context index
 
 ---
 

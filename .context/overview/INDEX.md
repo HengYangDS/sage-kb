@@ -6,15 +6,15 @@
 
 ## Contents
 
-| Document | Description |
-|:---------|:------------|
-| [SAGE Project Overview](PROJECT_OVERVIEW.md) | SAGE Project Overview |
+| Document                                      | Description                                      |
+|:----------------------------------------------|:-------------------------------------------------|
+| [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md) | Project introduction, architecture, key concepts |
 
 ---
 
 ## Related
 
-- [Parent Index](../INDEX.md)
+- [.context/INDEX.md](./../INDEX.md) — Parent context index
 
 ---
 
