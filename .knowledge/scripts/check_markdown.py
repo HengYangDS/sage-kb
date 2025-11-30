@@ -122,8 +122,9 @@ def check_related_links(content: str, filepath: str) -> List[Issue]:
     """
     issues = []
     
-    # Find Related section
-    related_match = re.search(r'## Related\s*\n(.*?)(?=\n---|\n## |\Z)', content, re.DOTALL)
+    # Find the LAST Related section (to avoid matching examples in document body)
+    related_matches = list(re.finditer(r'## Related\s*\n(.*?)(?=\n---|\n## |\Z)', content, re.DOTALL))
+    related_match = related_matches[-1] if related_matches else None
     if related_match:
         related_content = related_match.group(1)
         # Count links (lines starting with -)

@@ -6,13 +6,62 @@
 
 ## Table of Contents
 
-- [1. Available Scenarios](#1-available-scenarios)
-- [2. Scenario Structure](#2-scenario-structure)
-- [3. Creating New Scenarios](#3-creating-new-scenarios)
+- [1. Scenario Selection Guide](#1-scenario-selection-guide)
+- [2. Available Scenarios](#2-available-scenarios)
+- [3. Scenario Structure](#3-scenario-structure)
+- [4. Creating New Scenarios](#4-creating-new-scenarios)
 
 ---
 
-## 1. Available Scenarios
+## 1. Scenario Selection Guide
+
+### Quick Decision Tree
+
+```
+What are you building?
+├─ Backend service
+│  ├─ Python? → python_backend/
+│  └─ Distributed? → microservices/
+├─ Frontend application
+│  └─ TypeScript/React/Vue? → typescript_frontend/
+├─ Infrastructure
+│  ├─ CI/CD pipelines? → devops/
+│  ├─ Data processing? → data_pipeline/
+│  └─ Single repo, multiple projects? → monorepo/
+├─ Integration
+│  ├─ MCP/AI tools? → mcp_integration/
+│  └─ Plugin/extension? → plugin_development/
+├─ Modernization
+│  └─ Updating legacy system? → legacy_modernization/
+└─ Documentation
+   ├─ Technical docs? → documentation/
+   └─ Knowledge system? → knowledge_management/
+```
+
+### Selection by Project Type
+
+| Project Type | Primary Scenario | Often Combined With |
+|--------------|------------------|---------------------|
+| Web API | python_backend | devops, microservices |
+| SPA/PWA | typescript_frontend | devops |
+| Full-stack | python_backend + typescript_frontend | devops, monorepo |
+| Data platform | data_pipeline | devops, microservices |
+| AI integration | mcp_integration | python_backend |
+| IDE extension | plugin_development | typescript_frontend |
+| System upgrade | legacy_modernization | devops |
+| Docs site | documentation | knowledge_management |
+
+### Selection by Team Size
+
+| Team Size | Recommended Scenarios |
+|-----------|----------------------|
+| Solo/Small (1-3) | python_backend, typescript_frontend |
+| Medium (4-10) | + devops, monorepo |
+| Large (10+) | + microservices, knowledge_management |
+
+---
+
+## 2. Available Scenarios
 
 | Scenario                 | Path                      | Purpose                           |
 |--------------------------|---------------------------|-----------------------------------|
@@ -35,7 +84,7 @@ Each scenario contains:
 
 ---
 
-## 2. Scenario Structure
+## 3. Scenario Structure
 
 ```text
 scenarios/[name]/
@@ -59,7 +108,7 @@ scenarios/[name]/
 ```
 ---
 
-## 3. Creating New Scenarios
+## 4. Creating New Scenarios
 
 1. Create directory: `.knowledge/scenarios/[name]/`
 2. Add `INDEX.md` with scenario navigation
@@ -76,6 +125,11 @@ scenarios/[name]/
 - `.knowledge/practices/INDEX.md` — Implementation practices
 - `.knowledge/templates/INDEX.md` — Document templates
 - `config/knowledge/triggers.yaml` — Trigger configuration
+
+---
+
+*Scenario Presets v1.1*
+*Updated: 2025-12-01 - Added scenario selection guide (§1)*
 
 ---
 
