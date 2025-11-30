@@ -55,7 +55,8 @@
 
 | Template                  | File                       | Tokens | Purpose                            |
 |---------------------------|----------------------------|--------|------------------------------------|
-| **Expert Committee**      | `EXPERT_COMMITTEE.md`      | ~150   | 24-expert review template          |
+| **Expert Committee**      | `EXPERT_COMMITTEE.md`      | ~150   | 23-expert review template          |
+| **Expert Committee Quick**| `EXPERT_COMMITTEE_QUICKSTART.md` | ~100 | 5-minute quick-start guide     |
 | **Project Setup**         | `PROJECT_SETUP.md`         | ~150   | Project initialization checklist   |
 | **Conversation Record**   | `CONVERSATION_RECORD.md`   | ~200   | AI session documentation           |
 | **Session State**         | `SESSION_STATE.md`         | ~250   | Current session context capture    |
@@ -88,15 +89,17 @@
 
 ### Structure
 
-- 4 expert groups (6 experts each)
-- Architecture & Systems
-- Knowledge Engineering
-- AI Collaboration
-- Engineering Practice
+- 6 expert domains × 23 roles
+- Build (5): Architect, Backend, Frontend, QA, Tech Lead
+- Run (4): DevOps, SRE, DBA, Release
+- Secure (3): Security, Compliance, Privacy
+- Data (3): Data Eng, ML Eng, Analyst
+- Product (4): PM, UX, Domain, Support
+- Strategy (4): CTO, Risk, Cost, Change
 
 ### Usage
 
-`````markdown
+```markdown
 ## Expert Committee Review: [Topic]
 ### Architecture Group Assessment
 [Use template prompts]
@@ -196,7 +199,7 @@ Store in `.history/handoffs/` with naming: `YYYY-MM-DD-TASK-HANDOFF.md`
 
 All templates follow this structure:
 
-`````markdown
+```markdown
 # [Template Name]
 > **Purpose**: [brief description]
 > **Use When**: [trigger conditions]

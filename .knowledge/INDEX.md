@@ -19,13 +19,13 @@
 |----------------|---------------|-------------------------------------------|-------|
 | **Core**       | `core/`       | Principles, defaults, quick reference     | 4     |
 | **Guidelines** | `guidelines/` | Code style, engineering, AI collaboration | 15    |
-| **Frameworks** | `frameworks/` | Autonomy, timeout, cognitive patterns     | 25    |
+| **Frameworks** | `frameworks/` | Autonomy, timeout, cognitive patterns     | 26    |
 | **Practices**  | `practices/`  | Documentation, engineering, decisions     | 65    |
 | **References** | `references/` | Quick reference guides and checklists     | 4     |
 | **Scenarios**  | `scenarios/`  | Context-specific guides                   | 34    |
-| **Templates**  | `templates/`  | Reusable document templates               | 18    |
+| **Templates**  | `templates/`  | Reusable document templates               | 21    |
 
-**Total**: 165 knowledge files
+**Total**: 169 knowledge files
 
 ---
 
@@ -62,19 +62,19 @@ Code style and collaboration standards:
 | `PLANNING.md`         | Planning guidelines           |
 | `SUCCESS.md`          | Success metrics               |
 
-### 2.3 Frameworks (25 files)
+### 2.3 Frameworks (26 files)
 
 Reusable patterns and strategies across 7 categories:
 
-| Subdirectory   | Files | Purpose                          |
-|----------------|-------|----------------------------------|
-| `autonomy/`    | 2     | AI autonomy levels (L1-L6)       |
-| `cognitive/`   | 3     | Expert committee, info density   |
-| `design/`      | 3     | Design axioms, layer hierarchy   |
-| `patterns/`    | 5     | Collaboration, decision patterns |
-| `performance/` | 4     | Caching, optimization, profiling |
-| `resilience/`  | 2     | Timeout patterns, fallbacks      |
-| `security/`    | 5     | Auth, secrets, security checks   |
+| Subdirectory   | Files | Purpose                              |
+|----------------|-------|--------------------------------------|
+| `autonomy/`    | 2     | AI autonomy levels (L1-L6)           |
+| `cognitive/`   | 5     | Expert committee, conflict, roles    |
+| `design/`      | 3     | Design axioms, layer hierarchy       |
+| `patterns/`    | 5     | Collaboration, decision patterns     |
+| `performance/` | 4     | Caching, optimization, profiling     |
+| `resilience/`  | 2     | Timeout patterns, fallbacks          |
+| `security/`    | 5     | Auth, secrets, security checks       |
 
 ### 2.4 Practices (65 files)
 
@@ -116,30 +116,32 @@ Quick reference guides and checklists:
 | `KNOWLEDGE_QUICK_REF.md`   | Knowledge organization patterns |
 | `PERFORMANCE_CHECKLIST.md` | Performance optimization checks |
 
-### 2.7 Templates (18 files)
+### 2.7 Templates (21 files)
 
 Reusable document templates:
 
-| File                       | Purpose                      |
-|----------------------------|------------------------------|
-| `INDEX.md`                 | Templates layer navigation   |
-| `ADR.md`                   | Architecture Decision Record |
-| `API_SPEC.md`              | API specification            |
-| `CASE_STUDY.md`            | Case study template          |
-| `CONVENTION.md`            | Convention documentation     |
-| `CONVERSATION_RECORD.md`   | Conversation logging         |
-| `EXPERT_COMMITTEE.md`      | Expert committee review      |
-| `GUIDE.md`                 | Guide documentation          |
-| `MEETING_NOTES.md`         | Meeting notes template       |
-| `POSTMORTEM.md`            | Incident postmortem          |
-| `PRACTICE.md`              | Practice documentation       |
-| `PROJECT_SETUP.md`         | Project setup checklist      |
-| `RELEASE_NOTES.md`         | Release notes format         |
-| `RUNBOOK.md`               | Operational runbook          |
-| `SESSION_STATE.md`         | AI session state             |
-| `SHELL_SCRIPT.md`          | Shell script template        |
-| `TASK_HANDOFF.md`          | Task handoff document        |
-| `TROUBLESHOOTING_GUIDE.md` | Troubleshooting template     |
+| File                            | Purpose                       |
+|---------------------------------|-------------------------------|
+| `INDEX.md`                      | Templates layer navigation    |
+| `ADR.md`                        | Architecture Decision Record  |
+| `API_SPEC.md`                   | API specification             |
+| `CASE_STUDY.md`                 | Case study template           |
+| `CONVENTION.md`                 | Convention documentation      |
+| `CONVERSATION_RECORD.md`        | Conversation logging          |
+| `DECISION_RECORDS.md`           | Decision record template      |
+| `EXPERT_COMMITTEE.md`           | Expert committee review (L1-L5) |
+| `EXPERT_COMMITTEE_QUICKSTART.md`| Expert committee quick-start  |
+| `GUIDE.md`                      | Guide documentation           |
+| `MEETING_NOTES.md`              | Meeting notes template        |
+| `POSTMORTEM.md`                 | Incident postmortem           |
+| `PRACTICE.md`                   | Practice documentation        |
+| `PROJECT_SETUP.md`              | Project setup checklist       |
+| `RELEASE_NOTES.md`              | Release notes format          |
+| `RUNBOOK.md`                    | Operational runbook           |
+| `SESSION_STATE.md`              | AI session state              |
+| `SHELL_SCRIPT.md`               | Shell script template         |
+| `TASK_HANDOFF.md`               | Task handoff document         |
+| `TROUBLESHOOTING_GUIDE.md`      | Troubleshooting template      |
 
 ---
 
@@ -176,14 +178,16 @@ Reusable document templates:
 - `.knowledge/frameworks/autonomy/INDEX.md` — Autonomy framework
 - `.knowledge/frameworks/autonomy/LEVELS.md` — L1-L6 autonomy levels
 - `.knowledge/frameworks/cognitive/INDEX.md` — Cognitive framework
-- `.knowledge/frameworks/cognitive/EXPERT_COMMITTEE.md` — Expert committee pattern
+- `.knowledge/frameworks/cognitive/CONFLICT_RESOLUTION.md` — Conflict resolution & weights
+- `.knowledge/frameworks/cognitive/EXPERT_COMMITTEE.md` — Expert committee (23 roles)
 - `.knowledge/frameworks/cognitive/INFORMATION_DENSITY.md` — Information density
+- `.knowledge/frameworks/cognitive/ROLE_PERSONA.md` — Expert role definitions
 - `.knowledge/frameworks/design/INDEX.md` — Design framework
 - `.knowledge/frameworks/design/AXIOMS.md` — Design axioms
 - `.knowledge/frameworks/design/LAYER_HIERARCHY.md` — Layer hierarchy design
 - `.knowledge/frameworks/patterns/INDEX.md` — Patterns framework
 - `.knowledge/frameworks/patterns/COLLABORATION.md` — Collaboration patterns
-- `.knowledge/frameworks/patterns/DECISION.md` — Decision patterns
+- `.knowledge/frameworks/patterns/DECISION.md` — Decision patterns (37 angles)
 - `.knowledge/frameworks/patterns/INTEGRATION.md` — Integration patterns
 - `.knowledge/frameworks/patterns/PERSISTENCE.md` — Persistence patterns
 - `.knowledge/frameworks/performance/INDEX.md` — Performance framework

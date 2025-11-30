@@ -11,7 +11,11 @@
 - [3. Level Selection](#3-level-selection)
 - [4. Calibration](#4-calibration)
 - [5. Override Conditions](#5-override-conditions)
-- [6. Implementation](#6-implementation)
+- [6. Emergency Handling](#6-emergency-handling)
+- [7. Audit & Observability](#7-audit--observability)
+- [8. Testing & Validation](#8-testing--validation)
+- [9. Adoption Path](#9-adoption-path)
+- [10. Implementation](#10-implementation)
 
 ---
 
@@ -45,6 +49,27 @@
 | Changes   | Routine proceed          | Most proceed    |
 | Reporting | Ask novel                | Report after    |
 | Use case  | Established relationship | Trusted routine |
+
+#### L3 vs L4 Decision Tree
+
+```
+Is the task routine AND well-understood?
+├─ NO  → L3: Ask before proceeding
+└─ YES → Has similar task succeeded 3+ times?
+         ├─ NO  → L3: Ask before proceeding
+         └─ YES → Is outcome easily reversible?
+                  ├─ NO  → L3: Ask before proceeding
+                  └─ YES → L4: Proceed, report after
+```
+
+#### Concrete Examples
+
+| Scenario      | L3 (Ask Novel)                 | L4 (Report After)              |
+|---------------|--------------------------------|--------------------------------|
+| Code refactor | New pattern, unfamiliar module | Same pattern, familiar module  |
+| Config change | New service, production        | Known service, dev/staging     |
+| Documentation | New structure, API docs        | Typo fix, existing format      |
+| Testing       | New test framework             | Adding tests to existing suite |
 
 ### 2.3 L5-L6: High Autonomy
 
@@ -101,9 +126,222 @@
 
 ---
 
-## 6. Implementation
+## 6. Emergency Handling
 
-### 6.1 Setting Level
+### 6.1 Emergency Triggers
+
+| Trigger              | Description                            | Action   |
+|----------------------|----------------------------------------|----------|
+| Security incident    | Detected breach, vulnerability exploit | Force L1 |
+| Production outage    | Service down, critical errors          | Force L1 |
+| Data breach          | Unauthorized data access/leak          | Force L1 |
+| Compliance violation | Regulatory requirement breach          | Force L1 |
+| Safety concern       | Risk to users or systems               | Force L1 |
+
+### 6.2 Emergency Protocol
+
+```yaml
+emergency:
+  triggers:
+    - security_incident
+    - production_outage
+    - data_breach
+    - compliance_violation
+    - safety_concern
+  action: force_L1
+  notification: immediate
+  escalation:
+    - notify_human_immediately
+    - halt_autonomous_actions
+    - await_explicit_approval
+  recovery:
+    - incident_resolved: return_to_previous_level
+    - require_review: downgrade_one_level
+```
+
+### 6.3 Post-Emergency Review
+
+| Step | Action                                | Timeline        |
+|------|---------------------------------------|-----------------|
+| 1    | Document incident and AI actions      | Within 1 hour   |
+| 2    | Review autonomy level appropriateness | Within 24 hours |
+| 3    | Adjust calibration if needed          | Within 48 hours |
+| 4    | Update override conditions            | Within 1 week   |
+
+---
+
+## 7. Audit & Observability
+
+### 7.1 Audit Log Requirements
+
+| Level | Logging Required    | Retention |
+|-------|---------------------|-----------|
+| L1-L3 | Optional            | 30 days   |
+| L4    | Required            | 60 days   |
+| L5-L6 | Required + detailed | 90 days   |
+
+### 7.2 Audit Log Schema
+
+```yaml
+audit_log:
+  required_fields:
+    - timestamp: ISO 8601 datetime
+    - autonomy_level: L1-L6
+    - action_type: create|modify|delete|execute
+    - action_description: string
+    - outcome: success|failure|partial
+    - user_override: boolean
+    - override_reason: string (if applicable)
+  optional_fields:
+    - affected_files: list
+    - risk_assessment: low|medium|high
+    - rollback_available: boolean
+```
+
+### 7.3 Observability Metrics
+
+| Metric                        | Description                  | Alert Threshold     |
+|-------------------------------|------------------------------|---------------------|
+| `autonomy_level_distribution` | Current level usage          | N/A (informational) |
+| `override_frequency`          | User overrides per day       | > 5/day             |
+| `calibration_accuracy`        | Predicted vs actual success  | < 80%               |
+| `decision_reversal_rate`      | Decisions requiring rollback | > 10%               |
+| `emergency_trigger_count`     | Emergency events             | Any occurrence      |
+
+### 7.4 Dashboard Recommendations
+
+```
+┌─────────────────────────────────────────────────────┐
+│  AUTONOMY DASHBOARD                                 │
+├─────────────────────────────────────────────────────┤
+│  Current Level: L4 (Medium-High)                    │
+│  Success Rate (30d): 92%                            │
+│  Override Count (7d): 2                             │
+│  Last Emergency: None                               │
+├─────────────────────────────────────────────────────┤
+│  Level Distribution    │  Calibration Trend         │
+│  L1: ██ 5%            │  ────────────────           │
+│  L2: ███ 10%          │       ╱‾‾‾‾‾‾               │
+│  L3: █████ 20%        │      ╱                      │
+│  L4: ██████████ 45%   │  ───╱─────────────          │
+│  L5: █████ 18%        │  Target: 85%                │
+│  L6: ██ 2%            │  Current: 92%               │
+└─────────────────────────────────────────────────────┘
+```
+
+---
+
+## 8. Testing & Validation
+
+### 8.1 Validation Methods
+
+| Method                   | Purpose                         | Frequency |
+|--------------------------|---------------------------------|-----------|
+| Level selection accuracy | Verify correct level assignment | Weekly    |
+| Calibration convergence  | Confirm calibration stabilizes  | Monthly   |
+| Override effectiveness   | Assess override rule quality    | Quarterly |
+| A/B testing              | Compare autonomy configurations | As needed |
+
+### 8.2 Acceptance Criteria
+
+| Criteria                 |     Target     |    Minimum     |
+|--------------------------|:--------------:|:--------------:|
+| Level selection accuracy |     > 90%      |     > 85%      |
+| Calibration convergence  | < 10 decisions | < 20 decisions |
+| False positive overrides |      < 5%      |     < 10%      |
+| User satisfaction        |    > 4.0/5     |    > 3.5/5     |
+
+### 8.3 Test Scenarios
+
+```yaml
+test_scenarios:
+  level_selection:
+    - scenario: "New collaboration, routine task"
+      expected: L2-L3
+    - scenario: "Established trust, sensitive data"
+      expected: L2-L3
+    - scenario: "Expert task, sandbox environment"
+      expected: L5-L6
+
+  calibration:
+    - scenario: "5 consecutive successes"
+      expected: upgrade_considered
+    - scenario: "2 failures in 5 attempts"
+      expected: downgrade_one_level
+
+  emergency:
+    - scenario: "Security alert triggered"
+      expected: immediate_L1_enforcement
+```
+
+### 8.4 Validation Checklist
+
+- [ ] Level definitions match actual behavior
+- [ ] Calibration rules converge within expected decisions
+- [ ] Override conditions trigger correctly
+- [ ] Emergency handling activates immediately
+- [ ] Audit logs capture required fields
+- [ ] Metrics dashboard displays accurately
+
+---
+
+## 9. Adoption Path
+
+### 9.1 Team Maturity Assessment
+
+| Maturity Level | Characteristics                    | Max Autonomy |
+|----------------|------------------------------------|:------------:|
+| **Novice**     | New to AI collaboration, < 1 month |      L3      |
+| **Developing** | Some experience, 1-3 months        |      L4      |
+| **Proficient** | Established patterns, 3-6 months   |      L5      |
+| **Expert**     | Deep trust, > 6 months             |      L6      |
+
+### 9.2 Progressive Adoption
+
+| Phase       | Duration | Starting Level | Target Level | Focus                |
+|-------------|----------|:--------------:|:------------:|----------------------|
+| **Phase 1** | Week 1-2 |       L2       |      L2      | Build understanding  |
+| **Phase 2** | Week 3-4 |       L2       |      L3      | Establish patterns   |
+| **Phase 3** | Month 2  |       L3       |    L3-L4     | Validate calibration |
+| **Phase 4** | Month 3+ |       L4       |    L4-L5     | Optimize efficiency  |
+
+### 9.3 Adoption Checklist
+
+| Milestone        | Criteria                       | Action                |
+|------------------|--------------------------------|-----------------------|
+| Week 1 complete  | 10+ successful L2 interactions | Review patterns       |
+| Month 1 complete | Success rate > 85%             | Consider L3 upgrade   |
+| Month 2 complete | Calibration stable             | Enable L4 for routine |
+| Quarter complete | Full validation passed         | Enable L5 for trusted |
+
+### 9.4 Team Configuration Template
+
+```yaml
+team_autonomy:
+  team_name: "Example Team"
+  maturity: developing
+  default_level: L3
+  max_level: L4
+
+  member_overrides:
+    - member: "senior_dev"
+      max_level: L5
+      reason: "6+ months experience"
+
+  domain_limits:
+    - domain: "production"
+      max_level: L2
+    - domain: "security"
+      max_level: L2
+    - domain: "development"
+      max_level: L5
+```
+
+---
+
+## 10. Implementation
+
+### 10.1 Setting Level
 
 ```yaml
 # In task context
@@ -111,7 +349,8 @@ autonomy:
   level: L4
   reason: "Established trust, routine refactoring"
 ```
-### 6.2 Reporting Format
+
+### 10.2 Reporting Format
 
 | Level | Report Style            |
 |-------|-------------------------|
@@ -130,7 +369,9 @@ autonomy:
 - `.knowledge/core/QUICK_REFERENCE.md` — Quick autonomy reference
 - `.knowledge/practices/decisions/AUTONOMY_CASES.md` — Concrete examples
 - `.knowledge/guidelines/AI_COLLABORATION.md` — Collaboration guidelines
+- `.knowledge/frameworks/cognitive/EXPERT_COMMITTEE.md` — Expert Committee Framework (review method)
 
 ---
 
-*AI Collaboration Knowledge Base*
+*AI Autonomy Levels Framework v2.0*
+*Last reviewed: 2025-12-01 by Expert Committee (L3, Conditional Approve)*

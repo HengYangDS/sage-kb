@@ -50,7 +50,7 @@
 
 **Template**:
 
-`````markdown
+```markdown
 ## L1 Quick Check
 **Decision**: [What]
 **Panel**: Engineer, QA
@@ -66,7 +66,7 @@
 |--------|-------|
 | Weighted Mean (S) | |
 | Weighted StdDev (σ) | |
-| Enhanced Score (S - 0.5σ) | |
+| Enhanced Score (S - λσ) | |
 | 95% CI | [ , ] |
 | Information Sufficiency | |
 
@@ -79,7 +79,7 @@
 
 **Verdict**: [Strong Approve / Conditional Approve / Revise / Reject]
 **Confidence**: [CI range]
-`````
+```
 
 ---
 
@@ -91,7 +91,7 @@
 
 **Template**:
 
-`````markdown
+```markdown
 ## L2 Standard Review
 **Decision**: [What]
 **Context**: [Background]
@@ -112,12 +112,12 @@
 | Metric | Value | Formula |
 |--------|-------|---------|
 | Weighted Mean (S) | | Σ(W_total×s)/Σ(W_total) |
-| Weighted StdDev (σ) | | √[Σw(s-S)²/Σw] |
-| Enhanced Score | | S - 0.5σ |
-| Standard Error (SE) | | σ/√n |
-| 95% CI | [ , ] | S ± 1.96×SE |
+| Weighted StdDev (σ) | | √[Σw(s-S)²/Σw] × Bessel |
+| Enhanced Score | | S - λ(n)×σ |
+| Standard Error (SE) | | σ/√n × correlation |
+| 95% CI | [ , ] | S ± t(n-1)×SE |
 | CI Width | | |
-| Information Sufficiency | | 1 - width/4 |
+| Information Sufficiency | | max(0, 1 - width/4) |
 
 ### Phase 3: Divergence Analysis
 **Divergence Level**: [High consensus / Minor / Moderate / Significant / Severe]
@@ -146,7 +146,7 @@
 **Confidence**: [CI range]
 **Conditions**: [If any]
 **Next Steps**: [Actions]
-`````
+```
 
 ---
 
@@ -158,7 +158,7 @@
 
 **Template**:
 
-`````markdown
+```markdown
 ## L3 Deep Analysis
 **Decision**: [What]
 **Context**: [Background]
@@ -209,9 +209,9 @@
 | Metric | Value |
 |--------|-------|
 | Overall Weighted Mean (S) | |
-| Overall Weighted StdDev (σ) | |
-| Enhanced Score (S - 0.5σ) | |
-| 95% CI | [ , ] |
+| Overall Weighted StdDev (σ_corrected) | |
+| Enhanced Score (S - λ(n)×σ) | |
+| 95% CI (t-distribution) | [ , ] |
 | Information Sufficiency | |
 
 ### Phase 4: Expert Votes
@@ -239,7 +239,7 @@
 **IS**: [X.XX]
 **Conditions**: [Required items]
 **Action Items**: [With owners]
-`````
+```
 
 ---
 
@@ -251,7 +251,7 @@
 
 **Template**:
 
-`````markdown
+```markdown
 ## L4 Comprehensive Review
 **Decision**: [Detailed description]
 **Impact Scope**: [Systems, teams, users]
@@ -324,7 +324,7 @@
 **Confidence**: [Based on CI and IS]
 **Binding Conditions**: [Must-meet items]
 **Implementation**: Phase 1 → Phase 2 → Validation
-`````
+```
 
 ---
 
@@ -336,7 +336,7 @@
 
 **Template**:
 
-`````markdown
+```markdown
 ## L5 Full Committee Review
 **Decision**: [Strategic decision]
 **Impact**: [Org-wide implications]
@@ -419,7 +419,7 @@
 - [ ] Set review checkpoints (1 week, 1 month, 3 months)
 - [ ] Prepare rollback plan
 - [ ] Schedule effectiveness review
-`````
+```
 
 ---
 
@@ -427,15 +427,15 @@
 
 ### 7.1 Role Switching Syntax
 
-`````markdown
+```markdown
 [Architect] From architecture perspective...
 [Security] Security concerns include...
 [Synthesis] Combining all perspectives...
-`````
+```
 
 ### 7.2 Per-Expert Analysis
 
-`````markdown
+```markdown
 **Role**: [Expert name]
 **Domain**: [Build/Run/Secure/Data/Product/Strategy]
 **Weight**: [0.3-0.9]
@@ -451,11 +451,11 @@
 2. [Risk 2]
 **Recommendation**: [Approve/Conditional/Reject]
 **Confidence**: [High/Medium/Low]
-`````
+```
 
 ### 7.3 Dissent Record
 
-`````markdown
+```markdown
 **Dissenting Expert**: [Role]
 **Domain**: [Domain]
 **Position**: [Reject/Major Revision]
@@ -463,7 +463,7 @@
 **Key Risk**: [Main concern]
 **Proposed Mitigation**: [If proceeding anyway]
 **Alternative Approach**: [Suggested alternative]
-`````
+```
 
 ---
 
