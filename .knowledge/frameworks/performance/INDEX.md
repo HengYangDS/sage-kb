@@ -1,4 +1,4 @@
-# Performance Framework
+﻿# Performance Framework
 
 > Optimization patterns and best practices for high-performance systems
 
@@ -133,10 +133,10 @@ This framework provides performance optimization guidelines for:
 ## Related
 
 - `.knowledge/frameworks/resilience/timeout_patterns.md` — Timeout strategies
-- `.context/policies/timeout_hierarchy.md` — SAGE timeout config
+- `.context/policies/timeout_hierarchy.md` — the system timeout config
 - `.knowledge/practices/engineering/batch_optimization.md` — Batch processing
 - `tools/timeout_manager.py` — Performance testing tool
 
 ---
 
-*Part of SAGE Knowledge Base - Performance Framework*
+*Part of AI Collaboration Knowledge Base - Performance Framework*

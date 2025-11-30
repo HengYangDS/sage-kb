@@ -1,4 +1,4 @@
-# Database Best Practices
+﻿# Database Best Practices
 
 > Guidelines for effective database design and usage
 
@@ -224,4 +224,4 @@ CREATE INDEX ix_users_active ON users(email) WHERE deleted_at IS NULL;
 
 ---
 
-*Part of SAGE Knowledge Base - Engineering Practices*
+*Part of AI Collaboration Knowledge Base - Engineering Practices*

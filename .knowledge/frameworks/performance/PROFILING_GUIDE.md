@@ -1,4 +1,4 @@
-# Profiling Guide
+﻿# Profiling Guide
 
 > Performance measurement and bottleneck identification
 
@@ -674,8 +674,8 @@ What to profile?
 
 - `.knowledge/frameworks/performance/optimization_strategies.md` — Optimization techniques
 - `.knowledge/frameworks/performance/caching_patterns.md` — Caching strategies
-- `tools/timeout_manager.py` — SAGE timeout testing
+- `tools/timeout_manager.py` — the application timeout testing
 
 ---
 
-*Part of SAGE Knowledge Base - Performance Framework*
+*Part of AI Collaboration Knowledge Base - Performance Framework*

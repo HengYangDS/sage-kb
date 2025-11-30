@@ -1,4 +1,4 @@
-# Authentication Patterns
+﻿# Authentication Patterns
 
 > Identity verification mechanisms and best practices
 
@@ -299,7 +299,7 @@ class TOTPManager:
         self,
         secret: str,
         user_email: str,
-        issuer: str = "SAGE"
+        issuer: str = "the system"
     ) -> str:
         """Get URI for QR code."""
         totp = pyotp.TOTP(secret)
@@ -445,4 +445,4 @@ SECURITY_HEADERS = {
 
 ---
 
-*Part of SAGE Knowledge Base - Security Framework*
+*Part of AI Collaboration Knowledge Base - Security Framework*

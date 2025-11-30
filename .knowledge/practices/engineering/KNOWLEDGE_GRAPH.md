@@ -1,4 +1,4 @@
-# Knowledge Graph Guide
+﻿# Knowledge Graph Guide
 
 > Building and using knowledge graphs for content analysis and visualization
 
@@ -575,4 +575,4 @@ result = await build_knowledge_graph(
 
 ---
 
-*Part of SAGE Knowledge Base — 信达雅 (Xin-Da-Ya)*
+*Part of AI Collaboration Knowledge Base — 信达雅 (Xin-Da-Ya)*

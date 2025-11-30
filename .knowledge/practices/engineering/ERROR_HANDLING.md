@@ -1,4 +1,4 @@
-# Error Handling Patterns
+﻿# Error Handling Patterns
 
 > Consistent error handling for robust applications
 
@@ -157,4 +157,4 @@ except Exception as e:
 
 ---
 
-*Part of SAGE Knowledge Base*
+*AI Collaboration Knowledge Base*

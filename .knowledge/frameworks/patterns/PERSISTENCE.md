@@ -1,4 +1,4 @@
-# Data Persistence Patterns
+﻿# Data Persistence Patterns
 
 > Universal patterns for data lifecycle, retention, and cleanup
 
@@ -136,4 +136,4 @@ def cleanup(store: DataStore, policy: RetentionPolicy):
 
 ---
 
-*Part of SAGE Knowledge Base*
+*AI Collaboration Knowledge Base*

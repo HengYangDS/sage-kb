@@ -1,5 +1,5 @@
-# SAGE Knowledge Base - Pre-commit Configuration
-# Version: 0.1.0
+# Knowledge Base - Pre-commit Configuration
+# Version: 0.2.0
 # Install: pip install pre-commit && pre-commit install
 
 # See https://pre-commit.com for more information
@@ -81,39 +81,57 @@ repos:
         files: ^docs/
 
   # ===========================================================================
-  # SAGE Standards - Documentation & Architecture
+  # Knowledge Base Standards - MECE Boundaries & Documentation
   # ===========================================================================
   - repo: local
     hooks:
-      # SAGE Document Format Validation
-      - id: sage-doc-format
-        name: SAGE Document Format
+      # MECE Boundary Checker (prevents project-specific content in .knowledge/)
+      - id: mece-boundary-check
+        name: MECE Boundary Check
+        entry: python tools/check_mece_boundaries.py
+        language: python
+        types: [ markdown ]
+        files: ^\.knowledge/
+        pass_filenames: true
+
+      # Knowledge Base Validation
+      - id: knowledge-validation
+        name: Knowledge Base Validation
+        entry: python tools/validate_knowledge.py
+        language: python
+        types: [ markdown ]
+        files: ^\.knowledge/
+        pass_filenames: false
+
+      # Document Format Validation
+      - id: doc-format
+        name: Document Format Check
         entry: python -m tools.dev_scripts.validate_format
         language: python
         types: [ markdown ]
         files: ^(content|docs|\.context)/
         pass_filenames: false
 
-      # SAGE Link Checker
-      - id: sage-link-check
-        name: SAGE Link Checker
+      # Link Checker
+      - id: link-check
+        name: Link Checker
         entry: python -m tools.dev_scripts.check_links
         language: python
         types: [ markdown ]
         pass_filenames: false
 
-      # SAGE Architecture Checker
-      - id: sage-architecture
-        name: SAGE Architecture Check
+      # Architecture Checker
+      - id: architecture-check
+        name: Architecture Check
         entry: python -m tools.dev_scripts.check_architecture
         language: python
         types: [ python ]
-        files: ^src/sage/
+        files: ^src/
         pass_filenames: false
 
-      # SAGE Index Checker
-      - id: sage-index-check
-        name: SAGE Index Check
+      # Index Checker
+      - id: index-check
+        name: Index Check
         entry: python -m tools.dev_scripts.generate_index --check
         language: python
         types: [ markdown ]

@@ -1,4 +1,4 @@
-# API Design Patterns
+﻿# API Design Patterns
 
 > Principles and patterns for designing clean, consistent APIs
 
@@ -155,4 +155,4 @@ GET /users?page=2&page_size=20
 
 ---
 
-*Part of SAGE Knowledge Base*
+*AI Collaboration Knowledge Base*

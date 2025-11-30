@@ -1,4 +1,4 @@
-# Integration Patterns
+﻿# Integration Patterns
 
 > Patterns for integrating SAGE with AI tools, IDEs, and CI/CD systems
 
@@ -32,7 +32,7 @@
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    SAGE Knowledge Base                       │
+│                    AI Collaboration Knowledge Base                       │
 ├─────────────────────────────────────────────────────────────┤
 │  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐        │
 │  │   MCP   │  │   CLI   │  │   API   │  │ Plugin  │        │
@@ -67,7 +67,7 @@
 ```json
 {
   "mcpServers": {
-    "sage-kb": {
+    "knowledge-base": {
       "command": "sage",
       "args": [
         "serve",
@@ -172,7 +172,7 @@ Default: L4 (Medium-High)
 ```json
 {
   "sage.enable": true,
-  "sage.configPath": "./config/sage.yaml",
+  "sage.configPath": "./config/app.yaml",
   "sage.autoLoad": true,
   "sage.timeout": 5000,
   "sage.layers": [
@@ -611,4 +611,4 @@ SAGE_EXTERNAL_URL=https://api.example.com
 
 ---
 
-*Part of SAGE Knowledge Base — 信达雅 (Xin-Da-Ya)*
+*Part of AI Collaboration Knowledge Base — 信达雅 (Xin-Da-Ya)*

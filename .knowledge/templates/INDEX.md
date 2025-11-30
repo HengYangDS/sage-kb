@@ -6,18 +6,51 @@
 
 ## Table of Contents
 
-- [1. Available Templates](#1-available-templates)
-- [2. Expert Committee Template](#2-expert-committee-template)
-- [3. Project Setup Template](#3-project-setup-template)
-- [4. Conversation Record Template](#4-conversation-record-template)
-- [5. Session State Template](#5-session-state-template)
-- [6. Task Handoff Template](#6-task-handoff-template)
-- [7. Template Format Standard](#7-template-format-standard)
-- [8. Creating New Templates](#8-creating-new-templates)
+- [1. Template Usage Guidelines](#1-template-usage-guidelines)
+- [2. Available Templates](#2-available-templates)
+- [3. Expert Committee Template](#3-expert-committee-template)
+- [4. Project Setup Template](#4-project-setup-template)
+- [5. Conversation Record Template](#5-conversation-record-template)
+- [6. Session State Template](#6-session-state-template)
+- [7. Task Handoff Template](#7-task-handoff-template)
+- [8. Template Format Standard](#8-template-format-standard)
+- [9. Creating New Templates](#9-creating-new-templates)
 
 ---
 
-## 1. Available Templates
+## 1. Template Usage Guidelines
+
+> ⚠️ **Important**: All documents in `.knowledge/` must comply with MECE boundaries and policies.
+
+### 1.1 MECE Boundary Requirements
+
+| Requirement | Description |
+|-------------|-------------|
+| **No Project Names** | Do not include specific project names (e.g., "MyProject", "my-app") |
+| **No Project Paths** | Do not reference project-specific config paths |
+| **Generic Footer** | Use `*AI Collaboration Knowledge Base*` as footer |
+| **Universal Content** | Content must be reusable across ANY project |
+
+### 1.2 Frontmatter Policy
+
+| Policy | Description |
+|--------|-------------|
+| **No Frontmatter** | Documents must start with `# Title`, not YAML frontmatter |
+| **No Version Tags** | Version tracking via Git, not in-document metadata |
+| **No Token Counts** | Token estimates are not maintained in files |
+
+### 1.3 When Using Templates
+
+1. **Copy** the template to appropriate location
+2. **Remove** any placeholder markers `[MARKER]`
+3. **Verify** no project-specific content is added to `.knowledge/`
+4. **Check** document starts with `# Title` (no frontmatter)
+
+**Validation**: Run `python tools/check_mece_boundaries.py` before committing.
+
+---
+
+## 2. Available Templates
 
 | Template                  | File                       | Tokens | Purpose                            |
 |---------------------------|----------------------------|--------|------------------------------------|

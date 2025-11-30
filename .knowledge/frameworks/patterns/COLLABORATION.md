@@ -1,4 +1,4 @@
-# AI Collaboration Patterns
+﻿# AI Collaboration Patterns
 
 > Patterns for effective human-AI collaboration
 
@@ -139,4 +139,4 @@ Attempt → Uncertain? → Escalate → Guidance → Continue
 
 ---
 
-*Part of SAGE Knowledge Base*
+*AI Collaboration Knowledge Base*

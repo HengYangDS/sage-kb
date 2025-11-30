@@ -1,4 +1,4 @@
-# Cognitive Framework
+﻿# Cognitive Framework
 
 > Cognitive patterns for AI reasoning and decision-making
 
@@ -57,4 +57,4 @@ Optimizes knowledge representation for:
 
 ---
 
-*Part of SAGE Knowledge Base*
+*AI Collaboration Knowledge Base*

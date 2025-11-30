@@ -1,4 +1,4 @@
-# Patterns Framework
+﻿# Patterns Framework
 
 > Reusable patterns for AI-human collaboration and system design
 
@@ -66,4 +66,4 @@ persistence in AI-human collaborative systems.
 
 ---
 
-*Part of SAGE Knowledge Base*
+*AI Collaboration Knowledge Base*

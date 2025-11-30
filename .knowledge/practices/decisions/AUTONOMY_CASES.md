@@ -1,4 +1,4 @@
-# Autonomy Decision Cases
+﻿# Autonomy Decision Cases
 
 > Concrete examples for autonomy level decisions
 
@@ -116,4 +116,4 @@
 
 ---
 
-*Part of SAGE Knowledge Base*
+*AI Collaboration Knowledge Base*

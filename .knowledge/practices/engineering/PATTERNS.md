@@ -1,4 +1,4 @@
-# Engineering Patterns Practice Guide
+﻿# Engineering Patterns Practice Guide
 
 > Common engineering patterns and their practical application
 
@@ -158,4 +158,4 @@ class EventBus:
 
 ---
 
-*Part of SAGE Knowledge Base*
+*AI Collaboration Knowledge Base*

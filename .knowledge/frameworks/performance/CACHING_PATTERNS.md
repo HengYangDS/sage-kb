@@ -1,4 +1,4 @@
-# Caching Patterns
+﻿# Caching Patterns
 
 > Data caching strategies for performance optimization
 
@@ -493,4 +493,4 @@ user_data                     # No structure
 
 ---
 
-*Part of SAGE Knowledge Base - Performance Framework*
+*Part of AI Collaboration Knowledge Base - Performance Framework*

@@ -1,4 +1,4 @@
-# Expert Committee Framework
+﻿# Expert Committee Framework
 
 > Multi-perspective analysis using 35+ expert roles
 
@@ -166,4 +166,4 @@ Each expert provides:
 
 ---
 
-*Part of SAGE Knowledge Base*
+*AI Collaboration Knowledge Base*

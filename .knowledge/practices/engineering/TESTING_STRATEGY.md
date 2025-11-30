@@ -1,4 +1,4 @@
-# Testing Strategy
+﻿# Testing Strategy
 
 > Universal testing layers, organization, and best practices
 
@@ -211,4 +211,4 @@ def test_with_mock(mocker):
 
 ---
 
-*Part of SAGE Knowledge Base*
+*AI Collaboration Knowledge Base*

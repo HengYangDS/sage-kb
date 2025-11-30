@@ -1,13 +1,15 @@
-# SAGE Knowledge Base - Documentation Quality Workflow
+# Knowledge Base - Documentation Quality Workflow
 # 
 # This workflow validates documentation quality on every push/PR
-# that modifies content, docs, or context files.
+# that modifies knowledge, docs, or context files.
 #
 # Checks performed:
-# 1. Structure validation (required dirs/files)
-# 2. Link validation (internal links)
-# 3. Quality analysis (documentation_standards compliance)
-# 4. Documentation standards check
+# 1. MECE boundary validation (no project-specific content in .knowledge/)
+# 2. Frontmatter policy check (no YAML frontmatter in .knowledge/)
+# 3. Structure validation (required dirs/files)
+# 4. Link validation (internal links)
+# 5. Quality analysis (documentation_standards compliance)
+# 6. Documentation standards check
 
 name: Documentation Quality
 
@@ -53,6 +55,23 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -e ".[dev]"
+
+      - name: Check MECE boundaries
+        run: |
+          echo "🔒 Checking MECE boundaries in .knowledge/..."
+          python tools/check_mece_boundaries.py
+          
+      - name: Check Frontmatter policy
+        run: |
+          echo "📄 Checking Frontmatter policy..."
+          # Verify no files in .knowledge/ start with YAML frontmatter
+          violations=$(find .knowledge -name "*.md" -exec sh -c 'head -1 "$1" | grep -q "^---" && echo "$1"' _ {} \;)
+          if [ -n "$violations" ]; then
+            echo "❌ Frontmatter Policy violations found:"
+            echo "$violations"
+            exit 1
+          fi
+          echo "✅ Frontmatter policy check passed"
 
       - name: Run structure validation
         run: |

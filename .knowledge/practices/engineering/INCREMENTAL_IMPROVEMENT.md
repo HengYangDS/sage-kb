@@ -1,4 +1,4 @@
-# Incremental Improvement Practices
+﻿# Incremental Improvement Practices
 
 > Systematic approach to continuous, low-risk enhancement
 
@@ -157,4 +157,4 @@ return old_algorithm(data)
 
 ---
 
-*Part of SAGE Knowledge Base*
+*AI Collaboration Knowledge Base*

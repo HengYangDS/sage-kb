@@ -1,4 +1,4 @@
-# Authorization Patterns
+﻿# Authorization Patterns
 
 > Access control strategies and permission management
 
@@ -552,4 +552,4 @@ async def delete_content(id: str):
 
 ---
 
-*Part of SAGE Knowledge Base - Security Framework*
+*Part of AI Collaboration Knowledge Base - Security Framework*

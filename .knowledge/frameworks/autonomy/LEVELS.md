@@ -1,4 +1,4 @@
-# AI Autonomy Levels Framework
+﻿# AI Autonomy Levels Framework
 
 > 6-level autonomy spectrum for human-AI collaboration
 
@@ -134,4 +134,4 @@ autonomy:
 
 ---
 
-*Part of SAGE Knowledge Base*
+*AI Collaboration Knowledge Base*

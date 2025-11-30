@@ -1,4 +1,4 @@
-# Optimization Strategies
+﻿# Optimization Strategies
 
 > Systematic approaches to improving system performance
 
@@ -569,4 +569,4 @@ class DatabaseRouter:
 
 ---
 
-*Part of SAGE Knowledge Base - Performance Framework*
+*Part of AI Collaboration Knowledge Base - Performance Framework*

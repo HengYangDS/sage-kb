@@ -1,4 +1,4 @@
-# Batch Optimization Patterns
+﻿# Batch Optimization Patterns
 
 > Efficient processing of large-scale operations
 
@@ -145,4 +145,4 @@ def process_with_errors(items: List):
 
 ---
 
-*Part of SAGE Knowledge Base*
+*AI Collaboration Knowledge Base*

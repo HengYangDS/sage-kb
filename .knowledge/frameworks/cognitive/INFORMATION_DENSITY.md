@@ -1,4 +1,4 @@
-# Information Density Framework
+﻿# Information Density Framework
 
 > Balance between compression and clarity in communication
 
@@ -123,4 +123,4 @@
 
 ---
 
-*Part of SAGE Knowledge Base*
+*AI Collaboration Knowledge Base*

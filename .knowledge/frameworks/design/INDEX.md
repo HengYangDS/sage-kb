@@ -1,6 +1,6 @@
-# Design Framework
+﻿# Design Framework
 
-> Core design principles and axioms for SAGE
+> Core design principles and axioms
 
 ---
 
@@ -15,7 +15,7 @@
 ## 1. Overview
 
 The Design Framework establishes foundational design principles and axioms that guide all architectural and
-implementation decisions in SAGE Knowledge Base.
+implementation decisions in AI Collaboration Knowledge Base.
 
 ---
 
@@ -45,4 +45,4 @@ implementation decisions in SAGE Knowledge Base.
 
 ---
 
-*Part of SAGE Knowledge Base*
+*AI Collaboration Knowledge Base*

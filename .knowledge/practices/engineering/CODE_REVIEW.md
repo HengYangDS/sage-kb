@@ -1,4 +1,4 @@
-# Code Review Practices
+﻿# Code Review Practices
 
 > Effective code review patterns for quality and knowledge sharing
 
@@ -134,4 +134,4 @@
 
 ---
 
-*Part of SAGE Knowledge Base*
+*AI Collaboration Knowledge Base*

@@ -1,4 +1,4 @@
-# Secrets Management
+﻿# Secrets Management
 
 > Secure handling of sensitive data, credentials, and encryption keys
 
@@ -363,7 +363,7 @@ class Settings(BaseSettings):
     """Application settings with secrets."""
     
     # Regular settings
-    app_name: str = "SAGE"
+    app_name: str = "the system"
     debug: bool = False
     
     # Secrets (masked in logs/repr)
@@ -529,4 +529,4 @@ class SecretRotator:
 
 ---
 
-*Part of SAGE Knowledge Base - Security Framework*
+*Part of AI Collaboration Knowledge Base - Security Framework*

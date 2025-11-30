@@ -1,4 +1,4 @@
-# Resilience Framework
+﻿# Resilience Framework
 
 > Fault tolerance and graceful degradation patterns
 
@@ -56,4 +56,4 @@ timeouts, and degraded conditions while maintaining useful functionality.
 
 ---
 
-*Part of SAGE Knowledge Base*
+*AI Collaboration Knowledge Base*

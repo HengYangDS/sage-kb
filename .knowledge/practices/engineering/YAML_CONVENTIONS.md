@@ -1,4 +1,4 @@
-# YAML Configuration Conventions
+﻿# YAML Configuration Conventions
 
 > Universal standards for writing YAML configuration files
 
@@ -199,4 +199,4 @@ database:
 
 ---
 
-*Part of SAGE Knowledge Base*
+*AI Collaboration Knowledge Base*

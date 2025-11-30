@@ -1,4 +1,4 @@
-# Concurrency Practices
+﻿# Concurrency Practices
 
 > Best practices for concurrent and parallel programming
 
@@ -220,4 +220,4 @@ async def safe_gather(tasks):
 
 ---
 
-*Part of SAGE Knowledge Base - Engineering Practices*
+*Part of AI Collaboration Knowledge Base - Engineering Practices*

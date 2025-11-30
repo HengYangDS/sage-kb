@@ -1,4 +1,4 @@
-# Common Pitfalls
+﻿# Common Pitfalls
 
 > Known pitfalls and how to avoid them in software development
 
@@ -565,4 +565,4 @@ timeout instead of raising exception."
 
 ---
 
-*Part of SAGE Knowledge Base - Generic Engineering Practices*
+*Part of AI Collaboration Knowledge Base - Generic Engineering Practices*

@@ -87,7 +87,7 @@ The three knowledge directories follow strict MECE (Mutually Exclusive, Collecti
 
 | Rule | Description | Violation Example |
 |------|-------------|-------------------|
-| **No Brand in .knowledge/** | Generic knowledge must NOT contain project names | ❌ "SAGE CLI commands" in .knowledge/ |
+| **No Brand in .knowledge/** | Generic knowledge must NOT contain project names | ❌ "the CLI commands" in .knowledge/ |
 | **No Generic in .context/** | Project context must NOT duplicate universal knowledge | ❌ "Python style guide" in .context/ |
 | **Tool Convention in .junie/** | Follow Junie tool's expected file structure | ❌ UPPERCASE.md in .junie/ root |
 

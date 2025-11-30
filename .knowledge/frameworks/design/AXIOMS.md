@@ -1,4 +1,4 @@
-# Design Axioms Framework
+﻿# Design Axioms Framework
 
 > 8 foundational design principles (信达雅 applied to software design)
 
@@ -130,4 +130,4 @@ Components → EventBus → Components
 
 ---
 
-*Part of SAGE Knowledge Base*
+*AI Collaboration Knowledge Base*

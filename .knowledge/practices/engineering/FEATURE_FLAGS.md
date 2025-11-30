@@ -1,4 +1,4 @@
-# Feature Flag Patterns
+﻿# Feature Flag Patterns
 
 > Feature flag design principles and best practices
 
@@ -281,4 +281,4 @@ alerts:
 
 ---
 
-*Part of SAGE Knowledge Base*
+*AI Collaboration Knowledge Base*

@@ -1,4 +1,4 @@
-# Quality Angles Framework
+﻿# Quality Angles Framework
 
 > Multi-perspective quality evaluation using 35+ quality angles
 
@@ -144,4 +144,4 @@ For major decisions, check core + extended + domain angles.
 
 ---
 
-*Part of SAGE Knowledge Base*
+*AI Collaboration Knowledge Base*

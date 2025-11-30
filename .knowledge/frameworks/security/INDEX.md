@@ -1,4 +1,4 @@
-# Security Framework
+﻿# Security Framework
 
 > Comprehensive security patterns and best practices for software development
 
@@ -114,4 +114,4 @@ This framework provides security guidelines and patterns for:
 
 ---
 
-*Part of SAGE Knowledge Base - Security Framework*
+*Part of AI Collaboration Knowledge Base - Security Framework*

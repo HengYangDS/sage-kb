@@ -1,4 +1,4 @@
-# Logging Standards
+﻿# Logging Standards
 
 > Universal logging standards and best practices
 
@@ -276,4 +276,4 @@ logging:
 
 ---
 
-*Part of SAGE Knowledge Base*
+*AI Collaboration Knowledge Base*
