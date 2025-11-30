@@ -1,4 +1,4 @@
-# Document Templates
+﻿# Document Templates
 
 > Reusable templates for common documents
 
@@ -15,6 +15,7 @@
 - [7. Task Handoff Template](#7-task-handoff-template)
 - [8. Template Format Standard](#8-template-format-standard)
 - [9. Creating New Templates](#9-creating-new-templates)
+- [10. Decision Records Template](#10-decision-records-template)
 
 ---
 
@@ -71,10 +72,11 @@
 | **Convention**            | `CONVENTION.md`            | ~80    | Code/project convention template   |
 | **Guide**                 | `GUIDE.md`                 | ~80    | Step-by-step guide template        |
 | **Practice**              | `PRACTICE.md`              | ~75    | Best practice pattern template     |
+| **Decision Records**      | `DECISION_RECORDS.md`      | ~90    | Dissent and decision attribution   |
 
 ---
 
-## 2. Expert Committee Template
+## 3. Expert Committee Template
 
 **File**: `EXPERT_COMMITTEE.md`
 ### When to Use
@@ -94,7 +96,7 @@
 
 ### Usage
 
-```markdown
+`````markdown
 ## Expert Committee Review: [Topic]
 ### Architecture Group Assessment
 [Use template prompts]
@@ -104,7 +106,7 @@
 ```
 ---
 
-## 3. Project Setup Template
+## 4. Project Setup Template
 
 **File**: `PROJECT_SETUP.md`
 ### When to Use
@@ -123,7 +125,7 @@
 
 ---
 
-## 4. Conversation Record Template
+## 5. Conversation Record Template
 
 **File**: `CONVERSATION_RECORD.md`
 ### When to Use
@@ -146,7 +148,7 @@
 Store in `.history/conversations/` with naming: `YYYY-MM-DD-TOPIC.md`
 ---
 
-## 5. Session State Template
+## 6. Session State Template
 
 **File**: `SESSION_STATE.md`
 ### When to Use
@@ -168,7 +170,7 @@ Store in `.history/conversations/` with naming: `YYYY-MM-DD-TOPIC.md`
 Store in `.history/current/` with naming: `session-YYYYMMDD-HHMM.md`
 ---
 
-## 6. Task Handoff Template
+## 7. Task Handoff Template
 
 **File**: `TASK_HANDOFF.md`
 ### When to Use
@@ -190,11 +192,11 @@ Store in `.history/current/` with naming: `session-YYYYMMDD-HHMM.md`
 Store in `.history/handoffs/` with naming: `YYYY-MM-DD-TASK-HANDOFF.md`
 ---
 
-## 7. Template Format Standard
+## 8. Template Format Standard
 
 All templates follow this structure:
 
-```markdown
+`````markdown
 # [Template Name]
 > **Purpose**: [brief description]
 > **Use When**: [trigger conditions]
@@ -212,13 +214,37 @@ All templates follow this structure:
 ```
 ---
 
-## 8. Creating New Templates
+## 9. Creating New Templates
 
 1. Identify repeated documentation patterns
 2. Create template with `[PLACEHOLDER]` markers
 3. Add to `templates/` directory
 4. Update this index
 5. Add trigger keywords if applicable
+
+---
+
+## 10. Decision Records Template
+
+**File**: `DECISION_RECORDS.md`
+
+### When to Use
+
+- Recording dissenting opinions during committee analysis
+- Documenting final decisions with attribution
+- Tracking decision ownership and rationale
+
+### Templates Included
+
+| Template | Purpose |
+|----------|---------|
+| Dissent Record | Capture opposing views |
+| Decision Record | Document final decisions |
+| Attribution Summary | Track decision ownership |
+
+### Location
+
+Use inline during expert committee analysis or store in `.history/decisions/`.
 
 ---
 

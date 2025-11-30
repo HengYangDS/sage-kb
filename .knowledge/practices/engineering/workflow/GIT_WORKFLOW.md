@@ -1,4 +1,4 @@
-# Git Workflow
+﻿# Git Workflow
 
 > Git branching strategy, commit conventions, and collaboration practices
 
@@ -125,7 +125,7 @@ Add comprehensive documentation for:
 
 ### 3.1 PR Checklist
 
-```markdown
+`````markdown
 ## Description
 [Describe what this PR does]
 ## Type of Change
@@ -213,7 +213,7 @@ git branch -d release/v1.2.0
 ```
 ### 4.3 Changelog Format
 
-```markdown
+`````markdown
 ## [1.2.0] - 2025-11-29
 ### Added
 - New feature X

@@ -1,4 +1,4 @@
-# Documentation Scenario Context
+﻿# Documentation Scenario Context
 
 > Pre-configured context for technical writing and documentation projects
 
@@ -78,7 +78,7 @@ autonomy_default: L4
 
 ### 5.1 Document Structure
 
-```markdown
+`````markdown
 # [Title]
 > [One-line description]
 ---

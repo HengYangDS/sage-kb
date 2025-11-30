@@ -1,4 +1,4 @@
-# Documentation Guidelines
+﻿# Documentation Guidelines
 
 > Clear, maintainable, useful documentation
 
@@ -50,7 +50,7 @@
 
 ### 3.1 Standard Template
 
-```markdown
+`````markdown
 # Title
 > Single-line purpose
 ---

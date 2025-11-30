@@ -1,4 +1,4 @@
-# Knowledge Management Scenario Context
+﻿# Knowledge Management Scenario Context
 
 > Pre-configured context for knowledge management system development
 
@@ -93,7 +93,7 @@ flowchart TB
 
 ### 5.1 Document Template
 
-```markdown
+`````markdown
 # Title
 > One-line description
 ---
@@ -115,7 +115,7 @@ Content...
 
 <!-- Example template - replace placeholder links with actual document paths -->
 
-```markdown
+`````markdown
 # Category Index
 > Navigation for [category] knowledge
 ---
@@ -136,7 +136,7 @@ Content...
 ```
 ### 5.3 Cross-Reference Pattern
 
-```markdown
+`````markdown
 ## References
 ### Internal
 - `.knowledge/core/PRINCIPLES.md` — Core principles

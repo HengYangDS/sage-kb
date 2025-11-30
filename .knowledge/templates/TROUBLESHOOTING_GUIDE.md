@@ -1,4 +1,4 @@
-# Troubleshooting Guide Template
+﻿# Troubleshooting Guide Template
 
 > **Purpose**: Template for creating troubleshooting documentation
 > **Use When**: Documenting solutions to common problems or error scenarios
@@ -26,7 +26,7 @@ This template helps create structured troubleshooting guides for components, fea
 
 ## Template
 
-```markdown
+`````markdown
 # Troubleshooting: [Component/Feature Name]
 > Quick solutions for common [component] issues
 ---
@@ -152,7 +152,7 @@ For each issue, include:
 
 ## Example
 
-```markdown
+`````markdown
 # Troubleshooting: MCP Server
 > Quick solutions for common MCP server issues
 ---

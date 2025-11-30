@@ -1,4 +1,4 @@
-# AI Collaboration Workflow Practices
+﻿# AI Collaboration Workflow Practices
 
 > Practical workflows for effective human-AI collaboration
 
@@ -60,7 +60,7 @@
 
 ### 3.1 New Session
 
-```markdown
+`````markdown
 ## Context
 - Previous: [summary of last session]
 - Goal: [today's objective]
@@ -70,7 +70,7 @@
 ```
 ### 3.2 Session Handoff
 
-```markdown
+`````markdown
 ## Session Summary
 - Completed: [what was done]
 - Decisions: [key choices]

@@ -1,4 +1,4 @@
-# Session Management Manual Fallback
+﻿# Session Management Manual Fallback
 
 > Manual procedures when automated session tools are unavailable
 
@@ -29,7 +29,7 @@
 
 ### Manual Checklist
 
-```markdown
+`````markdown
 ## Session Start: [DATE TIME]
 ### Context Loaded
 - [ ] Core principles reviewed
@@ -66,7 +66,7 @@ ls -la .knowledge/
 
 ### Checkpoint Template
 
-```markdown
+`````markdown
 ## Checkpoint: [TIME]
 ### Progress
 - Completed: [list]
@@ -83,7 +83,7 @@ ls -la .knowledge/
 
 ### Handoff Template
 
-```markdown
+`````markdown
 ## Session Handoff: [DATE]
 ### Summary
 [1-2 sentence overview]

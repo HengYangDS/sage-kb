@@ -1,4 +1,4 @@
-# Documentation Standards
+﻿# Documentation Standards
 
 > Single source of truth for document format and structure standards
 
@@ -19,7 +19,7 @@
 
 ### 1.1 Document Template
 
-```markdown
+`````markdown
 # Title
 > Single-line purpose
 ---

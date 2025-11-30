@@ -1,4 +1,4 @@
-# Session State Template
+﻿# Session State Template
 
 > **Purpose**: Capture current session context for continuity and recovery
 > **Use When**: Starting complex tasks, before breaks, or when session may be interrupted
@@ -29,7 +29,7 @@ interruptions, provides context for session recovery, and helps maintain focus d
 
 ## Template
 
-```markdown
+`````markdown
 # Session State: [TASK_NAME]
 > **Session ID**: session-[YYYYMMDD]-[HHMM]
 > **Started**: [YYYY-MM-DD HH:MM]
@@ -131,7 +131,7 @@ interruptions, provides context for session recovery, and helps maintain focus d
 
 ## Example
 
-```markdown
+`````markdown
 # Session State: Implement Timeout Loader
 > **Session ID**: session-20251129-1430
 > **Started**: 2025-11-29 14:30

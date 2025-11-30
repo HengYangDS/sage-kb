@@ -1,4 +1,4 @@
-# Release Notes Template
+﻿# Release Notes Template
 
 > **Purpose**: Template for documenting software releases
 > **Use When**: Publishing a new version of software or documentation
@@ -32,7 +32,7 @@ This template helps create consistent, informative release notes that communicat
 
 ## Template
 
-```markdown
+`````markdown
 # Release Notes: [Product Name] v[X.Y.Z]
 > **Release Date**: [YYYY-MM-DD]
 > **Release Type**: [Major | Minor | Patch | Hotfix]
@@ -166,7 +166,7 @@ Organize changes by category:
 
 ## Example
 
-```markdown
+`````markdown
 # Release Notes: MyProject v0.2.0
 > **Release Date**: 2025-11-29
 > **Release Type**: Minor

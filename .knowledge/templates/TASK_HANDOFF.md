@@ -1,4 +1,4 @@
-# Task Handoff Template
+﻿# Task Handoff Template
 
 > **Purpose**: Enable seamless task continuation between sessions or collaborators
 > **Use When**: Ending a session with incomplete work, transferring tasks, or requesting async review
@@ -31,7 +31,7 @@ needed to continue work without context loss, ensuring efficient handoffs and ma
 
 ## Template
 
-```markdown
+`````markdown
 # Task Handoff: [TASK_NAME]
 > **Handoff ID**: [YYYY-MM-DD]-[task]-handoff
 > **From**: [Previous session/collaborator]
@@ -172,7 +172,7 @@ A good handoff should enable the recipient to:
 
 ## Example
 
-```markdown
+`````markdown
 # Task Handoff: API Rate Limiting Implementation
 > **Handoff ID**: 2025-11-29-rate-limit-handoff
 > **From**: Morning session (Junie)

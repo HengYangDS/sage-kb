@@ -1,4 +1,4 @@
-# Architecture Decision Record (ADR) Template
+﻿# Architecture Decision Record (ADR) Template
 
 > **Purpose**: Document significant architectural decisions
 > **Use When**: Making decisions that affect system structure, technology choices, or design patterns
@@ -23,7 +23,7 @@
 
 ## Template
 
-```markdown
+`````markdown
 # ADR-[NNNN]: [Title]
 > **Status**: [Proposed | Accepted | Deprecated | Superseded]
 > **Date**: [YYYY-MM-DD]
@@ -132,7 +132,7 @@ Example: `ADR_0001_FASTMCP_CHOICE.md`
 
 ## Example
 
-```markdown
+`````markdown
 # ADR-0001: Use FastMCP for MCP Server
 > **Status**: Accepted
 > **Date**: 2025-11-15

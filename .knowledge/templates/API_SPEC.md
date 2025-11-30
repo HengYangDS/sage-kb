@@ -19,7 +19,7 @@
 
 ## Template
 
-```markdown
+`````markdown
 # [API Name] Specification
 > **Version**: [x.y.z]
 > **Base URL**: [https://api.example.com/v1]
@@ -160,7 +160,7 @@ Rate limit headers:
 | 1.0.0   | YYYY-MM-DD | Initial release |
 ---
 *API Specification from AI Collaboration Knowledge Base*
-```
+`````
 ---
 
 ## Instructions

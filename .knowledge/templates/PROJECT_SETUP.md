@@ -32,7 +32,7 @@
 
 ## 2. Thin Layer .junie/GUIDELINES.md
 
-```markdown
+`````markdown
 # Project Guidelines
 **Name**: [Project Name] | **Type**: [Python Backend/Web/etc.] | **Language**: [Python 3.12/etc.]
 ## Knowledge Base
@@ -83,7 +83,7 @@ addopts = "-v --cov=src"
 
 ## 4. README Template
 
-```markdown
+`````markdown
 # Project Name
 Brief description.
 ## Quick Start

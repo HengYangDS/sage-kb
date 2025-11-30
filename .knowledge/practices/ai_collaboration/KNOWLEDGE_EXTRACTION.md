@@ -1,4 +1,4 @@
-# Knowledge Extraction Patterns
+﻿# Knowledge Extraction Patterns
 
 > Methods for extracting reusable knowledge from experience
 
@@ -53,7 +53,7 @@
 
 ### 3.1 Pattern Template
 
-```markdown
+`````markdown
 ## Pattern: [Name]
 ### Problem
 [What problem it solves]
@@ -79,7 +79,7 @@
 
 ### 4.1 ADR Template
 
-```markdown
+`````markdown
 ## Decision: [Title]
 ### Status
 [Proposed | Accepted | Deprecated]

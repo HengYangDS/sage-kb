@@ -1,4 +1,4 @@
-# Legacy Modernization Scenario Context
+﻿# Legacy Modernization Scenario Context
 
 > Pre-configured context for modernizing legacy systems
 
@@ -97,7 +97,7 @@ flowchart LR
 
 ### 4.3 Risk Assessment
 
-```markdown
+`````markdown
 ## Risk Assessment Template
 ### System: [Name]
 | Risk                        | Likelihood | Impact   | Mitigation                     |

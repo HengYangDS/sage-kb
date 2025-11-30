@@ -1,4 +1,4 @@
-# Meeting Notes Template
+﻿# Meeting Notes Template
 
 > **Purpose**: Template for documenting meetings and discussions
 > **Use When**: Recording decisions, action items, and discussions from meetings
@@ -35,7 +35,7 @@ reference.
 
 ## Template
 
-```markdown
+`````markdown
 # Meeting: [Meeting Title]
 
 > **Date**: [YYYY-MM-DD]
@@ -196,7 +196,7 @@ Use status indicators:
 
 ## Example
 
-```markdown
+`````markdown
 # Meeting: Architecture Review
 
 > **Date**: 2025-11-29

@@ -1,4 +1,4 @@
-# Context Management Practices
+﻿# Context Management Practices
 
 > Strategies for building and managing shared context in AI collaboration
 
@@ -96,7 +96,7 @@
 
 ### 5.1 Task Start
 
-```markdown
+`````markdown
 ## Context
 - **Goal**: [What to achieve]
 - **Constraints**: [Limits to respect]
@@ -106,7 +106,7 @@
 ```
 ### 5.2 Session Summary
 
-```markdown
+`````markdown
 ## Session Summary
 - **Completed**: [What was done]
 - **Decisions**: [Key choices made]

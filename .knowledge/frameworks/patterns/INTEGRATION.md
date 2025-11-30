@@ -1,4 +1,4 @@
-# Integration Patterns
+﻿# Integration Patterns
 
 > Patterns for integrating SAGE with AI tools, IDEs, and CI/CD systems
 
@@ -129,7 +129,7 @@ class ContextSync:
 
 **Setup via .junie/guidelines.md**:
 
-```markdown
+`````markdown
 # Project Guidelines
 ## Knowledge Base
 - Use `sage get` for context loading

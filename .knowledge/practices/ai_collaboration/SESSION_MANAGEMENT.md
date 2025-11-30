@@ -1,4 +1,4 @@
-# Session Management
+﻿# Session Management
 
 > Best practices for managing AI collaboration sessions effectively
 
@@ -79,7 +79,7 @@ flowchart LR
 
 ### 3.2 Critical Context Elements
 
-```markdown
+`````markdown
 ## Session Context Template
 ### Objective
 What are we trying to accomplish?
@@ -114,7 +114,7 @@ Priority Order:
 ### 4.1 Session State Document
 
 Location: `.history/current/session-YYYYMMDD-HHMM.md`
-```markdown
+`````markdown
 # Session State: [Task Name]
 > **Session ID**: session-20251129-2230
 > **Started**: 2025-11-29 22:30
@@ -175,7 +175,7 @@ To continue: [specific next action]
 ### 5.2 Handoff Document Structure
 
 Location: `.history/handoffs/YYYY-MM-DD-TASK-HANDOFF.md`
-```markdown
+`````markdown
 # Task Handoff: [Task Name]
 > **From**: Session session-20251129-2230
 > **Date**: 2025-11-29
@@ -227,7 +227,7 @@ When resuming after interruption:
 
 When context is lost mid-session:
 
-```markdown
+`````markdown
 ## Recovery Checklist
 1. [ ] Check .history/current/ for session state
 2. [ ] Review git log for recent commits

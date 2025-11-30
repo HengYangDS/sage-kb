@@ -1,4 +1,4 @@
-# Conversation Record Template
+﻿# Conversation Record Template
 
 > **Purpose**: Document AI collaboration sessions with key decisions and learnings
 > **Use When**: Recording significant conversations, design discussions, or problem-solving sessions
@@ -31,7 +31,7 @@ conversations that contain decisions, insights, or learnings worth preserving fo
 
 ## Template
 
-```markdown
+`````markdown
 # [TOPIC]: [Brief Description]
 > **Date**: [YYYY-MM-DD]
 > **Participants**: [Human/AI roles involved]
@@ -105,7 +105,7 @@ conversations that contain decisions, insights, or learnings worth preserving fo
 
 ## Example
 
-```markdown
+`````markdown
 # Timeout Architecture: Multi-tier Design Discussion
 > **Date**: 2025-11-29
 > **Participants**: Developer, Junie AI

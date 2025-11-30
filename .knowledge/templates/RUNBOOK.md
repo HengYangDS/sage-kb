@@ -1,4 +1,4 @@
-# Operational Runbook Template
+﻿# Operational Runbook Template
 
 > **Purpose**: Document operational procedures for system maintenance and incident response
 > **Use When**: Creating standard operating procedures, on-call guides, or maintenance documentation
@@ -20,7 +20,7 @@
 
 ## Template
 
-```markdown
+`````markdown
 # [System/Service Name] Runbook
 > **Owner**: [Team/Person]
 > **Last Updated**: [YYYY-MM-DD]
