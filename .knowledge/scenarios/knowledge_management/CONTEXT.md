@@ -93,7 +93,7 @@ flowchart TB
 
 ### 5.1 Document Template
 
-`````markdown
+````markdown
 # Title
 > One-line description
 ---
@@ -110,12 +110,12 @@ Content...
 - Related doc 2
 ---
 *AI Collaboration Knowledge Base*
-```
+````
 ### 5.2 Index Pattern
 
 <!-- Example template - replace placeholder links with actual document paths -->
 
-`````markdown
+````markdown
 # Category Index
 > Navigation for [category] knowledge
 ---
@@ -133,10 +133,10 @@ Content...
 - Document 3
 ---
 *AI Collaboration Knowledge Base*
-```
+````
 ### 5.3 Cross-Reference Pattern
 
-`````markdown
+````markdown
 ## References
 ### Internal
 - `.knowledge/core/PRINCIPLES.md` — Core principles
@@ -145,7 +145,7 @@ Content...
 - [External Resource](https://example.com) — Description
 ### Related Decisions
 - ADR-0001: Architecture decision
-```
+````
 
 ---
 

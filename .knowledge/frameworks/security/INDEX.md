@@ -26,12 +26,20 @@ This framework provides security guidelines and patterns for:
 
 ## 2. Contents
 
+### Framework Documents (Concepts)
+
 | Document                 | Purpose                        | When to Use                        |
 |--------------------------|--------------------------------|------------------------------------|
 | `AUTHENTICATION.md`      | Identity verification patterns | Implementing login, tokens, SSO    |
 | `AUTHORIZATION.md`       | Access control strategies      | Role-based, attribute-based access |
 | `SECRETS_MANAGEMENT.md`  | Secure data handling           | API keys, passwords, certificates  |
 | `SECURITY_CHECKLIST.md`  | Security review guide          | Code review, deployment, audit     |
+
+### Practice Documents (Implementation)
+
+| Document                 | Purpose                        | When to Use                        |
+|--------------------------|--------------------------------|------------------------------------|
+| [Authorization Implementation](../../practices/engineering/security/AUTHORIZATION_IMPLEMENTATION.md) | Authorization code examples | Implementing RBAC, ABAC, API auth |
 
 ---
 

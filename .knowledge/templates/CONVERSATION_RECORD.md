@@ -31,7 +31,7 @@ conversations that contain decisions, insights, or learnings worth preserving fo
 
 ## Template
 
-`````markdown
+````markdown
 # [TOPIC]: [Brief Description]
 > **Date**: [YYYY-MM-DD]
 > **Participants**: [Human/AI roles involved]
@@ -76,7 +76,7 @@ conversations that contain decisions, insights, or learnings worth preserving fo
 - **Related Handoff**: [Link to handoff document if applicable]
 ---
 *Conversation record from AI Collaboration Knowledge Base*
-```
+````
 ---
 
 ## Instructions
@@ -105,7 +105,7 @@ conversations that contain decisions, insights, or learnings worth preserving fo
 
 ## Example
 
-`````markdown
+````markdown
 # Timeout Architecture: Multi-tier Design Discussion
 > **Date**: 2025-11-29
 > **Participants**: Developer, Junie AI
@@ -143,7 +143,7 @@ Explored graceful degradation patterns when timeouts occur. Decided on partial c
 - Consider adaptive timeouts based on content size
 ---
 *Conversation record from AI Collaboration Knowledge Base*
-```
+````
 ---
 
 ## Related

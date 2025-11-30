@@ -23,7 +23,7 @@
 
 ## Template
 
-`````markdown
+````markdown
 # ADR-[NNNN]: [Title]
 > **Status**: [Proposed | Accepted | Deprecated | Superseded]
 > **Date**: [YYYY-MM-DD]
@@ -94,7 +94,7 @@
 - [Link to related document 2]
 ---
 *ADR from AI Collaboration Knowledge Base*
-```
+````
 ---
 
 ## Instructions
@@ -132,7 +132,7 @@ Example: `ADR_0001_FASTMCP_CHOICE.md`
 
 ## Example
 
-`````markdown
+````markdown
 # ADR-0001: Use FastMCP for MCP Server
 > **Status**: Accepted
 > **Date**: 2025-11-15
@@ -163,7 +163,7 @@ FastMCP provides the right balance of simplicity and capability.
 - Cleaner code
 ### Negative
 - Dependency on FastMCP updates
-```
+````
 ---
 
 ## Related

@@ -97,7 +97,7 @@ interruptions, provides context for session recovery, and helps maintain focus d
 - **Estimated Remaining**: [Time estimate]
 ---
 *Session state from AI Collaboration Knowledge Base*
-```
+`````
 ---
 
 ## Instructions
@@ -186,7 +186,7 @@ Implement the TimeoutLoader base class with 5-tier timeout hierarchy.
 - Partial content must include metadata about what's missing
 ---
 *Session state from AI Collaboration Knowledge Base*
-```
+`````
 ---
 
 ## Related

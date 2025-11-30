@@ -78,7 +78,7 @@ autonomy_default: L4
 
 ### 5.1 Document Structure
 
-`````markdown
+````markdown
 # [Title]
 > [One-line description]
 ---
@@ -96,7 +96,7 @@ autonomy_default: L4
 - [Related doc 2]
 ---
 *[Footer/attribution]*
-```
+````
 ### 5.2 Section Formatting
 
 | Element        | Format          | Example                 |

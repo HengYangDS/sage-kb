@@ -37,6 +37,8 @@ This framework provides performance optimization guidelines for:
 
 | Document                                                                                  | Purpose                 | When to Use               |
 |-------------------------------------------------------------------------------------------|-------------------------|---------------------------|
+| [Caching Implementation](../../practices/engineering/optimization/CACHING_IMPLEMENTATION.md) | Caching code examples | Implementing cache patterns |
+| [Optimization Recipes](../../practices/engineering/optimization/OPTIMIZATION_RECIPES.md) | Optimization code examples | Implementing optimizations |
 | [Profiling Guide](../../practices/engineering/optimization/PROFILING_GUIDE.md)                         | Detailed profiling how-to | Bottleneck identification |
 
 ---

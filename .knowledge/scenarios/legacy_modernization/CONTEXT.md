@@ -97,7 +97,7 @@ flowchart LR
 
 ### 4.3 Risk Assessment
 
-`````markdown
+````markdown
 ## Risk Assessment Template
 ### System: [Name]
 | Risk                        | Likelihood | Impact   | Mitigation                     |
@@ -106,7 +106,7 @@ flowchart LR
 | Extended downtime           | Low        | High     | Blue-green deployment          |
 | Feature regression          | Medium     | Medium   | Comprehensive testing          |
 | Performance degradation     | Low        | Medium   | Load testing, monitoring       |
-```
+````
 ---
 
 ## 5. Migration Patterns

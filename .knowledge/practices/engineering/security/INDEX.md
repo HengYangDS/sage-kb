@@ -8,6 +8,7 @@
 
 | Document | Description |
 |:---------|:------------|
+| [Authorization Implementation](AUTHORIZATION_IMPLEMENTATION.md) | Code implementations for authorization patterns |
 | [Secrets Implementation Patterns](SECRETS_IMPLEMENTATION.md) | Secrets management implementation |
 | [Security Implementation Patterns](SECURITY_PATTERNS.md) | Security coding patterns |
 
