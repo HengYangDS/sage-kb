@@ -1,4 +1,4 @@
-﻿# Knowledge Base Version
+# Knowledge Base Version
 
 > Version tracking and changelog for AI collaboration
 
