@@ -12,9 +12,12 @@
 - [3. Committee Levels](#3-committee-levels)
 - [4. Dynamic Activation](#4-dynamic-activation)
 - [5. Analysis Process](#5-analysis-process)
-- [6. Output Templates](#6-output-templates)
-- [7. Quick Reference](#7-quick-reference)
-- [8. Decision Effectiveness Tracking](#8-decision-effectiveness-tracking)
+- [6. Enhanced Aggregation](#6-enhanced-aggregation)
+- [7. Uncertainty Quantification](#7-uncertainty-quantification)
+- [8. Bias Correction](#8-bias-correction)
+- [9. Dynamic Weight Learning](#9-dynamic-weight-learning)
+- [10. Decision Effectiveness Tracking](#10-decision-effectiveness-tracking)
+- [11. Quick Reference](#11-quick-reference)
 
 ---
 
@@ -23,11 +26,13 @@
 ### 30-Second Decision Flow
 
 ```text
-1. ASSESS RISK → Select Level (L1-L5)
-2. ACTIVATE EXPERTS → By problem domain
-3. EVALUATE ANGLES → By level requirement
-4. REACH CONSENSUS → Weighted voting
-5. DOCUMENT → Use template
+1. ASSESS RISK    → Select Level (L1-L5)
+2. ACTIVATE       → Choose experts by problem domain
+3. INDEPENDENT    → Each expert scores independently (防锚定)
+4. AGGREGATE      → Enhanced formula: S_enhanced = S - λσ
+5. QUANTIFY       → Output confidence interval + information sufficiency
+6. DECIDE         → Use enhanced decision rules
+7. DOCUMENT       → Use template from templates/EXPERT_COMMITTEE.md
 ```
 
 ### Level Quick Reference
@@ -46,11 +51,12 @@
 **Decision**: Fix login button bug
 **Panel**: Engineer, QA
 **Angles**: A1 Correctness, D3 Clarity, D5 Testability
-**Scores**: 5, 4, 5 → Avg 4.7
-**Verdict**: Approve
+**Scores**: 5, 4, 5 → S=4.7, σ=0.47, S_enhanced=4.47
+**CI_95%**: [4.0, 4.9]
+**Verdict**: Strong Approve (CI_lower > 3.5)
 ```
 
-> For full details, see sections below. Templates at `templates/EXPERT_COMMITTEE.md`.
+> Templates at `templates/EXPERT_COMMITTEE.md`
 
 ---
 
@@ -63,6 +69,8 @@
 | Single perspective → blind spots | Multiple expert viewpoints |
 | Ad-hoc quality checks | Structured angle evaluation |
 | Static team composition | Dynamic activation by need |
+| Overconfident decisions | Uncertainty quantification |
+| Cognitive biases | Structural debiasing |
 
 ### 1.2 Core Philosophy
 
@@ -72,11 +80,13 @@
 | **MECE** | Mutually exclusive, collectively exhaustive |
 | **Dynamic** | Activate experts and angles on-demand |
 | **Traceability** | Document all decisions and dissent |
+| **Calibrated** | Output uncertainty, not just point estimates |
 
 ### 1.3 What This Framework Does
 
 ```text
-Problem → Select Level → Activate Experts → Activate Angles → Analyze → Decide → Document
+Problem → Select Level → Activate Experts → Independent Scoring → 
+Enhanced Aggregation → Uncertainty Quantification → Decide → Document → Feedback
 ```
 
 ---
@@ -235,26 +245,21 @@ Problem → Select Level → Activate Experts → Activate Angles → Analyze �
 ### 5.1 Standard Workflow
 
 ```text
-1. SCOPE    → Define decision + select committee level
-2. ASSEMBLE → Choose experts based on domains
-3. ACTIVATE → Select angles based on level + problem type
-4. BRIEF    → Present problem with context
-5. ANALYZE  → Each expert evaluates assigned angles
-6. DISCUSS  → Share perspectives, identify conflicts
-7. RESOLVE  → Apply conflict resolution (see CONFLICT_RESOLUTION.md)
-8. DECIDE   → Calculate weighted consensus
-9. DOCUMENT → Record decision + rationale + dissent
+1. SCOPE      → Define decision + select committee level
+2. ASSEMBLE   → Choose experts based on domains
+3. ACTIVATE   → Select angles based on level + problem type
+4. BRIEF      → Present problem with context
+5. INDEPENDENT → Each expert evaluates independently (NO看他人)
+6. COLLECT    → Anonymous collection of scores
+7. AGGREGATE  → Apply enhanced aggregation formula
+8. QUANTIFY   → Calculate confidence interval + IS
+9. DISCUSS    → Share perspectives, identify conflicts (AFTER aggregation)
+10. RESOLVE   → Apply conflict resolution (see CONFLICT_RESOLUTION.md)
+11. DECIDE    → Use enhanced decision rules
+12. DOCUMENT  → Record decision + rationale + dissent
 ```
 
-### 5.2 Role Switching Syntax
-
-> **Template**: `.knowledge/templates/EXPERT_COMMITTEE.md` Section 7.1
-
-### 5.3 Per-Expert Analysis Template
-
-> **Template**: `.knowledge/templates/EXPERT_COMMITTEE.md` Section 7.2
-
-### 5.4 Scoring Scale
+### 5.2 Scoring Scale
 
 | Score | Meaning | Action |
 |:-----:|---------|--------|
@@ -266,33 +271,233 @@ Problem → Select Level → Activate Experts → Activate Angles → Analyze �
 
 ---
 
-## 6. Output Templates
+## 6. Enhanced Aggregation
 
-> **SSOT**: All decision templates → `.knowledge/templates/EXPERT_COMMITTEE.md`
+### 6.1 Basic Formula (Original)
 
-### 6.1 Available Templates
+```
+S = Σ(wᵢ × sᵢ) / Σwᵢ
+```
 
-| Level | Template | Use Case |
-|-------|----------|----------|
-| L1 | Quick Check | Bug fix, config change |
-| L2 | Standard Review | Minor feature, compatible API |
-| L3 | Deep Analysis | Refactoring, new tech adoption |
-| L4 | Comprehensive Review | Architecture, DB migration |
-| L5 | Full Committee | Platform change, security overhaul |
+### 6.2 Enhanced Formula (Required)
 
-### 6.2 Usage Guide
+```
+S_enhanced = S_weighted - λ × σ_weighted
 
-1. **Select Level** — Use Section 3 criteria
-2. **Copy Template** — From `templates/EXPERT_COMMITTEE.md`
-3. **Activate Experts** — Apply Section 4 dynamic rules
-4. **Analyze** — Follow Section 5 process
-5. **Document** — Record per CONFLICT_RESOLUTION.md
+Where:
+- S_weighted = Σ(wᵢ × sᵢ) / Σwᵢ     (weighted mean)
+- σ_weighted = √[Σwᵢ(sᵢ - S)² / Σwᵢ]  (weighted standard deviation)
+- λ = 0.5                              (divergence penalty coefficient)
+```
+
+### 6.3 Calculation Example
+
+**Scenario**: L2 decision, 4 experts
+
+| Expert | Weight | Score |
+|--------|--------|-------|
+| Architect | 0.9 | 4 |
+| Engineer | 0.7 | 4 |
+| QA | 0.7 | 3 |
+| PM | 0.3 | 5 |
+
+**Original calculation**:
+```
+S = (0.9×4 + 0.7×4 + 0.7×3 + 0.3×5) / (0.9+0.7+0.7+0.3)
+  = (3.6 + 2.8 + 2.1 + 1.5) / 2.6
+  = 10.0 / 2.6 = 3.85
+```
+
+**Enhanced calculation**:
+```
+S_weighted = 3.85
+σ_weighted = √[(0.9×0.02 + 0.7×0.02 + 0.7×0.72 + 0.3×1.32) / 2.6]
+           = √[0.90 / 2.6] = 0.59
+
+S_enhanced = 3.85 - 0.5 × 0.59 = 3.55
+```
+
+**Interpretation**: Divergence exists (σ=0.59), final score reduced from 3.85 to 3.55, more conservative.
+
+### 6.4 Divergence Reference Table
+
+| Weighted StdDev σ | Interpretation | Penalty (λ=0.5) |
+|-------------------|----------------|-----------------|
+| 0 - 0.3 | High consensus | 0 - 0.15 |
+| 0.3 - 0.6 | Minor divergence | 0.15 - 0.30 |
+| 0.6 - 1.0 | Moderate divergence | 0.30 - 0.50 |
+| 1.0 - 1.5 | Significant divergence | 0.50 - 0.75 |
+| > 1.5 | Severe divergence | > 0.75 |
 
 ---
 
-## 7. Quick Reference
+## 7. Uncertainty Quantification
 
-### 7.1 Level Selection Guide
+### 7.1 Confidence Interval
+
+**Formula**:
+```
+CI_95% = [S_enhanced - 1.96 × SE, S_enhanced + 1.96 × SE]
+
+Where:
+- SE = σ / √n  (standard error)
+- n = number of experts
+```
+
+### 7.2 Calculation Example (continued)
+
+```
+SE = 0.59 / √4 = 0.295
+CI_95% = [3.55 - 0.58, 3.55 + 0.58] = [2.97, 4.13]
+```
+
+### 7.3 Enhanced Decision Rules
+
+| Condition | Decision | Action |
+|-----------|----------|--------|
+| CI_lower > 3.5 | **Strong Approve** | Proceed confidently |
+| S > 3.5 AND CI_lower > 2.5 | **Conditional Approve** | Proceed with monitoring |
+| CI_upper < 2.5 | **Strong Reject** | Do not proceed |
+| CI_width > 2.0 | **Need More Info** | Add experts or discuss |
+| Other | **Revise** | Re-evaluate after changes |
+
+### 7.4 Information Sufficiency (IS)
+
+```
+IS = 1 - (CI_width / 4)
+
+IS > 0.7   → Information sufficient
+IS 0.5-0.7 → Basically sufficient
+IS < 0.5   → Insufficient, add more experts
+```
+
+**Example**:
+```
+CI_width = 4.13 - 2.97 = 1.16
+IS = 1 - (1.16 / 4) = 0.71 → Information sufficient
+```
+
+---
+
+## 8. Bias Correction
+
+### 8.1 Three-Step Debiasing Process
+
+```text
+Step 1: Independent Scoring (prevents anchoring)
+        ↓
+Step 2: Anonymous Aggregation (prevents conformity)
+        ↓
+Step 3: Open Discussion (information sharing)
+```
+
+### 8.2 Implementation Requirements
+
+| Phase | Requirement | Reason |
+|-------|-------------|--------|
+| **Independent Scoring** | Each expert scores without seeing others | Prevent anchoring effect |
+| **Anonymous Aggregation** | Show statistics first, not who scored what | Prevent authority suppression |
+| **Open Discussion** | Discuss divergence points, allow score revision | Full information sharing |
+
+### 8.3 Random Speaking Order
+
+```python
+# Randomize expert speaking order for each decision
+import random
+experts = ["Architect", "Engineer", "QA", "PM", ...]
+random.shuffle(experts)  # Randomize
+```
+
+### 8.4 Devil's Advocate Requirements
+
+Each decision **MUST** include:
+
+| Requirement | Count | Assignment Method |
+|-------------|-------|-------------------|
+| Dissenting opinion | ≥1 | Rotate or assign Risk role |
+| Risk enumeration | ≥3 | Each expert contributes ≥1 |
+| Alternative approach | ≥1 | Lowest-scoring expert proposes |
+
+---
+
+## 9. Dynamic Weight Learning
+
+### 9.1 Lightweight Implementation
+
+Simple **sliding window accuracy** instead of complex Bayesian updates:
+
+```
+Dynamic Weight = Base Weight × Accuracy Adjustment
+
+Accuracy Adjustment = (Correct in last 10 decisions + 5) / 15
+```
+
+### 9.2 Example
+
+| Expert | Base Weight | Last 10 Correct | Adjustment | Dynamic Weight |
+|--------|-------------|-----------------|------------|----------------|
+| Architect | 0.9 | 8 | (8+5)/15=0.87 | 0.78 |
+| Engineer | 0.7 | 9 | (9+5)/15=0.93 | 0.65 |
+| QA | 0.7 | 10 | (10+5)/15=1.0 | 0.70 |
+
+### 9.3 Cold Start Handling
+
+New experts or new domains: Use base weight, start adjusting after 5 accumulated decisions.
+
+---
+
+## 10. Decision Effectiveness Tracking
+
+### 10.1 Post-Decision Review
+
+| Checkpoint | Timing | Question |
+|------------|--------|----------|
+| **Immediate** | 1 week | Was implementation smooth? |
+| **Short-term** | 1 month | Did expected benefits materialize? |
+| **Long-term** | 3 months | Was the decision correct? |
+
+### 10.2 Effectiveness Metrics
+
+| Metric | Formula | Target |
+|--------|---------|:------:|
+| Decision Accuracy | Correct / Total | >85% |
+| Prediction Error | \|Predicted - Actual\| | <20% |
+| Reversal Rate | Reversed / Total | <10% |
+| Calibration | CI coverage rate | >90% |
+
+### 10.3 Feedback Loop
+
+```text
+1. RECORD   → Document decision with predictions
+2. SCHEDULE → Set review checkpoints
+3. COMPARE  → Actual vs predicted outcomes
+4. LEARN    → Update weights if systematic errors
+```
+
+### 10.4 Review Template
+
+| Item | Predicted | Actual | Delta | Lesson |
+|------|-----------|--------|:-----:|--------|
+| Outcome | | | | |
+| Timeline | | | | |
+| Risk Events | | | | |
+| User Impact | | | | |
+
+### 10.5 Continuous Improvement
+
+| Signal | Action |
+|--------|--------|
+| Accuracy <85% | Review angle coverage |
+| Prediction Error >20% | Calibrate expert weights |
+| Reversal Rate >10% | Increase committee level |
+| CI coverage <90% | Adjust λ parameter |
+| Systematic bias | Add/remove expert roles |
+
+---
+
+## 11. Quick Reference
+
+### 11.1 Level Selection Guide
 
 | Question | L1 | L2 | L3 | L4 | L5 |
 |----------|:--:|:--:|:--:|:--:|:--:|
@@ -302,7 +507,7 @@ Problem → Select Level → Activate Experts → Activate Angles → Analyze �
 | Under $10K impact? | ✓ | ✓ | ✓ | · | · |
 | Reversible in <1 day? | ✓ | ✓ | · | · | · |
 
-### 7.2 Domain Selection by Problem
+### 11.2 Domain Selection by Problem
 
 | Problem | Primary Domains |
 |---------|-----------------|
@@ -313,7 +518,7 @@ Problem → Select Level → Activate Experts → Activate Angles → Analyze �
 | Data | Data, Secure |
 | Operations | Run |
 
-### 7.3 Summary Statistics
+### 11.3 Summary Statistics
 
 | Metric | Value |
 |--------|-------|
@@ -324,52 +529,16 @@ Problem → Select Level → Activate Experts → Activate Angles → Analyze �
 | Committee Levels | 5 |
 | Max Matrix Size | 23 × 37 = 851 |
 
----
+### 11.4 Quick Enhancement Checklist
 
-## 8. Decision Effectiveness Tracking
-
-### 8.1 Post-Decision Review
-
-| Checkpoint | Timing | Question |
-|------------|--------|----------|
-| **Immediate** | 1 week | Was implementation smooth? |
-| **Short-term** | 1 month | Did expected benefits materialize? |
-| **Long-term** | 3 months | Was the decision correct? |
-
-### 8.2 Effectiveness Metrics
-
-| Metric | Formula | Target |
-|--------|---------|:------:|
-| Decision Accuracy | Correct / Total | >85% |
-| Prediction Error | \|Predicted - Actual\| | <20% |
-| Reversal Rate | Reversed / Total | <10% |
-
-### 8.3 Feedback Loop
-
-```text
-1. RECORD   → Document decision with predictions
-2. SCHEDULE → Set review checkpoints
-3. COMPARE  → Actual vs predicted outcomes
-4. LEARN    → Update framework if systematic errors
+```markdown
+□ Independent scoring? (prevents anchoring)
+□ Calculated weighted σ? (divergence awareness)
+□ Applied divergence penalty? (S_enhanced = S - 0.5σ)
+□ Output confidence interval? (uncertainty quantification)
+□ Devil's advocate opinion? (structural debiasing)
+□ Information sufficiency > 0.5? (decision quality assurance)
 ```
-
-### 8.4 Review Template
-
-| Item | Predicted | Actual | Delta | Lesson |
-|------|-----------|--------|:-----:|--------|
-| Outcome | | | | |
-| Timeline | | | | |
-| Risk Events | | | | |
-| User Impact | | | | |
-
-### 8.5 Continuous Improvement
-
-| Signal | Action |
-|--------|--------|
-| Accuracy <85% | Review angle coverage |
-| Prediction Error >20% | Calibrate expert weights |
-| Reversal Rate >10% | Increase committee level |
-| Systematic bias | Add/remove expert roles |
 
 ---
 
@@ -383,4 +552,4 @@ Problem → Select Level → Activate Experts → Activate Angles → Analyze �
 
 ---
 
-*AI Collaboration Knowledge Base*
+*Expert Committee Framework v2.0*
