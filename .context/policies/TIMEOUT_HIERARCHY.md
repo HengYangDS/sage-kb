@@ -56,6 +56,7 @@ Request
        ▼
     Result
 ```
+
 ---
 
 ## 3. Fallback Strategies
@@ -84,6 +85,7 @@ timeout:
     strategy: graceful     # graceful | strict | none
     cache_stale_ms: 60000  # Use stale cache up to 60s
 ```
+
 ---
 
 ## 5. Implementation Guidelines
@@ -96,6 +98,8 @@ timeout:
 | Log timeouts         | For monitoring        |
 | Test timeouts        | Include in test suite |
 
+**Golden Rule**: Always return something, never hang.
+
 ---
 
 ## Related
@@ -105,7 +109,5 @@ timeout:
 - `.knowledge/core/DEFAULTS.md` — Default timeout values reference
 
 ---
-
-**Golden Rule**: Always return something, never hang.
 
 *AI Collaboration Knowledge Base*
